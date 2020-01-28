@@ -9,13 +9,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
     <AssemblyName>Bandwidth.Sdk</AssemblyName>
-    <Version>1.1.0.0</Version>
+    <Version>1.1.1.0</Version>
     <Authors>APIMatic SDK Generator</Authors>
     <Company>APIMatic</Company>
     <Product>Bandwidth.Sdk</Product>
     <Copyright>Copyright ©  2019</Copyright>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <FileVersion>1.1.1.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

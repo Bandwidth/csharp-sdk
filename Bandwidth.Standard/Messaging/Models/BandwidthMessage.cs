@@ -26,7 +26,7 @@ namespace Bandwidth.Standard.Messaging.Models
             string owner = null,
             string applicationId = null,
             string time = null,
-            string segmentCount = null,
+            int? segmentCount = null,
             string direction = null,
             List<string> to = null,
             string mFrom = null,
@@ -75,7 +75,7 @@ namespace Bandwidth.Standard.Messaging.Models
         /// TODO: Write general description for this method
         /// </summary>
         [JsonProperty("segmentCount")]
-        public string SegmentCount { get; set; }
+        public int? SegmentCount { get; set; }
 
         /// <summary>
         /// TODO: Write general description for this method

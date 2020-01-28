@@ -7,16 +7,16 @@ Bandwidth's set of APIs
 The SDK is available as a NuGet that you can search for and install using the NuGet GUI. You can also use the following command on the Package Manager Console:
 
 ```csharp
-Install-Package Bandwidth.Sdk -Version 1.1.0
+Install-Package Bandwidth.Sdk -Version 1.1.1
 ```
 
 You can also view the NuGet at:
-https://www.nuget.org/packages/Bandwidth.Sdk/1.1.0
+https://www.nuget.org/packages/Bandwidth.Sdk/1.1.1
 
 If you are building with .NET CLI tools then you can also use the following command:
 
 ```bash
-dotnet add package Bandwidth.Sdk --version 1.1.0
+dotnet add package Bandwidth.Sdk --version 1.1.1
 ```
 
 ## Initialize the API Client
