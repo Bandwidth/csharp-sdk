@@ -14,35 +14,39 @@ using Bandwidth.Standard.Utilities;
 namespace Bandwidth.Standard.Voice.Models
 {
     [JsonConverter(typeof(StringValuedEnumConverter))]
-    public enum TranscriptionStatusEnum
+    public enum StatusEnum
     {
-        None,
-        Requested,
-        Available,
+        Processing,
+        Partial,
+        Complete,
+        Deleted,
+        Error,
     }
 
     /// <summary>
-    /// Helper for the enum type TranscriptionStatusEnum
+    /// Helper for the enum type StatusEnum
     /// </summary>
-    public static class TranscriptionStatusEnumHelper
+    public static class StatusEnumHelper
     {
         //string values corresponding the enum elements
-        private static List<string> stringValues = new List<string> { "none", "requested", "available" };
+        private static List<string> stringValues = new List<string> { "processing", "partial", "complete", "deleted", "error" };
 
         /// <summary>
-        /// Converts a TranscriptionStatusEnum value to a corresponding string value
+        /// Converts a StatusEnum value to a corresponding string value
         /// </summary>
-        /// <param name="enumValue">The TranscriptionStatusEnum value to convert</param>
+        /// <param name="enumValue">The StatusEnum value to convert</param>
         /// <returns>The representative string value</returns>
-        public static string ToValue(TranscriptionStatusEnum enumValue)
+        public static string ToValue(StatusEnum enumValue)
         {
             switch(enumValue)
             {
                 //only valid enum elements can be used
                 //this is necessary to avoid errors
-                case TranscriptionStatusEnum.None:
-                case TranscriptionStatusEnum.Requested:
-                case TranscriptionStatusEnum.Available:
+                case StatusEnum.Processing:
+                case StatusEnum.Partial:
+                case StatusEnum.Complete:
+                case StatusEnum.Deleted:
+                case StatusEnum.Error:
                     return stringValues[(int)enumValue];
 
                 //an invalid enum value was requested
@@ -52,11 +56,11 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Convert a list of TranscriptionStatusEnum values to a list of strings
+        /// Convert a list of StatusEnum values to a list of strings
         /// </summary>
-        /// <param name="enumValues">The list of TranscriptionStatusEnum values to convert</param>
+        /// <param name="enumValues">The list of StatusEnum values to convert</param>
         /// <returns>The list of representative string values</returns>
-        public static List<string> ToValue(List<TranscriptionStatusEnum> enumValues)
+        public static List<string> ToValue(List<StatusEnum> enumValues)
         {
             if (null == enumValues)
                 return null;
@@ -65,17 +69,17 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Converts a string value into TranscriptionStatusEnum value
+        /// Converts a string value into StatusEnum value
         /// </summary>
         /// <param name="value">The string value to parse</param>
-        /// <returns>The parsed TranscriptionStatusEnum value</returns>
-        public static TranscriptionStatusEnum ParseString(string value)
+        /// <returns>The parsed StatusEnum value</returns>
+        public static StatusEnum ParseString(string value)
         {
             int index = stringValues.IndexOf(value);
             if(index < 0)
-                throw new InvalidCastException(string.Format("Unable to cast value: {0} to type TranscriptionStatusEnum", value));
+                throw new InvalidCastException(string.Format("Unable to cast value: {0} to type StatusEnum", value));
 
-            return (TranscriptionStatusEnum) index;
+            return (StatusEnum) index;
         }
     }
 } 

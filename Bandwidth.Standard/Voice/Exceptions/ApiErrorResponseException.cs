@@ -21,13 +21,13 @@ using Bandwidth.Standard.Utilities;
 
 namespace Bandwidth.Standard.Voice.Exceptions
 {
-    public class ErrorResponseException : ApiException 
+    public class ApiErrorResponseException : ApiException 
     {
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("type", ItemConverterType = typeof(StringValuedEnumConverter))]
-        public Models.TypeEnum? Type { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
         /// <summary>
         /// TODO: Write general description for this method
@@ -46,7 +46,7 @@ namespace Bandwidth.Standard.Voice.Exceptions
         /// </summary>
         /// <param name="reason"> The reason for throwing exception </param>
         /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public ErrorResponseException(string reason, HttpContext context)
+        public ApiErrorResponseException(string reason, HttpContext context)
             : base(reason, context) { }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Bandwidth.Standard.Voice.Exceptions
         /// </summary>
         /// <param name="reason"> The reason for throwing exception </param>
         /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public ErrorResponseException(string reason, HttpContext context, Models.TypeEnum? type = null,
+        public ApiErrorResponseException(string reason, HttpContext context, string type = null,
             string description = null,
             string id = null): base(reason, context)
         {

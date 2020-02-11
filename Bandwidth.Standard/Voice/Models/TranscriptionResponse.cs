@@ -18,20 +18,20 @@ using Bandwidth.Standard.Utilities;
 
 namespace Bandwidth.Standard.Voice.Models
 {
-    public class ModifyCallRecordingState 
+    public class TranscriptionResponse 
     {
-        public ModifyCallRecordingState() { }
+        public TranscriptionResponse() { }
 
-        public ModifyCallRecordingState(Models.State2Enum? state = null)
+        public TranscriptionResponse(List<Models.Transcript> transcripts = null)
         {
-            State = state;
+            Transcripts = transcripts;
         }
 
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("state", ItemConverterType = typeof(StringValuedEnumConverter))]
-        public Models.State2Enum? State { get; set; }
+        [JsonProperty("transcripts")]
+        public List<Models.Transcript> Transcripts { get; set; }
 
     }
 } 

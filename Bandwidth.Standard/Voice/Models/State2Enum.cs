@@ -14,33 +14,35 @@ using Bandwidth.Standard.Utilities;
 namespace Bandwidth.Standard.Voice.Models
 {
     [JsonConverter(typeof(StringValuedEnumConverter))]
-    public enum State1Enum
+    public enum State2Enum
     {
-        Active,
-        Completed,
+        NOTRECORDING,
+        PAUSED,
+        RECORDING,
     }
 
     /// <summary>
-    /// Helper for the enum type State1Enum
+    /// Helper for the enum type State2Enum
     /// </summary>
-    public static class State1EnumHelper
+    public static class State2EnumHelper
     {
         //string values corresponding the enum elements
-        private static List<string> stringValues = new List<string> { "active", "completed" };
+        private static List<string> stringValues = new List<string> { "NOT_RECORDING", "PAUSED", "RECORDING" };
 
         /// <summary>
-        /// Converts a State1Enum value to a corresponding string value
+        /// Converts a State2Enum value to a corresponding string value
         /// </summary>
-        /// <param name="enumValue">The State1Enum value to convert</param>
+        /// <param name="enumValue">The State2Enum value to convert</param>
         /// <returns>The representative string value</returns>
-        public static string ToValue(State1Enum enumValue)
+        public static string ToValue(State2Enum enumValue)
         {
             switch(enumValue)
             {
                 //only valid enum elements can be used
                 //this is necessary to avoid errors
-                case State1Enum.Active:
-                case State1Enum.Completed:
+                case State2Enum.NOTRECORDING:
+                case State2Enum.PAUSED:
+                case State2Enum.RECORDING:
                     return stringValues[(int)enumValue];
 
                 //an invalid enum value was requested
@@ -50,11 +52,11 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Convert a list of State1Enum values to a list of strings
+        /// Convert a list of State2Enum values to a list of strings
         /// </summary>
-        /// <param name="enumValues">The list of State1Enum values to convert</param>
+        /// <param name="enumValues">The list of State2Enum values to convert</param>
         /// <returns>The list of representative string values</returns>
-        public static List<string> ToValue(List<State1Enum> enumValues)
+        public static List<string> ToValue(List<State2Enum> enumValues)
         {
             if (null == enumValues)
                 return null;
@@ -63,17 +65,17 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Converts a string value into State1Enum value
+        /// Converts a string value into State2Enum value
         /// </summary>
         /// <param name="value">The string value to parse</param>
-        /// <returns>The parsed State1Enum value</returns>
-        public static State1Enum ParseString(string value)
+        /// <returns>The parsed State2Enum value</returns>
+        public static State2Enum ParseString(string value)
         {
             int index = stringValues.IndexOf(value);
             if(index < 0)
-                throw new InvalidCastException(string.Format("Unable to cast value: {0} to type State1Enum", value));
+                throw new InvalidCastException(string.Format("Unable to cast value: {0} to type State2Enum", value));
 
-            return (State1Enum) index;
+            return (State2Enum) index;
         }
     }
 } 

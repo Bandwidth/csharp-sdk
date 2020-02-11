@@ -18,20 +18,18 @@ using Bandwidth.Standard.Utilities;
 
 namespace Bandwidth.Standard.Voice.Models
 {
-    public class ApiModifyCallRequest 
+    public class ApiTranscribeRecordingRequest 
     {
-        public ApiModifyCallRequest() { }
+        public ApiTranscribeRecordingRequest() { }
 
-        public ApiModifyCallRequest(string redirectUrl,
-            Models.State1Enum? state = null,
-            Models.RedirectMethodEnum? redirectMethod = null,
+        public ApiTranscribeRecordingRequest(string callbackUrl = null,
+            Models.CallbackMethodEnum? callbackMethod = null,
             string username = null,
             string password = null,
             string tag = null)
         {
-            State = state;
-            RedirectUrl = redirectUrl;
-            RedirectMethod = redirectMethod;
+            CallbackUrl = callbackUrl;
+            CallbackMethod = callbackMethod;
             Username = username;
             Password = password;
             Tag = tag;
@@ -40,20 +38,14 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("state", ItemConverterType = typeof(StringValuedEnumConverter))]
-        public Models.State1Enum? State { get; set; }
+        [JsonProperty("callbackUrl")]
+        public string CallbackUrl { get; set; }
 
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("redirectUrl")]
-        public string RedirectUrl { get; set; }
-
-        /// <summary>
-        /// TODO: Write general description for this method
-        /// </summary>
-        [JsonProperty("redirectMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
-        public Models.RedirectMethodEnum? RedirectMethod { get; set; }
+        [JsonProperty("callbackMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
+        public Models.CallbackMethodEnum? CallbackMethod { get; set; }
 
         /// <summary>
         /// TODO: Write general description for this method

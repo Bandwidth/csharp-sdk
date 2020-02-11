@@ -9,6 +9,25 @@ namespace Bandwidth.Standard.Voice.Bxml
   /// <seealso href="http://ap.bandwidth.com/docs/xml/recording/" />
   public class Record : IVerb
   {
+
+    /// <summary>
+    ///   (optional) A boolean value.  If true, the recording will be submitted for transcription upon completion.  Defaults to false.
+    /// </summary>
+    [XmlAttribute("transcribe")]
+    public bool Transcribe { get; set; }
+
+    /// <summary>
+    ///   (optional) URL to send the transcriptionAvailable event to.
+    /// </summary>
+    [XmlAttribute("transcriptionAvailableUrl")]
+    public string TranscriptionAvailableUrl { get; set; }
+
+    /// <summary>
+    ///   (optional) The HTTP method to use for the request to transcriptionAvailableUrl. GET or POST. Default Value is POST.
+    /// </summary>
+    [XmlAttribute("transcriptionAvailableMethod")]
+    public string TranscriptionAvailableMethod { get; set; }
+
     /// <summary>
     ///   (optional) URL to send the Record Complete event to and request new BXML.
     /// </summary>

@@ -11,6 +11,24 @@ namespace Bandwidth.Standard.Voice.Bxml
   {
 
     /// <summary>
+    ///   (optional) A boolean value.  If true, the recording will be submitted for transcription upon completion.  Defaults to false.
+    /// </summary>
+    [XmlAttribute("transcribe")]
+    public bool Transcribe { get; set; }
+
+    /// <summary>
+    ///   (optional) URL to send the transcriptionAvailable event to.
+    /// </summary>
+    [XmlAttribute("transcriptionAvailableUrl")]
+    public string TranscriptionAvailableUrl { get; set; }
+
+    /// <summary>
+    ///   (optional) The HTTP method to use for the request to transcriptionAvailableUrl. GET or POST. Default Value is POST.
+    /// </summary>
+    [XmlAttribute("transcriptionAvailableMethod")]
+    public string TranscriptionAvailableMethod { get; set; }
+
+    /// <summary>
     /// Optional custom string to include in callbacks
     /// </summary>
     [XmlAttribute("recordingAvailableUrl")]

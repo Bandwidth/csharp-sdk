@@ -22,7 +22,8 @@ namespace Bandwidth.Standard.Voice.Models
     {
         public ApiCallResponse() { }
 
-        public ApiCallResponse(string callId,
+        public ApiCallResponse(string accountId,
+            string callId,
             string applicationId,
             string to,
             string mFrom,
@@ -37,6 +38,7 @@ namespace Bandwidth.Standard.Voice.Models
             string password = null,
             string tag = null)
         {
+            AccountId = accountId;
             CallId = callId;
             ApplicationId = applicationId;
             To = to;
@@ -52,6 +54,12 @@ namespace Bandwidth.Standard.Voice.Models
             Password = password;
             Tag = tag;
         }
+
+        /// <summary>
+        /// TODO: Write general description for this method
+        /// </summary>
+        [JsonProperty("accountId")]
+        public string AccountId { get; set; }
 
         /// <summary>
         /// TODO: Write general description for this method

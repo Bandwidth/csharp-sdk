@@ -28,7 +28,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         { }
 
         /// <summary>
-        /// Creates a call request
+        /// Creates an outbound call
         /// </summary>
         /// <param name="accountId">Required parameter: Example: </param>
         /// <param name="body">Optional parameter: Example: </param>
@@ -41,7 +41,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Creates a call request
+        /// Creates an outbound call
         /// </summary>
         /// <param name="accountId">Required parameter: Example: </param>
         /// <param name="body">Optional parameter: Example: </param>
@@ -87,32 +87,37 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ErrorResponseException(@"Something didn't look right about that request. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself", _context);
+                throw new ApiException(@"Please authenticate yourself.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ErrorResponseException(@"We don't support that media type. Please send us `application/json`.", _context);
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -120,6 +125,104 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             var _result = ApiHelper.JsonDeserialize<Models.ApiCallResponse>(_response.Body);
             ApiResponse<Models.ApiCallResponse> apiResponse = new ApiResponse<Models.ApiCallResponse>(_response.StatusCode, _response.Headers, _result);
+            return apiResponse;
+        }
+
+        /// <summary>
+        /// Returns near-realtime metadata about the specified call
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="callId">Required parameter: Example: </param>
+        /// <return>Returns the ApiResponse<Models.ApiCallStateResponse> response from the API call</return>
+        public ApiResponse<Models.ApiCallStateResponse> GetCallState(string accountId, string callId)
+        {
+            Task<ApiResponse<Models.ApiCallStateResponse>> t = GetCallStateAsync(accountId, callId);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Returns near-realtime metadata about the specified call
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="callId">Required parameter: Example: </param>
+        /// <return>Returns the ApiResponse<Models.ApiCallStateResponse> response from the API call</return>
+        public async Task<ApiResponse<Models.ApiCallStateResponse>> GetCallStateAsync(string accountId, string callId)
+        {
+            //the base uri for api requests
+            string _baseUri = config.GetBaseUri(Server.VoiceDefault);
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/api/v2/accounts/{accountId}/calls/{callId}");
+
+            //process optional template parameters
+            ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "accountId", accountId },
+                { "callId", callId }
+            });
+
+            //validate and preprocess url
+            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string,string>()
+            { 
+                { "user-agent", "APIMATIC 2.0" },
+                { "accept", "application/json" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
+
+            _request = authManagers["voice"].Apply(_request);
+
+            //invoke request and get response
+            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new ApiException(@"Please authenticate yourself.", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
+            }
+
+            if (_response.StatusCode == 415)
+            {
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+            }
+
+            if (_response.StatusCode == 429)
+            {
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+            }
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+            var _result = ApiHelper.JsonDeserialize<Models.ApiCallStateResponse>(_response.Body);
+            ApiResponse<Models.ApiCallStateResponse> apiResponse = new ApiResponse<Models.ApiCallStateResponse>(_response.StatusCode, _response.Headers, _result);
             return apiResponse;
         }
 
@@ -184,37 +287,37 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiException(@"The call can't be modified in its current state", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself", _context);
+                throw new ApiException(@"Please authenticate yourself.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiException(@"The call never existed, no longer exists, or is inaccessible to you", _context);
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ErrorResponseException(@"We don't support that media type. Please send us `application/json`.", _context);
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -283,37 +386,37 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiException(@"The call can't be modified in its current state", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself", _context);
+                throw new ApiException(@"Please authenticate yourself.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiException(@"The call never existed, no longer exists, or is inaccessible to you", _context);
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ErrorResponseException(@"We don't support that media type. Please send us `application/json`.", _context);
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -326,10 +429,20 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// </summary>
         /// <param name="accountId">Required parameter: Example: </param>
         /// <param name="callId">Required parameter: Example: </param>
+        /// <param name="mFrom">Optional parameter: Example: </param>
+        /// <param name="to">Optional parameter: Example: </param>
+        /// <param name="minStartTime">Optional parameter: Example: </param>
+        /// <param name="maxStartTime">Optional parameter: Example: </param>
         /// <return>Returns the ApiResponse<List<Models.RecordingMetadataResponse>> response from the API call</return>
-        public ApiResponse<List<Models.RecordingMetadataResponse>> GetQueryMetadataForAccountAndCall(string accountId, string callId)
+        public ApiResponse<List<Models.RecordingMetadataResponse>> GetQueryMetadataForAccountAndCall(
+                string accountId,
+                string callId,
+                string mFrom = null,
+                string to = null,
+                string minStartTime = null,
+                string maxStartTime = null)
         {
-            Task<ApiResponse<List<Models.RecordingMetadataResponse>>> t = GetQueryMetadataForAccountAndCallAsync(accountId, callId);
+            Task<ApiResponse<List<Models.RecordingMetadataResponse>>> t = GetQueryMetadataForAccountAndCallAsync(accountId, callId, mFrom, to, minStartTime, maxStartTime);
             ApiHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -339,8 +452,18 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// </summary>
         /// <param name="accountId">Required parameter: Example: </param>
         /// <param name="callId">Required parameter: Example: </param>
+        /// <param name="mFrom">Optional parameter: Example: </param>
+        /// <param name="to">Optional parameter: Example: </param>
+        /// <param name="minStartTime">Optional parameter: Example: </param>
+        /// <param name="maxStartTime">Optional parameter: Example: </param>
         /// <return>Returns the ApiResponse<List<Models.RecordingMetadataResponse>> response from the API call</return>
-        public async Task<ApiResponse<List<Models.RecordingMetadataResponse>>> GetQueryMetadataForAccountAndCallAsync(string accountId, string callId)
+        public async Task<ApiResponse<List<Models.RecordingMetadataResponse>>> GetQueryMetadataForAccountAndCallAsync(
+                string accountId,
+                string callId,
+                string mFrom = null,
+                string to = null,
+                string minStartTime = null,
+                string maxStartTime = null)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
@@ -355,6 +478,15 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "accountId", accountId },
                 { "callId", callId }
             });
+
+            //process optional query parameters
+            ApiHelper.AppendUrlWithQueryParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "from", mFrom },
+                { "to", to },
+                { "minStartTime", minStartTime },
+                { "maxStartTime", maxStartTime }
+            },ArrayDeserializationFormat,ParameterSeparator);
 
             //validate and preprocess url
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
@@ -378,32 +510,37 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ErrorResponseException(@"Something didn't look right about that request. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself", _context);
+                throw new ApiException(@"Please authenticate yourself.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ErrorResponseException(@"We don't support that media type. Please send us `application/json`.", _context);
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -474,37 +611,37 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ErrorResponseException(@"Something didn't look right about that request. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself", _context);
+                throw new ApiException(@"Please authenticate yourself.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiException(@"The recording never existed, no longer exists, or is inaccessible to you", _context);
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ErrorResponseException(@"We don't support that media type. Please send us `application/json`.", _context);
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -573,37 +710,37 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ErrorResponseException(@"Something didn't look right about that request. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself", _context);
+                throw new ApiException(@"Please authenticate yourself.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiException(@"The recording never existed, no longer exists, or is inaccessible to you", _context);
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ErrorResponseException(@"We don't support that media type. Please send us `application/json`.", _context);
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -670,37 +807,37 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ErrorResponseException(@"Something didn't look right about that request. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself", _context);
+                throw new ApiException(@"Please authenticate yourself.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiException(@"The recording never existed, no longer exists, or is inaccessible to you", _context);
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ErrorResponseException(@"We don't support that media type. Please send us `application/json`.", _context);
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -712,35 +849,137 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns a (potentially empty; capped at 1000) list of metadata for the recordings associated with the specified account
+        /// Deletes the specified recording's media
         /// </summary>
         /// <param name="accountId">Required parameter: Example: </param>
-        /// <return>Returns the ApiResponse<List<Models.RecordingMetadataResponse>> response from the API call</return>
-        public ApiResponse<List<Models.RecordingMetadataResponse>> GetQueryMetadataForAccount(string accountId)
+        /// <param name="callId">Required parameter: Example: </param>
+        /// <param name="recordingId">Required parameter: Example: </param>
+        /// <return>Returns the void response from the API call</return>
+        public void DeleteRecordingMedia(string accountId, string callId, string recordingId)
         {
-            Task<ApiResponse<List<Models.RecordingMetadataResponse>>> t = GetQueryMetadataForAccountAsync(accountId);
+            Task t = DeleteRecordingMediaAsync(accountId, callId, recordingId);
             ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
         }
 
         /// <summary>
-        /// Returns a (potentially empty; capped at 1000) list of metadata for the recordings associated with the specified account
+        /// Deletes the specified recording's media
         /// </summary>
         /// <param name="accountId">Required parameter: Example: </param>
-        /// <return>Returns the ApiResponse<List<Models.RecordingMetadataResponse>> response from the API call</return>
-        public async Task<ApiResponse<List<Models.RecordingMetadataResponse>>> GetQueryMetadataForAccountAsync(string accountId)
+        /// <param name="callId">Required parameter: Example: </param>
+        /// <param name="recordingId">Required parameter: Example: </param>
+        /// <return>Returns the void response from the API call</return>
+        public async Task DeleteRecordingMediaAsync(string accountId, string callId, string recordingId)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
 
             //prepare query string for API call
             StringBuilder _queryBuilder = new StringBuilder(_baseUri);
-            _queryBuilder.Append("/api/v2/accounts/{accountId}/recordings");
+            _queryBuilder.Append("/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media");
 
             //process optional template parameters
             ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
             {
-                { "accountId", accountId }
+                { "accountId", accountId },
+                { "callId", callId },
+                { "recordingId", recordingId }
+            });
+
+            //validate and preprocess url
+            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string,string>()
+            { 
+                { "user-agent", "APIMATIC 2.0" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = GetClientInstance().Delete(_queryUrl, _headers, null);
+
+            _request = authManagers["voice"].Apply(_request);
+
+            //invoke request and get response
+            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new ApiException(@"Please authenticate yourself.", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
+            }
+
+            if (_response.StatusCode == 415)
+            {
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+            }
+
+            if (_response.StatusCode == 429)
+            {
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+            }
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+        }
+
+        /// <summary>
+        /// Downloads the specified transcription
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="callId">Required parameter: Example: </param>
+        /// <param name="recordingId">Required parameter: Example: </param>
+        /// <return>Returns the ApiResponse<Models.TranscriptionResponse> response from the API call</return>
+        public ApiResponse<Models.TranscriptionResponse> GetRecordingTranscription(string accountId, string callId, string recordingId)
+        {
+            Task<ApiResponse<Models.TranscriptionResponse>> t = GetRecordingTranscriptionAsync(accountId, callId, recordingId);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Downloads the specified transcription
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="callId">Required parameter: Example: </param>
+        /// <param name="recordingId">Required parameter: Example: </param>
+        /// <return>Returns the ApiResponse<Models.TranscriptionResponse> response from the API call</return>
+        public async Task<ApiResponse<Models.TranscriptionResponse>> GetRecordingTranscriptionAsync(string accountId, string callId, string recordingId)
+        {
+            //the base uri for api requests
+            string _baseUri = config.GetBaseUri(Server.VoiceDefault);
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription");
+
+            //process optional template parameters
+            ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "accountId", accountId },
+                { "callId", callId },
+                { "recordingId", recordingId }
             });
 
             //validate and preprocess url
@@ -765,32 +1004,370 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ErrorResponseException(@"Something didn't look right about that request. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself", _context);
+                throw new ApiException(@"Please authenticate yourself.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ErrorResponseException(@"We don't support that media type. Please send us `application/json`.", _context);
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+            }
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+            var _result = ApiHelper.JsonDeserialize<Models.TranscriptionResponse>(_response.Body);
+            ApiResponse<Models.TranscriptionResponse> apiResponse = new ApiResponse<Models.TranscriptionResponse>(_response.StatusCode, _response.Headers, _result);
+            return apiResponse;
+        }
+
+        /// <summary>
+        /// Requests that the specified recording be transcribed
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="callId">Required parameter: Example: </param>
+        /// <param name="recordingId">Required parameter: Example: </param>
+        /// <param name="body">Optional parameter: Example: </param>
+        /// <return>Returns the void response from the API call</return>
+        public void CreateTranscribeRecording(
+                string accountId,
+                string callId,
+                string recordingId,
+                Models.ApiTranscribeRecordingRequest body = null)
+        {
+            Task t = CreateTranscribeRecordingAsync(accountId, callId, recordingId, body);
+            ApiHelper.RunTaskSynchronously(t);
+        }
+
+        /// <summary>
+        /// Requests that the specified recording be transcribed
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="callId">Required parameter: Example: </param>
+        /// <param name="recordingId">Required parameter: Example: </param>
+        /// <param name="body">Optional parameter: Example: </param>
+        /// <return>Returns the void response from the API call</return>
+        public async Task CreateTranscribeRecordingAsync(
+                string accountId,
+                string callId,
+                string recordingId,
+                Models.ApiTranscribeRecordingRequest body = null)
+        {
+            //the base uri for api requests
+            string _baseUri = config.GetBaseUri(Server.VoiceDefault);
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription");
+
+            //process optional template parameters
+            ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "accountId", accountId },
+                { "callId", callId },
+                { "recordingId", recordingId }
+            });
+
+            //validate and preprocess url
+            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string,string>()
+            { 
+                { "user-agent", "APIMATIC 2.0" },
+                { "content-type", "application/json; charset=utf-8" }
+            };
+
+            //append body params
+            var _body = ApiHelper.JsonSerialize(body);
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = GetClientInstance().PostBody(_queryUrl, _headers, _body);
+
+            _request = authManagers["voice"].Apply(_request);
+
+            //invoke request and get response
+            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new ApiException(@"Please authenticate yourself.", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
+            }
+
+            if (_response.StatusCode == 410)
+            {
+                throw new ApiErrorResponseException(@"The media for this recording has been deleted, so we can't transcribe it", _context);
+            }
+
+            if (_response.StatusCode == 415)
+            {
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+            }
+
+            if (_response.StatusCode == 429)
+            {
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+            }
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+        }
+
+        /// <summary>
+        /// Deletes the specified recording's transcription
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="callId">Required parameter: Example: </param>
+        /// <param name="recordingId">Required parameter: Example: </param>
+        /// <return>Returns the void response from the API call</return>
+        public void DeleteRecordingTranscription(string accountId, string callId, string recordingId)
+        {
+            Task t = DeleteRecordingTranscriptionAsync(accountId, callId, recordingId);
+            ApiHelper.RunTaskSynchronously(t);
+        }
+
+        /// <summary>
+        /// Deletes the specified recording's transcription
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="callId">Required parameter: Example: </param>
+        /// <param name="recordingId">Required parameter: Example: </param>
+        /// <return>Returns the void response from the API call</return>
+        public async Task DeleteRecordingTranscriptionAsync(string accountId, string callId, string recordingId)
+        {
+            //the base uri for api requests
+            string _baseUri = config.GetBaseUri(Server.VoiceDefault);
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/api/v2/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription");
+
+            //process optional template parameters
+            ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "accountId", accountId },
+                { "callId", callId },
+                { "recordingId", recordingId }
+            });
+
+            //validate and preprocess url
+            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string,string>()
+            { 
+                { "user-agent", "APIMATIC 2.0" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = GetClientInstance().Delete(_queryUrl, _headers, null);
+
+            _request = authManagers["voice"].Apply(_request);
+
+            //invoke request and get response
+            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new ApiException(@"Please authenticate yourself.", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
+            }
+
+            if (_response.StatusCode == 415)
+            {
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+            }
+
+            if (_response.StatusCode == 429)
+            {
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+            }
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+        }
+
+        /// <summary>
+        /// Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria.
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="mFrom">Optional parameter: Example: </param>
+        /// <param name="to">Optional parameter: Example: </param>
+        /// <param name="minStartTime">Optional parameter: Example: </param>
+        /// <param name="maxStartTime">Optional parameter: Example: </param>
+        /// <return>Returns the ApiResponse<List<Models.RecordingMetadataResponse>> response from the API call</return>
+        public ApiResponse<List<Models.RecordingMetadataResponse>> GetQueryMetadataForAccount(
+                string accountId,
+                string mFrom = null,
+                string to = null,
+                string minStartTime = null,
+                string maxStartTime = null)
+        {
+            Task<ApiResponse<List<Models.RecordingMetadataResponse>>> t = GetQueryMetadataForAccountAsync(accountId, mFrom, to, minStartTime, maxStartTime);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria.
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="mFrom">Optional parameter: Example: </param>
+        /// <param name="to">Optional parameter: Example: </param>
+        /// <param name="minStartTime">Optional parameter: Example: </param>
+        /// <param name="maxStartTime">Optional parameter: Example: </param>
+        /// <return>Returns the ApiResponse<List<Models.RecordingMetadataResponse>> response from the API call</return>
+        public async Task<ApiResponse<List<Models.RecordingMetadataResponse>>> GetQueryMetadataForAccountAsync(
+                string accountId,
+                string mFrom = null,
+                string to = null,
+                string minStartTime = null,
+                string maxStartTime = null)
+        {
+            //the base uri for api requests
+            string _baseUri = config.GetBaseUri(Server.VoiceDefault);
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/api/v2/accounts/{accountId}/recordings");
+
+            //process optional template parameters
+            ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "accountId", accountId }
+            });
+
+            //process optional query parameters
+            ApiHelper.AppendUrlWithQueryParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "from", mFrom },
+                { "to", to },
+                { "minStartTime", minStartTime },
+                { "maxStartTime", maxStartTime }
+            },ArrayDeserializationFormat,ParameterSeparator);
+
+            //validate and preprocess url
+            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string,string>()
+            { 
+                { "user-agent", "APIMATIC 2.0" },
+                { "accept", "application/json" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
+
+            _request = authManagers["voice"].Apply(_request);
+
+            //invoke request and get response
+            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new ApiException(@"Please authenticate yourself.", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
+            }
+
+            if (_response.StatusCode == 415)
+            {
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+            }
+
+            if (_response.StatusCode == 429)
+            {
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level

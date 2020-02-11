@@ -18,42 +18,54 @@ using Bandwidth.Standard.Utilities;
 
 namespace Bandwidth.Standard.Voice.Models
 {
-    public class RecordingMetadataResponse 
+    public class ApiCallStateResponse 
     {
-        public RecordingMetadataResponse() { }
+        public ApiCallStateResponse() { }
 
-        public RecordingMetadataResponse(string applicationId = null,
+        public ApiCallStateResponse(string callId = null,
+            string parentCallId = null,
+            string applicationId = null,
             string accountId = null,
-            string callId = null,
-            string recordingId = null,
             string to = null,
             string mFrom = null,
-            string duration = null,
-            Models.DirectionEnum? direction = null,
-            int? channels = null,
-            long? startTime = null,
-            long? endTime = null,
-            Models.FileFormatEnum? fileFormat = null,
-            Models.StatusEnum? status = null,
-            string mediaUrl = null,
-            Models.Transcription transcription = null)
+            string direction = null,
+            Models.StateEnum? state = null,
+            DateTime? startTime = null,
+            DateTime? answerTime = null,
+            DateTime? endTime = null,
+            Models.DisconnectCauseEnum? disconnectCause = null,
+            string errorMessage = null,
+            string errorId = null,
+            DateTime? lastUpdate = null)
         {
+            CallId = callId;
+            ParentCallId = parentCallId;
             ApplicationId = applicationId;
             AccountId = accountId;
-            CallId = callId;
-            RecordingId = recordingId;
             To = to;
             MFrom = mFrom;
-            Duration = duration;
             Direction = direction;
-            Channels = channels;
+            State = state;
             StartTime = startTime;
+            AnswerTime = answerTime;
             EndTime = endTime;
-            FileFormat = fileFormat;
-            Status = status;
-            MediaUrl = mediaUrl;
-            Transcription = transcription;
+            DisconnectCause = disconnectCause;
+            ErrorMessage = errorMessage;
+            ErrorId = errorId;
+            LastUpdate = lastUpdate;
         }
+
+        /// <summary>
+        /// TODO: Write general description for this method
+        /// </summary>
+        [JsonProperty("callId")]
+        public string CallId { get; set; }
+
+        /// <summary>
+        /// TODO: Write general description for this method
+        /// </summary>
+        [JsonProperty("parentCallId")]
+        public string ParentCallId { get; set; }
 
         /// <summary>
         /// TODO: Write general description for this method
@@ -70,18 +82,6 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("callId")]
-        public string CallId { get; set; }
-
-        /// <summary>
-        /// TODO: Write general description for this method
-        /// </summary>
-        [JsonProperty("recordingId")]
-        public string RecordingId { get; set; }
-
-        /// <summary>
-        /// TODO: Write general description for this method
-        /// </summary>
         [JsonProperty("to")]
         public string To { get; set; }
 
@@ -92,58 +92,62 @@ namespace Bandwidth.Standard.Voice.Models
         public string MFrom { get; set; }
 
         /// <summary>
-        /// Format is ISO-8601
+        /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("duration")]
-        public string Duration { get; set; }
+        [JsonProperty("direction")]
+        public string Direction { get; set; }
 
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("direction", ItemConverterType = typeof(StringValuedEnumConverter))]
-        public Models.DirectionEnum? Direction { get; set; }
+        [JsonProperty("state", ItemConverterType = typeof(StringValuedEnumConverter))]
+        public Models.StateEnum? State { get; set; }
 
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("channels")]
-        public int? Channels { get; set; }
-
-        /// <summary>
-        /// TODO: Write general description for this method
-        /// </summary>
+        [JsonConverter(typeof(IsoDateTimeConverter))]
         [JsonProperty("startTime")]
-        public long? StartTime { get; set; }
+        public DateTime? StartTime { get; set; }
 
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
+        [JsonConverter(typeof(IsoDateTimeConverter))]
+        [JsonProperty("answerTime")]
+        public DateTime? AnswerTime { get; set; }
+
+        /// <summary>
+        /// TODO: Write general description for this method
+        /// </summary>
+        [JsonConverter(typeof(IsoDateTimeConverter))]
         [JsonProperty("endTime")]
-        public long? EndTime { get; set; }
+        public DateTime? EndTime { get; set; }
 
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("fileFormat", ItemConverterType = typeof(StringValuedEnumConverter))]
-        public Models.FileFormatEnum? FileFormat { get; set; }
+        [JsonProperty("disconnectCause", ItemConverterType = typeof(StringValuedEnumConverter))]
+        public Models.DisconnectCauseEnum? DisconnectCause { get; set; }
 
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter))]
-        public Models.StatusEnum? Status { get; set; }
+        [JsonProperty("errorMessage")]
+        public string ErrorMessage { get; set; }
 
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("mediaUrl")]
-        public string MediaUrl { get; set; }
+        [JsonProperty("errorId")]
+        public string ErrorId { get; set; }
 
         /// <summary>
         /// TODO: Write general description for this method
         /// </summary>
-        [JsonProperty("transcription")]
-        public Models.Transcription Transcription { get; set; }
+        [JsonConverter(typeof(IsoDateTimeConverter))]
+        [JsonProperty("lastUpdate")]
+        public DateTime? LastUpdate { get; set; }
 
     }
 } 
