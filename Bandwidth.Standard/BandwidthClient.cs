@@ -6,7 +6,9 @@
 using System;
 using System.Text;
 using System.Linq;
+using System.Net;
 using System.Collections.Generic;
+using Bandwidth.Standard.Authentication;
 using Bandwidth.Standard.Http.Client;
 using Bandwidth.Standard.Messaging;
 using Bandwidth.Standard.Voice;
@@ -70,20 +72,31 @@ namespace Bandwidth.Standard
         private BandwidthClient(TimeSpan timeout, string messagingBasicAuthUserName,
                 string messagingBasicAuthPassword, string voiceBasicAuthUserName,
                 string voiceBasicAuthPassword, Environment environment,
-                IDictionary<string, IAuthManager> authManagers, IHttpClient httpClient)
-        { 
+                IDictionary<string, IAuthManager> authManagers, IHttpClient httpClient,
+                IHttpClientConfiguration httpClientConfiguration)
+        {
             messagingBasicAuthManager = new MessagingBasicAuthManager(messagingBasicAuthUserName, messagingBasicAuthPassword);
             voiceBasicAuthManager = new VoiceBasicAuthManager(voiceBasicAuthUserName, voiceBasicAuthPassword);
             Timeout = timeout;
             Environment = environment;
             this.httpClient = httpClient;
             this.authManagers = new Dictionary<string, IAuthManager>(authManagers);
+            HttpClientConfiguration = httpClientConfiguration;
+
+
 
             this.authManagers["messaging"] = messagingBasicAuthManager;
             this.authManagers["voice"] = voiceBasicAuthManager;
+
             messaging = new Lazy<MessagingClient>(() => new MessagingClient(this));
             voice = new Lazy<VoiceClient>(() => new VoiceClient(this));
+
         }
+
+        /// <summary>
+        /// The configuration of the Http Client associated with this BandwidthClient.
+        /// </summary>
+        public IHttpClientConfiguration HttpClientConfiguration { get; }
 
         /// <summary>
         /// The username and password to use with basic authentication
@@ -128,7 +141,7 @@ namespace Bandwidth.Standard
             List<KeyValuePair<string, object>> kvpList = new List<KeyValuePair<string, object>>()
             {
             };
-            return kvpList; 
+            return kvpList;
         }
 
         /// <summary>
@@ -143,42 +156,31 @@ namespace Bandwidth.Standard
             return Url.ToString();
         }
 
-        public Builder ToBuilder() 
+        public Builder ToBuilder()
         {
             Builder builder = new Builder()
                 .Timeout(Timeout)
                 .Environment(Environment)
-                .AuthManagers(authManagers)
-                .HttpClient(httpClient)
                 .MessagingBasicAuthCredentials(messagingBasicAuthManager.Username, messagingBasicAuthManager.Password)
                 .VoiceBasicAuthCredentials(voiceBasicAuthManager.Username, voiceBasicAuthManager.Password)
-;
+                .HttpClient(httpClient)
+                .AuthManagers(authManagers);
 
             return builder;
         }
 
         public class Builder
         {
-            private TimeSpan timeout = TimeSpan.FromSeconds(0);
-            private string messagingBasicAuthUserName = "TODO: Replace";
-            private string messagingBasicAuthPassword = "TODO: Replace";
-            private string voiceBasicAuthUserName = "TODO: Replace";
-            private string voiceBasicAuthPassword = "TODO: Replace";
+            private TimeSpan timeout = TimeSpan.FromSeconds(100);
+            private string messagingBasicAuthUserName = String.Empty;
+            private string messagingBasicAuthPassword = String.Empty;
+            private string voiceBasicAuthUserName = String.Empty;
+            private string voiceBasicAuthPassword = String.Empty;
             private Environment environment = Bandwidth.Standard.Environment.Production;
             private IHttpClient httpClient;
             private IDictionary<string, IAuthManager> authManagers = new Dictionary<string, IAuthManager>();
+            private HttpClientConfiguration httpClientConfig = new HttpClientConfiguration();
             private bool createCustomHttpClient = false;
-
-            // Setter for timeout. Determines whether a new this.httpClient is needed
-            public Builder Timeout(TimeSpan timeout)
-            { 
-                if (this.timeout != timeout && timeout.TotalSeconds > 0)
-                {
-                    this.timeout = timeout;
-                    this.createCustomHttpClient = true;
-                }
-                return this;
-            }
 
             // Setter for Environment
             public Builder Environment(Environment environment)
@@ -187,9 +189,11 @@ namespace Bandwidth.Standard
                 return this;
             }
 
-            internal Builder HttpClient(IHttpClient httpClient)
+            // Setter for Timeout
+            public Builder Timeout(TimeSpan timeout)
             {
-                this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+                httpClientConfig.Timeout = timeout.TotalSeconds <= 0 ? TimeSpan.FromSeconds(100) : timeout;
+                this.createCustomHttpClient = true;
                 return this;
             }
 
@@ -209,6 +213,12 @@ namespace Bandwidth.Standard
                 return this;
             }
 
+            internal Builder HttpClient(IHttpClient httpClient)
+            {
+                this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+                return this;
+            }
+
             internal Builder AuthManagers(IDictionary<string, IAuthManager> authManagers)
             {
                 this.authManagers = authManagers ?? throw new ArgumentNullException(nameof(authManagers));
@@ -219,7 +229,7 @@ namespace Bandwidth.Standard
             {
                 if (createCustomHttpClient) 
                 {
-                    httpClient = new HttpClientWrapper(timeout);
+                    httpClient = new HttpClientWrapper(httpClientConfig);
                 } 
                 else 
                 {
@@ -227,7 +237,7 @@ namespace Bandwidth.Standard
                 }
 
                 return new BandwidthClient(timeout, messagingBasicAuthUserName, messagingBasicAuthPassword, voiceBasicAuthUserName,
-                        voiceBasicAuthPassword, environment, authManagers, httpClient);
+                        voiceBasicAuthPassword, environment, authManagers, httpClient, httpClientConfig);
             }
         }
 

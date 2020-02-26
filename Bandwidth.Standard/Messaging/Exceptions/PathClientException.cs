@@ -24,31 +24,31 @@ namespace Bandwidth.Standard.Messaging.Exceptions
     public class PathClientException : ApiException 
     {
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for timestamp
         /// </summary>
         [JsonProperty("timestamp")]
         public string Timestamp { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for status
         /// </summary>
         [JsonProperty("status")]
         public int? Status { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for error
         /// </summary>
         [JsonProperty("error")]
         public string Error { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for message
         /// </summary>
         [JsonProperty("message")]
         public string Message { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for path
         /// </summary>
         [JsonProperty("path")]
         public string Path { get; set; }
@@ -79,4 +79,4 @@ namespace Bandwidth.Standard.Messaging.Exceptions
             this.Path = path;
         }
     }
-} 
+}

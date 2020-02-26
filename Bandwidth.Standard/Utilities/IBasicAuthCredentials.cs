@@ -1,6 +1,6 @@
 using System;
 
-namespace Bandwidth.Standard.Utilities
+namespace Bandwidth.Standard.Authentication
 {
     public interface IBasicAuthCredentials
     {

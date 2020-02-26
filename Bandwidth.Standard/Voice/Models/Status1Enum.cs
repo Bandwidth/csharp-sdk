@@ -86,4 +86,4 @@ namespace Bandwidth.Standard.Voice.Models
             return (Status1Enum) index;
         }
     }
-} 
+}

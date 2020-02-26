@@ -28,10 +28,10 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for state
         /// </summary>
         [JsonProperty("state", ItemConverterType = typeof(StringValuedEnumConverter))]
         public Models.State2Enum? State { get; set; }
 
     }
-} 
+}

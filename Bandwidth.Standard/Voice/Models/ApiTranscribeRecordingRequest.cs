@@ -36,34 +36,34 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for callbackUrl
         /// </summary>
         [JsonProperty("callbackUrl")]
         public string CallbackUrl { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for callbackMethod
         /// </summary>
         [JsonProperty("callbackMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
         public Models.CallbackMethodEnum? CallbackMethod { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for username
         /// </summary>
         [JsonProperty("username")]
         public string Username { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for password
         /// </summary>
         [JsonProperty("password")]
         public string Password { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for tag
         /// </summary>
         [JsonProperty("tag")]
         public string Tag { get; set; }
 
     }
-} 
+}

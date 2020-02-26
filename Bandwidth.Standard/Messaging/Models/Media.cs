@@ -46,64 +46,64 @@ namespace Bandwidth.Standard.Messaging.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for inputStream
         /// </summary>
         [JsonProperty("inputStream")]
         public object InputStream { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for content
         /// </summary>
         [JsonProperty("content")]
         public string Content { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for url
         /// </summary>
         [JsonProperty("url")]
         public string Url { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for contentLength
         /// </summary>
         [JsonProperty("contentLength")]
         public string ContentLength { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for contentType
         /// </summary>
         [JsonProperty("contentType")]
         public string ContentType { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for tags
         /// </summary>
         [JsonProperty("tags")]
         public List<Models.Tag> Tags { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for userId
         /// </summary>
         [JsonProperty("userId")]
         public string UserId { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for mediaName
         /// </summary>
         [JsonProperty("mediaName")]
         public string MediaName { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for mediaId
         /// </summary>
         [JsonProperty("mediaId")]
         public string MediaId { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for cacheControl
         /// </summary>
         [JsonProperty("cacheControl")]
         public string CacheControl { get; set; }
 
     }
-} 
+}

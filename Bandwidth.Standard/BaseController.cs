@@ -10,6 +10,7 @@ using Bandwidth.Standard;
 using Bandwidth.Standard.Utilities;
 using Bandwidth.Standard.Http.Client;
 using Bandwidth.Standard.Http.Response;
+using Bandwidth.Standard.Authentication;
 
 namespace Bandwidth.Standard
 {
@@ -23,6 +24,11 @@ namespace Bandwidth.Standard
         /// </summary>
         protected IConfiguration config;
 
+        /// <summary>
+        /// User-Agent header value
+        /// </summary>
+        internal string userAgent = "APIMATIC 2.0";
+        
         /// <summary>
         /// HttpClient instance
         /// </summary>
@@ -83,10 +89,10 @@ namespace Bandwidth.Standard
         /// <param name="_context">Context of the request and the recieved response</param>
         protected void ValidateResponse(HttpResponse _response, HttpContext _context)
         {
-            if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
+            if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200, 208] = HTTP OK
             {
                 throw new ApiException(@"HTTP Response Not OK", _context);
             }
         }
     }
-} 
+}

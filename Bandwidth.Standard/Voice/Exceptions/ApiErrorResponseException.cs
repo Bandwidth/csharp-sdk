@@ -24,19 +24,19 @@ namespace Bandwidth.Standard.Voice.Exceptions
     public class ApiErrorResponseException : ApiException 
     {
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for type
         /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for description
         /// </summary>
         [JsonProperty("description")]
         public string Description { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for id
         /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -63,4 +63,4 @@ namespace Bandwidth.Standard.Voice.Exceptions
             this.Id = id;
         }
     }
-} 
+}

@@ -1,63 +1,92 @@
-# Getting Started with bandwidth
+# Bandwidth CSharp SDK
+  
+Bandwidth's API docs can be found at https://dev.bandwidth.com
 
-Bandwidth's set of APIs
+CSharp specific docs can be found at https://dev.bandwidth.com/sdks/csharp.html
 
-## Install the Package
+## Download & Install
 
-The SDK is available as a NuGet that you can search for and install using the NuGet GUI. You can also use the following command on the Package Manager Console:
+```
+nuget install Bandwidth.Sdk -OutputDirectory packages
+```
+
+*Note:  This only adds the package to the disk.  The packages.config or dependency file needs to be modified to add it to the project.
+
+
+## Initialize Bandwidth Voice & Message Client
+
+*__Note__:  If you see this error `System.Net.WebException: The underlying connection was closed: An unexpected error occurred on a send.`  This code may be needed `System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;`
 
 ```csharp
-Install-Package Bandwidth.Sdk -Version 1.2.0
+using Bandwidth.Standard;
+
+//create Configuration with credentials
+BandwidthClient client = new BandwidthClient.Builder()
+                .Environment(Bandwidth.Standard.Environment.Production)
+                .VoiceBasicAuthCredentials( username, password )
+                .MessagingBasicAuthCredentials( token, secret )
+                .Build();
+
+            
+//Select namespaced controller.
+Bandwidth.Standard.Voice.Controllers.APIController voiceController = client.Voice.APIController;
+Bandwidth.Standard.Messaging.Controllers.APIController msgController = client.Messaging.APIController;
+
+
 ```
 
-You can also view the NuGet at:
-https://www.nuget.org/packages/Bandwidth.Sdk/1.2.0
-
-If you are building with .NET CLI tools then you can also use the following command:
-
-```bash
-dotnet add package Bandwidth.Sdk --version 1.2.0
-```
-
-## Initialize the API Client
-
-The following parameters are configurable for the API Client.
-
-| Parameter | Type | Description |
-|  --- | --- | --- |
-| `MessagingBasicAuthUserName` | `string` | The username to use with basic authentication |
-| `MessagingBasicAuthPassword` | `string` | The password to use with basic authentication |
-| `VoiceBasicAuthUserName` | `string` | The username to use with basic authentication |
-| `VoiceBasicAuthPassword` | `string` | The password to use with basic authentication |
-| `Environment` | Environment | The API environment. <br> **Default: `Environment.Production`** |
-
-The API client can be initialized as following.
+## Create Phone Call
 
 ```csharp
-Bandwidth.Standard.BandwidthClient client = new Bandwidth.Standard.BandwidthClient.Builder()
-    .MessagingBasicAuthUserName("MessagingBasicAuthUserName")
-    .MessagingBasicAuthPassword("MessagingBasicAuthPassword")
-    .VoiceBasicAuthUserName("VoiceBasicAuthUserName")
-    .VoiceBasicAuthPassword("VoiceBasicAuthPassword")
-    .Environment(Environment.Production)
-    .Build();
+using Bandwidth.Standard.Voice.Controllers;
+
+callRequest.ApplicationId = "3-d-4-b-5";
+callRequest.To="+19999999999";
+callRequest.AnswerUrl= "https://test.com";
+callRequest.MFrom="+17777777777";
+
+//Be aware that the Voice Client can throw exceptions
+try {
+    var response = voiceController.CreateCall("account.id", callRequest);
+} catch (APIException e) {
+    WriteLine( e.Message );
+} catch (IOException e) {
+    WriteLine( e.Message );
+}
+
+
 ```
 
-API calls return an `ApiResponse` object that includes the following fields:
+## Generate BXML
 
-| Field | Description |
-|  --- | --- |
-| `StatusCode` | Status code of the HTTP response |
-| `Headers` | Headers of the HTTP response as a Hash |
-| `Data` | The deserialized body of the HTTP response as a String |
+```csharp
+using Bandwidth.Standard.Voice.Bxml;
 
-## Authorization
+//Bandwidth XML (BXML) verb SpeakSenetence plays the sentence audio
+SpeakSentence speakSentence = new SpeakSentence();
+speakSentence.Sentence = "Hello World";
 
-This API does not require authentication.
+//Add the verb to a Response object
+Response res =  new Response();
+res.Add(speakSentence);
 
-## API Reference
+//view the BXML
+Console.write( res.ToBXML() );
 
-### List of APIs
+```
 
-*
+## Send Text Message
 
+```csharp
+using Bandwidth.Standard.Messaging;
+using Bandwidth.Standard.Messaging.Controllers;
+using Bandwidth.Standard.Messaging.Models;
+
+MessageRequest msgRequest = new MessageRequest();
+msgRequest.ApplicationId = applicationId;
+msgRequest.MFrom = "+18888888888";
+msgRequest.To = new string[1] {"9199199999"};
+msgRequest.Text = "The quick brown fox jumps over a lazy dog.";
+
+var response = msgController.CreateMessage(msgUserId, msgRequest);
+```

@@ -30,16 +30,16 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for text
         /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for confidence
         /// </summary>
         [JsonProperty("confidence")]
         public double? Confidence { get; set; }
 
     }
-} 
+}

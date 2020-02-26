@@ -30,16 +30,16 @@ namespace Bandwidth.Standard.Messaging.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for result
         /// </summary>
         [JsonProperty("result")]
         public object Result { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for setOrExpired
         /// </summary>
         [JsonProperty("setOrExpired")]
         public bool? SetOrExpired { get; set; }
 
     }
-} 
+}

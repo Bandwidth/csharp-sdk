@@ -34,28 +34,28 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for id
         /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for status
         /// </summary>
         [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter))]
         public Models.Status1Enum? Status { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for completedTime
         /// </summary>
         [JsonProperty("completedTime")]
         public string CompletedTime { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for url
         /// </summary>
         [JsonProperty("url")]
         public string Url { get; set; }
 
     }
-} 
+}

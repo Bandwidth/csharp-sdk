@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Bandwidth.Standard.Http.Request;
 using Bandwidth.Standard.Http.Response;
@@ -22,13 +23,14 @@ namespace Bandwidth.Standard.Http.Client
             this.client = GetDefaultHttpClient();
         }
 
-        public HttpClientWrapper(TimeSpan timeout)
+        public HttpClientWrapper(HttpClientConfiguration httpClientConfig)
         {
             this.client = new HttpClient()
             {
-                Timeout = timeout
+                Timeout = httpClientConfig.Timeout
             };
         }
+
         private HttpClient GetDefaultHttpClient()
         {
             if (defaultHttpClient == null)
@@ -43,28 +45,31 @@ namespace Bandwidth.Standard.Http.Client
             }
             return defaultHttpClient;
         }
+
         #region Execute methods
 
-        public HttpResponse ExecuteAsString(HttpRequest request)
+        public HttpStringResponse ExecuteAsString(HttpRequest request)
         {
-            Task<HttpResponse> t = ExecuteAsStringAsync(request);
+            Task<HttpStringResponse> t = ExecuteAsStringAsync(request);
             ApiHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
-        public async Task<HttpResponse> ExecuteAsStringAsync(HttpRequest request)
+        public async Task<HttpStringResponse> ExecuteAsStringAsync(HttpRequest request,
+            CancellationToken cancellationToken = default)
         {
             //raise the on before request event
             RaiseOnBeforeHttpRequestEvent(request);
 
-            HttpResponseMessage responseMessage = await HttpResponseMessage(request).ConfigureAwait(false);
+            HttpResponseMessage responseMessage = await HttpResponseMessage(request, cancellationToken)
+                .ConfigureAwait(false);
 
             int StatusCode = (int)responseMessage.StatusCode;
             var Headers = GetCombinedResponseHeaders(responseMessage);
             Stream RawBody = await responseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false);
             string Body = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            HttpResponse response = new HttpStringResponse(StatusCode, Headers, RawBody, Body);
+            var response = new HttpStringResponse(StatusCode, Headers, RawBody, Body);
 
             //raise the on after response event
             RaiseOnAfterHttpResponseEvent(response);
@@ -78,12 +83,14 @@ namespace Bandwidth.Standard.Http.Client
             return t.Result;
         }
 
-        public async Task<HttpResponse> ExecuteAsBinaryAsync(HttpRequest request)
+        public async Task<HttpResponse> ExecuteAsBinaryAsync(HttpRequest request,
+            CancellationToken cancellationToken = default)
         {
             //raise the on before request event
             RaiseOnBeforeHttpRequestEvent(request);
 
-            HttpResponseMessage responseMessage = await HttpResponseMessage(request).ConfigureAwait(false);
+            HttpResponseMessage responseMessage = await HttpResponseMessage(request, cancellationToken)
+                .ConfigureAwait(false);
 
             int StatusCode = (int)responseMessage.StatusCode;
             var Headers = GetCombinedResponseHeaders(responseMessage);
@@ -203,7 +210,7 @@ namespace Bandwidth.Standard.Http.Client
 
         #region Helper methods
 
-        private async Task<HttpResponseMessage> HttpResponseMessage(HttpRequest request)
+        private async Task<HttpResponseMessage> HttpResponseMessage(HttpRequest request, CancellationToken cancellationToken)
         {
             HttpRequestMessage requestMessage = new HttpRequestMessage
             {
@@ -232,13 +239,16 @@ namespace Bandwidth.Standard.Http.Client
 
                 if (request.Body != null)
                 {
-                    if (request.Body is FileStreamInfo)
+                    if (request.Body is FileStreamInfo file)
                     {
-                        var file = ((FileStreamInfo)request.Body);
                         requestMessage.Content = new StreamContent(file.FileStream);
                         if (!string.IsNullOrWhiteSpace(file.ContentType))
                         {
                             requestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
+                        }
+                        else if (request.Headers.Any(h => h.Key.Equals("content-type", StringComparison.OrdinalIgnoreCase)))
+                        {
+                            requestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue(request.Headers["content-type"]);
                         }
                         else
                         {
@@ -272,7 +282,7 @@ namespace Bandwidth.Standard.Http.Client
                             bytes = Encoding.UTF8.GetBytes((string)request.Body);
                         }
 
-                        requestMessage.Content = new ByteArrayContent(bytes ?? (new byte[] { }));
+                        requestMessage.Content = new ByteArrayContent(bytes ?? Array.Empty<byte>());
 
                         try
                         {
@@ -321,7 +331,7 @@ namespace Bandwidth.Standard.Http.Client
                     requestMessage.Content = new FormUrlEncodedContent(parameters);
                 }
             }
-            return await client.SendAsync(requestMessage).ConfigureAwait(false);
+            return await client.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
         private static Dictionary<string, string> GetCombinedResponseHeaders(HttpResponseMessage responseMessage)

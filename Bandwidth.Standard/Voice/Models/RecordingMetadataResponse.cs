@@ -56,37 +56,37 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for applicationId
         /// </summary>
         [JsonProperty("applicationId")]
         public string ApplicationId { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for accountId
         /// </summary>
         [JsonProperty("accountId")]
         public string AccountId { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for callId
         /// </summary>
         [JsonProperty("callId")]
         public string CallId { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for recordingId
         /// </summary>
         [JsonProperty("recordingId")]
         public string RecordingId { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for to
         /// </summary>
         [JsonProperty("to")]
         public string To { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for from
         /// </summary>
         [JsonProperty("from")]
         public string MFrom { get; set; }
@@ -98,52 +98,52 @@ namespace Bandwidth.Standard.Voice.Models
         public string Duration { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for direction
         /// </summary>
         [JsonProperty("direction", ItemConverterType = typeof(StringValuedEnumConverter))]
         public Models.DirectionEnum? Direction { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for channels
         /// </summary>
         [JsonProperty("channels")]
         public int? Channels { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for startTime
         /// </summary>
         [JsonProperty("startTime")]
         public long? StartTime { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for endTime
         /// </summary>
         [JsonProperty("endTime")]
         public long? EndTime { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for fileFormat
         /// </summary>
         [JsonProperty("fileFormat", ItemConverterType = typeof(StringValuedEnumConverter))]
         public Models.FileFormatEnum? FileFormat { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for status
         /// </summary>
         [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter))]
         public Models.StatusEnum? Status { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for mediaUrl
         /// </summary>
         [JsonProperty("mediaUrl")]
         public string MediaUrl { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for transcription
         /// </summary>
         [JsonProperty("transcription")]
         public Models.Transcription Transcription { get; set; }
 
     }
-} 
+}

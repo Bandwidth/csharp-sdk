@@ -56,98 +56,98 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for callId
         /// </summary>
         [JsonProperty("callId")]
         public string CallId { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for parentCallId
         /// </summary>
         [JsonProperty("parentCallId")]
         public string ParentCallId { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for applicationId
         /// </summary>
         [JsonProperty("applicationId")]
         public string ApplicationId { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for accountId
         /// </summary>
         [JsonProperty("accountId")]
         public string AccountId { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for to
         /// </summary>
         [JsonProperty("to")]
         public string To { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for from
         /// </summary>
         [JsonProperty("from")]
         public string MFrom { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for direction
         /// </summary>
         [JsonProperty("direction")]
         public string Direction { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for state
         /// </summary>
         [JsonProperty("state", ItemConverterType = typeof(StringValuedEnumConverter))]
         public Models.StateEnum? State { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for startTime
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
         [JsonProperty("startTime")]
         public DateTime? StartTime { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for answerTime
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
         [JsonProperty("answerTime")]
         public DateTime? AnswerTime { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for endTime
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
         [JsonProperty("endTime")]
         public DateTime? EndTime { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for disconnectCause
         /// </summary>
         [JsonProperty("disconnectCause", ItemConverterType = typeof(StringValuedEnumConverter))]
         public Models.DisconnectCauseEnum? DisconnectCause { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for errorMessage
         /// </summary>
         [JsonProperty("errorMessage")]
         public string ErrorMessage { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for errorId
         /// </summary>
         [JsonProperty("errorId")]
         public string ErrorId { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for lastUpdate
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
         [JsonProperty("lastUpdate")]
         public DateTime? LastUpdate { get; set; }
 
     }
-} 
+}

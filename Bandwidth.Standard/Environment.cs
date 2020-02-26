@@ -17,7 +17,7 @@ namespace Bandwidth.Standard
     public static class EnvironmentHelper
     {
         //string values corresponding the enum elements
-        private static List<string> stringValues = new List<string> { "production" };
+        private static readonly List<string> stringValues = new List<string> { "production" };
 
         /// <summary>
         /// Converts an Environment value to a corresponding string value

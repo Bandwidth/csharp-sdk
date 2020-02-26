@@ -60,58 +60,58 @@ namespace Bandwidth.Standard.Voice.Models
         public string To { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for callTimeout
         /// </summary>
         [JsonProperty("callTimeout")]
         public double? CallTimeout { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for answerUrl
         /// </summary>
         [JsonProperty("answerUrl")]
         public string AnswerUrl { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for username
         /// </summary>
         [JsonProperty("username")]
         public string Username { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for password
         /// </summary>
         [JsonProperty("password")]
         public string Password { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for answerMethod
         /// </summary>
         [JsonProperty("answerMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
         public Models.AnswerMethodEnum? AnswerMethod { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for disconnectUrl
         /// </summary>
         [JsonProperty("disconnectUrl")]
         public string DisconnectUrl { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for disconnectMethod
         /// </summary>
         [JsonProperty("disconnectMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
         public Models.DisconnectMethodEnum? DisconnectMethod { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for tag
         /// </summary>
         [JsonProperty("tag")]
         public string Tag { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for applicationId
         /// </summary>
         [JsonProperty("applicationId")]
         public string ApplicationId { get; set; }
 
     }
-} 
+}

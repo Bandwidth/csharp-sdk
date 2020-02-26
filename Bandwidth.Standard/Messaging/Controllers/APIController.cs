@@ -10,6 +10,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Converters;
 using Bandwidth.Standard;
@@ -17,6 +18,7 @@ using Bandwidth.Standard.Utilities;
 using Bandwidth.Standard.Http.Request;
 using Bandwidth.Standard.Http.Response;
 using Bandwidth.Standard.Http.Client;
+using Bandwidth.Standard.Authentication;
 using Bandwidth.Standard.Messaging.Exceptions;
 
 namespace Bandwidth.Standard.Messaging.Controllers
@@ -41,7 +43,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// getMessage
         /// </summary>
         /// <return>Returns the void response from the API call</return>
-        public async Task GetMessageAsync()
+        public async Task GetMessageAsync(CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.MessagingDefault);
@@ -54,18 +56,18 @@ namespace Bandwidth.Standard.Messaging.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" }
+                { "user-agent", userAgent }
             };
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
 
-            _request = authManagers["messaging"].Apply(_request);
+            _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -123,7 +125,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <param name="userId">Required parameter: Example: </param>
         /// <param name="continuationToken">Optional parameter: Example: </param>
         /// <return>Returns the ApiResponse<List<Models.Media>> response from the API call</return>
-        public async Task<ApiResponse<List<Models.Media>>> ListMediaAsync(string userId, string continuationToken = null)
+        public async Task<ApiResponse<List<Models.Media>>> ListMediaAsync(string userId, string continuationToken = null, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.MessagingDefault);
@@ -142,9 +144,9 @@ namespace Bandwidth.Standard.Messaging.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" },
+                { "user-agent", userAgent },
                 { "accept", "application/json" },
                 { "Continuation-Token", continuationToken }
             };
@@ -152,10 +154,10 @@ namespace Bandwidth.Standard.Messaging.Controllers
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
 
-            _request = authManagers["messaging"].Apply(_request);
+            _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -216,7 +218,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <param name="userId">Required parameter: Example: </param>
         /// <param name="mediaId">Required parameter: Example: </param>
         /// <return>Returns the ApiResponse<Stream> response from the API call</return>
-        public async Task<ApiResponse<Stream>> GetMediaAsync(string userId, string mediaId)
+        public async Task<ApiResponse<Stream>> GetMediaAsync(string userId, string mediaId, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.MessagingDefault);
@@ -236,18 +238,18 @@ namespace Bandwidth.Standard.Messaging.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" }
+                { "user-agent", userAgent }
             };
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
 
-            _request = authManagers["messaging"].Apply(_request);
+            _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpResponse _response = await GetClientInstance().ExecuteAsBinaryAsync(_request).ConfigureAwait(false);
+            HttpResponse _response = await GetClientInstance().ExecuteAsBinaryAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -296,15 +298,15 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <param name="mediaId">Required parameter: Example: </param>
         /// <param name="contentLength">Required parameter: Example: </param>
         /// <param name="body">Required parameter: Example: </param>
-        /// <param name="contentType">Optional parameter: Example: </param>
+        /// <param name="contentType">Optional parameter: Example: application/octet-stream</param>
         /// <param name="cacheControl">Optional parameter: Example: </param>
         /// <return>Returns the void response from the API call</return>
         public void UploadMedia(
                 string userId,
                 string mediaId,
                 long contentLength,
-                string body,
-                string contentType = null,
+                FileStreamInfo body,
+                string contentType = "application/octet-stream",
                 string cacheControl = null)
         {
             Task t = UploadMediaAsync(userId, mediaId, contentLength, body, contentType, cacheControl);
@@ -318,16 +320,16 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <param name="mediaId">Required parameter: Example: </param>
         /// <param name="contentLength">Required parameter: Example: </param>
         /// <param name="body">Required parameter: Example: </param>
-        /// <param name="contentType">Optional parameter: Example: </param>
+        /// <param name="contentType">Optional parameter: Example: application/octet-stream</param>
         /// <param name="cacheControl">Optional parameter: Example: </param>
         /// <return>Returns the void response from the API call</return>
         public async Task UploadMediaAsync(
                 string userId,
                 string mediaId,
                 long contentLength,
-                string body,
-                string contentType = null,
-                string cacheControl = null)
+                FileStreamInfo body,
+                string contentType = "application/octet-stream",
+                string cacheControl = null, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.MessagingDefault);
@@ -347,11 +349,11 @@ namespace Bandwidth.Standard.Messaging.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" },
+                { "user-agent", userAgent },
                 { "Content-Length", contentLength.ToString() },
-                { "Content-Type", contentType },
+                { "Content-Type", (null != contentType) ? contentType : "application/octet-stream" },
                 { "Cache-Control", cacheControl }
             };
 
@@ -361,10 +363,10 @@ namespace Bandwidth.Standard.Messaging.Controllers
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().PutBody(_queryUrl, _headers, _body);
 
-            _request = authManagers["messaging"].Apply(_request);
+            _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -421,7 +423,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <param name="userId">Required parameter: Example: </param>
         /// <param name="mediaId">Required parameter: Example: </param>
         /// <return>Returns the void response from the API call</return>
-        public async Task DeleteMediaAsync(string userId, string mediaId)
+        public async Task DeleteMediaAsync(string userId, string mediaId, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.MessagingDefault);
@@ -441,18 +443,18 @@ namespace Bandwidth.Standard.Messaging.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" }
+                { "user-agent", userAgent }
             };
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Delete(_queryUrl, _headers, null);
 
-            _request = authManagers["messaging"].Apply(_request);
+            _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -510,7 +512,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <param name="userId">Required parameter: Example: </param>
         /// <param name="body">Optional parameter: Example: </param>
         /// <return>Returns the ApiResponse<Models.BandwidthMessage> response from the API call</return>
-        public async Task<ApiResponse<Models.BandwidthMessage>> CreateMessageAsync(string userId, Models.MessageRequest body = null)
+        public async Task<ApiResponse<Models.BandwidthMessage>> CreateMessageAsync(string userId, Models.MessageRequest body = null, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.MessagingDefault);
@@ -529,9 +531,9 @@ namespace Bandwidth.Standard.Messaging.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" },
+                { "user-agent", userAgent },
                 { "accept", "application/json" },
                 { "content-type", "application/json; charset=utf-8" }
             };
@@ -542,10 +544,10 @@ namespace Bandwidth.Standard.Messaging.Controllers
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().PostBody(_queryUrl, _headers, _body);
 
-            _request = authManagers["messaging"].Apply(_request);
+            _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -588,4 +590,4 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
     }
-} 
+}

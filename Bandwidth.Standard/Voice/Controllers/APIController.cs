@@ -10,6 +10,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Converters;
 using Bandwidth.Standard;
@@ -17,6 +18,7 @@ using Bandwidth.Standard.Utilities;
 using Bandwidth.Standard.Http.Request;
 using Bandwidth.Standard.Http.Response;
 using Bandwidth.Standard.Http.Client;
+using Bandwidth.Standard.Authentication;
 using Bandwidth.Standard.Voice.Exceptions;
 
 namespace Bandwidth.Standard.Voice.Controllers
@@ -46,7 +48,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// <param name="accountId">Required parameter: Example: </param>
         /// <param name="body">Optional parameter: Example: </param>
         /// <return>Returns the ApiResponse<Models.ApiCallResponse> response from the API call</return>
-        public async Task<ApiResponse<Models.ApiCallResponse>> CreateCallAsync(string accountId, Models.ApiCreateCallRequest body = null)
+        public async Task<ApiResponse<Models.ApiCallResponse>> CreateCallAsync(string accountId, Models.ApiCreateCallRequest body = null, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
@@ -65,9 +67,9 @@ namespace Bandwidth.Standard.Voice.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" },
+                { "user-agent", userAgent },
                 { "accept", "application/json" },
                 { "content-type", "application/json; charset=utf-8" }
             };
@@ -78,10 +80,10 @@ namespace Bandwidth.Standard.Voice.Controllers
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().PostBody(_queryUrl, _headers, _body);
 
-            _request = authManagers["voice"].Apply(_request);
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -147,7 +149,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// <param name="accountId">Required parameter: Example: </param>
         /// <param name="callId">Required parameter: Example: </param>
         /// <return>Returns the ApiResponse<Models.ApiCallStateResponse> response from the API call</return>
-        public async Task<ApiResponse<Models.ApiCallStateResponse>> GetCallStateAsync(string accountId, string callId)
+        public async Task<ApiResponse<Models.ApiCallStateResponse>> GetCallStateAsync(string accountId, string callId, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
@@ -167,19 +169,19 @@ namespace Bandwidth.Standard.Voice.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" },
+                { "user-agent", userAgent },
                 { "accept", "application/json" }
             };
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
 
-            _request = authManagers["voice"].Apply(_request);
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -246,7 +248,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// <param name="callId">Required parameter: Example: </param>
         /// <param name="body">Optional parameter: Example: </param>
         /// <return>Returns the void response from the API call</return>
-        public async Task ModifyCallAsync(string accountId, string callId, Models.ApiModifyCallRequest body = null)
+        public async Task ModifyCallAsync(string accountId, string callId, Models.ApiModifyCallRequest body = null, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
@@ -266,9 +268,9 @@ namespace Bandwidth.Standard.Voice.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" },
+                { "user-agent", userAgent },
                 { "content-type", "application/json; charset=utf-8" }
             };
 
@@ -278,10 +280,10 @@ namespace Bandwidth.Standard.Voice.Controllers
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().PostBody(_queryUrl, _headers, _body);
 
-            _request = authManagers["voice"].Apply(_request);
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -345,7 +347,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// <param name="callId">Required parameter: Example: </param>
         /// <param name="body">Optional parameter: Example: </param>
         /// <return>Returns the void response from the API call</return>
-        public async Task ModifyCallRecordingStateAsync(string accountId, string callId, Models.ModifyCallRecordingState body = null)
+        public async Task ModifyCallRecordingStateAsync(string accountId, string callId, Models.ModifyCallRecordingState body = null, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
@@ -365,9 +367,9 @@ namespace Bandwidth.Standard.Voice.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" },
+                { "user-agent", userAgent },
                 { "content-type", "application/json; charset=utf-8" }
             };
 
@@ -377,10 +379,10 @@ namespace Bandwidth.Standard.Voice.Controllers
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().PutBody(_queryUrl, _headers, _body);
 
-            _request = authManagers["voice"].Apply(_request);
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -463,7 +465,7 @@ namespace Bandwidth.Standard.Voice.Controllers
                 string mFrom = null,
                 string to = null,
                 string minStartTime = null,
-                string maxStartTime = null)
+                string maxStartTime = null, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
@@ -486,25 +488,25 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "to", to },
                 { "minStartTime", minStartTime },
                 { "maxStartTime", maxStartTime }
-            },ArrayDeserializationFormat,ParameterSeparator);
+            }, ArrayDeserializationFormat, ParameterSeparator);
 
             //validate and preprocess url
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" },
+                { "user-agent", userAgent },
                 { "accept", "application/json" }
             };
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
 
-            _request = authManagers["voice"].Apply(_request);
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -572,7 +574,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// <param name="callId">Required parameter: Example: </param>
         /// <param name="recordingId">Required parameter: Example: </param>
         /// <return>Returns the ApiResponse<Models.RecordingMetadataResponse> response from the API call</return>
-        public async Task<ApiResponse<Models.RecordingMetadataResponse>> GetMetadataForRecordingAsync(string accountId, string callId, string recordingId)
+        public async Task<ApiResponse<Models.RecordingMetadataResponse>> GetMetadataForRecordingAsync(string accountId, string callId, string recordingId, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
@@ -593,19 +595,19 @@ namespace Bandwidth.Standard.Voice.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" },
+                { "user-agent", userAgent },
                 { "accept", "application/json" }
             };
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
 
-            _request = authManagers["voice"].Apply(_request);
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -672,7 +674,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// <param name="callId">Required parameter: Example: </param>
         /// <param name="recordingId">Required parameter: Example: </param>
         /// <return>Returns the void response from the API call</return>
-        public async Task DeleteRecordingAsync(string accountId, string callId, string recordingId)
+        public async Task DeleteRecordingAsync(string accountId, string callId, string recordingId, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
@@ -693,18 +695,18 @@ namespace Bandwidth.Standard.Voice.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" }
+                { "user-agent", userAgent }
             };
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Delete(_queryUrl, _headers, null);
 
-            _request = authManagers["voice"].Apply(_request);
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -769,7 +771,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// <param name="callId">Required parameter: Example: </param>
         /// <param name="recordingId">Required parameter: Example: </param>
         /// <return>Returns the ApiResponse<Stream> response from the API call</return>
-        public async Task<ApiResponse<Stream>> GetStreamRecordingMediaAsync(string accountId, string callId, string recordingId)
+        public async Task<ApiResponse<Stream>> GetStreamRecordingMediaAsync(string accountId, string callId, string recordingId, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
@@ -790,18 +792,18 @@ namespace Bandwidth.Standard.Voice.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" }
+                { "user-agent", userAgent }
             };
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
 
-            _request = authManagers["voice"].Apply(_request);
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpResponse _response = await GetClientInstance().ExecuteAsBinaryAsync(_request).ConfigureAwait(false);
+            HttpResponse _response = await GetClientInstance().ExecuteAsBinaryAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -868,7 +870,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// <param name="callId">Required parameter: Example: </param>
         /// <param name="recordingId">Required parameter: Example: </param>
         /// <return>Returns the void response from the API call</return>
-        public async Task DeleteRecordingMediaAsync(string accountId, string callId, string recordingId)
+        public async Task DeleteRecordingMediaAsync(string accountId, string callId, string recordingId, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
@@ -889,18 +891,18 @@ namespace Bandwidth.Standard.Voice.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" }
+                { "user-agent", userAgent }
             };
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Delete(_queryUrl, _headers, null);
 
-            _request = authManagers["voice"].Apply(_request);
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -965,7 +967,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// <param name="callId">Required parameter: Example: </param>
         /// <param name="recordingId">Required parameter: Example: </param>
         /// <return>Returns the ApiResponse<Models.TranscriptionResponse> response from the API call</return>
-        public async Task<ApiResponse<Models.TranscriptionResponse>> GetRecordingTranscriptionAsync(string accountId, string callId, string recordingId)
+        public async Task<ApiResponse<Models.TranscriptionResponse>> GetRecordingTranscriptionAsync(string accountId, string callId, string recordingId, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
@@ -986,19 +988,19 @@ namespace Bandwidth.Standard.Voice.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" },
+                { "user-agent", userAgent },
                 { "accept", "application/json" }
             };
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
 
-            _request = authManagers["voice"].Apply(_request);
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -1075,7 +1077,7 @@ namespace Bandwidth.Standard.Voice.Controllers
                 string accountId,
                 string callId,
                 string recordingId,
-                Models.ApiTranscribeRecordingRequest body = null)
+                Models.ApiTranscribeRecordingRequest body = null, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
@@ -1096,9 +1098,9 @@ namespace Bandwidth.Standard.Voice.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" },
+                { "user-agent", userAgent },
                 { "content-type", "application/json; charset=utf-8" }
             };
 
@@ -1108,10 +1110,10 @@ namespace Bandwidth.Standard.Voice.Controllers
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().PostBody(_queryUrl, _headers, _body);
 
-            _request = authManagers["voice"].Apply(_request);
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -1180,7 +1182,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// <param name="callId">Required parameter: Example: </param>
         /// <param name="recordingId">Required parameter: Example: </param>
         /// <return>Returns the void response from the API call</return>
-        public async Task DeleteRecordingTranscriptionAsync(string accountId, string callId, string recordingId)
+        public async Task DeleteRecordingTranscriptionAsync(string accountId, string callId, string recordingId, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
@@ -1201,18 +1203,18 @@ namespace Bandwidth.Standard.Voice.Controllers
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" }
+                { "user-agent", userAgent }
             };
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Delete(_queryUrl, _headers, null);
 
-            _request = authManagers["voice"].Apply(_request);
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -1291,7 +1293,7 @@ namespace Bandwidth.Standard.Voice.Controllers
                 string mFrom = null,
                 string to = null,
                 string minStartTime = null,
-                string maxStartTime = null)
+                string maxStartTime = null, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
@@ -1313,25 +1315,25 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "to", to },
                 { "minStartTime", minStartTime },
                 { "maxStartTime", maxStartTime }
-            },ArrayDeserializationFormat,ParameterSeparator);
+            }, ArrayDeserializationFormat, ParameterSeparator);
 
             //validate and preprocess url
             string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
 
             //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string,string>()
+            var _headers = new Dictionary<string, string>()
             { 
-                { "user-agent", "APIMATIC 2.0" },
+                { "user-agent", userAgent },
                 { "accept", "application/json" }
             };
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
 
-            _request = authManagers["voice"].Apply(_request);
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
-            HttpStringResponse _response = (HttpStringResponse) await GetClientInstance().ExecuteAsStringAsync(_request).ConfigureAwait(false);
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
 
             //Error handling using HTTP status codes
@@ -1379,4 +1381,4 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
     }
-} 
+}

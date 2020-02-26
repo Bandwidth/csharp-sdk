@@ -38,40 +38,40 @@ namespace Bandwidth.Standard.Messaging.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for applicationId
         /// </summary>
         [JsonProperty("applicationId")]
         public string ApplicationId { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for to
         /// </summary>
         [JsonProperty("to")]
         public List<string> To { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for from
         /// </summary>
         [JsonProperty("from")]
         public string MFrom { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for text
         /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for media
         /// </summary>
         [JsonProperty("media")]
         public List<string> Media { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for tag
         /// </summary>
         [JsonProperty("tag")]
         public string Tag { get; set; }
 
     }
-} 
+}

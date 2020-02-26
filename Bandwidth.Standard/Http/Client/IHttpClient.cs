@@ -1,12 +1,14 @@
 using System;
+using System.Net;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Bandwidth.Standard.Http.Request;
 using Bandwidth.Standard.Http.Response;
 
 namespace Bandwidth.Standard.Http.Client
 {
-	internal interface IHttpClient
+    internal interface IHttpClient
     {
         /// <summary>
         /// Event raised before an Http request is sent over the network
@@ -27,7 +29,7 @@ namespace Bandwidth.Standard.Http.Client
         /// </summary>
         /// <param name="request">The given HttpRequest to execute</param>
         /// <returns> HttpResponse containing raw information</returns>
-        HttpResponse ExecuteAsString(HttpRequest request);
+        HttpStringResponse ExecuteAsString(HttpRequest request);
 
         /// <summary>
         /// Execute a given HttpRequest to get binary response back
@@ -41,14 +43,14 @@ namespace Bandwidth.Standard.Http.Client
         /// </summary>
         /// <param name="request">The given HttpRequest to execute</param>
         /// <returns> HttpResponse containing raw information</returns>
-        Task<HttpResponse> ExecuteAsStringAsync(HttpRequest request);
+        Task<HttpStringResponse> ExecuteAsStringAsync(HttpRequest request, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Execute a given HttpRequest to get async binary response back
         /// </summary>
         /// <param name="request">The given HttpRequest to execute</param>
         /// <returns> HttpResponse containing raw information</returns>
-        Task<HttpResponse> ExecuteAsBinaryAsync(HttpRequest request);
+        Task<HttpResponse> ExecuteAsBinaryAsync(HttpRequest request, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a simple HTTP GET request given the URL

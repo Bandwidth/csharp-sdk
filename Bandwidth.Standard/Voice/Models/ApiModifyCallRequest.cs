@@ -38,40 +38,40 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for state
         /// </summary>
         [JsonProperty("state", ItemConverterType = typeof(StringValuedEnumConverter))]
         public Models.State1Enum? State { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for redirectUrl
         /// </summary>
         [JsonProperty("redirectUrl")]
         public string RedirectUrl { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for redirectMethod
         /// </summary>
         [JsonProperty("redirectMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
         public Models.RedirectMethodEnum? RedirectMethod { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for username
         /// </summary>
         [JsonProperty("username")]
         public string Username { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for password
         /// </summary>
         [JsonProperty("password")]
         public string Password { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for tag
         /// </summary>
         [JsonProperty("tag")]
         public string Tag { get; set; }
 
     }
-} 
+}

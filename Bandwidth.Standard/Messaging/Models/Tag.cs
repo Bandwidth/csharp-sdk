@@ -30,16 +30,16 @@ namespace Bandwidth.Standard.Messaging.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for key
         /// </summary>
         [JsonProperty("key")]
         public string Key { get; set; }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for value
         /// </summary>
         [JsonProperty("value")]
         public string MValue { get; set; }
 
     }
-} 
+}

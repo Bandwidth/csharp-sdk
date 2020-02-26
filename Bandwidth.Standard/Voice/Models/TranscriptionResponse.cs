@@ -28,10 +28,10 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// TODO: Write general description for this method
+        /// Getter for transcripts
         /// </summary>
         [JsonProperty("transcripts")]
         public List<Models.Transcript> Transcripts { get; set; }
 
     }
-} 
+}
