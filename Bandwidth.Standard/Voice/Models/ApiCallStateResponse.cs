@@ -27,7 +27,7 @@ namespace Bandwidth.Standard.Voice.Models
             string applicationId = null,
             string accountId = null,
             string to = null,
-            string mFrom = null,
+            string from = null,
             string direction = null,
             Models.StateEnum? state = null,
             DateTime? startTime = null,
@@ -43,7 +43,7 @@ namespace Bandwidth.Standard.Voice.Models
             ApplicationId = applicationId;
             AccountId = accountId;
             To = to;
-            MFrom = mFrom;
+            From = from;
             Direction = direction;
             State = state;
             StartTime = startTime;
@@ -89,7 +89,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// Getter for from
         /// </summary>
         [JsonProperty("from")]
-        public string MFrom { get; set; }
+        public string From { get; set; }
 
         /// <summary>
         /// Getter for direction

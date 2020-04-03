@@ -24,14 +24,14 @@ namespace Bandwidth.Standard.Messaging.Models
 
         public MessageRequest(string applicationId = null,
             List<string> to = null,
-            string mFrom = null,
+            string from = null,
             string text = null,
             List<string> media = null,
             string tag = null)
         {
             ApplicationId = applicationId;
             To = to;
-            MFrom = mFrom;
+            From = from;
             Text = text;
             Media = media;
             Tag = tag;
@@ -53,7 +53,7 @@ namespace Bandwidth.Standard.Messaging.Models
         /// Getter for from
         /// </summary>
         [JsonProperty("from")]
-        public string MFrom { get; set; }
+        public string From { get; set; }
 
         /// <summary>
         /// Getter for text

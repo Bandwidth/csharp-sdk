@@ -27,6 +27,16 @@ namespace Bandwidth.Standard.Voice.Bxml
     public string TransferAnswerMethod { get; set; }
 
     /// <summary>
+    ///   The url to receive the disconnect callback
+    /// </summary>
+    public string TransferDisconnectUrl  { get; set; }
+
+    /// <summary>
+    ///   The http method of the disconnect callback
+    /// </summary>
+    public string TransferDisconnectMethod  { get; set; } 
+
+    /// <summary>
     /// Username for basic auth on the audio url
     /// </summary>
     public string Username { get; set; }
@@ -73,6 +83,14 @@ namespace Bandwidth.Standard.Voice.Bxml
       if (!string.IsNullOrEmpty(TransferAnswerMethod))
       {
         writer.WriteAttributeString("transferAnswerMethod", TransferAnswerMethod);
+      }
+      if (!string.IsNullOrEmpty(TransferDisconnectUrl ))
+      {
+        writer.WriteAttributeString("transferDisconnectUrl", TransferDisconnectUrl );
+      }
+      if (!string.IsNullOrEmpty(TransferDisconnectMethod))
+      {
+        writer.WriteAttributeString("transferDisconnectMethod ", TransferDisconnectMethod );
       }
       writer.WriteString(Number);
     }

@@ -22,7 +22,7 @@ namespace Bandwidth.Standard.Voice.Models
     {
         public ApiCreateCallRequest() { }
 
-        public ApiCreateCallRequest(string mFrom,
+        public ApiCreateCallRequest(string from,
             string to,
             string answerUrl,
             string applicationId,
@@ -34,7 +34,7 @@ namespace Bandwidth.Standard.Voice.Models
             Models.DisconnectMethodEnum? disconnectMethod = null,
             string tag = null)
         {
-            MFrom = mFrom;
+            From = from;
             To = to;
             CallTimeout = callTimeout;
             AnswerUrl = answerUrl;
@@ -51,7 +51,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// Format is E164
         /// </summary>
         [JsonProperty("from")]
-        public string MFrom { get; set; }
+        public string From { get; set; }
 
         /// <summary>
         /// Format is E164

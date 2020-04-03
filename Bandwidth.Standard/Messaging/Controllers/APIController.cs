@@ -30,83 +30,6 @@ namespace Bandwidth.Standard.Messaging.Controllers
         { }
 
         /// <summary>
-        /// getMessage
-        /// </summary>
-        /// <return>Returns the void response from the API call</return>
-        public void GetMessage()
-        {
-            Task t = GetMessageAsync();
-            ApiHelper.RunTaskSynchronously(t);
-        }
-
-        /// <summary>
-        /// getMessage
-        /// </summary>
-        /// <return>Returns the void response from the API call</return>
-        public async Task GetMessageAsync(CancellationToken cancellationToken = default)
-        {
-            //the base uri for api requests
-            string _baseUri = config.GetBaseUri(Server.MessagingDefault);
-
-            //prepare query string for API call
-            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
-            _queryBuilder.Append("/ping");
-
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
-            //append request with appropriate headers and parameters
-            var _headers = new Dictionary<string, string>()
-            { 
-                { "user-agent", userAgent }
-            };
-
-            //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
-
-            _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
-
-            //invoke request and get response
-            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
-            HttpContext _context = new HttpContext(_request, _response);
-
-            //Error handling using HTTP status codes
-            if (_response.StatusCode == 400)
-            {
-                throw new GenericClientException(@"400 Request is malformed or invalid", _context);
-            }
-
-            if (_response.StatusCode == 401)
-            {
-                throw new PathClientException(@"401 The specified user does not have access to the account", _context);
-            }
-
-            if (_response.StatusCode == 403)
-            {
-                throw new PathClientException(@"403 The user does not have access to this API", _context);
-            }
-
-            if (_response.StatusCode == 404)
-            {
-                throw new PathClientException(@"404 Path not found", _context);
-            }
-
-            if (_response.StatusCode == 415)
-            {
-                throw new GenericClientException(@"415 The content-type of the request is incorrect", _context);
-            }
-
-            if (_response.StatusCode == 429)
-            {
-                throw new GenericClientException(@"429 The rate limit has been reached", _context);
-            }
-
-            //handle errors defined at the API level
-            base.ValidateResponse(_response, _context);
-
-        }
-
-        /// <summary>
         /// listMedia
         /// </summary>
         /// <param name="userId">Required parameter: Example: </param>
@@ -163,32 +86,32 @@ namespace Bandwidth.Standard.Messaging.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new GenericClientException(@"400 Request is malformed or invalid", _context);
+                throw new MessagingException(@"400 Request is malformed or invalid", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new PathClientException(@"401 The specified user does not have access to the account", _context);
+                throw new MessagingException(@"401 The specified user does not have access to the account", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new PathClientException(@"403 The user does not have access to this API", _context);
+                throw new MessagingException(@"403 The user does not have access to this API", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new PathClientException(@"404 Path not found", _context);
+                throw new MessagingException(@"404 Path not found", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new GenericClientException(@"415 The content-type of the request is incorrect", _context);
+                throw new MessagingException(@"415 The content-type of the request is incorrect", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new GenericClientException(@"429 The rate limit has been reached", _context);
+                throw new MessagingException(@"429 The rate limit has been reached", _context);
             }
 
             //handle errors defined at the API level
@@ -255,32 +178,32 @@ namespace Bandwidth.Standard.Messaging.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new GenericClientException(@"400 Request is malformed or invalid", _context);
+                throw new MessagingException(@"400 Request is malformed or invalid", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new PathClientException(@"401 The specified user does not have access to the account", _context);
+                throw new MessagingException(@"401 The specified user does not have access to the account", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new PathClientException(@"403 The user does not have access to this API", _context);
+                throw new MessagingException(@"403 The user does not have access to this API", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new PathClientException(@"404 Path not found", _context);
+                throw new MessagingException(@"404 Path not found", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new GenericClientException(@"415 The content-type of the request is incorrect", _context);
+                throw new MessagingException(@"415 The content-type of the request is incorrect", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new GenericClientException(@"429 The rate limit has been reached", _context);
+                throw new MessagingException(@"429 The rate limit has been reached", _context);
             }
 
             //handle errors defined at the API level
@@ -372,32 +295,32 @@ namespace Bandwidth.Standard.Messaging.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new GenericClientException(@"400 Request is malformed or invalid", _context);
+                throw new MessagingException(@"400 Request is malformed or invalid", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new PathClientException(@"401 The specified user does not have access to the account", _context);
+                throw new MessagingException(@"401 The specified user does not have access to the account", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new PathClientException(@"403 The user does not have access to this API", _context);
+                throw new MessagingException(@"403 The user does not have access to this API", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new PathClientException(@"404 Path not found", _context);
+                throw new MessagingException(@"404 Path not found", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new GenericClientException(@"415 The content-type of the request is incorrect", _context);
+                throw new MessagingException(@"415 The content-type of the request is incorrect", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new GenericClientException(@"429 The rate limit has been reached", _context);
+                throw new MessagingException(@"429 The rate limit has been reached", _context);
             }
 
             //handle errors defined at the API level
@@ -460,32 +383,32 @@ namespace Bandwidth.Standard.Messaging.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new GenericClientException(@"400 Request is malformed or invalid", _context);
+                throw new MessagingException(@"400 Request is malformed or invalid", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new PathClientException(@"401 The specified user does not have access to the account", _context);
+                throw new MessagingException(@"401 The specified user does not have access to the account", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new PathClientException(@"403 The user does not have access to this API", _context);
+                throw new MessagingException(@"403 The user does not have access to this API", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new PathClientException(@"404 Path not found", _context);
+                throw new MessagingException(@"404 Path not found", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new GenericClientException(@"415 The content-type of the request is incorrect", _context);
+                throw new MessagingException(@"415 The content-type of the request is incorrect", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new GenericClientException(@"429 The rate limit has been reached", _context);
+                throw new MessagingException(@"429 The rate limit has been reached", _context);
             }
 
             //handle errors defined at the API level
@@ -553,32 +476,32 @@ namespace Bandwidth.Standard.Messaging.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new GenericClientException(@"400 Request is malformed or invalid", _context);
+                throw new MessagingException(@"400 Request is malformed or invalid", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new PathClientException(@"401 The specified user does not have access to the account", _context);
+                throw new MessagingException(@"401 The specified user does not have access to the account", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new PathClientException(@"403 The user does not have access to this API", _context);
+                throw new MessagingException(@"403 The user does not have access to this API", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new PathClientException(@"404 Path not found", _context);
+                throw new MessagingException(@"404 Path not found", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new GenericClientException(@"415 The content-type of the request is incorrect", _context);
+                throw new MessagingException(@"415 The content-type of the request is incorrect", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new GenericClientException(@"429 The rate limit has been reached", _context);
+                throw new MessagingException(@"429 The rate limit has been reached", _context);
             }
 
             //handle errors defined at the API level

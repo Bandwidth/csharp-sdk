@@ -29,7 +29,7 @@ namespace Bandwidth.Standard.Messaging.Models
             int? segmentCount = null,
             string direction = null,
             List<string> to = null,
-            string mFrom = null,
+            string from = null,
             List<string> media = null,
             string text = null,
             string tag = null)
@@ -41,7 +41,7 @@ namespace Bandwidth.Standard.Messaging.Models
             SegmentCount = segmentCount;
             Direction = direction;
             To = to;
-            MFrom = mFrom;
+            From = from;
             Media = media;
             Text = text;
             Tag = tag;
@@ -93,7 +93,7 @@ namespace Bandwidth.Standard.Messaging.Models
         /// Getter for from
         /// </summary>
         [JsonProperty("from")]
-        public string MFrom { get; set; }
+        public string From { get; set; }
 
         /// <summary>
         /// Getter for media

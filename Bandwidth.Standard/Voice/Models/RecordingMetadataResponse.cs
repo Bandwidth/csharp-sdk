@@ -27,7 +27,7 @@ namespace Bandwidth.Standard.Voice.Models
             string callId = null,
             string recordingId = null,
             string to = null,
-            string mFrom = null,
+            string from = null,
             string duration = null,
             Models.DirectionEnum? direction = null,
             int? channels = null,
@@ -43,7 +43,7 @@ namespace Bandwidth.Standard.Voice.Models
             CallId = callId;
             RecordingId = recordingId;
             To = to;
-            MFrom = mFrom;
+            From = from;
             Duration = duration;
             Direction = direction;
             Channels = channels;
@@ -89,7 +89,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// Getter for from
         /// </summary>
         [JsonProperty("from")]
-        public string MFrom { get; set; }
+        public string From { get; set; }
 
         /// <summary>
         /// Format is ISO-8601

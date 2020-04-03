@@ -431,7 +431,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// </summary>
         /// <param name="accountId">Required parameter: Example: </param>
         /// <param name="callId">Required parameter: Example: </param>
-        /// <param name="mFrom">Optional parameter: Example: </param>
+        /// <param name="from">Optional parameter: Example: </param>
         /// <param name="to">Optional parameter: Example: </param>
         /// <param name="minStartTime">Optional parameter: Example: </param>
         /// <param name="maxStartTime">Optional parameter: Example: </param>
@@ -439,12 +439,12 @@ namespace Bandwidth.Standard.Voice.Controllers
         public ApiResponse<List<Models.RecordingMetadataResponse>> GetQueryMetadataForAccountAndCall(
                 string accountId,
                 string callId,
-                string mFrom = null,
+                string from = null,
                 string to = null,
                 string minStartTime = null,
                 string maxStartTime = null)
         {
-            Task<ApiResponse<List<Models.RecordingMetadataResponse>>> t = GetQueryMetadataForAccountAndCallAsync(accountId, callId, mFrom, to, minStartTime, maxStartTime);
+            Task<ApiResponse<List<Models.RecordingMetadataResponse>>> t = GetQueryMetadataForAccountAndCallAsync(accountId, callId, from, to, minStartTime, maxStartTime);
             ApiHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -454,7 +454,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// </summary>
         /// <param name="accountId">Required parameter: Example: </param>
         /// <param name="callId">Required parameter: Example: </param>
-        /// <param name="mFrom">Optional parameter: Example: </param>
+        /// <param name="from">Optional parameter: Example: </param>
         /// <param name="to">Optional parameter: Example: </param>
         /// <param name="minStartTime">Optional parameter: Example: </param>
         /// <param name="maxStartTime">Optional parameter: Example: </param>
@@ -462,7 +462,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         public async Task<ApiResponse<List<Models.RecordingMetadataResponse>>> GetQueryMetadataForAccountAndCallAsync(
                 string accountId,
                 string callId,
-                string mFrom = null,
+                string from = null,
                 string to = null,
                 string minStartTime = null,
                 string maxStartTime = null, CancellationToken cancellationToken = default)
@@ -484,7 +484,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //process optional query parameters
             ApiHelper.AppendUrlWithQueryParameters(_queryBuilder, new Dictionary<string, object>()
             {
-                { "from", mFrom },
+                { "from", from },
                 { "to", to },
                 { "minStartTime", minStartTime },
                 { "maxStartTime", maxStartTime }
@@ -1262,19 +1262,19 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: </param>
-        /// <param name="mFrom">Optional parameter: Example: </param>
+        /// <param name="from">Optional parameter: Example: </param>
         /// <param name="to">Optional parameter: Example: </param>
         /// <param name="minStartTime">Optional parameter: Example: </param>
         /// <param name="maxStartTime">Optional parameter: Example: </param>
         /// <return>Returns the ApiResponse<List<Models.RecordingMetadataResponse>> response from the API call</return>
         public ApiResponse<List<Models.RecordingMetadataResponse>> GetQueryMetadataForAccount(
                 string accountId,
-                string mFrom = null,
+                string from = null,
                 string to = null,
                 string minStartTime = null,
                 string maxStartTime = null)
         {
-            Task<ApiResponse<List<Models.RecordingMetadataResponse>>> t = GetQueryMetadataForAccountAsync(accountId, mFrom, to, minStartTime, maxStartTime);
+            Task<ApiResponse<List<Models.RecordingMetadataResponse>>> t = GetQueryMetadataForAccountAsync(accountId, from, to, minStartTime, maxStartTime);
             ApiHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -1283,14 +1283,14 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: </param>
-        /// <param name="mFrom">Optional parameter: Example: </param>
+        /// <param name="from">Optional parameter: Example: </param>
         /// <param name="to">Optional parameter: Example: </param>
         /// <param name="minStartTime">Optional parameter: Example: </param>
         /// <param name="maxStartTime">Optional parameter: Example: </param>
         /// <return>Returns the ApiResponse<List<Models.RecordingMetadataResponse>> response from the API call</return>
         public async Task<ApiResponse<List<Models.RecordingMetadataResponse>>> GetQueryMetadataForAccountAsync(
                 string accountId,
-                string mFrom = null,
+                string from = null,
                 string to = null,
                 string minStartTime = null,
                 string maxStartTime = null, CancellationToken cancellationToken = default)
@@ -1311,7 +1311,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //process optional query parameters
             ApiHelper.AppendUrlWithQueryParameters(_queryBuilder, new Dictionary<string, object>()
             {
-                { "from", mFrom },
+                { "from", from },
                 { "to", to },
                 { "minStartTime", minStartTime },
                 { "maxStartTime", maxStartTime }

@@ -21,7 +21,7 @@ using Bandwidth.Standard.Utilities;
 
 namespace Bandwidth.Standard.Messaging.Exceptions
 {
-    public class GenericClientException : ApiException 
+    public class MessagingException : ApiException 
     {
         /// <summary>
         /// Getter for type
@@ -36,17 +36,11 @@ namespace Bandwidth.Standard.Messaging.Exceptions
         public string Description { get; set; }
 
         /// <summary>
-        /// Getter for fieldErrors
-        /// </summary>
-        [JsonProperty("fieldErrors")]
-        public List<Models.FieldError> FieldErrors { get; set; }
-
-        /// <summary>
         /// Base class constructor
         /// </summary>
         /// <param name="reason"> The reason for throwing exception </param>
         /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public GenericClientException(string reason, HttpContext context)
+        public MessagingException(string reason, HttpContext context)
             : base(reason, context) { }
 
         /// <summary>
@@ -54,13 +48,11 @@ namespace Bandwidth.Standard.Messaging.Exceptions
         /// </summary>
         /// <param name="reason"> The reason for throwing exception </param>
         /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public GenericClientException(string reason, HttpContext context, string type,
-            string description,
-            List<Models.FieldError> fieldErrors = null): base(reason, context)
+        public MessagingException(string reason, HttpContext context, string type,
+            string description): base(reason, context)
         {
             this.Type = type;
             this.Description = description;
-            this.FieldErrors = fieldErrors;
         }
     }
 }

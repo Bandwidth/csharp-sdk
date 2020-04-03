@@ -26,7 +26,7 @@ namespace Bandwidth.Standard.Voice.Models
             string callId,
             string applicationId,
             string to,
-            string mFrom,
+            string from,
             string callUrl,
             string answerUrl,
             Models.AnswerMethodEnum answerMethod,
@@ -42,7 +42,7 @@ namespace Bandwidth.Standard.Voice.Models
             CallId = callId;
             ApplicationId = applicationId;
             To = to;
-            MFrom = mFrom;
+            From = from;
             StartTime = startTime;
             CallUrl = callUrl;
             CallTimeout = callTimeout;
@@ -83,7 +83,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// Getter for from
         /// </summary>
         [JsonProperty("from")]
-        public string MFrom { get; set; }
+        public string From { get; set; }
 
         /// <summary>
         /// Getter for startTime
