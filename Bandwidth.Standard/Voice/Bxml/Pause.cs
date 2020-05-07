@@ -11,7 +11,7 @@ namespace Bandwidth.Standard.Voice.Bxml
   {
 
     /// <summary>
-    /// Initialize the integer fields to Bandwidth's default value
+    /// Initialize the double fields to Bandwidth's default value
     /// </summary>
     public Pause() {
         Duration = 1;
@@ -20,6 +20,6 @@ namespace Bandwidth.Standard.Voice.Bxml
     ///  How many seconds Bandwidth will wait silently before continuing on.
     /// </summary>
     [XmlAttribute("duration")]
-    public int Duration { get; set; }
-  }
+    public double Duration { get; set; }
+}
 }

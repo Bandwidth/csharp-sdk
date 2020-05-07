@@ -15,7 +15,6 @@ using Newtonsoft.Json.Converters;
 using Bandwidth.Standard;
 using Bandwidth.Standard.Utilities;
 
-
 namespace Bandwidth.Standard.Voice.Models
 {
     public class Transcription 

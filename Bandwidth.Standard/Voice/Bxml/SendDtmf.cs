@@ -10,7 +10,17 @@ namespace Bandwidth.Standard.Voice.Bxml
   /// </summary>
   /// <seealso href="http://ap.bandwidth.com/docs/xml/dtmf/" />
   public class SendDtmf : IXmlSerializable, IVerb
-  {
+{
+    /// <summary>
+    ///  (optional) The length (in milliseconds) of each DTMF tone. Default value is 200. Range: decimal values between 50 - 5000.
+    /// </summary>
+    public Nullable<double> ToneDuration { get; set; }
+
+    /// <summary>
+    ///   (optional) The duration of silence (in milliseconds) following each DTMF tone. Default value is 400. Range: decimal values between 50 - 5000.
+    /// </summary>
+    public Nullable<double> ToneInterval { get; set; }
+
     /// <summary>
     ///   String containing the DTMF characters to be sent in a call (maximum of 92 characters)
     /// </summary>
@@ -28,7 +38,16 @@ namespace Bandwidth.Standard.Voice.Bxml
 
     void IXmlSerializable.WriteXml(XmlWriter writer)
     {
-      writer.WriteString(Digits);
+        if (ToneInterval != null)
+        {
+            writer.WriteAttributeString("toneInterval", ToneInterval.ToString());
+        }
+        if (ToneDuration != null)
+        {
+            writer.WriteAttributeString("toneDuration", ToneDuration.ToString());
+        }
+
+        writer.WriteString(Digits);
     }
-  }
+}
 }

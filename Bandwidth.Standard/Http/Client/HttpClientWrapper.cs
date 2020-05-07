@@ -248,7 +248,9 @@ namespace Bandwidth.Standard.Http.Client
                         }
                         else if (request.Headers.Any(h => h.Key.Equals("content-type", StringComparison.OrdinalIgnoreCase)))
                         {
-                            requestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue(request.Headers["content-type"]);
+                            requestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue(
+                                request.Headers.First(h =>
+                                    h.Key.Equals("content-type", StringComparison.OrdinalIgnoreCase)).Value);
                         }
                         else
                         {

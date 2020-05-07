@@ -1,4 +1,4 @@
-using System.ComponentModel;
+using System;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Voice.Bxml
@@ -15,6 +15,12 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// </summary>
     [XmlAttribute("transcribe")]
     public bool Transcribe { get; set; }
+
+    /// <summary>
+    ///   (optional) Length of silence after which to end the recording (in seconds). Max is equivalent to the maximum maxDuration value. Default value is 0, which means no timeout.
+    /// </summary>
+    [XmlAttribute("silenceTimeout")]
+    public Nullable<int> SilenceTimeout { get; set; }
 
     /// <summary>
     ///   (optional) URL to send the transcriptionAvailable event to.
@@ -70,7 +76,7 @@ namespace Bandwidth.Standard.Voice.Bxml
     ///   (optional) Maximum length of recording (in seconds). Max 10800 (3 hours). Default value is 60.
     /// </summary>
     [XmlAttribute("maxDuration")]
-    public int MaxDuration { get; set; }
+    public Nullable<int> MaxDuration { get; set; }
 
     /// <summary>
     ///   (optional) The format that the recording will be saved in - mp3 or wav. Default value is wav.

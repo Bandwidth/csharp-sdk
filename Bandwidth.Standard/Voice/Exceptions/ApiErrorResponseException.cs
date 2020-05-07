@@ -18,10 +18,9 @@ using Bandwidth.Standard.Voice.Models;
 using Bandwidth.Standard;
 using Bandwidth.Standard.Utilities;
 
-
 namespace Bandwidth.Standard.Voice.Exceptions
 {
-    public class ApiErrorResponseException : ApiException 
+    public class ApiErrorResponseException : ApiException
     {
         /// <summary>
         /// Getter for type

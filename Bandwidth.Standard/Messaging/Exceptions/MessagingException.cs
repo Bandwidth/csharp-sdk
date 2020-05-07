@@ -18,10 +18,9 @@ using Bandwidth.Standard.Messaging.Models;
 using Bandwidth.Standard;
 using Bandwidth.Standard.Utilities;
 
-
 namespace Bandwidth.Standard.Messaging.Exceptions
 {
-    public class MessagingException : ApiException 
+    public class MessagingException : ApiException
     {
         /// <summary>
         /// Getter for type

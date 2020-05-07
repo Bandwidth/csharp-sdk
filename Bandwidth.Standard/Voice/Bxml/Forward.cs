@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
@@ -31,7 +32,7 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// The number of seconds to wait before timing out the call
     /// </summary>
     [XmlAttribute("callTimeout")]
-    public int CallTimeout { get; set; }
+    public Nullable<int> CallTimeout { get; set; }
 
     /// <summary>
     /// Diversion treatment for the transfer
