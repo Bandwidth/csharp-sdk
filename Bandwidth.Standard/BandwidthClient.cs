@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using Bandwidth.Standard.Authentication;
 using Bandwidth.Standard.Http.Client;
 using Bandwidth.Standard.Messaging;
+using Bandwidth.Standard.TwoFactorAuth;
 using Bandwidth.Standard.Voice;
 
 using Bandwidth.Standard.Utilities;
@@ -22,15 +23,22 @@ namespace Bandwidth.Standard
         internal readonly IDictionary<string, IAuthManager> authManagers;
         internal readonly IHttpClient httpClient;
         private readonly MessagingBasicAuthManager messagingBasicAuthManager; 
+        private readonly TwoFactorAuthBasicAuthManager twoFactorAuthBasicAuthManager; 
         private readonly VoiceBasicAuthManager voiceBasicAuthManager; 
 
         private readonly Lazy<MessagingClient> messaging;
+        private readonly Lazy<TwoFactorAuthClient> twoFactorAuth;
         private readonly Lazy<VoiceClient> voice;
 
         /// <summary>
         /// Provides access to MessagingClient controller
         /// </summary>
         public MessagingClient Messaging => messaging.Value;
+
+        /// <summary>
+        /// Provides access to TwoFactorAuthClient controller
+        /// </summary>
+        public TwoFactorAuthClient TwoFactorAuth => twoFactorAuth.Value;
 
         /// <summary>
         /// Provides access to VoiceClient controller
@@ -44,6 +52,8 @@ namespace Bandwidth.Standard
             string timeout = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_TIMEOUT");
             string messagingBasicAuthUserName = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_MESSAGING_BASIC_AUTH_USER_NAME");
             string messagingBasicAuthPassword = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_MESSAGING_BASIC_AUTH_PASSWORD");
+            string twoFactorAuthBasicAuthUserName = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_TWO_FACTOR_AUTH_BASIC_AUTH_USER_NAME");
+            string twoFactorAuthBasicAuthPassword = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_TWO_FACTOR_AUTH_BASIC_AUTH_PASSWORD");
             string voiceBasicAuthUserName = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_VOICE_BASIC_AUTH_USER_NAME");
             string voiceBasicAuthPassword = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_VOICE_BASIC_AUTH_PASSWORD");
             string environment = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_ENVIRONMENT");
@@ -61,6 +71,10 @@ namespace Bandwidth.Standard
             {
                 builder.MessagingBasicAuthCredentials(messagingBasicAuthUserName, messagingBasicAuthPassword);
             }
+            if (twoFactorAuthBasicAuthUserName != null && twoFactorAuthBasicAuthPassword != null)
+            {
+                builder.TwoFactorAuthBasicAuthCredentials(twoFactorAuthBasicAuthUserName, twoFactorAuthBasicAuthPassword);
+            }
             if (voiceBasicAuthUserName != null && voiceBasicAuthPassword != null)
             {
                 builder.VoiceBasicAuthCredentials(voiceBasicAuthUserName, voiceBasicAuthPassword);
@@ -70,12 +84,14 @@ namespace Bandwidth.Standard
         }
 
         private BandwidthClient(TimeSpan timeout, string messagingBasicAuthUserName,
-                string messagingBasicAuthPassword, string voiceBasicAuthUserName,
+                string messagingBasicAuthPassword, string twoFactorAuthBasicAuthUserName,
+                string twoFactorAuthBasicAuthPassword, string voiceBasicAuthUserName,
                 string voiceBasicAuthPassword, Environment environment,
                 IDictionary<string, IAuthManager> authManagers, IHttpClient httpClient,
                 IHttpClientConfiguration httpClientConfiguration)
         {
             messagingBasicAuthManager = new MessagingBasicAuthManager(messagingBasicAuthUserName, messagingBasicAuthPassword);
+            twoFactorAuthBasicAuthManager = new TwoFactorAuthBasicAuthManager(twoFactorAuthBasicAuthUserName, twoFactorAuthBasicAuthPassword);
             voiceBasicAuthManager = new VoiceBasicAuthManager(voiceBasicAuthUserName, voiceBasicAuthPassword);
             Timeout = timeout;
             Environment = environment;
@@ -86,9 +102,11 @@ namespace Bandwidth.Standard
 
 
             this.authManagers["messaging"] = messagingBasicAuthManager;
+            this.authManagers["twoFactorAuth"] = twoFactorAuthBasicAuthManager;
             this.authManagers["voice"] = voiceBasicAuthManager;
 
             messaging = new Lazy<MessagingClient>(() => new MessagingClient(this));
+            twoFactorAuth = new Lazy<TwoFactorAuthClient>(() => new TwoFactorAuthClient(this));
             voice = new Lazy<VoiceClient>(() => new VoiceClient(this));
 
         }
@@ -102,6 +120,11 @@ namespace Bandwidth.Standard
         /// The username and password to use with basic authentication
         /// </summary>
         public IBasicAuthCredentials MessagingBasicAuthCredentials => messagingBasicAuthManager;
+
+        /// <summary>
+        /// The username and password to use with basic authentication
+        /// </summary>
+        public IBasicAuthCredentials TwoFactorAuthBasicAuthCredentials => twoFactorAuthBasicAuthManager;
 
         /// <summary>
         /// The username and password to use with basic authentication
@@ -127,6 +150,7 @@ namespace Bandwidth.Standard
                 {
                     { Server.Default, "api.bandwidth.com" },
                     { Server.MessagingDefault, "https://messaging.bandwidth.com/api/v2" },
+                    { Server.TwoFactorAuthDefault, "https://mfa.bandwidth.com/api/v1/" },
                     { Server.VoiceDefault, "https://voice.bandwidth.com" },
                 }
             },
@@ -162,6 +186,7 @@ namespace Bandwidth.Standard
                 .Timeout(Timeout)
                 .Environment(Environment)
                 .MessagingBasicAuthCredentials(messagingBasicAuthManager.Username, messagingBasicAuthManager.Password)
+                .TwoFactorAuthBasicAuthCredentials(twoFactorAuthBasicAuthManager.Username, twoFactorAuthBasicAuthManager.Password)
                 .VoiceBasicAuthCredentials(voiceBasicAuthManager.Username, voiceBasicAuthManager.Password)
                 .HttpClient(httpClient)
                 .AuthManagers(authManagers);
@@ -174,6 +199,8 @@ namespace Bandwidth.Standard
             private TimeSpan timeout = TimeSpan.FromSeconds(100);
             private string messagingBasicAuthUserName = String.Empty;
             private string messagingBasicAuthPassword = String.Empty;
+            private string twoFactorAuthBasicAuthUserName = String.Empty;
+            private string twoFactorAuthBasicAuthPassword = String.Empty;
             private string voiceBasicAuthUserName = String.Empty;
             private string voiceBasicAuthPassword = String.Empty;
             private Environment environment = Bandwidth.Standard.Environment.Production;
@@ -202,6 +229,14 @@ namespace Bandwidth.Standard
             {
                 this.messagingBasicAuthUserName = username ?? throw new ArgumentNullException(nameof(username));
                 this.messagingBasicAuthPassword = password ?? throw new ArgumentNullException(nameof(password));
+                return this;
+            }
+
+            // Setter for BasicAuthUserName and BasicAuthPassword
+            public Builder TwoFactorAuthBasicAuthCredentials(string username, string password)
+            {
+                this.twoFactorAuthBasicAuthUserName = username ?? throw new ArgumentNullException(nameof(username));
+                this.twoFactorAuthBasicAuthPassword = password ?? throw new ArgumentNullException(nameof(password));
                 return this;
             }
 
@@ -236,7 +271,8 @@ namespace Bandwidth.Standard
                     httpClient = new HttpClientWrapper();
                 }
 
-                return new BandwidthClient(timeout, messagingBasicAuthUserName, messagingBasicAuthPassword, voiceBasicAuthUserName,
+                return new BandwidthClient(timeout, messagingBasicAuthUserName, messagingBasicAuthPassword,
+                        twoFactorAuthBasicAuthUserName, twoFactorAuthBasicAuthPassword, voiceBasicAuthUserName,
                         voiceBasicAuthPassword, environment, authManagers, httpClient, httpClientConfig);
             }
         }

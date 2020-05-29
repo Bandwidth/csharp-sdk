@@ -31,8 +31,17 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// <summary>
     /// The number of seconds to wait before timing out the call
     /// </summary>
-    [XmlAttribute("callTimeout")]
+    [XmlIgnore]
     public Nullable<int> CallTimeout { get; set; }
+
+    /// <summary>
+    ///  The setter does nothing! This is just a surrogate feild for nullable xml attribute serialization.
+    /// </summary>
+    [XmlAttribute("callTimeout")]
+    public string CallTimeoutAsText {
+        get {return (CallTimeout.HasValue) ? CallTimeout.ToString() : null ;}
+        set {}
+    }
 
     /// <summary>
     /// Diversion treatment for the transfer

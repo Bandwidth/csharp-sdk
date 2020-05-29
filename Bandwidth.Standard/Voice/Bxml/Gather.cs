@@ -48,8 +48,17 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// <summary>
     ///   Quantity of digits to collect
     /// </summary>
-    [XmlAttribute("maxDigits")]
+    [XmlIgnore]
     public Nullable<int> MaxDigits { get; set; }
+
+    /// <summary>
+    ///  The setter does nothing! This is just a surrogate feild for nullable xml attribute serialization.
+    /// </summary>
+    [XmlAttribute("maxDigits")]
+    public string MaxDigitsAsText {
+        get {return (MaxDigits.HasValue) ? MaxDigits.ToString() : null ;}
+        set {}
+    }
 
     /// <summary>
     ///   Integer time indicating the timeout between digits
@@ -78,8 +87,17 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// <summary>
     ///  Integer between 1 and 30 that specifies how many times to play the audio. This parameter will be honored both inside and outside of a Gather verb. Default is 1.
     ///  </summary>
-    [XmlAttribute("repeatCount")]    
+    [XmlIgnore]    
     public Nullable<int> RepeatCount { get; set; }
+
+    /// <summary>
+    ///  The setter does nothing! This is just a surrogate feild for nullable xml attribute serialization.
+    /// </summary>
+    [XmlAttribute("repeatCount")]
+    public string RepeatCountAsText {
+        get {return (RepeatCount.HasValue) ? RepeatCount.ToString() : null ;}
+        set {}
+    }
 
     /// <summary>
     ///  Using the SpeakSentence inside the Gather verb will speak the text to the callee.

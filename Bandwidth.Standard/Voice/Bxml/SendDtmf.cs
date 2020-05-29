@@ -14,12 +14,32 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// <summary>
     ///  (optional) The length (in milliseconds) of each DTMF tone. Default value is 200. Range: decimal values between 50 - 5000.
     /// </summary>
+    [XmlIgnore]
     public Nullable<double> ToneDuration { get; set; }
+
+    /// <summary>
+    ///  The setter does nothing! This is just a surrogate feild for nullable xml attribute serialization.
+    /// </summary>
+    [XmlAttribute("toneDuration")]
+    public string ToneDurationAsText {
+        get {return (ToneDuration.HasValue) ? ToneDuration.ToString() : null ;}
+        set {}
+    }
 
     /// <summary>
     ///   (optional) The duration of silence (in milliseconds) following each DTMF tone. Default value is 400. Range: decimal values between 50 - 5000.
     /// </summary>
+    [XmlIgnore]
     public Nullable<double> ToneInterval { get; set; }
+
+    /// <summary>
+    ///  The setter does nothing! This is just a surrogate feild for nullable xml attribute serialization.
+    /// </summary>
+    [XmlAttribute("toneInterval")]
+    public string ToneIntervalAsText {
+        get {return (ToneInterval.HasValue) ? ToneInterval.ToString() : null ;}
+        set {}
+    }
 
     /// <summary>
     ///   String containing the DTMF characters to be sent in a call (maximum of 92 characters)
