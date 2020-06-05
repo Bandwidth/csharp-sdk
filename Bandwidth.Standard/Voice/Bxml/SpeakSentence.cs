@@ -9,7 +9,7 @@ namespace Bandwidth.Standard.Voice.Bxml
   ///   The SpeakSentence verb is used to convert any text into speak for the caller.
   /// </summary>
   /// <seealso href="http://ap.bandwidth.com/docs/xml/speaksentence/" />
-  public class SpeakSentence : IXmlSerializable, IVerb
+  public class SpeakSentence : IXmlSerializable, IVerb, IAudioProducer
   {
     /// <summary>
     ///   Default constructor

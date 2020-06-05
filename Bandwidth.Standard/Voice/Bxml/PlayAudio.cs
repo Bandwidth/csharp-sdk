@@ -9,7 +9,7 @@ namespace Bandwidth.Standard.Voice.Bxml
   ///   The PlayAudio verb is used to play an audio file in the call.
   /// </summary>
   /// <seealso href="http://ap.bandwidth.com/docs/xml/playaudio/" />
-  public class PlayAudio : IXmlSerializable, IVerb
+  public class PlayAudio : IXmlSerializable, IVerb, IAudioProducer
   {
     /// <summary>
     ///   Url of media resourse to play

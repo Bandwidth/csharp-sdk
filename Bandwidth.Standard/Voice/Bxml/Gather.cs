@@ -1,5 +1,8 @@
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
+using System.Xml;
+using System.Xml.Schema;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Voice.Bxml
@@ -8,7 +11,7 @@ namespace Bandwidth.Standard.Voice.Bxml
   ///   The Gather verb is used to collect digits for some period of time.
   /// </summary>
   /// <seealso href="http://ap.bandwidth.com/docs/xml/gather/" />
-  public class Gather : IVerb
+  public class Gather : IVerb, IXmlSerializable
   {
     /// <summary>
     /// Initialize the integer fields to Bandwidth's default value
@@ -108,5 +111,94 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// Using the PlayAudio inside the Gather verb will play the media to the callee.
     /// </summary>
     public PlayAudio PlayAudio { get; set; }
+
+    /// <summary>
+    /// Using the PlayAudio inside the Gather verb will play the media to the callee.
+    /// </summary>
+    public List<IAudioProducer> AudioProducers { get; set; }
+
+        XmlSchema IXmlSerializable.GetSchema()
+        {
+            return null;
+        }
+
+        void IXmlSerializable.ReadXml(XmlReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IXmlSerializable.WriteXml(XmlWriter writer)
+        {
+            if (!string.IsNullOrEmpty(GatherUrl))
+            {
+                writer.WriteAttributeString("gatherUrl", GatherUrl);
+            }
+            if (!string.IsNullOrEmpty(GatherMethod))
+            {
+                writer.WriteAttributeString("gatherMethod", GatherMethod);
+            }
+            if (!string.IsNullOrEmpty(TerminatingDigits))
+            {
+                writer.WriteAttributeString("terminatingDigits", TerminatingDigits);
+            }
+            if (!string.IsNullOrEmpty(Tag))
+            {
+                writer.WriteAttributeString("tag", Tag);
+            }
+            if (MaxDigits.HasValue)
+            {
+                writer.WriteAttributeString("maxDigits", MaxDigits.ToString());
+            }
+            
+            writer.WriteAttributeString("interDigitTimeout", InterDigitTimeout.ToString());
+
+            if (!string.IsNullOrEmpty(Username))
+            {
+                writer.WriteAttributeString("username", Username);
+            }
+
+            if (!string.IsNullOrEmpty(Password))
+            {
+                writer.WriteAttributeString("password", Password);
+            }
+
+            writer.WriteAttributeString("firstDigitTimeout", FirstDigitTimeout.ToString());
+
+            if (RepeatCount.HasValue)
+            {
+                writer.WriteAttributeString("repeatCount", RepeatCount.ToString());
+            }
+
+            if (SpeakSentence != null)
+            {
+                var ns = new XmlSerializerNamespaces();
+                ns.Add("", "");
+
+                var serializer = new XmlSerializer(SpeakSentence.GetType(), "");
+                serializer.Serialize(writer, SpeakSentence, ns);
+                
+            }
+
+            if (PlayAudio != null)
+            {
+                var ns = new XmlSerializerNamespaces();
+                ns.Add("", "");
+
+                var serializer = new XmlSerializer(PlayAudio.GetType(), "");
+                serializer.Serialize(writer, PlayAudio, ns);
+            }
+
+            if (AudioProducers != null && AudioProducers.Count > 0)
+            {
+                var ns = new XmlSerializerNamespaces();
+                ns.Add("", "");
+ 
+                foreach (var verb in AudioProducers)
+                {
+                    var serializer = new XmlSerializer(verb.GetType(), "");
+                    serializer.Serialize(writer, verb, ns);
+                }
+            }
+        }
   }
 }
