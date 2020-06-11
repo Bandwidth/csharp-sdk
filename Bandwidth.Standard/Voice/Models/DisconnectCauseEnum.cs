@@ -27,6 +27,7 @@ namespace Bandwidth.Standard.Voice.Models
         Accountlimit,
         Nodecapacityexceeded,
         Unknown,
+        Applicationerror,
     }
 
     /// <summary>
@@ -35,7 +36,7 @@ namespace Bandwidth.Standard.Voice.Models
     public static class DisconnectCauseEnumHelper
     {
         //string values corresponding the enum elements
-        private static List<string> stringValues = new List<string> { "busy", "callback-error", "cancel", "error", "hangup", "invalid-bxml", "rejected", "timeout", "account-limit", "node-capacity-exceeded", "unknown" };
+        private static List<string> stringValues = new List<string> { "busy", "callback-error", "cancel", "error", "hangup", "invalid-bxml", "rejected", "timeout", "account-limit", "node-capacity-exceeded", "unknown", "application-error" };
 
         /// <summary>
         /// Converts a DisconnectCauseEnum value to a corresponding string value
@@ -59,6 +60,7 @@ namespace Bandwidth.Standard.Voice.Models
                 case DisconnectCauseEnum.Accountlimit:
                 case DisconnectCauseEnum.Nodecapacityexceeded:
                 case DisconnectCauseEnum.Unknown:
+                case DisconnectCauseEnum.Applicationerror:
                     return stringValues[(int)enumValue];
 
                 //an invalid enum value was requested

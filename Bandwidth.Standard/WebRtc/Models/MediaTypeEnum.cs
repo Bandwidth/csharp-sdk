@@ -11,36 +11,36 @@ using Newtonsoft.Json.Converters;
 using Bandwidth.Standard;
 using Bandwidth.Standard.Utilities;
 
-namespace Bandwidth.Standard.Voice.Models
+namespace Bandwidth.Standard.WebRtc.Models
 {
     [JsonConverter(typeof(StringValuedEnumConverter))]
-    public enum StatusEnum
+    public enum MediaTypeEnum
     {
-        Active,
-        Completed,
+        AUDIO,
+        VIDEO,
     }
 
     /// <summary>
-    /// Helper for the enum type StatusEnum
+    /// Helper for the enum type MediaTypeEnum
     /// </summary>
-    public static class StatusEnumHelper
+    public static class MediaTypeEnumHelper
     {
         //string values corresponding the enum elements
-        private static List<string> stringValues = new List<string> { "active", "completed" };
+        private static List<string> stringValues = new List<string> { "AUDIO", "VIDEO" };
 
         /// <summary>
-        /// Converts a StatusEnum value to a corresponding string value
+        /// Converts a MediaTypeEnum value to a corresponding string value
         /// </summary>
-        /// <param name="enumValue">The StatusEnum value to convert</param>
+        /// <param name="enumValue">The MediaTypeEnum value to convert</param>
         /// <returns>The representative string value</returns>
-        public static string ToValue(StatusEnum enumValue)
+        public static string ToValue(MediaTypeEnum enumValue)
         {
             switch(enumValue)
             {
                 //only valid enum elements can be used
                 //this is necessary to avoid errors
-                case StatusEnum.Active:
-                case StatusEnum.Completed:
+                case MediaTypeEnum.AUDIO:
+                case MediaTypeEnum.VIDEO:
                     return stringValues[(int)enumValue];
 
                 //an invalid enum value was requested
@@ -50,11 +50,11 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Convert a list of StatusEnum values to a list of strings
+        /// Convert a list of MediaTypeEnum values to a list of strings
         /// </summary>
-        /// <param name="enumValues">The list of StatusEnum values to convert</param>
+        /// <param name="enumValues">The list of MediaTypeEnum values to convert</param>
         /// <returns>The list of representative string values</returns>
-        public static List<string> ToValue(List<StatusEnum> enumValues)
+        public static List<string> ToValue(List<MediaTypeEnum> enumValues)
         {
             if (null == enumValues)
                 return null;
@@ -63,17 +63,17 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Converts a string value into StatusEnum value
+        /// Converts a string value into MediaTypeEnum value
         /// </summary>
         /// <param name="value">The string value to parse</param>
-        /// <returns>The parsed StatusEnum value</returns>
-        public static StatusEnum ParseString(string value)
+        /// <returns>The parsed MediaTypeEnum value</returns>
+        public static MediaTypeEnum ParseString(string value)
         {
             int index = stringValues.IndexOf(value);
             if(index < 0)
-                throw new InvalidCastException(string.Format("Unable to cast value: {0} to type StatusEnum", value));
+                throw new InvalidCastException(string.Format("Unable to cast value: {0} to type MediaTypeEnum", value));
 
-            return (StatusEnum) index;
+            return (MediaTypeEnum) index;
         }
     }
 }

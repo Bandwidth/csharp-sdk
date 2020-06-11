@@ -33,7 +33,7 @@ namespace Bandwidth.Standard.Voice.Models
             long? startTime = null,
             long? endTime = null,
             Models.FileFormatEnum? fileFormat = null,
-            Models.StatusEnum? status = null,
+            Models.Status1Enum? status = null,
             string mediaUrl = null,
             Models.Transcription transcription = null)
         {
@@ -130,7 +130,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// Getter for status
         /// </summary>
         [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter))]
-        public Models.StatusEnum? Status { get; set; }
+        public Models.Status1Enum? Status { get; set; }
 
         /// <summary>
         /// Getter for mediaUrl

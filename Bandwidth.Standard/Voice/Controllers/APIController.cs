@@ -89,17 +89,17 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself.", _context);
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
@@ -187,17 +187,17 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself.", _context);
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
@@ -289,17 +289,17 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself.", _context);
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
@@ -388,17 +388,17 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself.", _context);
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
@@ -512,17 +512,17 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself.", _context);
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
@@ -613,17 +613,17 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself.", _context);
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
@@ -712,17 +712,17 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself.", _context);
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
@@ -809,17 +809,17 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself.", _context);
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
@@ -908,17 +908,17 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself.", _context);
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
@@ -1006,17 +1006,17 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself.", _context);
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
@@ -1119,17 +1119,17 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself.", _context);
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
@@ -1220,17 +1220,116 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself.", _context);
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
+            }
+
+            if (_response.StatusCode == 415)
+            {
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+            }
+
+            if (_response.StatusCode == 429)
+            {
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+            }
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+        }
+
+        /// <summary>
+        /// Modify the conference state
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="conferenceId">Required parameter: Example: </param>
+        /// <param name="body">Optional parameter: Example: </param>
+        /// <return>Returns the void response from the API call</return>
+        public void ModifyConference(string accountId, string conferenceId, Models.CallEngineModifyConferenceRequest body = null)
+        {
+            Task t = ModifyConferenceAsync(accountId, conferenceId, body);
+            ApiHelper.RunTaskSynchronously(t);
+        }
+
+        /// <summary>
+        /// Modify the conference state
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="conferenceId">Required parameter: Example: </param>
+        /// <param name="body">Optional parameter: Example: </param>
+        /// <return>Returns the void response from the API call</return>
+        public async Task ModifyConferenceAsync(string accountId, string conferenceId, Models.CallEngineModifyConferenceRequest body = null, CancellationToken cancellationToken = default)
+        {
+            //the base uri for api requests
+            string _baseUri = config.GetBaseUri(Server.VoiceDefault);
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/api/v2/accounts/{accountId}/conferences/{conferenceId}");
+
+            //process optional template parameters
+            ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "accountId", accountId },
+                { "conferenceId", conferenceId }
+            });
+
+            //validate and preprocess url
+            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string, string>()
+            { 
+                { "user-agent", userAgent },
+                { "content-type", "application/json; charset=utf-8" }
+            };
+
+            //append body params
+            var _body = ApiHelper.JsonSerialize(body);
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = GetClientInstance().PostBody(_queryUrl, _headers, _body);
+
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
+
+            //invoke request and get response
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
@@ -1339,17 +1438,17 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseException(@"Something's not quite right... Either your request is invalid or you're requesting it at a bad time. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Please authenticate yourself.", _context);
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseException(@"Your credentials are invalid. Please use your API credentials for the Bandwidth Dashboard.", _context);
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)

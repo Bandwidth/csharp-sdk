@@ -13,6 +13,7 @@ using Bandwidth.Standard.Http.Client;
 using Bandwidth.Standard.Messaging;
 using Bandwidth.Standard.TwoFactorAuth;
 using Bandwidth.Standard.Voice;
+using Bandwidth.Standard.WebRtc;
 
 using Bandwidth.Standard.Utilities;
 
@@ -25,10 +26,12 @@ namespace Bandwidth.Standard
         private readonly MessagingBasicAuthManager messagingBasicAuthManager; 
         private readonly TwoFactorAuthBasicAuthManager twoFactorAuthBasicAuthManager; 
         private readonly VoiceBasicAuthManager voiceBasicAuthManager; 
+        private readonly WebRtcBasicAuthManager webRtcBasicAuthManager; 
 
         private readonly Lazy<MessagingClient> messaging;
         private readonly Lazy<TwoFactorAuthClient> twoFactorAuth;
         private readonly Lazy<VoiceClient> voice;
+        private readonly Lazy<WebRtcClient> webRtc;
 
         /// <summary>
         /// Provides access to MessagingClient controller
@@ -45,6 +48,11 @@ namespace Bandwidth.Standard
         /// </summary>
         public VoiceClient Voice => voice.Value;
 
+        /// <summary>
+        /// Provides access to WebRtcClient controller
+        /// </summary>
+        public WebRtcClient WebRtc => webRtc.Value;
+
         internal static BandwidthClient CreateFromEnvironment()
         {
             var builder = new Builder();
@@ -56,7 +64,10 @@ namespace Bandwidth.Standard
             string twoFactorAuthBasicAuthPassword = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_TWO_FACTOR_AUTH_BASIC_AUTH_PASSWORD");
             string voiceBasicAuthUserName = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_VOICE_BASIC_AUTH_USER_NAME");
             string voiceBasicAuthPassword = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_VOICE_BASIC_AUTH_PASSWORD");
+            string webRtcBasicAuthUserName = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_WEB_RTC_BASIC_AUTH_USER_NAME");
+            string webRtcBasicAuthPassword = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_WEB_RTC_BASIC_AUTH_PASSWORD");
             string environment = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_ENVIRONMENT");
+            string webRtcServer = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_WEB_RTC_SERVER");
 
             if (timeout != null)
             {
@@ -66,6 +77,11 @@ namespace Bandwidth.Standard
             if (environment != null)
             {
                 builder.Environment(EnvironmentHelper.ParseString(environment));
+            }
+
+            if (webRtcServer != null)
+            {
+                builder.WebRtcServer(webRtcServer);
             }
             if (messagingBasicAuthUserName != null && messagingBasicAuthPassword != null)
             {
@@ -79,6 +95,10 @@ namespace Bandwidth.Standard
             {
                 builder.VoiceBasicAuthCredentials(voiceBasicAuthUserName, voiceBasicAuthPassword);
             }
+            if (webRtcBasicAuthUserName != null && webRtcBasicAuthPassword != null)
+            {
+                builder.WebRtcBasicAuthCredentials(webRtcBasicAuthUserName, webRtcBasicAuthPassword);
+            }
 
             return builder.Build();
         }
@@ -86,15 +106,18 @@ namespace Bandwidth.Standard
         private BandwidthClient(TimeSpan timeout, string messagingBasicAuthUserName,
                 string messagingBasicAuthPassword, string twoFactorAuthBasicAuthUserName,
                 string twoFactorAuthBasicAuthPassword, string voiceBasicAuthUserName,
-                string voiceBasicAuthPassword, Environment environment,
+                string voiceBasicAuthPassword, string webRtcBasicAuthUserName,
+                string webRtcBasicAuthPassword, Environment environment, string webRtcServer,
                 IDictionary<string, IAuthManager> authManagers, IHttpClient httpClient,
                 IHttpClientConfiguration httpClientConfiguration)
         {
             messagingBasicAuthManager = new MessagingBasicAuthManager(messagingBasicAuthUserName, messagingBasicAuthPassword);
             twoFactorAuthBasicAuthManager = new TwoFactorAuthBasicAuthManager(twoFactorAuthBasicAuthUserName, twoFactorAuthBasicAuthPassword);
             voiceBasicAuthManager = new VoiceBasicAuthManager(voiceBasicAuthUserName, voiceBasicAuthPassword);
+            webRtcBasicAuthManager = new WebRtcBasicAuthManager(webRtcBasicAuthUserName, webRtcBasicAuthPassword);
             Timeout = timeout;
             Environment = environment;
+            WebRtcServer = webRtcServer;
             this.httpClient = httpClient;
             this.authManagers = new Dictionary<string, IAuthManager>(authManagers);
             HttpClientConfiguration = httpClientConfiguration;
@@ -104,10 +127,12 @@ namespace Bandwidth.Standard
             this.authManagers["messaging"] = messagingBasicAuthManager;
             this.authManagers["twoFactorAuth"] = twoFactorAuthBasicAuthManager;
             this.authManagers["voice"] = voiceBasicAuthManager;
+            this.authManagers["webRtc"] = webRtcBasicAuthManager;
 
             messaging = new Lazy<MessagingClient>(() => new MessagingClient(this));
             twoFactorAuth = new Lazy<TwoFactorAuthClient>(() => new TwoFactorAuthClient(this));
             voice = new Lazy<VoiceClient>(() => new VoiceClient(this));
+            webRtc = new Lazy<WebRtcClient>(() => new WebRtcClient(this));
 
         }
 
@@ -132,6 +157,11 @@ namespace Bandwidth.Standard
         public IBasicAuthCredentials VoiceBasicAuthCredentials => voiceBasicAuthManager;
 
         /// <summary>
+        /// The username and password to use with basic authentication
+        /// </summary>
+        public IBasicAuthCredentials WebRtcBasicAuthCredentials => webRtcBasicAuthManager;
+
+        /// <summary>
         /// Http client timeout
         /// </summary>
         public TimeSpan Timeout { get; }
@@ -140,6 +170,11 @@ namespace Bandwidth.Standard
         /// Current API environment
         /// </summary>
         public Environment Environment { get; }
+
+        /// <summary>
+        /// WebRtcServer value
+        /// </summary>
+        public string WebRtcServer { get; }
 
         //A map of environments and their corresponding servers/baseurls
         private static readonly Dictionary<Environment, Dictionary<Server, string>> EnvironmentsMap =
@@ -152,6 +187,7 @@ namespace Bandwidth.Standard
                     { Server.MessagingDefault, "https://messaging.bandwidth.com/api/v2" },
                     { Server.TwoFactorAuthDefault, "https://mfa.bandwidth.com/api/v1/" },
                     { Server.VoiceDefault, "https://voice.bandwidth.com" },
+                    { Server.WebRtcDefault, "{WebRtcServer}/v1" },
                 }
             },
         };
@@ -164,6 +200,7 @@ namespace Bandwidth.Standard
         {
             List<KeyValuePair<string, object>> kvpList = new List<KeyValuePair<string, object>>()
             {
+                new KeyValuePair<string, object>("WebRtcServer", WebRtcServer),
             };
             return kvpList;
         }
@@ -185,9 +222,11 @@ namespace Bandwidth.Standard
             Builder builder = new Builder()
                 .Timeout(Timeout)
                 .Environment(Environment)
+                .WebRtcServer(WebRtcServer)
                 .MessagingBasicAuthCredentials(messagingBasicAuthManager.Username, messagingBasicAuthManager.Password)
                 .TwoFactorAuthBasicAuthCredentials(twoFactorAuthBasicAuthManager.Username, twoFactorAuthBasicAuthManager.Password)
                 .VoiceBasicAuthCredentials(voiceBasicAuthManager.Username, voiceBasicAuthManager.Password)
+                .WebRtcBasicAuthCredentials(webRtcBasicAuthManager.Username, webRtcBasicAuthManager.Password)
                 .HttpClient(httpClient)
                 .AuthManagers(authManagers);
 
@@ -203,7 +242,10 @@ namespace Bandwidth.Standard
             private string twoFactorAuthBasicAuthPassword = String.Empty;
             private string voiceBasicAuthUserName = String.Empty;
             private string voiceBasicAuthPassword = String.Empty;
+            private string webRtcBasicAuthUserName = String.Empty;
+            private string webRtcBasicAuthPassword = String.Empty;
             private Environment environment = Bandwidth.Standard.Environment.Production;
+            private string webRtcServer = "https://api.webrtc.bandwidth.com";
             private IHttpClient httpClient;
             private IDictionary<string, IAuthManager> authManagers = new Dictionary<string, IAuthManager>();
             private HttpClientConfiguration httpClientConfig = new HttpClientConfiguration();
@@ -213,6 +255,13 @@ namespace Bandwidth.Standard
             public Builder Environment(Environment environment)
             {
                 this.environment = environment;
+                return this;
+            }
+
+            // Setter for WebRtcServer
+            public Builder WebRtcServer(string webRtcServer)
+            {
+                this.webRtcServer = webRtcServer ?? throw new ArgumentNullException(nameof(webRtcServer));
                 return this;
             }
 
@@ -248,6 +297,14 @@ namespace Bandwidth.Standard
                 return this;
             }
 
+            // Setter for BasicAuthUserName and BasicAuthPassword
+            public Builder WebRtcBasicAuthCredentials(string username, string password)
+            {
+                this.webRtcBasicAuthUserName = username ?? throw new ArgumentNullException(nameof(username));
+                this.webRtcBasicAuthPassword = password ?? throw new ArgumentNullException(nameof(password));
+                return this;
+            }
+
             internal Builder HttpClient(IHttpClient httpClient)
             {
                 this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
@@ -273,7 +330,8 @@ namespace Bandwidth.Standard
 
                 return new BandwidthClient(timeout, messagingBasicAuthUserName, messagingBasicAuthPassword,
                         twoFactorAuthBasicAuthUserName, twoFactorAuthBasicAuthPassword, voiceBasicAuthUserName,
-                        voiceBasicAuthPassword, environment, authManagers, httpClient, httpClientConfig);
+                        voiceBasicAuthPassword, webRtcBasicAuthUserName, webRtcBasicAuthPassword, environment, webRtcServer,
+                        authManagers, httpClient, httpClientConfig);
             }
         }
 

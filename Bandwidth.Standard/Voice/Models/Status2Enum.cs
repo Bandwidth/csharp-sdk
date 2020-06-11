@@ -14,39 +14,43 @@ using Bandwidth.Standard.Utilities;
 namespace Bandwidth.Standard.Voice.Models
 {
     [JsonConverter(typeof(StringValuedEnumConverter))]
-    public enum Status1Enum
+    public enum Status2Enum
     {
+        None,
         Processing,
-        Partial,
-        Complete,
-        Deleted,
+        Available,
         Error,
+        Timeout,
+        Filesizetoobig,
+        Filesizetoosmall,
     }
 
     /// <summary>
-    /// Helper for the enum type Status1Enum
+    /// Helper for the enum type Status2Enum
     /// </summary>
-    public static class Status1EnumHelper
+    public static class Status2EnumHelper
     {
         //string values corresponding the enum elements
-        private static List<string> stringValues = new List<string> { "processing", "partial", "complete", "deleted", "error" };
+        private static List<string> stringValues = new List<string> { "none", "processing", "available", "error", "timeout", "file-size-too-big", "file-size-too-small" };
 
         /// <summary>
-        /// Converts a Status1Enum value to a corresponding string value
+        /// Converts a Status2Enum value to a corresponding string value
         /// </summary>
-        /// <param name="enumValue">The Status1Enum value to convert</param>
+        /// <param name="enumValue">The Status2Enum value to convert</param>
         /// <returns>The representative string value</returns>
-        public static string ToValue(Status1Enum enumValue)
+        public static string ToValue(Status2Enum enumValue)
         {
             switch(enumValue)
             {
                 //only valid enum elements can be used
                 //this is necessary to avoid errors
-                case Status1Enum.Processing:
-                case Status1Enum.Partial:
-                case Status1Enum.Complete:
-                case Status1Enum.Deleted:
-                case Status1Enum.Error:
+                case Status2Enum.None:
+                case Status2Enum.Processing:
+                case Status2Enum.Available:
+                case Status2Enum.Error:
+                case Status2Enum.Timeout:
+                case Status2Enum.Filesizetoobig:
+                case Status2Enum.Filesizetoosmall:
                     return stringValues[(int)enumValue];
 
                 //an invalid enum value was requested
@@ -56,11 +60,11 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Convert a list of Status1Enum values to a list of strings
+        /// Convert a list of Status2Enum values to a list of strings
         /// </summary>
-        /// <param name="enumValues">The list of Status1Enum values to convert</param>
+        /// <param name="enumValues">The list of Status2Enum values to convert</param>
         /// <returns>The list of representative string values</returns>
-        public static List<string> ToValue(List<Status1Enum> enumValues)
+        public static List<string> ToValue(List<Status2Enum> enumValues)
         {
             if (null == enumValues)
                 return null;
@@ -69,17 +73,17 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Converts a string value into Status1Enum value
+        /// Converts a string value into Status2Enum value
         /// </summary>
         /// <param name="value">The string value to parse</param>
-        /// <returns>The parsed Status1Enum value</returns>
-        public static Status1Enum ParseString(string value)
+        /// <returns>The parsed Status2Enum value</returns>
+        public static Status2Enum ParseString(string value)
         {
             int index = stringValues.IndexOf(value);
             if(index < 0)
-                throw new InvalidCastException(string.Format("Unable to cast value: {0} to type Status1Enum", value));
+                throw new InvalidCastException(string.Format("Unable to cast value: {0} to type Status2Enum", value));
 
-            return (Status1Enum) index;
+            return (Status2Enum) index;
         }
     }
 }

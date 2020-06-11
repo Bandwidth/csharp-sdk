@@ -10,5 +10,6 @@ namespace Bandwidth.Standard
         MessagingDefault,
         TwoFactorAuthDefault,
         VoiceDefault,
+        WebRtcDefault,
     }
 }

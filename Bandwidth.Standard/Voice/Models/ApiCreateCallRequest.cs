@@ -31,7 +31,9 @@ namespace Bandwidth.Standard.Voice.Models
             Models.AnswerMethodEnum? answerMethod = null,
             string disconnectUrl = null,
             Models.DisconnectMethodEnum? disconnectMethod = null,
-            string tag = null)
+            string tag = null,
+            string obfuscatedTo = null,
+            string obfuscatedFrom = null)
         {
             From = from;
             To = to;
@@ -44,6 +46,8 @@ namespace Bandwidth.Standard.Voice.Models
             DisconnectMethod = disconnectMethod;
             Tag = tag;
             ApplicationId = applicationId;
+            ObfuscatedTo = obfuscatedTo;
+            ObfuscatedFrom = obfuscatedFrom;
         }
 
         /// <summary>
@@ -111,6 +115,18 @@ namespace Bandwidth.Standard.Voice.Models
         /// </summary>
         [JsonProperty("applicationId")]
         public string ApplicationId { get; set; }
+
+        /// <summary>
+        /// Getter for obfuscatedTo
+        /// </summary>
+        [JsonProperty("obfuscatedTo")]
+        public string ObfuscatedTo { get; set; }
+
+        /// <summary>
+        /// Getter for obfuscatedFrom
+        /// </summary>
+        [JsonProperty("obfuscatedFrom")]
+        public string ObfuscatedFrom { get; set; }
 
     }
 }
