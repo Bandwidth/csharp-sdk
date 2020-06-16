@@ -14,33 +14,33 @@ using Bandwidth.Standard.Utilities;
 namespace Bandwidth.Standard.WebRtc.Models
 {
     [JsonConverter(typeof(StringValuedEnumConverter))]
-    public enum MediaTypeEnum
+    public enum PublishPermissionEnum
     {
         AUDIO,
         VIDEO,
     }
 
     /// <summary>
-    /// Helper for the enum type MediaTypeEnum
+    /// Helper for the enum type PublishPermissionEnum
     /// </summary>
-    public static class MediaTypeEnumHelper
+    public static class PublishPermissionEnumHelper
     {
         //string values corresponding the enum elements
         private static List<string> stringValues = new List<string> { "AUDIO", "VIDEO" };
 
         /// <summary>
-        /// Converts a MediaTypeEnum value to a corresponding string value
+        /// Converts a PublishPermissionEnum value to a corresponding string value
         /// </summary>
-        /// <param name="enumValue">The MediaTypeEnum value to convert</param>
+        /// <param name="enumValue">The PublishPermissionEnum value to convert</param>
         /// <returns>The representative string value</returns>
-        public static string ToValue(MediaTypeEnum enumValue)
+        public static string ToValue(PublishPermissionEnum enumValue)
         {
             switch(enumValue)
             {
                 //only valid enum elements can be used
                 //this is necessary to avoid errors
-                case MediaTypeEnum.AUDIO:
-                case MediaTypeEnum.VIDEO:
+                case PublishPermissionEnum.AUDIO:
+                case PublishPermissionEnum.VIDEO:
                     return stringValues[(int)enumValue];
 
                 //an invalid enum value was requested
@@ -50,11 +50,11 @@ namespace Bandwidth.Standard.WebRtc.Models
         }
 
         /// <summary>
-        /// Convert a list of MediaTypeEnum values to a list of strings
+        /// Convert a list of PublishPermissionEnum values to a list of strings
         /// </summary>
-        /// <param name="enumValues">The list of MediaTypeEnum values to convert</param>
+        /// <param name="enumValues">The list of PublishPermissionEnum values to convert</param>
         /// <returns>The list of representative string values</returns>
-        public static List<string> ToValue(List<MediaTypeEnum> enumValues)
+        public static List<string> ToValue(List<PublishPermissionEnum> enumValues)
         {
             if (null == enumValues)
                 return null;
@@ -63,17 +63,17 @@ namespace Bandwidth.Standard.WebRtc.Models
         }
 
         /// <summary>
-        /// Converts a string value into MediaTypeEnum value
+        /// Converts a string value into PublishPermissionEnum value
         /// </summary>
         /// <param name="value">The string value to parse</param>
-        /// <returns>The parsed MediaTypeEnum value</returns>
-        public static MediaTypeEnum ParseString(string value)
+        /// <returns>The parsed PublishPermissionEnum value</returns>
+        public static PublishPermissionEnum ParseString(string value)
         {
             int index = stringValues.IndexOf(value);
             if(index < 0)
-                throw new InvalidCastException(string.Format("Unable to cast value: {0} to type MediaTypeEnum", value));
+                throw new InvalidCastException(string.Format("Unable to cast value: {0} to type PublishPermissionEnum", value));
 
-            return (MediaTypeEnum) index;
+            return (PublishPermissionEnum) index;
         }
     }
 }

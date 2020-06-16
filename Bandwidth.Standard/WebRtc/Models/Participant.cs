@@ -23,14 +23,14 @@ namespace Bandwidth.Standard.WebRtc.Models
 
         public Participant(string id = null,
             string callbackUrl = null,
-            Models.Permissions permissions = null,
+            List<Models.PublishPermissionEnum> publishPermissions = null,
             List<string> sessions = null,
             Models.Subscriptions subscriptions = null,
             string tag = null)
         {
             Id = id;
             CallbackUrl = callbackUrl;
-            Permissions = permissions;
+            PublishPermissions = publishPermissions;
             Sessions = sessions;
             Subscriptions = subscriptions;
             Tag = tag;
@@ -49,10 +49,10 @@ namespace Bandwidth.Standard.WebRtc.Models
         public string CallbackUrl { get; set; }
 
         /// <summary>
-        /// Getter for permissions
+        /// Getter for publishPermissions
         /// </summary>
-        [JsonProperty("permissions")]
-        public Models.Permissions Permissions { get; set; }
+        [JsonProperty("publishPermissions", ItemConverterType = typeof(StringValuedEnumConverter))]
+        public List<Models.PublishPermissionEnum> PublishPermissions { get; set; }
 
         /// <summary>
         /// List of session ids this participant is associated with
