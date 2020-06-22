@@ -21,40 +21,56 @@ namespace Bandwidth.Standard.TwoFactorAuth.Models
     {
         public TwoFactorCodeRequestSchema() { }
 
-        public TwoFactorCodeRequestSchema(string to = null,
-            string from = null,
-            string applicationId = null,
+        public TwoFactorCodeRequestSchema(string to,
+            string from,
+            string applicationId,
+            string message,
+            double digits,
             string scope = null)
         {
             To = to;
             From = from;
             ApplicationId = applicationId;
             Scope = scope;
+            Message = message;
+            Digits = digits;
         }
 
         /// <summary>
-        /// Getter for to
+        /// The phone number to send the 2fa code to.
         /// </summary>
         [JsonProperty("to")]
         public string To { get; set; }
 
         /// <summary>
-        /// Getter for from
+        /// The application phone number, the sender of the 2fa code.
         /// </summary>
         [JsonProperty("from")]
         public string From { get; set; }
 
         /// <summary>
-        /// Getter for applicationId
+        /// The application unique ID, obtained from Bandwidth.
         /// </summary>
         [JsonProperty("applicationId")]
         public string ApplicationId { get; set; }
 
         /// <summary>
-        /// Getter for scope
+        /// An optional field to denote what scope or action the 2fa code is addressing.  If not supplied, defaults to "2FA".
         /// </summary>
         [JsonProperty("scope")]
         public string Scope { get; set; }
+
+        /// <summary>
+        /// The message format of the 2fa code.  There are three values that the system will replace "{CODE}", "{NAME}", "{SCOPE}".  The "{SCOPE}" and "{NAME} value template are optional, while "{CODE}" must be supplied.  As the name would suggest, code will be replace with the actual 2fa code.  Name is replaced with the application name, configured during provisioning of 2fa.  The scope value is the same value sent during the call and partitioned by the server.
+        /// </summary>
+        [JsonProperty("message")]
+        public string Message { get; set; }
+
+        /// <summary>
+        /// The number of digits for your 2fa code.  The valid number ranges from 2 to 8, inclusively.
+        /// </summary>
+        [JsonProperty("digits")]
+        public double Digits { get; set; }
 
     }
 }

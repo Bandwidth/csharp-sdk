@@ -21,45 +21,61 @@ namespace Bandwidth.Standard.TwoFactorAuth.Models
     {
         public TwoFactorVerifyRequestSchema() { }
 
-        public TwoFactorVerifyRequestSchema(string to = null,
-            string from = null,
-            string applicationId = null,
-            string scope = null,
-            string code = null)
+        public TwoFactorVerifyRequestSchema(string to,
+            string from,
+            string applicationId,
+            double digits,
+            double expirationTimeInMinutes,
+            string code,
+            string scope = null)
         {
             To = to;
             From = from;
             ApplicationId = applicationId;
             Scope = scope;
+            Digits = digits;
+            ExpirationTimeInMinutes = expirationTimeInMinutes;
             Code = code;
         }
 
         /// <summary>
-        /// Getter for to
+        /// The phone number to send the 2fa code to.
         /// </summary>
         [JsonProperty("to")]
         public string To { get; set; }
 
         /// <summary>
-        /// Getter for from
+        /// The application phone number, the sender of the 2fa code.
         /// </summary>
         [JsonProperty("from")]
         public string From { get; set; }
 
         /// <summary>
-        /// Getter for applicationId
+        /// The application unique ID, obtained from Bandwidth.
         /// </summary>
         [JsonProperty("applicationId")]
         public string ApplicationId { get; set; }
 
         /// <summary>
-        /// Getter for scope
+        /// An optional field to denote what scope or action the 2fa code is addressing.  If not supplied, defaults to "2FA".
         /// </summary>
         [JsonProperty("scope")]
         public string Scope { get; set; }
 
         /// <summary>
-        /// Getter for code
+        /// The number of digits for your 2fa code.  The valid number ranges from 2 to 8, inclusively.
+        /// </summary>
+        [JsonProperty("digits")]
+        public double Digits { get; set; }
+
+        /// <summary>
+        /// The time period, in minutes, to validate the 2fa code.  By setting this to 3 minutes, it will mean any code generated within the last 3 minutes are still valid.  The valid range for expiration time is between 0 and 15 minutes, exclusively and inclusively, respectively.
+        /// </summary>
+        [JsonProperty("expirationTimeInMinutes")]
+        public double ExpirationTimeInMinutes { get; set; }
+
+        /// <summary>
+        /// The generated 2fa code to check if valid
         /// </summary>
         [JsonProperty("code")]
         public string Code { get; set; }

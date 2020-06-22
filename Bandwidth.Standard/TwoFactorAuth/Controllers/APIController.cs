@@ -19,6 +19,7 @@ using Bandwidth.Standard.Http.Request;
 using Bandwidth.Standard.Http.Response;
 using Bandwidth.Standard.Http.Client;
 using Bandwidth.Standard.Authentication;
+using Bandwidth.Standard.TwoFactorAuth.Exceptions;
 
 namespace Bandwidth.Standard.TwoFactorAuth.Controllers
 {
@@ -84,6 +85,13 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
             //invoke request and get response
             HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new InvalidRequestException(@"client request error", _context);
+            }
+
             //handle errors defined at the API level
             base.ValidateResponse(_response, _context);
 
@@ -148,6 +156,13 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
             //invoke request and get response
             HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new InvalidRequestException(@"client request error", _context);
+            }
+
             //handle errors defined at the API level
             base.ValidateResponse(_response, _context);
 
@@ -212,6 +227,13 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
             //invoke request and get response
             HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new InvalidRequestException(@"client request error", _context);
+            }
+
             //handle errors defined at the API level
             base.ValidateResponse(_response, _context);
 
