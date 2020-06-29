@@ -22,25 +22,17 @@ namespace Bandwidth.Standard.WebRtc.Models
         public Session() { }
 
         public Session(string id = null,
-            List<Models.Participant> participants = null,
             string tag = null)
         {
             Id = id;
-            Participants = participants;
             Tag = tag;
         }
 
         /// <summary>
-        /// Getter for id
+        /// Unique id of the session
         /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; }
-
-        /// <summary>
-        /// The list of participants associated with this session
-        /// </summary>
-        [JsonProperty("participants")]
-        public List<Models.Participant> Participants { get; set; }
 
         /// <summary>
         /// User defined tag to associate with the session

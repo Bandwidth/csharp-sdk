@@ -29,7 +29,7 @@ namespace Bandwidth.Standard.WebRtc.Models
         }
 
         /// <summary>
-        /// Session the subscriptions are associated with.
+        /// Session the subscriptions are associated with
         /// If this is the only field, the subscriber will be subscribed to all participants in the session (including any participants that are later added to the session)
         /// </summary>
         [JsonProperty("sessionId")]

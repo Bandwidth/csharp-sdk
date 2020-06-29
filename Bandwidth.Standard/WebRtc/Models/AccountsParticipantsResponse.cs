@@ -29,7 +29,7 @@ namespace Bandwidth.Standard.WebRtc.Models
         }
 
         /// <summary>
-        /// Getter for participant
+        /// A participant object
         /// </summary>
         [JsonProperty("participant")]
         public Models.Participant Participant { get; set; }

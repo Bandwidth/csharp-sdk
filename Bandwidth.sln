@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bandwidth.Standard", "Bandwidth.Standard/Bandwidth.Standard.csproj", "{80b9c0c1-0a2c-472d-8f1f-28711c14842a}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bandwidth.Standard", "Bandwidth.Standard/Bandwidth.Standard.csproj", "{546c4f60-9496-4b56-b76f-4a7d1d01b485}"
 EndProject
 Global
     GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,10 +10,10 @@ Global
         Release|Any CPU = Release|Any CPU
     EndGlobalSection
     GlobalSection(ProjectConfigurationPlatforms) = postSolution
-        {80b9c0c1-0a2c-472d-8f1f-28711c14842a}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-        {80b9c0c1-0a2c-472d-8f1f-28711c14842a}.Debug|Any CPU.Build.0 = Debug|Any CPU
-        {80b9c0c1-0a2c-472d-8f1f-28711c14842a}.Release|Any CPU.ActiveCfg = Release|Any CPU
-        {80b9c0c1-0a2c-472d-8f1f-28711c14842a}.Release|Any CPU.Build.0 = Release|Any CPU
+        {546c4f60-9496-4b56-b76f-4a7d1d01b485}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {546c4f60-9496-4b56-b76f-4a7d1d01b485}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {546c4f60-9496-4b56-b76f-4a7d1d01b485}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {546c4f60-9496-4b56-b76f-4a7d1d01b485}.Release|Any CPU.Build.0 = Release|Any CPU
     EndGlobalSection
     GlobalSection(SolutionProperties) = preSolution
         HideSolutionNode = FALSE

@@ -37,7 +37,7 @@ namespace Bandwidth.Standard.WebRtc.Models
         }
 
         /// <summary>
-        /// Getter for id
+        /// Unique id of the participant
         /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -49,7 +49,7 @@ namespace Bandwidth.Standard.WebRtc.Models
         public string CallbackUrl { get; set; }
 
         /// <summary>
-        /// Getter for publishPermissions
+        /// Defines if this participant can publish audio or video
         /// </summary>
         [JsonProperty("publishPermissions", ItemConverterType = typeof(StringValuedEnumConverter))]
         public List<Models.PublishPermissionEnum> PublishPermissions { get; set; }

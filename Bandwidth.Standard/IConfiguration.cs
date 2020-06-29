@@ -16,11 +16,6 @@ namespace Bandwidth.Standard
         Environment Environment { get; }
 
         /// <summary>
-        /// WebRtcServer value
-        /// </summary>
-        string WebRtcServer { get; }
-
-        /// <summary>
         /// Gets the URL for a particular alias in the current environment and appends it with template parameters
         /// </summary>
         /// <param name="alias">Default value:DEFAULT</param>

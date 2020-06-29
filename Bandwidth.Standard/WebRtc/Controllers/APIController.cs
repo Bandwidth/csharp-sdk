@@ -528,6 +528,89 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
+        /// List participants in a session
+        /// </summary>
+        /// <param name="accountId">Required parameter: Account ID</param>
+        /// <param name="sessionId">Required parameter: Session ID</param>
+        /// <return>Returns the ApiResponse<List<Models.Participant>> response from the API call</return>
+        public ApiResponse<List<Models.Participant>> ListSessionParticipants(string accountId, string sessionId)
+        {
+            Task<ApiResponse<List<Models.Participant>>> t = ListSessionParticipantsAsync(accountId, sessionId);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// List participants in a session
+        /// </summary>
+        /// <param name="accountId">Required parameter: Account ID</param>
+        /// <param name="sessionId">Required parameter: Session ID</param>
+        /// <return>Returns the ApiResponse<List<Models.Participant>> response from the API call</return>
+        public async Task<ApiResponse<List<Models.Participant>>> ListSessionParticipantsAsync(string accountId, string sessionId, CancellationToken cancellationToken = default)
+        {
+            //the base uri for api requests
+            string _baseUri = config.GetBaseUri(Server.WebRtcDefault);
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/accounts/{accountId}/sessions/{sessionId}/participants");
+
+            //process optional template parameters
+            ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "accountId", accountId },
+                { "sessionId", sessionId }
+            });
+
+            //validate and preprocess url
+            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string, string>()
+            { 
+                { "user-agent", userAgent },
+                { "accept", "application/json" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
+
+            _request = await authManagers["webRtc"].ApplyAsync(_request).ConfigureAwait(false);
+
+            //invoke request and get response
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 401)
+            {
+                throw new ApiException(@"Unauthorized", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ApiException(@"Access Denied", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiException(@"Not Found", _context);
+            }
+
+            if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
+            {
+                throw new ErrorException(@"Unexpected Error", _context);
+            }
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+            var _result = ApiHelper.JsonDeserialize<List<Models.Participant>>(_response.Body);
+            ApiResponse<List<Models.Participant>> apiResponse = new ApiResponse<List<Models.Participant>>(_response.StatusCode, _response.Headers, _result);
+            return apiResponse;
+        }
+
+        /// <summary>
         /// Add a participant to a session
         /// Subscriptions can optionally be provided as part of this call
         /// </summary>
