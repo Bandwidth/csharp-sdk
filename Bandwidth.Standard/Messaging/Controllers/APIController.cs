@@ -23,7 +23,7 @@ using Bandwidth.Standard.Messaging.Exceptions;
 
 namespace Bandwidth.Standard.Messaging.Controllers
 {
-    public class APIController: BaseController
+    public class APIController : BaseController
     {
         internal APIController(IConfiguration config, IHttpClient httpClient, IDictionary<string, IAuthManager> authManagers) :
             base(config, httpClient, authManagers)
@@ -63,19 +63,16 @@ namespace Bandwidth.Standard.Messaging.Controllers
                 { "userId", userId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "accept", "application/json" },
                 { "Continuation-Token", continuationToken }
             };
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers);
 
             _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -157,17 +154,14 @@ namespace Bandwidth.Standard.Messaging.Controllers
                 { "mediaId", mediaId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent }
             };
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers);
 
             _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -268,12 +262,9 @@ namespace Bandwidth.Standard.Messaging.Controllers
                 { "mediaId", mediaId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "Content-Length", contentLength.ToString() },
                 { "Content-Type", (null != contentType) ? contentType : "application/octet-stream" },
@@ -284,7 +275,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
              var _body = body;
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().PutBody(_queryUrl, _headers, _body);
+            HttpRequest _request = GetClientInstance().PutBody(_queryBuilder.ToString(), _headers, _body);
 
             _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -362,17 +353,14 @@ namespace Bandwidth.Standard.Messaging.Controllers
                 { "mediaId", mediaId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent }
             };
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().Delete(_queryUrl, _headers, null);
+            HttpRequest _request = GetClientInstance().Delete(_queryBuilder.ToString(), _headers, null);
 
             _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -450,12 +438,9 @@ namespace Bandwidth.Standard.Messaging.Controllers
                 { "userId", userId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "accept", "application/json" },
                 { "content-type", "application/json; charset=utf-8" }
@@ -465,7 +450,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
             var _body = ApiHelper.JsonSerialize(body);
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().PostBody(_queryUrl, _headers, _body);
+            HttpRequest _request = GetClientInstance().PostBody(_queryBuilder.ToString(), _headers, _body);
 
             _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 

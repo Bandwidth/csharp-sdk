@@ -18,6 +18,11 @@ namespace Bandwidth.Standard.Http.Request
         public string QueryUrl { get; }
 
         /// <summary>
+        /// Query parameters collection for the current http request
+        /// </summary>
+        public Dictionary<string, object> QueryParameters { get; private set; }
+
+        /// <summary>
         /// Headers collection for the current http request
         /// </summary>
         public Dictionary<string, string> Headers { get; private set; }
@@ -61,9 +66,10 @@ namespace Bandwidth.Standard.Http.Request
         /// <param name="headers">Headers to send with the request</param>
         /// <param name="username">Basic auth username</param>
         /// <param name="password">Basic auth password</param>
-        public HttpRequest(HttpMethod method, string queryUrl, Dictionary<string, string> headers, string username, string password)
+        public HttpRequest(HttpMethod method, string queryUrl, Dictionary<string, string> headers, string username, string password, Dictionary<string, object> queryParameters = null)
             : this(method, queryUrl)
         {
+            this.QueryParameters = queryParameters;
             this.Headers = headers;
             this.Username = username;
             this.Password = password;
@@ -78,8 +84,8 @@ namespace Bandwidth.Standard.Http.Request
         /// <param name="body">The string to use as raw body of the http request</param>
         /// <param name="username">Basic auth username</param>
         /// <param name="password">Basic auth password</param>
-        public HttpRequest(HttpMethod method, string queryUrl, Dictionary<string, string> headers, object body, string username, string password)
-            : this(method, queryUrl, headers, username, password)
+        public HttpRequest(HttpMethod method, string queryUrl, Dictionary<string, string> headers, object body, string username, string password, Dictionary<string, object> queryParameters = null)
+            : this(method, queryUrl, headers, username, password, queryParameters: queryParameters)
         {
             this.Body = body;
         }
@@ -93,8 +99,8 @@ namespace Bandwidth.Standard.Http.Request
         /// <param name="formParameters">Form parameters collection for the request</param>
         /// <param name="username">Basic auth username</param>
         /// <param name="password">Basic auth password</param>
-        public HttpRequest(HttpMethod method, string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, Object>> formParameters, string username, string password)
-            : this(method, queryUrl, headers, username, password)
+        public HttpRequest(HttpMethod method, string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, Object>> formParameters, string username, string password, Dictionary<string, object> queryParameters = null)
+            : this(method, queryUrl, headers, username, password, queryParameters: queryParameters)
         {
             this.FormParameters = formParameters;
         }
@@ -106,6 +112,21 @@ namespace Bandwidth.Standard.Http.Request
         {
             Headers = Headers.Concat(HeadersToAdd).ToDictionary(x => x.Key, x => x.Value);
             return Headers;
+        }
+
+        /// <summary>
+        /// Concatenate values from a Dictionary to query parameters dictionary
+        /// </summary>
+        public void AddQueryParameters(Dictionary<string, object> queryParamaters)
+        {
+            if (QueryParameters == null)
+            {
+                QueryParameters = new Dictionary<string, object>(queryParamaters);
+            }
+            else
+            {
+                QueryParameters = QueryParameters.Concat(queryParamaters).ToDictionary(x => x.Key, x => x.Value);
+            }
         }
     }
 }

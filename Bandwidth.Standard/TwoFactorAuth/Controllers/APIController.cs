@@ -23,7 +23,7 @@ using Bandwidth.Standard.TwoFactorAuth.Exceptions;
 
 namespace Bandwidth.Standard.TwoFactorAuth.Controllers
 {
-    public class APIController: BaseController
+    public class APIController : BaseController
     {
         internal APIController(IConfiguration config, IHttpClient httpClient, IDictionary<string, IAuthManager> authManagers) :
             base(config, httpClient, authManagers)
@@ -63,12 +63,9 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
                 { "accountId", accountId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "accept", "application/json" },
                 { "content-type", "application/json; charset=utf-8" }
@@ -78,7 +75,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
             var _body = ApiHelper.JsonSerialize(body);
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().PostBody(_queryUrl, _headers, _body);
+            HttpRequest _request = GetClientInstance().PostBody(_queryBuilder.ToString(), _headers, _body);
 
             _request = await authManagers["twoFactorAuth"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -134,12 +131,9 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
                 { "accountId", accountId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "accept", "application/json" },
                 { "content-type", "application/json; charset=utf-8" }
@@ -149,7 +143,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
             var _body = ApiHelper.JsonSerialize(body);
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().PostBody(_queryUrl, _headers, _body);
+            HttpRequest _request = GetClientInstance().PostBody(_queryBuilder.ToString(), _headers, _body);
 
             _request = await authManagers["twoFactorAuth"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -205,12 +199,9 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
                 { "accountId", accountId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "accept", "application/json" },
                 { "content-type", "application/json; charset=utf-8" }
@@ -220,7 +211,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
             var _body = ApiHelper.JsonSerialize(body);
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().PostBody(_queryUrl, _headers, _body);
+            HttpRequest _request = GetClientInstance().PostBody(_queryBuilder.ToString(), _headers, _body);
 
             _request = await authManagers["twoFactorAuth"].ApplyAsync(_request).ConfigureAwait(false);
 

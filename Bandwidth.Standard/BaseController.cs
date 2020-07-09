@@ -17,7 +17,6 @@ namespace Bandwidth.Standard
     public class BaseController
     {
         protected ArrayDeserialization ArrayDeserializationFormat = ArrayDeserialization.Indexed;
-        protected static char ParameterSeparator = '&';
 
         /// <summary>
         /// Configuration instance
@@ -27,7 +26,7 @@ namespace Bandwidth.Standard
         /// <summary>
         /// User-Agent header value
         /// </summary>
-        internal string userAgent = "csharp-sdk-refs/tags/csharp3.7.0";
+        internal string userAgent = "csharp-sdk-refs/tags/csharp3.8.0";
         
         /// <summary>
         /// HttpClient instance

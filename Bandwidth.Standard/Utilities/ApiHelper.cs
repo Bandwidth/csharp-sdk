@@ -149,7 +149,7 @@ namespace Bandwidth.Standard.Utilities
 
                 //load element value as string
                 if (pair.Value is ICollection)
-                    paramKeyValPair = flattenCollection(pair.Value as ICollection, arrayDeserializationFormat, separator, true, pair.Key);
+                    paramKeyValPair = flattenCollection(pair.Value as ICollection, arrayDeserializationFormat, separator, true, Uri.EscapeDataString(pair.Key));
                 else if (pair.Value is DateTime)
                     paramKeyValPair = string.Format("{0}={1}", Uri.EscapeDataString(pair.Key), ((DateTime)pair.Value).ToString(DateTimeFormat));
                 else if (pair.Value is DateTimeOffset)

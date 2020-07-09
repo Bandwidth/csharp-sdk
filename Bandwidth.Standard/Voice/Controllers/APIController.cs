@@ -23,7 +23,7 @@ using Bandwidth.Standard.Voice.Exceptions;
 
 namespace Bandwidth.Standard.Voice.Controllers
 {
-    public class APIController: BaseController
+    public class APIController : BaseController
     {
         internal APIController(IConfiguration config, IHttpClient httpClient, IDictionary<string, IAuthManager> authManagers) :
             base(config, httpClient, authManagers)
@@ -63,12 +63,9 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "accountId", accountId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "accept", "application/json" },
                 { "content-type", "application/json; charset=utf-8" }
@@ -78,7 +75,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             var _body = ApiHelper.JsonSerialize(body);
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().PostBody(_queryUrl, _headers, _body);
+            HttpRequest _request = GetClientInstance().PostBody(_queryBuilder.ToString(), _headers, _body);
 
             _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -165,18 +162,15 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "callId", callId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "accept", "application/json" }
             };
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers);
 
             _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -264,12 +258,9 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "callId", callId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "content-type", "application/json; charset=utf-8" }
             };
@@ -278,7 +269,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             var _body = ApiHelper.JsonSerialize(body);
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().PostBody(_queryUrl, _headers, _body);
+            HttpRequest _request = GetClientInstance().PostBody(_queryBuilder.ToString(), _headers, _body);
 
             _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -363,12 +354,9 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "callId", callId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "content-type", "application/json; charset=utf-8" }
             };
@@ -377,7 +365,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             var _body = ApiHelper.JsonSerialize(body);
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().PutBody(_queryUrl, _headers, _body);
+            HttpRequest _request = GetClientInstance().PutBody(_queryBuilder.ToString(), _headers, _body);
 
             _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -481,27 +469,24 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "callId", callId }
             });
 
-            //process optional query parameters
-            ApiHelper.AppendUrlWithQueryParameters(_queryBuilder, new Dictionary<string, object>()
+            //prepare specfied query parameters
+            var _queryParameters = new Dictionary<string, object>()
             {
                 { "from", from },
                 { "to", to },
                 { "minStartTime", minStartTime },
                 { "maxStartTime", maxStartTime }
-            }, ArrayDeserializationFormat, ParameterSeparator);
-
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
+            };
 
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "accept", "application/json" }
             };
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers, queryParameters: _queryParameters);
 
             _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -591,18 +576,15 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "recordingId", recordingId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "accept", "application/json" }
             };
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers);
 
             _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -691,17 +673,14 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "recordingId", recordingId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent }
             };
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().Delete(_queryUrl, _headers, null);
+            HttpRequest _request = GetClientInstance().Delete(_queryBuilder.ToString(), _headers, null);
 
             _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -788,17 +767,14 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "recordingId", recordingId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent }
             };
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers);
 
             _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -887,17 +863,14 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "recordingId", recordingId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent }
             };
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().Delete(_queryUrl, _headers, null);
+            HttpRequest _request = GetClientInstance().Delete(_queryBuilder.ToString(), _headers, null);
 
             _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -984,18 +957,15 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "recordingId", recordingId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "accept", "application/json" }
             };
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers);
 
             _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -1094,12 +1064,9 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "recordingId", recordingId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "content-type", "application/json; charset=utf-8" }
             };
@@ -1108,7 +1075,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             var _body = ApiHelper.JsonSerialize(body);
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().PostBody(_queryUrl, _headers, _body);
+            HttpRequest _request = GetClientInstance().PostBody(_queryBuilder.ToString(), _headers, _body);
 
             _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -1199,17 +1166,14 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "recordingId", recordingId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent }
             };
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().Delete(_queryUrl, _headers, null);
+            HttpRequest _request = GetClientInstance().Delete(_queryBuilder.ToString(), _headers, null);
 
             _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -1256,6 +1220,101 @@ namespace Bandwidth.Standard.Voice.Controllers
             //handle errors defined at the API level
             base.ValidateResponse(_response, _context);
 
+        }
+
+        /// <summary>
+        /// Returns information about the specified conference
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="conferenceId">Required parameter: Example: </param>
+        /// <return>Returns the ApiResponse<Models.ConferenceDetail> response from the API call</return>
+        public ApiResponse<Models.ConferenceDetail> GetConferenceById(string accountId, string conferenceId)
+        {
+            Task<ApiResponse<Models.ConferenceDetail>> t = GetConferenceByIdAsync(accountId, conferenceId);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Returns information about the specified conference
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="conferenceId">Required parameter: Example: </param>
+        /// <return>Returns the ApiResponse<Models.ConferenceDetail> response from the API call</return>
+        public async Task<ApiResponse<Models.ConferenceDetail>> GetConferenceByIdAsync(string accountId, string conferenceId, CancellationToken cancellationToken = default)
+        {
+            //the base uri for api requests
+            string _baseUri = config.GetBaseUri(Server.VoiceDefault);
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/api/v2/accounts/{accountId}/conferences/{conferenceId}");
+
+            //process optional template parameters
+            ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "accountId", accountId },
+                { "conferenceId", conferenceId }
+            });
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string, string>()
+            {
+                { "user-agent", userAgent },
+                { "accept", "application/json" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers);
+
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
+
+            //invoke request and get response
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
+            }
+
+            if (_response.StatusCode == 415)
+            {
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+            }
+
+            if (_response.StatusCode == 429)
+            {
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+            }
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+            var _result = ApiHelper.JsonDeserialize<Models.ConferenceDetail>(_response.Body);
+            ApiResponse<Models.ConferenceDetail> apiResponse = new ApiResponse<Models.ConferenceDetail>(_response.StatusCode, _response.Headers, _result);
+            return apiResponse;
         }
 
         /// <summary>
@@ -1294,12 +1353,9 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "conferenceId", conferenceId }
             });
 
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "content-type", "application/json; charset=utf-8" }
             };
@@ -1308,7 +1364,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             var _body = ApiHelper.JsonSerialize(body);
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().PostBody(_queryUrl, _headers, _body);
+            HttpRequest _request = GetClientInstance().PostBody(_queryBuilder.ToString(), _headers, _body);
 
             _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -1355,6 +1411,104 @@ namespace Bandwidth.Standard.Voice.Controllers
             //handle errors defined at the API level
             base.ValidateResponse(_response, _context);
 
+        }
+
+        /// <summary>
+        /// Returns information about the specified conference member
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="conferenceId">Required parameter: Example: </param>
+        /// <param name="memberId">Required parameter: Example: </param>
+        /// <return>Returns the ApiResponse<Models.ConferenceMemberDetail> response from the API call</return>
+        public ApiResponse<Models.ConferenceMemberDetail> GetConferenceMember(string accountId, string conferenceId, string memberId)
+        {
+            Task<ApiResponse<Models.ConferenceMemberDetail>> t = GetConferenceMemberAsync(accountId, conferenceId, memberId);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Returns information about the specified conference member
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="conferenceId">Required parameter: Example: </param>
+        /// <param name="memberId">Required parameter: Example: </param>
+        /// <return>Returns the ApiResponse<Models.ConferenceMemberDetail> response from the API call</return>
+        public async Task<ApiResponse<Models.ConferenceMemberDetail>> GetConferenceMemberAsync(string accountId, string conferenceId, string memberId, CancellationToken cancellationToken = default)
+        {
+            //the base uri for api requests
+            string _baseUri = config.GetBaseUri(Server.VoiceDefault);
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/api/v2/accounts/{accountId}/conferences/{conferenceId}/members/{memberId}");
+
+            //process optional template parameters
+            ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "accountId", accountId },
+                { "conferenceId", conferenceId },
+                { "memberId", memberId }
+            });
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string, string>()
+            {
+                { "user-agent", userAgent },
+                { "accept", "application/json" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers);
+
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
+
+            //invoke request and get response
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
+            }
+
+            if (_response.StatusCode == 415)
+            {
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+            }
+
+            if (_response.StatusCode == 429)
+            {
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+            }
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+            var _result = ApiHelper.JsonDeserialize<Models.ConferenceMemberDetail>(_response.Body);
+            ApiResponse<Models.ConferenceMemberDetail> apiResponse = new ApiResponse<Models.ConferenceMemberDetail>(_response.StatusCode, _response.Headers, _result);
+            return apiResponse;
         }
 
         /// <summary>
@@ -1407,27 +1561,24 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "accountId", accountId }
             });
 
-            //process optional query parameters
-            ApiHelper.AppendUrlWithQueryParameters(_queryBuilder, new Dictionary<string, object>()
+            //prepare specfied query parameters
+            var _queryParameters = new Dictionary<string, object>()
             {
                 { "from", from },
                 { "to", to },
                 { "minStartTime", minStartTime },
                 { "maxStartTime", maxStartTime }
-            }, ArrayDeserializationFormat, ParameterSeparator);
-
-            //validate and preprocess url
-            string _queryUrl = ApiHelper.CleanUrl(_queryBuilder);
+            };
 
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
-            { 
+            {
                 { "user-agent", userAgent },
                 { "accept", "application/json" }
             };
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().Get(_queryUrl,_headers);
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers, queryParameters: _queryParameters);
 
             _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
