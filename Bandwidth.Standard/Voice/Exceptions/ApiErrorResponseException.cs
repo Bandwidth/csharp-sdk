@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Bandwidth.Standard.Http.Client;
-
+using Bandwidth.Standard.Exceptions;
 using Bandwidth.Standard.Voice.Models;
 using Bandwidth.Standard;
 using Bandwidth.Standard.Utilities;
@@ -22,6 +22,14 @@ namespace Bandwidth.Standard.Voice.Exceptions
 {
     public class ApiErrorResponseException : ApiException
     {
+        /// <summary>
+        /// Initialization constructor
+        /// </summary>
+        /// <param name="reason"> The reason for throwing exception </param>
+        /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
+        public ApiErrorResponseException(string reason, HttpContext context)
+            : base(reason, context) { }
+
         /// <summary>
         /// Getter for type
         /// </summary>
@@ -40,26 +48,5 @@ namespace Bandwidth.Standard.Voice.Exceptions
         [JsonProperty("id")]
         public string Id { get; set; }
 
-        /// <summary>
-        /// Base class constructor
-        /// </summary>
-        /// <param name="reason"> The reason for throwing exception </param>
-        /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public ApiErrorResponseException(string reason, HttpContext context)
-            : base(reason, context) { }
-
-        /// <summary>
-        /// Initialization constructor
-        /// </summary>
-        /// <param name="reason"> The reason for throwing exception </param>
-        /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public ApiErrorResponseException(string reason, HttpContext context, string type = null,
-            string description = null,
-            string id = null): base(reason, context)
-        {
-            this.Type = type;
-            this.Description = description;
-            this.Id = id;
-        }
     }
 }

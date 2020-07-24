@@ -20,6 +20,7 @@ using Bandwidth.Standard.Http.Response;
 using Bandwidth.Standard.Http.Client;
 using Bandwidth.Standard.Authentication;
 using Bandwidth.Standard.Voice.Exceptions;
+using Bandwidth.Standard.Exceptions;
 
 namespace Bandwidth.Standard.Voice.Controllers
 {
@@ -419,20 +420,10 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// </summary>
         /// <param name="accountId">Required parameter: Example: </param>
         /// <param name="callId">Required parameter: Example: </param>
-        /// <param name="from">Optional parameter: Example: </param>
-        /// <param name="to">Optional parameter: Example: </param>
-        /// <param name="minStartTime">Optional parameter: Example: </param>
-        /// <param name="maxStartTime">Optional parameter: Example: </param>
         /// <return>Returns the ApiResponse<List<Models.RecordingMetadataResponse>> response from the API call</return>
-        public ApiResponse<List<Models.RecordingMetadataResponse>> GetQueryMetadataForAccountAndCall(
-                string accountId,
-                string callId,
-                string from = null,
-                string to = null,
-                string minStartTime = null,
-                string maxStartTime = null)
+        public ApiResponse<List<Models.RecordingMetadataResponse>> GetQueryMetadataForAccountAndCall(string accountId, string callId)
         {
-            Task<ApiResponse<List<Models.RecordingMetadataResponse>>> t = GetQueryMetadataForAccountAndCallAsync(accountId, callId, from, to, minStartTime, maxStartTime);
+            Task<ApiResponse<List<Models.RecordingMetadataResponse>>> t = GetQueryMetadataForAccountAndCallAsync(accountId, callId);
             ApiHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -442,18 +433,8 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// </summary>
         /// <param name="accountId">Required parameter: Example: </param>
         /// <param name="callId">Required parameter: Example: </param>
-        /// <param name="from">Optional parameter: Example: </param>
-        /// <param name="to">Optional parameter: Example: </param>
-        /// <param name="minStartTime">Optional parameter: Example: </param>
-        /// <param name="maxStartTime">Optional parameter: Example: </param>
         /// <return>Returns the ApiResponse<List<Models.RecordingMetadataResponse>> response from the API call</return>
-        public async Task<ApiResponse<List<Models.RecordingMetadataResponse>>> GetQueryMetadataForAccountAndCallAsync(
-                string accountId,
-                string callId,
-                string from = null,
-                string to = null,
-                string minStartTime = null,
-                string maxStartTime = null, CancellationToken cancellationToken = default)
+        public async Task<ApiResponse<List<Models.RecordingMetadataResponse>>> GetQueryMetadataForAccountAndCallAsync(string accountId, string callId, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);
@@ -469,15 +450,6 @@ namespace Bandwidth.Standard.Voice.Controllers
                 { "callId", callId }
             });
 
-            //prepare specfied query parameters
-            var _queryParameters = new Dictionary<string, object>()
-            {
-                { "from", from },
-                { "to", to },
-                { "minStartTime", minStartTime },
-                { "maxStartTime", maxStartTime }
-            };
-
             //append request with appropriate headers and parameters
             var _headers = new Dictionary<string, string>()
             {
@@ -486,7 +458,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             };
 
             //prepare the API call request to fetch the response
-            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers, queryParameters: _queryParameters);
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers);
 
             _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
 
@@ -1223,6 +1195,130 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
+        /// Returns information about the conferences in the account
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="pageSize">Optional parameter: Example: 1000</param>
+        /// <param name="pageToken">Optional parameter: Example: </param>
+        /// <param name="name">Optional parameter: Example: </param>
+        /// <param name="minCreatedTime">Optional parameter: Example: </param>
+        /// <param name="maxCreatedTime">Optional parameter: Example: </param>
+        /// <return>Returns the ApiResponse<List<Models.ConferenceDetail>> response from the API call</return>
+        public ApiResponse<List<Models.ConferenceDetail>> GetConferencesByAccount(
+                string accountId,
+                int? pageSize = 1000,
+                string pageToken = null,
+                string name = null,
+                string minCreatedTime = null,
+                string maxCreatedTime = null)
+        {
+            Task<ApiResponse<List<Models.ConferenceDetail>>> t = GetConferencesByAccountAsync(accountId, pageSize, pageToken, name, minCreatedTime, maxCreatedTime);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Returns information about the conferences in the account
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="pageSize">Optional parameter: Example: 1000</param>
+        /// <param name="pageToken">Optional parameter: Example: </param>
+        /// <param name="name">Optional parameter: Example: </param>
+        /// <param name="minCreatedTime">Optional parameter: Example: </param>
+        /// <param name="maxCreatedTime">Optional parameter: Example: </param>
+        /// <return>Returns the ApiResponse<List<Models.ConferenceDetail>> response from the API call</return>
+        public async Task<ApiResponse<List<Models.ConferenceDetail>>> GetConferencesByAccountAsync(
+                string accountId,
+                int? pageSize = 1000,
+                string pageToken = null,
+                string name = null,
+                string minCreatedTime = null,
+                string maxCreatedTime = null, CancellationToken cancellationToken = default)
+        {
+            //the base uri for api requests
+            string _baseUri = config.GetBaseUri(Server.VoiceDefault);
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/api/v2/accounts/{accountId}/conferences");
+
+            //process optional template parameters
+            ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "accountId", accountId }
+            });
+
+            //prepare specfied query parameters
+            var _queryParameters = new Dictionary<string, object>()
+            {
+                { "pageSize", (null != pageSize) ? pageSize : 1000 },
+                { "pageToken", pageToken },
+                { "name", name },
+                { "minCreatedTime", minCreatedTime },
+                { "maxCreatedTime", maxCreatedTime }
+            };
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string, string>()
+            {
+                { "user-agent", userAgent },
+                { "accept", "application/json" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers, queryParameters: _queryParameters);
+
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
+
+            //invoke request and get response
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
+            }
+
+            if (_response.StatusCode == 415)
+            {
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+            }
+
+            if (_response.StatusCode == 429)
+            {
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+            }
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+            var _result = ApiHelper.JsonDeserialize<List<Models.ConferenceDetail>>(_response.Body);
+            ApiResponse<List<Models.ConferenceDetail>> apiResponse = new ApiResponse<List<Models.ConferenceDetail>>(_response.StatusCode, _response.Headers, _result);
+            return apiResponse;
+        }
+
+        /// <summary>
         /// Returns information about the specified conference
         /// </summary>
         /// <param name="accountId">Required parameter: Example: </param>
@@ -1414,6 +1510,113 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
+        /// Updates settings for a particular conference member
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="conferenceId">Required parameter: Example: </param>
+        /// <param name="callId">Required parameter: Example: </param>
+        /// <param name="body">Optional parameter: Example: </param>
+        /// <return>Returns the void response from the API call</return>
+        public void ModifyConferenceMember(
+                string accountId,
+                string conferenceId,
+                string callId,
+                Models.ConferenceMemberDetail body = null)
+        {
+            Task t = ModifyConferenceMemberAsync(accountId, conferenceId, callId, body);
+            ApiHelper.RunTaskSynchronously(t);
+        }
+
+        /// <summary>
+        /// Updates settings for a particular conference member
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="conferenceId">Required parameter: Example: </param>
+        /// <param name="callId">Required parameter: Example: </param>
+        /// <param name="body">Optional parameter: Example: </param>
+        /// <return>Returns the void response from the API call</return>
+        public async Task ModifyConferenceMemberAsync(
+                string accountId,
+                string conferenceId,
+                string callId,
+                Models.ConferenceMemberDetail body = null, CancellationToken cancellationToken = default)
+        {
+            //the base uri for api requests
+            string _baseUri = config.GetBaseUri(Server.VoiceDefault);
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/api/v2/accounts/{accountId}/conferences/{conferenceId}/members/{callId}");
+
+            //process optional template parameters
+            ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "accountId", accountId },
+                { "conferenceId", conferenceId },
+                { "callId", callId }
+            });
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string, string>()
+            {
+                { "user-agent", userAgent },
+                { "content-type", "application/json; charset=utf-8" }
+            };
+
+            //append body params
+            var _body = ApiHelper.JsonSerialize(body);
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = GetClientInstance().PutBody(_queryBuilder.ToString(), _headers, _body);
+
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
+
+            //invoke request and get response
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
+            }
+
+            if (_response.StatusCode == 415)
+            {
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+            }
+
+            if (_response.StatusCode == 429)
+            {
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+            }
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+        }
+
+        /// <summary>
         /// Returns information about the specified conference member
         /// </summary>
         /// <param name="accountId">Required parameter: Example: </param>
@@ -1508,6 +1711,296 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             var _result = ApiHelper.JsonDeserialize<Models.ConferenceMemberDetail>(_response.Body);
             ApiResponse<Models.ConferenceMemberDetail> apiResponse = new ApiResponse<Models.ConferenceMemberDetail>(_response.StatusCode, _response.Headers, _result);
+            return apiResponse;
+        }
+
+        /// <summary>
+        /// Returns a (potentially empty) list of metadata for the recordings that took place during the specified conference
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="conferenceId">Required parameter: Example: </param>
+        /// <return>Returns the ApiResponse<List<Models.ConferenceRecordingMetadataResponse>> response from the API call</return>
+        public ApiResponse<List<Models.ConferenceRecordingMetadataResponse>> GetQueryMetadataForAccountAndConference(string accountId, string conferenceId)
+        {
+            Task<ApiResponse<List<Models.ConferenceRecordingMetadataResponse>>> t = GetQueryMetadataForAccountAndConferenceAsync(accountId, conferenceId);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Returns a (potentially empty) list of metadata for the recordings that took place during the specified conference
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="conferenceId">Required parameter: Example: </param>
+        /// <return>Returns the ApiResponse<List<Models.ConferenceRecordingMetadataResponse>> response from the API call</return>
+        public async Task<ApiResponse<List<Models.ConferenceRecordingMetadataResponse>>> GetQueryMetadataForAccountAndConferenceAsync(string accountId, string conferenceId, CancellationToken cancellationToken = default)
+        {
+            //the base uri for api requests
+            string _baseUri = config.GetBaseUri(Server.VoiceDefault);
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/api/v2/accounts/{accountId}/conferences/{conferenceId}/recordings");
+
+            //process optional template parameters
+            ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "accountId", accountId },
+                { "conferenceId", conferenceId }
+            });
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string, string>()
+            {
+                { "user-agent", userAgent },
+                { "accept", "application/json" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers);
+
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
+
+            //invoke request and get response
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
+            }
+
+            if (_response.StatusCode == 415)
+            {
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+            }
+
+            if (_response.StatusCode == 429)
+            {
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+            }
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+            var _result = ApiHelper.JsonDeserialize<List<Models.ConferenceRecordingMetadataResponse>>(_response.Body);
+            ApiResponse<List<Models.ConferenceRecordingMetadataResponse>> apiResponse = new ApiResponse<List<Models.ConferenceRecordingMetadataResponse>>(_response.StatusCode, _response.Headers, _result);
+            return apiResponse;
+        }
+
+        /// <summary>
+        /// Returns metadata for the specified recording
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="conferenceId">Required parameter: Example: </param>
+        /// <param name="recordingId">Required parameter: Example: </param>
+        /// <return>Returns the ApiResponse<Models.RecordingMetadataResponse> response from the API call</return>
+        public ApiResponse<Models.RecordingMetadataResponse> GetMetadataForConferenceRecording(string accountId, string conferenceId, string recordingId)
+        {
+            Task<ApiResponse<Models.RecordingMetadataResponse>> t = GetMetadataForConferenceRecordingAsync(accountId, conferenceId, recordingId);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Returns metadata for the specified recording
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="conferenceId">Required parameter: Example: </param>
+        /// <param name="recordingId">Required parameter: Example: </param>
+        /// <return>Returns the ApiResponse<Models.RecordingMetadataResponse> response from the API call</return>
+        public async Task<ApiResponse<Models.RecordingMetadataResponse>> GetMetadataForConferenceRecordingAsync(string accountId, string conferenceId, string recordingId, CancellationToken cancellationToken = default)
+        {
+            //the base uri for api requests
+            string _baseUri = config.GetBaseUri(Server.VoiceDefault);
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/api/v2/accounts/{accountId}/conferences/{conferenceId}/recordings/{recordingId}");
+
+            //process optional template parameters
+            ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "accountId", accountId },
+                { "conferenceId", conferenceId },
+                { "recordingId", recordingId }
+            });
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string, string>()
+            {
+                { "user-agent", userAgent },
+                { "accept", "application/json" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers);
+
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
+
+            //invoke request and get response
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
+            }
+
+            if (_response.StatusCode == 415)
+            {
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+            }
+
+            if (_response.StatusCode == 429)
+            {
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+            }
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+            var _result = ApiHelper.JsonDeserialize<Models.RecordingMetadataResponse>(_response.Body);
+            ApiResponse<Models.RecordingMetadataResponse> apiResponse = new ApiResponse<Models.RecordingMetadataResponse>(_response.StatusCode, _response.Headers, _result);
+            return apiResponse;
+        }
+
+        /// <summary>
+        /// Downloads the specified recording
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="conferenceId">Required parameter: Example: </param>
+        /// <param name="recordingId">Required parameter: Example: </param>
+        /// <return>Returns the ApiResponse<Stream> response from the API call</return>
+        public ApiResponse<Stream> GetStreamConferenceRecordingMedia(string accountId, string conferenceId, string recordingId)
+        {
+            Task<ApiResponse<Stream>> t = GetStreamConferenceRecordingMediaAsync(accountId, conferenceId, recordingId);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// Downloads the specified recording
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: </param>
+        /// <param name="conferenceId">Required parameter: Example: </param>
+        /// <param name="recordingId">Required parameter: Example: </param>
+        /// <return>Returns the ApiResponse<Stream> response from the API call</return>
+        public async Task<ApiResponse<Stream>> GetStreamConferenceRecordingMediaAsync(string accountId, string conferenceId, string recordingId, CancellationToken cancellationToken = default)
+        {
+            //the base uri for api requests
+            string _baseUri = config.GetBaseUri(Server.VoiceDefault);
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/api/v2/accounts/{accountId}/conferences/{conferenceId}/recordings/{recordingId}/media");
+
+            //process optional template parameters
+            ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "accountId", accountId },
+                { "conferenceId", conferenceId },
+                { "recordingId", recordingId }
+            });
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string, string>()
+            {
+                { "user-agent", userAgent }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers);
+
+            _request = await authManagers["voice"].ApplyAsync(_request).ConfigureAwait(false);
+
+            //invoke request and get response
+            HttpResponse _response = await GetClientInstance().ExecuteAsBinaryAsync(_request, cancellationToken).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request, _response);
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new ApiErrorResponseException(@"Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new ApiException(@"Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ApiErrorResponseException(@"User unauthorized to perform this action.", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new ApiErrorResponseException(@"The resource specified cannot be found or does not belong to you.", _context);
+            }
+
+            if (_response.StatusCode == 415)
+            {
+                throw new ApiErrorResponseException(@"We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+            }
+
+            if (_response.StatusCode == 429)
+            {
+                throw new ApiErrorResponseException(@"You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ApiErrorResponseException(@"Something unexpected happened. Please try again.", _context);
+            }
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+                var _result = _response.RawBody;
+            ApiResponse<Stream> apiResponse = new ApiResponse<Stream>(_response.StatusCode, _response.Headers, _result);
             return apiResponse;
         }
 

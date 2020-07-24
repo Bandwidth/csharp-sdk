@@ -22,7 +22,7 @@ namespace Bandwidth.Standard.Voice.Models
         public Transcription() { }
 
         public Transcription(string id = null,
-            Models.Status2Enum? status = null,
+            Models.Status3Enum? status = null,
             string completedTime = null,
             string url = null)
         {
@@ -42,7 +42,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// Getter for status
         /// </summary>
         [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter))]
-        public Models.Status2Enum? Status { get; set; }
+        public Models.Status3Enum? Status { get; set; }
 
         /// <summary>
         /// Getter for completedTime

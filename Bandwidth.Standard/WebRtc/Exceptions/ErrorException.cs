@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Bandwidth.Standard.Http.Client;
-
+using Bandwidth.Standard.Exceptions;
 using Bandwidth.Standard.WebRtc.Models;
 using Bandwidth.Standard;
 using Bandwidth.Standard.Utilities;
@@ -22,6 +22,14 @@ namespace Bandwidth.Standard.WebRtc.Exceptions
 {
     public class ErrorException : ApiException
     {
+        /// <summary>
+        /// Initialization constructor
+        /// </summary>
+        /// <param name="reason"> The reason for throwing exception </param>
+        /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
+        public ErrorException(string reason, HttpContext context)
+            : base(reason, context) { }
+
         /// <summary>
         /// Getter for code
         /// </summary>
@@ -34,24 +42,5 @@ namespace Bandwidth.Standard.WebRtc.Exceptions
         [JsonProperty("message")]
         public string Message { get; set; }
 
-        /// <summary>
-        /// Base class constructor
-        /// </summary>
-        /// <param name="reason"> The reason for throwing exception </param>
-        /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public ErrorException(string reason, HttpContext context)
-            : base(reason, context) { }
-
-        /// <summary>
-        /// Initialization constructor
-        /// </summary>
-        /// <param name="reason"> The reason for throwing exception </param>
-        /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public ErrorException(string reason, HttpContext context, int code,
-            string message): base(reason, context)
-        {
-            this.Code = code;
-            this.Message = message;
-        }
     }
 }

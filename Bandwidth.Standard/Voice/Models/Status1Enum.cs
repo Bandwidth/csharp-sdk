@@ -21,6 +21,7 @@ namespace Bandwidth.Standard.Voice.Models
         Complete,
         Deleted,
         Error,
+        Alreadyinprogress,
     }
 
     /// <summary>
@@ -29,7 +30,7 @@ namespace Bandwidth.Standard.Voice.Models
     public static class Status1EnumHelper
     {
         //string values corresponding the enum elements
-        private static List<string> stringValues = new List<string> { "processing", "partial", "complete", "deleted", "error" };
+        private static List<string> stringValues = new List<string> { "processing", "partial", "complete", "deleted", "error", "already-in-progress" };
 
         /// <summary>
         /// Converts a Status1Enum value to a corresponding string value
@@ -47,6 +48,7 @@ namespace Bandwidth.Standard.Voice.Models
                 case Status1Enum.Complete:
                 case Status1Enum.Deleted:
                 case Status1Enum.Error:
+                case Status1Enum.Alreadyinprogress:
                     return stringValues[(int)enumValue];
 
                 //an invalid enum value was requested

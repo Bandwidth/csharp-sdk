@@ -17,54 +17,34 @@ using Bandwidth.Standard.Utilities;
 
 namespace Bandwidth.Standard.Voice.Models
 {
-    public class RecordingMetadataResponse 
+    public class ConferenceRecordingMetadataResponse 
     {
-        public RecordingMetadataResponse() { }
+        public ConferenceRecordingMetadataResponse() { }
 
-        public RecordingMetadataResponse(string applicationId = null,
-            string accountId = null,
-            string callId = null,
-            string parentCallId = null,
+        public ConferenceRecordingMetadataResponse(string accountId = null,
+            string conferenceId = null,
+            string name = null,
             string recordingId = null,
-            string to = null,
-            string from = null,
-            string transferCallerId = null,
-            string transferTo = null,
             string duration = null,
-            Models.DirectionEnum? direction = null,
             int? channels = null,
             long? startTime = null,
             long? endTime = null,
             Models.FileFormatEnum? fileFormat = null,
             Models.Status1Enum? status = null,
-            string mediaUrl = null,
-            Models.Transcription transcription = null)
+            string mediaUrl = null)
         {
-            ApplicationId = applicationId;
             AccountId = accountId;
-            CallId = callId;
-            ParentCallId = parentCallId;
+            ConferenceId = conferenceId;
+            Name = name;
             RecordingId = recordingId;
-            To = to;
-            From = from;
-            TransferCallerId = transferCallerId;
-            TransferTo = transferTo;
             Duration = duration;
-            Direction = direction;
             Channels = channels;
             StartTime = startTime;
             EndTime = endTime;
             FileFormat = fileFormat;
             Status = status;
             MediaUrl = mediaUrl;
-            Transcription = transcription;
         }
-
-        /// <summary>
-        /// Getter for applicationId
-        /// </summary>
-        [JsonProperty("applicationId")]
-        public string ApplicationId { get; set; }
 
         /// <summary>
         /// Getter for accountId
@@ -73,16 +53,16 @@ namespace Bandwidth.Standard.Voice.Models
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Getter for callId
+        /// Getter for conferenceId
         /// </summary>
-        [JsonProperty("callId")]
-        public string CallId { get; set; }
+        [JsonProperty("conferenceId")]
+        public string ConferenceId { get; set; }
 
         /// <summary>
-        /// Getter for parentCallId
+        /// Getter for name
         /// </summary>
-        [JsonProperty("parentCallId")]
-        public string ParentCallId { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
         /// <summary>
         /// Getter for recordingId
@@ -91,40 +71,10 @@ namespace Bandwidth.Standard.Voice.Models
         public string RecordingId { get; set; }
 
         /// <summary>
-        /// Getter for to
-        /// </summary>
-        [JsonProperty("to")]
-        public string To { get; set; }
-
-        /// <summary>
-        /// Getter for from
-        /// </summary>
-        [JsonProperty("from")]
-        public string From { get; set; }
-
-        /// <summary>
-        /// Getter for transferCallerId
-        /// </summary>
-        [JsonProperty("transferCallerId")]
-        public string TransferCallerId { get; set; }
-
-        /// <summary>
-        /// Getter for transferTo
-        /// </summary>
-        [JsonProperty("transferTo")]
-        public string TransferTo { get; set; }
-
-        /// <summary>
         /// Format is ISO-8601
         /// </summary>
         [JsonProperty("duration")]
         public string Duration { get; set; }
-
-        /// <summary>
-        /// Getter for direction
-        /// </summary>
-        [JsonProperty("direction", ItemConverterType = typeof(StringValuedEnumConverter))]
-        public Models.DirectionEnum? Direction { get; set; }
 
         /// <summary>
         /// Getter for channels
@@ -161,12 +111,6 @@ namespace Bandwidth.Standard.Voice.Models
         /// </summary>
         [JsonProperty("mediaUrl")]
         public string MediaUrl { get; set; }
-
-        /// <summary>
-        /// Getter for transcription
-        /// </summary>
-        [JsonProperty("transcription")]
-        public Models.Transcription Transcription { get; set; }
 
     }
 }

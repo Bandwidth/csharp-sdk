@@ -4648,7 +4648,7 @@
     "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "3.8.0",
+    "version": "3.9.0",
     "restore": {
       "projectUniqueName": "/github/workspace/git-push/Bandwidth.Standard/Bandwidth.Standard.csproj",
       "projectName": "Bandwidth.Sdk",

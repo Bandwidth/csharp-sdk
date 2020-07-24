@@ -20,6 +20,7 @@ using Bandwidth.Standard.Http.Response;
 using Bandwidth.Standard.Http.Client;
 using Bandwidth.Standard.Authentication;
 using Bandwidth.Standard.WebRtc.Exceptions;
+using Bandwidth.Standard.Exceptions;
 
 namespace Bandwidth.Standard.WebRtc.Controllers
 {

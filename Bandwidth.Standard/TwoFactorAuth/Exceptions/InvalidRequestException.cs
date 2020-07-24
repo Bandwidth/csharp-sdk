@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Bandwidth.Standard.Http.Client;
-
+using Bandwidth.Standard.Exceptions;
 using Bandwidth.Standard.TwoFactorAuth.Models;
 using Bandwidth.Standard;
 using Bandwidth.Standard.Utilities;
@@ -23,13 +23,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Exceptions
     public class InvalidRequestException : ApiException
     {
         /// <summary>
-        /// An error message pertaining to what the issue could be
-        /// </summary>
-        [JsonProperty("result")]
-        public string Result { get; set; }
-
-        /// <summary>
-        /// Base class constructor
+        /// Initialization constructor
         /// </summary>
         /// <param name="reason"> The reason for throwing exception </param>
         /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
@@ -37,13 +31,10 @@ namespace Bandwidth.Standard.TwoFactorAuth.Exceptions
             : base(reason, context) { }
 
         /// <summary>
-        /// Initialization constructor
+        /// An error message pertaining to what the issue could be
         /// </summary>
-        /// <param name="reason"> The reason for throwing exception </param>
-        /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public InvalidRequestException(string reason, HttpContext context, string result = null): base(reason, context)
-        {
-            this.Result = result;
-        }
+        [JsonProperty("result")]
+        public string Result { get; set; }
+
     }
 }

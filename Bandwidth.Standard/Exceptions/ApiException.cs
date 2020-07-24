@@ -12,7 +12,7 @@ using Newtonsoft.Json.Linq;
 using Bandwidth.Standard.Utilities;
 using Bandwidth.Standard.Http.Client;
 
-namespace Bandwidth.Standard
+namespace Bandwidth.Standard.Exceptions
 {
     /// <summary>
     /// This is the base class for all exceptions that represent an error response from the server.

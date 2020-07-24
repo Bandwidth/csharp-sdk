@@ -21,9 +21,17 @@ namespace Bandwidth.Standard.Voice.Models
     {
         public CallEngineModifyConferenceRequest() { }
 
-        public CallEngineModifyConferenceRequest(Models.StatusEnum? status = null)
+        public CallEngineModifyConferenceRequest(string redirectUrl,
+            Models.StatusEnum? status = null,
+            Models.RedirectMethodEnum? redirectMethod = null,
+            string username = null,
+            string password = null)
         {
             Status = status;
+            RedirectUrl = redirectUrl;
+            RedirectMethod = redirectMethod;
+            Username = username;
+            Password = password;
         }
 
         /// <summary>
@@ -31,6 +39,30 @@ namespace Bandwidth.Standard.Voice.Models
         /// </summary>
         [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter))]
         public Models.StatusEnum? Status { get; set; }
+
+        /// <summary>
+        /// Getter for redirectUrl
+        /// </summary>
+        [JsonProperty("redirectUrl")]
+        public string RedirectUrl { get; set; }
+
+        /// <summary>
+        /// Getter for redirectMethod
+        /// </summary>
+        [JsonProperty("redirectMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
+        public Models.RedirectMethodEnum? RedirectMethod { get; set; }
+
+        /// <summary>
+        /// Getter for username
+        /// </summary>
+        [JsonProperty("username")]
+        public string Username { get; set; }
+
+        /// <summary>
+        /// Getter for password
+        /// </summary>
+        [JsonProperty("password")]
+        public string Password { get; set; }
 
     }
 }

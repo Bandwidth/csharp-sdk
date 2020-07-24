@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Bandwidth.Standard.Http.Client;
-
+using Bandwidth.Standard.Exceptions;
 using Bandwidth.Standard.Messaging.Models;
 using Bandwidth.Standard;
 using Bandwidth.Standard.Utilities;
@@ -22,6 +22,14 @@ namespace Bandwidth.Standard.Messaging.Exceptions
 {
     public class MessagingException : ApiException
     {
+        /// <summary>
+        /// Initialization constructor
+        /// </summary>
+        /// <param name="reason"> The reason for throwing exception </param>
+        /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
+        public MessagingException(string reason, HttpContext context)
+            : base(reason, context) { }
+
         /// <summary>
         /// Getter for type
         /// </summary>
@@ -34,24 +42,5 @@ namespace Bandwidth.Standard.Messaging.Exceptions
         [JsonProperty("description")]
         public string Description { get; set; }
 
-        /// <summary>
-        /// Base class constructor
-        /// </summary>
-        /// <param name="reason"> The reason for throwing exception </param>
-        /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public MessagingException(string reason, HttpContext context)
-            : base(reason, context) { }
-
-        /// <summary>
-        /// Initialization constructor
-        /// </summary>
-        /// <param name="reason"> The reason for throwing exception </param>
-        /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public MessagingException(string reason, HttpContext context, string type,
-            string description): base(reason, context)
-        {
-            this.Type = type;
-            this.Description = description;
-        }
     }
 }

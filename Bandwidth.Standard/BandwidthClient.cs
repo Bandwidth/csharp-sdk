@@ -23,11 +23,10 @@ namespace Bandwidth.Standard
     {
         internal readonly IDictionary<string, IAuthManager> authManagers;
         internal readonly IHttpClient httpClient;
-        private readonly MessagingBasicAuthManager messagingBasicAuthManager; 
-        private readonly TwoFactorAuthBasicAuthManager twoFactorAuthBasicAuthManager; 
-        private readonly VoiceBasicAuthManager voiceBasicAuthManager; 
-        private readonly WebRtcBasicAuthManager webRtcBasicAuthManager; 
-
+        private readonly MessagingBasicAuthManager messagingBasicAuthManager;
+        private readonly TwoFactorAuthBasicAuthManager twoFactorAuthBasicAuthManager;
+        private readonly VoiceBasicAuthManager voiceBasicAuthManager;
+        private readonly WebRtcBasicAuthManager webRtcBasicAuthManager;
         private readonly Lazy<MessagingClient> messaging;
         private readonly Lazy<TwoFactorAuthClient> twoFactorAuth;
         private readonly Lazy<VoiceClient> voice;
@@ -77,18 +76,22 @@ namespace Bandwidth.Standard
             {
                 builder.Environment(EnvironmentHelper.ParseString(environment));
             }
+
             if (messagingBasicAuthUserName != null && messagingBasicAuthPassword != null)
             {
                 builder.MessagingBasicAuthCredentials(messagingBasicAuthUserName, messagingBasicAuthPassword);
             }
+
             if (twoFactorAuthBasicAuthUserName != null && twoFactorAuthBasicAuthPassword != null)
             {
                 builder.TwoFactorAuthBasicAuthCredentials(twoFactorAuthBasicAuthUserName, twoFactorAuthBasicAuthPassword);
             }
+
             if (voiceBasicAuthUserName != null && voiceBasicAuthPassword != null)
             {
                 builder.VoiceBasicAuthCredentials(voiceBasicAuthUserName, voiceBasicAuthPassword);
             }
+
             if (webRtcBasicAuthUserName != null && webRtcBasicAuthPassword != null)
             {
                 builder.WebRtcBasicAuthCredentials(webRtcBasicAuthUserName, webRtcBasicAuthPassword);
@@ -114,9 +117,6 @@ namespace Bandwidth.Standard
             this.httpClient = httpClient;
             this.authManagers = new Dictionary<string, IAuthManager>(authManagers);
             HttpClientConfiguration = httpClientConfiguration;
-
-
-
             this.authManagers["messaging"] = messagingBasicAuthManager;
             this.authManagers["twoFactorAuth"] = twoFactorAuthBasicAuthManager;
             this.authManagers["voice"] = voiceBasicAuthManager;
@@ -126,7 +126,6 @@ namespace Bandwidth.Standard
             twoFactorAuth = new Lazy<TwoFactorAuthClient>(() => new TwoFactorAuthClient(this));
             voice = new Lazy<VoiceClient>(() => new VoiceClient(this));
             webRtc = new Lazy<WebRtcClient>(() => new WebRtcClient(this));
-
         }
 
         /// <summary>
