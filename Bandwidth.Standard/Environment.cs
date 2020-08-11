@@ -10,6 +10,7 @@ namespace Bandwidth.Standard
     public enum Environment
     {
         Production,
+        Custom,
     }
     /// <summary>
     /// Helper for the enum type Environment
@@ -17,7 +18,7 @@ namespace Bandwidth.Standard
     public static class EnvironmentHelper
     {
         //string values corresponding the enum elements
-        private static readonly List<string> stringValues = new List<string> { "production" };
+        private static readonly List<string> stringValues = new List<string> { "production", "custom" };
 
         /// <summary>
         /// Converts an Environment value to a corresponding string value
@@ -31,6 +32,7 @@ namespace Bandwidth.Standard
                 //only valid enum elements can be used
                 //this is necessary to avoid errors
                 case Environment.Production:
+                case Environment.Custom:
                     return stringValues[(int)enumValue];
 
                 //an invalid enum value was requested

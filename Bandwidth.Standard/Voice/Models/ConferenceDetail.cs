@@ -23,8 +23,8 @@ namespace Bandwidth.Standard.Voice.Models
 
         public ConferenceDetail(string id = null,
             string name = null,
-            long? createdTime = null,
-            long? completedTime = null,
+            DateTime? createdTime = null,
+            DateTime? completedTime = null,
             string conferenceEventUrl = null,
             Models.ConferenceEventMethodEnum? conferenceEventMethod = null,
             string tag = null,
@@ -55,14 +55,16 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Getter for createdTime
         /// </summary>
+        [JsonConverter(typeof(IsoDateTimeConverter))]
         [JsonProperty("createdTime")]
-        public long? CreatedTime { get; set; }
+        public DateTime? CreatedTime { get; set; }
 
         /// <summary>
         /// Getter for completedTime
         /// </summary>
+        [JsonConverter(typeof(IsoDateTimeConverter))]
         [JsonProperty("completedTime")]
-        public long? CompletedTime { get; set; }
+        public DateTime? CompletedTime { get; set; }
 
         /// <summary>
         /// Getter for conferenceEventUrl

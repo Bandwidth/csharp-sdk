@@ -66,6 +66,7 @@ namespace Bandwidth.Standard
             string webRtcBasicAuthUserName = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_WEB_RTC_BASIC_AUTH_USER_NAME");
             string webRtcBasicAuthPassword = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_WEB_RTC_BASIC_AUTH_PASSWORD");
             string environment = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_ENVIRONMENT");
+            string baseUrl = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_BASE_URL");
 
             if (timeout != null)
             {
@@ -75,6 +76,11 @@ namespace Bandwidth.Standard
             if (environment != null)
             {
                 builder.Environment(EnvironmentHelper.ParseString(environment));
+            }
+
+            if (baseUrl != null)
+            {
+                builder.BaseUrl(baseUrl);
             }
 
             if (messagingBasicAuthUserName != null && messagingBasicAuthPassword != null)
@@ -104,7 +110,7 @@ namespace Bandwidth.Standard
                 string messagingBasicAuthPassword, string twoFactorAuthBasicAuthUserName,
                 string twoFactorAuthBasicAuthPassword, string voiceBasicAuthUserName,
                 string voiceBasicAuthPassword, string webRtcBasicAuthUserName,
-                string webRtcBasicAuthPassword, Environment environment,
+                string webRtcBasicAuthPassword, Environment environment, string baseUrl,
                 IDictionary<string, IAuthManager> authManagers, IHttpClient httpClient,
                 IHttpClientConfiguration httpClientConfiguration)
         {
@@ -114,6 +120,7 @@ namespace Bandwidth.Standard
             webRtcBasicAuthManager = new WebRtcBasicAuthManager(webRtcBasicAuthUserName, webRtcBasicAuthPassword);
             Timeout = timeout;
             Environment = environment;
+            BaseUrl = baseUrl;
             this.httpClient = httpClient;
             this.authManagers = new Dictionary<string, IAuthManager>(authManagers);
             HttpClientConfiguration = httpClientConfiguration;
@@ -163,6 +170,11 @@ namespace Bandwidth.Standard
         /// </summary>
         public Environment Environment { get; }
 
+        /// <summary>
+        /// BaseUrl value
+        /// </summary>
+        public string BaseUrl { get; }
+
         //A map of environments and their corresponding servers/baseurls
         private static readonly Dictionary<Environment, Dictionary<Server, string>> EnvironmentsMap =
             new Dictionary<Environment, Dictionary<Server, string>>
@@ -177,6 +189,16 @@ namespace Bandwidth.Standard
                     { Server.WebRtcDefault, "https://api.webrtc.bandwidth.com/v1" },
                 }
             },
+            {
+                Environment.Custom, new Dictionary<Server, string>
+                {
+                    { Server.Default, "{base_url}" },
+                    { Server.MessagingDefault, "{base_url}" },
+                    { Server.TwoFactorAuthDefault, "{base_url}" },
+                    { Server.VoiceDefault, "{base_url}" },
+                    { Server.WebRtcDefault, "{base_url}" },
+                }
+            },
         };
 
         /// <summary>
@@ -187,6 +209,7 @@ namespace Bandwidth.Standard
         {
             List<KeyValuePair<string, object>> kvpList = new List<KeyValuePair<string, object>>()
             {
+                new KeyValuePair<string, object>("base_url", BaseUrl),
             };
             return kvpList;
         }
@@ -208,6 +231,7 @@ namespace Bandwidth.Standard
             Builder builder = new Builder()
                 .Timeout(Timeout)
                 .Environment(Environment)
+                .BaseUrl(BaseUrl)
                 .MessagingBasicAuthCredentials(messagingBasicAuthManager.Username, messagingBasicAuthManager.Password)
                 .TwoFactorAuthBasicAuthCredentials(twoFactorAuthBasicAuthManager.Username, twoFactorAuthBasicAuthManager.Password)
                 .VoiceBasicAuthCredentials(voiceBasicAuthManager.Username, voiceBasicAuthManager.Password)
@@ -230,6 +254,7 @@ namespace Bandwidth.Standard
             private string webRtcBasicAuthUserName = String.Empty;
             private string webRtcBasicAuthPassword = String.Empty;
             private Environment environment = Bandwidth.Standard.Environment.Production;
+            private string baseUrl = "https://www.example.com";
             private IHttpClient httpClient;
             private IDictionary<string, IAuthManager> authManagers = new Dictionary<string, IAuthManager>();
             private HttpClientConfiguration httpClientConfig = new HttpClientConfiguration();
@@ -239,6 +264,13 @@ namespace Bandwidth.Standard
             public Builder Environment(Environment environment)
             {
                 this.environment = environment;
+                return this;
+            }
+
+            // Setter for BaseUrl
+            public Builder BaseUrl(string baseUrl)
+            {
+                this.baseUrl = baseUrl ?? throw new ArgumentNullException(nameof(baseUrl));
                 return this;
             }
 
@@ -307,8 +339,8 @@ namespace Bandwidth.Standard
 
                 return new BandwidthClient(timeout, messagingBasicAuthUserName, messagingBasicAuthPassword,
                         twoFactorAuthBasicAuthUserName, twoFactorAuthBasicAuthPassword, voiceBasicAuthUserName,
-                        voiceBasicAuthPassword, webRtcBasicAuthUserName, webRtcBasicAuthPassword, environment, authManagers,
-                        httpClient, httpClientConfig);
+                        voiceBasicAuthPassword, webRtcBasicAuthUserName, webRtcBasicAuthPassword, environment, baseUrl,
+                        authManagers, httpClient, httpClientConfig);
             }
         }
 

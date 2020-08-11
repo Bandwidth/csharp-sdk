@@ -27,8 +27,8 @@ namespace Bandwidth.Standard.Voice.Models
             string recordingId = null,
             string duration = null,
             int? channels = null,
-            long? startTime = null,
-            long? endTime = null,
+            DateTime? startTime = null,
+            DateTime? endTime = null,
             Models.FileFormatEnum? fileFormat = null,
             Models.Status1Enum? status = null,
             string mediaUrl = null)
@@ -85,14 +85,16 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Getter for startTime
         /// </summary>
+        [JsonConverter(typeof(IsoDateTimeConverter))]
         [JsonProperty("startTime")]
-        public long? StartTime { get; set; }
+        public DateTime? StartTime { get; set; }
 
         /// <summary>
         /// Getter for endTime
         /// </summary>
+        [JsonConverter(typeof(IsoDateTimeConverter))]
         [JsonProperty("endTime")]
-        public long? EndTime { get; set; }
+        public DateTime? EndTime { get; set; }
 
         /// <summary>
         /// Getter for fileFormat
