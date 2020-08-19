@@ -51,6 +51,13 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// </summary>
     public string Tag { get; set; }
 
+    public string TransferAnswerFallbackMethod {get; set;}
+
+    public string TransferAnswerFallbackUrl {get; set;}
+
+    public string FallbackUsername {get; set;}
+
+    public string FallbackPassword {get; set;}
     XmlSchema IXmlSerializable.GetSchema()
     {
       return null;
@@ -91,6 +98,23 @@ namespace Bandwidth.Standard.Voice.Bxml
       if (!string.IsNullOrEmpty(TransferDisconnectMethod))
       {
         writer.WriteAttributeString("transferDisconnectMethod ", TransferDisconnectMethod );
+      }
+      ///
+      if (!string.IsNullOrEmpty(TransferAnswerFallbackUrl))
+      {
+        writer.WriteAttributeString("transferAnswerFallbackUrl ", TransferAnswerFallbackUrl );
+      }
+      if (!string.IsNullOrEmpty(TransferAnswerFallbackMethod))
+      {
+        writer.WriteAttributeString("transferAnswerFallbackMethod ", TransferAnswerFallbackMethod );
+      }
+      if (!string.IsNullOrEmpty(FallbackUsername))
+      {
+        writer.WriteAttributeString("fallbackUsername ", FallbackUsername );
+      }
+      if (!string.IsNullOrEmpty(FallbackPassword))
+      {
+        writer.WriteAttributeString("fallbackPassword ", FallbackPassword );
       }
       writer.WriteString(Number);
     }

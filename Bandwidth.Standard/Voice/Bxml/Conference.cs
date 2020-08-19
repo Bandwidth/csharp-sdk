@@ -58,7 +58,13 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// </summary>
     public string ConferenceEventMethod { get; set; }
 
+    public string ConferenceEventFallbackUrl {get; set;}
 
+    public string ConferenceEventFallbackMethod {get; set;}
+
+    public string FallbackUsername {get; set;}
+
+    public string FallbackPassword {get; set;}
 
 
     XmlSchema IXmlSerializable.GetSchema()
@@ -108,6 +114,26 @@ namespace Bandwidth.Standard.Voice.Bxml
       if (!string.IsNullOrEmpty(ConferenceEventUrl))
       {
         writer.WriteAttributeString("conferenceEventUrl", ConferenceEventUrl);
+      }
+
+      if (!string.IsNullOrEmpty(ConferenceEventFallbackUrl))
+      {
+        writer.WriteAttributeString("conferenceEventFallbackUrl", ConferenceEventFallbackUrl);
+      }
+
+      if (!string.IsNullOrEmpty(ConferenceEventFallbackMethod))
+      {
+        writer.WriteAttributeString("conferenceEventFallbackMethod", ConferenceEventFallbackMethod);
+      }
+
+      if (!string.IsNullOrEmpty(FallbackUsername))
+      {
+        writer.WriteAttributeString("fallbackUsername", FallbackUsername);
+      }
+
+      if (!string.IsNullOrEmpty(FallbackPassword))
+      {
+        writer.WriteAttributeString("fallbackPassword", FallbackPassword);
       }
 
       writer.WriteString(Name);

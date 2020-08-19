@@ -23,16 +23,24 @@ namespace Bandwidth.Standard.Voice.Models
 
         public ApiModifyCallRequest(string redirectUrl,
             Models.State1Enum? state = null,
+            string redirectFallbackUrl = null,
             Models.RedirectMethodEnum? redirectMethod = null,
+            Models.RedirectFallbackMethodEnum? redirectFallbackMethod = null,
             string username = null,
             string password = null,
+            string fallbackUsername = null,
+            string fallbackPassword = null,
             string tag = null)
         {
             State = state;
             RedirectUrl = redirectUrl;
+            RedirectFallbackUrl = redirectFallbackUrl;
             RedirectMethod = redirectMethod;
+            RedirectFallbackMethod = redirectFallbackMethod;
             Username = username;
             Password = password;
+            FallbackUsername = fallbackUsername;
+            FallbackPassword = fallbackPassword;
             Tag = tag;
         }
 
@@ -49,10 +57,22 @@ namespace Bandwidth.Standard.Voice.Models
         public string RedirectUrl { get; set; }
 
         /// <summary>
+        /// Getter for redirectFallbackUrl
+        /// </summary>
+        [JsonProperty("redirectFallbackUrl")]
+        public string RedirectFallbackUrl { get; set; }
+
+        /// <summary>
         /// Getter for redirectMethod
         /// </summary>
         [JsonProperty("redirectMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
         public Models.RedirectMethodEnum? RedirectMethod { get; set; }
+
+        /// <summary>
+        /// Getter for redirectFallbackMethod
+        /// </summary>
+        [JsonProperty("redirectFallbackMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
+        public Models.RedirectFallbackMethodEnum? RedirectFallbackMethod { get; set; }
 
         /// <summary>
         /// Getter for username
@@ -65,6 +85,18 @@ namespace Bandwidth.Standard.Voice.Models
         /// </summary>
         [JsonProperty("password")]
         public string Password { get; set; }
+
+        /// <summary>
+        /// Getter for fallbackUsername
+        /// </summary>
+        [JsonProperty("fallbackUsername")]
+        public string FallbackUsername { get; set; }
+
+        /// <summary>
+        /// Getter for fallbackPassword
+        /// </summary>
+        [JsonProperty("fallbackPassword")]
+        public string FallbackPassword { get; set; }
 
         /// <summary>
         /// Getter for tag

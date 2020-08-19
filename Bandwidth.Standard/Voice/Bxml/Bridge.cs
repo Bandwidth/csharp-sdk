@@ -65,5 +65,25 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// </summary>
     [XmlAttribute("tag")]
     public string Tag { get; set; }
+
+    [XmlAttribute("bridgeCompleteFallbackUrl")]
+    public string BridgeCompleteFallbackUrl;
+
+    [XmlAttribute("bridgeCompleteFallbackMethod")]
+    public string BridgeCompleteFallbackMethod;
+
+    [XmlAttribute("bridgeTargetCompleteFallbackUrl")]
+    public string BridgeTargetCompleteFallbackUrl;
+
+    [XmlAttribute("bridgeTargetCompleteFallbackMethod")]
+    public string BridgeTargetCompleteFallbackMethod;
+
+    [XmlAttribute("fallbackUsername")]
+    public string FallbackUsername;
+
+    [XmlAttribute("fallbackPassword")]
+    public string FallbackPassword;
+
+
   }
 }

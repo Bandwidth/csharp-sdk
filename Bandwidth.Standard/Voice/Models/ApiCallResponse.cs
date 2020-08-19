@@ -32,9 +32,14 @@ namespace Bandwidth.Standard.Voice.Models
             Models.DisconnectMethodEnum disconnectMethod,
             DateTime? startTime = null,
             double? callTimeout = null,
+            double? callbackTimeout = null,
+            string answerFallbackUrl = null,
+            Models.AnswerFallbackMethodEnum? answerFallbackMethod = null,
             string disconnectUrl = null,
             string username = null,
             string password = null,
+            string fallbackUsername = null,
+            string fallbackPassword = null,
             string tag = null)
         {
             AccountId = accountId;
@@ -45,12 +50,17 @@ namespace Bandwidth.Standard.Voice.Models
             StartTime = startTime;
             CallUrl = callUrl;
             CallTimeout = callTimeout;
+            CallbackTimeout = callbackTimeout;
             AnswerUrl = answerUrl;
             AnswerMethod = answerMethod;
+            AnswerFallbackUrl = answerFallbackUrl;
+            AnswerFallbackMethod = answerFallbackMethod;
             DisconnectUrl = disconnectUrl;
             DisconnectMethod = disconnectMethod;
             Username = username;
             Password = password;
+            FallbackUsername = fallbackUsername;
+            FallbackPassword = fallbackPassword;
             Tag = tag;
         }
 
@@ -104,6 +114,12 @@ namespace Bandwidth.Standard.Voice.Models
         public double? CallTimeout { get; set; }
 
         /// <summary>
+        /// Getter for callbackTimeout
+        /// </summary>
+        [JsonProperty("callbackTimeout")]
+        public double? CallbackTimeout { get; set; }
+
+        /// <summary>
         /// Getter for answerUrl
         /// </summary>
         [JsonProperty("answerUrl")]
@@ -114,6 +130,18 @@ namespace Bandwidth.Standard.Voice.Models
         /// </summary>
         [JsonProperty("answerMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
         public Models.AnswerMethodEnum AnswerMethod { get; set; }
+
+        /// <summary>
+        /// Getter for answerFallbackUrl
+        /// </summary>
+        [JsonProperty("answerFallbackUrl")]
+        public string AnswerFallbackUrl { get; set; }
+
+        /// <summary>
+        /// Getter for answerFallbackMethod
+        /// </summary>
+        [JsonProperty("answerFallbackMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
+        public Models.AnswerFallbackMethodEnum? AnswerFallbackMethod { get; set; }
 
         /// <summary>
         /// Getter for disconnectUrl
@@ -138,6 +166,18 @@ namespace Bandwidth.Standard.Voice.Models
         /// </summary>
         [JsonProperty("password")]
         public string Password { get; set; }
+
+        /// <summary>
+        /// Getter for fallbackUsername
+        /// </summary>
+        [JsonProperty("fallbackUsername")]
+        public string FallbackUsername { get; set; }
+
+        /// <summary>
+        /// Getter for fallbackPassword
+        /// </summary>
+        [JsonProperty("fallbackPassword")]
+        public string FallbackPassword { get; set; }
 
         /// <summary>
         /// Getter for tag

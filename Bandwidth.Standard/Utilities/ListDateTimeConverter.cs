@@ -7,19 +7,35 @@ namespace Bandwidth.Standard.Utilities
 {
     class ListDateTimeConverter : JsonConverter
     {
+        /// <summary>
+        /// Initializes a new instance of the ListDateTimeConverter object.
+        /// </summary>
         public ListDateTimeConverter()
         {
             Converter = new IsoDateTimeConverter();
         }
+
+        /// <summary>
+        /// Initializes a new instance of the ListDateTimeConverter object based on the provided type.
+        /// </summary>
         public ListDateTimeConverter(Type Converter)
         {
             this.Converter = (JsonConverter)Activator.CreateInstance(Converter);
         }
+
+        /// <summary>
+        /// Initializes a new instance of the ListDateTimeConverter object based on the provided type and format.
+        /// </summary>
         public ListDateTimeConverter(Type Converter,string format)
         {
             this.Converter = (JsonConverter)Activator.CreateInstance(Converter,format);
         }
+
+        /// <summary>
+        /// Getter/Setter for the JsonConverter.
+        /// </summary>
         public JsonConverter Converter { get; set; }
+
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             serializer.Converters.Clear();

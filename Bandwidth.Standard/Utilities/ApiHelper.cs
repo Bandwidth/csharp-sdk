@@ -281,6 +281,11 @@ namespace Bandwidth.Standard.Utilities
             return elemValue;
         }
 
+        /// <summary>
+        /// Prepares parameters for serialization as a form encoded string by flattening complex
+        /// Types such as Collections and Models to a list of KeyValuePairs, where each value is
+        /// a string representation of the original Type.
+        /// </summary>
         public static List<KeyValuePair<string, object>> PrepareFormFieldsFromObject(
             string name, object value, List<KeyValuePair<string, object>> keys = null, PropertyInfo propInfo = null, ArrayDeserialization arrayDeserializationFormat = ArrayDeserialization.UnIndexed)
         {

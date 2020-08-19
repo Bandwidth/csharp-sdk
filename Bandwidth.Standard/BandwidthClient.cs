@@ -141,22 +141,22 @@ namespace Bandwidth.Standard
         public IHttpClientConfiguration HttpClientConfiguration { get; }
 
         /// <summary>
-        /// The username and password to use with basic authentication
+        /// The username and password to use with basic authentication.
         /// </summary>
         public IBasicAuthCredentials MessagingBasicAuthCredentials => messagingBasicAuthManager;
 
         /// <summary>
-        /// The username and password to use with basic authentication
+        /// The username and password to use with basic authentication.
         /// </summary>
         public IBasicAuthCredentials TwoFactorAuthBasicAuthCredentials => twoFactorAuthBasicAuthManager;
 
         /// <summary>
-        /// The username and password to use with basic authentication
+        /// The username and password to use with basic authentication.
         /// </summary>
         public IBasicAuthCredentials VoiceBasicAuthCredentials => voiceBasicAuthManager;
 
         /// <summary>
-        /// The username and password to use with basic authentication
+        /// The username and password to use with basic authentication.
         /// </summary>
         public IBasicAuthCredentials WebRtcBasicAuthCredentials => webRtcBasicAuthManager;
 
@@ -215,7 +215,7 @@ namespace Bandwidth.Standard
         }
 
         /// <summary>
-        /// Gets the URL for a particular alias in the current environment and appends it with template parameters
+        /// Gets the URL for a particular alias in the current environment and appends it with template parameters.
         /// </summary>
         /// <param name="alias">Default value:DEFAULT</param>
         /// <return>Returns the baseurl</return>
@@ -226,6 +226,9 @@ namespace Bandwidth.Standard
             return Url.ToString();
         }
 
+        /// <summary>
+        /// Creates an object of the BandwidthClient using the values provided for the builder.
+        /// </summary>
         public Builder ToBuilder()
         {
             Builder builder = new Builder()
@@ -260,21 +263,27 @@ namespace Bandwidth.Standard
             private HttpClientConfiguration httpClientConfig = new HttpClientConfiguration();
             private bool createCustomHttpClient = false;
 
-            // Setter for Environment
+            /// <summary>
+            /// Setter for Environment.
+            /// </summary>
             public Builder Environment(Environment environment)
             {
                 this.environment = environment;
                 return this;
             }
 
-            // Setter for BaseUrl
+            /// <summary>
+            /// Setter for BaseUrl.
+            /// </summary>
             public Builder BaseUrl(string baseUrl)
             {
                 this.baseUrl = baseUrl ?? throw new ArgumentNullException(nameof(baseUrl));
                 return this;
             }
 
-            // Setter for Timeout
+            /// <summary>
+            /// Setter for Timeout.
+            /// </summary>
             public Builder Timeout(TimeSpan timeout)
             {
                 httpClientConfig.Timeout = timeout.TotalSeconds <= 0 ? TimeSpan.FromSeconds(100) : timeout;
@@ -282,7 +291,9 @@ namespace Bandwidth.Standard
                 return this;
             }
 
-            // Setter for BasicAuthUserName and BasicAuthPassword
+            /// <summary>
+            /// Setter for BasicAuthUserName and BasicAuthPassword.
+            /// </summary>
             public Builder MessagingBasicAuthCredentials(string username, string password)
             {
                 this.messagingBasicAuthUserName = username ?? throw new ArgumentNullException(nameof(username));
@@ -290,7 +301,9 @@ namespace Bandwidth.Standard
                 return this;
             }
 
-            // Setter for BasicAuthUserName and BasicAuthPassword
+            /// <summary>
+            /// Setter for BasicAuthUserName and BasicAuthPassword.
+            /// </summary>
             public Builder TwoFactorAuthBasicAuthCredentials(string username, string password)
             {
                 this.twoFactorAuthBasicAuthUserName = username ?? throw new ArgumentNullException(nameof(username));
@@ -298,7 +311,9 @@ namespace Bandwidth.Standard
                 return this;
             }
 
-            // Setter for BasicAuthUserName and BasicAuthPassword
+            /// <summary>
+            /// Setter for BasicAuthUserName and BasicAuthPassword.
+            /// </summary>
             public Builder VoiceBasicAuthCredentials(string username, string password)
             {
                 this.voiceBasicAuthUserName = username ?? throw new ArgumentNullException(nameof(username));
@@ -306,7 +321,9 @@ namespace Bandwidth.Standard
                 return this;
             }
 
-            // Setter for BasicAuthUserName and BasicAuthPassword
+            /// <summary>
+            /// Setter for BasicAuthUserName and BasicAuthPassword.
+            /// </summary>
             public Builder WebRtcBasicAuthCredentials(string username, string password)
             {
                 this.webRtcBasicAuthUserName = username ?? throw new ArgumentNullException(nameof(username));
@@ -314,18 +331,27 @@ namespace Bandwidth.Standard
                 return this;
             }
 
+            /// <summary>
+            /// Sets the IHttpClient for the Builder.
+            /// </summary>
             internal Builder HttpClient(IHttpClient httpClient)
             {
                 this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
                 return this;
             }
 
+            /// <summary>
+            /// Sets the authentication managers for the Builder.
+            /// </summary>
             internal Builder AuthManagers(IDictionary<string, IAuthManager> authManagers)
             {
                 this.authManagers = authManagers ?? throw new ArgumentNullException(nameof(authManagers));
                 return this;
             }
 
+            /// <summary>
+            /// Creates an object of the BandwidthClient using the values provided for the builder.
+            /// </summary>
             public BandwidthClient Build()
             {
                 if (createCustomHttpClient) 

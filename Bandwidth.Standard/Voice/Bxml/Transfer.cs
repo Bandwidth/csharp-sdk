@@ -75,5 +75,18 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// </summary>
     [XmlElement("PhoneNumber")]
     public PhoneNumber[] PhoneNumbers { get; set; }
+
+    [XmlAttribute("transferCompleteFallbackUrl")]
+    public string TransferCompleteFallbackUrl { get; set; }
+
+    [XmlAttribute("transferCompleteFallbackMethod")]
+    public string TransferCompleteFallbackMethod { get; set; }
+
+    [XmlAttribute("fallbackUsername")]
+    public string FallbackUsername { get; set; }
+
+    [XmlAttribute("fallbackPassword")]
+    public string FallbackPassword { get; set; }
+    
   }
 }

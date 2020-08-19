@@ -117,6 +117,14 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// </summary>
     public List<IAudioProducer> AudioProducers { get; set; }
 
+    public string GatherFallbackUrl {get; set;}
+
+    public string GatherFallbackMethod {get; set;}
+
+    public string FallbackPassword {get; set;}
+
+    public string FallbackUsername {get; set;}
+
         XmlSchema IXmlSerializable.GetSchema()
         {
             return null;
@@ -160,6 +168,26 @@ namespace Bandwidth.Standard.Voice.Bxml
             if (!string.IsNullOrEmpty(Password))
             {
                 writer.WriteAttributeString("password", Password);
+            }
+
+            if (!string.IsNullOrEmpty(FallbackUsername))
+            {
+                writer.WriteAttributeString("fallbackUsername", FallbackUsername);
+            }
+
+            if (!string.IsNullOrEmpty(FallbackPassword))
+            {
+                writer.WriteAttributeString("fallbackPassword", FallbackPassword);
+            }
+
+            if (!string.IsNullOrEmpty(GatherFallbackUrl))
+            {
+                writer.WriteAttributeString("gatherFallbackUrl", GatherFallbackUrl);
+            }
+
+            if (!string.IsNullOrEmpty(GatherFallbackMethod))
+            {
+                writer.WriteAttributeString("gatherFallbackMethod", GatherFallbackMethod);
             }
 
             writer.WriteAttributeString("firstDigitTimeout", FirstDigitTimeout.ToString());

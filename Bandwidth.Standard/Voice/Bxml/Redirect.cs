@@ -38,5 +38,17 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// </summary>
     [XmlAttribute("password")]
     public string Password { get; set; }
+
+    [XmlAttribute("fallbackPassword")]
+    public string FallbackPassword { get; set; }
+
+    [XmlAttribute("fallbackUsername")]
+    public string FallbackUsername { get; set; }
+
+    [XmlAttribute("redirectFallbackUrl")]
+    public string RedirectFallbackUrl { get; set; }
+
+    [XmlAttribute("redirectFallbackMethod")]
+    public string RedirectFallbackMethod { get; set; }
   }
 }

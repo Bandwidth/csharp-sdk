@@ -25,13 +25,15 @@ namespace Bandwidth.Standard.Voice.Models
             Models.CallbackMethodEnum? callbackMethod = null,
             string username = null,
             string password = null,
-            string tag = null)
+            string tag = null,
+            double? callbackTimeout = null)
         {
             CallbackUrl = callbackUrl;
             CallbackMethod = callbackMethod;
             Username = username;
             Password = password;
             Tag = tag;
+            CallbackTimeout = callbackTimeout;
         }
 
         /// <summary>
@@ -63,6 +65,12 @@ namespace Bandwidth.Standard.Voice.Models
         /// </summary>
         [JsonProperty("tag")]
         public string Tag { get; set; }
+
+        /// <summary>
+        /// Getter for callbackTimeout
+        /// </summary>
+        [JsonProperty("callbackTimeout")]
+        public double? CallbackTimeout { get; set; }
 
     }
 }
