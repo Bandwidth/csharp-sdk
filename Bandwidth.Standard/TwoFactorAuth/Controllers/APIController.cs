@@ -86,7 +86,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new InvalidRequestException(@"client request error", _context);
+                throw new InvalidRequestException("client request error", _context);
             }
 
             //handle errors defined at the API level
@@ -154,7 +154,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new InvalidRequestException(@"client request error", _context);
+                throw new InvalidRequestException("client request error", _context);
             }
 
             //handle errors defined at the API level
@@ -222,7 +222,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new InvalidRequestException(@"client request error", _context);
+                throw new InvalidRequestException("client request error", _context);
             }
 
             //handle errors defined at the API level

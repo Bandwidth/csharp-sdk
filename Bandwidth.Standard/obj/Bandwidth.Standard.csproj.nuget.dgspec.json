@@ -5,7 +5,7 @@
   },
   "projects": {
     "/github/workspace/git-push/Bandwidth.Standard/Bandwidth.Standard.csproj": {
-      "version": "3.11.0",
+      "version": "3.11.1",
       "restore": {
         "projectUniqueName": "/github/workspace/git-push/Bandwidth.Standard/Bandwidth.Standard.csproj",
         "projectName": "Bandwidth.Sdk",

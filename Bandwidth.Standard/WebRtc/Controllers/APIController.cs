@@ -89,22 +89,22 @@ namespace Bandwidth.Standard.WebRtc.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiException(@"Bad Request", _context);
+                throw new ApiException("Bad Request", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Unauthorized", _context);
+                throw new ApiException("Unauthorized", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiException(@"Access Denied", _context);
+                throw new ApiException("Access Denied", _context);
             }
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException(@"Unexpected Error", _context);
+                throw new ErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -169,22 +169,22 @@ namespace Bandwidth.Standard.WebRtc.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Unauthorized", _context);
+                throw new ApiException("Unauthorized", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiException(@"Access Denied", _context);
+                throw new ApiException("Access Denied", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiException(@"Not Found", _context);
+                throw new ApiException("Not Found", _context);
             }
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException(@"Unexpected Error", _context);
+                throw new ErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -247,22 +247,22 @@ namespace Bandwidth.Standard.WebRtc.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Unauthorized", _context);
+                throw new ApiException("Unauthorized", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiException(@"Access Denied", _context);
+                throw new ApiException("Access Denied", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiException(@"Not Found", _context);
+                throw new ApiException("Not Found", _context);
             }
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException(@"Unexpected Error", _context);
+                throw new ErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -329,22 +329,22 @@ namespace Bandwidth.Standard.WebRtc.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiException(@"Bad Request", _context);
+                throw new ApiException("Bad Request", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Unauthorized", _context);
+                throw new ApiException("Unauthorized", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiException(@"Access Denied", _context);
+                throw new ApiException("Access Denied", _context);
             }
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException(@"Unexpected Error", _context);
+                throw new ErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -409,22 +409,22 @@ namespace Bandwidth.Standard.WebRtc.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Unauthorized", _context);
+                throw new ApiException("Unauthorized", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiException(@"Access Denied", _context);
+                throw new ApiException("Access Denied", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiException(@"Not Found", _context);
+                throw new ApiException("Not Found", _context);
             }
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException(@"Unexpected Error", _context);
+                throw new ErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -487,22 +487,22 @@ namespace Bandwidth.Standard.WebRtc.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Unauthorized", _context);
+                throw new ApiException("Unauthorized", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiException(@"Access Denied", _context);
+                throw new ApiException("Access Denied", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiException(@"Not Found", _context);
+                throw new ApiException("Not Found", _context);
             }
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException(@"Unexpected Error", _context);
+                throw new ErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -564,22 +564,22 @@ namespace Bandwidth.Standard.WebRtc.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Unauthorized", _context);
+                throw new ApiException("Unauthorized", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiException(@"Access Denied", _context);
+                throw new ApiException("Access Denied", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiException(@"Not Found", _context);
+                throw new ApiException("Not Found", _context);
             }
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException(@"Unexpected Error", _context);
+                throw new ErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -661,22 +661,22 @@ namespace Bandwidth.Standard.WebRtc.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Unauthorized", _context);
+                throw new ApiException("Unauthorized", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiException(@"Access Denied", _context);
+                throw new ApiException("Access Denied", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiException(@"Not Found", _context);
+                throw new ApiException("Not Found", _context);
             }
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException(@"Unexpected Error", _context);
+                throw new ErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -741,22 +741,22 @@ namespace Bandwidth.Standard.WebRtc.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Unauthorized", _context);
+                throw new ApiException("Unauthorized", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiException(@"Access Denied", _context);
+                throw new ApiException("Access Denied", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiException(@"Not Found", _context);
+                throw new ApiException("Not Found", _context);
             }
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException(@"Unexpected Error", _context);
+                throw new ErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -821,22 +821,22 @@ namespace Bandwidth.Standard.WebRtc.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Unauthorized", _context);
+                throw new ApiException("Unauthorized", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiException(@"Access Denied", _context);
+                throw new ApiException("Access Denied", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiException(@"Not Found", _context);
+                throw new ApiException("Not Found", _context);
             }
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException(@"Unexpected Error", _context);
+                throw new ErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -918,27 +918,27 @@ namespace Bandwidth.Standard.WebRtc.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiException(@"Bad Request", _context);
+                throw new ApiException("Bad Request", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new ApiException(@"Unauthorized", _context);
+                throw new ApiException("Unauthorized", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiException(@"Access Denied", _context);
+                throw new ApiException("Access Denied", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiException(@"Not Found", _context);
+                throw new ApiException("Not Found", _context);
             }
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException(@"Unexpected Error", _context);
+                throw new ErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
