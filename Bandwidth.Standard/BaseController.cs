@@ -27,7 +27,7 @@ namespace Bandwidth.Standard
         /// <summary>
         /// User-Agent header value
         /// </summary>
-        internal string userAgent = "csharp-sdk-refs/tags/csharp3.11.1";
+        internal string userAgent = "csharp-sdk-refs/tags/csharp3.11.2";
         
         /// <summary>
         /// HttpClient instance

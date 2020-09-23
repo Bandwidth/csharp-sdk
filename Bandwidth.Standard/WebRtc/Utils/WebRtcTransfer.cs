@@ -9,9 +9,9 @@ namespace Bandwidth.Standard.WebRtc.Utils
 
         public static string generateBxml(string deviceToken, string sipUri) {
             return "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
-                + "<Transfer>\n"
+                + "<Response><Transfer>\n"
                 + "\t<SipUri uui=\"" + deviceToken + ";encoding=jwt\">" + sipUri + "</SipUri>\n"
-                + "</Transfer>\n";
+                + "</Transfer></Response>\n";
         }
     }
 }
