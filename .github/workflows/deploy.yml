@@ -13,4 +13,9 @@ jobs:
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '2.2.x'
-      - run: dotnet build
+          source-url: https://api.nuget.org/v3/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_KEY }}
+          BW_PROJECT_NAME: Bandwidth.Standard
+        run: dotnet pack --configuration Release $BW_PROJECT_NAME
+        run: dotnet nuget push $BW_PROJECT_NAME/bin/Release/*.nupkg
