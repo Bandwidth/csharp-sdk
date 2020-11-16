@@ -4,18 +4,21 @@ on:
     types:
       - published
 jobs:
-  build:
-    name: Build
+  publish:
+    name: Publish
     if: ${{ !github.event.release.prerelease && github.event.release.target_commitish == 'master' }}
+    env:
+      BW_PROJECT_NAME: Bandwidth.Standard
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '2.2.x'
-          source-url: https://api.nuget.org/v3/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_KEY }}
-          BW_PROJECT_NAME: Bandwidth.Standard
+      - name: Pack NuGet package
         run: dotnet pack --configuration Release $BW_PROJECT_NAME
-        run: dotnet nuget push $BW_PROJECT_NAME/bin/Release/*.nupkg
+      - name: Publish NuGet package
+        env:
+          NUGET_KEY: ${{ secrets.NUGET_KEY }}
+          NUGET_SOURCE: https://api.nuget.org/v3/index.json
+        run: dotnet nuget push $BW_PROJECT_NAME/bin/Release/*.nupkg -s $NUGET_SOURCE -k $NUGET_KEY
