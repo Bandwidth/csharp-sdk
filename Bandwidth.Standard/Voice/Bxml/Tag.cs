@@ -9,7 +9,7 @@ namespace Bandwidth.Standard.Voice.Bxml
     ///   The Tag verb is used to set a new tag value without executing a callback.
     /// </summary>
     /// <seealso href="https://dev.bandwidth.com/voice/bxml/verbs/tag.html" />
-    public class Tag : IXmlSerializable, IVerb, IAudioProducer
+    public class Tag : IXmlSerializable, IVerb
     {
         /// <summary>
         ///   The new tag value. Leading and trailing whitespace is trimmed. Leave blank to clear the tag.
