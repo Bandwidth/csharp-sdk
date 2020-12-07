@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Voice.Bxml
