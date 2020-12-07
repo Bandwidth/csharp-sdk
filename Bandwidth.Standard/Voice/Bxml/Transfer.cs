@@ -76,6 +76,12 @@ namespace Bandwidth.Standard.Voice.Bxml
     [XmlElement("PhoneNumber")]
     public PhoneNumber[] PhoneNumbers { get; set; }
 
+    /// <summary>
+    /// SIP URIs to transfer the call to (e.g. sip:user@server.com).
+    /// </summary>
+    [XmlElement("SipUri")]
+    public SipUri[] SipUris { get; set; }
+
     [XmlAttribute("transferCompleteFallbackUrl")]
     public string TransferCompleteFallbackUrl { get; set; }
 
