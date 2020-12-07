@@ -1,13 +1,12 @@
-using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Voice.Bxml
 {
-  /// <summary>
-  ///   The Transfer verb is used to transfer the call to another number.
-  /// </summary>
-  /// <seealso href="http://ap.bandwidth.com/docs/xml/transfer/" />
-  public class Transfer : IVerb
+    /// <summary>
+    /// The Transfer verb is used to transfer the call to another number.
+    /// <para><seealso href="https://dev.bandwidth.com/voice/bxml/verbs/transfer.html"/></para>
+    /// </summary>
+    public class Transfer : IVerb
   {
     /// <summary>
     /// Initialize the integer fields to Bandwidth's default value
