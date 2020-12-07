@@ -1,11 +1,11 @@
 using System;
-using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Voice.Bxml
 {
   /// <summary>
-  ///   The Forward verb is used to transfer the call to another number.
+  /// The Forward verb is used to transfer the call to another number.
+  /// <para><seealso href="https://dev.bandwidth.com/voice/bxml/verbs/forward.html" /></para>
   /// </summary>
   public class Forward : IVerb
   {
