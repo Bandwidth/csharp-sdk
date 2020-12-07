@@ -1,9 +1,0 @@
-/github/workspace/git-push/Bandwidth.Standard/bin/Debug/netstandard1.3/Bandwidth.Sdk.deps.json
-/github/workspace/git-push/Bandwidth.Standard/bin/Debug/netstandard1.3/Bandwidth.Sdk.dll
-/github/workspace/git-push/Bandwidth.Standard/bin/Debug/netstandard1.3/Bandwidth.Sdk.pdb
-/github/workspace/git-push/Bandwidth.Standard/obj/Debug/netstandard1.3/Bandwidth.Standard.csprojAssemblyReference.cache
-/github/workspace/git-push/Bandwidth.Standard/obj/Debug/netstandard1.3/Bandwidth.Standard.csproj.CoreCompileInputs.cache
-/github/workspace/git-push/Bandwidth.Standard/obj/Debug/netstandard1.3/Bandwidth.Standard.AssemblyInfoInputs.cache
-/github/workspace/git-push/Bandwidth.Standard/obj/Debug/netstandard1.3/Bandwidth.Standard.AssemblyInfo.cs
-/github/workspace/git-push/Bandwidth.Standard/obj/Debug/netstandard1.3/Bandwidth.Sdk.dll
-/github/workspace/git-push/Bandwidth.Standard/obj/Debug/netstandard1.3/Bandwidth.Sdk.pdb
