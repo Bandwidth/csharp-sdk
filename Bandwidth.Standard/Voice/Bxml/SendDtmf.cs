@@ -7,8 +7,8 @@ namespace Bandwidth.Standard.Voice.Bxml
 {
   /// <summary>
   ///   Send digits on a live call
+  ///   <para><seealso href="https://dev.bandwidth.com/voice/bxml/verbs/sendDtmf.html" /></para>
   /// </summary>
-  /// <seealso href="http://ap.bandwidth.com/docs/xml/dtmf/" />
   public class SendDtmf : IXmlSerializable, IVerb
 {
     /// <summary>
