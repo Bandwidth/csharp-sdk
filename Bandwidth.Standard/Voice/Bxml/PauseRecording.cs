@@ -9,7 +9,7 @@ namespace Bandwidth.Standard.Voice.Bxml
   ///   The paused period will not be included in the duration of the recording and therefore will not contribute to the recording portion of the bill.
   ///   If there is not an ongoing recording at the time of this verb's execution, it has no effect.
   /// </summary>
-  /// <seealso href="https://dev.bandwidth.com/voice/bxml/verbs/StopRecording.html" />
+  /// <seealso href="https://dev.bandwidth.com/voice/bxml/verbs/pauseRecording.html" />
   public class PauseRecording : IVerb
   {
 
