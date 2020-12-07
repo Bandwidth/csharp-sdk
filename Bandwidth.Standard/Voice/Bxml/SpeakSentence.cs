@@ -6,9 +6,9 @@ using System.Xml.Serialization;
 namespace Bandwidth.Standard.Voice.Bxml
 {
   /// <summary>
-  ///   The SpeakSentence verb is used to convert any text into speak for the caller.
+  /// The SpeakSentence verb is used to convert any text into speak for the caller.
+  /// <para><seealso href="https://dev.bandwidth.com/voice/bxml/verbs/speakSentence.html" /></para>
   /// </summary>
-  /// <seealso href="http://ap.bandwidth.com/docs/xml/speaksentence/" />
   public class SpeakSentence : IXmlSerializable, IVerb, IAudioProducer
   {
     /// <summary>
