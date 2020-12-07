@@ -1,15 +1,13 @@
-using System;
 using System.Xml;
-using System.Xml.Schema;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Voice.Bxml
 {
-  /// <summary>
-  ///   he Bridge verb is used to bridge another party (target call) onto the current call.
-  /// </summary>
-  /// <seealso href="https://dev.bandwidth.com/voice/bxml/verbs/bridge.html" />
-  public class Bridge : IVerb
+    /// <summary>
+    /// The Bridge verb is used to bridge another party (target call) onto the current call.
+    /// <para><seealso href="https://dev.bandwidth.com/voice/bxml/verbs/bridge.html" /></para>
+    /// </summary>
+    public class Bridge : IVerb
   {
 
     /// <summary>
