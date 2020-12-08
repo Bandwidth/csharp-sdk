@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Schema;
@@ -7,11 +6,11 @@ using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Voice.Bxml
 {
-  /// <summary>
-  ///   The Gather verb is used to collect digits for some period of time.
-  /// </summary>
-  /// <seealso href="http://ap.bandwidth.com/docs/xml/gather/" />
-  public class Gather : IVerb, IXmlSerializable
+    /// <summary>
+    /// The Gather verb is used to collect digits for some period of time.
+    /// <para><seealso href="https://dev.bandwidth.com/voice/bxml/verbs/gather.html" /></para>
+    /// </summary>
+    public class Gather : IVerb, IXmlSerializable
   {
     /// <summary>
     /// Initialize the integer fields to Bandwidth's default value

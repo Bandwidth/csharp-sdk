@@ -5,8 +5,8 @@ namespace Bandwidth.Standard.Voice.Bxml
 {
   /// <summary>
   ///   The Record verb allows a segment of audio to be recorded during a call. At the end of the recording, a Record Complete event is generated.
+  ///   <para><seealso href="https://dev.bandwidth.com/voice/bxml/verbs/record.html" /></para>
   /// </summary>
-  /// <seealso href="http://ap.bandwidth.com/docs/xml/recording/" />
   public class Record : IVerb
   {
 

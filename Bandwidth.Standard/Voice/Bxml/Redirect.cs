@@ -1,12 +1,11 @@
-using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Voice.Bxml
 {
   /// <summary>
   ///   The Redirect verb is used to redirect the current XML execution to another URL.
+  ///   <para><seealso href="https://dev.bandwidth.com/voice/bxml/verbs/redirect.html" /></para>
   /// </summary>
-  /// <seealso href="http://ap.bandwidth.com/docs/xml/redirect/" />
   public class Redirect : IVerb
   {
     /// <summary>

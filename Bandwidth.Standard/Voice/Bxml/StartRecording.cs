@@ -1,13 +1,12 @@
-using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Voice.Bxml
 {
-  /// <summary>
-  ///   The StartRecording verb allows a segment of audio to be recorded during a call. At the end of the recording, a Record Complete event is generated.
-  /// </summary>
-  /// <seealso href="https://dev.bandwidth.com/voice/bxml/verbs/startRecording.html" />
-  public class StartRecording : IVerb
+    /// <summary>
+    /// The StartRecording verb allows a segment of audio to be recorded during a call. At the end of the recording, a Record Complete event is generated.
+    /// <para><seealso href="https://dev.bandwidth.com/voice/bxml/verbs/startRecording.html" /></para>
+    /// </summary>
+    public class StartRecording : IVerb
   {
 
     /// <summary>

@@ -7,15 +7,15 @@ namespace Bandwidth.Standard.Voice.Bxml
 {
   /// <summary>
   ///   Send digits on a live call
+  ///   <para><seealso href="https://dev.bandwidth.com/voice/bxml/verbs/sendDtmf.html" /></para>
   /// </summary>
-  /// <seealso href="http://ap.bandwidth.com/docs/xml/dtmf/" />
   public class SendDtmf : IXmlSerializable, IVerb
 {
     /// <summary>
     ///  (optional) The length (in milliseconds) of each DTMF tone. Default value is 200. Range: decimal values between 50 - 5000.
     /// </summary>
     [XmlIgnore]
-    public Nullable<double> ToneDuration { get; set; }
+    public double? ToneDuration { get; set; }
 
     /// <summary>
     ///  The setter does nothing! This is just a surrogate feild for nullable xml attribute serialization.
@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Voice.Bxml
     ///   (optional) The duration of silence (in milliseconds) following each DTMF tone. Default value is 400. Range: decimal values between 50 - 5000.
     /// </summary>
     [XmlIgnore]
-    public Nullable<double> ToneInterval { get; set; }
+    public double? ToneInterval { get; set; }
 
     /// <summary>
     ///  The setter does nothing! This is just a surrogate feild for nullable xml attribute serialization.

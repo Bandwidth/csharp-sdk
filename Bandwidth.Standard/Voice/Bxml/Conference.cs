@@ -7,8 +7,8 @@ namespace Bandwidth.Standard.Voice.Bxml
 {
   /// <summary>
   ///   The Conference verb is used to play an audio file in the call.
+  ///   <para><seealso href="https://dev.bandwidth.com/voice/bxml/verbs/conference.html" /></para>
   /// </summary>
-  /// <seealso href="https://dev.bandwidth.com/voice/bxml/verbs/conference.html" />
   public class Conference : IXmlSerializable, IVerb
   {
     /// <summary>
