@@ -1420,7 +1420,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// <param name="conferenceId">Required parameter: Example: </param>
         /// <param name="body">Optional parameter: Example: </param>
         /// <return>Returns the void response from the API call</return>
-        public void ModifyConference(string accountId, string conferenceId, Models.CallEngineModifyConferenceRequest body = null)
+        public void ModifyConference(string accountId, string conferenceId, Models.ApiModifyConferenceRequest body = null)
         {
             Task t = ModifyConferenceAsync(accountId, conferenceId, body);
             ApiHelper.RunTaskSynchronously(t);
@@ -1433,7 +1433,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// <param name="conferenceId">Required parameter: Example: </param>
         /// <param name="body">Optional parameter: Example: </param>
         /// <return>Returns the void response from the API call</return>
-        public async Task ModifyConferenceAsync(string accountId, string conferenceId, Models.CallEngineModifyConferenceRequest body = null, CancellationToken cancellationToken = default)
+        public async Task ModifyConferenceAsync(string accountId, string conferenceId, Models.ApiModifyConferenceRequest body = null, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.VoiceDefault);

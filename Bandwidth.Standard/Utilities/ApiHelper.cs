@@ -19,14 +19,19 @@ using Newtonsoft.Json.Linq;
 
 namespace Bandwidth.Standard.Utilities
 {
+    /// <summary>
+    /// ApiHelper class contains a bunch of helper methods.
+    /// </summary>
     public static class ApiHelper
     {
-        //DateTime format to use for parsing and converting dates
+        /// <summary>
+        /// DateTime format to use for parsing and converting dates.
+        /// </summary>
         public static string DateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
 
         /// <summary>
-        /// Creates a deep clone of an object by serializing it into a json string and then
-        /// deserializing back into an object.
+        /// Creates a deep clone of an object by serializing it into a json string 
+        /// and then deserializing back into an object.
         /// </summary>
         /// <typeparam name="T">The type of the obj parameter as well as the return object</typeparam>
         /// <param name="obj">The object to clone</param>
@@ -48,7 +53,6 @@ namespace Bandwidth.Standard.Utilities
                 return null;
 
             var settings = new JsonSerializerSettings();
-            settings.NullValueHandling = NullValueHandling.Ignore;
 
             if (converter == null)
                 settings.Converters.Add(new IsoDateTimeConverter());
@@ -76,12 +80,11 @@ namespace Bandwidth.Standard.Utilities
         }
 
         /// <summary>
-        /// Replaces template parameters in the given url
+        /// Replaces template parameters in the given url.
         /// </summary>
         /// <param name="queryUrl">The query url string to replace the template parameters</param>
         /// <param name="parameters">The parameters to replace in the url</param>
-        public static void AppendUrlWithTemplateParameters
-            (StringBuilder queryBuilder, IEnumerable<KeyValuePair<string, object>> parameters)
+        public static void AppendUrlWithTemplateParameters(StringBuilder queryBuilder, IEnumerable<KeyValuePair<string, object>> parameters)
         {
             //perform parameter validation
             if (null == queryBuilder)
@@ -115,12 +118,11 @@ namespace Bandwidth.Standard.Utilities
         }
 
         /// <summary>
-        /// Appends the given set of parameters to the given query string
+        /// Appends the given set of parameters to the given query string.
         /// </summary>
         /// <param name="queryUrl">The query url string to append the parameters</param>
         /// <param name="parameters">The parameters to append</param>
-        public static void AppendUrlWithQueryParameters
-            (StringBuilder queryBuilder, IEnumerable<KeyValuePair<string, object>> parameters, ArrayDeserialization arrayDeserializationFormat = ArrayDeserialization.UnIndexed, char separator = '&')
+        public static void AppendUrlWithQueryParameters(StringBuilder queryBuilder, IEnumerable<KeyValuePair<string, object>> parameters, ArrayDeserialization arrayDeserializationFormat = ArrayDeserialization.UnIndexed, char separator = '&')
         {
             //perform parameter validation
             if (null == queryBuilder)
@@ -198,7 +200,7 @@ namespace Bandwidth.Standard.Utilities
         }
 
         /// <summary>
-        /// Validates and processes the given query Url to clean empty slashes
+        /// Validates and processes the given query Url to clean empty slashes.
         /// </summary>
         /// <param name="queryBuilder">The given query Url to process</param>
         /// <returns>Clean Url as string</returns>
@@ -282,12 +284,9 @@ namespace Bandwidth.Standard.Utilities
         }
 
         /// <summary>
-        /// Prepares parameters for serialization as a form encoded string by flattening complex
-        /// Types such as Collections and Models to a list of KeyValuePairs, where each value is
-        /// a string representation of the original Type.
+        /// Prepares parameters for serialization as a form encoded string by flattening complex Types such as Collections and Models to a list of KeyValuePairs, where each value is a string representation of the original Type.
         /// </summary>
-        public static List<KeyValuePair<string, object>> PrepareFormFieldsFromObject(
-            string name, object value, List<KeyValuePair<string, object>> keys = null, PropertyInfo propInfo = null, ArrayDeserialization arrayDeserializationFormat = ArrayDeserialization.UnIndexed)
+        public static List<KeyValuePair<string, object>> PrepareFormFieldsFromObject(string name, object value, List<KeyValuePair<string, object>> keys = null, PropertyInfo propInfo = null, ArrayDeserialization arrayDeserializationFormat = ArrayDeserialization.UnIndexed)
         {
             keys = keys ?? new List<KeyValuePair<string, object>>();
 
@@ -441,6 +440,7 @@ namespace Bandwidth.Standard.Utilities
         /// <param name="dictionary"></param>
         /// <param name="dictionary2"></param>
         public static void Add(this Dictionary<string, object> dictionary, Dictionary<string, object> dictionary2)
+
         {
             foreach (var kvp in dictionary2)
             {
@@ -449,7 +449,7 @@ namespace Bandwidth.Standard.Utilities
         }
 
         /// <summary>
-        /// Runs asynchronous tasks synchronously and throws the first caught exception
+        /// Runs asynchronous tasks synchronously and throws the first caught exception.
         /// </summary>
         /// <param name="t">The task to be run synchronously</param>
         public static void RunTaskSynchronously(Task t)

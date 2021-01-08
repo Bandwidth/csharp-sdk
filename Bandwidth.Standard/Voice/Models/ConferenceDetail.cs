@@ -43,51 +43,51 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Getter for id
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; set; }
 
         /// <summary>
         /// Getter for name
         /// </summary>
-        [JsonProperty("name")]
+        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
 
         /// <summary>
         /// Getter for createdTime
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("createdTime")]
+        [JsonProperty("createdTime", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? CreatedTime { get; set; }
 
         /// <summary>
         /// Getter for completedTime
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("completedTime")]
+        [JsonProperty("completedTime", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? CompletedTime { get; set; }
 
         /// <summary>
         /// Getter for conferenceEventUrl
         /// </summary>
-        [JsonProperty("conferenceEventUrl")]
+        [JsonProperty("conferenceEventUrl", NullValueHandling = NullValueHandling.Ignore)]
         public string ConferenceEventUrl { get; set; }
 
         /// <summary>
         /// Getter for conferenceEventMethod
         /// </summary>
-        [JsonProperty("conferenceEventMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
+        [JsonProperty("conferenceEventMethod", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
         public Models.ConferenceEventMethodEnum? ConferenceEventMethod { get; set; }
 
         /// <summary>
         /// Getter for tag
         /// </summary>
-        [JsonProperty("tag")]
+        [JsonProperty("tag", NullValueHandling = NullValueHandling.Ignore)]
         public string Tag { get; set; }
 
         /// <summary>
         /// Getter for activeMembers
         /// </summary>
-        [JsonProperty("activeMembers")]
+        [JsonProperty("activeMembers", NullValueHandling = NullValueHandling.Ignore)]
         public List<Models.ConferenceMemberDetail> ActiveMembers { get; set; }
 
     }

@@ -5,6 +5,9 @@ using Newtonsoft.Json.Converters;
 
 namespace Bandwidth.Standard.Utilities
 {
+    /// <summary>
+    /// Extends from JsonConverter, allows the use of a custom converter.
+    /// </summary>
     class ListDateTimeConverter : JsonConverter
     {
         /// <summary>
@@ -16,7 +19,8 @@ namespace Bandwidth.Standard.Utilities
         }
 
         /// <summary>
-        /// Initializes a new instance of the ListDateTimeConverter object based on the provided type.
+        /// Initializes a new instance of the ListDateTimeConverter object based 
+        /// on the provided type.
         /// </summary>
         public ListDateTimeConverter(Type Converter)
         {
@@ -24,7 +28,8 @@ namespace Bandwidth.Standard.Utilities
         }
 
         /// <summary>
-        /// Initializes a new instance of the ListDateTimeConverter object based on the provided type and format.
+        /// Initializes a new instance of the ListDateTimeConverter object based 
+        /// on the provided type and format.
         /// </summary>
         public ListDateTimeConverter(Type Converter,string format)
         {

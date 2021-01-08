@@ -31,13 +31,13 @@ namespace Bandwidth.Standard.WebRtc.Models
         /// <summary>
         /// Unique id of the session
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; set; }
 
         /// <summary>
         /// User defined tag to associate with the session
         /// </summary>
-        [JsonProperty("tag")]
+        [JsonProperty("tag", NullValueHandling = NullValueHandling.Ignore)]
         public string Tag { get; set; }
 
     }

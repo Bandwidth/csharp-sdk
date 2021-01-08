@@ -19,6 +19,10 @@ using Bandwidth.Standard.Utilities;
 
 namespace Bandwidth.Standard
 {
+    /// <summary>
+    /// The gateway for the SDK. This class acts as a factory for Controller and 
+    /// holds the configuration of the SDK.
+    /// </summary>
     public sealed class BandwidthClient: IConfiguration
     {
         internal readonly IDictionary<string, IAuthManager> authManagers;
@@ -33,22 +37,22 @@ namespace Bandwidth.Standard
         private readonly Lazy<WebRtcClient> webRtc;
 
         /// <summary>
-        /// Provides access to MessagingClient controller
+        /// Provides access to MessagingClient controller.
         /// </summary>
         public MessagingClient Messaging => messaging.Value;
 
         /// <summary>
-        /// Provides access to TwoFactorAuthClient controller
+        /// Provides access to TwoFactorAuthClient controller.
         /// </summary>
         public TwoFactorAuthClient TwoFactorAuth => twoFactorAuth.Value;
 
         /// <summary>
-        /// Provides access to VoiceClient controller
+        /// Provides access to VoiceClient controller.
         /// </summary>
         public VoiceClient Voice => voice.Value;
 
         /// <summary>
-        /// Provides access to WebRtcClient controller
+        /// Provides access to WebRtcClient controller.
         /// </summary>
         public WebRtcClient WebRtc => webRtc.Value;
 
@@ -57,6 +61,8 @@ namespace Bandwidth.Standard
             var builder = new Builder();
 
             string timeout = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_TIMEOUT");
+            string environment = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_ENVIRONMENT");
+            string baseUrl = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_BASE_URL");
             string messagingBasicAuthUserName = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_MESSAGING_BASIC_AUTH_USER_NAME");
             string messagingBasicAuthPassword = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_MESSAGING_BASIC_AUTH_PASSWORD");
             string twoFactorAuthBasicAuthUserName = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_TWO_FACTOR_AUTH_BASIC_AUTH_USER_NAME");
@@ -65,8 +71,6 @@ namespace Bandwidth.Standard
             string voiceBasicAuthPassword = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_VOICE_BASIC_AUTH_PASSWORD");
             string webRtcBasicAuthUserName = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_WEB_RTC_BASIC_AUTH_USER_NAME");
             string webRtcBasicAuthPassword = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_WEB_RTC_BASIC_AUTH_PASSWORD");
-            string environment = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_ENVIRONMENT");
-            string baseUrl = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_BASE_URL");
 
             if (timeout != null)
             {
@@ -106,28 +110,68 @@ namespace Bandwidth.Standard
             return builder.Build();
         }
 
-        private BandwidthClient(TimeSpan timeout, string messagingBasicAuthUserName,
-                string messagingBasicAuthPassword, string twoFactorAuthBasicAuthUserName,
-                string twoFactorAuthBasicAuthPassword, string voiceBasicAuthUserName,
-                string voiceBasicAuthPassword, string webRtcBasicAuthUserName,
-                string webRtcBasicAuthPassword, Environment environment, string baseUrl,
+        private BandwidthClient(TimeSpan timeout, Environment environment, string baseUrl,
+                string messagingBasicAuthUserName, string messagingBasicAuthPassword,
+                string twoFactorAuthBasicAuthUserName, string twoFactorAuthBasicAuthPassword,
+                string voiceBasicAuthUserName, string voiceBasicAuthPassword,
+                string webRtcBasicAuthUserName, string webRtcBasicAuthPassword,
                 IDictionary<string, IAuthManager> authManagers, IHttpClient httpClient,
                 IHttpClientConfiguration httpClientConfiguration)
         {
-            messagingBasicAuthManager = new MessagingBasicAuthManager(messagingBasicAuthUserName, messagingBasicAuthPassword);
-            twoFactorAuthBasicAuthManager = new TwoFactorAuthBasicAuthManager(twoFactorAuthBasicAuthUserName, twoFactorAuthBasicAuthPassword);
-            voiceBasicAuthManager = new VoiceBasicAuthManager(voiceBasicAuthUserName, voiceBasicAuthPassword);
-            webRtcBasicAuthManager = new WebRtcBasicAuthManager(webRtcBasicAuthUserName, webRtcBasicAuthPassword);
             Timeout = timeout;
             Environment = environment;
             BaseUrl = baseUrl;
             this.httpClient = httpClient;
-            this.authManagers = new Dictionary<string, IAuthManager>(authManagers);
+            this.authManagers = (authManagers == null) ? new Dictionary<string, IAuthManager>() : new Dictionary<string, IAuthManager>(authManagers);
             HttpClientConfiguration = httpClientConfiguration;
-            this.authManagers["messaging"] = messagingBasicAuthManager;
-            this.authManagers["twoFactorAuth"] = twoFactorAuthBasicAuthManager;
-            this.authManagers["voice"] = voiceBasicAuthManager;
-            this.authManagers["webRtc"] = webRtcBasicAuthManager;
+
+            if (this.authManagers.ContainsKey("messaging"))
+            {
+                messagingBasicAuthManager = (MessagingBasicAuthManager) this.authManagers["messaging"];
+            }
+
+            if (!this.authManagers.ContainsKey("messaging")
+                || !MessagingBasicAuthCredentials.Equals(messagingBasicAuthUserName, messagingBasicAuthPassword))
+            {
+                messagingBasicAuthManager = new MessagingBasicAuthManager(messagingBasicAuthUserName, messagingBasicAuthPassword);
+                this.authManagers["messaging"] = messagingBasicAuthManager;
+            }
+
+            if (this.authManagers.ContainsKey("twoFactorAuth"))
+            {
+                twoFactorAuthBasicAuthManager = (TwoFactorAuthBasicAuthManager) this.authManagers["twoFactorAuth"];
+            }
+
+            if (!this.authManagers.ContainsKey("twoFactorAuth")
+                || !TwoFactorAuthBasicAuthCredentials.Equals(twoFactorAuthBasicAuthUserName, twoFactorAuthBasicAuthPassword))
+            {
+                twoFactorAuthBasicAuthManager = new TwoFactorAuthBasicAuthManager(twoFactorAuthBasicAuthUserName, twoFactorAuthBasicAuthPassword);
+                this.authManagers["twoFactorAuth"] = twoFactorAuthBasicAuthManager;
+            }
+
+            if (this.authManagers.ContainsKey("voice"))
+            {
+                voiceBasicAuthManager = (VoiceBasicAuthManager) this.authManagers["voice"];
+            }
+
+            if (!this.authManagers.ContainsKey("voice")
+                || !VoiceBasicAuthCredentials.Equals(voiceBasicAuthUserName, voiceBasicAuthPassword))
+            {
+                voiceBasicAuthManager = new VoiceBasicAuthManager(voiceBasicAuthUserName, voiceBasicAuthPassword);
+                this.authManagers["voice"] = voiceBasicAuthManager;
+            }
+
+            if (this.authManagers.ContainsKey("webRtc"))
+            {
+                webRtcBasicAuthManager = (WebRtcBasicAuthManager) this.authManagers["webRtc"];
+            }
+
+            if (!this.authManagers.ContainsKey("webRtc")
+                || !WebRtcBasicAuthCredentials.Equals(webRtcBasicAuthUserName, webRtcBasicAuthPassword))
+            {
+                webRtcBasicAuthManager = new WebRtcBasicAuthManager(webRtcBasicAuthUserName, webRtcBasicAuthPassword);
+                this.authManagers["webRtc"] = webRtcBasicAuthManager;
+            }
 
             messaging = new Lazy<MessagingClient>(() => new MessagingClient(this));
             twoFactorAuth = new Lazy<TwoFactorAuthClient>(() => new TwoFactorAuthClient(this));
@@ -136,29 +180,29 @@ namespace Bandwidth.Standard
         }
 
         /// <summary>
-        /// The configuration of the Http Client associated with this BandwidthClient.
+        /// The configuration of the Http Client associated with this client.
         /// </summary>
         public IHttpClientConfiguration HttpClientConfiguration { get; }
 
         /// <summary>
-        /// The username and password to use with basic authentication.
+        /// The credentials to use with MessagingBasicAuth
         /// </summary>
-        public IBasicAuthCredentials MessagingBasicAuthCredentials => messagingBasicAuthManager;
+        public IMessagingBasicAuthCredentials MessagingBasicAuthCredentials { get => messagingBasicAuthManager; }
 
         /// <summary>
-        /// The username and password to use with basic authentication.
+        /// The credentials to use with TwoFactorAuthBasicAuth
         /// </summary>
-        public IBasicAuthCredentials TwoFactorAuthBasicAuthCredentials => twoFactorAuthBasicAuthManager;
+        public ITwoFactorAuthBasicAuthCredentials TwoFactorAuthBasicAuthCredentials { get => twoFactorAuthBasicAuthManager; }
 
         /// <summary>
-        /// The username and password to use with basic authentication.
+        /// The credentials to use with VoiceBasicAuth
         /// </summary>
-        public IBasicAuthCredentials VoiceBasicAuthCredentials => voiceBasicAuthManager;
+        public IVoiceBasicAuthCredentials VoiceBasicAuthCredentials { get => voiceBasicAuthManager; }
 
         /// <summary>
-        /// The username and password to use with basic authentication.
+        /// The credentials to use with WebRtcBasicAuth
         /// </summary>
-        public IBasicAuthCredentials WebRtcBasicAuthCredentials => webRtcBasicAuthManager;
+        public IWebRtcBasicAuthCredentials WebRtcBasicAuthCredentials { get => webRtcBasicAuthManager; }
 
         /// <summary>
         /// Http client timeout
@@ -215,7 +259,8 @@ namespace Bandwidth.Standard
         }
 
         /// <summary>
-        /// Gets the URL for a particular alias in the current environment and appends it with template parameters.
+        /// Gets the URL for a particular alias in the current environment and appends 
+        /// it with template parameters.
         /// </summary>
         /// <param name="alias">Default value:DEFAULT</param>
         /// <return>Returns the baseurl</return>
@@ -235,10 +280,10 @@ namespace Bandwidth.Standard
                 .Timeout(Timeout)
                 .Environment(Environment)
                 .BaseUrl(BaseUrl)
-                .MessagingBasicAuthCredentials(messagingBasicAuthManager.Username, messagingBasicAuthManager.Password)
-                .TwoFactorAuthBasicAuthCredentials(twoFactorAuthBasicAuthManager.Username, twoFactorAuthBasicAuthManager.Password)
-                .VoiceBasicAuthCredentials(voiceBasicAuthManager.Username, voiceBasicAuthManager.Password)
-                .WebRtcBasicAuthCredentials(webRtcBasicAuthManager.Username, webRtcBasicAuthManager.Password)
+                .MessagingBasicAuthCredentials(messagingBasicAuthManager.BasicAuthUserName, messagingBasicAuthManager.BasicAuthPassword)
+                .TwoFactorAuthBasicAuthCredentials(twoFactorAuthBasicAuthManager.BasicAuthUserName, twoFactorAuthBasicAuthManager.BasicAuthPassword)
+                .VoiceBasicAuthCredentials(voiceBasicAuthManager.BasicAuthUserName, voiceBasicAuthManager.BasicAuthPassword)
+                .WebRtcBasicAuthCredentials(webRtcBasicAuthManager.BasicAuthUserName, webRtcBasicAuthManager.BasicAuthPassword)
                 .HttpClient(httpClient)
                 .AuthManagers(authManagers);
 
@@ -248,20 +293,60 @@ namespace Bandwidth.Standard
         public class Builder
         {
             private TimeSpan timeout = TimeSpan.FromSeconds(100);
-            private string messagingBasicAuthUserName = String.Empty;
-            private string messagingBasicAuthPassword = String.Empty;
-            private string twoFactorAuthBasicAuthUserName = String.Empty;
-            private string twoFactorAuthBasicAuthPassword = String.Empty;
-            private string voiceBasicAuthUserName = String.Empty;
-            private string voiceBasicAuthPassword = String.Empty;
-            private string webRtcBasicAuthUserName = String.Empty;
-            private string webRtcBasicAuthPassword = String.Empty;
             private Environment environment = Bandwidth.Standard.Environment.Production;
             private string baseUrl = "https://www.example.com";
-            private IHttpClient httpClient;
+            private string messagingBasicAuthUserName = "TODO: Replace";
+            private string messagingBasicAuthPassword = "TODO: Replace";
+            private string twoFactorAuthBasicAuthUserName = "TODO: Replace";
+            private string twoFactorAuthBasicAuthPassword = "TODO: Replace";
+            private string voiceBasicAuthUserName = "TODO: Replace";
+            private string voiceBasicAuthPassword = "TODO: Replace";
+            private string webRtcBasicAuthUserName = "TODO: Replace";
+            private string webRtcBasicAuthPassword = "TODO: Replace";
             private IDictionary<string, IAuthManager> authManagers = new Dictionary<string, IAuthManager>();
-            private HttpClientConfiguration httpClientConfig = new HttpClientConfiguration();
             private bool createCustomHttpClient = false;
+            private HttpClientConfiguration httpClientConfig = new HttpClientConfiguration();
+            private IHttpClient httpClient;
+
+            /// <summary>
+            /// Credentials setter for MessagingBasicAuth
+            /// </summary>
+            public Builder MessagingBasicAuthCredentials(string messagingBasicAuthUserName, string messagingBasicAuthPassword)
+            {
+                this.messagingBasicAuthUserName = messagingBasicAuthUserName ?? throw new ArgumentNullException(nameof(messagingBasicAuthUserName));
+                this.messagingBasicAuthPassword = messagingBasicAuthPassword ?? throw new ArgumentNullException(nameof(messagingBasicAuthPassword));
+                return this;
+            }
+
+            /// <summary>
+            /// Credentials setter for TwoFactorAuthBasicAuth
+            /// </summary>
+            public Builder TwoFactorAuthBasicAuthCredentials(string twoFactorAuthBasicAuthUserName, string twoFactorAuthBasicAuthPassword)
+            {
+                this.twoFactorAuthBasicAuthUserName = twoFactorAuthBasicAuthUserName ?? throw new ArgumentNullException(nameof(twoFactorAuthBasicAuthUserName));
+                this.twoFactorAuthBasicAuthPassword = twoFactorAuthBasicAuthPassword ?? throw new ArgumentNullException(nameof(twoFactorAuthBasicAuthPassword));
+                return this;
+            }
+
+            /// <summary>
+            /// Credentials setter for VoiceBasicAuth
+            /// </summary>
+            public Builder VoiceBasicAuthCredentials(string voiceBasicAuthUserName, string voiceBasicAuthPassword)
+            {
+                this.voiceBasicAuthUserName = voiceBasicAuthUserName ?? throw new ArgumentNullException(nameof(voiceBasicAuthUserName));
+                this.voiceBasicAuthPassword = voiceBasicAuthPassword ?? throw new ArgumentNullException(nameof(voiceBasicAuthPassword));
+                return this;
+            }
+
+            /// <summary>
+            /// Credentials setter for WebRtcBasicAuth
+            /// </summary>
+            public Builder WebRtcBasicAuthCredentials(string webRtcBasicAuthUserName, string webRtcBasicAuthPassword)
+            {
+                this.webRtcBasicAuthUserName = webRtcBasicAuthUserName ?? throw new ArgumentNullException(nameof(webRtcBasicAuthUserName));
+                this.webRtcBasicAuthPassword = webRtcBasicAuthPassword ?? throw new ArgumentNullException(nameof(webRtcBasicAuthPassword));
+                return this;
+            }
 
             /// <summary>
             /// Setter for Environment.
@@ -288,46 +373,6 @@ namespace Bandwidth.Standard
             {
                 httpClientConfig.Timeout = timeout.TotalSeconds <= 0 ? TimeSpan.FromSeconds(100) : timeout;
                 this.createCustomHttpClient = true;
-                return this;
-            }
-
-            /// <summary>
-            /// Setter for BasicAuthUserName and BasicAuthPassword.
-            /// </summary>
-            public Builder MessagingBasicAuthCredentials(string username, string password)
-            {
-                this.messagingBasicAuthUserName = username ?? throw new ArgumentNullException(nameof(username));
-                this.messagingBasicAuthPassword = password ?? throw new ArgumentNullException(nameof(password));
-                return this;
-            }
-
-            /// <summary>
-            /// Setter for BasicAuthUserName and BasicAuthPassword.
-            /// </summary>
-            public Builder TwoFactorAuthBasicAuthCredentials(string username, string password)
-            {
-                this.twoFactorAuthBasicAuthUserName = username ?? throw new ArgumentNullException(nameof(username));
-                this.twoFactorAuthBasicAuthPassword = password ?? throw new ArgumentNullException(nameof(password));
-                return this;
-            }
-
-            /// <summary>
-            /// Setter for BasicAuthUserName and BasicAuthPassword.
-            /// </summary>
-            public Builder VoiceBasicAuthCredentials(string username, string password)
-            {
-                this.voiceBasicAuthUserName = username ?? throw new ArgumentNullException(nameof(username));
-                this.voiceBasicAuthPassword = password ?? throw new ArgumentNullException(nameof(password));
-                return this;
-            }
-
-            /// <summary>
-            /// Setter for BasicAuthUserName and BasicAuthPassword.
-            /// </summary>
-            public Builder WebRtcBasicAuthCredentials(string username, string password)
-            {
-                this.webRtcBasicAuthUserName = username ?? throw new ArgumentNullException(nameof(username));
-                this.webRtcBasicAuthPassword = password ?? throw new ArgumentNullException(nameof(password));
                 return this;
             }
 
@@ -363,10 +408,10 @@ namespace Bandwidth.Standard
                     httpClient = new HttpClientWrapper();
                 }
 
-                return new BandwidthClient(timeout, messagingBasicAuthUserName, messagingBasicAuthPassword,
+                return new BandwidthClient(timeout, environment, baseUrl, messagingBasicAuthUserName, messagingBasicAuthPassword,
                         twoFactorAuthBasicAuthUserName, twoFactorAuthBasicAuthPassword, voiceBasicAuthUserName,
-                        voiceBasicAuthPassword, webRtcBasicAuthUserName, webRtcBasicAuthPassword, environment, baseUrl,
-                        authManagers, httpClient, httpClientConfig);
+                        voiceBasicAuthPassword, webRtcBasicAuthUserName, webRtcBasicAuthPassword, authManagers, httpClient,
+                        httpClientConfig);
             }
         }
 
