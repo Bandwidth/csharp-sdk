@@ -57,7 +57,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Models
         /// <summary>
         /// An optional field to denote what scope or action the 2fa code is addressing.  If not supplied, defaults to "2FA".
         /// </summary>
-        [JsonProperty("scope")]
+        [JsonProperty("scope", NullValueHandling = NullValueHandling.Ignore)]
         public string Scope { get; set; }
 
         /// <summary>

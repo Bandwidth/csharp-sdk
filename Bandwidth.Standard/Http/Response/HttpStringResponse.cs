@@ -1,9 +1,14 @@
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace Bandwidth.Standard.Http.Response
 {
+    /// <summary>
+    /// HttpStringResponse inherits from HttpResponse and has additional property 
+    /// of string body.
+    /// </summary>
     public sealed class HttpStringResponse : HttpResponse
     {
         /// <summary>
@@ -14,7 +19,7 @@ namespace Bandwidth.Standard.Http.Response
         /// <summary>
         /// Initializes a new HttpStringResponse object with the specified parameters.
         /// </summary>
-        public HttpStringResponse(int statusCode, Dictionary<string,string> headers, Stream rawBody, string body) : base(statusCode, headers, rawBody)
+        public HttpStringResponse(int statusCode, Dictionary<string, string> headers, Stream rawBody, string body) : base(statusCode, headers, rawBody)
         {
             this.Body = body;
         }

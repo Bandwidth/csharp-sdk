@@ -39,37 +39,37 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Getter for callId
         /// </summary>
-        [JsonProperty("callId")]
+        [JsonProperty("callId", NullValueHandling = NullValueHandling.Ignore)]
         public string CallId { get; set; }
 
         /// <summary>
         /// Getter for conferenceId
         /// </summary>
-        [JsonProperty("conferenceId")]
+        [JsonProperty("conferenceId", NullValueHandling = NullValueHandling.Ignore)]
         public string ConferenceId { get; set; }
 
         /// <summary>
         /// Getter for memberUrl
         /// </summary>
-        [JsonProperty("memberUrl")]
+        [JsonProperty("memberUrl", NullValueHandling = NullValueHandling.Ignore)]
         public string MemberUrl { get; set; }
 
         /// <summary>
         /// Getter for mute
         /// </summary>
-        [JsonProperty("mute")]
+        [JsonProperty("mute", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Mute { get; set; }
 
         /// <summary>
         /// Getter for hold
         /// </summary>
-        [JsonProperty("hold")]
+        [JsonProperty("hold", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Hold { get; set; }
 
         /// <summary>
         /// Getter for callIdsToCoach
         /// </summary>
-        [JsonProperty("callIdsToCoach")]
+        [JsonProperty("callIdsToCoach", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> CallIdsToCoach { get; set; }
 
     }

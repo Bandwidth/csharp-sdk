@@ -16,9 +16,9 @@ namespace Bandwidth.Standard.Voice.Models
     [JsonConverter(typeof(StringValuedEnumConverter))]
     public enum StateEnum
     {
-        Disconnected,
-        Answered,
-        Initiated,
+        DISCONNECTED,
+        ANSWERED,
+        INITIATED,
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ namespace Bandwidth.Standard.Voice.Models
     public static class StateEnumHelper
     {
         //string values corresponding the enum elements
-        private static List<string> stringValues = new List<string> { "disconnected", "answered", "initiated" };
+        private static List<string> stringValues = new List<string> { "DISCONNECTED", "ANSWERED", "INITIATED" };
 
         /// <summary>
         /// Converts a StateEnum value to a corresponding string value
@@ -40,9 +40,9 @@ namespace Bandwidth.Standard.Voice.Models
             {
                 //only valid enum elements can be used
                 //this is necessary to avoid errors
-                case StateEnum.Disconnected:
-                case StateEnum.Answered:
-                case StateEnum.Initiated:
+                case StateEnum.DISCONNECTED:
+                case StateEnum.ANSWERED:
+                case StateEnum.INITIATED:
                     return stringValues[(int)enumValue];
 
                 //an invalid enum value was requested

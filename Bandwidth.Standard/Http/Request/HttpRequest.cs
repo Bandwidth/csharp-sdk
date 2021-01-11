@@ -5,50 +5,53 @@ using System.Net.Http;
 
 namespace Bandwidth.Standard.Http.Request
 {
+    /// <summary>
+    /// HttpRequest stores necessary information about the http request.
+    /// </summary>
     public sealed class HttpRequest
     {
         /// <summary>
-        /// The HTTP verb to use for this request
+        /// The HTTP verb to use for this request.
         /// </summary>
         public HttpMethod HttpMethod { get; }
 
         /// <summary>
-        /// The query url for the http request
+        /// The query url for the http request.
         /// </summary>
         public string QueryUrl { get; }
 
         /// <summary>
-        /// Query parameters collection for the current http request
+        /// Query parameters collection for the current http request.
         /// </summary>
         public Dictionary<string, object> QueryParameters { get; private set; }
 
         /// <summary>
-        /// Headers collection for the current http request
+        /// Headers collection for the current http request.
         /// </summary>
         public Dictionary<string, string> Headers { get; private set; }
 
         /// <summary>
-        /// Form parameters for the current http request
+        /// Form parameters for the current http request.
         /// </summary>
         public List<KeyValuePair<string, object>> FormParameters { get; }
 
         /// <summary>
-        /// Optional raw string to send as request body
+        /// Optional raw string to send as request body.
         /// </summary>
         public object Body { get; }
 
         /// <summary>
-        /// Optional username for Basic Auth
+        /// Optional username for Basic Auth.
         /// </summary>
         public string Username { get; }
 
         /// <summary>
-        /// Optional password for Basic Auth
+        /// Optional password for Basic Auth.
         /// </summary>
         public string Password { get; }
 
         /// <summary>
-        /// Constructor to initialize the http request obejct
+        /// Constructor to initialize the http request object.
         /// </summary>
         /// <param name="method">Http verb to use for the http request</param>
         /// <param name="queryUrl">The query url for the http request</param>
@@ -59,7 +62,7 @@ namespace Bandwidth.Standard.Http.Request
         }
 
         /// <summary>
-        /// Constructor to initialize the http request with headers and optional Basic auth params
+        /// Constructor to initialize the http request with headers and optional Basic auth params.
         /// </summary>
         /// <param name="method">Http verb to use for the http request</param>
         /// <param name="queryUrl">The query url for the http request</param>
@@ -76,7 +79,7 @@ namespace Bandwidth.Standard.Http.Request
         }
 
         /// <summary>
-        /// Constructor to initialize the http request with headers, body and optional Basic auth params
+        /// Constructor to initialize the http request with headers, body and optional Basic auth params.
         /// </summary>
         /// <param name="method">Http verb to use for the http request</param>
         /// <param name="queryUrl">The query url for the http request</param>
@@ -91,7 +94,7 @@ namespace Bandwidth.Standard.Http.Request
         }
 
         /// <summary>
-        /// Constructor to initialize the http request with headers, form parameters and optional Basic auth params
+        /// Constructor to initialize the http request with headers, form parameters and optional Basic auth params.
         /// </summary>
         /// <param name="method">Http verb to use for the http request</param>
         /// <param name="queryUrl">The query url for the http request</param>
@@ -106,16 +109,23 @@ namespace Bandwidth.Standard.Http.Request
         }
 
         /// <summary>
-        /// Concatenate values from a Dictionary to this object
+        /// Concatenate values from a Dictionary to this object.
         /// </summary>
         public Dictionary<string, string> AddHeaders(Dictionary<string, string> HeadersToAdd)
         {
-            Headers = Headers.Concat(HeadersToAdd).ToDictionary(x => x.Key, x => x.Value);
+            if (Headers == null)
+            {
+                Headers = new Dictionary<string, string>(HeadersToAdd);
+            }
+            else
+            {
+                Headers = Headers.Concat(HeadersToAdd).ToDictionary(x => x.Key, x => x.Value);
+            }
             return Headers;
         }
 
         /// <summary>
-        /// Concatenate values from a Dictionary to query parameters dictionary
+        /// Concatenate values from a Dictionary to query parameters dictionary.
         /// </summary>
         public void AddQueryParameters(Dictionary<string, object> queryParamaters)
         {

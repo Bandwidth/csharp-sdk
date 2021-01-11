@@ -15,13 +15,14 @@ using Bandwidth.Standard.Http.Client;
 namespace Bandwidth.Standard.Exceptions
 {
     /// <summary>
-    /// This is the base class for all exceptions that represent an error response from the server.
+    /// This is the base class for all exceptions that represent an error response 
+    /// from the server.
     /// </summary>
     [JsonObject]
     public class ApiException : Exception
     {
         /// <summary>
-        /// The HTTP response code from the API request
+        /// The HTTP response code from the API request.
         /// </summary>
         [JsonIgnore]
         public int ResponseCode
@@ -30,18 +31,17 @@ namespace Bandwidth.Standard.Exceptions
         }
 
         /// <summary>
-        /// HttpContext stores the request and response
+        /// HttpContext stores the request and response.
         /// </summary>
         [JsonIgnore]
         public HttpContext HttpContext { get; internal set; }
 
         /// <summary>
-        /// Initialization constructor
+        /// Initializes a new ApiException object with the specified parameters.
         /// </summary>
         /// <param name="reason"> The reason for throwing exception </param>
         /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public ApiException(string reason, HttpContext context)
-            : base(reason)
+        public ApiException(string reason, HttpContext context) : base(reason)
         {
             this.HttpContext = context;
 

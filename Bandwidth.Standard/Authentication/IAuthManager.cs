@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace Bandwidth.Standard.Authentication
 {
+    /// <summary>
+    /// IAuthManager adds the authenticaion layer to the http calls.
+    /// <summary>
     internal interface IAuthManager
     {
         /// <summary>

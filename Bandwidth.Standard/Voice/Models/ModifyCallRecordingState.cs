@@ -21,7 +21,7 @@ namespace Bandwidth.Standard.Voice.Models
     {
         public ModifyCallRecordingState() { }
 
-        public ModifyCallRecordingState(Models.State2Enum? state = null)
+        public ModifyCallRecordingState(Models.State2Enum state)
         {
             State = state;
         }
@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// Getter for state
         /// </summary>
         [JsonProperty("state", ItemConverterType = typeof(StringValuedEnumConverter))]
-        public Models.State2Enum? State { get; set; }
+        public Models.State2Enum State { get; set; }
 
     }
 }

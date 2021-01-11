@@ -29,7 +29,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Getter for transcripts
         /// </summary>
-        [JsonProperty("transcripts")]
+        [JsonProperty("transcripts", NullValueHandling = NullValueHandling.Ignore)]
         public List<Models.Transcript> Transcripts { get; set; }
 
     }

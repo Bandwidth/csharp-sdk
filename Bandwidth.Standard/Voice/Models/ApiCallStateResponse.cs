@@ -57,95 +57,95 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Getter for callId
         /// </summary>
-        [JsonProperty("callId")]
+        [JsonProperty("callId", NullValueHandling = NullValueHandling.Ignore)]
         public string CallId { get; set; }
 
         /// <summary>
         /// Getter for parentCallId
         /// </summary>
-        [JsonProperty("parentCallId")]
+        [JsonProperty("parentCallId", NullValueHandling = NullValueHandling.Ignore)]
         public string ParentCallId { get; set; }
 
         /// <summary>
         /// Getter for applicationId
         /// </summary>
-        [JsonProperty("applicationId")]
+        [JsonProperty("applicationId", NullValueHandling = NullValueHandling.Ignore)]
         public string ApplicationId { get; set; }
 
         /// <summary>
         /// Getter for accountId
         /// </summary>
-        [JsonProperty("accountId")]
+        [JsonProperty("accountId", NullValueHandling = NullValueHandling.Ignore)]
         public string AccountId { get; set; }
 
         /// <summary>
         /// Getter for to
         /// </summary>
-        [JsonProperty("to")]
+        [JsonProperty("to", NullValueHandling = NullValueHandling.Ignore)]
         public string To { get; set; }
 
         /// <summary>
         /// Getter for from
         /// </summary>
-        [JsonProperty("from")]
+        [JsonProperty("from", NullValueHandling = NullValueHandling.Ignore)]
         public string From { get; set; }
 
         /// <summary>
         /// Getter for direction
         /// </summary>
-        [JsonProperty("direction")]
+        [JsonProperty("direction", NullValueHandling = NullValueHandling.Ignore)]
         public string Direction { get; set; }
 
         /// <summary>
         /// Getter for state
         /// </summary>
-        [JsonProperty("state", ItemConverterType = typeof(StringValuedEnumConverter))]
+        [JsonProperty("state", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
         public Models.StateEnum? State { get; set; }
 
         /// <summary>
         /// Getter for startTime
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("startTime")]
+        [JsonProperty("startTime", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? StartTime { get; set; }
 
         /// <summary>
         /// Getter for answerTime
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("answerTime")]
+        [JsonProperty("answerTime", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? AnswerTime { get; set; }
 
         /// <summary>
         /// Getter for endTime
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("endTime")]
+        [JsonProperty("endTime", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? EndTime { get; set; }
 
         /// <summary>
         /// Getter for disconnectCause
         /// </summary>
-        [JsonProperty("disconnectCause", ItemConverterType = typeof(StringValuedEnumConverter))]
+        [JsonProperty("disconnectCause", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
         public Models.DisconnectCauseEnum? DisconnectCause { get; set; }
 
         /// <summary>
         /// Getter for errorMessage
         /// </summary>
-        [JsonProperty("errorMessage")]
+        [JsonProperty("errorMessage", NullValueHandling = NullValueHandling.Ignore)]
         public string ErrorMessage { get; set; }
 
         /// <summary>
         /// Getter for errorId
         /// </summary>
-        [JsonProperty("errorId")]
+        [JsonProperty("errorId", NullValueHandling = NullValueHandling.Ignore)]
         public string ErrorId { get; set; }
 
         /// <summary>
         /// Getter for lastUpdate
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("lastUpdate")]
+        [JsonProperty("lastUpdate", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? LastUpdate { get; set; }
 
     }

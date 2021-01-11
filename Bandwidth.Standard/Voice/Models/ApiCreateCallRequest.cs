@@ -25,6 +25,7 @@ namespace Bandwidth.Standard.Voice.Models
             string to,
             string answerUrl,
             string applicationId,
+            string uui = null,
             double? callTimeout = null,
             double? callbackTimeout = null,
             string answerFallbackUrl = null,
@@ -42,6 +43,7 @@ namespace Bandwidth.Standard.Voice.Models
         {
             From = from;
             To = to;
+            Uui = uui;
             CallTimeout = callTimeout;
             CallbackTimeout = callbackTimeout;
             AnswerUrl = answerUrl;
@@ -67,21 +69,27 @@ namespace Bandwidth.Standard.Voice.Models
         public string From { get; set; }
 
         /// <summary>
-        /// Format is E164
+        /// Format is E164 or SIP URI
         /// </summary>
         [JsonProperty("to")]
         public string To { get; set; }
 
         /// <summary>
+        /// When calling a SIP URI, this will be sent as the 'User-To-User' header within the initial INVITE. An 'encoding' parameter must be specified as described in https://tools.ietf.org/html/rfc7433. This header cannot exceed 256 characters, including the encoding parameter.
+        /// </summary>
+        [JsonProperty("uui", NullValueHandling = NullValueHandling.Ignore)]
+        public string Uui { get; set; }
+
+        /// <summary>
         /// Getter for callTimeout
         /// </summary>
-        [JsonProperty("callTimeout")]
+        [JsonProperty("callTimeout", NullValueHandling = NullValueHandling.Ignore)]
         public double? CallTimeout { get; set; }
 
         /// <summary>
         /// Getter for callbackTimeout
         /// </summary>
-        [JsonProperty("callbackTimeout")]
+        [JsonProperty("callbackTimeout", NullValueHandling = NullValueHandling.Ignore)]
         public double? CallbackTimeout { get; set; }
 
         /// <summary>
@@ -93,61 +101,61 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Getter for answerFallbackUrl
         /// </summary>
-        [JsonProperty("answerFallbackUrl")]
+        [JsonProperty("answerFallbackUrl", NullValueHandling = NullValueHandling.Ignore)]
         public string AnswerFallbackUrl { get; set; }
 
         /// <summary>
         /// Getter for username
         /// </summary>
-        [JsonProperty("username")]
+        [JsonProperty("username", NullValueHandling = NullValueHandling.Ignore)]
         public string Username { get; set; }
 
         /// <summary>
         /// Getter for password
         /// </summary>
-        [JsonProperty("password")]
+        [JsonProperty("password", NullValueHandling = NullValueHandling.Ignore)]
         public string Password { get; set; }
 
         /// <summary>
         /// Getter for fallbackUsername
         /// </summary>
-        [JsonProperty("fallbackUsername")]
+        [JsonProperty("fallbackUsername", NullValueHandling = NullValueHandling.Ignore)]
         public string FallbackUsername { get; set; }
 
         /// <summary>
         /// Getter for fallbackPassword
         /// </summary>
-        [JsonProperty("fallbackPassword")]
+        [JsonProperty("fallbackPassword", NullValueHandling = NullValueHandling.Ignore)]
         public string FallbackPassword { get; set; }
 
         /// <summary>
         /// Getter for answerMethod
         /// </summary>
-        [JsonProperty("answerMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
+        [JsonProperty("answerMethod", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
         public Models.AnswerMethodEnum? AnswerMethod { get; set; }
 
         /// <summary>
         /// Getter for answerFallbackMethod
         /// </summary>
-        [JsonProperty("answerFallbackMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
+        [JsonProperty("answerFallbackMethod", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
         public Models.AnswerFallbackMethodEnum? AnswerFallbackMethod { get; set; }
 
         /// <summary>
         /// Getter for disconnectUrl
         /// </summary>
-        [JsonProperty("disconnectUrl")]
+        [JsonProperty("disconnectUrl", NullValueHandling = NullValueHandling.Ignore)]
         public string DisconnectUrl { get; set; }
 
         /// <summary>
         /// Getter for disconnectMethod
         /// </summary>
-        [JsonProperty("disconnectMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
+        [JsonProperty("disconnectMethod", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
         public Models.DisconnectMethodEnum? DisconnectMethod { get; set; }
 
         /// <summary>
         /// Getter for tag
         /// </summary>
-        [JsonProperty("tag")]
+        [JsonProperty("tag", NullValueHandling = NullValueHandling.Ignore)]
         public string Tag { get; set; }
 
         /// <summary>
@@ -159,13 +167,13 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Getter for obfuscatedTo
         /// </summary>
-        [JsonProperty("obfuscatedTo")]
+        [JsonProperty("obfuscatedTo", NullValueHandling = NullValueHandling.Ignore)]
         public string ObfuscatedTo { get; set; }
 
         /// <summary>
         /// Getter for obfuscatedFrom
         /// </summary>
-        [JsonProperty("obfuscatedFrom")]
+        [JsonProperty("obfuscatedFrom", NullValueHandling = NullValueHandling.Ignore)]
         public string ObfuscatedFrom { get; set; }
 
     }

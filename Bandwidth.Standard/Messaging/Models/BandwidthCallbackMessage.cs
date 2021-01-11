@@ -39,37 +39,37 @@ namespace Bandwidth.Standard.Messaging.Models
         /// <summary>
         /// Getter for time
         /// </summary>
-        [JsonProperty("time")]
+        [JsonProperty("time", NullValueHandling = NullValueHandling.Ignore)]
         public string Time { get; set; }
 
         /// <summary>
         /// Getter for type
         /// </summary>
-        [JsonProperty("type")]
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
         public string Type { get; set; }
 
         /// <summary>
         /// Getter for to
         /// </summary>
-        [JsonProperty("to")]
+        [JsonProperty("to", NullValueHandling = NullValueHandling.Ignore)]
         public string To { get; set; }
 
         /// <summary>
         /// Getter for errorCode
         /// </summary>
-        [JsonProperty("errorCode")]
+        [JsonProperty("errorCode", NullValueHandling = NullValueHandling.Ignore)]
         public string ErrorCode { get; set; }
 
         /// <summary>
         /// Getter for description
         /// </summary>
-        [JsonProperty("description")]
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
 
         /// <summary>
         /// Getter for message
         /// </summary>
-        [JsonProperty("message")]
+        [JsonProperty("message", NullValueHandling = NullValueHandling.Ignore)]
         public Models.BandwidthMessage Message { get; set; }
 
     }

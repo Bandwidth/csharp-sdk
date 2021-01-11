@@ -33,7 +33,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Exceptions
         /// <summary>
         /// An error message pertaining to what the issue could be
         /// </summary>
-        [JsonProperty("result")]
+        [JsonProperty("result", NullValueHandling = NullValueHandling.Ignore)]
         public string Result { get; set; }
 
     }

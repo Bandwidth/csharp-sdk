@@ -49,67 +49,67 @@ namespace Bandwidth.Standard.Messaging.Models
         /// <summary>
         /// Getter for id
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; set; }
 
         /// <summary>
         /// Getter for owner
         /// </summary>
-        [JsonProperty("owner")]
+        [JsonProperty("owner", NullValueHandling = NullValueHandling.Ignore)]
         public string Owner { get; set; }
 
         /// <summary>
         /// Getter for applicationId
         /// </summary>
-        [JsonProperty("applicationId")]
+        [JsonProperty("applicationId", NullValueHandling = NullValueHandling.Ignore)]
         public string ApplicationId { get; set; }
 
         /// <summary>
         /// Getter for time
         /// </summary>
-        [JsonProperty("time")]
+        [JsonProperty("time", NullValueHandling = NullValueHandling.Ignore)]
         public string Time { get; set; }
 
         /// <summary>
         /// Getter for segmentCount
         /// </summary>
-        [JsonProperty("segmentCount")]
+        [JsonProperty("segmentCount", NullValueHandling = NullValueHandling.Ignore)]
         public int? SegmentCount { get; set; }
 
         /// <summary>
         /// Getter for direction
         /// </summary>
-        [JsonProperty("direction")]
+        [JsonProperty("direction", NullValueHandling = NullValueHandling.Ignore)]
         public string Direction { get; set; }
 
         /// <summary>
         /// Getter for to
         /// </summary>
-        [JsonProperty("to")]
+        [JsonProperty("to", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> To { get; set; }
 
         /// <summary>
         /// Getter for from
         /// </summary>
-        [JsonProperty("from")]
+        [JsonProperty("from", NullValueHandling = NullValueHandling.Ignore)]
         public string From { get; set; }
 
         /// <summary>
         /// Getter for media
         /// </summary>
-        [JsonProperty("media")]
+        [JsonProperty("media", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Media { get; set; }
 
         /// <summary>
         /// Getter for text
         /// </summary>
-        [JsonProperty("text")]
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
 
         /// <summary>
         /// Getter for tag
         /// </summary>
-        [JsonProperty("tag")]
+        [JsonProperty("tag", NullValueHandling = NullValueHandling.Ignore)]
         public string Tag { get; set; }
 
     }

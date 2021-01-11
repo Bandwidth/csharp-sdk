@@ -63,111 +63,111 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Getter for applicationId
         /// </summary>
-        [JsonProperty("applicationId")]
+        [JsonProperty("applicationId", NullValueHandling = NullValueHandling.Ignore)]
         public string ApplicationId { get; set; }
 
         /// <summary>
         /// Getter for accountId
         /// </summary>
-        [JsonProperty("accountId")]
+        [JsonProperty("accountId", NullValueHandling = NullValueHandling.Ignore)]
         public string AccountId { get; set; }
 
         /// <summary>
         /// Getter for callId
         /// </summary>
-        [JsonProperty("callId")]
+        [JsonProperty("callId", NullValueHandling = NullValueHandling.Ignore)]
         public string CallId { get; set; }
 
         /// <summary>
         /// Getter for parentCallId
         /// </summary>
-        [JsonProperty("parentCallId")]
+        [JsonProperty("parentCallId", NullValueHandling = NullValueHandling.Ignore)]
         public string ParentCallId { get; set; }
 
         /// <summary>
         /// Getter for recordingId
         /// </summary>
-        [JsonProperty("recordingId")]
+        [JsonProperty("recordingId", NullValueHandling = NullValueHandling.Ignore)]
         public string RecordingId { get; set; }
 
         /// <summary>
         /// Getter for to
         /// </summary>
-        [JsonProperty("to")]
+        [JsonProperty("to", NullValueHandling = NullValueHandling.Ignore)]
         public string To { get; set; }
 
         /// <summary>
         /// Getter for from
         /// </summary>
-        [JsonProperty("from")]
+        [JsonProperty("from", NullValueHandling = NullValueHandling.Ignore)]
         public string From { get; set; }
 
         /// <summary>
         /// Getter for transferCallerId
         /// </summary>
-        [JsonProperty("transferCallerId")]
+        [JsonProperty("transferCallerId", NullValueHandling = NullValueHandling.Ignore)]
         public string TransferCallerId { get; set; }
 
         /// <summary>
         /// Getter for transferTo
         /// </summary>
-        [JsonProperty("transferTo")]
+        [JsonProperty("transferTo", NullValueHandling = NullValueHandling.Ignore)]
         public string TransferTo { get; set; }
 
         /// <summary>
         /// Format is ISO-8601
         /// </summary>
-        [JsonProperty("duration")]
+        [JsonProperty("duration", NullValueHandling = NullValueHandling.Ignore)]
         public string Duration { get; set; }
 
         /// <summary>
         /// Getter for direction
         /// </summary>
-        [JsonProperty("direction", ItemConverterType = typeof(StringValuedEnumConverter))]
+        [JsonProperty("direction", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
         public Models.DirectionEnum? Direction { get; set; }
 
         /// <summary>
         /// Getter for channels
         /// </summary>
-        [JsonProperty("channels")]
+        [JsonProperty("channels", NullValueHandling = NullValueHandling.Ignore)]
         public int? Channels { get; set; }
 
         /// <summary>
         /// Getter for startTime
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("startTime")]
+        [JsonProperty("startTime", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? StartTime { get; set; }
 
         /// <summary>
         /// Getter for endTime
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("endTime")]
+        [JsonProperty("endTime", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? EndTime { get; set; }
 
         /// <summary>
         /// Getter for fileFormat
         /// </summary>
-        [JsonProperty("fileFormat", ItemConverterType = typeof(StringValuedEnumConverter))]
+        [JsonProperty("fileFormat", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
         public Models.FileFormatEnum? FileFormat { get; set; }
 
         /// <summary>
         /// Getter for status
         /// </summary>
-        [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter))]
+        [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
         public Models.Status1Enum? Status { get; set; }
 
         /// <summary>
         /// Getter for mediaUrl
         /// </summary>
-        [JsonProperty("mediaUrl")]
+        [JsonProperty("mediaUrl", NullValueHandling = NullValueHandling.Ignore)]
         public string MediaUrl { get; set; }
 
         /// <summary>
         /// Getter for transcription
         /// </summary>
-        [JsonProperty("transcription")]
+        [JsonProperty("transcription", NullValueHandling = NullValueHandling.Ignore)]
         public Models.Transcription Transcription { get; set; }
 
     }

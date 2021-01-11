@@ -39,38 +39,38 @@ namespace Bandwidth.Standard.WebRtc.Models
         /// <summary>
         /// Unique id of the participant
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; set; }
 
         /// <summary>
         /// Full callback url to use for notifications about this participant
         /// </summary>
-        [JsonProperty("callbackUrl")]
+        [JsonProperty("callbackUrl", NullValueHandling = NullValueHandling.Ignore)]
         public string CallbackUrl { get; set; }
 
         /// <summary>
         /// Defines if this participant can publish audio or video
         /// </summary>
-        [JsonProperty("publishPermissions", ItemConverterType = typeof(StringValuedEnumConverter))]
+        [JsonProperty("publishPermissions", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
         public List<Models.PublishPermissionEnum> PublishPermissions { get; set; }
 
         /// <summary>
         /// List of session ids this participant is associated with
         /// Capped to one
         /// </summary>
-        [JsonProperty("sessions")]
+        [JsonProperty("sessions", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Sessions { get; set; }
 
         /// <summary>
         /// Getter for subscriptions
         /// </summary>
-        [JsonProperty("subscriptions")]
+        [JsonProperty("subscriptions", NullValueHandling = NullValueHandling.Ignore)]
         public Models.Subscriptions Subscriptions { get; set; }
 
         /// <summary>
         /// User defined tag to associate with the participant
         /// </summary>
-        [JsonProperty("tag")]
+        [JsonProperty("tag", NullValueHandling = NullValueHandling.Ignore)]
         public string Tag { get; set; }
 
     }

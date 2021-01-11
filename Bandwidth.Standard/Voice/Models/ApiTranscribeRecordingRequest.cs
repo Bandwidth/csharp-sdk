@@ -39,37 +39,37 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Getter for callbackUrl
         /// </summary>
-        [JsonProperty("callbackUrl")]
+        [JsonProperty("callbackUrl", NullValueHandling = NullValueHandling.Ignore)]
         public string CallbackUrl { get; set; }
 
         /// <summary>
         /// Getter for callbackMethod
         /// </summary>
-        [JsonProperty("callbackMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
+        [JsonProperty("callbackMethod", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
         public Models.CallbackMethodEnum? CallbackMethod { get; set; }
 
         /// <summary>
         /// Getter for username
         /// </summary>
-        [JsonProperty("username")]
+        [JsonProperty("username", NullValueHandling = NullValueHandling.Ignore)]
         public string Username { get; set; }
 
         /// <summary>
         /// Getter for password
         /// </summary>
-        [JsonProperty("password")]
+        [JsonProperty("password", NullValueHandling = NullValueHandling.Ignore)]
         public string Password { get; set; }
 
         /// <summary>
         /// Getter for tag
         /// </summary>
-        [JsonProperty("tag")]
+        [JsonProperty("tag", NullValueHandling = NullValueHandling.Ignore)]
         public string Tag { get; set; }
 
         /// <summary>
         /// Getter for callbackTimeout
         /// </summary>
-        [JsonProperty("callbackTimeout")]
+        [JsonProperty("callbackTimeout", NullValueHandling = NullValueHandling.Ignore)]
         public double? CallbackTimeout { get; set; }
 
     }

@@ -31,13 +31,13 @@ namespace Bandwidth.Standard.Messaging.Models
         /// <summary>
         /// Getter for key
         /// </summary>
-        [JsonProperty("key")]
+        [JsonProperty("key", NullValueHandling = NullValueHandling.Ignore)]
         public string Key { get; set; }
 
         /// <summary>
         /// Getter for value
         /// </summary>
-        [JsonProperty("value")]
+        [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
         public string MValue { get; set; }
 
     }

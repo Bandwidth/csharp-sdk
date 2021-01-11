@@ -5,10 +5,16 @@ using Newtonsoft.Json.Converters;
 
 namespace Bandwidth.Standard.Utilities
 {
+    /// <summary>
+    /// Extends from DateTimeConverterBase, uses unix DateTime format.
+    /// </summary>
     public class UnixDateTimeConverter : DateTimeConverterBase
     {
         private DateTimeStyles _dateTimeStyles = DateTimeStyles.RoundtripKind;
 
+        /// <summary>
+        /// Getter/Setter for DateTimeStyles.
+        /// </summary>
         public DateTimeStyles DateTimeStyles
         {
             get { return _dateTimeStyles; }

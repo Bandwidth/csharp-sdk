@@ -98,7 +98,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// Getter for startTime
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("startTime")]
+        [JsonProperty("startTime", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? StartTime { get; set; }
 
         /// <summary>
@@ -110,13 +110,13 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Getter for callTimeout
         /// </summary>
-        [JsonProperty("callTimeout")]
+        [JsonProperty("callTimeout", NullValueHandling = NullValueHandling.Ignore)]
         public double? CallTimeout { get; set; }
 
         /// <summary>
         /// Getter for callbackTimeout
         /// </summary>
-        [JsonProperty("callbackTimeout")]
+        [JsonProperty("callbackTimeout", NullValueHandling = NullValueHandling.Ignore)]
         public double? CallbackTimeout { get; set; }
 
         /// <summary>
@@ -134,19 +134,19 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Getter for answerFallbackUrl
         /// </summary>
-        [JsonProperty("answerFallbackUrl")]
+        [JsonProperty("answerFallbackUrl", NullValueHandling = NullValueHandling.Ignore)]
         public string AnswerFallbackUrl { get; set; }
 
         /// <summary>
         /// Getter for answerFallbackMethod
         /// </summary>
-        [JsonProperty("answerFallbackMethod", ItemConverterType = typeof(StringValuedEnumConverter))]
+        [JsonProperty("answerFallbackMethod", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
         public Models.AnswerFallbackMethodEnum? AnswerFallbackMethod { get; set; }
 
         /// <summary>
         /// Getter for disconnectUrl
         /// </summary>
-        [JsonProperty("disconnectUrl")]
+        [JsonProperty("disconnectUrl", NullValueHandling = NullValueHandling.Ignore)]
         public string DisconnectUrl { get; set; }
 
         /// <summary>
@@ -158,31 +158,31 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Getter for username
         /// </summary>
-        [JsonProperty("username")]
+        [JsonProperty("username", NullValueHandling = NullValueHandling.Ignore)]
         public string Username { get; set; }
 
         /// <summary>
         /// Getter for password
         /// </summary>
-        [JsonProperty("password")]
+        [JsonProperty("password", NullValueHandling = NullValueHandling.Ignore)]
         public string Password { get; set; }
 
         /// <summary>
         /// Getter for fallbackUsername
         /// </summary>
-        [JsonProperty("fallbackUsername")]
+        [JsonProperty("fallbackUsername", NullValueHandling = NullValueHandling.Ignore)]
         public string FallbackUsername { get; set; }
 
         /// <summary>
         /// Getter for fallbackPassword
         /// </summary>
-        [JsonProperty("fallbackPassword")]
+        [JsonProperty("fallbackPassword", NullValueHandling = NullValueHandling.Ignore)]
         public string FallbackPassword { get; set; }
 
         /// <summary>
         /// Getter for tag
         /// </summary>
-        [JsonProperty("tag")]
+        [JsonProperty("tag", NullValueHandling = NullValueHandling.Ignore)]
         public string Tag { get; set; }
 
     }

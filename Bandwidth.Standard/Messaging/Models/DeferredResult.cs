@@ -31,13 +31,13 @@ namespace Bandwidth.Standard.Messaging.Models
         /// <summary>
         /// Getter for result
         /// </summary>
-        [JsonProperty("result")]
+        [JsonProperty("result", NullValueHandling = NullValueHandling.Ignore)]
         public object Result { get; set; }
 
         /// <summary>
         /// Getter for setOrExpired
         /// </summary>
-        [JsonProperty("setOrExpired")]
+        [JsonProperty("setOrExpired", NullValueHandling = NullValueHandling.Ignore)]
         public bool? SetOrExpired { get; set; }
 
     }

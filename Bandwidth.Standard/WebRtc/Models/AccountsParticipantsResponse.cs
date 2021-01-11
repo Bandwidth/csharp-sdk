@@ -31,14 +31,14 @@ namespace Bandwidth.Standard.WebRtc.Models
         /// <summary>
         /// A participant object
         /// </summary>
-        [JsonProperty("participant")]
+        [JsonProperty("participant", NullValueHandling = NullValueHandling.Ignore)]
         public Models.Participant Participant { get; set; }
 
         /// <summary>
         /// Auth token for the returned participant
         /// This should be passed to the participant so that they can connect to the platform
         /// </summary>
-        [JsonProperty("token")]
+        [JsonProperty("token", NullValueHandling = NullValueHandling.Ignore)]
         public string Token { get; set; }
 
     }

@@ -4,6 +4,9 @@ using System.IO;
 
 namespace Bandwidth.Standard.Http.Response
 {
+    /// <summary>
+    /// HttpResponse stores necessary information about the http response.
+    /// </summary>
     public class HttpResponse
     {
         /// <summary>
@@ -14,7 +17,7 @@ namespace Bandwidth.Standard.Http.Response
         /// <summary>
         /// Headers of the http response.
         /// </summary>
-        public Dictionary<string,string> Headers { get; }
+        public Dictionary<string, string> Headers { get; }
 
         /// <summary>
         /// Stream of the body.
@@ -24,7 +27,7 @@ namespace Bandwidth.Standard.Http.Response
         /// <summary>
         /// Initializes a new HttpResponse object with the specified parameters.
         /// </summary>
-        public HttpResponse(int statusCode, Dictionary<string,string> headers, Stream rawBody)
+        public HttpResponse(int statusCode, Dictionary<string, string> headers, Stream rawBody)
         {
             this.StatusCode = statusCode;
             this.Headers = headers;

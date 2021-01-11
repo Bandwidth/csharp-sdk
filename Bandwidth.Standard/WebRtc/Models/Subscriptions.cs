@@ -38,7 +38,7 @@ namespace Bandwidth.Standard.WebRtc.Models
         /// <summary>
         /// Subset of participants to subscribe to in the session. Optional.
         /// </summary>
-        [JsonProperty("participants")]
+        [JsonProperty("participants", NullValueHandling = NullValueHandling.Ignore)]
         public List<Models.ParticipantSubscription> Participants { get; set; }
 
     }
