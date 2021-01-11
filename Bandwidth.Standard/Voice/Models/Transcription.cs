@@ -35,25 +35,25 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Getter for id
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; set; }
 
         /// <summary>
         /// Getter for status
         /// </summary>
-        [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter))]
+        [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
         public Models.Status3Enum? Status { get; set; }
 
         /// <summary>
         /// Getter for completedTime
         /// </summary>
-        [JsonProperty("completedTime")]
+        [JsonProperty("completedTime", NullValueHandling = NullValueHandling.Ignore)]
         public string CompletedTime { get; set; }
 
         /// <summary>
         /// Getter for url
         /// </summary>
-        [JsonProperty("url")]
+        [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
 
     }

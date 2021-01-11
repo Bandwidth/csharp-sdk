@@ -17,22 +17,21 @@ using Bandwidth.Standard.Utilities;
 
 namespace Bandwidth.Standard.Voice.Models
 {
-    public class ApiModifyCallRequest 
+    public class ApiModifyConferenceRequest 
     {
-        public ApiModifyCallRequest() { }
+        public ApiModifyConferenceRequest() { }
 
-        public ApiModifyCallRequest(string redirectUrl,
-            Models.State1Enum? state = null,
+        public ApiModifyConferenceRequest(Models.StatusEnum? status = null,
+            string redirectUrl = null,
             string redirectFallbackUrl = null,
             Models.RedirectMethodEnum? redirectMethod = null,
             Models.RedirectFallbackMethodEnum? redirectFallbackMethod = null,
             string username = null,
             string password = null,
             string fallbackUsername = null,
-            string fallbackPassword = null,
-            string tag = null)
+            string fallbackPassword = null)
         {
-            State = state;
+            Status = status;
             RedirectUrl = redirectUrl;
             RedirectFallbackUrl = redirectFallbackUrl;
             RedirectMethod = redirectMethod;
@@ -41,19 +40,18 @@ namespace Bandwidth.Standard.Voice.Models
             Password = password;
             FallbackUsername = fallbackUsername;
             FallbackPassword = fallbackPassword;
-            Tag = tag;
         }
 
         /// <summary>
-        /// Getter for state
+        /// Getter for status
         /// </summary>
-        [JsonProperty("state", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
-        public Models.State1Enum? State { get; set; }
+        [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
+        public Models.StatusEnum? Status { get; set; }
 
         /// <summary>
         /// Getter for redirectUrl
         /// </summary>
-        [JsonProperty("redirectUrl")]
+        [JsonProperty("redirectUrl", NullValueHandling = NullValueHandling.Ignore)]
         public string RedirectUrl { get; set; }
 
         /// <summary>
@@ -97,12 +95,6 @@ namespace Bandwidth.Standard.Voice.Models
         /// </summary>
         [JsonProperty("fallbackPassword", NullValueHandling = NullValueHandling.Ignore)]
         public string FallbackPassword { get; set; }
-
-        /// <summary>
-        /// Getter for tag
-        /// </summary>
-        [JsonProperty("tag", NullValueHandling = NullValueHandling.Ignore)]
-        public string Tag { get; set; }
 
     }
 }

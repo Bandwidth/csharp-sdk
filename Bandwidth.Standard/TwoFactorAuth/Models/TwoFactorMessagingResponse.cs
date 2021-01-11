@@ -29,7 +29,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Models
         /// <summary>
         /// Getter for messageId
         /// </summary>
-        [JsonProperty("messageId")]
+        [JsonProperty("messageId", NullValueHandling = NullValueHandling.Ignore)]
         public string MessageId { get; set; }
 
     }

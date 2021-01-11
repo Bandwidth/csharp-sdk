@@ -29,7 +29,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Models
         /// <summary>
         /// Getter for valid
         /// </summary>
-        [JsonProperty("valid")]
+        [JsonProperty("valid", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Valid { get; set; }
 
     }

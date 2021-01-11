@@ -39,37 +39,37 @@ namespace Bandwidth.Standard.Messaging.Models
         /// <summary>
         /// Getter for applicationId
         /// </summary>
-        [JsonProperty("applicationId")]
+        [JsonProperty("applicationId", NullValueHandling = NullValueHandling.Ignore)]
         public string ApplicationId { get; set; }
 
         /// <summary>
         /// Getter for to
         /// </summary>
-        [JsonProperty("to")]
+        [JsonProperty("to", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> To { get; set; }
 
         /// <summary>
         /// Getter for from
         /// </summary>
-        [JsonProperty("from")]
+        [JsonProperty("from", NullValueHandling = NullValueHandling.Ignore)]
         public string From { get; set; }
 
         /// <summary>
         /// Getter for text
         /// </summary>
-        [JsonProperty("text")]
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
 
         /// <summary>
         /// Getter for media
         /// </summary>
-        [JsonProperty("media")]
+        [JsonProperty("media", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Media { get; set; }
 
         /// <summary>
         /// Getter for tag
         /// </summary>
-        [JsonProperty("tag")]
+        [JsonProperty("tag", NullValueHandling = NullValueHandling.Ignore)]
         public string Tag { get; set; }
 
     }

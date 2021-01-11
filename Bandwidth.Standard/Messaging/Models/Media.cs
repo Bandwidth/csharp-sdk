@@ -47,61 +47,61 @@ namespace Bandwidth.Standard.Messaging.Models
         /// <summary>
         /// Getter for inputStream
         /// </summary>
-        [JsonProperty("inputStream")]
+        [JsonProperty("inputStream", NullValueHandling = NullValueHandling.Ignore)]
         public object InputStream { get; set; }
 
         /// <summary>
         /// Getter for content
         /// </summary>
-        [JsonProperty("content")]
+        [JsonProperty("content", NullValueHandling = NullValueHandling.Ignore)]
         public string Content { get; set; }
 
         /// <summary>
         /// Getter for url
         /// </summary>
-        [JsonProperty("url")]
+        [JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
         public string Url { get; set; }
 
         /// <summary>
         /// Getter for contentLength
         /// </summary>
-        [JsonProperty("contentLength")]
+        [JsonProperty("contentLength", NullValueHandling = NullValueHandling.Ignore)]
         public string ContentLength { get; set; }
 
         /// <summary>
         /// Getter for contentType
         /// </summary>
-        [JsonProperty("contentType")]
+        [JsonProperty("contentType", NullValueHandling = NullValueHandling.Ignore)]
         public string ContentType { get; set; }
 
         /// <summary>
         /// Getter for tags
         /// </summary>
-        [JsonProperty("tags")]
+        [JsonProperty("tags", NullValueHandling = NullValueHandling.Ignore)]
         public List<Models.Tag> Tags { get; set; }
 
         /// <summary>
         /// Getter for userId
         /// </summary>
-        [JsonProperty("userId")]
+        [JsonProperty("userId", NullValueHandling = NullValueHandling.Ignore)]
         public string UserId { get; set; }
 
         /// <summary>
         /// Getter for mediaName
         /// </summary>
-        [JsonProperty("mediaName")]
+        [JsonProperty("mediaName", NullValueHandling = NullValueHandling.Ignore)]
         public string MediaName { get; set; }
 
         /// <summary>
         /// Getter for mediaId
         /// </summary>
-        [JsonProperty("mediaId")]
+        [JsonProperty("mediaId", NullValueHandling = NullValueHandling.Ignore)]
         public string MediaId { get; set; }
 
         /// <summary>
         /// Getter for cacheControl
         /// </summary>
-        [JsonProperty("cacheControl")]
+        [JsonProperty("cacheControl", NullValueHandling = NullValueHandling.Ignore)]
         public string CacheControl { get; set; }
 
     }

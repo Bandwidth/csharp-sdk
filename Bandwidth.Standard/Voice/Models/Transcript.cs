@@ -31,13 +31,13 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Getter for text
         /// </summary>
-        [JsonProperty("text")]
+        [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
 
         /// <summary>
         /// Getter for confidence
         /// </summary>
-        [JsonProperty("confidence")]
+        [JsonProperty("confidence", NullValueHandling = NullValueHandling.Ignore)]
         public double? Confidence { get; set; }
 
     }
