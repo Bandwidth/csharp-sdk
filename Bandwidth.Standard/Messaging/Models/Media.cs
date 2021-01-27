@@ -81,7 +81,7 @@ namespace Bandwidth.Standard.Messaging.Models
         public List<Models.Tag> Tags { get; set; }
 
         /// <summary>
-        /// Getter for userId
+        /// User's account ID
         /// </summary>
         [JsonProperty("userId", NullValueHandling = NullValueHandling.Ignore)]
         public string UserId { get; set; }

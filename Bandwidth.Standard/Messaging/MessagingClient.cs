@@ -26,7 +26,7 @@ namespace Bandwidth.Standard.Messaging
         {
             this.bandwidthClient = bandwidthClient;
             client = new Lazy<APIController>(
-                () => new APIController(this.bandwidthClient, this.bandwidthClient.httpClient, this.bandwidthClient.authManagers));
+                () => new APIController(this.bandwidthClient, this.bandwidthClient.httpClient, this.bandwidthClient.authManagers, this.bandwidthClient.httpCallBack));
 
         }
         #endregion

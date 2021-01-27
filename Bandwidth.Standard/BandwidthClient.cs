@@ -27,6 +27,7 @@ namespace Bandwidth.Standard
     {
         internal readonly IDictionary<string, IAuthManager> authManagers;
         internal readonly IHttpClient httpClient;
+        internal readonly HttpCallBack httpCallBack;
         private readonly MessagingBasicAuthManager messagingBasicAuthManager;
         private readonly TwoFactorAuthBasicAuthManager twoFactorAuthBasicAuthManager;
         private readonly VoiceBasicAuthManager voiceBasicAuthManager;
@@ -116,11 +117,12 @@ namespace Bandwidth.Standard
                 string voiceBasicAuthUserName, string voiceBasicAuthPassword,
                 string webRtcBasicAuthUserName, string webRtcBasicAuthPassword,
                 IDictionary<string, IAuthManager> authManagers, IHttpClient httpClient,
-                IHttpClientConfiguration httpClientConfiguration)
+                HttpCallBack httpCallBack, IHttpClientConfiguration httpClientConfiguration)
         {
             Timeout = timeout;
             Environment = environment;
             BaseUrl = baseUrl;
+            this.httpCallBack = httpCallBack;
             this.httpClient = httpClient;
             this.authManagers = (authManagers == null) ? new Dictionary<string, IAuthManager>() : new Dictionary<string, IAuthManager>(authManagers);
             HttpClientConfiguration = httpClientConfiguration;
@@ -284,6 +286,7 @@ namespace Bandwidth.Standard
                 .TwoFactorAuthBasicAuthCredentials(twoFactorAuthBasicAuthManager.BasicAuthUserName, twoFactorAuthBasicAuthManager.BasicAuthPassword)
                 .VoiceBasicAuthCredentials(voiceBasicAuthManager.BasicAuthUserName, voiceBasicAuthManager.BasicAuthPassword)
                 .WebRtcBasicAuthCredentials(webRtcBasicAuthManager.BasicAuthUserName, webRtcBasicAuthManager.BasicAuthPassword)
+                .HttpCallBack(httpCallBack)
                 .HttpClient(httpClient)
                 .AuthManagers(authManagers);
 
@@ -307,6 +310,7 @@ namespace Bandwidth.Standard
             private bool createCustomHttpClient = false;
             private HttpClientConfiguration httpClientConfig = new HttpClientConfiguration();
             private IHttpClient httpClient;
+            private HttpCallBack httpCallBack;
 
             /// <summary>
             /// Credentials setter for MessagingBasicAuth
@@ -395,6 +399,15 @@ namespace Bandwidth.Standard
             }
 
             /// <summary>
+            /// Sets the HttpCallBack for the Builder.
+            /// </summary>
+            internal Builder HttpCallBack(HttpCallBack httpCallBack)
+            {
+                this.httpCallBack = httpCallBack;
+                return this;
+            }
+
+            /// <summary>
             /// Creates an object of the BandwidthClient using the values provided for the builder.
             /// </summary>
             public BandwidthClient Build()
@@ -411,7 +424,7 @@ namespace Bandwidth.Standard
                 return new BandwidthClient(timeout, environment, baseUrl, messagingBasicAuthUserName, messagingBasicAuthPassword,
                         twoFactorAuthBasicAuthUserName, twoFactorAuthBasicAuthPassword, voiceBasicAuthUserName,
                         voiceBasicAuthPassword, webRtcBasicAuthUserName, webRtcBasicAuthPassword, authManagers, httpClient,
-                        httpClientConfig);
+                        httpCallBack, httpClientConfig);
             }
         }
 

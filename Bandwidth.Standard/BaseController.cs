@@ -38,17 +38,23 @@ namespace Bandwidth.Standard
         /// AuthManager instance
         /// </summary>
         internal IDictionary<string, IAuthManager> authManagers;
-
+        /// <summary>
+        /// HttpCallBack instance
+        /// </summary>
+        internal HttpCallBack HttpCallBack { get; }
         /// <summary>
         /// Contructor to initialize the controller with the specified configuration and HTTP callback
         /// </summary>
         /// <param name="config">Configuration for the API</param>
+        /// <param name="httpCallBack">HTTP callback to catch before/after HTTP request/response events</param>
+
         internal BaseController(IConfiguration config, IHttpClient httpClient,
-            IDictionary<string, IAuthManager> authManagers)
+            IDictionary<string, IAuthManager> authManagers, HttpCallBack httpCallBack = null)
         {
             this.config = config;
             this.httpClient = httpClient;
             this.authManagers = authManagers;
+            this.HttpCallBack = httpCallBack;
         }
 
         /// <summary>

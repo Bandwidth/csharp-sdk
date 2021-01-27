@@ -25,15 +25,15 @@ namespace Bandwidth.Standard.Messaging.Controllers
 {
     public class APIController : BaseController
     {
-        internal APIController(IConfiguration config, IHttpClient httpClient, IDictionary<string, IAuthManager> authManagers) :
-            base(config, httpClient, authManagers)
+        internal APIController(IConfiguration config, IHttpClient httpClient, IDictionary<string, IAuthManager> authManagers, HttpCallBack httpCallBack = null) :
+            base(config, httpClient, authManagers, httpCallBack)
         { }
 
         /// <summary>
         /// listMedia
         /// </summary>
-        /// <param name="userId">Required parameter: Example: </param>
-        /// <param name="continuationToken">Optional parameter: Example: </param>
+        /// <param name="userId">Required parameter: User's account ID</param>
+        /// <param name="continuationToken">Optional parameter: Continuation token used to retrieve subsequent media.</param>
         /// <return>Returns the ApiResponse<List<Models.Media>> response from the API call</return>
         public ApiResponse<List<Models.Media>> ListMedia(string userId, string continuationToken = null)
         {
@@ -45,8 +45,8 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <summary>
         /// listMedia
         /// </summary>
-        /// <param name="userId">Required parameter: Example: </param>
-        /// <param name="continuationToken">Optional parameter: Example: </param>
+        /// <param name="userId">Required parameter: User's account ID</param>
+        /// <param name="continuationToken">Optional parameter: Continuation token used to retrieve subsequent media.</param>
         /// <return>Returns the ApiResponse<List<Models.Media>> response from the API call</return>
         public async Task<ApiResponse<List<Models.Media>>> ListMediaAsync(string userId, string continuationToken = null, CancellationToken cancellationToken = default)
         {
@@ -73,12 +73,21 @@ namespace Bandwidth.Standard.Messaging.Controllers
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnBeforeHttpRequestEventHandler(GetClientInstance(), _request);
+            }
 
             _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
             HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnAfterHttpResponseEventHandler(GetClientInstance(), _response);
+            }
+
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
@@ -122,8 +131,8 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <summary>
         /// getMedia
         /// </summary>
-        /// <param name="userId">Required parameter: Example: </param>
-        /// <param name="mediaId">Required parameter: Example: </param>
+        /// <param name="userId">Required parameter: User's account ID</param>
+        /// <param name="mediaId">Required parameter: Media ID to retrieve</param>
         /// <return>Returns the ApiResponse<Stream> response from the API call</return>
         public ApiResponse<Stream> GetMedia(string userId, string mediaId)
         {
@@ -135,8 +144,8 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <summary>
         /// getMedia
         /// </summary>
-        /// <param name="userId">Required parameter: Example: </param>
-        /// <param name="mediaId">Required parameter: Example: </param>
+        /// <param name="userId">Required parameter: User's account ID</param>
+        /// <param name="mediaId">Required parameter: Media ID to retrieve</param>
         /// <return>Returns the ApiResponse<Stream> response from the API call</return>
         public async Task<ApiResponse<Stream>> GetMediaAsync(string userId, string mediaId, CancellationToken cancellationToken = default)
         {
@@ -162,12 +171,21 @@ namespace Bandwidth.Standard.Messaging.Controllers
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnBeforeHttpRequestEventHandler(GetClientInstance(), _request);
+            }
 
             _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
             HttpResponse _response = await GetClientInstance().ExecuteAsBinaryAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnAfterHttpResponseEventHandler(GetClientInstance(), _response);
+            }
+
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
@@ -211,12 +229,12 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <summary>
         /// uploadMedia
         /// </summary>
-        /// <param name="userId">Required parameter: Example: </param>
-        /// <param name="mediaId">Required parameter: Example: </param>
-        /// <param name="contentLength">Required parameter: Example: </param>
+        /// <param name="userId">Required parameter: User's account ID</param>
+        /// <param name="mediaId">Required parameter: The user supplied custom media ID</param>
+        /// <param name="contentLength">Required parameter: The size of the entity-body</param>
         /// <param name="body">Required parameter: Example: </param>
-        /// <param name="contentType">Optional parameter: Example: application/octet-stream</param>
-        /// <param name="cacheControl">Optional parameter: Example: </param>
+        /// <param name="contentType">Optional parameter: The media type of the entity-body</param>
+        /// <param name="cacheControl">Optional parameter: General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.</param>
         /// <return>Returns the void response from the API call</return>
         public void UploadMedia(
                 string userId,
@@ -233,12 +251,12 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <summary>
         /// uploadMedia
         /// </summary>
-        /// <param name="userId">Required parameter: Example: </param>
-        /// <param name="mediaId">Required parameter: Example: </param>
-        /// <param name="contentLength">Required parameter: Example: </param>
+        /// <param name="userId">Required parameter: User's account ID</param>
+        /// <param name="mediaId">Required parameter: The user supplied custom media ID</param>
+        /// <param name="contentLength">Required parameter: The size of the entity-body</param>
         /// <param name="body">Required parameter: Example: </param>
-        /// <param name="contentType">Optional parameter: Example: application/octet-stream</param>
-        /// <param name="cacheControl">Optional parameter: Example: </param>
+        /// <param name="contentType">Optional parameter: The media type of the entity-body</param>
+        /// <param name="cacheControl">Optional parameter: General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.</param>
         /// <return>Returns the void response from the API call</return>
         public async Task UploadMediaAsync(
                 string userId,
@@ -276,12 +294,21 @@ namespace Bandwidth.Standard.Messaging.Controllers
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().PutBody(_queryBuilder.ToString(), _headers, _body);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnBeforeHttpRequestEventHandler(GetClientInstance(), _request);
+            }
 
             _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
             HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnAfterHttpResponseEventHandler(GetClientInstance(), _response);
+            }
+
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
@@ -322,8 +349,8 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <summary>
         /// deleteMedia
         /// </summary>
-        /// <param name="userId">Required parameter: Example: </param>
-        /// <param name="mediaId">Required parameter: Example: </param>
+        /// <param name="userId">Required parameter: User's account ID</param>
+        /// <param name="mediaId">Required parameter: The media ID to delete</param>
         /// <return>Returns the void response from the API call</return>
         public void DeleteMedia(string userId, string mediaId)
         {
@@ -334,8 +361,8 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <summary>
         /// deleteMedia
         /// </summary>
-        /// <param name="userId">Required parameter: Example: </param>
-        /// <param name="mediaId">Required parameter: Example: </param>
+        /// <param name="userId">Required parameter: User's account ID</param>
+        /// <param name="mediaId">Required parameter: The media ID to delete</param>
         /// <return>Returns the void response from the API call</return>
         public async Task DeleteMediaAsync(string userId, string mediaId, CancellationToken cancellationToken = default)
         {
@@ -361,12 +388,21 @@ namespace Bandwidth.Standard.Messaging.Controllers
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().Delete(_queryBuilder.ToString(), _headers, null);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnBeforeHttpRequestEventHandler(GetClientInstance(), _request);
+            }
 
             _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
             HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnAfterHttpResponseEventHandler(GetClientInstance(), _response);
+            }
+
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
@@ -405,12 +441,160 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
+        /// getMessages
+        /// </summary>
+        /// <param name="userId">Required parameter: User's account ID</param>
+        /// <param name="messageId">Optional parameter: The ID of the message to search for. Special characters need to be encoded using URL encoding</param>
+        /// <param name="sourceTn">Optional parameter: The phone number that sent the message</param>
+        /// <param name="destinationTn">Optional parameter: The phone number that received the message</param>
+        /// <param name="messageStatus">Optional parameter: The status of the message. One of RECEIVED, QUEUED, SENDING, SENT, FAILED, DELIVERED, DLR_EXPIRED</param>
+        /// <param name="errorCode">Optional parameter: The error code of the message</param>
+        /// <param name="fromDateTime">Optional parameter: The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.</param>
+        /// <param name="toDateTime">Optional parameter: The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.</param>
+        /// <param name="pageToken">Optional parameter: A base64 encoded value used for pagination of results</param>
+        /// <param name="limit">Optional parameter: The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000</param>
+        /// <return>Returns the ApiResponse<Models.BandwidthMessagesList> response from the API call</return>
+        public ApiResponse<Models.BandwidthMessagesList> GetMessages(
+                string userId,
+                string messageId = null,
+                string sourceTn = null,
+                string destinationTn = null,
+                string messageStatus = null,
+                int? errorCode = null,
+                string fromDateTime = null,
+                string toDateTime = null,
+                string pageToken = null,
+                int? limit = null)
+        {
+            Task<ApiResponse<Models.BandwidthMessagesList>> t = GetMessagesAsync(userId, messageId, sourceTn, destinationTn, messageStatus, errorCode, fromDateTime, toDateTime, pageToken, limit);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
+
+        /// <summary>
+        /// getMessages
+        /// </summary>
+        /// <param name="userId">Required parameter: User's account ID</param>
+        /// <param name="messageId">Optional parameter: The ID of the message to search for. Special characters need to be encoded using URL encoding</param>
+        /// <param name="sourceTn">Optional parameter: The phone number that sent the message</param>
+        /// <param name="destinationTn">Optional parameter: The phone number that received the message</param>
+        /// <param name="messageStatus">Optional parameter: The status of the message. One of RECEIVED, QUEUED, SENDING, SENT, FAILED, DELIVERED, DLR_EXPIRED</param>
+        /// <param name="errorCode">Optional parameter: The error code of the message</param>
+        /// <param name="fromDateTime">Optional parameter: The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.</param>
+        /// <param name="toDateTime">Optional parameter: The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.</param>
+        /// <param name="pageToken">Optional parameter: A base64 encoded value used for pagination of results</param>
+        /// <param name="limit">Optional parameter: The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000</param>
+        /// <return>Returns the ApiResponse<Models.BandwidthMessagesList> response from the API call</return>
+        public async Task<ApiResponse<Models.BandwidthMessagesList>> GetMessagesAsync(
+                string userId,
+                string messageId = null,
+                string sourceTn = null,
+                string destinationTn = null,
+                string messageStatus = null,
+                int? errorCode = null,
+                string fromDateTime = null,
+                string toDateTime = null,
+                string pageToken = null,
+                int? limit = null, CancellationToken cancellationToken = default)
+        {
+            //the base uri for api requests
+            string _baseUri = config.GetBaseUri(Server.MessagingDefault);
+
+            //prepare query string for API call
+            StringBuilder _queryBuilder = new StringBuilder(_baseUri);
+            _queryBuilder.Append("/users/{userId}/messages");
+
+            //process optional template parameters
+            ApiHelper.AppendUrlWithTemplateParameters(_queryBuilder, new Dictionary<string, object>()
+            {
+                { "userId", userId }
+            });
+
+            //prepare specfied query parameters
+            var _queryParameters = new Dictionary<string, object>()
+            {
+                { "messageId", messageId },
+                { "sourceTn", sourceTn },
+                { "destinationTn", destinationTn },
+                { "messageStatus", messageStatus },
+                { "errorCode", errorCode },
+                { "fromDateTime", fromDateTime },
+                { "toDateTime", toDateTime },
+                { "pageToken", pageToken },
+                { "limit", limit }
+            };
+
+            //append request with appropriate headers and parameters
+            var _headers = new Dictionary<string, string>()
+            {
+                { "user-agent", userAgent },
+                { "accept", "application/json" }
+            };
+
+            //prepare the API call request to fetch the response
+            HttpRequest _request = GetClientInstance().Get(_queryBuilder.ToString(), _headers, queryParameters: _queryParameters);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnBeforeHttpRequestEventHandler(GetClientInstance(), _request);
+            }
+
+            _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
+
+            //invoke request and get response
+            HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
+            HttpContext _context = new HttpContext(_request, _response);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnAfterHttpResponseEventHandler(GetClientInstance(), _response);
+            }
+
+
+            //Error handling using HTTP status codes
+            if (_response.StatusCode == 400)
+            {
+                throw new MessagingException("400 Request is malformed or invalid", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new MessagingException("401 The specified user does not have access to the account", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new MessagingException("403 The user does not have access to this API", _context);
+            }
+
+            if (_response.StatusCode == 404)
+            {
+                throw new MessagingException("404 Path not found", _context);
+            }
+
+            if (_response.StatusCode == 415)
+            {
+                throw new MessagingException("415 The content-type of the request is incorrect", _context);
+            }
+
+            if (_response.StatusCode == 429)
+            {
+                throw new MessagingException("429 The rate limit has been reached", _context);
+            }
+
+            //handle errors defined at the API level
+            base.ValidateResponse(_response, _context);
+
+            var _result = ApiHelper.JsonDeserialize<Models.BandwidthMessagesList>(_response.Body);
+            ApiResponse<Models.BandwidthMessagesList> apiResponse = new ApiResponse<Models.BandwidthMessagesList>(_response.StatusCode, _response.Headers, _result);
+            return apiResponse;
+        }
+
+        /// <summary>
         /// createMessage
         /// </summary>
-        /// <param name="userId">Required parameter: Example: </param>
-        /// <param name="body">Optional parameter: Example: </param>
+        /// <param name="userId">Required parameter: User's account ID</param>
+        /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the ApiResponse<Models.BandwidthMessage> response from the API call</return>
-        public ApiResponse<Models.BandwidthMessage> CreateMessage(string userId, Models.MessageRequest body = null)
+        public ApiResponse<Models.BandwidthMessage> CreateMessage(string userId, Models.MessageRequest body)
         {
             Task<ApiResponse<Models.BandwidthMessage>> t = CreateMessageAsync(userId, body);
             ApiHelper.RunTaskSynchronously(t);
@@ -420,10 +604,10 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <summary>
         /// createMessage
         /// </summary>
-        /// <param name="userId">Required parameter: Example: </param>
-        /// <param name="body">Optional parameter: Example: </param>
+        /// <param name="userId">Required parameter: User's account ID</param>
+        /// <param name="body">Required parameter: Example: </param>
         /// <return>Returns the ApiResponse<Models.BandwidthMessage> response from the API call</return>
-        public async Task<ApiResponse<Models.BandwidthMessage>> CreateMessageAsync(string userId, Models.MessageRequest body = null, CancellationToken cancellationToken = default)
+        public async Task<ApiResponse<Models.BandwidthMessage>> CreateMessageAsync(string userId, Models.MessageRequest body, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
             string _baseUri = config.GetBaseUri(Server.MessagingDefault);
@@ -451,12 +635,21 @@ namespace Bandwidth.Standard.Messaging.Controllers
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().PostBody(_queryBuilder.ToString(), _headers, _body);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnBeforeHttpRequestEventHandler(GetClientInstance(), _request);
+            }
 
             _request = await authManagers["messaging"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
             HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnAfterHttpResponseEventHandler(GetClientInstance(), _response);
+            }
+
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
