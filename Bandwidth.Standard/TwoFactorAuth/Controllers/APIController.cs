@@ -25,8 +25,8 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
 {
     public class APIController : BaseController
     {
-        internal APIController(IConfiguration config, IHttpClient httpClient, IDictionary<string, IAuthManager> authManagers) :
-            base(config, httpClient, authManagers)
+        internal APIController(IConfiguration config, IHttpClient httpClient, IDictionary<string, IAuthManager> authManagers, HttpCallBack httpCallBack = null) :
+            base(config, httpClient, authManagers, httpCallBack)
         { }
 
         /// <summary>
@@ -76,12 +76,21 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().PostBody(_queryBuilder.ToString(), _headers, _body);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnBeforeHttpRequestEventHandler(GetClientInstance(), _request);
+            }
 
             _request = await authManagers["twoFactorAuth"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
             HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnAfterHttpResponseEventHandler(GetClientInstance(), _response);
+            }
+
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
@@ -144,12 +153,21 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().PostBody(_queryBuilder.ToString(), _headers, _body);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnBeforeHttpRequestEventHandler(GetClientInstance(), _request);
+            }
 
             _request = await authManagers["twoFactorAuth"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
             HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnAfterHttpResponseEventHandler(GetClientInstance(), _response);
+            }
+
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
@@ -212,12 +230,21 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
 
             //prepare the API call request to fetch the response
             HttpRequest _request = GetClientInstance().PostBody(_queryBuilder.ToString(), _headers, _body);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnBeforeHttpRequestEventHandler(GetClientInstance(), _request);
+            }
 
             _request = await authManagers["twoFactorAuth"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
             HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
             HttpContext _context = new HttpContext(_request, _response);
+            if (HttpCallBack != null)
+            {
+                HttpCallBack.OnAfterHttpResponseEventHandler(GetClientInstance(), _response);
+            }
+
 
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)

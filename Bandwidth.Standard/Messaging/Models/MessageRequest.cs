@@ -21,9 +21,9 @@ namespace Bandwidth.Standard.Messaging.Models
     {
         public MessageRequest() { }
 
-        public MessageRequest(string applicationId = null,
-            List<string> to = null,
-            string from = null,
+        public MessageRequest(string applicationId,
+            List<string> to,
+            string from,
             string text = null,
             List<string> media = null,
             string tag = null)
@@ -37,37 +37,37 @@ namespace Bandwidth.Standard.Messaging.Models
         }
 
         /// <summary>
-        /// Getter for applicationId
+        /// The ID of the Application your from number is associated with in the Bandwidth Phone Number Dashboard.
         /// </summary>
-        [JsonProperty("applicationId", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("applicationId")]
         public string ApplicationId { get; set; }
 
         /// <summary>
-        /// Getter for to
+        /// The phone number(s) the message should be sent to in E164 format
         /// </summary>
-        [JsonProperty("to", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("to")]
         public List<string> To { get; set; }
 
         /// <summary>
-        /// Getter for from
+        /// One of your telephone numbers the message should come from in E164 format
         /// </summary>
-        [JsonProperty("from", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("from")]
         public string From { get; set; }
 
         /// <summary>
-        /// Getter for text
+        /// The contents of the text message. Must be 2048 characters or less.
         /// </summary>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
 
         /// <summary>
-        /// Getter for media
+        /// A list of URLs to include as media attachments as part of the message.
         /// </summary>
         [JsonProperty("media", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Media { get; set; }
 
         /// <summary>
-        /// Getter for tag
+        /// A custom string that will be included in callback events of the message. Max 1024 characters
         /// </summary>
         [JsonProperty("tag", NullValueHandling = NullValueHandling.Ignore)]
         public string Tag { get; set; }

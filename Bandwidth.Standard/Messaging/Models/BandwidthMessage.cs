@@ -47,67 +47,67 @@ namespace Bandwidth.Standard.Messaging.Models
         }
 
         /// <summary>
-        /// Getter for id
+        /// The id of the message
         /// </summary>
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Getter for owner
+        /// The Bandwidth phone number associated with the message
         /// </summary>
         [JsonProperty("owner", NullValueHandling = NullValueHandling.Ignore)]
         public string Owner { get; set; }
 
         /// <summary>
-        /// Getter for applicationId
+        /// The application ID associated with the message
         /// </summary>
         [JsonProperty("applicationId", NullValueHandling = NullValueHandling.Ignore)]
         public string ApplicationId { get; set; }
 
         /// <summary>
-        /// Getter for time
+        /// The datetime stamp of the message in ISO 8601
         /// </summary>
         [JsonProperty("time", NullValueHandling = NullValueHandling.Ignore)]
         public string Time { get; set; }
 
         /// <summary>
-        /// Getter for segmentCount
+        /// The number of segments the original message from the user is broken into before sending over to carrier networks
         /// </summary>
         [JsonProperty("segmentCount", NullValueHandling = NullValueHandling.Ignore)]
         public int? SegmentCount { get; set; }
 
         /// <summary>
-        /// Getter for direction
+        /// The direction of the message relative to Bandwidth. Can be in or out
         /// </summary>
         [JsonProperty("direction", NullValueHandling = NullValueHandling.Ignore)]
         public string Direction { get; set; }
 
         /// <summary>
-        /// Getter for to
+        /// The phone number recipients of the message
         /// </summary>
         [JsonProperty("to", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> To { get; set; }
 
         /// <summary>
-        /// Getter for from
+        /// The phone number the message was sent from
         /// </summary>
         [JsonProperty("from", NullValueHandling = NullValueHandling.Ignore)]
         public string From { get; set; }
 
         /// <summary>
-        /// Getter for media
+        /// The list of media URLs sent in the message
         /// </summary>
         [JsonProperty("media", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Media { get; set; }
 
         /// <summary>
-        /// Getter for text
+        /// The contents of the message
         /// </summary>
         [JsonProperty("text", NullValueHandling = NullValueHandling.Ignore)]
         public string Text { get; set; }
 
         /// <summary>
-        /// Getter for tag
+        /// The custom string set by the user
         /// </summary>
         [JsonProperty("tag", NullValueHandling = NullValueHandling.Ignore)]
         public string Tag { get; set; }
