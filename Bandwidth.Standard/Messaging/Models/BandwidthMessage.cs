@@ -31,7 +31,8 @@ namespace Bandwidth.Standard.Messaging.Models
             string from = null,
             List<string> media = null,
             string text = null,
-            string tag = null)
+            string tag = null,
+            string priority = null)
         {
             Id = id;
             Owner = owner;
@@ -44,6 +45,7 @@ namespace Bandwidth.Standard.Messaging.Models
             Media = media;
             Text = text;
             Tag = tag;
+            Priority = priority;
         }
 
         /// <summary>
@@ -111,6 +113,12 @@ namespace Bandwidth.Standard.Messaging.Models
         /// </summary>
         [JsonProperty("tag", NullValueHandling = NullValueHandling.Ignore)]
         public string Tag { get; set; }
+
+        /// <summary>
+        /// The priority specified by the user
+        /// </summary>
+        [JsonProperty("priority", NullValueHandling = NullValueHandling.Ignore)]
+        public string Priority { get; set; }
 
     }
 }
