@@ -23,14 +23,14 @@ using Bandwidth.Standard.TwoFactorAuth.Exceptions;
 
 namespace Bandwidth.Standard.TwoFactorAuth.Controllers
 {
-    public class APIController : BaseController
+    public class MFAController : BaseController
     {
-        internal APIController(IConfiguration config, IHttpClient httpClient, IDictionary<string, IAuthManager> authManagers, HttpCallBack httpCallBack = null) :
+        internal MFAController(IConfiguration config, IHttpClient httpClient, IDictionary<string, IAuthManager> authManagers, HttpCallBack httpCallBack = null) :
             base(config, httpClient, authManagers, httpCallBack)
         { }
 
         /// <summary>
-        /// Two-Factor authentication with Bandwidth Voice services
+        /// Allows a user to send a MFA code through a phone call
         /// </summary>
         /// <param name="accountId">Required parameter: Bandwidth Account ID with Voice service enabled</param>
         /// <param name="body">Required parameter: Example: </param>
@@ -43,7 +43,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
         }
 
         /// <summary>
-        /// Two-Factor authentication with Bandwidth Voice services
+        /// Allows a user to send a MFA code through a phone call
         /// </summary>
         /// <param name="accountId">Required parameter: Bandwidth Account ID with Voice service enabled</param>
         /// <param name="body">Required parameter: Example: </param>
@@ -95,7 +95,22 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new InvalidRequestException("client request error", _context);
+                throw new ErrorWithRequestException("If there is any issue with values passed in by the user", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new UnauthorizedRequestException("Authentication is either incorrect or not present", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ForbiddenRequestException("The user is not authorized to access this resource", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ErrorWithRequestException("An internal server error occurred", _context);
             }
 
             //handle errors defined at the API level
@@ -107,7 +122,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
         }
 
         /// <summary>
-        /// Two-Factor authentication with Bandwidth messaging services
+        /// Allows a user to send a MFA code through a text message (SMS)
         /// </summary>
         /// <param name="accountId">Required parameter: Bandwidth Account ID with Messaging service enabled</param>
         /// <param name="body">Required parameter: Example: </param>
@@ -120,7 +135,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
         }
 
         /// <summary>
-        /// Two-Factor authentication with Bandwidth messaging services
+        /// Allows a user to send a MFA code through a text message (SMS)
         /// </summary>
         /// <param name="accountId">Required parameter: Bandwidth Account ID with Messaging service enabled</param>
         /// <param name="body">Required parameter: Example: </param>
@@ -172,7 +187,22 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new InvalidRequestException("client request error", _context);
+                throw new ErrorWithRequestException("If there is any issue with values passed in by the user", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new UnauthorizedRequestException("Authentication is either incorrect or not present", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ForbiddenRequestException("The user is not authorized to access this resource", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ErrorWithRequestException("An internal server error occurred", _context);
             }
 
             //handle errors defined at the API level
@@ -184,7 +214,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
         }
 
         /// <summary>
-        /// Verify a previously sent two-factor authentication code
+        /// Allows a user to verify an MFA code
         /// </summary>
         /// <param name="accountId">Required parameter: Bandwidth Account ID with Two-Factor enabled</param>
         /// <param name="body">Required parameter: Example: </param>
@@ -197,7 +227,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
         }
 
         /// <summary>
-        /// Verify a previously sent two-factor authentication code
+        /// Allows a user to verify an MFA code
         /// </summary>
         /// <param name="accountId">Required parameter: Bandwidth Account ID with Two-Factor enabled</param>
         /// <param name="body">Required parameter: Example: </param>
@@ -249,7 +279,27 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new InvalidRequestException("client request error", _context);
+                throw new ErrorWithRequestException("If there is any issue with values passed in by the user", _context);
+            }
+
+            if (_response.StatusCode == 401)
+            {
+                throw new UnauthorizedRequestException("Authentication is either incorrect or not present", _context);
+            }
+
+            if (_response.StatusCode == 403)
+            {
+                throw new ForbiddenRequestException("The user is not authorized to access this resource", _context);
+            }
+
+            if (_response.StatusCode == 429)
+            {
+                throw new ErrorWithRequestException("The user has made too many bad requests and is temporarily locked out", _context);
+            }
+
+            if (_response.StatusCode == 500)
+            {
+                throw new ErrorWithRequestException("An internal server error occurred", _context);
             }
 
             //handle errors defined at the API level

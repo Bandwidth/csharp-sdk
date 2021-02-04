@@ -11,12 +11,12 @@ namespace Bandwidth.Standard.TwoFactorAuth
     public sealed class TwoFactorAuthClient
     {
         private readonly BandwidthClient bandwidthClient;
-        private readonly Lazy<APIController> client;
+        private readonly Lazy<MFAController> mFA;
 
         /// <summary>
-        /// Provides access to APIController controller
+        /// Provides access to MFAController controller
         /// </summary>
-        public APIController APIController => client.Value;
+        public MFAController MFAController => mFA.Value;
 
         #region Constructors
         /// <summary>
@@ -25,8 +25,8 @@ namespace Bandwidth.Standard.TwoFactorAuth
         public TwoFactorAuthClient(BandwidthClient bandwidthClient)
         {
             this.bandwidthClient = bandwidthClient;
-            client = new Lazy<APIController>(
-                () => new APIController(this.bandwidthClient, this.bandwidthClient.httpClient, this.bandwidthClient.authManagers));
+            mFA = new Lazy<MFAController>(
+                () => new MFAController(this.bandwidthClient, this.bandwidthClient.httpClient, this.bandwidthClient.authManagers));
 
         }
         #endregion

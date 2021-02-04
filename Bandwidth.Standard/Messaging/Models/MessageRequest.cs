@@ -26,7 +26,8 @@ namespace Bandwidth.Standard.Messaging.Models
             string from,
             string text = null,
             List<string> media = null,
-            string tag = null)
+            string tag = null,
+            Models.PriorityEnum? priority = null)
         {
             ApplicationId = applicationId;
             To = to;
@@ -34,6 +35,7 @@ namespace Bandwidth.Standard.Messaging.Models
             Text = text;
             Media = media;
             Tag = tag;
+            Priority = priority;
         }
 
         /// <summary>
@@ -71,6 +73,12 @@ namespace Bandwidth.Standard.Messaging.Models
         /// </summary>
         [JsonProperty("tag", NullValueHandling = NullValueHandling.Ignore)]
         public string Tag { get; set; }
+
+        /// <summary>
+        /// The message's priority, currently for toll-free or short code SMS only. Messages with a priority value of `"high"` are given preference over your other traffic.
+        /// </summary>
+        [JsonProperty("priority", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
+        public Models.PriorityEnum? Priority { get; set; }
 
     }
 }

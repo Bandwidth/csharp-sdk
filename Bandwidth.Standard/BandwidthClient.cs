@@ -230,7 +230,7 @@ namespace Bandwidth.Standard
                 {
                     { Server.Default, "api.bandwidth.com" },
                     { Server.MessagingDefault, "https://messaging.bandwidth.com/api/v2" },
-                    { Server.TwoFactorAuthDefault, "https://mfa.bandwidth.com/api/v1/" },
+                    { Server.TwoFactorAuthDefault, "https://mfa.bandwidth.com/api/v1" },
                     { Server.VoiceDefault, "https://voice.bandwidth.com" },
                     { Server.WebRtcDefault, "https://api.webrtc.bandwidth.com/v1" },
                 }
