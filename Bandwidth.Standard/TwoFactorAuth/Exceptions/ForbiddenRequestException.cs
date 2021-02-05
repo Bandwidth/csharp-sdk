@@ -20,21 +20,21 @@ using Bandwidth.Standard.Utilities;
 
 namespace Bandwidth.Standard.TwoFactorAuth.Exceptions
 {
-    public class InvalidRequestException : ApiException
+    public class ForbiddenRequestException : ApiException
     {
         /// <summary>
         /// Initialization constructor
         /// </summary>
         /// <param name="reason"> The reason for throwing exception </param>
         /// <param name="context"> The HTTP context that encapsulates request and response objects </param>
-        public InvalidRequestException(string reason, HttpContext context)
+        public ForbiddenRequestException(string reason, HttpContext context)
             : base(reason, context) { }
 
         /// <summary>
-        /// An error message pertaining to what the issue could be
+        /// The message containing the reason behind the request being forbidden
         /// </summary>
-        [JsonProperty("result", NullValueHandling = NullValueHandling.Ignore)]
-        public string Result { get; set; }
+        [JsonProperty("Message", NullValueHandling = NullValueHandling.Ignore)]
+        public string Message { get; set; }
 
     }
 }
