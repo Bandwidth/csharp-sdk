@@ -19,9 +19,9 @@ using Bandwidth.Standard.Http.Request;
 using Bandwidth.Standard.Http.Response;
 using Bandwidth.Standard.Http.Client;
 using Bandwidth.Standard.Authentication;
-using Bandwidth.Standard.TwoFactorAuth.Exceptions;
+using Bandwidth.Standard.MultiFactorAuth.Exceptions;
 
-namespace Bandwidth.Standard.TwoFactorAuth.Controllers
+namespace Bandwidth.Standard.MultiFactorAuth.Controllers
 {
     public class MFAController : BaseController
     {
@@ -51,7 +51,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
         public async Task<ApiResponse<Models.TwoFactorVoiceResponse>> CreateVoiceTwoFactorAsync(string accountId, Models.TwoFactorCodeRequestSchema body, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
-            string _baseUri = config.GetBaseUri(Server.TwoFactorAuthDefault);
+            string _baseUri = config.GetBaseUri(Server.MultiFactorAuthDefault);
 
             //prepare query string for API call
             StringBuilder _queryBuilder = new StringBuilder(_baseUri);
@@ -81,7 +81,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
                 HttpCallBack.OnBeforeHttpRequestEventHandler(GetClientInstance(), _request);
             }
 
-            _request = await authManagers["twoFactorAuth"].ApplyAsync(_request).ConfigureAwait(false);
+            _request = await authManagers["multiFactorAuth"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
             HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
@@ -95,22 +95,22 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ErrorWithRequestException("If there is any issue with values passed in by the user", _context);
+                throw new ErrorWithRequestErrorException("If there is any issue with values passed in by the user", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new UnauthorizedRequestException("Authentication is either incorrect or not present", _context);
+                throw new UnauthorizedRequestErrorException("Authentication is either incorrect or not present", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ForbiddenRequestException("The user is not authorized to access this resource", _context);
+                throw new ForbiddenRequestErrorException("The user is not authorized to access this resource", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ErrorWithRequestException("An internal server error occurred", _context);
+                throw new ErrorWithRequestErrorException("An internal server error occurred", _context);
             }
 
             //handle errors defined at the API level
@@ -143,7 +143,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
         public async Task<ApiResponse<Models.TwoFactorMessagingResponse>> CreateMessagingTwoFactorAsync(string accountId, Models.TwoFactorCodeRequestSchema body, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
-            string _baseUri = config.GetBaseUri(Server.TwoFactorAuthDefault);
+            string _baseUri = config.GetBaseUri(Server.MultiFactorAuthDefault);
 
             //prepare query string for API call
             StringBuilder _queryBuilder = new StringBuilder(_baseUri);
@@ -173,7 +173,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
                 HttpCallBack.OnBeforeHttpRequestEventHandler(GetClientInstance(), _request);
             }
 
-            _request = await authManagers["twoFactorAuth"].ApplyAsync(_request).ConfigureAwait(false);
+            _request = await authManagers["multiFactorAuth"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
             HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
@@ -187,22 +187,22 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ErrorWithRequestException("If there is any issue with values passed in by the user", _context);
+                throw new ErrorWithRequestErrorException("If there is any issue with values passed in by the user", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new UnauthorizedRequestException("Authentication is either incorrect or not present", _context);
+                throw new UnauthorizedRequestErrorException("Authentication is either incorrect or not present", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ForbiddenRequestException("The user is not authorized to access this resource", _context);
+                throw new ForbiddenRequestErrorException("The user is not authorized to access this resource", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ErrorWithRequestException("An internal server error occurred", _context);
+                throw new ErrorWithRequestErrorException("An internal server error occurred", _context);
             }
 
             //handle errors defined at the API level
@@ -235,7 +235,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
         public async Task<ApiResponse<Models.TwoFactorVerifyCodeResponse>> CreateVerifyTwoFactorAsync(string accountId, Models.TwoFactorVerifyRequestSchema body, CancellationToken cancellationToken = default)
         {
             //the base uri for api requests
-            string _baseUri = config.GetBaseUri(Server.TwoFactorAuthDefault);
+            string _baseUri = config.GetBaseUri(Server.MultiFactorAuthDefault);
 
             //prepare query string for API call
             StringBuilder _queryBuilder = new StringBuilder(_baseUri);
@@ -265,7 +265,7 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
                 HttpCallBack.OnBeforeHttpRequestEventHandler(GetClientInstance(), _request);
             }
 
-            _request = await authManagers["twoFactorAuth"].ApplyAsync(_request).ConfigureAwait(false);
+            _request = await authManagers["multiFactorAuth"].ApplyAsync(_request).ConfigureAwait(false);
 
             //invoke request and get response
             HttpStringResponse _response = await GetClientInstance().ExecuteAsStringAsync(_request, cancellationToken).ConfigureAwait(false);
@@ -279,27 +279,27 @@ namespace Bandwidth.Standard.TwoFactorAuth.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ErrorWithRequestException("If there is any issue with values passed in by the user", _context);
+                throw new ErrorWithRequestErrorException("If there is any issue with values passed in by the user", _context);
             }
 
             if (_response.StatusCode == 401)
             {
-                throw new UnauthorizedRequestException("Authentication is either incorrect or not present", _context);
+                throw new UnauthorizedRequestErrorException("Authentication is either incorrect or not present", _context);
             }
 
             if (_response.StatusCode == 403)
             {
-                throw new ForbiddenRequestException("The user is not authorized to access this resource", _context);
+                throw new ForbiddenRequestErrorException("The user is not authorized to access this resource", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ErrorWithRequestException("The user has made too many bad requests and is temporarily locked out", _context);
+                throw new ErrorWithRequestErrorException("The user has made too many bad requests and is temporarily locked out", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ErrorWithRequestException("An internal server error occurred", _context);
+                throw new ErrorWithRequestErrorException("An internal server error occurred", _context);
             }
 
             //handle errors defined at the API level

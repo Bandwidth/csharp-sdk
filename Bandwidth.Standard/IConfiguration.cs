@@ -26,9 +26,9 @@ namespace Bandwidth.Standard
         IMessagingBasicAuthCredentials MessagingBasicAuthCredentials { get; }
 
         /// <summary>
-        /// The credentials to use with TwoFactorAuthBasicAuth
+        /// The credentials to use with MultiFactorAuthBasicAuth
         /// </summary>
-        ITwoFactorAuthBasicAuthCredentials TwoFactorAuthBasicAuthCredentials { get; }
+        IMultiFactorAuthBasicAuthCredentials MultiFactorAuthBasicAuthCredentials { get; }
 
         /// <summary>
         /// The credentials to use with VoiceBasicAuth

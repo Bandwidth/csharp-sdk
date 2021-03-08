@@ -113,7 +113,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException("Unexpected Error", _context);
+                throw new ErrorErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -202,7 +202,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException("Unexpected Error", _context);
+                throw new ErrorErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -289,7 +289,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException("Unexpected Error", _context);
+                throw new ErrorErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -380,7 +380,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException("Unexpected Error", _context);
+                throw new ErrorErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -469,7 +469,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException("Unexpected Error", _context);
+                throw new ErrorErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -556,7 +556,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException("Unexpected Error", _context);
+                throw new ErrorErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -642,7 +642,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException("Unexpected Error", _context);
+                throw new ErrorErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -748,7 +748,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException("Unexpected Error", _context);
+                throw new ErrorErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -837,7 +837,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException("Unexpected Error", _context);
+                throw new ErrorErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -926,7 +926,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException("Unexpected Error", _context);
+                throw new ErrorErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level
@@ -1037,7 +1037,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
 
             if ((_response.StatusCode < 200) || (_response.StatusCode > 208)) //[200,208] = HTTP OK
             {
-                throw new ErrorException("Unexpected Error", _context);
+                throw new ErrorErrorException("Unexpected Error", _context);
             }
 
             //handle errors defined at the API level

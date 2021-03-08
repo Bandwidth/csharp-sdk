@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Bandwidth.Standard.Utilities;
 
 namespace Bandwidth.Standard.Http.Response
 {
@@ -32,6 +33,13 @@ namespace Bandwidth.Standard.Http.Response
             this.StatusCode = statusCode;
             this.Headers = headers;
             this.RawBody = rawBody;
+        }
+
+        public override string ToString()
+        {
+            return $" StatusCode = {StatusCode}, " +
+                $" Headers = {ApiHelper.JsonSerialize(Headers)}, " +
+                $" RawBody = {RawBody}";
         }
     }
 }

@@ -18,28 +18,28 @@ using Bandwidth.Standard.Utilities;
 
 namespace Bandwidth.Standard.Messaging.Models
 {
-    public class Tag 
+    public class MessagingException 
     {
-        public Tag() { }
+        public MessagingException() { }
 
-        public Tag(string key = null,
-            string mValue = null)
+        public MessagingException(string type,
+            string description)
         {
-            Key = key;
-            MValue = mValue;
+            Type = type;
+            Description = description;
         }
 
         /// <summary>
-        /// Getter for key
+        /// Getter for type
         /// </summary>
-        [JsonProperty("key", NullValueHandling = NullValueHandling.Ignore)]
-        public string Key { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
 
         /// <summary>
-        /// Getter for value
+        /// Getter for description
         /// </summary>
-        [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
-        public string MValue { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
 
         public override string ToString()
         {
@@ -47,13 +47,13 @@ namespace Bandwidth.Standard.Messaging.Models
 
             this.ToString(toStringOutput);
 
-            return $"Tag : ({string.Join(", ", toStringOutput)})";
+            return $"MessagingException : ({string.Join(", ", toStringOutput)})";
         }
 
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"Key = {(Key == null ? "null" : Key == string.Empty ? "" : Key)}");
-            toStringOutput.Add($"MValue = {(MValue == null ? "null" : MValue == string.Empty ? "" : MValue)}");
+            toStringOutput.Add($"Type = {(Type == null ? "null" : Type == string.Empty ? "" : Type)}");
+            toStringOutput.Add($"Description = {(Description == null ? "null" : Description == string.Empty ? "" : Description)}");
         }
 
         public override bool Equals(object obj)
@@ -68,23 +68,23 @@ namespace Bandwidth.Standard.Messaging.Models
                 return true;
             }
 
-            return obj is Tag other &&
-                ((Key == null && other.Key == null) || (Key?.Equals(other.Key) == true)) &&
-                ((MValue == null && other.MValue == null) || (MValue?.Equals(other.MValue) == true));
+            return obj is MessagingException other &&
+                ((Type == null && other.Type == null) || (Type?.Equals(other.Type) == true)) &&
+                ((Description == null && other.Description == null) || (Description?.Equals(other.Description) == true));
         }
 
         public override int GetHashCode()
         {
-            int hashCode = -458578094;
+            int hashCode = -855072673;
 
-            if (Key != null)
+            if (Type != null)
             {
-               hashCode += Key.GetHashCode();
+               hashCode += Type.GetHashCode();
             }
 
-            if (MValue != null)
+            if (Description != null)
             {
-               hashCode += MValue.GetHashCode();
+               hashCode += Description.GetHashCode();
             }
 
             return hashCode;

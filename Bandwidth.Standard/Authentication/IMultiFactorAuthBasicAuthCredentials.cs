@@ -2,7 +2,7 @@ using System;
 
 namespace Bandwidth.Standard.Authentication
 {
-    public interface ITwoFactorAuthBasicAuthCredentials
+    public interface IMultiFactorAuthBasicAuthCredentials
     {
         /// <summary>
         /// Getter for basicAuthUserName

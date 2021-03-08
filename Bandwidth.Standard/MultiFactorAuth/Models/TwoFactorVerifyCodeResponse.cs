@@ -16,22 +16,22 @@ using Newtonsoft.Json.Converters;
 using Bandwidth.Standard;
 using Bandwidth.Standard.Utilities;
 
-namespace Bandwidth.Standard.Voice.Models
+namespace Bandwidth.Standard.MultiFactorAuth.Models
 {
-    public class ModifyCallRecordingState 
+    public class TwoFactorVerifyCodeResponse 
     {
-        public ModifyCallRecordingState() { }
+        public TwoFactorVerifyCodeResponse() { }
 
-        public ModifyCallRecordingState(Models.State2Enum state)
+        public TwoFactorVerifyCodeResponse(bool? valid = null)
         {
-            State = state;
+            Valid = valid;
         }
 
         /// <summary>
-        /// Getter for state
+        /// Getter for valid
         /// </summary>
-        [JsonProperty("state", ItemConverterType = typeof(StringValuedEnumConverter))]
-        public Models.State2Enum State { get; set; }
+        [JsonProperty("valid", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? Valid { get; set; }
 
         public override string ToString()
         {
@@ -39,12 +39,12 @@ namespace Bandwidth.Standard.Voice.Models
 
             this.ToString(toStringOutput);
 
-            return $"ModifyCallRecordingState : ({string.Join(", ", toStringOutput)})";
+            return $"TwoFactorVerifyCodeResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"State = {State}");
+            toStringOutput.Add($"Valid = {(Valid == null ? "null" : Valid.ToString())}");
         }
 
         public override bool Equals(object obj)
@@ -59,14 +59,18 @@ namespace Bandwidth.Standard.Voice.Models
                 return true;
             }
 
-            return obj is ModifyCallRecordingState other &&
-                State.Equals(other.State);
+            return obj is TwoFactorVerifyCodeResponse other &&
+                ((Valid == null && other.Valid == null) || (Valid?.Equals(other.Valid) == true));
         }
 
         public override int GetHashCode()
         {
-            int hashCode = -1521564479;
-            hashCode += State.GetHashCode();
+            int hashCode = 1979617985;
+
+            if (Valid != null)
+            {
+               hashCode += Valid.GetHashCode();
+            }
 
             return hashCode;
         }

@@ -16,22 +16,22 @@ using Newtonsoft.Json.Converters;
 using Bandwidth.Standard;
 using Bandwidth.Standard.Utilities;
 
-namespace Bandwidth.Standard.Voice.Models
+namespace Bandwidth.Standard.MultiFactorAuth.Models
 {
-    public class ModifyCallRecordingState 
+    public class TwoFactorVoiceResponse 
     {
-        public ModifyCallRecordingState() { }
+        public TwoFactorVoiceResponse() { }
 
-        public ModifyCallRecordingState(Models.State2Enum state)
+        public TwoFactorVoiceResponse(string callId = null)
         {
-            State = state;
+            CallId = callId;
         }
 
         /// <summary>
-        /// Getter for state
+        /// Getter for callId
         /// </summary>
-        [JsonProperty("state", ItemConverterType = typeof(StringValuedEnumConverter))]
-        public Models.State2Enum State { get; set; }
+        [JsonProperty("callId", NullValueHandling = NullValueHandling.Ignore)]
+        public string CallId { get; set; }
 
         public override string ToString()
         {
@@ -39,12 +39,12 @@ namespace Bandwidth.Standard.Voice.Models
 
             this.ToString(toStringOutput);
 
-            return $"ModifyCallRecordingState : ({string.Join(", ", toStringOutput)})";
+            return $"TwoFactorVoiceResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"State = {State}");
+            toStringOutput.Add($"CallId = {(CallId == null ? "null" : CallId == string.Empty ? "" : CallId)}");
         }
 
         public override bool Equals(object obj)
@@ -59,14 +59,18 @@ namespace Bandwidth.Standard.Voice.Models
                 return true;
             }
 
-            return obj is ModifyCallRecordingState other &&
-                State.Equals(other.State);
+            return obj is TwoFactorVoiceResponse other &&
+                ((CallId == null && other.CallId == null) || (CallId?.Equals(other.CallId) == true));
         }
 
         public override int GetHashCode()
         {
-            int hashCode = -1521564479;
-            hashCode += State.GetHashCode();
+            int hashCode = 1475004682;
+
+            if (CallId != null)
+            {
+               hashCode += CallId.GetHashCode();
+            }
 
             return hashCode;
         }

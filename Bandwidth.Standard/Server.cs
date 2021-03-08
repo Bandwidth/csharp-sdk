@@ -8,7 +8,7 @@ namespace Bandwidth.Standard
     {
         Default,
         MessagingDefault,
-        TwoFactorAuthDefault,
+        MultiFactorAuthDefault,
         VoiceDefault,
         WebRtcDefault,
     }

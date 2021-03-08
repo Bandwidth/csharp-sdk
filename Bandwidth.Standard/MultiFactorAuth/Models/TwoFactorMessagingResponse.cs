@@ -16,22 +16,22 @@ using Newtonsoft.Json.Converters;
 using Bandwidth.Standard;
 using Bandwidth.Standard.Utilities;
 
-namespace Bandwidth.Standard.Voice.Models
+namespace Bandwidth.Standard.MultiFactorAuth.Models
 {
-    public class ModifyCallRecordingState 
+    public class TwoFactorMessagingResponse 
     {
-        public ModifyCallRecordingState() { }
+        public TwoFactorMessagingResponse() { }
 
-        public ModifyCallRecordingState(Models.State2Enum state)
+        public TwoFactorMessagingResponse(string messageId = null)
         {
-            State = state;
+            MessageId = messageId;
         }
 
         /// <summary>
-        /// Getter for state
+        /// Getter for messageId
         /// </summary>
-        [JsonProperty("state", ItemConverterType = typeof(StringValuedEnumConverter))]
-        public Models.State2Enum State { get; set; }
+        [JsonProperty("messageId", NullValueHandling = NullValueHandling.Ignore)]
+        public string MessageId { get; set; }
 
         public override string ToString()
         {
@@ -39,12 +39,12 @@ namespace Bandwidth.Standard.Voice.Models
 
             this.ToString(toStringOutput);
 
-            return $"ModifyCallRecordingState : ({string.Join(", ", toStringOutput)})";
+            return $"TwoFactorMessagingResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         protected void ToString(List<string> toStringOutput)
         {
-            toStringOutput.Add($"State = {State}");
+            toStringOutput.Add($"MessageId = {(MessageId == null ? "null" : MessageId == string.Empty ? "" : MessageId)}");
         }
 
         public override bool Equals(object obj)
@@ -59,14 +59,18 @@ namespace Bandwidth.Standard.Voice.Models
                 return true;
             }
 
-            return obj is ModifyCallRecordingState other &&
-                State.Equals(other.State);
+            return obj is TwoFactorMessagingResponse other &&
+                ((MessageId == null && other.MessageId == null) || (MessageId?.Equals(other.MessageId) == true));
         }
 
         public override int GetHashCode()
         {
-            int hashCode = -1521564479;
-            hashCode += State.GetHashCode();
+            int hashCode = 1575158831;
+
+            if (MessageId != null)
+            {
+               hashCode += MessageId.GetHashCode();
+            }
 
             return hashCode;
         }

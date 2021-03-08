@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Bandwidth.Standard.Utilities;
 
 namespace Bandwidth.Standard.Http.Response
 {
@@ -22,6 +23,12 @@ namespace Bandwidth.Standard.Http.Response
         public HttpStringResponse(int statusCode, Dictionary<string, string> headers, Stream rawBody, string body) : base(statusCode, headers, rawBody)
         {
             this.Body = body;
+        }
+
+        public override string ToString()
+        {
+            return $"Body = {Body}" +
+                $"{base.ToString()}: ";
         }
     }
 }
