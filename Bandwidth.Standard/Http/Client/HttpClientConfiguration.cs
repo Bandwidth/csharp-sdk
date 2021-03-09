@@ -16,11 +16,5 @@ namespace Bandwidth.Standard.Http.Client
         /// Http client timeout
         /// </summary>
         public TimeSpan Timeout { get; internal set; }
-
-        public override string ToString()
-        {
-            return "HttpClientConfiguration: " +
-                $"{Timeout} ";
-        }
     }
 }

@@ -44,7 +44,7 @@ namespace Bandwidth.Tests
         public async Task TestTestListMedia() 
         {
             // Parameters for the API call
-            string accountId = "900000";
+            string userId = "900000";
             string continuationToken = "12345";
 
             // Perform API call
@@ -52,7 +52,7 @@ namespace Bandwidth.Tests
 
             try
             {
-                result = await controller.ListMediaAsync(accountId, continuationToken);
+                result = await controller.ListMediaAsync(userId, continuationToken);
             }
             catch(ApiException) {}
 
@@ -77,7 +77,7 @@ namespace Bandwidth.Tests
         public async Task TestTestGetMedia() 
         {
             // Parameters for the API call
-            string accountId = "900000";
+            string userId = "900000";
             string mediaId = "0a610655-ba58";
 
             // Perform API call
@@ -85,7 +85,7 @@ namespace Bandwidth.Tests
 
             try
             {
-                result = await controller.GetMediaAsync(accountId, mediaId);
+                result = await controller.GetMediaAsync(userId, mediaId);
             }
             catch(ApiException) {}
 
@@ -110,14 +110,14 @@ namespace Bandwidth.Tests
         public async Task TestTestDeleteMedia() 
         {
             // Parameters for the API call
-            string accountId = "900000";
+            string userId = "900000";
             string mediaId = "tjdla-4562ld";
 
             // Perform API call
 
             try
             {
-                await controller.DeleteMediaAsync(accountId, mediaId);
+                await controller.DeleteMediaAsync(userId, mediaId);
             }
             catch(ApiException) {}
 
@@ -134,7 +134,7 @@ namespace Bandwidth.Tests
         public async Task TestTestGetMessages() 
         {
             // Parameters for the API call
-            string accountId = "900000";
+            string userId = "900000";
             string messageId = "9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6";
             string sourceTn = "%2B15554443333";
             string destinationTn = "%2B15554443333";
@@ -150,7 +150,7 @@ namespace Bandwidth.Tests
 
             try
             {
-                result = await controller.GetMessagesAsync(accountId, messageId, sourceTn, destinationTn, messageStatus, errorCode, fromDateTime, toDateTime, pageToken, limit);
+                result = await controller.GetMessagesAsync(userId, messageId, sourceTn, destinationTn, messageStatus, errorCode, fromDateTime, toDateTime, pageToken, limit);
             }
             catch(ApiException) {}
 

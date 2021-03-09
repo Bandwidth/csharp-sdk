@@ -6,12 +6,12 @@ using Bandwidth.Standard.Http.Request;
 
 namespace Bandwidth.Standard.Authentication
 {
-    internal class MultiFactorAuthBasicAuthManager : IMultiFactorAuthBasicAuthCredentials, IAuthManager
+    internal class TwoFactorAuthBasicAuthManager : ITwoFactorAuthBasicAuthCredentials, IAuthManager
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public MultiFactorAuthBasicAuthManager(string username, string password)
+        public TwoFactorAuthBasicAuthManager(string username, string password)
         {
             BasicAuthUserName = username;
             BasicAuthPassword = password;

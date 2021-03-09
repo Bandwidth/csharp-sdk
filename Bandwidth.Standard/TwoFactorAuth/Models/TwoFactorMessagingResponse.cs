@@ -15,22 +15,22 @@ using Newtonsoft.Json.Converters;
 using Bandwidth.Standard;
 using Bandwidth.Standard.Utilities;
 
-namespace Bandwidth.Standard.Voice.Models
+namespace Bandwidth.Standard.TwoFactorAuth.Models
 {
-    public class TranscriptionResponse 
+    public class TwoFactorMessagingResponse 
     {
-        public TranscriptionResponse() { }
+        public TwoFactorMessagingResponse() { }
 
-        public TranscriptionResponse(List<Models.Transcript> transcripts = null)
+        public TwoFactorMessagingResponse(string messageId = null)
         {
-            Transcripts = transcripts;
+            MessageId = messageId;
         }
 
         /// <summary>
-        /// Getter for transcripts
+        /// Getter for messageId
         /// </summary>
-        [JsonProperty("transcripts", NullValueHandling = NullValueHandling.Ignore)]
-        public List<Models.Transcript> Transcripts { get; set; }
+        [JsonProperty("messageId", NullValueHandling = NullValueHandling.Ignore)]
+        public string MessageId { get; set; }
 
     }
 }

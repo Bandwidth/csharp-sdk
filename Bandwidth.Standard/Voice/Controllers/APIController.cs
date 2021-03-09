@@ -96,7 +96,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -106,27 +106,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -200,7 +200,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -210,27 +210,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -308,7 +308,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -318,27 +318,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -413,7 +413,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -423,27 +423,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -514,7 +514,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -524,27 +524,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -621,7 +621,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -631,27 +631,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -726,7 +726,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -736,27 +736,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -829,7 +829,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -839,27 +839,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -934,7 +934,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -944,27 +944,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -1038,7 +1038,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -1048,27 +1048,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -1157,7 +1157,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -1167,32 +1167,32 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 410)
             {
-                throw new ApiErrorResponseErrorException("The media for this recording has been deleted, so we can't transcribe it", _context);
+                throw new ApiErrorResponseException("The media for this recording has been deleted, so we can't transcribe it", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -1264,7 +1264,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -1274,27 +1274,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -1394,7 +1394,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -1404,27 +1404,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -1498,7 +1498,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -1508,27 +1508,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -1606,7 +1606,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -1616,27 +1616,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -1722,7 +1722,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -1732,27 +1732,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -1826,7 +1826,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -1836,27 +1836,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -1930,7 +1930,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -1940,27 +1940,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -2037,7 +2037,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -2047,27 +2047,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -2143,7 +2143,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -2153,27 +2153,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
@@ -2271,7 +2271,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             //Error handling using HTTP status codes
             if (_response.StatusCode == 400)
             {
-                throw new ApiErrorResponseErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
+                throw new ApiErrorResponseException("Something's not quite right... Your request is invalid. Please fix it before trying again.", _context);
             }
 
             if (_response.StatusCode == 401)
@@ -2281,27 +2281,27 @@ namespace Bandwidth.Standard.Voice.Controllers
 
             if (_response.StatusCode == 403)
             {
-                throw new ApiErrorResponseErrorException("User unauthorized to perform this action.", _context);
+                throw new ApiErrorResponseException("User unauthorized to perform this action.", _context);
             }
 
             if (_response.StatusCode == 404)
             {
-                throw new ApiErrorResponseErrorException("The resource specified cannot be found or does not belong to you.", _context);
+                throw new ApiErrorResponseException("The resource specified cannot be found or does not belong to you.", _context);
             }
 
             if (_response.StatusCode == 415)
             {
-                throw new ApiErrorResponseErrorException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
+                throw new ApiErrorResponseException("We don't support that media type. If a request body is required, please send it to us as `application/json`.", _context);
             }
 
             if (_response.StatusCode == 429)
             {
-                throw new ApiErrorResponseErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
+                throw new ApiErrorResponseException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", _context);
             }
 
             if (_response.StatusCode == 500)
             {
-                throw new ApiErrorResponseErrorException("Something unexpected happened. Please try again.", _context);
+                throw new ApiErrorResponseException("Something unexpected happened. Please try again.", _context);
             }
 
             //handle errors defined at the API level
