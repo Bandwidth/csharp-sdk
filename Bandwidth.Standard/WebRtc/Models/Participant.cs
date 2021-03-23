@@ -75,5 +75,11 @@ namespace Bandwidth.Standard.WebRtc.Models
         /// </summary>
         [JsonProperty("tag", NullValueHandling = NullValueHandling.Ignore)]
         public string Tag { get; set; }
+        
+        /// <summary>
+        /// Optional field to define the device api version of this participant
+        /// </summary>
+        [JsonProperty("deviceApiVersion", ItemConverterType = typeof(StringValuedEnumConverter), NullValueHandling = NullValueHandling.Ignore)]
+        public Models.DeviceApiVersionEnum? DeviceApiVersion { get; set; }
     }
 }
