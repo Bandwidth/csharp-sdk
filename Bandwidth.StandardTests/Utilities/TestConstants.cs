@@ -19,5 +19,8 @@ namespace Bandwidth.StandardTests
         
         // The phone number to send the message to.
         public static readonly string To = System.Environment.GetEnvironmentVariable("USER_NUMBER");
+
+        // Unique run id used to generate unique test ids.
+        public static readonly string RunId = System.Environment.GetEnvironmentVariable("GITHUB_RUN_ID") ?? "local-run-id";
     }
 }

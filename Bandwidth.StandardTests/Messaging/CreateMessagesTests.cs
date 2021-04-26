@@ -7,12 +7,13 @@ using Bandwidth.Standard.Messaging.Exceptions;
 using Bandwidth.Standard.Messaging.Models;
 using Xunit;
 
-namespace Bandwidth.StandardTests
+namespace Bandwidth.StandardTests.Messaging
 {
-    public class MessagingTests
+    public class CreateMessagesTests
     {
         private BandwidthClient _client;
-        public MessagingTests()
+        
+        public CreateMessagesTests()
         {
             _client = new BandwidthClient.Builder()
                 .Environment(Bandwidth.Standard.Environment.Production)
