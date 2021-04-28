@@ -9,6 +9,7 @@ jobs:
     if: ${{ !github.event.release.prerelease && github.event.release.target_commitish == 'main' }}
     env:
       BW_PROJECT_NAME: Bandwidth.Standard
+      BW_PROJECT_TEST_NAME: Bandwidth.StandardTests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,6 +18,17 @@ jobs:
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '3.1.x'
+      - name: Run integration tests
+        env:
+          BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
+          BW_USERNAME: ${{ secrets.BW_USERNAME }}
+          BW_PASSWORD: ${{ secrets.BW_PASSWORD }}
+          BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
+          BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
+          BW_NUMBER: ${{ secrets.BW_NUMBER }}
+          USER_NUMBER: ${{ secrets.USER_NUMBER }}
+          BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
+        run: dotnet test $BW_PROJECT_TEST_NAME
       - name: Pack NuGet package
         run: dotnet pack --configuration Release $BW_PROJECT_NAME -p:PackageVersion=$RELEASE_VERSION
       - name: Publish NuGet package
