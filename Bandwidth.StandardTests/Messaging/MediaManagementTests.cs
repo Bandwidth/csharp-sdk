@@ -23,32 +23,32 @@ namespace Bandwidth.StandardTests.Messaging
         [Fact]
         public async Task UploadAndDownloadMedia()
         {
+            var accountId = TestConstants.AccountId;
+            var mediaId = string.Concat(TestConstants.RunId, "text-media-id");
+            
             var content = "Hello world";
+            var contentType = "text/plain";
 
             var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(content));
             FileStreamInfo fileStreamInfo = new FileStreamInfo(memoryStream);
 
-            var mediaId = string.Concat(TestConstants.RunId, "text-media-id");
-            var contentType = "text/plain";
-
             // Upload the media content.
-            await _client.Messaging.APIController.UploadMediaAsync(TestConstants.AccountId, mediaId, fileStreamInfo.FileStream.Length, fileStreamInfo, contentType);
+            await _client.Messaging.APIController.UploadMediaAsync(accountId, mediaId, fileStreamInfo.FileStream.Length, fileStreamInfo, contentType);
         
             // Get the media content which we've just uploaded.
-            var response = await _client.Messaging.APIController.GetMediaAsync(TestConstants.AccountId, mediaId);
+            var response = await _client.Messaging.APIController.GetMediaAsync(accountId, mediaId);
 
             Assert.Equal(200, response.StatusCode);
-
             Assert.Equal(contentType, response.Headers["Content-Type"]);
 
-            // Validate that the media content is the correct.
+            // Validate that the media content is correct.
             var streamReader = new StreamReader(response.Data);
             var actualContent = streamReader.ReadToEnd();
 
             Assert.Equal(content, actualContent);
 
             // Delete the media content.
-            await _client.Messaging.APIController.DeleteMediaAsync(TestConstants.AccountId, mediaId);
+            await _client.Messaging.APIController.DeleteMediaAsync(accountId, mediaId);
         }
     }
 }

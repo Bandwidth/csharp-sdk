@@ -12,7 +12,7 @@ namespace Bandwidth.StandardTests.Messaging
     public class CreateMessagesTests
     {
         private BandwidthClient _client;
-        
+
         public CreateMessagesTests()
         {
             _client = new BandwidthClient.Builder()
@@ -22,7 +22,7 @@ namespace Bandwidth.StandardTests.Messaging
         }
 
         [Fact]
-        public async Task CreateMessageReturnsCreated()
+        public async Task CreateMessageReturnsAccepted()
         {
             var text = "Hello from Bandwidth";
 
@@ -66,17 +66,21 @@ namespace Bandwidth.StandardTests.Messaging
         [Fact]
         public async Task CreateMessageInvalidFromPhoneNumberThrows()
         {
+            var accountId = TestConstants.AccountId;
+            var applicationId = TestConstants.MessagingApplicationId;
+            var to = new List<string> { TestConstants.To };
+            var from = "invalid";
             var text = "Hello from Bandwidth";
 
             var request = new MessageRequest()
             {
-                ApplicationId = TestConstants.MessagingApplicationId,
-                To = new List<string> { TestConstants.To },
-                From = "abc",
+                ApplicationId = applicationId,
+                To = to,
+                From = from,
                 Text = text
             };
             
-            var ex = await Assert.ThrowsAsync<MessagingException>(() => _client.Messaging.APIController.CreateMessageAsync(TestConstants.AccountId, request));
+            var ex = await Assert.ThrowsAsync<MessagingException>(() => _client.Messaging.APIController.CreateMessageAsync(accountId, request));
             
             Assert.Equal("400 Request is malformed or invalid", ex.Message);
         }

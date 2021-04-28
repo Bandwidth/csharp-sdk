@@ -11,6 +11,9 @@ namespace Bandwidth.StandardTests
         // Bandwidth provided messaging application id.
         public static readonly string MessagingApplicationId = System.Environment.GetEnvironmentVariable("BW_MESSAGING_APPLICATION_ID");
 
+        // Bandwidth provided voice application id.
+        public static readonly string VoiceApplicationId = System.Environment.GetEnvironmentVariable("BW_VOICE_APPLICATION_ID");
+
         // Bandwidth provided account id.
         public static readonly string AccountId = System.Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
 
@@ -19,6 +22,9 @@ namespace Bandwidth.StandardTests
         
         // The phone number to send the message to.
         public static readonly string To = System.Environment.GetEnvironmentVariable("USER_NUMBER");
+
+        // The publicly available voice callback URL.
+        public static readonly string VoiceAnswerCallbackUrl = System.Environment.GetEnvironmentVariable("VOICE_ANSWER_CALLBACK_URL");
 
         // Unique run id used to generate unique test ids.
         public static readonly string RunId = System.Environment.GetEnvironmentVariable("GITHUB_RUN_ID") ?? "local-run-id";
