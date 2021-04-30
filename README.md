@@ -1,92 +1,151 @@
-# Bandwidth CSharp SDK
-  
-Bandwidth's API docs can be found at https://dev.bandwidth.com
+# Bandwidth C# SDK
 
-CSharp specific docs can be found at https://dev.bandwidth.com/sdks/csharp.html
+## Getting Started
 
-## Download & Install
+### Installation
 
+Add the package reference to your project file.
+
+```sh
+dotnet add package Bandwidth.Sdk
 ```
-nuget install Bandwidth.Sdk -OutputDirectory packages
-```
 
-*Note:  This only adds the package to the disk.  The packages.config or dependency file needs to be modified to add it to the project.
-
-
-## Initialize Bandwidth Voice & Message Client
-
-*__Note__:  If you see this error `System.Net.WebException: The underlying connection was closed: An unexpected error occurred on a send.`  This code may be needed `System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;`
+### Initialize
 
 ```csharp
 using Bandwidth.Standard;
 
-//create Configuration with credentials
-BandwidthClient client = new BandwidthClient.Builder()
-                .Environment(Bandwidth.Standard.Environment.Production)
-                .VoiceBasicAuthCredentials( username, password )
-                .MessagingBasicAuthCredentials( token, secret )
-                .Build();
-
-            
-//Select namespaced controller.
-Bandwidth.Standard.Voice.Controllers.APIController voiceController = client.Voice.APIController;
-Bandwidth.Standard.Messaging.Controllers.APIController msgController = client.Messaging.APIController;
-
-
+var client = new BandwidthClient.Builder()
+    .Environment(Bandwidth.Standard.Environment.Production)
+    .MessagingBasicAuthCredentials("username", "password")
+    .VoiceBasicAuthCredentials("username", "password")
+    .TwoFactorAuthBasicAuthCredentials("username", "password")
+    .WebRtcBasicAuthCredentials("username", "password")
+    .Build();
 ```
 
-## Create Phone Call
+### Create A Phone Call
 
 ```csharp
-using Bandwidth.Standard.Voice.Controllers;
+using Bandwidth.Standard;
+using Bandwidth.Standard.Voice.Models;
 
-callRequest.ApplicationId = "3-d-4-b-5";
-callRequest.To="+19999999999";
-callRequest.AnswerUrl= "https://test.com";
-callRequest.MFrom="+17777777777";
+var request = new ApiCreateCallRequest()
+{
+    ApplicationId = "abc12345-6def-abc1-2345-6defabc12345",
+    To = "+19999999999",
+    From = "+18888888888",
+    AnswerUrl = "https://test.com/callbacks/answer"
+};
 
-//Be aware that the Voice Client can throw exceptions
-try {
-    var response = voiceController.CreateCall("account.id", callRequest);
-} catch (APIException e) {
-    WriteLine( e.Message );
-} catch (IOException e) {
-    WriteLine( e.Message );
-}
-
-
+var createCallResponse = await client.Voice.APIController.CreateCallAsync("1111111", request);
 ```
 
-## Generate BXML
+### Send A Text Message
+
+```csharp
+using Bandwidth.Standard;
+using Bandwidth.Standard.Messaging.Models;
+
+var request = new MessageRequest()
+{
+    ApplicationId = "abc12345-6def-abc1-2345-6defabc12345",
+    To = new List<string> { "+19999999999" },
+    From = "+18888888888",
+    Text = "Hello from Bandwidth!"
+};
+
+var response = await client.Messaging.APIController.CreateMessageAsync("1111111", request);
+```
+
+### Create BXML
 
 ```csharp
 using Bandwidth.Standard.Voice.Bxml;
 
-//Bandwidth XML (BXML) verb SpeakSenetence plays the sentence audio
-SpeakSentence speakSentence = new SpeakSentence();
-speakSentence.Sentence = "Hello World";
+var speakSentence = new SpeakSentence();
+speakSentence.Sentence = "Hello from Bandwidth!";
+speakSentence.Voice = "susan";
+speakSentence.Gender = "female";
+speakSentence.Locale = "en_US";
 
-//Add the verb to a Response object
-Response res =  new Response();
-res.Add(speakSentence);
+var response = new Response();
+response.Add(speakSentence);
 
-//view the BXML
-Console.write( res.ToBXML() );
+// Returns XML allowing your application to handle call events.
+response.ToBXML();
 
 ```
 
-## Send Text Message
+### Create A MFA Request
 
 ```csharp
-using Bandwidth.Standard.Messaging;
-using Bandwidth.Standard.Messaging.Controllers;
-using Bandwidth.Standard.Messaging.Models;
+using Bandwidth.Standard;
+using Bandwidth.Standard.TwoFactorAuth.Models;
 
-MessageRequest msgRequest = new MessageRequest();
-msgRequest.ApplicationId = applicationId;
-msgRequest.MFrom = "+18888888888";
-msgRequest.To = new string[1] {"9199199999"};
-msgRequest.Text = "The quick brown fox jumps over a lazy dog.";
+var codeRequest = new TwoFactorCodeRequestSchema
+{
+    ApplicationId = "abc12345-6def-abc1-2345-6defabc12345",
+    To = "+19999999999",
+    From = "+18888888888",
+    Scope = "sample",
+    Digits = 6,
+    Message = "Your temporary {NAME} {SCOPE} code is {CODE}."
+};
 
-var response = msgController.CreateMessage(msgUserId, msgRequest);
+// Create a code request to later be verified by the user.
+var codeResponse = await client.TwoFactorAuth.MFAController.CreateMessagingTwoFactorAsync("1111111", codeRequest);
+
+var verifyRequest = new TwoFactorVerifyRequestSchema
+{
+    ApplicationId = "abc12345-6def-abc1-2345-6defabc12345",
+    To = "+19999999999",
+    Scope = "sample",
+    Code = "123345",
+    ExpirationTimeInMinutes = 3
+};
+
+// The verification response contains a Data.Valid boolean indicating success or failure.
+var verifyResponse = await _client.TwoFactorAuth.MFAController.CreateVerifyTwoFactorAsync("1111111", verifyRequest);
 ```
+
+### WebRTC Participant & Session Management
+
+```csharp
+using Bandwidth.Standard;
+using Bandwidth.Standard.WebRtc.Models;
+
+var accountId = TestConstants.AccountId;
+
+var session = new Session();
+session.Tag = "new-session";
+
+// Create a new session for participants to connect to.
+var createSessionResponse = await _client.WebRtc.APIController.CreateSessionAsync("1111111", session);
+var sessionId = createSessionResponse.Data.Id;
+
+var participant = new Participant()
+{
+    PublishPermissions = new List<PublishPermissionEnum>() { PublishPermissionEnum.AUDIO, PublishPermissionEnum.VIDEO },
+    CallbackUrl = "https://test.com/callbacks/participant"
+};
+
+// Create a new participant to join to the session.
+var createParticipantResponse = await _client.WebRtc.APIController.CreateParticipantAsync("1111111", participant);
+var participantId = createParticipantResponse.Data.Participant.Id;
+
+// Add the newly created participant to the session.
+_client.WebRtc.APIController.AddParticipantToSessionAsync("1111111", sessionId, participantId);
+```
+
+## Supported .NET Versions
+
+This package can be used with [.NET Standard 1.3](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
+
+## Documentation
+
+Documentation for this package can be found at https://dev.bandwidth.com/sdks/csharp.html
+
+## Credentials
+
+Information for credentials for this package can be found at https://dev.bandwidth.com/guides/accountCredentials.html
