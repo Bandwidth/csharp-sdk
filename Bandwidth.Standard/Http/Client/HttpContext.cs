@@ -1,33 +1,42 @@
-using Bandwidth.Standard.Http.Request;
-using Bandwidth.Standard.Http.Response;
-
+// <copyright file="HttpContext.cs" company="APIMatic">
+// Copyright (c) APIMatic. All rights reserved.
+// </copyright>
 namespace Bandwidth.Standard.Http.Client
 {
+    using Bandwidth.Standard.Http.Request;
+    using Bandwidth.Standard.Http.Response;
+
     /// <summary>
     /// Represents the contextual information of HTTP request and response.
     /// </summary>
     public sealed class HttpContext
     {
         /// <summary>
-        /// The http request in the current context.
+        /// Initializes a new instance of the <see cref="HttpContext"/> class.
+        /// </summary>
+        /// <param name="request">The http request in the current context.</param>
+        /// <param name="response">The http response in the current context.</param>
+        public HttpContext(HttpRequest request, HttpResponse response)
+        {
+            this.Request = request;
+            this.Response = response;
+        }
+
+        /// <summary>
+        /// Gets the http request in the current context.
         /// </summary>
         public HttpRequest Request { get; }
 
         /// <summary>
-        /// The http response in the current context.
+        /// Gets the http response in the current context.
         /// </summary>
         public HttpResponse Response { get; }
 
-        /// <summary>
-        /// Constructor to initialize the context with http request and response 
-        /// information.
-        /// </summary>
-        /// <param name="request">The http request in the current context</param>
-        /// <param name="response">The http response in the current context</param>
-        public HttpContext(HttpRequest request, HttpResponse response)
+        /// <inheritdoc/>
+        public override string ToString()
         {
-            Request = request;
-            Response = response;
+            return $" Request = {this.Request}, " +
+                $" Response = {this.Response}";
         }
     }
 }
