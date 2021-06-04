@@ -28,7 +28,7 @@ namespace Bandwidth.StandardTests.Voice
             var applicationId = TestConstants.VoiceApplicationId;
             var answerUrl = string.Concat(TestConstants.BaseCallbackUrl, "/callbacks/answer");
 
-            var request = new ApiCreateCallRequest()
+            var request = new CreateCallRequest()
             {
                 ApplicationId = applicationId,
                 To = to,
@@ -64,7 +64,7 @@ namespace Bandwidth.StandardTests.Voice
             var from = TestConstants.From;
             var answerUrl = string.Concat(TestConstants.BaseCallbackUrl, "/callbacks/answer");
 
-            var request = new ApiCreateCallRequest()
+            var request = new CreateCallRequest()
             {
                 ApplicationId = applicationId,
                 To = to,
@@ -86,7 +86,7 @@ namespace Bandwidth.StandardTests.Voice
             var applicationId = TestConstants.VoiceApplicationId;
             var answerUrl = string.Concat(TestConstants.BaseCallbackUrl, "/callbacks/answer");
 
-            var request = new ApiCreateCallRequest()
+            var request = new CreateCallRequest()
             {
                 ApplicationId = applicationId,
                 To = to,

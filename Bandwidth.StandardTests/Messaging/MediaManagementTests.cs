@@ -33,7 +33,7 @@ namespace Bandwidth.StandardTests.Messaging
             FileStreamInfo fileStreamInfo = new FileStreamInfo(memoryStream);
 
             // Upload the media content.
-            await _client.Messaging.APIController.UploadMediaAsync(accountId, mediaId, fileStreamInfo.FileStream.Length, fileStreamInfo, contentType);
+            await _client.Messaging.APIController.UploadMediaAsync(accountId, mediaId, fileStreamInfo, contentType);
         
             // Get the media content which we've just uploaded.
             var response = await _client.Messaging.APIController.GetMediaAsync(accountId, mediaId);
