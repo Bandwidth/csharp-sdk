@@ -72,7 +72,7 @@ namespace Bandwidth.StandardTests.Voice
                 AnswerUrl = answerUrl
             };
 
-            var ex = await Assert.ThrowsAsync<ApiErrorResponseException>(() => _client.Voice.APIController.CreateCallAsync(accountId, request));
+            var ex = await Assert.ThrowsAsync<ApiErrorException>(() => _client.Voice.APIController.CreateCallAsync(accountId, request));
             
             Assert.Equal("Something's not quite right... Your request is invalid. Please fix it before trying again.", ex.Message);
         }
@@ -94,7 +94,7 @@ namespace Bandwidth.StandardTests.Voice
                 AnswerUrl = answerUrl
             };
 
-            var ex = await Assert.ThrowsAsync<ApiErrorResponseException>(() => _client.Voice.APIController.CreateCallAsync(accountId, request));
+            var ex = await Assert.ThrowsAsync<ApiErrorException>(() => _client.Voice.APIController.CreateCallAsync(accountId, request));
             
             Assert.Equal("Something's not quite right... Your request is invalid. Please fix it before trying again.", ex.Message);
         }
