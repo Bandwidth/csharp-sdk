@@ -26,7 +26,7 @@ namespace Bandwidth.Standard.WebRtc.Models
     public static class DeviceApiVersionEnumHelper
     {
         //string values corresponding the enum elements
-        private static List<string> stringValues = new List<string> { "v3", "v2" };
+        private static List<string> stringValues = new List<string> { "V3", "V2" };
 
         /// <summary>
         /// Converts a DeviceApiVersionEnum value to a corresponding string value
