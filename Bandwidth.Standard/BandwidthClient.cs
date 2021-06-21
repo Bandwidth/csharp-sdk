@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using Bandwidth.Standard.Authentication;
 using Bandwidth.Standard.Http.Client;
 using Bandwidth.Standard.Messaging;
+using Bandwidth.Standard.PhoneNumberLookup;
 using Bandwidth.Standard.TwoFactorAuth;
 using Bandwidth.Standard.Voice;
 using Bandwidth.Standard.WebRtc;
@@ -34,6 +35,7 @@ namespace Bandwidth.Standard
         private readonly WebRtcBasicAuthManager webRtcBasicAuthManager;
         private readonly Lazy<MessagingClient> messaging;
         private readonly Lazy<TwoFactorAuthClient> twoFactorAuth;
+        private readonly Lazy<PhoneNumberLookupClient> phoneNumberLookup;
         private readonly Lazy<VoiceClient> voice;
         private readonly Lazy<WebRtcClient> webRtc;
 
@@ -46,6 +48,11 @@ namespace Bandwidth.Standard
         /// Provides access to TwoFactorAuthClient controller.
         /// </summary>
         public TwoFactorAuthClient TwoFactorAuth => twoFactorAuth.Value;
+
+        /// <summary>
+        /// Gets PhoneNumberLookupClient controller.
+        /// </summary>
+        public PhoneNumberLookupClient PhoneNumberLookup => this.phoneNumberLookup.Value;
 
         /// <summary>
         /// Provides access to VoiceClient controller.
@@ -231,6 +238,7 @@ namespace Bandwidth.Standard
                     { Server.Default, "api.bandwidth.com" },
                     { Server.MessagingDefault, "https://messaging.bandwidth.com/api/v2" },
                     { Server.TwoFactorAuthDefault, "https://mfa.bandwidth.com/api/v1" },
+                    { Server.PhoneNumberLookupDefault, "https://uat.numbers.bandwidth.com/api/v1" },
                     { Server.VoiceDefault, "https://voice.bandwidth.com" },
                     { Server.WebRtcDefault, "https://api.webrtc.bandwidth.com/v1" },
                 }

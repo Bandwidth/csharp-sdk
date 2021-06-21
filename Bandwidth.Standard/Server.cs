@@ -9,6 +9,7 @@ namespace Bandwidth.Standard
         Default,
         MessagingDefault,
         TwoFactorAuthDefault,
+        PhoneNumberLookupDefault,
         VoiceDefault,
         WebRtcDefault,
     }
