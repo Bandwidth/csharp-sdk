@@ -31,6 +31,11 @@ namespace Bandwidth.Standard
         ITwoFactorAuthBasicAuthCredentials TwoFactorAuthBasicAuthCredentials { get; }
 
         /// <summary>
+        /// Gets the credentials to use with PhoneNumberLookupBasicAuth.
+        /// </summary>
+        IPhoneNumberLookupBasicAuthCredentials PhoneNumberLookupBasicAuthCredentials { get; }
+
+        /// <summary>
         /// The credentials to use with VoiceBasicAuth
         /// </summary>
         IVoiceBasicAuthCredentials VoiceBasicAuthCredentials { get; }
