@@ -205,6 +205,7 @@ namespace Bandwidth.Standard
 
             messaging = new Lazy<MessagingClient>(() => new MessagingClient(this));
             twoFactorAuth = new Lazy<TwoFactorAuthClient>(() => new TwoFactorAuthClient(this));
+            phoneNumberLookup = new Lazy<PhoneNumberLookupClient>(() => new PhoneNumberLookupClient(this));
             voice = new Lazy<VoiceClient>(() => new VoiceClient(this));
             webRtc = new Lazy<WebRtcClient>(() => new WebRtcClient(this));
         }
@@ -227,7 +228,7 @@ namespace Bandwidth.Standard
         /// <summary>
         /// Gets the credentials to use with PhoneNumberLookupBasicAuth.
         /// </summary>
-        public IPhoneNumberLookupBasicAuthCredentials PhoneNumberLookupBasicAuthCredentials => this.phoneNumberLookupBasicAuthManager;
+        public IPhoneNumberLookupBasicAuthCredentials PhoneNumberLookupBasicAuthCredentials { get => phoneNumberLookupBasicAuthManager; }
 
         /// <summary>
         /// The credentials to use with VoiceBasicAuth
@@ -264,7 +265,7 @@ namespace Bandwidth.Standard
                     { Server.Default, "api.bandwidth.com" },
                     { Server.MessagingDefault, "https://messaging.bandwidth.com/api/v2" },
                     { Server.TwoFactorAuthDefault, "https://mfa.bandwidth.com/api/v1" },
-                    { Server.PhoneNumberLookupDefault, "https://uat.numbers.bandwidth.com/api/v1" },
+                    { Server.PhoneNumberLookupDefault, "https://numbers.bandwidth.com/api/v1" },
                     { Server.VoiceDefault, "https://voice.bandwidth.com" },
                     { Server.WebRtcDefault, "https://api.webrtc.bandwidth.com/v1" },
                 }
@@ -275,6 +276,7 @@ namespace Bandwidth.Standard
                     { Server.Default, "{base_url}" },
                     { Server.MessagingDefault, "{base_url}" },
                     { Server.TwoFactorAuthDefault, "{base_url}" },
+                    { Server.PhoneNumberLookupDefault, "{base_url}" },
                     { Server.VoiceDefault, "{base_url}" },
                     { Server.WebRtcDefault, "{base_url}" },
                 }
