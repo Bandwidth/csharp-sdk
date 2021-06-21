@@ -60,5 +60,46 @@ namespace Bandwidth.StandardTests.WebRtc
             await _client.WebRtc.APIController.DeleteParticipantAsync(accountId, participantId);
             await _client.WebRtc.APIController.DeleteSessionAsync(accountId, sessionId);
         }
+
+        [Fact]
+        public async Task UpdateParticipantSubscriptionsSubscribeToParticipantAsync()
+        {
+            var accountId = TestConstants.AccountId;
+
+            var firstCreateSessionResponse = await _client.WebRtc.APIController.CreateSessionAsync(accountId);
+            var firstSessionId = firstCreateSessionResponse.Data.Id;
+
+            var secondCreateSessionResponse = await _client.WebRtc.APIController.CreateSessionAsync(accountId);
+            var secondSessionId = secondCreateSessionResponse.Data.Id;
+
+            // Assign the existing first session to the participant as a subscription.
+            var participant = new Participant()
+            {
+                PublishPermissions = new List<PublishPermissionEnum>() { PublishPermissionEnum.AUDIO, PublishPermissionEnum.VIDEO },
+                Subscriptions = new Subscriptions
+                {
+                    SessionId = firstSessionId
+                }
+            };
+
+            var createParticipantResponse = await _client.WebRtc.APIController.CreateParticipantAsync(accountId, participant);
+            var participantId = createParticipantResponse.Data.Participant.Id;
+
+            var subscriptions = new Subscriptions
+            {
+                SessionId = secondSessionId
+            };
+
+            await _client.WebRtc.APIController.UpdateParticipantSubscriptionsAsync(accountId, participantId, secondSessionId, subscriptions);
+
+            var getParticipantSubscriptionsResponse = await _client.WebRtc.APIController.GetParticipantSubscriptionsAsync(accountId, participantId, secondSessionId);
+
+            Assert.Equal(secondSessionId, getParticipantSubscriptionsResponse.Data.SessionId);
+
+            // Cleanup participant and sessions.
+            await _client.WebRtc.APIController.DeleteParticipantAsync(accountId, participantId);
+            await _client.WebRtc.APIController.DeleteSessionAsync(accountId, firstSessionId);
+            await _client.WebRtc.APIController.DeleteSessionAsync(accountId, secondSessionId);
+        }
     }
 }
