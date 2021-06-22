@@ -79,8 +79,6 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
             Assert.Equal("NOERROR", resultResponse.Data.Result.First().Message);
             Assert.Equal(number, resultResponse.Data.Result.First().E164Format);
 
-            Assert.Equal("not-a-number", resultResponse.Data.Result.First().E164Format);
-
             var formatPattern = @"^\+\d(\d{3})(\d{3})(\d{4})$";
             foreach (Match match in Regex.Matches(number, formatPattern))
             {   
