@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Bandwidth.Standard;
@@ -61,16 +62,30 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
 
             Assert.NotEmpty(resultResponse.Data.RequestId);
             Assert.Equal(requestResponse.Data.RequestId, resultResponse.Data.RequestId);
+            
+            Assert.Equal("COMPLETE", resultResponse.Data.Status);
 
             Assert.Null(resultResponse.Data.FailedTelephoneNumbers);
             
-
-
+            Assert.Single(resultResponse.Data.Result);
             
+            Assert.Equal(0, resultResponse.Data.Result.First().ResponseCode);
+            Assert.Equal("NOERROR", resultResponse.Data.Result.First().Message);
+            Assert.Equal(number, resultResponse.Data.Result.First().E164Format);
 
+            var formatPattern = @"^\+\d(\d{3})(\d{3})(\d{4})$";
+            foreach (Match match in Regex.Matches(number, formatPattern))
+            {   
+                var formattedNumber = $"({match.Groups[1].Value}) {match.Groups[2].Value}-{match.Groups[3].Value}";
+                Assert.Equal(formattedNumber, resultResponse.Data.Result.First().Formatted);
+            }
+
+            Assert.Equal(0, resultResponse.Data.Result.First().ResponseCode);
             Assert.Equal("US", resultResponse.Data.Result.First().Country);
-
-            Assert.Equal("COMPLETE", requestResponse.Data.Status);
+            Assert.Equal("Mobile", resultResponse.Data.Result.First().LineType);
+            Assert.Equal("Bandwidth", resultResponse.Data.Result.First().LineProvider);
+            Assert.Null(resultResponse.Data.Result.First().MobileCountryCode);
+            Assert.Null(resultResponse.Data.Result.First().MobileNetworkCode);
         }
     }
 }
