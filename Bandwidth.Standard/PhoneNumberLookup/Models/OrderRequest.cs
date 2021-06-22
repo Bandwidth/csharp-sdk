@@ -1,4 +1,4 @@
-// <copyright file="AccountsTnlookupRequest.cs" company="APIMatic">
+// <copyright file="OrderRequest.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 namespace Bandwidth.Standard.PhoneNumberLookup.Models
@@ -16,22 +16,22 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Models
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// AccountsTnlookupRequest.
+    /// OrderRequest.
     /// </summary>
-    public class AccountsTnlookupRequest
+    public class OrderRequest
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountsTnlookupRequest"/> class.
+        /// Initializes a new instance of the <see cref="OrderRequest"/> class.
         /// </summary>
-        public AccountsTnlookupRequest()
+        public OrderRequest()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountsTnlookupRequest"/> class.
+        /// Initializes a new instance of the <see cref="OrderRequest"/> class.
         /// </summary>
         /// <param name="tns">tns.</param>
-        public AccountsTnlookupRequest(
+        public OrderRequest(
             List<string> tns = null)
         {
             this.Tns = tns;
@@ -50,7 +50,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Models
 
             this.ToString(toStringOutput);
 
-            return $"AccountsTnlookupRequest : ({string.Join(", ", toStringOutput)})";
+            return $"OrderRequest : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
@@ -66,14 +66,14 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Models
                 return true;
             }
 
-            return obj is AccountsTnlookupRequest other &&
+            return obj is OrderRequest other &&
                 ((this.Tns == null && other.Tns == null) || (this.Tns?.Equals(other.Tns) == true));
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 251590775;
+            int hashCode = 2089408671;
 
             if (this.Tns != null)
             {

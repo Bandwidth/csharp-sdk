@@ -1,4 +1,4 @@
-// <copyright file="AccountsTnlookupResponse1.cs" company="APIMatic">
+// <copyright file="OrderStatus.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 namespace Bandwidth.Standard.PhoneNumberLookup.Models
@@ -16,25 +16,25 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Models
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// AccountsTnlookupResponse1.
+    /// OrderStatus.
     /// </summary>
-    public class AccountsTnlookupResponse1
+    public class OrderStatus
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountsTnlookupResponse1"/> class.
+        /// Initializes a new instance of the <see cref="OrderStatus"/> class.
         /// </summary>
-        public AccountsTnlookupResponse1()
+        public OrderStatus()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountsTnlookupResponse1"/> class.
+        /// Initializes a new instance of the <see cref="OrderStatus"/> class.
         /// </summary>
         /// <param name="requestId">requestId.</param>
         /// <param name="status">status.</param>
         /// <param name="failedTelephoneNumbers">failedTelephoneNumbers.</param>
         /// <param name="result">result.</param>
-        public AccountsTnlookupResponse1(
+        public OrderStatus(
             string requestId = null,
             string status = null,
             List<string> failedTelephoneNumbers = null,
@@ -77,7 +77,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Models
 
             this.ToString(toStringOutput);
 
-            return $"AccountsTnlookupResponse1 : ({string.Join(", ", toStringOutput)})";
+            return $"OrderStatus : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
@@ -93,7 +93,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Models
                 return true;
             }
 
-            return obj is AccountsTnlookupResponse1 other &&
+            return obj is OrderStatus other &&
                 ((this.RequestId == null && other.RequestId == null) || (this.RequestId?.Equals(other.RequestId) == true)) &&
                 ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true)) &&
                 ((this.FailedTelephoneNumbers == null && other.FailedTelephoneNumbers == null) || (this.FailedTelephoneNumbers?.Equals(other.FailedTelephoneNumbers) == true)) &&
@@ -103,7 +103,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Models
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 961778214;
+            int hashCode = 2134710950;
 
             if (this.RequestId != null)
             {

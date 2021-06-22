@@ -1,4 +1,4 @@
-// <copyright file="AccountsTnlookupResponse.cs" company="APIMatic">
+// <copyright file="OrderResponse.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 namespace Bandwidth.Standard.PhoneNumberLookup.Models
@@ -16,23 +16,23 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Models
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// AccountsTnlookupResponse.
+    /// OrderResponse.
     /// </summary>
-    public class AccountsTnlookupResponse
+    public class OrderResponse
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountsTnlookupResponse"/> class.
+        /// Initializes a new instance of the <see cref="OrderResponse"/> class.
         /// </summary>
-        public AccountsTnlookupResponse()
+        public OrderResponse()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountsTnlookupResponse"/> class.
+        /// Initializes a new instance of the <see cref="OrderResponse"/> class.
         /// </summary>
         /// <param name="requestId">requestId.</param>
         /// <param name="status">status.</param>
-        public AccountsTnlookupResponse(
+        public OrderResponse(
             string requestId = null,
             string status = null)
         {
@@ -41,13 +41,13 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Models
         }
 
         /// <summary>
-        /// The requestId.
+        /// Gets or sets RequestId.
         /// </summary>
         [JsonProperty("requestId", NullValueHandling = NullValueHandling.Ignore)]
         public string RequestId { get; set; }
 
         /// <summary>
-        /// The status of the request.
+        /// Gets or sets Status.
         /// </summary>
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public string Status { get; set; }
@@ -59,7 +59,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Models
 
             this.ToString(toStringOutput);
 
-            return $"AccountsTnlookupResponse : ({string.Join(", ", toStringOutput)})";
+            return $"OrderResponse : ({string.Join(", ", toStringOutput)})";
         }
 
         /// <inheritdoc/>
@@ -75,7 +75,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Models
                 return true;
             }
 
-            return obj is AccountsTnlookupResponse other &&
+            return obj is OrderResponse other &&
                 ((this.RequestId == null && other.RequestId == null) || (this.RequestId?.Equals(other.RequestId) == true)) &&
                 ((this.Status == null && other.Status == null) || (this.Status?.Equals(other.Status) == true));
         }
@@ -83,7 +83,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Models
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 268549923;
+            int hashCode = -358129617;
 
             if (this.RequestId != null)
             {

@@ -40,30 +40,30 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
         }
 
         /// <summary>
-        /// Creates a request for a given TN, or batch of TNs..
+        /// Create a TN Lookup Order.
         /// </summary>
         /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to..</param>
         /// <param name="body">Required parameter: Example: .</param>
-        /// <returns>Returns the ApiResponse of Models.AccountsTnlookupResponse response from the API call.</returns>
-        public ApiResponse<Models.AccountsTnlookupResponse> CreateTnLookupRequest(
+        /// <returns>Returns the ApiResponse of Models.OrderResponse response from the API call.</returns>
+        public ApiResponse<Models.OrderResponse> CreateLookupRequest(
                 string accountId,
-                Models.AccountsTnlookupRequest body)
+                Models.OrderRequest body)
         {
-            Task<ApiResponse<Models.AccountsTnlookupResponse>> t = this.CreateTnLookupRequestAsync(accountId, body);
+            Task<ApiResponse<Models.OrderResponse>> t = this.CreateLookupRequestAsync(accountId, body);
             ApiHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Creates a request for a given TN, or batch of TNs..
+        /// Create a TN Lookup Order.
         /// </summary>
         /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to..</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the ApiResponse of Models.AccountsTnlookupResponse response from the API call.</returns>
-        public async Task<ApiResponse<Models.AccountsTnlookupResponse>> CreateTnLookupRequestAsync(
+        /// <returns>Returns the ApiResponse of Models.OrderResponse response from the API call.</returns>
+        public async Task<ApiResponse<Models.OrderResponse>> CreateLookupRequestAsync(
                 string accountId,
-                Models.AccountsTnlookupRequest body,
+                Models.OrderRequest body,
                 CancellationToken cancellationToken = default)
         {
             // the base uri for api requests.
@@ -82,7 +82,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
             // append request with appropriate headers and parameters
             var headers = new Dictionary<string, string>()
             {
-                { "user-agent", userAgent },
+                { "user-agent", this.userAgent },
                 { "accept", "application/json" },
                 { "content-type", "application/json; charset=utf-8" },
             };
@@ -631,34 +631,34 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
             // handle errors defined at the API level.
             this.ValidateResponse(response, context);
 
-            var result = ApiHelper.JsonDeserialize<Models.AccountsTnlookupResponse>(response.Body);
-            ApiResponse<Models.AccountsTnlookupResponse> apiResponse = new ApiResponse<Models.AccountsTnlookupResponse>(response.StatusCode, response.Headers, result);
+            var result = ApiHelper.JsonDeserialize<Models.OrderResponse>(response.Body);
+            ApiResponse<Models.OrderResponse> apiResponse = new ApiResponse<Models.OrderResponse>(response.StatusCode, response.Headers, result);
             return apiResponse;
         }
 
         /// <summary>
-        /// Returns the result of a request by id..
+        /// Query an existing TN Lookup Order.
         /// </summary>
         /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to..</param>
         /// <param name="requestId">Required parameter: Example: .</param>
-        /// <returns>Returns the ApiResponse of Models.AccountsTnlookupResponse1 response from the API call.</returns>
-        public ApiResponse<Models.AccountsTnlookupResponse1> GetTnLookupResult(
+        /// <returns>Returns the ApiResponse of Models.OrderStatus response from the API call.</returns>
+        public ApiResponse<Models.OrderStatus> GetLookupRequestStatus(
                 string accountId,
                 string requestId)
         {
-            Task<ApiResponse<Models.AccountsTnlookupResponse1>> t = this.GetTnLookupResultAsync(accountId, requestId);
+            Task<ApiResponse<Models.OrderStatus>> t = this.GetLookupRequestStatusAsync(accountId, requestId);
             ApiHelper.RunTaskSynchronously(t);
             return t.Result;
         }
 
         /// <summary>
-        /// Returns the result of a request by id..
+        /// Query an existing TN Lookup Order.
         /// </summary>
         /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to..</param>
         /// <param name="requestId">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
-        /// <returns>Returns the ApiResponse of Models.AccountsTnlookupResponse1 response from the API call.</returns>
-        public async Task<ApiResponse<Models.AccountsTnlookupResponse1>> GetTnLookupResultAsync(
+        /// <returns>Returns the ApiResponse of Models.OrderStatus response from the API call.</returns>
+        public async Task<ApiResponse<Models.OrderStatus>> GetLookupRequestStatusAsync(
                 string accountId,
                 string requestId,
                 CancellationToken cancellationToken = default)
@@ -1225,8 +1225,8 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
             // handle errors defined at the API level.
             this.ValidateResponse(response, context);
 
-            var result = ApiHelper.JsonDeserialize<Models.AccountsTnlookupResponse1>(response.Body);
-            ApiResponse<Models.AccountsTnlookupResponse1> apiResponse = new ApiResponse<Models.AccountsTnlookupResponse1>(response.StatusCode, response.Headers, result);
+            var result = ApiHelper.JsonDeserialize<Models.OrderStatus>(response.Body);
+            ApiResponse<Models.OrderStatus> apiResponse = new ApiResponse<Models.OrderStatus>(response.StatusCode, response.Headers, result);
             return apiResponse;
         }
     }
