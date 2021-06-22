@@ -54,10 +54,10 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
 
             ApiResponse<OrderStatus> resultResponse;
             do {
-                resultResponse = await _client.PhoneNumberLookup.APIController.GetLookupRequestStatusAsync(accountId, requestResponse.Data.RequestId);
-                
-                // We hit the rate limit very quickly while checking the status.
+                // We hit the rate limit very quickly while checking the status. Sleep before the initial request to avoid hitting rate limit from other tests.
                 Thread.Sleep(5000);
+
+                resultResponse = await _client.PhoneNumberLookup.APIController.GetLookupRequestStatusAsync(accountId, requestResponse.Data.RequestId);
             } while (resultResponse.Data.Status == "IN_PROGRESS");
 
             Assert.NotEmpty(resultResponse.Data.RequestId);
