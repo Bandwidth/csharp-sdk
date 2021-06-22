@@ -33,6 +33,9 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
                 Tns = new List<string> { number }
             };
 
+            // Sleep to avoid rate limiting from other tests.
+            Thread.Sleep(5000);
+
             var response = await _client.PhoneNumberLookup.APIController.CreateLookupRequestAsync(accountId, request);
 
             Assert.NotEmpty(response.Data.RequestId);
@@ -49,6 +52,9 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
             {
                 Tns = new List<string> { number }
             };
+
+            // Sleep to avoid rate limiting from other tests.
+            Thread.Sleep(5000);
 
             var requestResponse = await _client.PhoneNumberLookup.APIController.CreateLookupRequestAsync(accountId, request);
 
