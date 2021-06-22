@@ -644,7 +644,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
         /// <returns>Returns the ApiResponse of Models.AccountsTnlookupResponse1 response from the API call.</returns>
         public ApiResponse<Models.AccountsTnlookupResponse1> GetTnLookupResult(
                 string accountId,
-                Guid requestId)
+                string requestId)
         {
             Task<ApiResponse<Models.AccountsTnlookupResponse1>> t = this.GetTnLookupResultAsync(accountId, requestId);
             ApiHelper.RunTaskSynchronously(t);
@@ -660,7 +660,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
         /// <returns>Returns the ApiResponse of Models.AccountsTnlookupResponse1 response from the API call.</returns>
         public async Task<ApiResponse<Models.AccountsTnlookupResponse1>> GetTnLookupResultAsync(
                 string accountId,
-                Guid requestId,
+                string requestId,
                 CancellationToken cancellationToken = default)
         {
             // the base uri for api requests.
