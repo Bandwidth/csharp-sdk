@@ -57,7 +57,7 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
                 resultResponse = await _client.PhoneNumberLookup.APIController.GetLookupRequestStatusAsync(accountId, requestResponse.Data.RequestId);
                 
                 // We hit the rate limit very quickly while checking the status.
-                Thread.Sleep(3000);
+                Thread.Sleep(5000);
             } while (resultResponse.Data.Status == "IN_PROGRESS");
 
             Assert.NotEmpty(resultResponse.Data.RequestId);
