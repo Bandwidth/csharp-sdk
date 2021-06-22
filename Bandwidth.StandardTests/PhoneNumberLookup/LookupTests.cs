@@ -66,8 +66,6 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
                 resultResponse = await _client.PhoneNumberLookup.APIController.GetLookupRequestStatusAsync(accountId, requestResponse.Data.RequestId);
             } while (resultResponse.Data.Status == "IN_PROGRESS");
 
-            Assert.Empty(resultResponse.Data.RequestId);
-
             Assert.NotEmpty(resultResponse.Data.RequestId);
             Assert.Equal(requestResponse.Data.RequestId, resultResponse.Data.RequestId);
             
