@@ -27,12 +27,12 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
             var accountId = TestConstants.AccountId;
             var number = TestConstants.From;
 
-            var request = new AccountsTnlookupRequest
+            var request = new OrderRequest
             {
                 Tns = new List<string> { number }
             };
 
-            var response = await _client.PhoneNumberLookup.APIController.CreateTnLookupRequestAsync(accountId, request);
+            var response = await _client.PhoneNumberLookup.APIController.CreateLookupRequestAsync(accountId, request);
 
             Assert.NotEmpty(response.Data.RequestId);
             Assert.Equal("IN_PROGRESS", response.Data.Status);
@@ -44,16 +44,16 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
             var accountId = TestConstants.AccountId;
             var number = TestConstants.From;
 
-            var request = new AccountsTnlookupRequest
+            var request = new OrderRequest
             {
                 Tns = new List<string> { number }
             };
 
-            var requestResponse = await _client.PhoneNumberLookup.APIController.CreateTnLookupRequestAsync(accountId, request);
+            var requestResponse = await _client.PhoneNumberLookup.APIController.CreateLookupRequestAsync(accountId, request);
 
-            ApiResponse<AccountsTnlookupResponse1> resultResponse;
+            ApiResponse<OrderStatus> resultResponse;
             do {
-                resultResponse = await _client.PhoneNumberLookup.APIController.GetTnLookupResultAsync(accountId, requestResponse.Data.RequestId);
+                resultResponse = await _client.PhoneNumberLookup.APIController.GetLookupRequestStatusAsync(accountId, requestResponse.Data.RequestId);
                 
                 // We hit the rate limit very quickly while checking the status.
                 Thread.Sleep(3000);
