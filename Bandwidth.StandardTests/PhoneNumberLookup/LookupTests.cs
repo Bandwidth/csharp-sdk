@@ -43,7 +43,7 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
         public async Task GetTnLookupResultAsync()
         {
             var accountId = TestConstants.AccountId;
-            var number = "+19196423602";
+            var number = TestConstants.From;
 
             var request = new OrderRequest
             {
@@ -72,6 +72,8 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
             Assert.Equal(0, resultResponse.Data.Result.First().ResponseCode);
             Assert.Equal("NOERROR", resultResponse.Data.Result.First().Message);
             Assert.Equal(number, resultResponse.Data.Result.First().E164Format);
+
+            Assert.Equal("not-a-number", resultResponse.Data.Result.First().E164Format);
 
             var formatPattern = @"^\+\d(\d{3})(\d{3})(\d{4})$";
             foreach (Match match in Regex.Matches(number, formatPattern))
