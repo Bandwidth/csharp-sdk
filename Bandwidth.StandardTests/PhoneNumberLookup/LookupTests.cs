@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using Bandwidth.Standard;
-using Bandwidth.Standard.Exceptions;
 using Bandwidth.Standard.Http.Response;
 using Bandwidth.Standard.PhoneNumberLookup.Models;
 using Xunit;
@@ -24,11 +22,8 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
         }
 
         [Fact]
-        public async Task CreateTnLookupRequestAsync()
+        public async Task CreateTnLookupRequestAndGetTnLookupResultAsync()
         {
-            // Rate limit response code.
-            const int tooManyRequests = 429;
-
             var accountId = TestConstants.AccountId;
             var number = TestConstants.From;
 
@@ -37,94 +32,48 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
                 Tns = new List<string> { number }
             };
 
-            int responseCode = -1;
-            do
-            {
-                try
-                {
-                    var response = await _client.PhoneNumberLookup.APIController.CreateLookupRequestAsync(accountId, request);
-                    
-                    Assert.NotEmpty(response.Data.RequestId);
-                    Assert.Equal("IN_PROGRESS", response.Data.Status);
-                }
-                catch (ApiException ex)
-                {
-                    responseCode = ex.ResponseCode;
-                }
-            } while (responseCode == tooManyRequests);
-        }
+            var requestResponse = await _client.PhoneNumberLookup.APIController.CreateLookupRequestAsync(accountId, request);
 
-        [Fact]
-        public async Task GetTnLookupResultAsync()
-        {
-            // Rate limit response code.
-            const int tooManyRequests = 429;
+            Assert.Equal(202, requestResponse.StatusCode);
 
-            var accountId = TestConstants.AccountId;
-            var number = TestConstants.From;
+            Assert.NotEmpty(requestResponse.Data.RequestId);
+            Assert.Equal("IN_PROGRESS", requestResponse.Data.Status);
 
-            var request = new OrderRequest
-            {
-                Tns = new List<string> { number }
-            };
 
-            ApiResponse<OrderResponse> requestResponse;
-            int responseCode = -1;
+            ApiResponse<OrderStatus> resultResponse;
             do {
-                try
-                {
-                    requestResponse = await _client.PhoneNumberLookup.APIController.CreateLookupRequestAsync(accountId, request);
+                resultResponse = await _client.PhoneNumberLookup.APIController.GetLookupRequestStatusAsync(accountId, requestResponse.Data.RequestId);
+            } while (resultResponse.Data.Status == "IN_PROGRESS");
 
-                    ApiResponse<OrderStatus> requestStatusResponse = null;
-                    int resultResponseCode = -1;
-                    do
-                    {
-                        try
-                        {
-                            requestStatusResponse = await _client.PhoneNumberLookup.APIController.GetLookupRequestStatusAsync(accountId, requestResponse.Data.RequestId);
-                        }
-                        catch (ApiException ex)
-                        {
-                            if (ex.ResponseCode != tooManyRequests) throw ex;
+            Assert.Equal(200, resultResponse.StatusCode);
 
-                            resultResponseCode = ex.ResponseCode;
-                        }
-                    } while (resultResponseCode == tooManyRequests || requestStatusResponse.Data.Status == "IN_PROGRESS");
+            Assert.NotEmpty(resultResponse.Data.RequestId);
+            // Request ids between the two calls should be the same.
+            Assert.Equal(requestResponse.Data.RequestId, resultResponse.Data.RequestId);
+            
+            Assert.Equal("COMPLETE", resultResponse.Data.Status);
 
-                    Assert.NotEmpty(requestStatusResponse.Data.RequestId);
-                    Assert.Equal(requestResponse.Data.RequestId, requestStatusResponse.Data.RequestId);
-                    
-                    Assert.Equal("COMPLETE", requestStatusResponse.Data.Status);
+            Assert.Null(resultResponse.Data.FailedTelephoneNumbers);
+            
+            Assert.Single(resultResponse.Data.Result);
+            
+            Assert.Equal(0, resultResponse.Data.Result.First().ResponseCode);
+            Assert.Equal("NOERROR", resultResponse.Data.Result.First().Message);
+            Assert.Equal(number, resultResponse.Data.Result.First().E164Format);
 
-                    Assert.Null(requestStatusResponse.Data.FailedTelephoneNumbers);
-                    
-                    Assert.Single(requestStatusResponse.Data.Result);
-                    
-                    Assert.Equal(0, requestStatusResponse.Data.Result.First().ResponseCode);
-                    Assert.Equal("NOERROR", requestStatusResponse.Data.Result.First().Message);
-                    Assert.Equal(number, requestStatusResponse.Data.Result.First().E164Format);
+            var formatPattern = @"^\+\d(\d{3})(\d{3})(\d{4})$";
+            foreach (Match match in Regex.Matches(number, formatPattern))
+            {   
+                var formattedNumber = $"({match.Groups[1].Value}) {match.Groups[2].Value}-{match.Groups[3].Value}";
+                Assert.Equal(formattedNumber, resultResponse.Data.Result.First().Formatted);
+            }
 
-                    var formatPattern = @"^\+\d(\d{3})(\d{3})(\d{4})$";
-                    foreach (Match match in Regex.Matches(number, formatPattern))
-                    {   
-                        var formattedNumber = $"({match.Groups[1].Value}) {match.Groups[2].Value}-{match.Groups[3].Value}";
-                        Assert.Equal(formattedNumber, requestStatusResponse.Data.Result.First().Formatted);
-                    }
-
-                    Assert.Equal(0, requestStatusResponse.Data.Result.First().ResponseCode);
-                    Assert.Equal("US", requestStatusResponse.Data.Result.First().Country);
-                    Assert.Equal("Mobile", requestStatusResponse.Data.Result.First().LineType);
-                    Assert.Equal("Bandwidth", requestStatusResponse.Data.Result.First().LineProvider);
-                    Assert.Null(requestStatusResponse.Data.Result.First().MobileCountryCode);
-                    Assert.Null(requestStatusResponse.Data.Result.First().MobileNetworkCode);
-                }
-                catch (ApiException ex)
-                {
-                    if (ex.ResponseCode != tooManyRequests) throw ex;
-
-                    responseCode = ex.ResponseCode;
-                }
-            } while (responseCode == tooManyRequests);
+            Assert.Equal(0, resultResponse.Data.Result.First().ResponseCode);
+            Assert.Equal("US", resultResponse.Data.Result.First().Country);
+            Assert.Equal("Mobile", resultResponse.Data.Result.First().LineType);
+            Assert.Equal("Bandwidth", resultResponse.Data.Result.First().LineProvider);
+            Assert.Null(resultResponse.Data.Result.First().MobileCountryCode);
+            Assert.Null(resultResponse.Data.Result.First().MobileNetworkCode);
         }
     }
 }
