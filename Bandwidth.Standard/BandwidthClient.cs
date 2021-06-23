@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using Bandwidth.Standard.Authentication;
 using Bandwidth.Standard.Http.Client;
 using Bandwidth.Standard.Messaging;
+using Bandwidth.Standard.PhoneNumberLookup;
 using Bandwidth.Standard.TwoFactorAuth;
 using Bandwidth.Standard.Voice;
 using Bandwidth.Standard.WebRtc;
@@ -30,10 +31,12 @@ namespace Bandwidth.Standard
         internal readonly HttpCallBack httpCallBack;
         private readonly MessagingBasicAuthManager messagingBasicAuthManager;
         private readonly TwoFactorAuthBasicAuthManager twoFactorAuthBasicAuthManager;
+        private readonly PhoneNumberLookupBasicAuthManager phoneNumberLookupBasicAuthManager;
         private readonly VoiceBasicAuthManager voiceBasicAuthManager;
         private readonly WebRtcBasicAuthManager webRtcBasicAuthManager;
         private readonly Lazy<MessagingClient> messaging;
         private readonly Lazy<TwoFactorAuthClient> twoFactorAuth;
+        private readonly Lazy<PhoneNumberLookupClient> phoneNumberLookup;
         private readonly Lazy<VoiceClient> voice;
         private readonly Lazy<WebRtcClient> webRtc;
 
@@ -46,6 +49,11 @@ namespace Bandwidth.Standard
         /// Provides access to TwoFactorAuthClient controller.
         /// </summary>
         public TwoFactorAuthClient TwoFactorAuth => twoFactorAuth.Value;
+
+        /// <summary>
+        /// Gets PhoneNumberLookupClient controller.
+        /// </summary>
+        public PhoneNumberLookupClient PhoneNumberLookup => this.phoneNumberLookup.Value;
 
         /// <summary>
         /// Provides access to VoiceClient controller.
@@ -68,6 +76,8 @@ namespace Bandwidth.Standard
             string messagingBasicAuthPassword = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_MESSAGING_BASIC_AUTH_PASSWORD");
             string twoFactorAuthBasicAuthUserName = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_TWO_FACTOR_AUTH_BASIC_AUTH_USER_NAME");
             string twoFactorAuthBasicAuthPassword = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_TWO_FACTOR_AUTH_BASIC_AUTH_PASSWORD");
+            string phoneNumberLookupBasicAuthUserName = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_PHONE_NUMBER_LOOKUP_BASIC_AUTH_USER_NAME");
+            string phoneNumberLookupBasicAuthPassword = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_PHONE_NUMBER_LOOKUP_BASIC_AUTH_PASSWORD");
             string voiceBasicAuthUserName = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_VOICE_BASIC_AUTH_USER_NAME");
             string voiceBasicAuthPassword = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_VOICE_BASIC_AUTH_PASSWORD");
             string webRtcBasicAuthUserName = System.Environment.GetEnvironmentVariable("BANDWIDTH_STANDARD_WEB_RTC_BASIC_AUTH_USER_NAME");
@@ -98,6 +108,11 @@ namespace Bandwidth.Standard
                 builder.TwoFactorAuthBasicAuthCredentials(twoFactorAuthBasicAuthUserName, twoFactorAuthBasicAuthPassword);
             }
 
+            if (phoneNumberLookupBasicAuthUserName != null && phoneNumberLookupBasicAuthPassword != null)
+            {
+                builder.PhoneNumberLookupBasicAuthCredentials(phoneNumberLookupBasicAuthUserName, phoneNumberLookupBasicAuthPassword);
+            }
+
             if (voiceBasicAuthUserName != null && voiceBasicAuthPassword != null)
             {
                 builder.VoiceBasicAuthCredentials(voiceBasicAuthUserName, voiceBasicAuthPassword);
@@ -114,6 +129,7 @@ namespace Bandwidth.Standard
         private BandwidthClient(TimeSpan timeout, Environment environment, string baseUrl,
                 string messagingBasicAuthUserName, string messagingBasicAuthPassword,
                 string twoFactorAuthBasicAuthUserName, string twoFactorAuthBasicAuthPassword,
+                string phoneNumberLookupBasicAuthUserName, string phoneNumberLookupBasicAuthPassword,
                 string voiceBasicAuthUserName, string voiceBasicAuthPassword,
                 string webRtcBasicAuthUserName, string webRtcBasicAuthPassword,
                 IDictionary<string, IAuthManager> authManagers, IHttpClient httpClient,
@@ -151,6 +167,18 @@ namespace Bandwidth.Standard
                 this.authManagers["twoFactorAuth"] = twoFactorAuthBasicAuthManager;
             }
 
+            if (this.authManagers.ContainsKey("phoneNumberLookup"))
+            {
+                this.phoneNumberLookupBasicAuthManager = (PhoneNumberLookupBasicAuthManager)this.authManagers["phoneNumberLookup"];
+            }
+
+            if (!this.authManagers.ContainsKey("phoneNumberLookup")
+                || !this.PhoneNumberLookupBasicAuthCredentials.Equals(phoneNumberLookupBasicAuthUserName, phoneNumberLookupBasicAuthPassword))
+            {
+                this.phoneNumberLookupBasicAuthManager = new PhoneNumberLookupBasicAuthManager(phoneNumberLookupBasicAuthUserName, phoneNumberLookupBasicAuthPassword);
+                this.authManagers["phoneNumberLookup"] = this.phoneNumberLookupBasicAuthManager;
+            }
+
             if (this.authManagers.ContainsKey("voice"))
             {
                 voiceBasicAuthManager = (VoiceBasicAuthManager) this.authManagers["voice"];
@@ -177,6 +205,7 @@ namespace Bandwidth.Standard
 
             messaging = new Lazy<MessagingClient>(() => new MessagingClient(this));
             twoFactorAuth = new Lazy<TwoFactorAuthClient>(() => new TwoFactorAuthClient(this));
+            phoneNumberLookup = new Lazy<PhoneNumberLookupClient>(() => new PhoneNumberLookupClient(this));
             voice = new Lazy<VoiceClient>(() => new VoiceClient(this));
             webRtc = new Lazy<WebRtcClient>(() => new WebRtcClient(this));
         }
@@ -195,6 +224,11 @@ namespace Bandwidth.Standard
         /// The credentials to use with TwoFactorAuthBasicAuth
         /// </summary>
         public ITwoFactorAuthBasicAuthCredentials TwoFactorAuthBasicAuthCredentials { get => twoFactorAuthBasicAuthManager; }
+
+        /// <summary>
+        /// Gets the credentials to use with PhoneNumberLookupBasicAuth.
+        /// </summary>
+        public IPhoneNumberLookupBasicAuthCredentials PhoneNumberLookupBasicAuthCredentials { get => phoneNumberLookupBasicAuthManager; }
 
         /// <summary>
         /// The credentials to use with VoiceBasicAuth
@@ -231,6 +265,7 @@ namespace Bandwidth.Standard
                     { Server.Default, "api.bandwidth.com" },
                     { Server.MessagingDefault, "https://messaging.bandwidth.com/api/v2" },
                     { Server.TwoFactorAuthDefault, "https://mfa.bandwidth.com/api/v1" },
+                    { Server.PhoneNumberLookupDefault, "https://numbers.bandwidth.com/api/v1" },
                     { Server.VoiceDefault, "https://voice.bandwidth.com" },
                     { Server.WebRtcDefault, "https://api.webrtc.bandwidth.com/v1" },
                 }
@@ -241,6 +276,7 @@ namespace Bandwidth.Standard
                     { Server.Default, "{base_url}" },
                     { Server.MessagingDefault, "{base_url}" },
                     { Server.TwoFactorAuthDefault, "{base_url}" },
+                    { Server.PhoneNumberLookupDefault, "{base_url}" },
                     { Server.VoiceDefault, "{base_url}" },
                     { Server.WebRtcDefault, "{base_url}" },
                 }
@@ -284,6 +320,7 @@ namespace Bandwidth.Standard
                 .BaseUrl(BaseUrl)
                 .MessagingBasicAuthCredentials(messagingBasicAuthManager.BasicAuthUserName, messagingBasicAuthManager.BasicAuthPassword)
                 .TwoFactorAuthBasicAuthCredentials(twoFactorAuthBasicAuthManager.BasicAuthUserName, twoFactorAuthBasicAuthManager.BasicAuthPassword)
+                .PhoneNumberLookupBasicAuthCredentials(phoneNumberLookupBasicAuthManager.BasicAuthUserName, phoneNumberLookupBasicAuthManager.BasicAuthPassword)
                 .VoiceBasicAuthCredentials(voiceBasicAuthManager.BasicAuthUserName, voiceBasicAuthManager.BasicAuthPassword)
                 .WebRtcBasicAuthCredentials(webRtcBasicAuthManager.BasicAuthUserName, webRtcBasicAuthManager.BasicAuthPassword)
                 .HttpCallBack(httpCallBack)
@@ -302,6 +339,8 @@ namespace Bandwidth.Standard
             private string messagingBasicAuthPassword = "TODO: Replace";
             private string twoFactorAuthBasicAuthUserName = "TODO: Replace";
             private string twoFactorAuthBasicAuthPassword = "TODO: Replace";
+            private string phoneNumberLookupBasicAuthUserName = "TODO: Replace";
+            private string phoneNumberLookupBasicAuthPassword = "TODO: Replace";
             private string voiceBasicAuthUserName = "TODO: Replace";
             private string voiceBasicAuthPassword = "TODO: Replace";
             private string webRtcBasicAuthUserName = "TODO: Replace";
@@ -329,6 +368,19 @@ namespace Bandwidth.Standard
             {
                 this.twoFactorAuthBasicAuthUserName = twoFactorAuthBasicAuthUserName ?? throw new ArgumentNullException(nameof(twoFactorAuthBasicAuthUserName));
                 this.twoFactorAuthBasicAuthPassword = twoFactorAuthBasicAuthPassword ?? throw new ArgumentNullException(nameof(twoFactorAuthBasicAuthPassword));
+                return this;
+            }
+
+            /// <summary>
+            /// Sets credentials for PhoneNumberLookupBasicAuth.
+            /// </summary>
+            /// <param name="phoneNumberLookupBasicAuthUserName">PhoneNumberLookupBasicAuthUserName.</param>
+            /// <param name="phoneNumberLookupBasicAuthPassword">PhoneNumberLookupBasicAuthPassword.</param>
+            /// <returns>Builder.</returns>
+            public Builder PhoneNumberLookupBasicAuthCredentials(string phoneNumberLookupBasicAuthUserName, string phoneNumberLookupBasicAuthPassword)
+            {
+                this.phoneNumberLookupBasicAuthUserName = phoneNumberLookupBasicAuthUserName ?? throw new ArgumentNullException(nameof(phoneNumberLookupBasicAuthUserName));
+                this.phoneNumberLookupBasicAuthPassword = phoneNumberLookupBasicAuthPassword ?? throw new ArgumentNullException(nameof(phoneNumberLookupBasicAuthPassword));
                 return this;
             }
 
@@ -422,7 +474,8 @@ namespace Bandwidth.Standard
                 }
 
                 return new BandwidthClient(timeout, environment, baseUrl, messagingBasicAuthUserName, messagingBasicAuthPassword,
-                        twoFactorAuthBasicAuthUserName, twoFactorAuthBasicAuthPassword, voiceBasicAuthUserName,
+                        twoFactorAuthBasicAuthUserName, twoFactorAuthBasicAuthPassword,
+                        phoneNumberLookupBasicAuthUserName, phoneNumberLookupBasicAuthPassword, voiceBasicAuthUserName,
                         voiceBasicAuthPassword, webRtcBasicAuthUserName, webRtcBasicAuthPassword, authManagers, httpClient,
                         httpCallBack, httpClientConfig);
             }
