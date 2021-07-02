@@ -9,6 +9,16 @@ jobs:
     name: Build and test
     runs-on: ubuntu-latest
     steps:
+      - name: Notify Slack start
+        if: success()
+        id: slack # IMPORTANT: reference this step ID value in future Slack steps
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: bandwidth/github-action-slack-notify-build@v1.5
+        with:
+          channel: SLACK_CHANNEL
+          status: STARTING
+          color: warning
       - uses: actions/checkout@v2
       - uses: actions/setup-dotnet@v1
         with:
@@ -26,3 +36,14 @@ jobs:
           USER_NUMBER: ${{ secrets.USER_NUMBER }}
           BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
         run: dotnet test Bandwidth.StandardTests
+      - name: Notify Slack success
+        if: success()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: bandwidth/github-action-slack-notify-build@v1.5
+        with:
+          # Updates existing message from the first step
+          message_id: ${{ steps.slack.outputs.message_id }}
+          channel: SLACK_CHANNEL
+          status: SUCCESS
+          color: good
