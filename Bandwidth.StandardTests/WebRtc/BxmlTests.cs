@@ -9,7 +9,7 @@ namespace Bandwidth.StandardTests.WebRtc
         public void GenerateBxml()
         {
             const string deviceToken = "test-device-token";
-            var bxml = WebRtcTransfer.GenerateBxml(deviceToken);
+            var bxml = WebRtcTransfer.GenerateBxml(deviceToken, null);
 
             const string expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><Response><Transfer><SipUri uui=\"test-device-token;encoding=jwt\">sip:sipx.webrtc.bandwidth.com:5060</SipUri></Transfer></Response>";
 
@@ -21,7 +21,7 @@ namespace Bandwidth.StandardTests.WebRtc
         {
             const string deviceToken = "test-device-token";
             const string sipUri = "sip:sipx.acme.com:6112";
-            var bxml = WebRtcTransfer.GenerateBxml(deviceToken, sipUri);
+            var bxml = WebRtcTransfer.GenerateBxml(deviceToken, null, sipUri);
 
             const string expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><Response><Transfer><SipUri uui=\"test-device-token;encoding=jwt\">sip:sipx.acme.com:6112</SipUri></Transfer></Response>";
 
@@ -33,7 +33,7 @@ namespace Bandwidth.StandardTests.WebRtc
         {
             const string deviceToken = "test-device-token";
             const string voiceCallId = "c-93d6f3c0-be584596-0b74-4fa2-8015-d8ede84bd1a4";
-            var bxml = WebRtcTransfer.GenerateBxmlVoiceCallId(deviceToken, voiceCallId);
+            var bxml = WebRtcTransfer.GenerateBxml(deviceToken, voiceCallId);
 
             const string expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><Response><Transfer><SipUri uui=\"93d6f3c0be5845960b744fa28015d8ede84bd1a4;encoding=base64,test-device-token;encoding=jwt\">sip:sipx.webrtc.bandwidth.com:5060</SipUri></Transfer></Response>";
 
@@ -46,7 +46,7 @@ namespace Bandwidth.StandardTests.WebRtc
             var deviceToken = "test-device-token";
             var voiceCallId = "c-93d6f3c0-be584596-0b74-4fa2-8015-d8ede84bd1a4";
             var sipUri = "sip:sipx.acme.com:6112";
-            var bxml = WebRtcTransfer.GenerateBxmlVoiceCallId(deviceToken, voiceCallId, sipUri);
+            var bxml = WebRtcTransfer.GenerateBxml(deviceToken, voiceCallId, sipUri);
 
             const string expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><Response><Transfer><SipUri uui=\"93d6f3c0be5845960b744fa28015d8ede84bd1a4;encoding=base64,test-device-token;encoding=jwt\">sip:sipx.acme.com:6112</SipUri></Transfer></Response>";
 
