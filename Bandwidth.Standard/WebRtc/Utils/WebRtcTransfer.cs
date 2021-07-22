@@ -13,5 +13,15 @@ namespace Bandwidth.Standard.WebRtc.Utils
                 + "\t<SipUri uui=\"" + deviceToken + ";encoding=jwt\">" + sipUri + "</SipUri>\n"
                 + "</Transfer></Response>\n";
         }
+
+        public static string generateBxmlTransferVerb(string deviceToken) {
+            return WebRtcTransfer.generateBxmlTransferVerb(deviceToken, "sip:sipx.webrtc.bandwidth.com:5060");
+        }
+
+        public static string generateBxmlTransferVerb(string deviceToken, string sipUri) {
+            return "<Transfer>\n"
+                + "\t<SipUri uui=\"" + deviceToken + ";encoding=jwt\">" + sipUri + "</SipUri>\n"
+                + "</Transfer>\n";
+        }
     }
 }
