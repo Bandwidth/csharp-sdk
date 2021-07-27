@@ -1,66 +1,80 @@
-using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-
+// <copyright file="ListDateTimeConverter.cs" company="APIMatic">
+// Copyright (c) APIMatic. All rights reserved.
+// </copyright>
 namespace Bandwidth.Standard.Utilities
 {
+    using System;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+
     /// <summary>
     /// Extends from JsonConverter, allows the use of a custom converter.
     /// </summary>
-    class ListDateTimeConverter : JsonConverter
+    public class ListDateTimeConverter : JsonConverter
     {
         /// <summary>
-        /// Initializes a new instance of the ListDateTimeConverter object.
+        /// Initializes a new instance of the <see cref="ListDateTimeConverter"/>
+        /// class.
         /// </summary>
         public ListDateTimeConverter()
         {
-            Converter = new IsoDateTimeConverter();
+            this.Converter = new IsoDateTimeConverter();
         }
 
         /// <summary>
-        /// Initializes a new instance of the ListDateTimeConverter object based 
-        /// on the provided type.
+        /// Initializes a new instance of the <see cref="ListDateTimeConverter"/>
+        /// class.
         /// </summary>
-        public ListDateTimeConverter(Type Converter)
+        /// <param name="converter">converter.</param>
+        public ListDateTimeConverter(Type converter)
         {
-            this.Converter = (JsonConverter)Activator.CreateInstance(Converter);
+            this.Converter = (JsonConverter)Activator.CreateInstance(converter);
         }
 
         /// <summary>
-        /// Initializes a new instance of the ListDateTimeConverter object based 
-        /// on the provided type and format.
+        /// Initializes a new instance of the <see cref="ListDateTimeConverter"/>
+        /// class.
         /// </summary>
-        public ListDateTimeConverter(Type Converter,string format)
+        /// <param name="converter">converter.</param>
+        /// <param name="format">format.</param>
+        public ListDateTimeConverter(Type converter, string format)
         {
-            this.Converter = (JsonConverter)Activator.CreateInstance(Converter,format);
+            this.Converter = (JsonConverter)Activator.CreateInstance(converter, format);
         }
 
         /// <summary>
-        /// Getter/Setter for the JsonConverter.
+        /// Gets or sets the JsonConverter.
         /// </summary>
         public JsonConverter Converter { get; set; }
 
+        /// <inheritdoc/>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             serializer.Converters.Clear();
-            serializer.Converters.Add(Converter);
-            serializer.Serialize(writer,value);
+            serializer.Converters.Add(this.Converter);
+            serializer.Serialize(writer, value);
         }
 
+        /// <inheritdoc/>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             serializer.Converters.Clear();
-            serializer.Converters.Add(Converter);
+            serializer.Converters.Add(this.Converter);
             return serializer.Deserialize(reader, objectType);
         }
 
+        /// <inheritdoc/>
         public override bool CanConvert(Type objectType)
         {
-            if (objectType == typeof(List<DateTime>)||objectType == typeof(DateTime) || objectType == typeof(List<DateTimeOffset>)||objectType == typeof(DateTimeOffset))
+            if (objectType == typeof(List<DateTime>) || objectType == typeof(DateTime) || objectType == typeof(List<DateTimeOffset>) || objectType == typeof(DateTimeOffset))
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
     }
 }

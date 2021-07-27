@@ -1,16 +1,19 @@
-using System;
-
+// <copyright file="IVoiceBasicAuthCredentials.cs" company="APIMatic">
+// Copyright (c) APIMatic. All rights reserved.
+// </copyright>
 namespace Bandwidth.Standard.Authentication
 {
-    public interface IVoiceBasicAuthCredentials
+using System;
+
+public interface IVoiceBasicAuthCredentials
     {
         /// <summary>
-        /// Getter for basicAuthUserName
+        /// Gets basicAuthUserName.
         /// </summary>
         string BasicAuthUserName { get; }
 
         /// <summary>
-        /// Getter for basicAuthPassword
+        /// Gets basicAuthPassword.
         /// </summary>
         string BasicAuthPassword { get; }
 

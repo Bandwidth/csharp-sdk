@@ -1,230 +1,464 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Bandwidth.Standard.Http.Request;
-using Bandwidth.Standard.Http.Response;
-using Bandwidth.Standard.Utilities;
-
+// <copyright file="HttpClientWrapper.cs" company="APIMatic">
+// Copyright (c) APIMatic. All rights reserved.
+// </copyright>
 namespace Bandwidth.Standard.Http.Client
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.IO;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Polly;
+    using Polly.Retry;
+    using Polly.Timeout;
+    using Polly.Wrap;
+    using Bandwidth.Standard.Http.Request;
+    using Bandwidth.Standard.Http.Response;
+    using Bandwidth.Standard.Utilities;
+
+    /// <summary>
+    /// HttpClientWrapper.
+    /// </summary>
     internal sealed class HttpClientWrapper : IHttpClient
     {
-        private ArrayDeserialization ArrayDeserializationFormat = ArrayDeserialization.Indexed;
-        private static char ParameterSeparator = '&';
-        private readonly static object syncObject = new Object();
-        private static HttpClient defaultHttpClient;
+        private static char parameterSeparator = '&';
+        private readonly int numberOfRetries;
+        private readonly int backoffFactor;
+        private readonly double retryInterval;
+        private readonly TimeSpan maximumRetryWaitTime;
+        private ArrayDeserialization arrayDeserializationFormat = ArrayDeserialization.Indexed;
         private HttpClient client;
-        public HttpClientWrapper()
-        {
-            this.client = GetDefaultHttpClient();
-        }
+        private IList<HttpStatusCode> statusCodesToRetry;
+        private IList<HttpMethod> requestMethodsToRetry;
+        private bool overrideHttpClientConfiguration;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HttpClientWrapper"/> class.
+        /// </summary>
+        /// <param name="httpClientConfig"> HttpClientConfiguration object.</param>
         public HttpClientWrapper(HttpClientConfiguration httpClientConfig)
         {
-            this.client = new HttpClient()
-            {
-                Timeout = httpClientConfig.Timeout
-            };
-        }
+            this.client = httpClientConfig.HttpClientInstance;
+            this.overrideHttpClientConfiguration = httpClientConfig.OverrideHttpClientConfiguration;
 
-        private HttpClient GetDefaultHttpClient()
-        {
-            if (defaultHttpClient == null)
+            if (overrideHttpClientConfiguration)
             {
-                lock (syncObject)
-                {
-                    if (defaultHttpClient == null)
-                    {
-                        defaultHttpClient = new HttpClient();
-                    }
-                }
+                this.statusCodesToRetry = httpClientConfig.StatusCodesToRetry
+                .Where(val => Enum.IsDefined(typeof(HttpStatusCode), val))
+                .Select(val => (HttpStatusCode)val).ToImmutableList();
+
+                this.requestMethodsToRetry = httpClientConfig.RequestMethodsToRetry
+                    .Select(method => new HttpMethod(method.ToString())).ToList();
+
+                this.numberOfRetries = httpClientConfig.NumberOfRetries;
+                this.backoffFactor = httpClientConfig.BackoffFactor;
+                this.retryInterval = httpClientConfig.RetryInterval;
+                this.maximumRetryWaitTime = httpClientConfig.MaximumRetryWaitTime;
+                this.client.Timeout = httpClientConfig.Timeout;
             }
-            return defaultHttpClient;
         }
 
-        #region Execute methods
-
-        public HttpStringResponse ExecuteAsString(HttpRequest request)
-        {
-            Task<HttpStringResponse> t = ExecuteAsStringAsync(request);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        public async Task<HttpStringResponse> ExecuteAsStringAsync(HttpRequest request,
-            CancellationToken cancellationToken = default)
-        {
-            //raise the on before request event
-            RaiseOnBeforeHttpRequestEvent(request);
-
-            HttpResponseMessage responseMessage = await HttpResponseMessage(request, cancellationToken)
-                .ConfigureAwait(false);
-
-            int StatusCode = (int)responseMessage.StatusCode;
-            var Headers = GetCombinedResponseHeaders(responseMessage);
-            Stream RawBody = await responseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false);
-            string Body = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-            var response = new HttpStringResponse(StatusCode, Headers, RawBody, Body);
-
-            //raise the on after response event
-            RaiseOnAfterHttpResponseEvent(response);
-            return response;
-        }
-
-        public HttpResponse ExecuteAsBinary(HttpRequest request)
-        {
-            Task<HttpResponse> t = ExecuteAsBinaryAsync(request);
-            ApiHelper.RunTaskSynchronously(t);
-            return t.Result;
-        }
-
-        public async Task<HttpResponse> ExecuteAsBinaryAsync(HttpRequest request,
-            CancellationToken cancellationToken = default)
-        {
-            //raise the on before request event
-            RaiseOnBeforeHttpRequestEvent(request);
-
-            HttpResponseMessage responseMessage = await HttpResponseMessage(request, cancellationToken)
-                .ConfigureAwait(false);
-
-            int StatusCode = (int)responseMessage.StatusCode;
-            var Headers = GetCombinedResponseHeaders(responseMessage);
-            Stream RawBody = await responseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false);
-
-            HttpResponse response = new HttpResponse(StatusCode, Headers, RawBody);
-
-            //raise the on after response event
-            RaiseOnAfterHttpResponseEvent(response);
-            return response;
-        }
-
-        #endregion
-
-        #region Http request and response events
-
+        /// <summary>
+        /// OnBeforeHttpRequestEvent.
+        /// </summary>
         public event OnBeforeHttpRequestEventHandler OnBeforeHttpRequestEvent;
+
+        /// <summary>
+        /// OnAfterHttpResponseEvent.
+        /// </summary>
         public event OnAfterHttpResponseEventHandler OnAfterHttpResponseEvent;
 
-        private void RaiseOnBeforeHttpRequestEvent(HttpRequest request)
+        /// <summary>
+        /// Executes the http request.
+        /// </summary>
+        /// <param name="request">Http request.</param>
+        /// <returns>HttpStringResponse.</returns>
+        public HttpStringResponse ExecuteAsString(HttpRequest request)
         {
-            if ((null != OnBeforeHttpRequestEvent) && (null != request))
-            {
-                OnBeforeHttpRequestEvent(this, request);
-            }
+            Task<HttpStringResponse> t = this.ExecuteAsStringAsync(request);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
         }
 
-        private void RaiseOnAfterHttpResponseEvent(HttpResponse response)
+        /// <summary>
+        /// Executes the http request asynchronously.
+        /// </summary>
+        /// <param name="request">Http request.</param>
+        /// <param name="cancellationToken"> cancellationToken.</param>
+        /// <returns>Returns the HttpStringResponse.</returns>
+        public async Task<HttpStringResponse> ExecuteAsStringAsync(
+            HttpRequest request,
+            CancellationToken cancellationToken = default)
         {
-            if ((null != OnAfterHttpResponseEvent) && (null != response))
+            // raise the on before request event.
+            this.RaiseOnBeforeHttpRequestEvent(request);
+
+            HttpResponseMessage responseMessage;
+
+            if (overrideHttpClientConfiguration)
             {
-                OnAfterHttpResponseEvent(this, response);
+                responseMessage = await this.GetCombinedPolicy().ExecuteAsync(
+                    async (cancellation) => await this.HttpResponseMessage(request, cancellation).ConfigureAwait(false), cancellationToken)
+                    .ConfigureAwait(false);
             }
+            else
+            {
+                responseMessage = await this.HttpResponseMessage(request, cancellationToken).ConfigureAwait(false);
+            }
+
+            int statusCode = (int)responseMessage.StatusCode;
+            var headers = GetCombinedResponseHeaders(responseMessage);
+            Stream rawBody = await responseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false);
+            string body = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            var response = new HttpStringResponse(statusCode, headers, rawBody, body);
+
+            // raise the on after response event.
+            this.RaiseOnAfterHttpResponseEvent(response);
+
+            return response;
         }
 
-        #endregion
+        /// <summary>
+        /// Executes the http request.
+        /// </summary>
+        /// <param name="request">Http request.</param>
+        /// <returns>HttpResponse.</returns>
+        public HttpResponse ExecuteAsBinary(HttpRequest request)
+        {
+            Task<HttpResponse> t = this.ExecuteAsBinaryAsync(request);
+            ApiHelper.RunTaskSynchronously(t);
+            return t.Result;
+        }
 
-        #region Http methods
+        /// <summary>
+        /// Executes the http request asynchronously.
+        /// </summary>
+        /// <param name="request">Http request.</param>
+        /// <param name="cancellationToken">cancellationToken.</param>
+        /// <returns>HttpResponse.</returns>
+        public async Task<HttpResponse> ExecuteAsBinaryAsync(
+            HttpRequest request,
+            CancellationToken cancellationToken = default)
+        {
+            // raise the on before request event.
+            this.RaiseOnBeforeHttpRequestEvent(request);
 
-        public HttpRequest Get(string queryUrl, Dictionary<string, string> headers, Dictionary<string, object> queryParameters = null,
-                string username = null, string password = null)
+            HttpResponseMessage responseMessage;
+
+            if (overrideHttpClientConfiguration)
+            {
+                responseMessage = await this.GetCombinedPolicy().ExecuteAsync(
+                    async (cancellation) => await this.HttpResponseMessage(request, cancellation).ConfigureAwait(false), cancellationToken)
+                    .ConfigureAwait(false);
+            }
+            else
+            {
+                responseMessage = await this.HttpResponseMessage(request, cancellationToken).ConfigureAwait(false);
+            }
+
+            int statusCode = (int)responseMessage.StatusCode;
+            var headers = GetCombinedResponseHeaders(responseMessage);
+            Stream rawBody = await responseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false);
+
+            HttpResponse response = new HttpResponse(statusCode, headers, rawBody);
+
+            // raise the on after response event.
+            this.RaiseOnAfterHttpResponseEvent(response);
+
+            return response;
+        }
+
+        /// <summary>
+        /// Get http request.
+        /// </summary>
+        /// <param name="queryUrl">queryUrl.</param>
+        /// <param name="headers">headers.</param>
+        /// <param name="queryParameters">queryParameters.</param>
+        /// <param name="username">username.</param>
+        /// <param name="password">password.</param>
+        /// <returns>HttpRequest.</returns>
+        public HttpRequest Get(
+            string queryUrl,
+            Dictionary<string, string> headers,
+            Dictionary<string, object> queryParameters = null,
+            string username = null,
+            string password = null)
         {
             return new HttpRequest(HttpMethod.Get, queryUrl, headers, username, password, queryParameters: queryParameters);
         }
 
+        /// <summary>
+        /// Get http request.
+        /// </summary>
+        /// <param name="queryUrl">queryUrl.</param>
+        /// <returns>HttpRequest.</returns>
         public HttpRequest Get(string queryUrl)
         {
             return new HttpRequest(HttpMethod.Get, queryUrl);
         }
 
+        /// <summary>
+        /// Post http request.
+        /// </summary>
+        /// <param name="queryUrl">queryUrl.</param>
+        /// <returns>HttpRequest.</returns>
         public HttpRequest Post(string queryUrl)
         {
             return new HttpRequest(HttpMethod.Post, queryUrl);
         }
 
+        /// <summary>
+        /// Put http request.
+        /// </summary>
+        /// <param name="queryUrl">queryUrl.</param>
+        /// <returns>HttpRequest.</returns>
         public HttpRequest Put(string queryUrl)
         {
             return new HttpRequest(HttpMethod.Put, queryUrl);
         }
 
+        /// <summary>
+        /// Delete http request.
+        /// </summary>
+        /// <param name="queryUrl">queryUrl.</param>
+        /// <returns>HttpRequest.</returns>
         public HttpRequest Delete(string queryUrl)
         {
             return new HttpRequest(HttpMethod.Delete, queryUrl);
         }
 
+        /// <summary>
+        /// Patch http request.
+        /// </summary>
+        /// <param name="queryUrl">queryUrl.</param>
+        /// <returns>HttpRequest.</returns>
         public HttpRequest Patch(string queryUrl)
         {
             return new HttpRequest(new HttpMethod("PATCH"), queryUrl);
         }
 
-        public HttpRequest Post(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, object>> formParameters,
-                Dictionary<string, object> queryParameters = null, string username = null, string password = null)
+        /// <summary>
+        /// Post http request.
+        /// </summary>
+        /// <param name="queryUrl">queryUrl.</param>
+        /// <param name="headers">headers.</param>
+        /// <param name="formParameters">formParameters.</param>
+        /// <param name="queryParameters">queryParameters.</param>
+        /// <param name="username">username.</param>
+        /// <param name="password">password.</param>
+        /// <returns>HttpRequest.</returns>
+        public HttpRequest Post(
+            string queryUrl,
+            Dictionary<string, string> headers,
+            List<KeyValuePair<string, object>> formParameters,
+            Dictionary<string, object> queryParameters = null,
+            string username = null,
+            string password = null)
         {
             return new HttpRequest(HttpMethod.Post, queryUrl, headers, formParameters, username, password, queryParameters: queryParameters);
         }
 
-        public HttpRequest PostBody(string queryUrl, Dictionary<string, string> headers, object body,
-                Dictionary<string, object> queryParameters = null, string username = null, string password = null)
+        /// <summary>
+        /// Post http request.
+        /// </summary>
+        /// <param name="queryUrl">queryUrl.</param>
+        /// <param name="headers">headers.</param>
+        /// <param name="body">body.</param>
+        /// <param name="queryParameters">queryParameters.</param>
+        /// <param name="username">username.</param>
+        /// <param name="password">password.</param>
+        /// <returns>HttpRequest.</returns>
+        public HttpRequest PostBody(
+            string queryUrl,
+            Dictionary<string, string> headers,
+            object body,
+            Dictionary<string, object> queryParameters = null,
+            string username = null,
+            string password = null)
         {
             return new HttpRequest(HttpMethod.Post, queryUrl, headers, body, username, password, queryParameters: queryParameters);
         }
 
-        public HttpRequest Put(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, object>> formParameters,
-                Dictionary<string, object> queryParameters = null, string username = null, string password = null)
+         /// <summary>
+        /// Put http request.
+        /// </summary>
+        /// <param name="queryUrl">queryUrl.</param>
+        /// <param name="headers">headers.</param>
+        /// <param name="formParameters">formParameters.</param>
+        /// <param name="queryParameters">queryParameters.</param>
+        /// <param name="username">username.</param>
+        /// <param name="password">password.</param>
+        /// <returns>HttpRequest.</returns>
+        public HttpRequest Put(
+            string queryUrl,
+            Dictionary<string, string> headers,
+            List<KeyValuePair<string, object>> formParameters,
+            Dictionary<string, object> queryParameters = null,
+            string username = null,
+            string password = null)
         {
             return new HttpRequest(HttpMethod.Put, queryUrl, headers, formParameters, username, password, queryParameters: queryParameters);
         }
 
-        public HttpRequest PutBody(string queryUrl, Dictionary<string, string> headers, object body, Dictionary<string, object> queryParameters = null,
-                string username = null, string password = null)
+         /// <summary>
+        /// Put http request.
+        /// </summary>
+        /// <param name="queryUrl">queryUrl.</param>
+        /// <param name="headers">headers.</param>
+        /// <param name="body">body.</param>
+        /// <param name="queryParameters">queryParameters.</param>
+        /// <param name="username">username.</param>
+        /// <param name="password">password.</param>
+        /// <returns>HttpRequest.</returns>
+        public HttpRequest PutBody(
+            string queryUrl,
+            Dictionary<string, string> headers,
+            object body,
+            Dictionary<string, object> queryParameters = null,
+            string username = null,
+            string password = null)
         {
             return new HttpRequest(HttpMethod.Put, queryUrl, headers, body, username, password, queryParameters: queryParameters);
         }
 
-        public HttpRequest Patch(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, object>> formParameters,
-                Dictionary<string, object> queryParameters = null, string username = null, string password = null)
+        /// <summary>
+        /// Patch http request.
+        /// </summary>
+        /// <param name="queryUrl">queryUrl.</param>
+        /// <param name="headers">headers.</param>
+        /// <param name="formParameters">formParameters.</param>
+        /// <param name="queryParameters">queryParameters.</param>
+        /// <param name="username">username.</param>
+        /// <param name="password">password.</param>
+        /// <returns>HttpRequest.</returns>
+        public HttpRequest Patch(
+            string queryUrl,
+            Dictionary<string, string> headers,
+            List<KeyValuePair<string, object>> formParameters,
+            Dictionary<string, object> queryParameters = null,
+            string username = null,
+            string password = null)
         {
             return new HttpRequest(new HttpMethod("PATCH"), queryUrl, headers, formParameters, username, password, queryParameters: queryParameters);
         }
 
-        public HttpRequest PatchBody(string queryUrl, Dictionary<string, string> headers, object body, Dictionary<string, object> queryParameters = null,
-                string username = null, string password = null)
+        /// <summary>
+        /// Patch http request.
+        /// </summary>
+        /// <param name="queryUrl">queryUrl.</param>
+        /// <param name="headers">headers.</param>
+        /// <param name="body">body.</param>
+        /// <param name="queryParameters">queryParameters.</param>
+        /// <param name="username">username.</param>
+        /// <param name="password">password.</param>
+        /// <returns>HttpRequest.</returns>
+        public HttpRequest PatchBody(
+            string queryUrl,
+            Dictionary<string, string> headers,
+            object body,
+            Dictionary<string, object> queryParameters = null,
+            string username = null,
+            string password = null)
         {
             return new HttpRequest(new HttpMethod("PATCH"), queryUrl, headers, body, username, password, queryParameters: queryParameters);
         }
 
-        public HttpRequest Delete(string queryUrl, Dictionary<string, string> headers, List<KeyValuePair<string, object>> formParameters,
-                Dictionary<string, object> queryParameters = null, string username = null, string password = null)
+        /// <summary>
+        /// Delete http request.
+        /// </summary>
+        /// <param name="queryUrl">queryUrl.</param>
+        /// <param name="headers">headers.</param>
+        /// <param name="formParameters">formParameters.</param>
+        /// <param name="queryParameters">queryParameters.</param>
+        /// <param name="username">username.</param>
+        /// <param name="password">password.</param>
+        /// <returns>HttpRequest.</returns>
+        public HttpRequest Delete(
+            string queryUrl,
+            Dictionary<string, string> headers,
+            List<KeyValuePair<string, object>> formParameters,
+            Dictionary<string, object> queryParameters = null,
+            string username = null,
+            string password = null)
         {
             return new HttpRequest(HttpMethod.Delete, queryUrl, headers, formParameters, username, password, queryParameters: queryParameters);
         }
 
-        public HttpRequest DeleteBody(string queryUrl, Dictionary<string, string> headers, object body, Dictionary<string, object> queryParameters = null,
-                string username = null, string password = null)
+        /// <summary>
+        /// Delete http request.
+        /// </summary>
+        /// <param name="queryUrl">queryUrl.</param>
+        /// <param name="headers">headers.</param>
+        /// <param name="body">body.</param>
+        /// <param name="queryParameters">queryParameters.</param>
+        /// <param name="username">username.</param>
+        /// <param name="password">password.</param>
+        /// <returns>HttpRequest.</returns>
+        public HttpRequest DeleteBody(
+            string queryUrl,
+            Dictionary<string, string> headers,
+            object body,
+            Dictionary<string, object> queryParameters = null,
+            string username = null,
+            string password = null)
         {
             return new HttpRequest(HttpMethod.Delete, queryUrl, headers, body, username, password, queryParameters: queryParameters);
         }
 
-        #endregion
+        private static Dictionary<string, string> GetCombinedResponseHeaders(HttpResponseMessage responseMessage)
+        {
+            var headers = responseMessage.Headers.ToDictionary(l => l.Key, k => k.Value.First());
+            if (responseMessage.Content != null)
+            {
+                foreach (var contentHeader in responseMessage.Content.Headers)
+                {
+                    if (headers.ContainsKey(contentHeader.Key))
+                    {
+                        continue;
+                    }
 
-        #region Helper methods
+                    headers.Add(contentHeader.Key, contentHeader.Value.First());
+                }
+            }
 
-        private async Task<HttpResponseMessage> HttpResponseMessage(HttpRequest request, CancellationToken cancellationToken)
+            return headers;
+        }
+
+        private void RaiseOnBeforeHttpRequestEvent(HttpRequest request)
+        {
+            if ((this.OnBeforeHttpRequestEvent != null) && (request != null))
+            {
+                this.OnBeforeHttpRequestEvent(this, request);
+            }
+        }
+
+        private void RaiseOnAfterHttpResponseEvent(HttpResponse response)
+        {
+            if ((this.OnAfterHttpResponseEvent != null) && (response != null))
+            {
+                this.OnAfterHttpResponseEvent(this, response);
+            }
+        }
+
+        private async Task<HttpResponseMessage> HttpResponseMessage(
+            HttpRequest request,
+            CancellationToken cancellationToken)
         {
             var queryBuilder = new StringBuilder(request.QueryUrl);
 
             if (request.QueryParameters != null)
             {
-                ApiHelper.AppendUrlWithQueryParameters(queryBuilder, request.QueryParameters, ArrayDeserializationFormat, ParameterSeparator);
+                ApiHelper.AppendUrlWithQueryParameters(queryBuilder, request.QueryParameters, this.arrayDeserializationFormat, parameterSeparator);
             }
 
-            //validate and preprocess url
+            // validate and preprocess url.
             string queryUrl = ApiHelper.CleanUrl(queryBuilder);
 
             HttpRequestMessage requestMessage = new HttpRequestMessage
@@ -244,7 +478,8 @@ namespace Bandwidth.Standard.Http.Client
             if (!string.IsNullOrEmpty(request.Username))
             {
                 var byteArray = Encoding.UTF8.GetBytes(request.Username + ":" + request.Password);
-                requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic",
+                requestMessage.Headers.Authorization = new AuthenticationHeaderValue(
+                    "Basic",
                     Convert.ToBase64String(byteArray));
             }
 
@@ -257,6 +492,7 @@ namespace Bandwidth.Standard.Http.Client
                 {
                     if (request.Body is FileStreamInfo file)
                     {
+                        file.FileStream.Position = 0;
                         requestMessage.Content = new StreamContent(file.FileStream);
                         if (!string.IsNullOrWhiteSpace(file.ContentType))
                         {
@@ -273,11 +509,12 @@ namespace Bandwidth.Standard.Http.Client
                             requestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
                         }
                     }
-                    else if (request.Headers.ContainsKey("content-type") && string.Equals(request.Headers["content-type"],
-                        "application/json; charset=utf-8", StringComparison.OrdinalIgnoreCase))
+                    else if (request.Headers.ContainsKey("content-type") && string.Equals(
+                        request.Headers["content-type"],
+                        "application/json; charset=utf-8",
+                        StringComparison.OrdinalIgnoreCase))
                     {
-                        requestMessage.Content = new StringContent((string)request.Body ?? string.Empty, Encoding.UTF8,
-                            "application/json");
+                        requestMessage.Content = new StringContent((string)request.Body ?? string.Empty, Encoding.UTF8, "application/json");
                     }
                     else if (request.Headers.ContainsKey("content-type"))
                     {
@@ -286,6 +523,7 @@ namespace Bandwidth.Standard.Http.Client
                         if (request.Body is Stream)
                         {
                             Stream s = (Stream)request.Body;
+                            s.Position = 0;
                             using (BinaryReader br = new BinaryReader(s))
                             {
                                 bytes = br.ReadBytes((int)s.Length);
@@ -306,15 +544,14 @@ namespace Bandwidth.Standard.Http.Client
                         {
                             requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse(request.Headers["content-type"]);
                         }
-                        catch(Exception)
+                        catch (Exception)
                         {
                             requestMessage.Content.Headers.TryAddWithoutValidation("content-type", request.Headers["content-type"]);
                         }
                     }
                     else
                     {
-                        requestMessage.Content = new StringContent(request.Body.ToString() ?? string.Empty, Encoding.UTF8,
-                            "text/plain");
+                        requestMessage.Content = new StringContent(request.Body.ToString() ?? string.Empty, Encoding.UTF8, "text/plain");
                     }
                 }
                 else if (multipartRequest)
@@ -326,10 +563,12 @@ namespace Bandwidth.Standard.Http.Client
                         if (param.Value is FileStreamInfo fileParam)
                         {
                             var fileContent = new MultipartFileContent(fileParam);
+                            fileContent.Rewind();
                             formContent.Add(fileContent.ToHttpContent(param.Key));
                         }
                         else if (param.Value is MultipartContent wrapperObject)
                         {
+                            wrapperObject.Rewind();
                             formContent.Add(wrapperObject.ToHttpContent(param.Key));
                         }
                         else
@@ -347,29 +586,63 @@ namespace Bandwidth.Standard.Http.Client
                     {
                         parameters.Add(new KeyValuePair<string, string>(param.Key, param.Value.ToString()));
                     }
+
                     requestMessage.Content = new FormUrlEncodedContent(parameters);
                 }
             }
-            return await client.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
+
+            return await this.client.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
         }
 
-        private static Dictionary<string, string> GetCombinedResponseHeaders(HttpResponseMessage responseMessage)
+        private bool ShouldRetry(HttpResponseMessage r)
         {
-            var headers = responseMessage.Headers.ToDictionary(l => l.Key, k => k.Value.First());
-            if (responseMessage.Content != null)
-            {
-                foreach (var contentHeader in responseMessage.Content.Headers)
-                {
-                    if (headers.ContainsKey(contentHeader.Key))
-                    {
-                        continue;
-                    }
-                    headers.Add(contentHeader.Key, contentHeader.Value.First());
-                }
-            }
-            return headers;
+            return this.requestMethodsToRetry.Contains(r.RequestMessage.Method) &&
+                (this.statusCodesToRetry.Contains(r.StatusCode) ||
+                r?.Headers?.RetryAfter != null);
         }
 
-        #endregion
+        private TimeSpan GetServerWaitDuration(DelegateResult<HttpResponseMessage> response)
+        {
+            var retryAfter = response?.Result?.Headers?.RetryAfter;
+            if (retryAfter == null)
+            {
+                return TimeSpan.Zero;
+            }
+
+            return retryAfter.Date.HasValue
+                ? retryAfter.Date.Value - DateTime.UtcNow
+                : retryAfter.Delta.GetValueOrDefault(TimeSpan.Zero);
+        }
+
+        private AsyncRetryPolicy<HttpResponseMessage> GetRetryPolicy()
+        {
+            return Policy.HandleResult<HttpResponseMessage>(r => this.ShouldRetry(r))
+                .Or<TaskCanceledException>()
+                .Or<HttpRequestException>()
+                .WaitAndRetryAsync(
+                retryCount: this.numberOfRetries,
+                sleepDurationProvider: (retryAttempt, result, context) =>
+                TimeSpan.FromMilliseconds(Math.Max(this.GetExponentialWaitTime(retryAttempt), this.GetServerWaitDuration(result).TotalMilliseconds)),
+                onRetryAsync: async (result, timespan, retryAttempt, context) => await Task.CompletedTask);
+        }
+
+        private AsyncTimeoutPolicy GetTimeoutPolicy()
+        {
+            return this.maximumRetryWaitTime.TotalSeconds == 0
+                ? Policy.TimeoutAsync(Timeout.InfiniteTimeSpan)
+                : Policy.TimeoutAsync(this.maximumRetryWaitTime);
+        }
+
+        private AsyncPolicyWrap<HttpResponseMessage> GetCombinedPolicy()
+        {
+            return this.GetTimeoutPolicy().WrapAsync(this.GetRetryPolicy());
+        }
+
+        private double GetExponentialWaitTime(int retryAttempt)
+        {
+            double noise = new Random().NextDouble() * 100;
+            return (1000 * this.retryInterval * Math.Pow(this.backoffFactor, retryAttempt - 1)) + noise;
+
+        }
     }
 }

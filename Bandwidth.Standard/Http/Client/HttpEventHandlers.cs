@@ -1,15 +1,18 @@
-using Bandwidth.Standard.Http.Request;
-using Bandwidth.Standard.Http.Response;
-
+// <copyright file="HttpEventHandlers.cs" company="APIMatic">
+// Copyright (c) APIMatic. All rights reserved.
+// </copyright>
 namespace Bandwidth.Standard.Http.Client
 {
+    using Bandwidth.Standard.Http.Request;
+    using Bandwidth.Standard.Http.Response;
+
     /// <summary>
     /// Delegate to handle the event on before http request. This event is raised before any
     /// network call is made, and can be used for logging, request modification, appending
     /// additional headers etc.
     /// </summary>
-    /// <param name="source">The source HttpClient that is going to make the network call</param>
-    /// <param name="request">The underlying HttpRequest being sent over the network</param>
+    /// <param name="source">The source HttpClient that is going to make the network call.</param>
+    /// <param name="request">The underlying HttpRequest being sent over the network.</param>
     internal delegate void OnBeforeHttpRequestEventHandler(IHttpClient source, HttpRequest request);
 
     /// <summary>
@@ -17,7 +20,7 @@ namespace Bandwidth.Standard.Http.Client
     /// network response is recieved, and can be used for logging, response modification, extracting
     /// additional information etc.
     /// </summary>
-    /// <param name="source">The source HttpClient that recieved the response from the network call</param>
-    /// <param name="request">The underlying HttpResponse recieved from the network</param>
+    /// <param name="source">The source HttpClient that recieved the response from the network call.</param>
+    /// <param name="response">The underlying HttpResponse recieved from the network.</param>
     internal delegate void OnAfterHttpResponseEventHandler(IHttpClient source, HttpResponse response);
 }

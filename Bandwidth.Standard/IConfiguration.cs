@@ -1,34 +1,36 @@
-using System;
-using System.Net;
-using Bandwidth.Standard.Authentication;
+// <copyright file="IConfiguration.cs" company="APIMatic">
+// Copyright (c) APIMatic. All rights reserved.
+// </copyright>
 namespace Bandwidth.Standard
 {
+    using System;
+    using System.Net;
+    using Bandwidth.Standard.Authentication;
+
+    /// <summary>
+    /// IConfiguration.
+    /// </summary>
     public interface IConfiguration
     {
         /// <summary>
-        /// Http client timeout
-        /// </summary>
-        TimeSpan Timeout { get; }
-
-        /// <summary>
-        /// Current API environment
+        /// Gets Current API environment.
         /// </summary>
         Environment Environment { get; }
 
         /// <summary>
-        /// BaseUrl value
+        /// Gets BaseUrl value.
         /// </summary>
         string BaseUrl { get; }
 
         /// <summary>
-        /// The credentials to use with MessagingBasicAuth
+        /// Gets the credentials to use with MessagingBasicAuth.
         /// </summary>
         IMessagingBasicAuthCredentials MessagingBasicAuthCredentials { get; }
 
         /// <summary>
-        /// The credentials to use with TwoFactorAuthBasicAuth
+        /// Gets the credentials to use with MultiFactorAuthBasicAuth.
         /// </summary>
-        ITwoFactorAuthBasicAuthCredentials TwoFactorAuthBasicAuthCredentials { get; }
+        IMultiFactorAuthBasicAuthCredentials MultiFactorAuthBasicAuthCredentials { get; }
 
         /// <summary>
         /// Gets the credentials to use with PhoneNumberLookupBasicAuth.
@@ -36,20 +38,20 @@ namespace Bandwidth.Standard
         IPhoneNumberLookupBasicAuthCredentials PhoneNumberLookupBasicAuthCredentials { get; }
 
         /// <summary>
-        /// The credentials to use with VoiceBasicAuth
+        /// Gets the credentials to use with VoiceBasicAuth.
         /// </summary>
         IVoiceBasicAuthCredentials VoiceBasicAuthCredentials { get; }
 
         /// <summary>
-        /// The credentials to use with WebRtcBasicAuth
+        /// Gets the credentials to use with WebRtcBasicAuth.
         /// </summary>
         IWebRtcBasicAuthCredentials WebRtcBasicAuthCredentials { get; }
 
         /// <summary>
-        /// Gets the URL for a particular alias in the current environment and appends it with template parameters
+        /// Gets the URL for a particular alias in the current environment and appends it with template parameters.
         /// </summary>
-        /// <param name="alias">Default value:DEFAULT</param>
-        /// <return>Returns the baseurl</return>
+        /// <param name="alias">Default value:DEFAULT.</param>
+        /// <returns>Returns the baseurl.</returns>
         string GetBaseUri(Server alias = Server.Default);
     }
 }

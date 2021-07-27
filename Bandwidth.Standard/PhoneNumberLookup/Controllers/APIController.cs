@@ -67,7 +67,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
                 CancellationToken cancellationToken = default)
         {
             // the base uri for api requests.
-            string baseUri = this.config.GetBaseUri(Server.PhoneNumberLookupDefault);
+            string baseUri = this.Config.GetBaseUri(Server.PhoneNumberLookupDefault);
 
             // prepare query string for API call.
             StringBuilder queryBuilder = new StringBuilder(baseUri);
@@ -82,7 +82,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
             // append request with appropriate headers and parameters
             var headers = new Dictionary<string, string>()
             {
-                { "user-agent", this.userAgent },
+                { "user-agent", this.UserAgent },
                 { "accept", "application/json" },
                 { "content-type", "application/json; charset=utf-8" },
             };
@@ -98,7 +98,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
                 this.HttpCallBack.OnBeforeHttpRequestEventHandler(this.GetClientInstance(), httpRequest);
             }
 
-            httpRequest = await this.authManagers["phoneNumberLookup"].ApplyAsync(httpRequest).ConfigureAwait(false);
+            httpRequest = await this.AuthManagers["phoneNumberLookup"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
             // invoke request and get response.
             HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
@@ -664,7 +664,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
                 CancellationToken cancellationToken = default)
         {
             // the base uri for api requests.
-            string baseUri = this.config.GetBaseUri(Server.PhoneNumberLookupDefault);
+            string baseUri = this.Config.GetBaseUri(Server.PhoneNumberLookupDefault);
 
             // prepare query string for API call.
             StringBuilder queryBuilder = new StringBuilder(baseUri);
@@ -680,7 +680,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
             // append request with appropriate headers and parameters
             var headers = new Dictionary<string, string>()
             {
-                { "user-agent", this.userAgent },
+                { "user-agent", this.UserAgent },
                 { "accept", "application/json" },
             };
 
@@ -692,7 +692,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
                 this.HttpCallBack.OnBeforeHttpRequestEventHandler(this.GetClientInstance(), httpRequest);
             }
 
-            httpRequest = await this.authManagers["phoneNumberLookup"].ApplyAsync(httpRequest).ConfigureAwait(false);
+            httpRequest = await this.AuthManagers["phoneNumberLookup"].ApplyAsync(httpRequest).ConfigureAwait(false);
 
             // invoke request and get response.
             HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
