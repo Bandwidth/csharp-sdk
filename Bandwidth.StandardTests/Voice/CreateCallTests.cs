@@ -42,16 +42,6 @@ namespace Bandwidth.StandardTests.Voice
             Assert.Equal(applicationId, createCallResponse.Data.ApplicationId);
             Assert.Equal(to, createCallResponse.Data.To);
             Assert.Equal(from, createCallResponse.Data.From);
-
-            var callId = createCallResponse.Data.CallId;
-
-            // Get the call's state after it has been created.
-            // var getCallStateResponse = await _client.Voice.APIController.GetCallStateAsync(accountId, callId);
-
-            // Assert.Equal(applicationId, getCallStateResponse.Data.ApplicationId);
-            // Assert.Equal(to, getCallStateResponse.Data.To);
-            // Assert.Equal(from, getCallStateResponse.Data.From);
-            // Assert.Equal(callId, getCallStateResponse.Data.CallId);
         }
 
         [Fact]
