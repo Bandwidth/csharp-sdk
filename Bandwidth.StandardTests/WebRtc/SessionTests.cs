@@ -55,7 +55,7 @@ namespace Bandwidth.StandardTests.WebRtc
             var participantId = createParticipantResponse.Data.Participant.Id;
 
             await _client.WebRtc.APIController.AddParticipantToSessionAsync(accountId, sessionId, participantId);
-            await _client.WebRtc.APIController.RemoveParticipantFromSessionAsync(accountId, participantId, sessionId);
+            await _client.WebRtc.APIController.RemoveParticipantFromSessionAsync(accountId, sessionId, participantId);
 
             await _client.WebRtc.APIController.DeleteParticipantAsync(accountId, participantId);
             await _client.WebRtc.APIController.DeleteSessionAsync(accountId, sessionId);
@@ -90,9 +90,9 @@ namespace Bandwidth.StandardTests.WebRtc
                 SessionId = secondSessionId
             };
 
-            await _client.WebRtc.APIController.UpdateParticipantSubscriptionsAsync(accountId, participantId, secondSessionId, subscriptions);
+            await _client.WebRtc.APIController.UpdateParticipantSubscriptionsAsync(accountId, secondSessionId, participantId, subscriptions);
 
-            var getParticipantSubscriptionsResponse = await _client.WebRtc.APIController.GetParticipantSubscriptionsAsync(accountId, participantId, secondSessionId);
+            var getParticipantSubscriptionsResponse = await _client.WebRtc.APIController.GetParticipantSubscriptionsAsync(accountId, secondSessionId, participantId);
 
             Assert.Equal(secondSessionId, getParticipantSubscriptionsResponse.Data.SessionId);
 

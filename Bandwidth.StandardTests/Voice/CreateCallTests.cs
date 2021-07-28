@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using Bandwidth.Standard;
 using Bandwidth.Standard.Voice.Exceptions;
@@ -28,7 +27,7 @@ namespace Bandwidth.StandardTests.Voice
             var applicationId = TestConstants.VoiceApplicationId;
             var answerUrl = string.Concat(TestConstants.BaseCallbackUrl, "/callbacks/answer");
 
-            var request = new ApiCreateCallRequest()
+            var request = new CreateCallRequest()
             {
                 ApplicationId = applicationId,
                 To = to,
@@ -64,7 +63,7 @@ namespace Bandwidth.StandardTests.Voice
             var from = TestConstants.From;
             var answerUrl = string.Concat(TestConstants.BaseCallbackUrl, "/callbacks/answer");
 
-            var request = new ApiCreateCallRequest()
+            var request = new CreateCallRequest()
             {
                 ApplicationId = applicationId,
                 To = to,
@@ -72,7 +71,7 @@ namespace Bandwidth.StandardTests.Voice
                 AnswerUrl = answerUrl
             };
 
-            var ex = await Assert.ThrowsAsync<ApiErrorResponseException>(() => _client.Voice.APIController.CreateCallAsync(accountId, request));
+            var ex = await Assert.ThrowsAsync<ApiErrorException>(() => _client.Voice.APIController.CreateCallAsync(accountId, request));
             
             Assert.Equal("Something's not quite right... Your request is invalid. Please fix it before trying again.", ex.Message);
         }
@@ -86,7 +85,7 @@ namespace Bandwidth.StandardTests.Voice
             var applicationId = TestConstants.VoiceApplicationId;
             var answerUrl = string.Concat(TestConstants.BaseCallbackUrl, "/callbacks/answer");
 
-            var request = new ApiCreateCallRequest()
+            var request = new CreateCallRequest()
             {
                 ApplicationId = applicationId,
                 To = to,
@@ -94,7 +93,7 @@ namespace Bandwidth.StandardTests.Voice
                 AnswerUrl = answerUrl
             };
 
-            var ex = await Assert.ThrowsAsync<ApiErrorResponseException>(() => _client.Voice.APIController.CreateCallAsync(accountId, request));
+            var ex = await Assert.ThrowsAsync<ApiErrorException>(() => _client.Voice.APIController.CreateCallAsync(accountId, request));
             
             Assert.Equal("Something's not quite right... Your request is invalid. Please fix it before trying again.", ex.Message);
         }
