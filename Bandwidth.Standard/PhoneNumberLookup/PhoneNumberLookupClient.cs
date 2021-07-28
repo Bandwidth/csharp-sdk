@@ -22,7 +22,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup
         {
             this.bandwidthClient = bandwidthClient;
             this.client = new Lazy<APIController>(
-                () => new APIController(this.bandwidthClient, this.bandwidthClient.httpClient, this.bandwidthClient.authManagers, this.bandwidthClient.httpCallBack));
+                () => new APIController(this.bandwidthClient, this.bandwidthClient.HttpClient, this.bandwidthClient.AuthManagers, this.bandwidthClient.HttpCallBack));
         }
 
         /// <summary>

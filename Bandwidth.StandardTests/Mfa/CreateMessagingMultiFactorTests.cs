@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Bandwidth.Standard;
-using Bandwidth.Standard.TwoFactorAuth.Exceptions;
-using Bandwidth.Standard.TwoFactorAuth.Models;
+using Bandwidth.Standard.MultiFactorAuth.Exceptions;
+using Bandwidth.Standard.MultiFactorAuth.Models;
 using Xunit;
 
 namespace Bandwidth.StandardTests.Mfa
@@ -14,7 +14,7 @@ namespace Bandwidth.StandardTests.Mfa
         {
             _client = new BandwidthClient.Builder()
                 .Environment(Bandwidth.Standard.Environment.Production)
-                .TwoFactorAuthBasicAuthCredentials(TestConstants.Username, TestConstants.Password)
+                .MultiFactorAuthBasicAuthCredentials(TestConstants.Username, TestConstants.Password)
                 .Build();
         }
 
@@ -39,7 +39,7 @@ namespace Bandwidth.StandardTests.Mfa
                 Message = message
             };
 
-            var response = await _client.TwoFactorAuth.MFAController.CreateMessagingTwoFactorAsync(accountId, request);
+            var response = await _client.MultiFactorAuth.MFAController.CreateMessagingTwoFactorAsync(accountId, request);
 
             Assert.Equal(200, response.StatusCode);
 
@@ -67,7 +67,7 @@ namespace Bandwidth.StandardTests.Mfa
                 Message = message
             };
 
-            var ex = await Assert.ThrowsAsync<ErrorWithRequestException>(() => _client.TwoFactorAuth.MFAController.CreateMessagingTwoFactorAsync(accountId, request));
+            var ex = await Assert.ThrowsAsync<ErrorWithRequestException>(() => _client.MultiFactorAuth.MFAController.CreateMessagingTwoFactorAsync(accountId, request));
             
             Assert.Equal("If there is any issue with values passed in by the user", ex.Message);
         }
@@ -93,7 +93,7 @@ namespace Bandwidth.StandardTests.Mfa
                 Message = message
             };
 
-            var ex = await Assert.ThrowsAsync<ErrorWithRequestException>(() => _client.TwoFactorAuth.MFAController.CreateMessagingTwoFactorAsync(accountId, request));
+            var ex = await Assert.ThrowsAsync<ErrorWithRequestException>(() => _client.MultiFactorAuth.MFAController.CreateMessagingTwoFactorAsync(accountId, request));
             
             Assert.Equal("If there is any issue with values passed in by the user", ex.Message);
         }
