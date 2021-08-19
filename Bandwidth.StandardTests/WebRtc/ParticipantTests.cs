@@ -45,7 +45,7 @@ namespace Bandwidth.StandardTests.WebRtc
             Assert.Null(response.Data.Participant.Subscriptions.Participants);
             
             Assert.NotEmpty(response.Data.Participant.Tag);
-            Assert.Equal(DeviceApiVersionEnum.V2, response.Data.Participant.DeviceApiVersion);
+            Assert.Equal(DeviceApiVersionEnum.V3, response.Data.Participant.DeviceApiVersion);
 
             Assert.NotEmpty(response.Data.Token);
 
