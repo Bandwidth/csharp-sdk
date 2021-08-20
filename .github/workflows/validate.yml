@@ -26,3 +26,9 @@ jobs:
           USER_NUMBER: ${{ secrets.USER_NUMBER }}
           BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
         run: dotnet test Bandwidth.StandardTests
+      - uses: Bandwidth/build-notify-slack-action@v1
+        if: always()
+        with:
+          job-status: ${{ job.status }}
+          slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
+          slack-channel: ${{ secrets.SLACK_CHANNEL }}
