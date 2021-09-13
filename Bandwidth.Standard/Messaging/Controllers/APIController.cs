@@ -39,10 +39,10 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// Gets a list of your media files. No query parameters are supported..
+        /// Gets a list of your media files. No query parameters are supported.
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
-        /// <param name="continuationToken">Optional parameter: Continuation token used to retrieve subsequent media..</param>
+        /// <param name="continuationToken">Optional parameter: Continuation token used to retrieve subsequent media.</param>
         /// <returns>Returns the ApiResponse of List<Models.Media> response from the API call.</returns>
         public ApiResponse<List<Models.Media>> ListMedia(
                 string accountId,
@@ -54,10 +54,10 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// Gets a list of your media files. No query parameters are supported..
+        /// Gets a list of your media files. No query parameters are supported.
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
-        /// <param name="continuationToken">Optional parameter: Continuation token used to retrieve subsequent media..</param>
+        /// <param name="continuationToken">Optional parameter: Continuation token used to retrieve subsequent media.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the ApiResponse of List<Models.Media> response from the API call.</returns>
         public async Task<ApiResponse<List<Models.Media>>> ListMediaAsync(
@@ -143,7 +143,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// Downloads a media file you previously uploaded..
+        /// Downloads a media file you previously uploaded.
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="mediaId">Required parameter: Media ID to retrieve.</param>
@@ -158,7 +158,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// Downloads a media file you previously uploaded..
+        /// Downloads a media file you previously uploaded.
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="mediaId">Required parameter: Media ID to retrieve.</param>
@@ -246,13 +246,13 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// Uploads a file the normal HTTP way. You may add headers to the request in order to provide some control to your media-file..
+        /// Uploads a file the normal HTTP way. You may add headers to the request in order to provide some control to your media-file.
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="mediaId">Required parameter: The user supplied custom media ID.</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="contentType">Optional parameter: The media type of the entity-body.</param>
-        /// <param name="cacheControl">Optional parameter: General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain..</param>
+        /// <param name="cacheControl">Optional parameter: General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.</param>
         public void UploadMedia(
                 string accountId,
                 string mediaId,
@@ -265,13 +265,13 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// Uploads a file the normal HTTP way. You may add headers to the request in order to provide some control to your media-file..
+        /// Uploads a file the normal HTTP way. You may add headers to the request in order to provide some control to your media-file.
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="mediaId">Required parameter: The user supplied custom media ID.</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="contentType">Optional parameter: The media type of the entity-body.</param>
-        /// <param name="cacheControl">Optional parameter: General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain..</param>
+        /// <param name="cacheControl">Optional parameter: General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the void response from the API call.</returns>
         public async Task UploadMediaAsync(
@@ -360,7 +360,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// Deletes a media file from Bandwidth API server. Make sure you don't have any application scripts still using the media before you delete. If you accidentally delete a media file, you can immediately upload a new file with the same name..
+        /// Deletes a media file from Bandwidth API server. Make sure you don't have any application scripts still using the media before you delete. If you accidentally delete a media file, you can immediately upload a new file with the same name.
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="mediaId">Required parameter: The media ID to delete.</param>
@@ -373,7 +373,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// Deletes a media file from Bandwidth API server. Make sure you don't have any application scripts still using the media before you delete. If you accidentally delete a media file, you can immediately upload a new file with the same name..
+        /// Deletes a media file from Bandwidth API server. Make sure you don't have any application scripts still using the media before you delete. If you accidentally delete a media file, you can immediately upload a new file with the same name.
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="mediaId">Required parameter: The media ID to delete.</param>
@@ -457,7 +457,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// Gets a list of messages based on query parameters..
+        /// Gets a list of messages based on query parameters.
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="messageId">Optional parameter: The ID of the message to search for. Special characters need to be encoded using URL encoding.</param>
@@ -465,8 +465,8 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <param name="destinationTn">Optional parameter: The phone number that received the message.</param>
         /// <param name="messageStatus">Optional parameter: The status of the message. One of RECEIVED, QUEUED, SENDING, SENT, FAILED, DELIVERED, ACCEPTED, UNDELIVERED.</param>
         /// <param name="errorCode">Optional parameter: The error code of the message.</param>
-        /// <param name="fromDateTime">Optional parameter: The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days..</param>
-        /// <param name="toDateTime">Optional parameter: The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days..</param>
+        /// <param name="fromDateTime">Optional parameter: The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.</param>
+        /// <param name="toDateTime">Optional parameter: The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.</param>
         /// <param name="pageToken">Optional parameter: A base64 encoded value used for pagination of results.</param>
         /// <param name="limit">Optional parameter: The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.</param>
         /// <returns>Returns the ApiResponse of Models.BandwidthMessagesList response from the API call.</returns>
@@ -488,7 +488,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// Gets a list of messages based on query parameters..
+        /// Gets a list of messages based on query parameters.
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="messageId">Optional parameter: The ID of the message to search for. Special characters need to be encoded using URL encoding.</param>
@@ -496,8 +496,8 @@ namespace Bandwidth.Standard.Messaging.Controllers
         /// <param name="destinationTn">Optional parameter: The phone number that received the message.</param>
         /// <param name="messageStatus">Optional parameter: The status of the message. One of RECEIVED, QUEUED, SENDING, SENT, FAILED, DELIVERED, ACCEPTED, UNDELIVERED.</param>
         /// <param name="errorCode">Optional parameter: The error code of the message.</param>
-        /// <param name="fromDateTime">Optional parameter: The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days..</param>
-        /// <param name="toDateTime">Optional parameter: The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days..</param>
+        /// <param name="fromDateTime">Optional parameter: The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.</param>
+        /// <param name="toDateTime">Optional parameter: The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.</param>
         /// <param name="pageToken">Optional parameter: A base64 encoded value used for pagination of results.</param>
         /// <param name="limit">Optional parameter: The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -606,7 +606,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// Endpoint for sending text messages and picture messages using V2 messaging..
+        /// Endpoint for sending text messages and picture messages using V2 messaging.
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="body">Required parameter: Example: .</param>
@@ -621,7 +621,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// Endpoint for sending text messages and picture messages using V2 messaging..
+        /// Endpoint for sending text messages and picture messages using V2 messaging.
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="body">Required parameter: Example: .</param>

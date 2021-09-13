@@ -39,7 +39,7 @@ namespace Bandwidth.Standard.MultiFactorAuth.Controllers
         }
 
         /// <summary>
-        /// Multi-Factor authentication with Bandwidth Voice services. Allows for a user to send an MFA code via a phone call..
+        /// Multi-Factor authentication with Bandwidth Voice services. Allows for a user to send an MFA code via a phone call.
         /// </summary>
         /// <param name="accountId">Required parameter: Bandwidth Account ID with Voice service enabled.</param>
         /// <param name="body">Required parameter: Example: .</param>
@@ -54,7 +54,7 @@ namespace Bandwidth.Standard.MultiFactorAuth.Controllers
         }
 
         /// <summary>
-        /// Multi-Factor authentication with Bandwidth Voice services. Allows for a user to send an MFA code via a phone call..
+        /// Multi-Factor authentication with Bandwidth Voice services. Allows for a user to send an MFA code via a phone call.
         /// </summary>
         /// <param name="accountId">Required parameter: Bandwidth Account ID with Voice service enabled.</param>
         /// <param name="body">Required parameter: Example: .</param>
@@ -136,7 +136,7 @@ namespace Bandwidth.Standard.MultiFactorAuth.Controllers
         }
 
         /// <summary>
-        /// Multi-Factor authentication with Bandwidth Messaging services. Allows a user to send an MFA code via a text message (SMS)..
+        /// Multi-Factor authentication with Bandwidth Messaging services. Allows a user to send an MFA code via a text message (SMS).
         /// </summary>
         /// <param name="accountId">Required parameter: Bandwidth Account ID with Messaging service enabled.</param>
         /// <param name="body">Required parameter: Example: .</param>
@@ -151,7 +151,7 @@ namespace Bandwidth.Standard.MultiFactorAuth.Controllers
         }
 
         /// <summary>
-        /// Multi-Factor authentication with Bandwidth Messaging services. Allows a user to send an MFA code via a text message (SMS)..
+        /// Multi-Factor authentication with Bandwidth Messaging services. Allows a user to send an MFA code via a text message (SMS).
         /// </summary>
         /// <param name="accountId">Required parameter: Bandwidth Account ID with Messaging service enabled.</param>
         /// <param name="body">Required parameter: Example: .</param>
@@ -233,7 +233,7 @@ namespace Bandwidth.Standard.MultiFactorAuth.Controllers
         }
 
         /// <summary>
-        /// Allows a user to verify an MFA code..
+        /// Allows a user to verify an MFA code.
         /// </summary>
         /// <param name="accountId">Required parameter: Bandwidth Account ID with Two-Factor enabled.</param>
         /// <param name="body">Required parameter: Example: .</param>
@@ -248,7 +248,7 @@ namespace Bandwidth.Standard.MultiFactorAuth.Controllers
         }
 
         /// <summary>
-        /// Allows a user to verify an MFA code..
+        /// Allows a user to verify an MFA code.
         /// </summary>
         /// <param name="accountId">Required parameter: Bandwidth Account ID with Two-Factor enabled.</param>
         /// <param name="body">Required parameter: Example: .</param>

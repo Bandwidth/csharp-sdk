@@ -40,9 +40,9 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
         }
 
         /// <summary>
-        /// Create a TN Lookup Order..
+        /// Create a TN Lookup Order.
         /// </summary>
-        /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to..</param>
+        /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to.</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <returns>Returns the ApiResponse of Models.OrderResponse response from the API call.</returns>
         public ApiResponse<Models.OrderResponse> CreateLookupRequest(
@@ -55,9 +55,9 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
         }
 
         /// <summary>
-        /// Create a TN Lookup Order..
+        /// Create a TN Lookup Order.
         /// </summary>
-        /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to..</param>
+        /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to.</param>
         /// <param name="body">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the ApiResponse of Models.OrderResponse response from the API call.</returns>
@@ -637,9 +637,9 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
         }
 
         /// <summary>
-        /// Query an existing TN Lookup Order..
+        /// Query an existing TN Lookup Order.
         /// </summary>
-        /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to..</param>
+        /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to.</param>
         /// <param name="requestId">Required parameter: Example: .</param>
         /// <returns>Returns the ApiResponse of Models.OrderStatus response from the API call.</returns>
         public ApiResponse<Models.OrderStatus> GetLookupRequestStatus(
@@ -652,9 +652,9 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
         }
 
         /// <summary>
-        /// Query an existing TN Lookup Order..
+        /// Query an existing TN Lookup Order.
         /// </summary>
-        /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to..</param>
+        /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to.</param>
         /// <param name="requestId">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the ApiResponse of Models.OrderStatus response from the API call.</returns>

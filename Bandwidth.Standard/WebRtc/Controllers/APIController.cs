@@ -40,8 +40,8 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Create a new participant under this account..
-        /// Participants are idempotent, so relevant parameters must be set in this function if desired..
+        /// Create a new participant under this account.
+        /// Participants are idempotent, so relevant parameters must be set in this function if desired.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="body">Optional parameter: Participant parameters.</param>
@@ -56,8 +56,8 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Create a new participant under this account..
-        /// Participants are idempotent, so relevant parameters must be set in this function if desired..
+        /// Create a new participant under this account.
+        /// Participants are idempotent, so relevant parameters must be set in this function if desired.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="body">Optional parameter: Participant parameters.</param>
@@ -140,7 +140,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Get participant by ID..
+        /// Get participant by ID.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="participantId">Required parameter: Participant ID.</param>
@@ -155,7 +155,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Get participant by ID..
+        /// Get participant by ID.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="participantId">Required parameter: Participant ID.</param>
@@ -235,7 +235,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Delete participant by ID..
+        /// Delete participant by ID.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="participantId">Required parameter: Example: .</param>
@@ -248,7 +248,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Delete participant by ID..
+        /// Delete participant by ID.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="participantId">Required parameter: Example: .</param>
@@ -323,8 +323,8 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Create a new session..
-        /// Sessions are idempotent, so relevant parameters must be set in this function if desired..
+        /// Create a new session.
+        /// Sessions are idempotent, so relevant parameters must be set in this function if desired.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="body">Optional parameter: Session parameters.</param>
@@ -339,8 +339,8 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Create a new session..
-        /// Sessions are idempotent, so relevant parameters must be set in this function if desired..
+        /// Create a new session.
+        /// Sessions are idempotent, so relevant parameters must be set in this function if desired.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="body">Optional parameter: Session parameters.</param>
@@ -423,7 +423,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Get session by ID..
+        /// Get session by ID.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="sessionId">Required parameter: Session ID.</param>
@@ -438,7 +438,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Get session by ID..
+        /// Get session by ID.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="sessionId">Required parameter: Session ID.</param>
@@ -518,7 +518,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Delete session by ID..
+        /// Delete session by ID.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="sessionId">Required parameter: Session ID.</param>
@@ -531,7 +531,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Delete session by ID..
+        /// Delete session by ID.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="sessionId">Required parameter: Session ID.</param>
@@ -606,7 +606,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// List participants in a session..
+        /// List participants in a session.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="sessionId">Required parameter: Session ID.</param>
@@ -621,7 +621,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// List participants in a session..
+        /// List participants in a session.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="sessionId">Required parameter: Session ID.</param>
@@ -701,8 +701,8 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Add a participant to a session..
-        /// Subscriptions can optionally be provided as part of this call..
+        /// Add a participant to a session.
+        /// Subscriptions can optionally be provided as part of this call.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="sessionId">Required parameter: Session ID.</param>
@@ -719,8 +719,8 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Add a participant to a session..
-        /// Subscriptions can optionally be provided as part of this call..
+        /// Add a participant to a session.
+        /// Subscriptions can optionally be provided as part of this call.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="sessionId">Required parameter: Session ID.</param>
@@ -804,8 +804,8 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Remove a participant from a session..
-        /// This will automatically remove any subscriptions the participant has associated with this session..
+        /// Remove a participant from a session.
+        /// This will automatically remove any subscriptions the participant has associated with this session.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="sessionId">Required parameter: Session ID.</param>
@@ -820,8 +820,8 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Remove a participant from a session..
-        /// This will automatically remove any subscriptions the participant has associated with this session..
+        /// Remove a participant from a session.
+        /// This will automatically remove any subscriptions the participant has associated with this session.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="sessionId">Required parameter: Session ID.</param>
@@ -899,7 +899,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Get a participant's subscriptions..
+        /// Get a participant's subscriptions.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="sessionId">Required parameter: Session ID.</param>
@@ -916,7 +916,7 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Get a participant's subscriptions..
+        /// Get a participant's subscriptions.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="sessionId">Required parameter: Session ID.</param>
@@ -999,8 +999,8 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Update a participant's subscriptions..
-        /// This is a full update that will replace the participant's subscriptions. First call `getParticipantSubscriptions` if you need the current subscriptions. Call this function with no `Subscriptions` object to remove all subscriptions..
+        /// Update a participant's subscriptions.
+        /// This is a full update that will replace the participant's subscriptions. First call `getParticipantSubscriptions` if you need the current subscriptions. Call this function with no `Subscriptions` object to remove all subscriptions.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="sessionId">Required parameter: Session ID.</param>
@@ -1017,8 +1017,8 @@ namespace Bandwidth.Standard.WebRtc.Controllers
         }
 
         /// <summary>
-        /// Update a participant's subscriptions..
-        /// This is a full update that will replace the participant's subscriptions. First call `getParticipantSubscriptions` if you need the current subscriptions. Call this function with no `Subscriptions` object to remove all subscriptions..
+        /// Update a participant's subscriptions.
+        /// This is a full update that will replace the participant's subscriptions. First call `getParticipantSubscriptions` if you need the current subscriptions. Call this function with no `Subscriptions` object to remove all subscriptions.
         /// </summary>
         /// <param name="accountId">Required parameter: Account ID.</param>
         /// <param name="sessionId">Required parameter: Session ID.</param>
