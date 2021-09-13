@@ -40,7 +40,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Creates an outbound call..
+        /// Creates an outbound phone call..
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
@@ -55,7 +55,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Creates an outbound call..
+        /// Creates an outbound phone call..
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
@@ -481,7 +481,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns a (potentially empty) list of metadata for the recordings that took place during the specified call.
+        /// Returns a (potentially empty) list of metadata for the recordings that took place during the specified call..
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -496,7 +496,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns a (potentially empty) list of metadata for the recordings that took place during the specified call.
+        /// Returns a (potentially empty) list of metadata for the recordings that took place during the specified call..
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>

@@ -39,7 +39,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// listMedia.
+        /// Gets a list of your media files. No query parameters are supported..
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="continuationToken">Optional parameter: Continuation token used to retrieve subsequent media..</param>
@@ -54,7 +54,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// listMedia.
+        /// Gets a list of your media files. No query parameters are supported..
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="continuationToken">Optional parameter: Continuation token used to retrieve subsequent media..</param>
@@ -143,7 +143,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// getMedia.
+        /// Downloads a media file you previously uploaded..
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="mediaId">Required parameter: Media ID to retrieve.</param>
@@ -158,7 +158,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// getMedia.
+        /// Downloads a media file you previously uploaded..
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="mediaId">Required parameter: Media ID to retrieve.</param>
@@ -246,7 +246,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// uploadMedia.
+        /// Uploads a file the normal HTTP way. You may add headers to the request in order to provide some control to your media-file..
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="mediaId">Required parameter: The user supplied custom media ID.</param>
@@ -265,7 +265,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// uploadMedia.
+        /// Uploads a file the normal HTTP way. You may add headers to the request in order to provide some control to your media-file..
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="mediaId">Required parameter: The user supplied custom media ID.</param>
@@ -360,7 +360,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// deleteMedia.
+        /// Deletes a media file from Bandwidth API server. Make sure you don't have any application scripts still using the media before you delete. If you accidentally delete a media file, you can immediately upload a new file with the same name..
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="mediaId">Required parameter: The media ID to delete.</param>
@@ -373,7 +373,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// deleteMedia.
+        /// Deletes a media file from Bandwidth API server. Make sure you don't have any application scripts still using the media before you delete. If you accidentally delete a media file, you can immediately upload a new file with the same name..
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="mediaId">Required parameter: The media ID to delete.</param>
@@ -457,7 +457,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// getMessages.
+        /// Gets a list of messages based on query parameters..
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="messageId">Optional parameter: The ID of the message to search for. Special characters need to be encoded using URL encoding.</param>
@@ -488,7 +488,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// getMessages.
+        /// Gets a list of messages based on query parameters..
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="messageId">Optional parameter: The ID of the message to search for. Special characters need to be encoded using URL encoding.</param>
@@ -606,7 +606,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// createMessage.
+        /// Endpoint for sending text messages and picture messages using V2 messaging..
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="body">Required parameter: Example: .</param>
@@ -621,7 +621,7 @@ namespace Bandwidth.Standard.Messaging.Controllers
         }
 
         /// <summary>
-        /// createMessage.
+        /// Endpoint for sending text messages and picture messages using V2 messaging..
         /// </summary>
         /// <param name="accountId">Required parameter: User's account ID.</param>
         /// <param name="body">Required parameter: Example: .</param>

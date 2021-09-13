@@ -40,7 +40,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
         }
 
         /// <summary>
-        /// Create a TN Lookup Order.
+        /// Create a TN Lookup Order..
         /// </summary>
         /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to..</param>
         /// <param name="body">Required parameter: Example: .</param>
@@ -55,7 +55,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
         }
 
         /// <summary>
-        /// Create a TN Lookup Order.
+        /// Create a TN Lookup Order..
         /// </summary>
         /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to..</param>
         /// <param name="body">Required parameter: Example: .</param>
@@ -637,7 +637,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
         }
 
         /// <summary>
-        /// Query an existing TN Lookup Order.
+        /// Query an existing TN Lookup Order..
         /// </summary>
         /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to..</param>
         /// <param name="requestId">Required parameter: Example: .</param>
@@ -652,7 +652,7 @@ namespace Bandwidth.Standard.PhoneNumberLookup.Controllers
         }
 
         /// <summary>
-        /// Query an existing TN Lookup Order.
+        /// Query an existing TN Lookup Order..
         /// </summary>
         /// <param name="accountId">Required parameter: The ID of the Bandwidth account that the user belongs to..</param>
         /// <param name="requestId">Required parameter: Example: .</param>

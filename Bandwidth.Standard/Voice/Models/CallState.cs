@@ -57,7 +57,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <param name="direction">direction.</param>
         /// <param name="state">state.</param>
         /// <param name="identity">identity.</param>
-        /// <param name="pai">pai.</param>
+        /// <param name="stirShaken">stirShaken.</param>
         /// <param name="startTime">startTime.</param>
         /// <param name="answerTime">answerTime.</param>
         /// <param name="endTime">endTime.</param>
@@ -75,7 +75,7 @@ namespace Bandwidth.Standard.Voice.Models
             string direction = null,
             string state = null,
             string identity = null,
-            Dictionary<string, string> pai = null,
+            Dictionary<string, string> stirShaken = null,
             DateTime? startTime = null,
             DateTime? answerTime = null,
             DateTime? endTime = null,
@@ -101,7 +101,7 @@ namespace Bandwidth.Standard.Voice.Models
                 this.Identity = identity;
             }
 
-            this.Pai = pai;
+            this.StirShaken = stirShaken;
             this.StartTime = startTime;
             if (answerTime != null)
             {
@@ -210,10 +210,10 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Gets or sets Pai.
+        /// Gets or sets StirShaken.
         /// </summary>
-        [JsonProperty("pai", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, string> Pai { get; set; }
+        [JsonProperty("stirShaken", NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, string> StirShaken { get; set; }
 
         /// <summary>
         /// Gets or sets StartTime.
@@ -473,7 +473,7 @@ namespace Bandwidth.Standard.Voice.Models
                 ((this.Direction == null && other.Direction == null) || (this.Direction?.Equals(other.Direction) == true)) &&
                 ((this.State == null && other.State == null) || (this.State?.Equals(other.State) == true)) &&
                 ((this.Identity == null && other.Identity == null) || (this.Identity?.Equals(other.Identity) == true)) &&
-                ((this.Pai == null && other.Pai == null) || (this.Pai?.Equals(other.Pai) == true)) &&
+                ((this.StirShaken == null && other.StirShaken == null) || (this.StirShaken?.Equals(other.StirShaken) == true)) &&
                 ((this.StartTime == null && other.StartTime == null) || (this.StartTime?.Equals(other.StartTime) == true)) &&
                 ((this.AnswerTime == null && other.AnswerTime == null) || (this.AnswerTime?.Equals(other.AnswerTime) == true)) &&
                 ((this.EndTime == null && other.EndTime == null) || (this.EndTime?.Equals(other.EndTime) == true)) &&
@@ -486,7 +486,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 744020919;
+            int hashCode = 1153789297;
 
             if (this.CallId != null)
             {
@@ -533,9 +533,9 @@ namespace Bandwidth.Standard.Voice.Models
                hashCode += this.Identity.GetHashCode();
             }
 
-            if (this.Pai != null)
+            if (this.StirShaken != null)
             {
-               hashCode += this.Pai.GetHashCode();
+               hashCode += this.StirShaken.GetHashCode();
             }
 
             if (this.StartTime != null)
@@ -591,7 +591,7 @@ namespace Bandwidth.Standard.Voice.Models
             toStringOutput.Add($"this.Direction = {(this.Direction == null ? "null" : this.Direction == string.Empty ? "" : this.Direction)}");
             toStringOutput.Add($"this.State = {(this.State == null ? "null" : this.State == string.Empty ? "" : this.State)}");
             toStringOutput.Add($"this.Identity = {(this.Identity == null ? "null" : this.Identity == string.Empty ? "" : this.Identity)}");
-            toStringOutput.Add($"Pai = {(this.Pai == null ? "null" : this.Pai.ToString())}");
+            toStringOutput.Add($"StirShaken = {(this.StirShaken == null ? "null" : this.StirShaken.ToString())}");
             toStringOutput.Add($"this.StartTime = {(this.StartTime == null ? "null" : this.StartTime.ToString())}");
             toStringOutput.Add($"this.AnswerTime = {(this.AnswerTime == null ? "null" : this.AnswerTime.ToString())}");
             toStringOutput.Add($"this.EndTime = {(this.EndTime == null ? "null" : this.EndTime.ToString())}");

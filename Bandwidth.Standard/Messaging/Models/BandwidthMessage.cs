@@ -119,7 +119,7 @@ namespace Bandwidth.Standard.Messaging.Models
         public string From { get; set; }
 
         /// <summary>
-        /// The list of media URLs sent in the message
+        /// The list of media URLs sent in the message. Including a `filename` field in the `Content-Disposition` header of the media linked with a URL will set the displayed file name. This is a best practice to ensure that your media has a readable file name.
         /// </summary>
         [JsonProperty("media", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> Media { get; set; }
