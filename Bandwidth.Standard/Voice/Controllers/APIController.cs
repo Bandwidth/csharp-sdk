@@ -40,7 +40,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Creates an outbound call..
+        /// Creates an outbound phone call.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
@@ -55,7 +55,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Creates an outbound call..
+        /// Creates an outbound phone call.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="body">Required parameter: Example: .</param>
@@ -152,7 +152,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns near-realtime metadata about the specified call..
+        /// Returns near-realtime metadata about the specified call.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -167,7 +167,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns near-realtime metadata about the specified call..
+        /// Returns near-realtime metadata about the specified call.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -261,7 +261,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Interrupts and replaces an active call's BXML document..
+        /// Interrupts and replaces an active call's BXML document.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -276,7 +276,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Interrupts and replaces an active call's BXML document..
+        /// Interrupts and replaces an active call's BXML document.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -371,7 +371,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Pauses or resumes a recording..
+        /// Pauses or resumes a recording.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -386,7 +386,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Pauses or resumes a recording..
+        /// Pauses or resumes a recording.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -590,7 +590,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns metadata for the specified recording..
+        /// Returns metadata for the specified recording.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -607,7 +607,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns metadata for the specified recording..
+        /// Returns metadata for the specified recording.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -704,7 +704,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Deletes the specified recording..
+        /// Deletes the specified recording.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -719,7 +719,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Deletes the specified recording..
+        /// Deletes the specified recording.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -811,7 +811,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Downloads the specified recording..
+        /// Downloads the specified recording.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -828,7 +828,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Downloads the specified recording..
+        /// Downloads the specified recording.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -925,7 +925,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Deletes the specified recording's media..
+        /// Deletes the specified recording's media.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -940,7 +940,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Deletes the specified recording's media..
+        /// Deletes the specified recording's media.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -1032,7 +1032,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Downloads the specified transcription..
+        /// Downloads the specified transcription.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -1049,7 +1049,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Downloads the specified transcription..
+        /// Downloads the specified transcription.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -1146,7 +1146,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Requests that the specified recording be transcribed..
+        /// Requests that the specified recording be transcribed.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -1163,7 +1163,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Requests that the specified recording be transcribed..
+        /// Requests that the specified recording be transcribed.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -1266,7 +1266,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Deletes the specified recording's transcription..
+        /// Deletes the specified recording's transcription.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -1281,7 +1281,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Deletes the specified recording's transcription..
+        /// Deletes the specified recording's transcription.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="callId">Required parameter: Example: .</param>
@@ -1373,7 +1373,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns information about the conferences in the account..
+        /// Returns information about the conferences in the account.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="name">Optional parameter: Example: .</param>
@@ -1396,7 +1396,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns information about the conferences in the account..
+        /// Returns information about the conferences in the account.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="name">Optional parameter: Example: .</param>
@@ -1507,7 +1507,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns information about the specified conference..
+        /// Returns information about the specified conference.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="conferenceId">Required parameter: Example: .</param>
@@ -1522,7 +1522,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns information about the specified conference..
+        /// Returns information about the specified conference.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="conferenceId">Required parameter: Example: .</param>
@@ -1616,7 +1616,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Modify the conference state..
+        /// Modify the conference state.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="conferenceId">Required parameter: Example: .</param>
@@ -1631,7 +1631,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Modify the conference state..
+        /// Modify the conference state.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="conferenceId">Required parameter: Example: .</param>
@@ -1726,7 +1726,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Updates settings for a particular conference member..
+        /// Updates settings for a particular conference member.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="conferenceId">Required parameter: Example: .</param>
@@ -1743,7 +1743,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Updates settings for a particular conference member..
+        /// Updates settings for a particular conference member.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="conferenceId">Required parameter: Example: .</param>
@@ -1841,7 +1841,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns information about the specified conference member..
+        /// Returns information about the specified conference member.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="conferenceId">Required parameter: Example: .</param>
@@ -1858,7 +1858,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns information about the specified conference member..
+        /// Returns information about the specified conference member.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="conferenceId">Required parameter: Example: .</param>
@@ -2064,7 +2064,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns metadata for the specified recording..
+        /// Returns metadata for the specified recording.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="conferenceId">Required parameter: Example: .</param>
@@ -2081,7 +2081,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns metadata for the specified recording..
+        /// Returns metadata for the specified recording.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="conferenceId">Required parameter: Example: .</param>
@@ -2178,7 +2178,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Downloads the specified recording..
+        /// Downloads the specified recording.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="conferenceId">Required parameter: Example: .</param>
@@ -2195,7 +2195,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Downloads the specified recording..
+        /// Downloads the specified recording.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="conferenceId">Required parameter: Example: .</param>
@@ -2292,7 +2292,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria..
+        /// Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="from">Optional parameter: Example: .</param>
@@ -2313,7 +2313,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
-        /// Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria..
+        /// Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
         /// <param name="from">Optional parameter: Example: .</param>

@@ -77,6 +77,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <param name="disconnectUrl">disconnectUrl.</param>
         /// <param name="disconnectMethod">disconnectMethod.</param>
         /// <param name="tag">tag.</param>
+        /// <param name="machineDetection">machineDetection.</param>
         public CreateCallRequest(
             string from,
             string to,
@@ -94,7 +95,8 @@ namespace Bandwidth.Standard.Voice.Models
             Models.AnswerFallbackMethodEnum? answerFallbackMethod = null,
             string disconnectUrl = null,
             Models.DisconnectMethodEnum? disconnectMethod = null,
-            string tag = null)
+            string tag = null,
+            Models.MachineDetectionRequest machineDetection = null)
         {
             this.From = from;
             this.To = to;
@@ -165,6 +167,7 @@ namespace Bandwidth.Standard.Voice.Models
             }
 
             this.ApplicationId = applicationId;
+            this.MachineDetection = machineDetection;
         }
 
         /// <summary>
@@ -180,7 +183,7 @@ namespace Bandwidth.Standard.Voice.Models
         public string To { get; set; }
 
         /// <summary>
-        /// When calling a SIP URI, this will be sent as the 'User-To-User' header within the initial INVITE. It must end with an 'encoding' parameter as described in https://tools.ietf.org/html/rfc7433. This header cannot exceed 256 characters, including the encoding parameter.
+        /// A comma-separated list of 'User-To-User' headers to be sent in the INVITE when calling a SIP URI. Each value must end with an 'encoding' parameter as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and 'base64' encodings are allowed. The entire value cannot exceed 350 characters, including parameters and separators.
         /// </summary>
         [JsonProperty("uui")]
         public string Uui
@@ -424,6 +427,12 @@ namespace Bandwidth.Standard.Voice.Models
         /// </summary>
         [JsonProperty("applicationId")]
         public string ApplicationId { get; set; }
+
+        /// <summary>
+        /// Gets or sets MachineDetection.
+        /// </summary>
+        [JsonProperty("machineDetection", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.MachineDetectionRequest MachineDetection { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
@@ -686,13 +695,14 @@ namespace Bandwidth.Standard.Voice.Models
                 ((this.DisconnectUrl == null && other.DisconnectUrl == null) || (this.DisconnectUrl?.Equals(other.DisconnectUrl) == true)) &&
                 ((this.DisconnectMethod == null && other.DisconnectMethod == null) || (this.DisconnectMethod?.Equals(other.DisconnectMethod) == true)) &&
                 ((this.Tag == null && other.Tag == null) || (this.Tag?.Equals(other.Tag) == true)) &&
-                ((this.ApplicationId == null && other.ApplicationId == null) || (this.ApplicationId?.Equals(other.ApplicationId) == true));
+                ((this.ApplicationId == null && other.ApplicationId == null) || (this.ApplicationId?.Equals(other.ApplicationId) == true)) &&
+                ((this.MachineDetection == null && other.MachineDetection == null) || (this.MachineDetection?.Equals(other.MachineDetection) == true));
         }
 
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            int hashCode = 719314144;
+            int hashCode = 833252467;
 
             if (this.From != null)
             {
@@ -779,6 +789,11 @@ namespace Bandwidth.Standard.Voice.Models
                hashCode += this.ApplicationId.GetHashCode();
             }
 
+            if (this.MachineDetection != null)
+            {
+               hashCode += this.MachineDetection.GetHashCode();
+            }
+
             return hashCode;
         }
 
@@ -805,6 +820,7 @@ namespace Bandwidth.Standard.Voice.Models
             toStringOutput.Add($"this.DisconnectMethod = {(this.DisconnectMethod == null ? "null" : this.DisconnectMethod.ToString())}");
             toStringOutput.Add($"this.Tag = {(this.Tag == null ? "null" : this.Tag == string.Empty ? "" : this.Tag)}");
             toStringOutput.Add($"this.ApplicationId = {(this.ApplicationId == null ? "null" : this.ApplicationId == string.Empty ? "" : this.ApplicationId)}");
+            toStringOutput.Add($"this.MachineDetection = {(this.MachineDetection == null ? "null" : this.MachineDetection.ToString())}");
         }
     }
 }

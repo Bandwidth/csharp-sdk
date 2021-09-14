@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Bandwidth.Standard;
 using Bandwidth.Standard.Voice.Exceptions;
@@ -42,6 +43,42 @@ namespace Bandwidth.StandardTests.Voice
             Assert.Equal(applicationId, createCallResponse.Data.ApplicationId);
             Assert.Equal(to, createCallResponse.Data.To);
             Assert.Equal(from, createCallResponse.Data.From);
+        }
+
+        [Fact]
+        public async Task CreateCallWithMachineDetectionReturnsCreated()
+        {
+            var accountId = TestConstants.AccountId;
+            var to = TestConstants.To;
+            var from = TestConstants.From;
+            var applicationId = TestConstants.VoiceApplicationId;
+            var answerUrl = string.Concat(TestConstants.BaseCallbackUrl, "/callbacks/answer");
+            var machineDetectionRequest = new MachineDetectionRequest()
+            {
+                CallbackUrl = string.Concat(TestConstants.BaseCallbackUrl, "/callbacks/machine-detection")
+            };
+
+            var request = new CreateCallRequest()
+            {
+                ApplicationId = applicationId,
+                To = to,
+                From = from,
+                AnswerUrl = answerUrl,
+                MachineDetection = machineDetectionRequest
+            };
+
+            var createCallResponse = await _client.Voice.APIController.CreateCallAsync(accountId, request);
+
+            Assert.Equal(201, createCallResponse.StatusCode);
+
+            Assert.Equal(accountId, createCallResponse.Data.AccountId);
+            Assert.Equal(applicationId, createCallResponse.Data.ApplicationId);
+            Assert.Equal(to, createCallResponse.Data.To);
+            Assert.Equal(from, createCallResponse.Data.From);
+            Assert.True(Uri.IsWellFormedUriString(createCallResponse.Data.CallUrl, UriKind.Absolute));
+            Assert.Equal(answerUrl, createCallResponse.Data.AnswerUrl);
+            Assert.Equal(AnswerMethodEnum.POST, createCallResponse.Data.AnswerMethod);
+            Assert.Equal(DisconnectMethodEnum.POST, createCallResponse.Data.DisconnectMethod);
         }
 
         [Fact]
