@@ -8,11 +8,17 @@ jobs:
   build:
     name: Build and test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [windows-2016, windows-2019, ubuntu-18.04, ubuntu-20.04]
+        dotnet: [ 2.1.x, 3.1.x, 5.0.x ]
+    name: Dotnet ${{ matrix.dotnet }} Testing
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-dotnet@v1
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.1.x'
+          dotnet-version: ${{ matrix.dotnet }}
       - name: Build
         run: dotnet build
       - name: Test
@@ -27,7 +33,7 @@ jobs:
           BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
         run: dotnet test Bandwidth.StandardTests
       - uses: Bandwidth/build-notify-slack-action@v1.0.0
-        if: always()
+        if: failure()
         with:
           job-status: ${{ job.status }}
           slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
