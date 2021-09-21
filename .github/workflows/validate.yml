@@ -30,7 +30,7 @@ jobs:
           BW_NUMBER: ${{ secrets.BW_NUMBER }}
           USER_NUMBER: ${{ secrets.USER_NUMBER }}
           BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
-        run: dotnet test Bandwidth.StandardTests Dotnet=${{ matrix.dotnet }}
+        run: Dotnet=${{ matrix.dotnet }} dotnet test Bandwidth.StandardTests
       - name: Notify Slack of failures
         uses: Bandwidth/build-notify-slack-action@v1.0.0
         if: failure() && !github.event.pull_request.draft
