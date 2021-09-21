@@ -23,11 +23,6 @@ jobs:
       - name: Build
         run: dotnet build
 
-      - name: Sleep to avoid rate limits
-        run: sleep 60s
-        # Specifically calling out bash for Windows environments.
-        shell: bash
-
       - name: Test
         env:
           BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
