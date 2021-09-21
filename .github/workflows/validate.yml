@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build and test Dotnet ${{ matrix.dotnet }}
+    name: Test Dotnet ${{ matrix.dotnet }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -31,8 +31,9 @@ jobs:
           USER_NUMBER: ${{ secrets.USER_NUMBER }}
           BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
         run: dotnet test Bandwidth.StandardTests
-      - uses: Bandwidth/build-notify-slack-action@v1.0.0
-        if: failure()
+      - name: Notify Slack of failures
+        uses: Bandwidth/build-notify-slack-action@v1.0.0
+        if: failure() && !github.event.pull_request.draft
         with:
           job-status: ${{ job.status }}
           slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
