@@ -4,8 +4,6 @@ on:
     - cron: "0 4 * * *"
   pull_request:
 
-concurrency: integration-testing
-
 jobs:
   build:
     name: Test Dotnet ${{ matrix.dotnet }} on ${{ matrix.os }}
@@ -14,6 +12,7 @@ jobs:
       matrix:
         os: [windows-2016, windows-2019, ubuntu-18.04, ubuntu-20.04]
         dotnet: [3.1.x, 5.0.x]
+    concurrency: integration-testing
     steps:
       - uses: actions/checkout@v2
       - name: Setup Dotnet
