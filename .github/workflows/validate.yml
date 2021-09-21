@@ -15,12 +15,19 @@ jobs:
     concurrency: integration-testing
     steps:
       - uses: actions/checkout@v2
-      - name: Setup dotnet
+      - name: Setup Dotnet
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ matrix.dotnet }}
+
       - name: Build
         run: dotnet build
+
+      - name: Sleep to avoid rate limits
+        run: sleep 60s
+        # Specifically calling out bash for Windows environments.
+        shell: bash
+
       - name: Test
         env:
           BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
@@ -31,9 +38,10 @@ jobs:
           BW_NUMBER: ${{ secrets.BW_NUMBER }}
           USER_NUMBER: ${{ secrets.USER_NUMBER }}
           BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
-
+          # Required for multiple target frameworks in the StandardTests project.
           DOTNET: ${{ matrix.dotnet }}
         run: dotnet test Bandwidth.StandardTests
+
       - name: Notify Slack of failures
         uses: Bandwidth/build-notify-slack-action@v1.0.0
         if: failure() && !github.event.pull_request.draft
