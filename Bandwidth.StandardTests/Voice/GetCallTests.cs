@@ -1,3 +1,5 @@
+using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Bandwidth.Standard;
 using Bandwidth.Standard.Voice.Exceptions;
@@ -39,15 +41,46 @@ namespace Bandwidth.StandardTests.Voice
 
             var callId = createCallResponse.Data.CallId;
 
-            // Get the call's state after it has been created.
-            var getCallStateResponse = await _client.Voice.APIController.GetCallAsync(accountId, callId);
+            var retries = 5;
+            do
+            {
+                try
+                {
+                    // Attempt to get the call's state after it has been created.
+                    var getCallStateResponse = await _client.Voice.APIController.GetCallAsync(accountId, callId);
 
-            Assert.Equal(200, getCallStateResponse.StatusCode);
+                    // No need to retry if we've made it this far.
+                    retries = 0;
 
-            Assert.Equal(applicationId, getCallStateResponse.Data.ApplicationId);
-            Assert.Equal(to, getCallStateResponse.Data.To);
-            Assert.Equal(from, getCallStateResponse.Data.From);
-            Assert.Equal(callId, getCallStateResponse.Data.CallId);
+                    Assert.Equal(200, getCallStateResponse.StatusCode);
+
+                    Assert.Equal(callId, getCallStateResponse.Data.CallId);
+                    Assert.Null(getCallStateResponse.Data.ParentCallId);
+                    Assert.Equal(applicationId, getCallStateResponse.Data.ApplicationId);
+                    Assert.Equal(accountId, getCallStateResponse.Data.AccountId);
+                    Assert.Equal(to, getCallStateResponse.Data.To);
+                    Assert.Equal(from, getCallStateResponse.Data.From);
+                    Assert.Equal("outbound", getCallStateResponse.Data.Direction);
+                    Assert.Equal("initiated", getCallStateResponse.Data.State);
+                    Assert.Null(getCallStateResponse.Data.Identity);
+                    Assert.Empty(getCallStateResponse.Data.StirShaken);
+                    Assert.IsType(typeof(DateTime), getCallStateResponse.Data.StartTime);
+                    Assert.Null(getCallStateResponse.Data.AnswerTime);
+                    Assert.Null(getCallStateResponse.Data.EndTime);
+                    Assert.Null(getCallStateResponse.Data.DisconnectCause);
+                    Assert.Null(getCallStateResponse.Data.ErrorMessage);
+                    Assert.Null(getCallStateResponse.Data.ErrorId);
+                    Assert.IsType(typeof(DateTime), getCallStateResponse.Data.LastUpdate);
+                }
+                catch (ApiErrorException ex)
+                {
+                    // There are times when the created call resource is not yet available after creating it.
+                    retries = ex.ResponseCode == 404 ? retries - 1 : 0;
+                    // Pause to give time to contemplate life.
+                    Thread.Sleep(TestConstants.Timeout);
+                }
+            }
+            while (retries > 0);
         }
     }
 }

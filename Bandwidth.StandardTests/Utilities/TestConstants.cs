@@ -28,5 +28,8 @@ namespace Bandwidth.StandardTests
 
         // Unique run id used to generate unique test ids.
         public static readonly string RunId = System.Environment.GetEnvironmentVariable("GITHUB_RUN_ID") ?? "local-run-id";
+
+        // Milliseconds of time to pause between voice requests.
+        public static readonly int Timeout = 500;
     }
 }
