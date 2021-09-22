@@ -6,15 +6,22 @@ on:
 
 jobs:
   build:
-    name: Build and test
-    runs-on: ubuntu-latest
+    name: Test Dotnet ${{ matrix.dotnet }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-2016, windows-2019, ubuntu-18.04, ubuntu-20.04]
+        dotnet: [3.1.x, 5.0.x]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-dotnet@v1
+      - name: Setup Dotnet
+        uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.1.x'
+          dotnet-version: ${{ matrix.dotnet }}
+
       - name: Build
         run: dotnet build
+
       - name: Test
         env:
           BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
@@ -25,9 +32,13 @@ jobs:
           BW_NUMBER: ${{ secrets.BW_NUMBER }}
           USER_NUMBER: ${{ secrets.USER_NUMBER }}
           BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
+          # Required for multiple target frameworks in the StandardTests project.
+          DOTNET: ${{ matrix.dotnet }}
         run: dotnet test Bandwidth.StandardTests
-      - uses: Bandwidth/build-notify-slack-action@v1.0.0
-        if: always()
+
+      - name: Notify Slack of failures
+        uses: Bandwidth/build-notify-slack-action@v1.0.0
+        if: failure() && !github.event.pull_request.draft
         with:
           job-status: ${{ job.status }}
           slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
