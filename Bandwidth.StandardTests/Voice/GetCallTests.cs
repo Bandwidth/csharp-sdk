@@ -61,16 +61,16 @@ namespace Bandwidth.StandardTests.Voice
                     Assert.Equal(to, getCallStateResponse.Data.To);
                     Assert.Equal(from, getCallStateResponse.Data.From);
                     Assert.Equal("outbound", getCallStateResponse.Data.Direction);
-                    Assert.Equal("initiated", getCallStateResponse.Data.State);
+                    Assert.True(getCallStateResponse.Data.State == "initiated" || getCallStateResponse.Data.State == "disconnected");
                     Assert.Null(getCallStateResponse.Data.Identity);
                     Assert.Empty(getCallStateResponse.Data.StirShaken);
-                    Assert.IsType(typeof(DateTime), getCallStateResponse.Data.StartTime);
+                    Assert.IsType<DateTime>(getCallStateResponse.Data.StartTime);
                     Assert.Null(getCallStateResponse.Data.AnswerTime);
                     Assert.Null(getCallStateResponse.Data.EndTime);
                     Assert.Null(getCallStateResponse.Data.DisconnectCause);
                     Assert.Null(getCallStateResponse.Data.ErrorMessage);
                     Assert.Null(getCallStateResponse.Data.ErrorId);
-                    Assert.IsType(typeof(DateTime), getCallStateResponse.Data.LastUpdate);
+                    Assert.IsType<DateTime>(getCallStateResponse.Data.LastUpdate);
                 }
                 catch (ApiErrorException ex)
                 {
