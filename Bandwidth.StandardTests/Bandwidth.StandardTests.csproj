@@ -21,10 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="xunit.runner.json" CopyToOutputDirectory="Always" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Bandwidth.Standard\Bandwidth.Standard.csproj" />
   </ItemGroup>
 
