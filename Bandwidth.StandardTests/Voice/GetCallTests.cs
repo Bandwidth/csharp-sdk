@@ -66,7 +66,6 @@ namespace Bandwidth.StandardTests.Voice
                     Assert.Empty(getCallStateResponse.Data.StirShaken);
                     Assert.IsType<DateTime>(getCallStateResponse.Data.StartTime);
                     Assert.Null(getCallStateResponse.Data.AnswerTime);
-                    Assert.Null(getCallStateResponse.Data.EndTime);
                     Assert.Null(getCallStateResponse.Data.DisconnectCause);
                     Assert.Null(getCallStateResponse.Data.ErrorMessage);
                     Assert.Null(getCallStateResponse.Data.ErrorId);
