@@ -21,7 +21,6 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
                 .Build();
         }
 
-        [Fact(Skip="Global rate limiting makes this test unreliable.")]
         public async Task CreateTnLookupRequestAsync()
         {
             var accountId = TestConstants.AccountId;
@@ -36,7 +35,6 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
             Assert.Equal("IN_PROGRESS", response.Data.Status);
         }
 
-        [Fact(Skip="Global rate limiting makes this test unreliable.")]
         public async Task GetTnLookupResultAsync()
         {
             var accountId = TestConstants.AccountId;
