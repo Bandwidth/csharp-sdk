@@ -24,7 +24,7 @@ namespace Bandwidth.StandardTests.Mfa
         {
             var accountId = TestConstants.AccountId;
             var applicationId = TestConstants.MessagingApplicationId;
-            var to = $"+1{new Random().Next(1000000, 9999999)}";
+            var to = TestConstants.To;
             var from = TestConstants.From;
             var scope = "test";
             var digits = 6;
