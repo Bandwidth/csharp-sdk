@@ -1,5 +1,12 @@
 # Bandwidth C# SDK
 
+| **OS** | **.NET** |
+|:---:|:---:|
+| Windows 2016 | Core 3.1, 5.0 |
+| Windows 2019 | Core 3.1, 5.0 |
+| Ubuntu 18.04 | Core 3.1, 5.0 |
+| Ubuntu 20.04 | Core 3.1, 5.0 |
+
 ## Getting Started
 
 ### Installation
