@@ -1,28 +1,28 @@
-name: Validate
+name: Test
 on:
   schedule:
-    - cron: "0 4 * * *"
+    - cron: '0 4 * * *'
   pull_request:
+  workflow_dispatch:
 
 jobs:
-  build:
-    name: Test Dotnet ${{ matrix.dotnet }} on ${{ matrix.os }}
+  test:
+    name: Test
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [windows-2016, windows-2019, ubuntu-18.04, ubuntu-20.04]
         dotnet: [3.1.x, 5.0.x]
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Dotnet
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ matrix.dotnet }}
 
-      - name: Build
-        run: dotnet build
-
-      - name: Test
+      - name: Run functional tests
         env:
           BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
           BW_USERNAME: ${{ secrets.BW_USERNAME }}
