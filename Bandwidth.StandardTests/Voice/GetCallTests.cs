@@ -61,12 +61,14 @@ namespace Bandwidth.StandardTests.Voice
                     Assert.Equal(to, getCallStateResponse.Data.To);
                     Assert.Equal(from, getCallStateResponse.Data.From);
                     Assert.Equal("outbound", getCallStateResponse.Data.Direction);
+                    // There are times when the call resource's state varies.
                     Assert.True(getCallStateResponse.Data.State == "initiated" || getCallStateResponse.Data.State == "disconnected");
                     Assert.Null(getCallStateResponse.Data.Identity);
                     Assert.Empty(getCallStateResponse.Data.StirShaken);
                     Assert.IsType<DateTime>(getCallStateResponse.Data.StartTime);
                     Assert.Null(getCallStateResponse.Data.AnswerTime);
-                    Assert.Null(getCallStateResponse.Data.DisconnectCause);
+                    // There are times when the call resource's disconnect cause varies.
+                    Assert.True(getCallStateResponse.Data.DisconnectCause == null || getCallStateResponse.Data.DisconnectCause == "busy");
                     Assert.Null(getCallStateResponse.Data.ErrorMessage);
                     Assert.Null(getCallStateResponse.Data.ErrorId);
                     Assert.IsType<DateTime>(getCallStateResponse.Data.LastUpdate);
