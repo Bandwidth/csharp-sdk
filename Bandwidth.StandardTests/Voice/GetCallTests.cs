@@ -67,7 +67,7 @@ namespace Bandwidth.StandardTests.Voice
                     Assert.IsType<DateTime>(getCallStateResponse.Data.StartTime);
                     Assert.Null(getCallStateResponse.Data.AnswerTime);
                     Assert.True(getCallStateResponse.Data.DisconnectCause == null || getCallStateResponse.Data.DisconnectCause == "busy");
-                    Assert.Null(getCallStateResponse.Data.ErrorMessage == null || getCallStateResponse.Data.ErrorMessage == "Callee is busy");
+                    Assert.True(getCallStateResponse.Data.ErrorMessage == null || getCallStateResponse.Data.ErrorMessage == "Callee is busy");
                     Assert.Null(getCallStateResponse.Data.ErrorId);
                     Assert.IsType<DateTime>(getCallStateResponse.Data.LastUpdate);
                 }
