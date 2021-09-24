@@ -1,5 +1,7 @@
 # Bandwidth C# SDK
 
+[![Test](https://github.com/Bandwidth/csharp-sdk/actions/workflows/test.yml/badge.svg)](https://github.com/Bandwidth/csharp-sdk/actions/workflows/test.yml)
+
 | **OS** | **.NET** |
 |:---:|:---:|
 | Windows 2016 | Core 3.1, 5.0 |
