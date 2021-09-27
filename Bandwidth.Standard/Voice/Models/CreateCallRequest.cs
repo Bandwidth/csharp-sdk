@@ -96,7 +96,7 @@ namespace Bandwidth.Standard.Voice.Models
             string disconnectUrl = null,
             Models.DisconnectMethodEnum? disconnectMethod = null,
             string tag = null,
-            Models.MachineDetectionRequest machineDetection = null)
+            Models.MachineDetectionConfiguration machineDetection = null)
         {
             this.From = from;
             this.To = to;
@@ -432,7 +432,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// Gets or sets MachineDetection.
         /// </summary>
         [JsonProperty("machineDetection", NullValueHandling = NullValueHandling.Ignore)]
-        public Models.MachineDetectionRequest MachineDetection { get; set; }
+        public Models.MachineDetectionConfiguration MachineDetection { get; set; }
 
         /// <inheritdoc/>
         public override string ToString()
