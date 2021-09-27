@@ -21,6 +21,7 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
                 .Build();
         }
 
+        [Fact]
         public async Task CreateTnLookupRequestAsync()
         {
             var accountId = TestConstants.AccountId;
@@ -35,6 +36,7 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
             Assert.Equal("IN_PROGRESS", response.Data.Status);
         }
 
+        [Fact]
         public async Task GetTnLookupResultAsync()
         {
             var accountId = TestConstants.AccountId;
