@@ -1,4 +1,4 @@
-// <copyright file="MachineDetectionRequest.cs" company="APIMatic">
+// <copyright file="MachineDetectionConfiguration.cs" company="APIMatic">
 // Copyright (c) APIMatic. All rights reserved.
 // </copyright>
 namespace Bandwidth.Standard.Voice.Models
