@@ -16,7 +16,7 @@ namespace Bandwidth.Standard.Voice.Models
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// MachineDetectionRequest.
+    /// MachineDetectionConfiguration.
     /// </summary>
     public class MachineDetectionConfiguration
     {
