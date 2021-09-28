@@ -53,7 +53,7 @@ namespace Bandwidth.StandardTests.Voice
             var from = TestConstants.From;
             var applicationId = TestConstants.VoiceApplicationId;
             var answerUrl = string.Concat(TestConstants.BaseCallbackUrl, "/callbacks/answer");
-            var machineDetectionRequest = new MachineDetectionRequest()
+            var machineDetectionConfiguration = new MachineDetectionConfiguration()
             {
                 CallbackUrl = string.Concat(TestConstants.BaseCallbackUrl, "/callbacks/machine-detection")
             };
@@ -64,7 +64,7 @@ namespace Bandwidth.StandardTests.Voice
                 To = to,
                 From = from,
                 AnswerUrl = answerUrl,
-                MachineDetection = machineDetectionRequest
+                MachineDetection = machineDetectionConfiguration
             };
 
             var createCallResponse = await _client.Voice.APIController.CreateCallAsync(accountId, request);
