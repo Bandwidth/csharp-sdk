@@ -24,7 +24,7 @@ namespace Bandwidth.StandardTests.Voice
         public async Task GetCallReturnsOk()
         {
             var accountId = TestConstants.AccountId;
-            var to = TestConstants.To;
+            var to = TestConstants.UserNumbers[new Random().Next(0, TestConstants.UserNumbers.Count)];
             var from = TestConstants.From;
             var applicationId = TestConstants.VoiceApplicationId;
             var answerUrl = string.Concat(TestConstants.BaseCallbackUrl, "/callbacks/answer");

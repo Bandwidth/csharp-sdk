@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Bandwidth.StandardTests
 {
     public static class TestConstants
@@ -22,6 +25,9 @@ namespace Bandwidth.StandardTests
         
         // The phone number to send the message to.
         public static readonly string To = System.Environment.GetEnvironmentVariable("USER_NUMBER");
+
+        // Phone numbers to call and send messages to.
+        public static readonly List<string> UserNumbers = System.Environment.GetEnvironmentVariable("USER_NUMBERS").Split(',').ToList();
 
         // The publicly available base callback URL.
         public static readonly string BaseCallbackUrl = System.Environment.GetEnvironmentVariable("BASE_CALLBACK_URL");
