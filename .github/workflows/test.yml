@@ -31,6 +31,7 @@ jobs:
           BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
           BW_NUMBER: ${{ secrets.BW_NUMBER }}
           USER_NUMBER: ${{ secrets.USER_NUMBER }}
+          USER_NUMBERS: ${{ secrets.USER_NUMBERS }}
           BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
           # Required for multiple target frameworks in the StandardTests project.
           DOTNET: ${{ matrix.dotnet }}
