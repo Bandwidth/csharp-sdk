@@ -24,7 +24,7 @@ namespace Bandwidth.StandardTests.Messaging
         public async Task UploadAndDownloadMedia()
         {
             var accountId = TestConstants.AccountId;
-            var mediaId = string.Concat(TestConstants.RunId, "text-media-id");
+            var mediaId = $"text-media-id-{Guid.NewGuid()}";
             
             var content = "Hello world";
             var contentType = "text/plain";
