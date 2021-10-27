@@ -15,11 +15,18 @@ namespace Bandwidth.Standard.Voice.Bxml
         public double Duration { get; set; }
 
         /// <summary>
+        ///  (optional) A boolean indicating whether or not to answer the call when Ring is executed on an unanswered incoming call. Default value is 'true'.
+        /// </summary>
+        [XmlAttribute("answerCall")]
+        public bool AnswerCall { get; set; }
+
+        /// <summary>
         /// Initialize the double fields to Bandwidth's default value
         /// </summary>
         public Ring()
         {
             Duration = 5;
+            AnswerCall = true;
         }
     }
 }
