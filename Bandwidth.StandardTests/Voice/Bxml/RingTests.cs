@@ -11,7 +11,7 @@ namespace Bandwidth.StandardTests.Voice.Bxml
             var ring = new Ring();
 
             Assert.Equal(5, ring.Duration);
-            Assert.Equal(true, ring.AnswerCall);
+            Assert.True(ring.AnswerCall);
         }
 
         [Fact]
@@ -29,7 +29,7 @@ namespace Bandwidth.StandardTests.Voice.Bxml
             var ring = new Ring();
             ring.AnswerCall = false;
 
-            Assert.Equal(false, ring.AnswerCall);
+            Assert.False(ring.AnswerCall);
         }
 
         [Fact]
