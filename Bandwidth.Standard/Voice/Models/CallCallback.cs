@@ -60,6 +60,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <param name="terminatingDigit">terminatingDigit.</param>
         /// <param name="transcription">transcription.</param>
         /// <param name="diversion">diversion.</param>
+        /// <param name="machineDetectionResult">machineDetectionResult.</param>
         public CallCallback(
             string eventType = null,
             string eventTime = null,
@@ -90,7 +91,8 @@ namespace Bandwidth.Standard.Voice.Models
             string digits = null,
             string terminatingDigit = null,
             Models.Transcription transcription = null,
-            Models.Diversion diversion = null)
+            Models.Diversion diversion = null,
+            Models.MachineDetectionResult machineDetectionResult = null)
         {
             this.EventType = eventType;
             this.EventTime = eventTime;
@@ -122,6 +124,7 @@ namespace Bandwidth.Standard.Voice.Models
             this.TerminatingDigit = terminatingDigit;
             this.Transcription = transcription;
             this.Diversion = diversion;
+            this.MachineDetectionResult = machineDetectionResult;
         }
 
         /// <summary>
@@ -304,6 +307,12 @@ namespace Bandwidth.Standard.Voice.Models
         [JsonProperty("diversion", NullValueHandling = NullValueHandling.Ignore)]
         public Models.Diversion Diversion { get; set; }
 
+        /// <summary>
+        /// Gets or sets MachineDetectionResult.
+        /// </summary>
+        [JsonProperty("machineDetectionResult", NullValueHandling = NullValueHandling.Ignore)]
+        public Models.MachineDetectionResult MachineDetectionResult { get; set; }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -358,6 +367,7 @@ namespace Bandwidth.Standard.Voice.Models
                 ((this.TerminatingDigit == null && other.TerminatingDigit == null) || (this.TerminatingDigit?.Equals(other.TerminatingDigit) == true)) &&
                 ((this.Transcription == null && other.Transcription == null) || (this.Transcription?.Equals(other.Transcription) == true)) &&
                 ((this.Diversion == null && other.Diversion == null) || (this.Diversion?.Equals(other.Diversion) == true));
+                ((this.MachineDetectionResult == null && other.DivMachineDetectionResultersion == null) || (this.MachineDetectionResult?.Equals(other.MachineDetectionResult) == true));
         }
 
         /// <inheritdoc/>
@@ -515,6 +525,11 @@ namespace Bandwidth.Standard.Voice.Models
                hashCode += this.Diversion.GetHashCode();
             }
 
+            if (this.MachineDetectionResult != null)
+            {
+               hashCode += this.MachineDetectionResult.GetHashCode();
+            }
+
             return hashCode;
         }
 
@@ -554,6 +569,7 @@ namespace Bandwidth.Standard.Voice.Models
             toStringOutput.Add($"this.TerminatingDigit = {(this.TerminatingDigit == null ? "null" : this.TerminatingDigit == string.Empty ? "" : this.TerminatingDigit)}");
             toStringOutput.Add($"this.Transcription = {(this.Transcription == null ? "null" : this.Transcription.ToString())}");
             toStringOutput.Add($"this.Diversion = {(this.Diversion == null ? "null" : this.Diversion.ToString())}");
+            toStringOutput.Add($"this.MachineDetectionResult = {(this.MachineDetectionResult == null ? "null" : this.MachineDetectionResult.ToString())}");
         }
     }
 }
