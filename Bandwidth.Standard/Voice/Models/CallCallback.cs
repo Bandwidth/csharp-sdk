@@ -366,8 +366,8 @@ namespace Bandwidth.Standard.Voice.Models
                 ((this.Digits == null && other.Digits == null) || (this.Digits?.Equals(other.Digits) == true)) &&
                 ((this.TerminatingDigit == null && other.TerminatingDigit == null) || (this.TerminatingDigit?.Equals(other.TerminatingDigit) == true)) &&
                 ((this.Transcription == null && other.Transcription == null) || (this.Transcription?.Equals(other.Transcription) == true)) &&
-                ((this.Diversion == null && other.Diversion == null) || (this.Diversion?.Equals(other.Diversion) == true));
-                ((this.MachineDetectionResult == null && other.DivMachineDetectionResultersion == null) || (this.MachineDetectionResult?.Equals(other.MachineDetectionResult) == true));
+                ((this.Diversion == null && other.Diversion == null) || (this.Diversion?.Equals(other.Diversion) == true)) &&
+                ((this.MachineDetectionResult == null && other.MachineDetectionResult == null) || (this.MachineDetectionResult?.Equals(other.MachineDetectionResult) == true));
         }
 
         /// <inheritdoc/>
