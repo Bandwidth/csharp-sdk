@@ -12,7 +12,8 @@ namespace Bandwidth.StandardTests.Voice
         [Fact]
         public void InitiateEvent()
         {
-            var initiateEvent = new CallCallback() {
+            var initiateEvent = new CallCallback()
+            {
                 EventType = "initiate",
                 EventTime = "2019-06-20T15:56:11.554Z",
                 AccountId = "55555555",
@@ -40,7 +41,8 @@ namespace Bandwidth.StandardTests.Voice
         [Fact]
         public void MachineDetectionCompleteEvent()
         {
-            var machineDetectionCompleteEvent = new CallCallback() {
+            var machineDetectionCompleteEvent = new CallCallback()
+            {
                 EventType = "machineDetectionComplete",
                 EventTime = "2019-06-20T15:56:11.554Z",
                 AccountId = "55555555",
