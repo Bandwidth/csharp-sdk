@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-2016, windows-2019, ubuntu-18.04, ubuntu-20.04]
+        os: [windows-2022, windows-2019, ubuntu-18.04, ubuntu-20.04]
         dotnet: [3.1.x, 5.0.x]
     steps:
       - name: Checkout repo
