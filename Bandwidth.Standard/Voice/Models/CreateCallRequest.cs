@@ -434,7 +434,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Gets or sets Priority.
         /// </summary>
-        [JsonProperty("tag")]
+        [JsonProperty("priority")]
         public int? Priority
         {
             get

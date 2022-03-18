@@ -82,6 +82,35 @@ namespace Bandwidth.StandardTests.Voice
         }
 
         [Fact]
+        public async Task CreateCallWithPriorityReturnsCreated()
+        {
+            var accountId = TestConstants.AccountId;
+            var to = TestConstants.To;
+            var from = TestConstants.From;
+            var applicationId = TestConstants.VoiceApplicationId;
+            var answerUrl = string.Concat(TestConstants.BaseCallbackUrl, "/callbacks/answer");
+            var priority = 4;
+
+            var request = new CreateCallRequest()
+            {
+                ApplicationId = applicationId,
+                To = to,
+                From = from,
+                AnswerUrl = answerUrl,
+                Priority = priority
+            };
+
+            var createCallResponse = await _client.Voice.APIController.CreateCallAsync(accountId, request);
+
+            Assert.Equal(201, createCallResponse.StatusCode);
+
+            Assert.Equal(applicationId, createCallResponse.Data.ApplicationId);
+            Assert.Equal(to, createCallResponse.Data.To);
+            Assert.Equal(from, createCallResponse.Data.From);
+            Assert.Equal(priority, createCallResponse.Data.Priority);
+        }
+
+        [Fact]
         public async Task CreateCallInvalidToPhoneNumberThrows()
         {
             var accountId = TestConstants.AccountId;
