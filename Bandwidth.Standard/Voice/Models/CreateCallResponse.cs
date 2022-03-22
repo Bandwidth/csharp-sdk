@@ -28,6 +28,7 @@ namespace Bandwidth.Standard.Voice.Models
         private string fallbackUsername;
         private string fallbackPassword;
         private string tag;
+        private int? priority;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "answerFallbackUrl", false },
@@ -38,6 +39,7 @@ namespace Bandwidth.Standard.Voice.Models
             { "fallbackUsername", false },
             { "fallbackPassword", false },
             { "tag", false },
+            { "priority", false }
         };
 
         /// <summary>
@@ -70,6 +72,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <param name="fallbackUsername">fallbackUsername.</param>
         /// <param name="fallbackPassword">fallbackPassword.</param>
         /// <param name="tag">tag.</param>
+        /// <param name="priority">priority.</param>
         public CreateCallResponse(
             string accountId,
             string callId,
@@ -90,7 +93,8 @@ namespace Bandwidth.Standard.Voice.Models
             string password = null,
             string fallbackUsername = null,
             string fallbackPassword = null,
-            string tag = null)
+            string tag = null,
+            int? priority = null)
         {
             this.AccountId = accountId;
             this.CallId = callId;
@@ -142,6 +146,11 @@ namespace Bandwidth.Standard.Voice.Models
             if (tag != null)
             {
                 this.Tag = tag;
+            }
+
+            if (priority != null)
+            {
+                this.Priority = priority;
             }
 
         }
@@ -363,6 +372,24 @@ namespace Bandwidth.Standard.Voice.Models
             }
         }
 
+        /// <summary>
+        /// Gets or sets Priority.
+        /// </summary>
+        [JsonProperty("priority")]
+        public int? Priority
+        {
+            get
+            {
+                return this.priority;
+            }
+
+            set
+            {
+                this.shouldSerialize["priority"] = true;
+                this.priority = value;
+            }
+        }
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -438,6 +465,14 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPriority()
+        {
+            this.shouldSerialize["priority"] = false;
+        }
+
+        /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
@@ -509,6 +544,15 @@ namespace Bandwidth.Standard.Voice.Models
             return this.shouldSerialize["tag"];
         }
 
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePriority()
+        {
+            return this.shouldSerialize["priority"];
+        }
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -542,7 +586,8 @@ namespace Bandwidth.Standard.Voice.Models
                 ((this.Password == null && other.Password == null) || (this.Password?.Equals(other.Password) == true)) &&
                 ((this.FallbackUsername == null && other.FallbackUsername == null) || (this.FallbackUsername?.Equals(other.FallbackUsername) == true)) &&
                 ((this.FallbackPassword == null && other.FallbackPassword == null) || (this.FallbackPassword?.Equals(other.FallbackPassword) == true)) &&
-                ((this.Tag == null && other.Tag == null) || (this.Tag?.Equals(other.Tag) == true));
+                ((this.Tag == null && other.Tag == null) || (this.Tag?.Equals(other.Tag) == true)) &&
+                ((this.Priority == null && other.Priority == null) || (this.Priority?.Equals(other.Priority) == true));
         }
 
         /// <inheritdoc/>
@@ -647,6 +692,11 @@ namespace Bandwidth.Standard.Voice.Models
                hashCode += this.Tag.GetHashCode();
             }
 
+            if (this.Priority != null)
+            {
+               hashCode += this.Priority.GetHashCode();
+            }
+
             return hashCode;
         }
 
@@ -676,6 +726,7 @@ namespace Bandwidth.Standard.Voice.Models
             toStringOutput.Add($"this.FallbackUsername = {(this.FallbackUsername == null ? "null" : this.FallbackUsername == string.Empty ? "" : this.FallbackUsername)}");
             toStringOutput.Add($"this.FallbackPassword = {(this.FallbackPassword == null ? "null" : this.FallbackPassword == string.Empty ? "" : this.FallbackPassword)}");
             toStringOutput.Add($"this.Tag = {(this.Tag == null ? "null" : this.Tag == string.Empty ? "" : this.Tag)}");
+            toStringOutput.Add($"this.Priority = {(this.Priority == null ? "null" : this.Priority.ToString())}");
         }
     }
 }

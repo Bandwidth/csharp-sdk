@@ -33,6 +33,7 @@ namespace Bandwidth.Standard.Voice.Models
         private string disconnectUrl;
         private Models.DisconnectMethodEnum? disconnectMethod;
         private string tag;
+        private int? priority;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "uui", false },
@@ -48,6 +49,7 @@ namespace Bandwidth.Standard.Voice.Models
             { "disconnectUrl", false },
             { "disconnectMethod", false },
             { "tag", false },
+            { "priority", false },
         };
 
         /// <summary>
@@ -78,6 +80,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <param name="disconnectMethod">disconnectMethod.</param>
         /// <param name="tag">tag.</param>
         /// <param name="machineDetection">machineDetection.</param>
+        /// <param name="priority">priority.</param>
         public CreateCallRequest(
             string from,
             string to,
@@ -96,7 +99,8 @@ namespace Bandwidth.Standard.Voice.Models
             string disconnectUrl = null,
             Models.DisconnectMethodEnum? disconnectMethod = null,
             string tag = null,
-            Models.MachineDetectionConfiguration machineDetection = null)
+            Models.MachineDetectionConfiguration machineDetection = null,
+            int? priority = null)
         {
             this.From = from;
             this.To = to;
@@ -168,6 +172,11 @@ namespace Bandwidth.Standard.Voice.Models
 
             this.ApplicationId = applicationId;
             this.MachineDetection = machineDetection;
+            
+            if (priority != null)
+            {
+                this.Priority = priority;
+            }
         }
 
         /// <summary>
@@ -423,6 +432,24 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
+        /// Gets or sets Priority.
+        /// </summary>
+        [JsonProperty("priority")]
+        public int? Priority
+        {
+            get
+            {
+                return this.priority;
+            }
+
+            set
+            {
+                this.shouldSerialize["priority"] = true;
+                this.priority = value;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets ApplicationId.
         /// </summary>
         [JsonProperty("applicationId")]
@@ -549,6 +576,14 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
+        /// Marks the field to not be serailized.
+        /// </summary>
+        public void UnsetPriority()
+        {
+            this.shouldSerialize["priority"] = false;
+        }
+
+        /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
         /// <returns>A boolean weather the field should be serialized or not.</returns>
@@ -665,6 +700,15 @@ namespace Bandwidth.Standard.Voice.Models
             return this.shouldSerialize["tag"];
         }
 
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializePriority()
+        {
+            return this.shouldSerialize["priority"];
+        }
+
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
@@ -696,7 +740,8 @@ namespace Bandwidth.Standard.Voice.Models
                 ((this.DisconnectMethod == null && other.DisconnectMethod == null) || (this.DisconnectMethod?.Equals(other.DisconnectMethod) == true)) &&
                 ((this.Tag == null && other.Tag == null) || (this.Tag?.Equals(other.Tag) == true)) &&
                 ((this.ApplicationId == null && other.ApplicationId == null) || (this.ApplicationId?.Equals(other.ApplicationId) == true)) &&
-                ((this.MachineDetection == null && other.MachineDetection == null) || (this.MachineDetection?.Equals(other.MachineDetection) == true));
+                ((this.MachineDetection == null && other.MachineDetection == null) || (this.MachineDetection?.Equals(other.MachineDetection) == true)) &&
+                ((this.Priority == null && other.Priority == null) || (this.Priority?.Equals(other.Priority) == true));
         }
 
         /// <inheritdoc/>
@@ -794,6 +839,11 @@ namespace Bandwidth.Standard.Voice.Models
                hashCode += this.MachineDetection.GetHashCode();
             }
 
+            if (this.Priority != null)
+            {
+               hashCode += this.Priority.GetHashCode();
+            }
+
             return hashCode;
         }
 
@@ -821,6 +871,7 @@ namespace Bandwidth.Standard.Voice.Models
             toStringOutput.Add($"this.Tag = {(this.Tag == null ? "null" : this.Tag == string.Empty ? "" : this.Tag)}");
             toStringOutput.Add($"this.ApplicationId = {(this.ApplicationId == null ? "null" : this.ApplicationId == string.Empty ? "" : this.ApplicationId)}");
             toStringOutput.Add($"this.MachineDetection = {(this.MachineDetection == null ? "null" : this.MachineDetection.ToString())}");
+            toStringOutput.Add($"this.Priority = {(this.Priority == null ? "null" : this.Priority.ToString())}");
         }
     }
 }
