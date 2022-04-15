@@ -28,6 +28,7 @@ namespace Bandwidth.Standard.Voice.Models
         private string password;
         private string fallbackUsername;
         private string fallbackPassword;
+        private double? machineSpeechEndThreshold;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "callbackUrl", false },
@@ -64,6 +65,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <param name="password">password.</param>
         /// <param name="fallbackUsername">fallbackUsername.</param>
         /// <param name="fallbackPassword">fallbackPassword.</param>
+        /// <param name="machineSpeechEndThreshold">machineSpeechEndThreshold.</param>
         public MachineDetectionConfiguration(
             Models.ModeEnum? mode = null,
             double? detectionTimeout = null,
@@ -78,7 +80,8 @@ namespace Bandwidth.Standard.Voice.Models
             string username = null,
             string password = null,
             string fallbackUsername = null,
-            string fallbackPassword = null)
+            string fallbackPassword = null,
+            double? machineSpeechEndThreshold = null)
         {
             this.Mode = mode;
             this.DetectionTimeout = detectionTimeout;
@@ -126,6 +129,7 @@ namespace Bandwidth.Standard.Voice.Models
                 this.FallbackPassword = fallbackPassword;
             }
 
+            this.MachineSpeechEndThreshold = machineSpeechEndThreshold;
         }
 
         /// <summary>
@@ -308,6 +312,12 @@ namespace Bandwidth.Standard.Voice.Models
             }
         }
 
+        /// <summary>
+        /// When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing.
+        /// </summary>
+        [JsonProperty("machineSpeechEndThreshold", NullValueHandling = NullValueHandling.Ignore)]
+        public double? MachineSpeechEndThreshold;
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -481,7 +491,8 @@ namespace Bandwidth.Standard.Voice.Models
                 ((this.Username == null && other.Username == null) || (this.Username?.Equals(other.Username) == true)) &&
                 ((this.Password == null && other.Password == null) || (this.Password?.Equals(other.Password) == true)) &&
                 ((this.FallbackUsername == null && other.FallbackUsername == null) || (this.FallbackUsername?.Equals(other.FallbackUsername) == true)) &&
-                ((this.FallbackPassword == null && other.FallbackPassword == null) || (this.FallbackPassword?.Equals(other.FallbackPassword) == true));
+                ((this.FallbackPassword == null && other.FallbackPassword == null) || (this.FallbackPassword?.Equals(other.FallbackPassword) == true)) &&
+                ((this.MachineSpeechEndThreshold == null && other.MachineSpeechEndThreshold == null) || (this.MachineSpeechEndThreshold?.Equals(other.MachineSpeechEndThreshold) == true));
         }
 
         /// <inheritdoc/>
@@ -559,6 +570,11 @@ namespace Bandwidth.Standard.Voice.Models
                hashCode += this.FallbackPassword.GetHashCode();
             }
 
+            if (this.MachineSpeechEndThreshold != null)
+            {
+               hashCode += this.MachineSpeechEndThreshold.GetHashCode();
+            }
+
             return hashCode;
         }
 
@@ -582,6 +598,7 @@ namespace Bandwidth.Standard.Voice.Models
             toStringOutput.Add($"this.Password = {(this.Password == null ? "null" : this.Password == string.Empty ? "" : this.Password)}");
             toStringOutput.Add($"this.FallbackUsername = {(this.FallbackUsername == null ? "null" : this.FallbackUsername == string.Empty ? "" : this.FallbackUsername)}");
             toStringOutput.Add($"this.FallbackPassword = {(this.FallbackPassword == null ? "null" : this.FallbackPassword == string.Empty ? "" : this.FallbackPassword)}");
+            toStringOutput.Add($"this.MachineSpeechEndThreshold = {(this.MachineSpeechEndThreshold == null ? "null" : this.MachineSpeechEndThreshold.ToString())}");
         }
     }
 }
