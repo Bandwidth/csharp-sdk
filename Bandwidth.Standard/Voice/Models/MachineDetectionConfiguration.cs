@@ -28,6 +28,7 @@ namespace Bandwidth.Standard.Voice.Models
         private string password;
         private string fallbackUsername;
         private string fallbackPassword;
+        private double? machineSpeechEndThreshold;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "callbackUrl", false },
@@ -64,6 +65,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <param name="password">password.</param>
         /// <param name="fallbackUsername">fallbackUsername.</param>
         /// <param name="fallbackPassword">fallbackPassword.</param>
+        /// <param name="machineSpeechEndThreshold">machineSpeechEndThreshold.</param>
         public MachineDetectionConfiguration(
             Models.ModeEnum? mode = null,
             double? detectionTimeout = null,
@@ -78,7 +80,8 @@ namespace Bandwidth.Standard.Voice.Models
             string username = null,
             string password = null,
             string fallbackUsername = null,
-            string fallbackPassword = null)
+            string fallbackPassword = null,
+            double? machineSpeechEndThreshold = null)
         {
             this.Mode = mode;
             this.DetectionTimeout = detectionTimeout;
@@ -126,6 +129,7 @@ namespace Bandwidth.Standard.Voice.Models
                 this.FallbackPassword = fallbackPassword;
             }
 
+            this.MachineSpeechEndThreshold = machineSpeechEndThreshold;
         }
 
         /// <summary>
@@ -308,6 +312,12 @@ namespace Bandwidth.Standard.Voice.Models
             }
         }
 
+        /// <summary>
+        /// When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing.
+        /// </summary>
+        [JsonProperty("machineSpeechEndThreshold", NullValueHandling = NullValueHandling.Ignore)]
+        public double? MachineSpeechEndThreshold;
+
         /// <inheritdoc/>
         public override string ToString()
         {
@@ -319,7 +329,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCallbackUrl()
         {
@@ -327,7 +337,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCallbackMethod()
         {
@@ -335,7 +345,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFallbackUrl()
         {
@@ -343,7 +353,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFallbackMethod()
         {
@@ -351,7 +361,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetUsername()
         {
@@ -359,7 +369,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPassword()
         {
@@ -367,7 +377,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFallbackUsername()
         {
@@ -375,7 +385,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFallbackPassword()
         {
@@ -385,7 +395,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializeCallbackUrl()
         {
             return this.shouldSerialize["callbackUrl"];
@@ -394,7 +404,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializeCallbackMethod()
         {
             return this.shouldSerialize["callbackMethod"];
@@ -403,7 +413,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializeFallbackUrl()
         {
             return this.shouldSerialize["fallbackUrl"];
@@ -412,7 +422,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializeFallbackMethod()
         {
             return this.shouldSerialize["fallbackMethod"];
@@ -421,7 +431,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializeUsername()
         {
             return this.shouldSerialize["username"];
@@ -430,7 +440,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializePassword()
         {
             return this.shouldSerialize["password"];
@@ -439,7 +449,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializeFallbackUsername()
         {
             return this.shouldSerialize["fallbackUsername"];
@@ -448,7 +458,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializeFallbackPassword()
         {
             return this.shouldSerialize["fallbackPassword"];
@@ -481,7 +491,8 @@ namespace Bandwidth.Standard.Voice.Models
                 ((this.Username == null && other.Username == null) || (this.Username?.Equals(other.Username) == true)) &&
                 ((this.Password == null && other.Password == null) || (this.Password?.Equals(other.Password) == true)) &&
                 ((this.FallbackUsername == null && other.FallbackUsername == null) || (this.FallbackUsername?.Equals(other.FallbackUsername) == true)) &&
-                ((this.FallbackPassword == null && other.FallbackPassword == null) || (this.FallbackPassword?.Equals(other.FallbackPassword) == true));
+                ((this.FallbackPassword == null && other.FallbackPassword == null) || (this.FallbackPassword?.Equals(other.FallbackPassword) == true)) &&
+                ((this.MachineSpeechEndThreshold == null && other.MachineSpeechEndThreshold == null) || (this.MachineSpeechEndThreshold?.Equals(other.MachineSpeechEndThreshold) == true));
         }
 
         /// <inheritdoc/>
@@ -559,6 +570,11 @@ namespace Bandwidth.Standard.Voice.Models
                hashCode += this.FallbackPassword.GetHashCode();
             }
 
+            if (this.MachineSpeechEndThreshold != null)
+            {
+               hashCode += this.MachineSpeechEndThreshold.GetHashCode();
+            }
+
             return hashCode;
         }
 
@@ -582,6 +598,7 @@ namespace Bandwidth.Standard.Voice.Models
             toStringOutput.Add($"this.Password = {(this.Password == null ? "null" : this.Password == string.Empty ? "" : this.Password)}");
             toStringOutput.Add($"this.FallbackUsername = {(this.FallbackUsername == null ? "null" : this.FallbackUsername == string.Empty ? "" : this.FallbackUsername)}");
             toStringOutput.Add($"this.FallbackPassword = {(this.FallbackPassword == null ? "null" : this.FallbackPassword == string.Empty ? "" : this.FallbackPassword)}");
+            toStringOutput.Add($"this.MachineSpeechEndThreshold = {(this.MachineSpeechEndThreshold == null ? "null" : this.MachineSpeechEndThreshold.ToString())}");
         }
     }
 }
