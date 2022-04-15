@@ -329,7 +329,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCallbackUrl()
         {
@@ -337,7 +337,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetCallbackMethod()
         {
@@ -345,7 +345,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFallbackUrl()
         {
@@ -353,7 +353,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFallbackMethod()
         {
@@ -361,7 +361,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetUsername()
         {
@@ -369,7 +369,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetPassword()
         {
@@ -377,7 +377,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFallbackUsername()
         {
@@ -385,7 +385,7 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
-        /// Marks the field to not be serailized.
+        /// Marks the field to not be serialized.
         /// </summary>
         public void UnsetFallbackPassword()
         {
