@@ -395,7 +395,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializeCallbackUrl()
         {
             return this.shouldSerialize["callbackUrl"];
@@ -404,7 +404,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializeCallbackMethod()
         {
             return this.shouldSerialize["callbackMethod"];
@@ -413,7 +413,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializeFallbackUrl()
         {
             return this.shouldSerialize["fallbackUrl"];
@@ -422,7 +422,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializeFallbackMethod()
         {
             return this.shouldSerialize["fallbackMethod"];
@@ -431,7 +431,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializeUsername()
         {
             return this.shouldSerialize["username"];
@@ -440,7 +440,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializePassword()
         {
             return this.shouldSerialize["password"];
@@ -449,7 +449,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializeFallbackUsername()
         {
             return this.shouldSerialize["fallbackUsername"];
@@ -458,7 +458,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Checks if the field should be serialized or not.
         /// </summary>
-        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        /// <returns>A boolean whether the field should be serialized or not.</returns>
         public bool ShouldSerializeFallbackPassword()
         {
             return this.shouldSerialize["fallbackPassword"];
