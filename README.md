@@ -86,6 +86,24 @@ response.ToBXML();
 
 ```
 
+### Update an Existing Calls BXML
+
+```chsarp 
+using Bandwidth.Standard;
+using Bandwidth.Standard.Voice.Bxml;
+
+var speakSentence = new SpeakSentence();
+speakSentence.Sentence = "This text is new!";
+speakSentence.Voice = "susan";
+speakSentence.Gender = "female";
+speakSentence.Locale = "en_US";
+
+var bxml = new BXML(speakSentence);
+
+await client.Voice.APIController.ModifyCallBxml("1111111", callId, bxml.ToString());
+```
+
+
 ### Create A MFA Request
 
 ```csharp
