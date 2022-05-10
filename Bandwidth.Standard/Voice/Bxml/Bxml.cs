@@ -12,10 +12,10 @@ namespace Bandwidth.Standard.Voice.Bxml
   /// <summary>
   ///   Bxml class for Bandwidth XML
   /// </summary>
-  [XmlRoot(Namespace = "")]
-  public class Response : IXmlSerializable
+  [XmlRoot("Bxml", Namespace = "")]
+  public class BXML : IXmlSerializable
   {
-    private static readonly XmlSerializer Serializer = new XmlSerializer(typeof (Response), "");
+    private static readonly XmlSerializer Serializer = new XmlSerializer(typeof (BXML), "");
     private readonly List<IVerb> _list = new List<IVerb>();
 
         private static readonly Regex XML_REGEX = new Regex("&lt;([a-zA-Z//].*?)&gt;");
@@ -25,15 +25,15 @@ namespace Bandwidth.Standard.Voice.Bxml
         /// <summary>
         ///   Default constructor
         /// </summary>
-        public Response()
+        public BXML()
     {
     }
 
     /// <summary>
     ///   Constructor with verbs
     /// </summary>
-    /// <param name="verbs">verbs to be added to response</param>
-    public Response(params IVerb[] verbs)
+    /// <param name="verbs">verbs to be added to Bxml</param>
+    public BXML(params IVerb[] verbs)
     {
       _list.AddRange(verbs);
     }
@@ -57,7 +57,7 @@ namespace Bandwidth.Standard.Voice.Bxml
     }
 
     /// <summary>
-    ///   Add new verb to response
+    ///   Add new verb to Bxml
     /// </summary>
     /// <param name="verb">verb instance</param>
     public void Add(IVerb verb)
@@ -68,7 +68,7 @@ namespace Bandwidth.Standard.Voice.Bxml
 
 
         /// <summary>
-        ///   Returns BXML for response without escaped SSML
+        ///   Returns BXML for Bxml without escaped SSML
         /// </summary>
         /// <returns>Generated XML string</returns>
         public string ToBXML()
