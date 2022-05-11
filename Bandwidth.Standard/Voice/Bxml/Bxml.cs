@@ -14,13 +14,13 @@ namespace Bandwidth.Standard.Voice.Bxml
   /// </summary>
   [XmlRoot("Bxml", Namespace = "")]
   public class BXML : IXmlSerializable
-  {
-    private static readonly XmlSerializer Serializer = new XmlSerializer(typeof (BXML), "");
-    private readonly List<IVerb> _list = new List<IVerb>();
+      {
+        private static readonly XmlSerializer _serializer = new XmlSerializer(typeof (BXML), "");
+        private readonly List<IVerb> _list = new List<IVerb>();
 
-        private static readonly Regex XML_REGEX = new Regex("&lt;([a-zA-Z//].*?)&gt;");
+        private static readonly Regex _xmlRegex = new Regex("&lt;([a-zA-Z//].*?)&gt;");
 
-        private static readonly Regex SPEAK_SENTENCE_REGEX = new Regex("<SpeakSentence.*?>.*?<\\/SpeakSentence>");
+        private static readonly Regex _speakSentenceRegex = new Regex("<SpeakSentence.*?>.*?<\\/SpeakSentence>");
 
         /// <summary>
         ///   Default constructor
@@ -77,15 +77,15 @@ namespace Bandwidth.Standard.Voice.Bxml
             string str = "";
             using (var writer = new Utf8StringWriter { NewLine = "" })
             {
-                Serializer.Serialize(writer, this);
+                _serializer.Serialize(writer, this);
                 str =  writer.ToString();
             }
 
             MatchEvaluator matchEvaluator = new MatchEvaluator(match => 
-                XML_REGEX.Replace(match.Value, "<$1>")
+                _xmlRegex.Replace(match.Value, "<$1>")
             );
 
-            return SPEAK_SENTENCE_REGEX.Replace(str, matchEvaluator);
+            return _speakSentenceRegex.Replace(str, matchEvaluator);
         }
 
         private class Utf8StringWriter : StringWriter
