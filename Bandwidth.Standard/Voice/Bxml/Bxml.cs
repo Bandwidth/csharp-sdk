@@ -5,6 +5,7 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// <summary>
     ///   Bxml class for Bandwidth XML
     /// </summary>
+    [XmlRoot(ElementName = "Bxml")]
     public class BXML : Root
     {
         public BXML() : base()
