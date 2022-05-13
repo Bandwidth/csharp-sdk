@@ -83,7 +83,7 @@ namespace Bandwidth.StandardTests.PhoneNumberLookup
             Assert.Equal(0, resultResponse.Data.Result.First().ResponseCode);
             Assert.Equal("US", resultResponse.Data.Result.First().Country);
             Assert.Equal("Mobile", resultResponse.Data.Result.First().LineType);
-            Assert.Contains(lineProvider, "Bandwidth");
+            Assert.Contains("Bandwidth", lineProvider);
             Assert.Null(resultResponse.Data.Result.First().MobileCountryCode);
             Assert.Null(resultResponse.Data.Result.First().MobileNetworkCode);
         }
