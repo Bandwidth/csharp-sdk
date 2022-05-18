@@ -17,9 +17,9 @@ namespace Bandwidth.Standard.Voice.Bxml
         internal static XmlSerializer _serializer;
         private readonly List<IVerb> _list = new List<IVerb>();
 
-        private static readonly Regex XML_REGEX = new Regex("&lt;([a-zA-Z//].*?)&gt;");
+        private static readonly Regex s_xmlRegex = new Regex("&lt;([a-zA-Z//].*?)&gt;");
 
-        private static readonly Regex SPEAK_SENTENCE_REGEX = new Regex("<SpeakSentence.*?>.*?<\\/SpeakSentence>");
+        private static readonly Regex s_speakSentenceRegex = new Regex("<SpeakSentence.*?>.*?<\\/SpeakSentence>");
 
         /// <summary>
         ///   Default constructor
@@ -80,10 +80,10 @@ namespace Bandwidth.Standard.Voice.Bxml
             }
 
             MatchEvaluator matchEvaluator = new MatchEvaluator(match => 
-                XML_REGEX.Replace(match.Value, "<$1>")
+                s_xmlRegex.Replace(match.Value, "<$1>")
             );
 
-            return SPEAK_SENTENCE_REGEX.Replace(str, matchEvaluator);
+            return s_speakSentenceRegex.Replace(str, matchEvaluator);
         }
 
         private class Utf8StringWriter : StringWriter
