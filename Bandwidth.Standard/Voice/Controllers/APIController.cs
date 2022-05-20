@@ -919,7 +919,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             // handle errors defined at the API level.
             this.ValidateResponse(response, context);
 
-            var result = ApiHelper.JsonDeserialize<dynamic>(response.Body);
+            var result = response.RawBody;
             ApiResponse<dynamic> apiResponse = new ApiResponse<dynamic>(response.StatusCode, response.Headers, result);
             return apiResponse;
         }
