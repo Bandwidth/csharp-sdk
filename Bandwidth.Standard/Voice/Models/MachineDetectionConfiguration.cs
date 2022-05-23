@@ -28,7 +28,6 @@ namespace Bandwidth.Standard.Voice.Models
         private string password;
         private string fallbackUsername;
         private string fallbackPassword;
-        private double? machineSpeechEndThreshold;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
             { "callbackUrl", false },

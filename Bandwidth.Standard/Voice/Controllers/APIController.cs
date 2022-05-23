@@ -371,6 +371,116 @@ namespace Bandwidth.Standard.Voice.Controllers
         }
 
         /// <summary>
+        /// Replaces an active call's BXML document.
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: .</param>
+        /// <param name="callId">Required parameter: Example: .</param>
+        /// <param name="body">Required parameter: Example: .</param>
+        public void ModifyCallBxml(
+                string accountId,
+                string callId,
+                string body)
+        {
+            Task t = this.ModifyCallBxmlAsync(accountId, callId, body);
+            ApiHelper.RunTaskSynchronously(t);
+        }
+
+        /// <summary>
+        /// Interrupts and replaces an active call's BXML document.
+        /// </summary>
+        /// <param name="accountId">Required parameter: Example: .</param>
+        /// <param name="callId">Required parameter: Example: .</param>
+        /// <param name="body">Required parameter: Example: .</param>
+        /// <param name="cancellationToken"> cancellationToken. </param>
+        /// <returns>Returns the void response from the API call.</returns>
+        public async Task ModifyCallBxmlAsync(
+                string accountId,
+                string callId,
+                string body,
+                CancellationToken cancellationToken = default)
+        {
+            // the base uri for api requests.
+            string baseUri = this.Config.GetBaseUri(Server.VoiceDefault);
+
+            // prepare query string for API call.
+            StringBuilder queryBuilder = new StringBuilder(baseUri);
+            queryBuilder.Append("/api/v2/accounts/{accountId}/calls/{callId}/bxml");
+
+            // process optional template parameters.
+            ApiHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>()
+            {
+                { "accountId", accountId },
+                { "callId", callId },
+            });
+
+            // append request with appropriate headers and parameters
+            var headers = new Dictionary<string, string>()
+            {
+                { "user-agent", this.UserAgent },
+                { "content-type", "application/xml; charset=utf-8" },
+            };
+
+            // append body params.
+            var bodyText = body;
+
+            // prepare the API call request to fetch the response.
+            HttpRequest httpRequest = this.GetClientInstance().PutBody(queryBuilder.ToString(), headers, bodyText);
+
+            if (this.HttpCallBack != null)
+            {
+                this.HttpCallBack.OnBeforeHttpRequestEventHandler(this.GetClientInstance(), httpRequest);
+            }
+
+            httpRequest = await this.AuthManagers["voice"].ApplyAsync(httpRequest).ConfigureAwait(false);
+
+            // invoke request and get response.
+            HttpStringResponse response = await this.GetClientInstance().ExecuteAsStringAsync(httpRequest, cancellationToken).ConfigureAwait(false);
+            HttpContext context = new HttpContext(httpRequest, response);
+            if (this.HttpCallBack != null)
+            {
+                this.HttpCallBack.OnAfterHttpResponseEventHandler(this.GetClientInstance(), response);
+            }
+
+            if (response.StatusCode == 400)
+            {
+                throw new ApiErrorException("Something's not quite right... Your request is invalid. Please fix it before trying again.", context);
+            }
+
+            if (response.StatusCode == 401)
+            {
+                throw new ApiException("Your credentials are invalid. Please use your Bandwidth dashboard credentials to authenticate to the API.", context);
+            }
+
+            if (response.StatusCode == 403)
+            {
+                throw new ApiErrorException("User unauthorized to perform this action.", context);
+            }
+
+            if (response.StatusCode == 404)
+            {
+                throw new ApiErrorException("The resource specified cannot be found or does not belong to you.", context);
+            }
+
+            if (response.StatusCode == 415)
+            {
+                throw new ApiErrorException("We don't support that media type. If a request body is required, please send it to us as `application/xml`.", context);
+            }
+
+            if (response.StatusCode == 429)
+            {
+                throw new ApiErrorException("You're sending requests to this endpoint too frequently. Please slow your request rate down and try again.", context);
+            }
+
+            if (response.StatusCode == 500)
+            {
+                throw new ApiErrorException("Something unexpected happened. Please try again.", context);
+            }
+
+            // handle errors defined at the API level.
+            this.ValidateResponse(response, context);
+        }
+       
+        /// <summary>
         /// Pauses or resumes a recording.
         /// </summary>
         /// <param name="accountId">Required parameter: Example: .</param>
