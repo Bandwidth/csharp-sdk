@@ -817,12 +817,12 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// <param name="callId">Required parameter: Example: .</param>
         /// <param name="recordingId">Required parameter: Example: .</param>
         /// <returns>Returns the ApiResponse of dynamic response from the API call.</returns>
-        public ApiResponse<dynamic> GetDownloadCallRecording(
+        public ApiResponse<Stream> GetDownloadCallRecording(
                 string accountId,
                 string callId,
                 string recordingId)
         {
-            Task<ApiResponse<dynamic>> t = this.GetDownloadCallRecordingAsync(accountId, callId, recordingId);
+            Task<ApiResponse<Stream>> t = this.GetDownloadCallRecordingAsync(accountId, callId, recordingId);
             ApiHelper.RunTaskSynchronously(t);
             return t.Result;
         }
@@ -835,7 +835,7 @@ namespace Bandwidth.Standard.Voice.Controllers
         /// <param name="recordingId">Required parameter: Example: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the ApiResponse of dynamic response from the API call.</returns>
-        public async Task<ApiResponse<dynamic>> GetDownloadCallRecordingAsync(
+        public async Task<ApiResponse<Stream>> GetDownloadCallRecordingAsync(
                 string accountId,
                 string callId,
                 string recordingId,
@@ -920,7 +920,7 @@ namespace Bandwidth.Standard.Voice.Controllers
             this.ValidateResponse(response, context);
 
             var result = response.RawBody;
-            ApiResponse<dynamic> apiResponse = new ApiResponse<dynamic>(response.StatusCode, response.Headers, result);
+            ApiResponse<Stream> apiResponse = new ApiResponse<Stream>(response.StatusCode, response.Headers, result);
             return apiResponse;
         }
 
