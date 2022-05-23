@@ -100,7 +100,7 @@ speakSentence.Locale = "en_US";
 
 var bxml = new BXML(speakSentence);
 
-await client.Voice.APIController.ModifyCallBxml("1111111", callId, bxml.ToString());
+await client.Voice.APIController.ModifyCallBxml("1111111", callId, bxml.ToBXML());
 ```
 
 
