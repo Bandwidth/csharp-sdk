@@ -95,5 +95,16 @@ namespace Bandwidth.StandardTests.Voice
             var json = JsonConvert.SerializeObject(machineDetectionConfiguration);
             Assert.Equal("{\"mode\":\"async\",\"detectionTimeout\":3.2,\"silenceTimeout\":5.6,\"speechThreshold\":1.2,\"speechEndThreshold\":7.6,\"delayResult\":false,\"callbackUrl\":\"https://www.example.com/\",\"callbackMethod\":\"GET\",\"fallbackUrl\":\"https://www.example-fallback.com/\",\"fallbackMethod\":\"GET\",\"username\":\"neato-username\",\"password\":\"neato-password\",\"fallbackUsername\":\"neato-username-fallback\",\"fallbackPassword\":\"neato-password-fallback\"}", json);
         }
+
+        [Fact]
+        public void CheckModifyCallRequestCallStateStatus()
+        {
+            var modifyCallRequest = new ModifyCallRequest
+            {
+                RedirectUrl = "http://www.myServer.com/fake/callback/url"
+            };
+
+            Assert.Equal(StateEnum.Active,  modifyCallRequest.State);
+        } 
     }
 }
