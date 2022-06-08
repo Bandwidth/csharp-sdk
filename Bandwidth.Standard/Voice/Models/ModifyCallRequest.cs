@@ -47,13 +47,6 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="ModifyCallRequest"/> class.
         /// </summary>
-        public ModifyCallRequest()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ModifyCallRequest"/> class.
-        /// </summary>
         /// <param name="state">state.</param>
         /// <param name="redirectUrl">redirectUrl.</param>
         /// <param name="redirectFallbackUrl">redirectFallbackUrl.</param>
