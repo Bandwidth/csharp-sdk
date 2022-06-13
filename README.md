@@ -160,9 +160,13 @@ var participant = new Participant()
 // Create a new participant to join to the session.
 var createParticipantResponse = await _client.WebRtc.APIController.CreateParticipantAsync("1111111", participant);
 var participantId = createParticipantResponse.Data.Participant.Id;
+var subscriptions = new Subscriptions()
+{
+    SessionId = sessionId
+};
 
 // Add the newly created participant to the session.
-_client.WebRtc.APIController.AddParticipantToSessionAsync("1111111", sessionId, participantId);
+_client.WebRtc.APIController.AddParticipantToSessionAsync("1111111", sessionId, participantId, subscriptions);
 ```
 
 ## Supported .NET Versions
