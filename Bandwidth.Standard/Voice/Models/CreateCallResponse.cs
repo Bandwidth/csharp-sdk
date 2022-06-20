@@ -60,7 +60,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <param name="callUrl">callUrl.</param>
         /// <param name="answerUrl">answerUrl.</param>
         /// <param name="answerMethod">answerMethod.</param>
-        /// <param name="startTime">startTime.</param>
+        /// <param name="enqueuedTime">enqueuedTime.</param>
         /// <param name="callTimeout">callTimeout.</param>
         /// <param name="callbackTimeout">callbackTimeout.</param>
         /// <param name="answerFallbackUrl">answerFallbackUrl.</param>
@@ -82,7 +82,7 @@ namespace Bandwidth.Standard.Voice.Models
             string callUrl,
             string answerUrl,
             Models.AnswerMethodEnum answerMethod,
-            DateTime? startTime = null,
+            DateTime? enqueuedTime = null,
             double? callTimeout = null,
             double? callbackTimeout = null,
             string answerFallbackUrl = null,
@@ -101,7 +101,7 @@ namespace Bandwidth.Standard.Voice.Models
             this.ApplicationId = applicationId;
             this.To = to;
             this.From = from;
-            this.StartTime = startTime;
+            this.EnqueuedTime = enqueuedTime;
             this.CallUrl = callUrl;
             this.CallTimeout = callTimeout;
             this.CallbackTimeout = callbackTimeout;
@@ -186,11 +186,11 @@ namespace Bandwidth.Standard.Voice.Models
         public string From { get; set; }
 
         /// <summary>
-        /// Gets or sets StartTime.
+        /// Gets or sets EnqueuedTime.
         /// </summary>
         [JsonConverter(typeof(IsoDateTimeConverter))]
-        [JsonProperty("startTime", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTime? StartTime { get; set; }
+        [JsonProperty("enqueuedTime", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime? EnqueuedTime { get; set; }
 
         /// <summary>
         /// Gets or sets CallUrl.
@@ -572,7 +572,7 @@ namespace Bandwidth.Standard.Voice.Models
                 ((this.ApplicationId == null && other.ApplicationId == null) || (this.ApplicationId?.Equals(other.ApplicationId) == true)) &&
                 ((this.To == null && other.To == null) || (this.To?.Equals(other.To) == true)) &&
                 ((this.From == null && other.From == null) || (this.From?.Equals(other.From) == true)) &&
-                ((this.StartTime == null && other.StartTime == null) || (this.StartTime?.Equals(other.StartTime) == true)) &&
+                ((this.EnqueuedTime == null && other.EnqueuedTime == null) || (this.EnqueuedTime?.Equals(other.EnqueuedTime) == true)) &&
                 ((this.CallUrl == null && other.CallUrl == null) || (this.CallUrl?.Equals(other.CallUrl) == true)) &&
                 ((this.CallTimeout == null && other.CallTimeout == null) || (this.CallTimeout?.Equals(other.CallTimeout) == true)) &&
                 ((this.CallbackTimeout == null && other.CallbackTimeout == null) || (this.CallbackTimeout?.Equals(other.CallbackTimeout) == true)) &&
@@ -620,9 +620,9 @@ namespace Bandwidth.Standard.Voice.Models
                hashCode += this.From.GetHashCode();
             }
 
-            if (this.StartTime != null)
+            if (this.EnqueuedTime != null)
             {
-               hashCode += this.StartTime.GetHashCode();
+               hashCode += this.EnqueuedTime.GetHashCode();
             }
 
             if (this.CallUrl != null)
@@ -711,7 +711,7 @@ namespace Bandwidth.Standard.Voice.Models
             toStringOutput.Add($"this.ApplicationId = {(this.ApplicationId == null ? "null" : this.ApplicationId == string.Empty ? "" : this.ApplicationId)}");
             toStringOutput.Add($"this.To = {(this.To == null ? "null" : this.To == string.Empty ? "" : this.To)}");
             toStringOutput.Add($"this.From = {(this.From == null ? "null" : this.From == string.Empty ? "" : this.From)}");
-            toStringOutput.Add($"this.StartTime = {(this.StartTime == null ? "null" : this.StartTime.ToString())}");
+            toStringOutput.Add($"this.EnqueuedTime = {(this.EnqueuedTime == null ? "null" : this.EnqueuedTime.ToString())}");
             toStringOutput.Add($"this.CallUrl = {(this.CallUrl == null ? "null" : this.CallUrl == string.Empty ? "" : this.CallUrl)}");
             toStringOutput.Add($"this.CallTimeout = {(this.CallTimeout == null ? "null" : this.CallTimeout.ToString())}");
             toStringOutput.Add($"this.CallbackTimeout = {(this.CallbackTimeout == null ? "null" : this.CallbackTimeout.ToString())}");

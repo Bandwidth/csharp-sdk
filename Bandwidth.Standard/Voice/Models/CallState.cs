@@ -58,6 +58,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <param name="state">state.</param>
         /// <param name="identity">identity.</param>
         /// <param name="stirShaken">stirShaken.</param>
+        /// <param name="enqueuedTime">enqueuedTime.</param>
         /// <param name="startTime">startTime.</param>
         /// <param name="answerTime">answerTime.</param>
         /// <param name="endTime">endTime.</param>
@@ -76,6 +77,7 @@ namespace Bandwidth.Standard.Voice.Models
             string state = null,
             string identity = null,
             Dictionary<string, string> stirShaken = null,
+            DateTime? enqueuedTime = null,
             DateTime? startTime = null,
             DateTime? answerTime = null,
             DateTime? endTime = null,
@@ -102,6 +104,7 @@ namespace Bandwidth.Standard.Voice.Models
             }
 
             this.StirShaken = stirShaken;
+            this.EnqueuedTime = enqueuedTime;
             this.StartTime = startTime;
             if (answerTime != null)
             {
@@ -214,6 +217,13 @@ namespace Bandwidth.Standard.Voice.Models
         /// </summary>
         [JsonProperty("stirShaken", NullValueHandling = NullValueHandling.Ignore)]
         public Dictionary<string, string> StirShaken { get; set; }
+
+        /// <summary>
+        /// Gets or sets EnqueuedTime.
+        /// </summary>
+        [JsonConverter(typeof(IsoDateTimeConverter))]
+        [JsonProperty("enqueuedTime", NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime? EnqueuedTime { get; set; }
 
         /// <summary>
         /// Gets or sets StartTime.
@@ -474,6 +484,7 @@ namespace Bandwidth.Standard.Voice.Models
                 ((this.State == null && other.State == null) || (this.State?.Equals(other.State) == true)) &&
                 ((this.Identity == null && other.Identity == null) || (this.Identity?.Equals(other.Identity) == true)) &&
                 ((this.StirShaken == null && other.StirShaken == null) || (this.StirShaken?.Equals(other.StirShaken) == true)) &&
+                ((this.EnqueuedTime == null && other.EnqueuedTime == null) || this.EnqueuedTime?.Equals(other.EnqueuedTime) == true) &&
                 ((this.StartTime == null && other.StartTime == null) || (this.StartTime?.Equals(other.StartTime) == true)) &&
                 ((this.AnswerTime == null && other.AnswerTime == null) || (this.AnswerTime?.Equals(other.AnswerTime) == true)) &&
                 ((this.EndTime == null && other.EndTime == null) || (this.EndTime?.Equals(other.EndTime) == true)) &&
@@ -538,6 +549,11 @@ namespace Bandwidth.Standard.Voice.Models
                hashCode += this.StirShaken.GetHashCode();
             }
 
+            if (this.EnqueuedTime != null)
+            {
+               hashCode += this.EnqueuedTime.GetHashCode();
+            } 
+            
             if (this.StartTime != null)
             {
                hashCode += this.StartTime.GetHashCode();
@@ -592,6 +608,7 @@ namespace Bandwidth.Standard.Voice.Models
             toStringOutput.Add($"this.State = {(this.State == null ? "null" : this.State == string.Empty ? "" : this.State)}");
             toStringOutput.Add($"this.Identity = {(this.Identity == null ? "null" : this.Identity == string.Empty ? "" : this.Identity)}");
             toStringOutput.Add($"StirShaken = {(this.StirShaken == null ? "null" : this.StirShaken.ToString())}");
+            toStringOutput.Add($"this.EnqueuedTime = {(this.EnqueuedTime == null ? "null" : this.EnqueuedTime.ToString())}");
             toStringOutput.Add($"this.StartTime = {(this.StartTime == null ? "null" : this.StartTime.ToString())}");
             toStringOutput.Add($"this.AnswerTime = {(this.AnswerTime == null ? "null" : this.AnswerTime.ToString())}");
             toStringOutput.Add($"this.EndTime = {(this.EndTime == null ? "null" : this.EndTime.ToString())}");

@@ -43,6 +43,7 @@ namespace Bandwidth.StandardTests.Voice
             Assert.Equal(applicationId, createCallResponse.Data.ApplicationId);
             Assert.Equal(to, createCallResponse.Data.To);
             Assert.Equal(from, createCallResponse.Data.From);
+            Assert.IsType<DateTime>(createCallResponse.Data.EnqueuedTime);
         }
 
         [Fact]
