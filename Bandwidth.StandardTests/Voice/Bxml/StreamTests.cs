@@ -9,7 +9,7 @@ namespace Bandwidth.StandardTests.Voice.Bxml
         [Fact]
         public void StartStreamBxmlVerbTest()
         {
-            var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StartStream destination=\"https://www.test.com/stream\" name=\"test_stream\" tracks =\"inbound\" streamEventUrl=\"https://www.test.com/event\" streamEventMethod=\"POST\" username=\"username\" password=\"password\" /></Response>";
+            var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StartStream destination=\"https://www.test.com/stream\" name=\"test_stream\" tracks=\"inbound\" streamEventUrl=\"https://www.test.com/event\" streamEventMethod=\"POST\" username=\"username\" password=\"password\" /></Response>";
             var startStream = new StartStream();
             startStream.Destination = "https://www.test.com/stream";
             startStream.Name = "test_stream";
