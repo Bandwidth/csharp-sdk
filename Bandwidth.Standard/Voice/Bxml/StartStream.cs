@@ -22,6 +22,11 @@ namespace Bandwidth.Standard.Voice.Bxml
     public string Name { get; set; }
 
     /// <summary>
+    /// The part of the call to send a stream from. `inbound`, `outbound` or `both`.
+    /// </summary>
+    public string Tracks { get; set; }
+
+    /// <summary>
     /// URL to send the associated Webhook events to during this stream's lifetime
     /// </summary>
     public string StreamEventUrl { get; set; }
@@ -57,6 +62,10 @@ namespace Bandwidth.Standard.Voice.Bxml
       if (!string.IsNullOrEmpty(Name))
       {
         writer.WriteAttributeString("name", Name);
+      }
+      if (!string.IsNullOrEmpty(Tracks))
+      {
+        writer.WriteAttributeString("tracks", Tracks);
       }
       if (!string.IsNullOrEmpty(StreamEventUrl))
       {
