@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -11,6 +12,14 @@ namespace Bandwidth.Standard.Voice.Bxml
   /// </summary>
   public class StartStream : IXmlSerializable, IVerb, IAudioProducer
   {
+    /// <summary>
+    /// Initialize the StreamParams list
+    /// </summary>
+    public StartStream()
+    {
+      StreamParams = new List<StreamParam>();
+    }
+    
     /// <summary>
     ///   A websocket URI to send the stream to
     /// </summary>
@@ -45,6 +54,11 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// The password to send in the HTTP request to `streamEventUrl`
     /// </summary>
     public string Password { get; set; }
+    
+    /// <summary>
+    /// List of StreamParam verbs
+    /// </summary>
+    public List<StreamParam> StreamParams { get; set; }
 
     XmlSchema IXmlSerializable.GetSchema()
     {
@@ -82,6 +96,18 @@ namespace Bandwidth.Standard.Voice.Bxml
       if (!string.IsNullOrEmpty(Password))
       {
         writer.WriteAttributeString("password", Password);
+      }
+      if (StreamParams != null && StreamParams.Count > 0)
+      {
+          var ns = new XmlSerializerNamespaces();
+          ns.Add("", "");
+          
+          foreach (var verb in StreamParams)
+          {
+              Console.WriteLine(verb.Name);
+              var serializer = new XmlSerializer(verb.GetType(), "");
+              serializer.Serialize(writer, verb, ns);
+          }
       }
     }
   }
