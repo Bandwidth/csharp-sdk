@@ -40,7 +40,7 @@ namespace Bandwidth.Standard.Messaging.Models
             string time = null,
             string type = null,
             string to = null,
-            string errorCode = null,
+            int? errorCode = null,
             string description = null,
             Models.BandwidthMessage message = null)
         {
@@ -74,7 +74,7 @@ namespace Bandwidth.Standard.Messaging.Models
         /// Gets or sets ErrorCode.
         /// </summary>
         [JsonProperty("errorCode", NullValueHandling = NullValueHandling.Ignore)]
-        public string ErrorCode { get; set; }
+        public int? ErrorCode { get; set; }
 
         /// <summary>
         /// Gets or sets Description.
@@ -167,7 +167,7 @@ namespace Bandwidth.Standard.Messaging.Models
             toStringOutput.Add($"this.Time = {(this.Time == null ? "null" : this.Time == string.Empty ? "" : this.Time)}");
             toStringOutput.Add($"this.Type = {(this.Type == null ? "null" : this.Type == string.Empty ? "" : this.Type)}");
             toStringOutput.Add($"this.To = {(this.To == null ? "null" : this.To == string.Empty ? "" : this.To)}");
-            toStringOutput.Add($"this.ErrorCode = {(this.ErrorCode == null ? "null" : this.ErrorCode == string.Empty ? "" : this.ErrorCode)}");
+            toStringOutput.Add($"this.ErrorCode = {(this.ErrorCode == null ? "null" : this.ErrorCode.ToString())}");
             toStringOutput.Add($"this.Description = {(this.Description == null ? "null" : this.Description == string.Empty ? "" : this.Description)}");
             toStringOutput.Add($"this.Message = {(this.Message == null ? "null" : this.Message.ToString())}");
         }
