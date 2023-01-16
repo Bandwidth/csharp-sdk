@@ -38,7 +38,7 @@ namespace Bandwidth.StandardTests.Voice.Bxml
             var ring = new Ring();
             var response = new Response(ring);
 
-            Assert.Equal("<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Ring duration=\"5\" answerCall=\"true\" /></Response>", response.ToBXML());
+            Assert.Equal("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Response>\n  <Ring duration=\"5\" answerCall=\"true\" />\n</Response>", response.ToBXML());
         }
 
         [Fact]
@@ -49,7 +49,7 @@ namespace Bandwidth.StandardTests.Voice.Bxml
 
             var response = new Response(ring);
 
-            Assert.Equal("<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Ring duration=\"30\" answerCall=\"true\" /></Response>", response.ToBXML());
+            Assert.Equal("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Response>\n  <Ring duration=\"30\" answerCall=\"true\" />\n</Response>", response.ToBXML());
         }
 
         [Fact]
@@ -60,7 +60,7 @@ namespace Bandwidth.StandardTests.Voice.Bxml
 
             var response = new Response(ring);
 
-            Assert.Equal("<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Ring duration=\"5\" answerCall=\"false\" /></Response>", response.ToBXML());
+            Assert.Equal("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Response>\n  <Ring duration=\"5\" answerCall=\"false\" />\n</Response>", response.ToBXML());
         }
     }
 }

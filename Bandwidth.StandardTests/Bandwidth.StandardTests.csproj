@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework Condition="'$(DOTNET)' == '3.1.x' Or '$(DOTNET)' == ''">netcoreapp3.1</TargetFramework>
-    <TargetFramework Condition="'$(DOTNET)' == '5.0.x'">net5.0</TargetFramework>
+    <TargetFramework Condition="'$(DOTNET)' == '6.0.x' Or '$(DOTNET)' == ''">net6.0</TargetFramework>
+    <TargetFramework Condition="'$(DOTNET)' == '7.0.x'">net7.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
