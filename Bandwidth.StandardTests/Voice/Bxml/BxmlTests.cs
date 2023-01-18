@@ -10,9 +10,9 @@ namespace Bandwidth.StandardTests.Voice.Bxml
         public void EmptyBxmlTest()
         {
             var bxml = new BXML();
-            Assert.Equal("<?xml version=\"1.0\" encoding=\"utf-8\"?><Bxml />", bxml.ToBXML());
+            Assert.Equal("<?xml version=\"1.0\" encoding=\"utf-8\"?><Bxml />", bxml.ToBXML().Replace("\n", "").Replace("\r", ""));
         }
-        
+
         [Fact]
         public void RingAnswerCallResponseToBXMLShouldBeFalse()
         {
@@ -21,7 +21,7 @@ namespace Bandwidth.StandardTests.Voice.Bxml
 
             var bxml = new BXML(ring);
 
-            Assert.Equal("<?xml version=\"1.0\" encoding=\"utf-8\"?><Bxml>  <Ring duration=\"5\" answerCall=\"false\" /></Bxml>", bxml.ToBXML());
+            Assert.Equal("<?xml version=\"1.0\" encoding=\"utf-8\"?><Bxml>  <Ring duration=\"5\" answerCall=\"false\" /></Bxml>", bxml.ToBXML().Replace("\n", "").Replace("\r", ""));
         }
     }
 }

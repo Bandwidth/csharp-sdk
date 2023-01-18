@@ -11,7 +11,7 @@ namespace Bandwidth.StandardTests.Voice.Bxml
         public void StartStreamBxmlVerbTest()
         {
             var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StartStream destination=\"https://www.test.com/stream\" name=\"test_stream\" tracks=\"inbound\" streamEventUrl=\"https://www.test.com/event\" streamEventMethod=\"POST\" username=\"username\" password=\"password\">    <StreamParam name=\"name1\" value=\"value1\" />    <StreamParam name=\"name2\" value=\"value2\" />  </StartStream></Response>";
-            
+
             var streamParam1 = new StreamParam();
             streamParam1.Name = "name1";
             streamParam1.Value = "value1";
@@ -34,9 +34,9 @@ namespace Bandwidth.StandardTests.Voice.Bxml
             var response = new Response(startStream);
             var actual = response.ToBXML();
 
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, actual.Replace("\n", "").Replace("\r", ""));
         }
-        
+
         [Fact]
         public void StopStreamBxmlVerbTest()
         {
@@ -47,7 +47,7 @@ namespace Bandwidth.StandardTests.Voice.Bxml
             var response = new Response(stopStream);
             var actual = response.ToBXML();
 
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, actual.Replace("\n", "").Replace("\r", ""));
         }
     }
 }
