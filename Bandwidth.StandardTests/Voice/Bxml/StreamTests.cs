@@ -34,7 +34,7 @@ namespace Bandwidth.StandardTests.Voice.Bxml
             var response = new Response(startStream);
             var actual = response.ToBXML();
 
-            Assert.Equal(expected, actual.Replace("\n", ""));
+            Assert.Equal(expected, actual.Replace("\n", "").Replace("\r", ""));
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace Bandwidth.StandardTests.Voice.Bxml
             var response = new Response(stopStream);
             var actual = response.ToBXML();
 
-            Assert.Equal(expected, actual.Replace("\n", ""));
+            Assert.Equal(expected, actual.Replace("\n", "").Replace("\r", ""));
         }
     }
 }
