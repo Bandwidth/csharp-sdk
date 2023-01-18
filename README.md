@@ -4,10 +4,10 @@
 
 | **OS** | **.NET** |
 |:---:|:---:|
-| Windows 2016 | Core 3.1, 5.0 |
-| Windows 2019 | Core 3.1, 5.0 |
-| Ubuntu 18.04 | Core 3.1, 5.0 |
-| Ubuntu 20.04 | Core 3.1, 5.0 |
+| Windows 2019 | Core 3.1, 6.0 |
+| Windows 2022 | Core 3.1, 7.0 |
+| Ubuntu 20.04 | Core 3.1, 6.0 |
+| Ubuntu 22.04 | Core 3.1, 7.0 |
 
 ## Getting Started
 
@@ -88,7 +88,7 @@ response.ToBXML();
 
 ### Update an Existing Calls BXML
 
-```csharp 
+```csharp
 using Bandwidth.Standard;
 using Bandwidth.Standard.Voice.Bxml;
 
