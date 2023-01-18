@@ -104,7 +104,6 @@ namespace Bandwidth.Standard.Voice.Bxml
 
           foreach (var verb in StreamParams)
           {
-              Console.WriteLine(verb.Name);
               var serializer = new XmlSerializer(verb.GetType(), "");
               serializer.Serialize(writer, verb, ns);
           }
