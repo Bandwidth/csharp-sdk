@@ -19,12 +19,12 @@ namespace Bandwidth.Standard.Voice.Bxml
     {
       StreamParams = new List<StreamParam>();
     }
-    
+
     /// <summary>
     ///   A websocket URI to send the stream to
     /// </summary>
     public string Destination { get; set; }
-    
+
     /// <summary>
     /// A name to refer to this stream by
     /// </summary>
@@ -39,7 +39,7 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// URL to send the associated Webhook events to during this stream's lifetime
     /// </summary>
     public string StreamEventUrl { get; set; }
-    
+
     /// <summary>
     /// The HTTP method to use for the request to `streamEventUrl`
     /// </summary>
@@ -54,7 +54,7 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// The password to send in the HTTP request to `streamEventUrl`
     /// </summary>
     public string Password { get; set; }
-    
+
     /// <summary>
     /// List of StreamParam verbs
     /// </summary>
@@ -101,7 +101,7 @@ namespace Bandwidth.Standard.Voice.Bxml
       {
           var ns = new XmlSerializerNamespaces();
           ns.Add("", "");
-          
+
           foreach (var verb in StreamParams)
           {
               Console.WriteLine(verb.Name);
