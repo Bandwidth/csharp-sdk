@@ -1,7 +1,7 @@
 name: Test
 on:
   schedule:
-    - cron: '0 4 * * *'
+    - cron: "0 4 * * *"
   pull_request:
   workflow_dispatch:
 
@@ -16,13 +16,13 @@ jobs:
     strategy:
       matrix:
         os: [windows-2022, windows-2019, ubuntu-20.04, ubuntu-22.04]
-        dotnet: [6.0.x, 7.0.x]
+        dotnet: ["6.0", "7.0"]
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.dotnet }}
 
