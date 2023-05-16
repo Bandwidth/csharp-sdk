@@ -105,6 +105,17 @@ namespace Bandwidth.StandardTests.Voice
             };
 
             Assert.Equal(StateEnum.Active,  modifyCallRequest.State);
-        } 
+        }
+
+        [Fact]
+        public void CheckTranscribeRecordingRequestDetectLanguage()
+        {
+            var transcribeCallRequest = new TranscribeRecordingRequest
+            {
+                DetectLanguage = true
+            };
+
+            Assert.Equal(true,  transcribeCallRequest.DetectLanguage);
+        }
     }
 }

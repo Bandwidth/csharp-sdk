@@ -20,6 +20,7 @@ namespace Bandwidth.Standard.Voice.Models
     /// </summary>
     public class TranscribeRecordingRequest
     {
+        private bool? detectLanguage;
         private Models.CallbackMethodEnum? callbackMethod;
         private string username;
         private string password;
@@ -27,6 +28,7 @@ namespace Bandwidth.Standard.Voice.Models
         private double? callbackTimeout;
         private Dictionary<string, bool> shouldSerialize = new Dictionary<string, bool>
         {
+            { "detectLanguage", false },
             { "callbackMethod", false },
             { "username", false },
             { "password", false },
@@ -44,6 +46,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="TranscribeRecordingRequest"/> class.
         /// </summary>
+        /// <param name="detectLanguage">detectLanguage.</param>
         /// <param name="callbackUrl">callbackUrl.</param>
         /// <param name="callbackMethod">callbackMethod.</param>
         /// <param name="username">username.</param>
@@ -51,6 +54,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <param name="tag">tag.</param>
         /// <param name="callbackTimeout">callbackTimeout.</param>
         public TranscribeRecordingRequest(
+            bool? detectLanguage = null,
             string callbackUrl = null,
             Models.CallbackMethodEnum? callbackMethod = null,
             string username = null,
@@ -58,7 +62,14 @@ namespace Bandwidth.Standard.Voice.Models
             string tag = null,
             double? callbackTimeout = null)
         {
+
             this.CallbackUrl = callbackUrl;
+
+            if (detectLanguage != null)
+            {
+                this.DetectLanguage = detectLanguage;
+            }
+
             if (callbackMethod != null)
             {
                 this.CallbackMethod = callbackMethod;
@@ -91,6 +102,22 @@ namespace Bandwidth.Standard.Voice.Models
         /// </summary>
         [JsonProperty("callbackUrl", NullValueHandling = NullValueHandling.Ignore)]
         public string CallbackUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets DetectLanguage
+        /// </summary>
+        [JsonProperty("detectLanguage")]
+        public bool? DetectLanguage {
+            get
+            {
+                return this.detectLanguage;
+            }
+            set
+            {
+                this.shouldSerialize["detectLanguage"] = true;
+                this.detectLanguage = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets CallbackMethod.
@@ -193,6 +220,14 @@ namespace Bandwidth.Standard.Voice.Models
         }
 
         /// <summary>
+        /// Marks the field to not be serialized.
+        /// </summary>
+        public void UnsetDetectLanguage()
+        {
+            this.shouldSerialize["detectLanguage"] = false;
+        }
+
+        /// <summary>
         /// Marks the field to not be serailized.
         /// </summary>
         public void UnsetCallbackMethod()
@@ -230,6 +265,15 @@ namespace Bandwidth.Standard.Voice.Models
         public void UnsetCallbackTimeout()
         {
             this.shouldSerialize["callbackTimeout"] = false;
+        }
+
+        /// <summary>
+        /// Checks if the field should be serialized or not.
+        /// </summary>
+        /// <returns>A boolean weather the field should be serialized or not.</returns>
+        public bool ShouldSerializeDetectLanguage()
+        {
+            return this.shouldSerialize["detectLanguage"];
         }
 
         /// <summary>
@@ -291,6 +335,7 @@ namespace Bandwidth.Standard.Voice.Models
             }
 
             return obj is TranscribeRecordingRequest other &&
+                ((this.DetectLanguage == null && other.DetectLanguage == null) || (this.DetectLanguage?.Equals(other.DetectLanguage) == true)) &&
                 ((this.CallbackUrl == null && other.CallbackUrl == null) || (this.CallbackUrl?.Equals(other.CallbackUrl) == true)) &&
                 ((this.CallbackMethod == null && other.CallbackMethod == null) || (this.CallbackMethod?.Equals(other.CallbackMethod) == true)) &&
                 ((this.Username == null && other.Username == null) || (this.Username?.Equals(other.Username) == true)) &&
@@ -303,6 +348,11 @@ namespace Bandwidth.Standard.Voice.Models
         public override int GetHashCode()
         {
             int hashCode = -2127634834;
+
+            if(this.detectLanguage != null)
+            {
+               hashCode += this.detectLanguage.GetHashCode();
+            }
 
             if (this.CallbackUrl != null)
             {
@@ -343,6 +393,7 @@ namespace Bandwidth.Standard.Voice.Models
         /// <param name="toStringOutput">List of strings.</param>
         protected void ToString(List<string> toStringOutput)
         {
+            toStringOutput.Add($"this.DetectLanguage = {(this.DetectLanguage == null ? "null" : this.DetectLanguage.ToString())}");
             toStringOutput.Add($"this.CallbackUrl = {(this.CallbackUrl == null ? "null" : this.CallbackUrl == string.Empty ? "" : this.CallbackUrl)}");
             toStringOutput.Add($"this.CallbackMethod = {(this.CallbackMethod == null ? "null" : this.CallbackMethod.ToString())}");
             toStringOutput.Add($"this.Username = {(this.Username == null ? "null" : this.Username == string.Empty ? "" : this.Username)}");
