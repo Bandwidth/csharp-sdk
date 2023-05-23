@@ -11,6 +11,12 @@ namespace Bandwidth.Standard.Voice.Bxml
   {
 
     /// <summary>
+    ///   (optional) A boolean value. Indicates that the recording may not be in English, and the transcription service will need to detect the dominant language the recording is in and transcribe accordingly. Current supported languages are English, French, and Spanish.
+    /// </summary>
+    [XmlAttribute("detectLanguage")]
+    public bool DetectLanguage { get; set; }
+
+    /// <summary>
     ///   (optional) A boolean value.  If true, the recording will be submitted for transcription upon completion.  Defaults to false.
     /// </summary>
     [XmlAttribute("transcribe")]
