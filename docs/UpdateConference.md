@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | **ConferenceStateEnum** |  | [optional] 
-**RedirectUrl** | **string** | The URL to send the [conferenceRedirect](/docs/voice/webhooks/conferenceRedirect) event which will provide new BXML. Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;, but required if &#x60;state&#x60; is &#x60;active&#x60; | [optional] 
+**RedirectUrl** | **string** | The URL to send the [conferenceRedirect](/docs/voice/webhooks/conferenceRedirect) event which will provide new BXML. Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;, but required if &#x60;state&#x60; is &#x60;active&#x60;. | [optional] 
 **RedirectMethod** | **RedirectMethodEnum** |  | [optional] 
 **Username** | **string** | Basic auth username. | [optional] 
 **Password** | **string** | Basic auth password. | [optional] 

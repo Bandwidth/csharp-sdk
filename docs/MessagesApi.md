@@ -7,7 +7,7 @@ All URIs are relative to *http://localhost*
 | [**CreateMessage**](MessagesApi.md#createmessage) | **POST** /users/{accountId}/messages | Create Message |
 | [**ListMessages**](MessagesApi.md#listmessages) | **GET** /users/{accountId}/messages | List Messages |
 
-<a name="createmessage"></a>
+<a id="createmessage"></a>
 # **CreateMessage**
 > Message CreateMessage (string accountId, MessageRequest messageRequest)
 
@@ -111,9 +111,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listmessages"></a>
+<a id="listmessages"></a>
 # **ListMessages**
-> MessagesList ListMessages (string accountId, string messageId = null, string sourceTn = null, string destinationTn = null, MessageStatusEnum? messageStatus = null, ListMessageDirectionEnum? messageDirection = null, string carrierName = null, MessageTypeEnum? messageType = null, int? errorCode = null, string fromDateTime = null, string toDateTime = null, string sort = null, string pageToken = null, int? limit = null)
+> MessagesList ListMessages (string accountId, string messageId = null, string sourceTn = null, string destinationTn = null, MessageStatusEnum? messageStatus = null, ListMessageDirectionEnum? messageDirection = null, string carrierName = null, MessageTypeEnum? messageType = null, int? errorCode = null, string fromDateTime = null, string toDateTime = null, string campaignId = null, string sort = null, string pageToken = null, int? limit = null)
 
 List Messages
 
@@ -151,6 +151,7 @@ namespace Example
             var errorCode = 9902;  // int? | The error code of the message. (optional) 
             var fromDateTime = 2022-09-14T18:20:16.000Z;  // string | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional) 
             var toDateTime = 2022-09-14T18:20:16.000Z;  // string | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional) 
+            var campaignId = CJEUMDK;  // string | The campaign ID of the message. (optional) 
             var sort = sourceTn:desc;  // string | The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional) 
             var pageToken = gdEewhcJLQRB5;  // string | A base64 encoded value used for pagination of results. (optional) 
             var limit = 50;  // int? | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional) 
@@ -158,7 +159,7 @@ namespace Example
             try
             {
                 // List Messages
-                MessagesList result = apiInstance.ListMessages(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, sort, pageToken, limit);
+                MessagesList result = apiInstance.ListMessages(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, sort, pageToken, limit);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -179,7 +180,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List Messages
-    ApiResponse<MessagesList> response = apiInstance.ListMessagesWithHttpInfo(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, sort, pageToken, limit);
+    ApiResponse<MessagesList> response = apiInstance.ListMessagesWithHttpInfo(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, sort, pageToken, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -207,6 +208,7 @@ catch (ApiException e)
 | **errorCode** | **int?** | The error code of the message. | [optional]  |
 | **fromDateTime** | **string** | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. | [optional]  |
 | **toDateTime** | **string** | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. | [optional]  |
+| **campaignId** | **string** | The campaign ID of the message. | [optional]  |
 | **sort** | **string** | The field and direction to sort by combined with a colon. Direction is either asc or desc. | [optional]  |
 | **pageToken** | **string** | A base64 encoded value used for pagination of results. | [optional]  |
 | **limit** | **int?** | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. | [optional]  |

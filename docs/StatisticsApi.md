@@ -6,7 +6,7 @@ All URIs are relative to *http://localhost*
 |--------|--------------|-------------|
 | [**GetStatistics**](StatisticsApi.md#getstatistics) | **GET** /accounts/{accountId}/statistics | Get Account Statistics |
 
-<a name="getstatistics"></a>
+<a id="getstatistics"></a>
 # **GetStatistics**
 > AccountStatistics GetStatistics (string accountId)
 
@@ -35,7 +35,7 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new StatisticsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
 
             try
             {
@@ -78,7 +78,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
 
 ### Return type
 
@@ -104,7 +104,7 @@ catch (ApiException e)
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

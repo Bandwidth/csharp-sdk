@@ -51,6 +51,7 @@ namespace Bandwidth.Standard.Model
         /// The link to the previous page for pagination.
         /// </summary>
         /// <value>The link to the previous page for pagination.</value>
+        /// <example>&quot;https://messaging.bandwidth.com/api/v2/users/accountId/messages?messageStatus&#x3D;DLR_EXPIRED&amp;nextPage&#x3D;DLAPE902&quot;</example>
         [DataMember(Name = "prevPage", EmitDefaultValue = false)]
         public string PrevPage { get; set; }
 
@@ -58,6 +59,7 @@ namespace Bandwidth.Standard.Model
         /// The link to the next page for pagination.
         /// </summary>
         /// <value>The link to the next page for pagination.</value>
+        /// <example>&quot;https://messaging.bandwidth.com/api/v2/users/accountId/messages?messageStatus&#x3D;DLR_EXPIRED&amp;prevPage&#x3D;GL83PD3C&quot;</example>
         [DataMember(Name = "nextPage", EmitDefaultValue = false)]
         public string NextPage { get; set; }
 
@@ -65,6 +67,7 @@ namespace Bandwidth.Standard.Model
         /// The isolated pagination token for the previous page.
         /// </summary>
         /// <value>The isolated pagination token for the previous page.</value>
+        /// <example>&quot;DLAPE902&quot;</example>
         [DataMember(Name = "prevPageToken", EmitDefaultValue = false)]
         public string PrevPageToken { get; set; }
 
@@ -72,6 +75,7 @@ namespace Bandwidth.Standard.Model
         /// The isolated pagination token for the next page.
         /// </summary>
         /// <value>The isolated pagination token for the next page.</value>
+        /// <example>&quot;GL83PD3C&quot;</example>
         [DataMember(Name = "nextPageToken", EmitDefaultValue = false)]
         public string NextPageToken { get; set; }
 
@@ -178,7 +182,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -47,6 +47,7 @@ namespace Bandwidth.Standard.Model
         /// The name of the field that contains the error
         /// </summary>
         /// <value>The name of the field that contains the error</value>
+        /// <example>&quot;from&quot;</example>
         [DataMember(Name = "fieldName", EmitDefaultValue = false)]
         public string FieldName { get; set; }
 
@@ -54,6 +55,7 @@ namespace Bandwidth.Standard.Model
         /// The error associated with the field
         /// </summary>
         /// <value>The error associated with the field</value>
+        /// <example>&quot;&#39;+invalid&#39; must be replaced with a valid E164 formatted telephone number&quot;</example>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
@@ -140,7 +142,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

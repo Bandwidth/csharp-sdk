@@ -34,7 +34,7 @@ namespace Bandwidth.Standard.Api
         /// Returns details about the current state of the account.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>AccountStatistics</returns>
         AccountStatistics GetStatistics(string accountId, int operationIndex = 0);
@@ -46,7 +46,7 @@ namespace Bandwidth.Standard.Api
         /// Returns details about the current state of the account.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AccountStatistics</returns>
         ApiResponse<AccountStatistics> GetStatisticsWithHttpInfo(string accountId, int operationIndex = 0);
@@ -66,7 +66,7 @@ namespace Bandwidth.Standard.Api
         /// Returns details about the current state of the account.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountStatistics</returns>
@@ -79,7 +79,7 @@ namespace Bandwidth.Standard.Api
         /// Returns details about the current state of the account.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountStatistics)</returns>
@@ -208,7 +208,7 @@ namespace Bandwidth.Standard.Api
         /// Get Account Statistics Returns details about the current state of the account.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>AccountStatistics</returns>
         public AccountStatistics GetStatistics(string accountId, int operationIndex = 0)
@@ -221,7 +221,7 @@ namespace Bandwidth.Standard.Api
         /// Get Account Statistics Returns details about the current state of the account.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AccountStatistics</returns>
         public Bandwidth.Standard.Client.ApiResponse<AccountStatistics> GetStatisticsWithHttpInfo(string accountId, int operationIndex = 0)
@@ -284,7 +284,7 @@ namespace Bandwidth.Standard.Api
         /// Get Account Statistics Returns details about the current state of the account.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountStatistics</returns>
@@ -298,7 +298,7 @@ namespace Bandwidth.Standard.Api
         /// Get Account Statistics Returns details about the current state of the account.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountStatistics)</returns>

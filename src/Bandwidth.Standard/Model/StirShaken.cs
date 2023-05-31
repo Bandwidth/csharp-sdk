@@ -49,6 +49,7 @@ namespace Bandwidth.Standard.Model
         /// (optional) The verification status indicating whether the verification was successful or not. Possible values are TN-Verification-Passed and TN-Verification-Failed.
         /// </summary>
         /// <value>(optional) The verification status indicating whether the verification was successful or not. Possible values are TN-Verification-Passed and TN-Verification-Failed.</value>
+        /// <example>&quot;Tn-Verification-Passed&quot;</example>
         [DataMember(Name = "verstat", EmitDefaultValue = false)]
         public string Verstat { get; set; }
 
@@ -56,6 +57,7 @@ namespace Bandwidth.Standard.Model
         /// (optional) The attestation level verified by Bandwidth. Possible values are A (full), B (partial) or C (gateway).
         /// </summary>
         /// <value>(optional) The attestation level verified by Bandwidth. Possible values are A (full), B (partial) or C (gateway).</value>
+        /// <example>&quot;A&quot;</example>
         [DataMember(Name = "attestationIndicator", EmitDefaultValue = false)]
         public string AttestationIndicator { get; set; }
 
@@ -63,6 +65,7 @@ namespace Bandwidth.Standard.Model
         /// (optional) A unique origination identifier.
         /// </summary>
         /// <value>(optional) A unique origination identifier.</value>
+        /// <example>&quot;99759086-1335-11ed-9bcf-5f7d464e91af&quot;</example>
         [DataMember(Name = "originatingId", EmitDefaultValue = false)]
         public string OriginatingId { get; set; }
 
@@ -159,7 +162,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

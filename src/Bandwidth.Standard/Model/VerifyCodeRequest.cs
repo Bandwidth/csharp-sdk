@@ -66,6 +66,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number to send the mfa code to.
         /// </summary>
         /// <value>The phone number to send the mfa code to.</value>
+        /// <example>&quot;+19195551234&quot;</example>
         [DataMember(Name = "to", IsRequired = true, EmitDefaultValue = true)]
         public string To { get; set; }
 
@@ -73,6 +74,7 @@ namespace Bandwidth.Standard.Model
         /// An optional field to denote what scope or action the mfa code is addressing.  If not supplied, defaults to \&quot;2FA\&quot;.
         /// </summary>
         /// <value>An optional field to denote what scope or action the mfa code is addressing.  If not supplied, defaults to \&quot;2FA\&quot;.</value>
+        /// <example>&quot;2FA&quot;</example>
         [DataMember(Name = "scope", EmitDefaultValue = false)]
         public string Scope { get; set; }
 
@@ -80,6 +82,7 @@ namespace Bandwidth.Standard.Model
         /// The time period, in minutes, to validate the mfa code.  By setting this to 3 minutes, it will mean any code generated within the last 3 minutes are still valid.  The valid range for expiration time is between 0 and 15 minutes, exclusively and inclusively, respectively.
         /// </summary>
         /// <value>The time period, in minutes, to validate the mfa code.  By setting this to 3 minutes, it will mean any code generated within the last 3 minutes are still valid.  The valid range for expiration time is between 0 and 15 minutes, exclusively and inclusively, respectively.</value>
+        /// <example>3</example>
         [DataMember(Name = "expirationTimeInMinutes", IsRequired = true, EmitDefaultValue = true)]
         public decimal ExpirationTimeInMinutes { get; set; }
 
@@ -87,6 +90,7 @@ namespace Bandwidth.Standard.Model
         /// The generated mfa code to check if valid.
         /// </summary>
         /// <value>The generated mfa code to check if valid.</value>
+        /// <example>&quot;123456&quot;</example>
         [DataMember(Name = "code", IsRequired = true, EmitDefaultValue = true)]
         public string Code { get; set; }
 
@@ -189,10 +193,10 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // To (string) pattern
-            Regex regexTo = new Regex(@"^\\+[1-9]\\d{1,14}$", RegexOptions.CultureInvariant);
+            Regex regexTo = new Regex(@"^\+[1-9]\d{1,14}$", RegexOptions.CultureInvariant);
             if (false == regexTo.Match(this.To).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for To, must match a pattern of " + regexTo, new [] { "To" });

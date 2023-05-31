@@ -47,7 +47,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="password">Basic auth password..</param>
         /// <param name="tag">(optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present..</param>
         /// <param name="callbackTimeout">This is the timeout (in seconds) to use when delivering the webhook to &#x60;callbackUrl&#x60;. Can be any numeric value (including decimals) between 1 and 25. (default to 15D).</param>
-        public TranscribeRecording(string callbackUrl = default(string), CallbackMethodEnum? callbackMethod = default(CallbackMethodEnum?), string username = default(string), string password = default(string), string tag = default(string), double? callbackTimeout = 15D)
+        /// <param name="detectLanguage">A boolean value to indicate that the recording may not be in English, and the transcription service will need to detect the dominant language the recording is in and transcribe accordingly. Current supported languages are English, French, and Spanish. (default to false).</param>
+        public TranscribeRecording(string callbackUrl = default(string), CallbackMethodEnum? callbackMethod = default(CallbackMethodEnum?), string username = default(string), string password = default(string), string tag = default(string), double? callbackTimeout = 15D, bool? detectLanguage = false)
         {
             this.CallbackUrl = callbackUrl;
             this.CallbackMethod = callbackMethod;
@@ -56,12 +57,15 @@ namespace Bandwidth.Standard.Model
             this.Tag = tag;
             // use default value if no "callbackTimeout" provided
             this.CallbackTimeout = callbackTimeout ?? 15D;
+            // use default value if no "detectLanguage" provided
+            this.DetectLanguage = detectLanguage ?? false;
         }
 
         /// <summary>
         /// The URL to send the [TranscriptionAvailable](/docs/voice/webhooks/transcriptionAvailable) event to. You should not include sensitive or personally-identifiable information in the callbackUrl field! Always use the proper username and password fields for authorization.
         /// </summary>
         /// <value>The URL to send the [TranscriptionAvailable](/docs/voice/webhooks/transcriptionAvailable) event to. You should not include sensitive or personally-identifiable information in the callbackUrl field! Always use the proper username and password fields for authorization.</value>
+        /// <example>&quot;https://myServer.example/bandwidth/webhooks/transcriptionAvailable&quot;</example>
         [DataMember(Name = "callbackUrl", EmitDefaultValue = false)]
         public string CallbackUrl { get; set; }
 
@@ -69,6 +73,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth username.
         /// </summary>
         /// <value>Basic auth username.</value>
+        /// <example>&quot;mySecretUsername&quot;</example>
         [DataMember(Name = "username", EmitDefaultValue = true)]
         public string Username { get; set; }
 
@@ -76,6 +81,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth password.
         /// </summary>
         /// <value>Basic auth password.</value>
+        /// <example>&quot;mySecretPassword1!&quot;</example>
         [DataMember(Name = "password", EmitDefaultValue = true)]
         public string Password { get; set; }
 
@@ -83,6 +89,7 @@ namespace Bandwidth.Standard.Model
         /// (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present.
         /// </summary>
         /// <value>(optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present.</value>
+        /// <example>&quot;exampleTag&quot;</example>
         [DataMember(Name = "tag", EmitDefaultValue = true)]
         public string Tag { get; set; }
 
@@ -90,8 +97,17 @@ namespace Bandwidth.Standard.Model
         /// This is the timeout (in seconds) to use when delivering the webhook to &#x60;callbackUrl&#x60;. Can be any numeric value (including decimals) between 1 and 25.
         /// </summary>
         /// <value>This is the timeout (in seconds) to use when delivering the webhook to &#x60;callbackUrl&#x60;. Can be any numeric value (including decimals) between 1 and 25.</value>
+        /// <example>5.5</example>
         [DataMember(Name = "callbackTimeout", EmitDefaultValue = true)]
         public double? CallbackTimeout { get; set; }
+
+        /// <summary>
+        /// A boolean value to indicate that the recording may not be in English, and the transcription service will need to detect the dominant language the recording is in and transcribe accordingly. Current supported languages are English, French, and Spanish.
+        /// </summary>
+        /// <value>A boolean value to indicate that the recording may not be in English, and the transcription service will need to detect the dominant language the recording is in and transcribe accordingly. Current supported languages are English, French, and Spanish.</value>
+        /// <example>true</example>
+        [DataMember(Name = "detectLanguage", EmitDefaultValue = true)]
+        public bool? DetectLanguage { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -107,6 +123,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("  Tag: ").Append(Tag).Append("\n");
             sb.Append("  CallbackTimeout: ").Append(CallbackTimeout).Append("\n");
+            sb.Append("  DetectLanguage: ").Append(DetectLanguage).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -170,6 +187,11 @@ namespace Bandwidth.Standard.Model
                     this.CallbackTimeout == input.CallbackTimeout ||
                     (this.CallbackTimeout != null &&
                     this.CallbackTimeout.Equals(input.CallbackTimeout))
+                ) && 
+                (
+                    this.DetectLanguage == input.DetectLanguage ||
+                    (this.DetectLanguage != null &&
+                    this.DetectLanguage.Equals(input.DetectLanguage))
                 );
         }
 
@@ -203,6 +225,10 @@ namespace Bandwidth.Standard.Model
                 {
                     hashCode = (hashCode * 59) + this.CallbackTimeout.GetHashCode();
                 }
+                if (this.DetectLanguage != null)
+                {
+                    hashCode = (hashCode * 59) + this.DetectLanguage.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -212,7 +238,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Username (string) maxLength
             if (this.Username != null && this.Username.Length > 1024)

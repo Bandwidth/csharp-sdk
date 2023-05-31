@@ -57,6 +57,7 @@ namespace Bandwidth.Standard.Model
         /// The requestId.
         /// </summary>
         /// <value>The requestId.</value>
+        /// <example>&quot;004223a0-8b17-41b1-bf81-20732adf5590&quot;</example>
         [DataMember(Name = "requestId", EmitDefaultValue = false)]
         public string RequestId { get; set; }
 
@@ -175,7 +176,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

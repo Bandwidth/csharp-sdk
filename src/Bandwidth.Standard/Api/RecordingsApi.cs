@@ -34,9 +34,9 @@ namespace Bandwidth.Standard.Api
         /// Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
         void DeleteCallTranscription(string accountId, string callId, string recordingId, int operationIndex = 0);
@@ -48,9 +48,9 @@ namespace Bandwidth.Standard.Api
         /// Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteCallTranscriptionWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0);
@@ -61,9 +61,9 @@ namespace Bandwidth.Standard.Api
         /// Delete the recording information, media and transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, neither the recording metadata nor the actual media nor its transcription will be accessible anymore. However, the media of the specified recording is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
         void DeleteRecording(string accountId, string callId, string recordingId, int operationIndex = 0);
@@ -75,9 +75,9 @@ namespace Bandwidth.Standard.Api
         /// Delete the recording information, media and transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, neither the recording metadata nor the actual media nor its transcription will be accessible anymore. However, the media of the specified recording is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteRecordingWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0);
@@ -88,9 +88,9 @@ namespace Bandwidth.Standard.Api
         /// Deletes the specified recording&#39;s media.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
         void DeleteRecordingMedia(string accountId, string callId, string recordingId, int operationIndex = 0);
@@ -102,9 +102,9 @@ namespace Bandwidth.Standard.Api
         /// Deletes the specified recording&#39;s media.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteRecordingMediaWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0);
@@ -115,9 +115,9 @@ namespace Bandwidth.Standard.Api
         /// Downloads the specified recording.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>System.IO.Stream</returns>
         System.IO.Stream DownloadCallRecording(string accountId, string callId, string recordingId, int operationIndex = 0);
@@ -129,9 +129,9 @@ namespace Bandwidth.Standard.Api
         /// Downloads the specified recording.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
         ApiResponse<System.IO.Stream> DownloadCallRecordingWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0);
@@ -142,9 +142,9 @@ namespace Bandwidth.Standard.Api
         /// Returns metadata for the specified recording.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CallRecordingMetadata</returns>
         CallRecordingMetadata GetCallRecording(string accountId, string callId, string recordingId, int operationIndex = 0);
@@ -156,9 +156,9 @@ namespace Bandwidth.Standard.Api
         /// Returns metadata for the specified recording.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CallRecordingMetadata</returns>
         ApiResponse<CallRecordingMetadata> GetCallRecordingWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0);
@@ -169,9 +169,9 @@ namespace Bandwidth.Standard.Api
         /// Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>TranscriptionList</returns>
         TranscriptionList GetCallTranscription(string accountId, string callId, string recordingId, int operationIndex = 0);
@@ -183,9 +183,9 @@ namespace Bandwidth.Standard.Api
         /// Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TranscriptionList</returns>
         ApiResponse<TranscriptionList> GetCallTranscriptionWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0);
@@ -196,7 +196,7 @@ namespace Bandwidth.Standard.Api
         /// Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
         /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
         /// <param name="minStartTime">Filter results to recordings which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
@@ -212,7 +212,7 @@ namespace Bandwidth.Standard.Api
         /// Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
         /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
         /// <param name="minStartTime">Filter results to recordings which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
@@ -227,8 +227,8 @@ namespace Bandwidth.Standard.Api
         /// Returns a (potentially empty) list of metadata for the recordings that took place during the specified call.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;CallRecordingMetadata&gt;</returns>
         List<CallRecordingMetadata> ListCallRecordings(string accountId, string callId, int operationIndex = 0);
@@ -240,8 +240,8 @@ namespace Bandwidth.Standard.Api
         /// Returns a (potentially empty) list of metadata for the recordings that took place during the specified call.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;CallRecordingMetadata&gt;</returns>
         ApiResponse<List<CallRecordingMetadata>> ListCallRecordingsWithHttpInfo(string accountId, string callId, int operationIndex = 0);
@@ -252,9 +252,9 @@ namespace Bandwidth.Standard.Api
         /// Generate the transcription for a specific recording. Transcription can succeed only for recordings of length greater than 500 milliseconds and less than 4 hours.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="transcribeRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -267,9 +267,9 @@ namespace Bandwidth.Standard.Api
         /// Generate the transcription for a specific recording. Transcription can succeed only for recordings of length greater than 500 milliseconds and less than 4 hours.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="transcribeRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -281,8 +281,8 @@ namespace Bandwidth.Standard.Api
         /// Pause or resume a recording on an active phone call.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCallRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -295,8 +295,8 @@ namespace Bandwidth.Standard.Api
         /// Pause or resume a recording on an active phone call.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCallRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -317,9 +317,9 @@ namespace Bandwidth.Standard.Api
         /// Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
@@ -332,9 +332,9 @@ namespace Bandwidth.Standard.Api
         /// Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
@@ -346,9 +346,9 @@ namespace Bandwidth.Standard.Api
         /// Delete the recording information, media and transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, neither the recording metadata nor the actual media nor its transcription will be accessible anymore. However, the media of the specified recording is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
@@ -361,9 +361,9 @@ namespace Bandwidth.Standard.Api
         /// Delete the recording information, media and transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, neither the recording metadata nor the actual media nor its transcription will be accessible anymore. However, the media of the specified recording is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
@@ -375,9 +375,9 @@ namespace Bandwidth.Standard.Api
         /// Deletes the specified recording&#39;s media.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
@@ -390,9 +390,9 @@ namespace Bandwidth.Standard.Api
         /// Deletes the specified recording&#39;s media.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
@@ -404,9 +404,9 @@ namespace Bandwidth.Standard.Api
         /// Downloads the specified recording.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
@@ -419,9 +419,9 @@ namespace Bandwidth.Standard.Api
         /// Downloads the specified recording.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
@@ -433,9 +433,9 @@ namespace Bandwidth.Standard.Api
         /// Returns metadata for the specified recording.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CallRecordingMetadata</returns>
@@ -448,9 +448,9 @@ namespace Bandwidth.Standard.Api
         /// Returns metadata for the specified recording.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CallRecordingMetadata)</returns>
@@ -462,9 +462,9 @@ namespace Bandwidth.Standard.Api
         /// Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TranscriptionList</returns>
@@ -477,9 +477,9 @@ namespace Bandwidth.Standard.Api
         /// Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TranscriptionList)</returns>
@@ -491,7 +491,7 @@ namespace Bandwidth.Standard.Api
         /// Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
         /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
         /// <param name="minStartTime">Filter results to recordings which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
@@ -508,7 +508,7 @@ namespace Bandwidth.Standard.Api
         /// Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
         /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
         /// <param name="minStartTime">Filter results to recordings which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
@@ -524,8 +524,8 @@ namespace Bandwidth.Standard.Api
         /// Returns a (potentially empty) list of metadata for the recordings that took place during the specified call.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;CallRecordingMetadata&gt;</returns>
@@ -538,8 +538,8 @@ namespace Bandwidth.Standard.Api
         /// Returns a (potentially empty) list of metadata for the recordings that took place during the specified call.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;CallRecordingMetadata&gt;)</returns>
@@ -551,9 +551,9 @@ namespace Bandwidth.Standard.Api
         /// Generate the transcription for a specific recording. Transcription can succeed only for recordings of length greater than 500 milliseconds and less than 4 hours.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="transcribeRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -567,9 +567,9 @@ namespace Bandwidth.Standard.Api
         /// Generate the transcription for a specific recording. Transcription can succeed only for recordings of length greater than 500 milliseconds and less than 4 hours.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="transcribeRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -582,8 +582,8 @@ namespace Bandwidth.Standard.Api
         /// Pause or resume a recording on an active phone call.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCallRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -597,8 +597,8 @@ namespace Bandwidth.Standard.Api
         /// Pause or resume a recording on an active phone call.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCallRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -728,9 +728,9 @@ namespace Bandwidth.Standard.Api
         /// Delete Transcription Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
         public void DeleteCallTranscription(string accountId, string callId, string recordingId, int operationIndex = 0)
@@ -742,9 +742,9 @@ namespace Bandwidth.Standard.Api
         /// Delete Transcription Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         public Bandwidth.Standard.Client.ApiResponse<Object> DeleteCallTranscriptionWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0)
@@ -821,9 +821,9 @@ namespace Bandwidth.Standard.Api
         /// Delete Transcription Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
@@ -836,9 +836,9 @@ namespace Bandwidth.Standard.Api
         /// Delete Transcription Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
@@ -918,9 +918,9 @@ namespace Bandwidth.Standard.Api
         /// Delete Recording Delete the recording information, media and transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, neither the recording metadata nor the actual media nor its transcription will be accessible anymore. However, the media of the specified recording is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
         public void DeleteRecording(string accountId, string callId, string recordingId, int operationIndex = 0)
@@ -932,9 +932,9 @@ namespace Bandwidth.Standard.Api
         /// Delete Recording Delete the recording information, media and transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, neither the recording metadata nor the actual media nor its transcription will be accessible anymore. However, the media of the specified recording is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         public Bandwidth.Standard.Client.ApiResponse<Object> DeleteRecordingWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0)
@@ -1011,9 +1011,9 @@ namespace Bandwidth.Standard.Api
         /// Delete Recording Delete the recording information, media and transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, neither the recording metadata nor the actual media nor its transcription will be accessible anymore. However, the media of the specified recording is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
@@ -1026,9 +1026,9 @@ namespace Bandwidth.Standard.Api
         /// Delete Recording Delete the recording information, media and transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, neither the recording metadata nor the actual media nor its transcription will be accessible anymore. However, the media of the specified recording is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
@@ -1108,9 +1108,9 @@ namespace Bandwidth.Standard.Api
         /// Delete Recording Media Deletes the specified recording&#39;s media.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
         public void DeleteRecordingMedia(string accountId, string callId, string recordingId, int operationIndex = 0)
@@ -1122,9 +1122,9 @@ namespace Bandwidth.Standard.Api
         /// Delete Recording Media Deletes the specified recording&#39;s media.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         public Bandwidth.Standard.Client.ApiResponse<Object> DeleteRecordingMediaWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0)
@@ -1201,9 +1201,9 @@ namespace Bandwidth.Standard.Api
         /// Delete Recording Media Deletes the specified recording&#39;s media.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
@@ -1216,9 +1216,9 @@ namespace Bandwidth.Standard.Api
         /// Delete Recording Media Deletes the specified recording&#39;s media.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
@@ -1298,9 +1298,9 @@ namespace Bandwidth.Standard.Api
         /// Download Recording Downloads the specified recording.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>System.IO.Stream</returns>
         public System.IO.Stream DownloadCallRecording(string accountId, string callId, string recordingId, int operationIndex = 0)
@@ -1313,9 +1313,9 @@ namespace Bandwidth.Standard.Api
         /// Download Recording Downloads the specified recording.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
         public Bandwidth.Standard.Client.ApiResponse<System.IO.Stream> DownloadCallRecordingWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0)
@@ -1394,9 +1394,9 @@ namespace Bandwidth.Standard.Api
         /// Download Recording Downloads the specified recording.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
@@ -1410,9 +1410,9 @@ namespace Bandwidth.Standard.Api
         /// Download Recording Downloads the specified recording.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
@@ -1494,9 +1494,9 @@ namespace Bandwidth.Standard.Api
         /// Get Call Recording Returns metadata for the specified recording.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CallRecordingMetadata</returns>
         public CallRecordingMetadata GetCallRecording(string accountId, string callId, string recordingId, int operationIndex = 0)
@@ -1509,9 +1509,9 @@ namespace Bandwidth.Standard.Api
         /// Get Call Recording Returns metadata for the specified recording.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CallRecordingMetadata</returns>
         public Bandwidth.Standard.Client.ApiResponse<CallRecordingMetadata> GetCallRecordingWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0)
@@ -1588,9 +1588,9 @@ namespace Bandwidth.Standard.Api
         /// Get Call Recording Returns metadata for the specified recording.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CallRecordingMetadata</returns>
@@ -1604,9 +1604,9 @@ namespace Bandwidth.Standard.Api
         /// Get Call Recording Returns metadata for the specified recording.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CallRecordingMetadata)</returns>
@@ -1686,9 +1686,9 @@ namespace Bandwidth.Standard.Api
         /// Get Transcription Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>TranscriptionList</returns>
         public TranscriptionList GetCallTranscription(string accountId, string callId, string recordingId, int operationIndex = 0)
@@ -1701,9 +1701,9 @@ namespace Bandwidth.Standard.Api
         /// Get Transcription Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TranscriptionList</returns>
         public Bandwidth.Standard.Client.ApiResponse<TranscriptionList> GetCallTranscriptionWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0)
@@ -1780,9 +1780,9 @@ namespace Bandwidth.Standard.Api
         /// Get Transcription Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TranscriptionList</returns>
@@ -1796,9 +1796,9 @@ namespace Bandwidth.Standard.Api
         /// Get Transcription Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TranscriptionList)</returns>
@@ -1878,7 +1878,7 @@ namespace Bandwidth.Standard.Api
         /// Get Call Recordings Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
         /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
         /// <param name="minStartTime">Filter results to recordings which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
@@ -1895,7 +1895,7 @@ namespace Bandwidth.Standard.Api
         /// Get Call Recordings Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
         /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
         /// <param name="minStartTime">Filter results to recordings which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
@@ -1978,7 +1978,7 @@ namespace Bandwidth.Standard.Api
         /// Get Call Recordings Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
         /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
         /// <param name="minStartTime">Filter results to recordings which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
@@ -1996,7 +1996,7 @@ namespace Bandwidth.Standard.Api
         /// Get Call Recordings Returns a list of metadata for the recordings associated with the specified account. The list can be filtered by the optional from, to, minStartTime, and maxStartTime arguments. The list is capped at 1000 entries and may be empty if no recordings match the specified criteria.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
         /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
         /// <param name="minStartTime">Filter results to recordings which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
@@ -2082,8 +2082,8 @@ namespace Bandwidth.Standard.Api
         /// List Call Recordings Returns a (potentially empty) list of metadata for the recordings that took place during the specified call.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;CallRecordingMetadata&gt;</returns>
         public List<CallRecordingMetadata> ListCallRecordings(string accountId, string callId, int operationIndex = 0)
@@ -2096,8 +2096,8 @@ namespace Bandwidth.Standard.Api
         /// List Call Recordings Returns a (potentially empty) list of metadata for the recordings that took place during the specified call.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;CallRecordingMetadata&gt;</returns>
         public Bandwidth.Standard.Client.ApiResponse<List<CallRecordingMetadata>> ListCallRecordingsWithHttpInfo(string accountId, string callId, int operationIndex = 0)
@@ -2167,8 +2167,8 @@ namespace Bandwidth.Standard.Api
         /// List Call Recordings Returns a (potentially empty) list of metadata for the recordings that took place during the specified call.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;CallRecordingMetadata&gt;</returns>
@@ -2182,8 +2182,8 @@ namespace Bandwidth.Standard.Api
         /// List Call Recordings Returns a (potentially empty) list of metadata for the recordings that took place during the specified call.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;CallRecordingMetadata&gt;)</returns>
@@ -2256,9 +2256,9 @@ namespace Bandwidth.Standard.Api
         /// Create Transcription Request Generate the transcription for a specific recording. Transcription can succeed only for recordings of length greater than 500 milliseconds and less than 4 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="transcribeRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -2271,9 +2271,9 @@ namespace Bandwidth.Standard.Api
         /// Create Transcription Request Generate the transcription for a specific recording. Transcription can succeed only for recordings of length greater than 500 milliseconds and less than 4 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="transcribeRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -2359,9 +2359,9 @@ namespace Bandwidth.Standard.Api
         /// Create Transcription Request Generate the transcription for a specific recording. Transcription can succeed only for recordings of length greater than 500 milliseconds and less than 4 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="transcribeRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2375,9 +2375,9 @@ namespace Bandwidth.Standard.Api
         /// Create Transcription Request Generate the transcription for a specific recording. Transcription can succeed only for recordings of length greater than 500 milliseconds and less than 4 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="transcribeRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2466,8 +2466,8 @@ namespace Bandwidth.Standard.Api
         /// Update Recording Pause or resume a recording on an active phone call.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCallRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -2480,8 +2480,8 @@ namespace Bandwidth.Standard.Api
         /// Update Recording Pause or resume a recording on an active phone call.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCallRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -2560,8 +2560,8 @@ namespace Bandwidth.Standard.Api
         /// Update Recording Pause or resume a recording on an active phone call.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCallRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2575,8 +2575,8 @@ namespace Bandwidth.Standard.Api
         /// Update Recording Pause or resume a recording on an active phone call.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCallRecording"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

@@ -55,6 +55,7 @@ namespace Bandwidth.Standard.Model
         /// The call id associated with the event.
         /// </summary>
         /// <value>The call id associated with the event.</value>
+        /// <example>&quot;c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85&quot;</example>
         [DataMember(Name = "callId", EmitDefaultValue = false)]
         public string CallId { get; set; }
 
@@ -62,6 +63,7 @@ namespace Bandwidth.Standard.Model
         /// The unique, Bandwidth-generated ID of the conference that was recorded
         /// </summary>
         /// <value>The unique, Bandwidth-generated ID of the conference that was recorded</value>
+        /// <example>&quot;conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9&quot;</example>
         [DataMember(Name = "conferenceId", EmitDefaultValue = false)]
         public string ConferenceId { get; set; }
 
@@ -69,6 +71,7 @@ namespace Bandwidth.Standard.Model
         /// A URL that may be used to retrieve information about or update the state of this conference member. This is the URL of this member&#39;s [Get Conference Member](/apis/voice/#operation/getConferenceMember) endpoint and [Modify Conference Member](/apis/voice/#operation/updateConferenceMember) endpoint.
         /// </summary>
         /// <value>A URL that may be used to retrieve information about or update the state of this conference member. This is the URL of this member&#39;s [Get Conference Member](/apis/voice/#operation/getConferenceMember) endpoint and [Modify Conference Member](/apis/voice/#operation/updateConferenceMember) endpoint.</value>
+        /// <example>&quot;https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/members/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85&quot;</example>
         [DataMember(Name = "memberUrl", EmitDefaultValue = false)]
         public string MemberUrl { get; set; }
 
@@ -76,6 +79,7 @@ namespace Bandwidth.Standard.Model
         /// Whether or not this member is currently muted. Members who are muted are still able to hear other participants.  If used in a PUT request, updates this member&#39;s mute status. Has no effect if omitted.
         /// </summary>
         /// <value>Whether or not this member is currently muted. Members who are muted are still able to hear other participants.  If used in a PUT request, updates this member&#39;s mute status. Has no effect if omitted.</value>
+        /// <example>false</example>
         [DataMember(Name = "mute", EmitDefaultValue = true)]
         public bool Mute { get; set; }
 
@@ -83,6 +87,7 @@ namespace Bandwidth.Standard.Model
         /// Whether or not this member is currently on hold. Members who are on hold are not able to hear or speak in the conference.  If used in a PUT request, updates this member&#39;s hold status. Has no effect if omitted.
         /// </summary>
         /// <value>Whether or not this member is currently on hold. Members who are on hold are not able to hear or speak in the conference.  If used in a PUT request, updates this member&#39;s hold status. Has no effect if omitted.</value>
+        /// <example>false</example>
         [DataMember(Name = "hold", EmitDefaultValue = true)]
         public bool Hold { get; set; }
 
@@ -209,7 +214,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

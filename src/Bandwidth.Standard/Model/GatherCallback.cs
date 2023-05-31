@@ -85,6 +85,7 @@ namespace Bandwidth.Standard.Model
         /// The event type, value can be one of the following: answer, bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect, conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable, disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete, recordingAvailable, redirect, transcriptionAvailable, transferAnswer, transferComplete, transferDisconnect.
         /// </summary>
         /// <value>The event type, value can be one of the following: answer, bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect, conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable, disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete, recordingAvailable, redirect, transcriptionAvailable, transferAnswer, transferComplete, transferDisconnect.</value>
+        /// <example>&quot;bridgeComplete&quot;</example>
         [DataMember(Name = "eventType", EmitDefaultValue = false)]
         public string EventType { get; set; }
 
@@ -99,6 +100,7 @@ namespace Bandwidth.Standard.Model
         /// The user account associated with the call.
         /// </summary>
         /// <value>The user account associated with the call.</value>
+        /// <example>&quot;920012&quot;</example>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 
@@ -106,6 +108,7 @@ namespace Bandwidth.Standard.Model
         /// The id of the application associated with the call.
         /// </summary>
         /// <value>The id of the application associated with the call.</value>
+        /// <example>&quot;04e88489-df02-4e34-a0ee-27a91849555f&quot;</example>
         [DataMember(Name = "applicationId", EmitDefaultValue = false)]
         public string ApplicationId { get; set; }
 
@@ -113,6 +116,7 @@ namespace Bandwidth.Standard.Model
         /// The provided identifier of the caller: can be a phone number in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable, or Anonymous.
         /// </summary>
         /// <value>The provided identifier of the caller: can be a phone number in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable, or Anonymous.</value>
+        /// <example>&quot;+15555555555&quot;</example>
         [DataMember(Name = "from", EmitDefaultValue = false)]
         public string From { get; set; }
 
@@ -120,6 +124,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number that received the call, in E.164 format (e.g. +15555555555).
         /// </summary>
         /// <value>The phone number that received the call, in E.164 format (e.g. +15555555555).</value>
+        /// <example>&quot;+15555555555&quot;</example>
         [DataMember(Name = "to", EmitDefaultValue = false)]
         public string To { get; set; }
 
@@ -127,6 +132,7 @@ namespace Bandwidth.Standard.Model
         /// The call id associated with the event.
         /// </summary>
         /// <value>The call id associated with the event.</value>
+        /// <example>&quot;c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85&quot;</example>
         [DataMember(Name = "callId", EmitDefaultValue = false)]
         public string CallId { get; set; }
 
@@ -134,6 +140,7 @@ namespace Bandwidth.Standard.Model
         /// (optional) The digits, letters, and/or symbols entered by the user. The string is empty if a timeout occurred before any buttons were pressed.
         /// </summary>
         /// <value>(optional) The digits, letters, and/or symbols entered by the user. The string is empty if a timeout occurred before any buttons were pressed.</value>
+        /// <example>&quot;123&quot;</example>
         [DataMember(Name = "digits", EmitDefaultValue = false)]
         public string Digits { get; set; }
 
@@ -141,6 +148,7 @@ namespace Bandwidth.Standard.Model
         /// The URL of the call associated with the event.
         /// </summary>
         /// <value>The URL of the call associated with the event.</value>
+        /// <example>&quot;https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85&quot;</example>
         [DataMember(Name = "callUrl", EmitDefaultValue = false)]
         public string CallUrl { get; set; }
 
@@ -148,6 +156,7 @@ namespace Bandwidth.Standard.Model
         /// (optional) If call queueing is enabled and this is an outbound call, time the call was queued, in ISO 8601 format.
         /// </summary>
         /// <value>(optional) If call queueing is enabled and this is an outbound call, time the call was queued, in ISO 8601 format.</value>
+        /// <example>&quot;2022-06-17T22:20Z&quot;</example>
         [DataMember(Name = "enqueuedTime", EmitDefaultValue = true)]
         public DateTime? EnqueuedTime { get; set; }
 
@@ -155,6 +164,7 @@ namespace Bandwidth.Standard.Model
         /// Time the call was started, in ISO 8601 format.
         /// </summary>
         /// <value>Time the call was started, in ISO 8601 format.</value>
+        /// <example>&quot;2022-06-17T22:19:40.375Z&quot;</example>
         [DataMember(Name = "startTime", EmitDefaultValue = false)]
         public DateTime StartTime { get; set; }
 
@@ -162,6 +172,7 @@ namespace Bandwidth.Standard.Model
         /// Time the call was answered, in ISO 8601 format.
         /// </summary>
         /// <value>Time the call was answered, in ISO 8601 format.</value>
+        /// <example>&quot;2022-06-17T22:20Z&quot;</example>
         [DataMember(Name = "answerTime", EmitDefaultValue = true)]
         public DateTime? AnswerTime { get; set; }
 
@@ -169,6 +180,7 @@ namespace Bandwidth.Standard.Model
         /// (optional) If the event is related to the B leg of a &lt;Transfer&gt;, the call id of the original call leg that executed the &lt;Transfer&gt;. Otherwise, this field will not be present.
         /// </summary>
         /// <value>(optional) If the event is related to the B leg of a &lt;Transfer&gt;, the call id of the original call leg that executed the &lt;Transfer&gt;. Otherwise, this field will not be present.</value>
+        /// <example>&quot;c-95ac8d6e-1a31c52e-b38f-4198-93c1-51633ec68f8d&quot;</example>
         [DataMember(Name = "parentCallId", EmitDefaultValue = false)]
         public string ParentCallId { get; set; }
 
@@ -176,6 +188,7 @@ namespace Bandwidth.Standard.Model
         /// (optional) The digit the user pressed to end the gather. Empty string value if no terminating digit was pressed.
         /// </summary>
         /// <value>(optional) The digit the user pressed to end the gather. Empty string value if no terminating digit was pressed.</value>
+        /// <example>&quot;#&quot;</example>
         [DataMember(Name = "terminatingDigit", EmitDefaultValue = false)]
         public string TerminatingDigit { get; set; }
 
@@ -183,6 +196,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous, Private, or Unavailable.
         /// </summary>
         /// <value>The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous, Private, or Unavailable.</value>
+        /// <example>&quot;+15555555555&quot;</example>
         [DataMember(Name = "transferCallerId", EmitDefaultValue = false)]
         public string TransferCallerId { get; set; }
 
@@ -190,6 +204,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number used as the to field of the B-leg call, in E.164 format (e.g. +15555555555).
         /// </summary>
         /// <value>The phone number used as the to field of the B-leg call, in E.164 format (e.g. +15555555555).</value>
+        /// <example>&quot;+15555555555)&quot;</example>
         [DataMember(Name = "transferTo", EmitDefaultValue = false)]
         public string TransferTo { get; set; }
 
@@ -197,6 +212,7 @@ namespace Bandwidth.Standard.Model
         /// (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present.
         /// </summary>
         /// <value>(optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present.</value>
+        /// <example>&quot;exampleTag&quot;</example>
         [DataMember(Name = "tag", EmitDefaultValue = true)]
         public string Tag { get; set; }
 
@@ -439,7 +455,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

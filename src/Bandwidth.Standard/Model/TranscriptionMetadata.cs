@@ -51,6 +51,7 @@ namespace Bandwidth.Standard.Model
         /// The unique transcription ID
         /// </summary>
         /// <value>The unique transcription ID</value>
+        /// <example>&quot;t-387bd648-18f3-4823-9d16-746bca0003c9&quot;</example>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
@@ -58,6 +59,7 @@ namespace Bandwidth.Standard.Model
         /// The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values.
         /// </summary>
         /// <value>The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values.</value>
+        /// <example>&quot;completed&quot;</example>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 
@@ -65,6 +67,7 @@ namespace Bandwidth.Standard.Model
         /// The time that the transcription was completed
         /// </summary>
         /// <value>The time that the transcription was completed</value>
+        /// <example>&quot;2022-06-13T18:46:29.715Z&quot;</example>
         [DataMember(Name = "completedTime", EmitDefaultValue = false)]
         public string CompletedTime { get; set; }
 
@@ -72,6 +75,7 @@ namespace Bandwidth.Standard.Model
         /// The URL of the [transcription](#operation/getCallTranscription)
         /// </summary>
         /// <value>The URL of the [transcription](#operation/getCallTranscription)</value>
+        /// <example>&quot;https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/recordings/r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/transcription&quot;</example>
         [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 
@@ -178,7 +182,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

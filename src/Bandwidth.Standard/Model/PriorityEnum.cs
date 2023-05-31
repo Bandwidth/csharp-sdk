@@ -27,9 +27,9 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The priority specified by the user.
+    /// The priority specified by the user.  Not supported on MMS.
     /// </summary>
-    /// <value>The priority specified by the user.</value>
+    /// <value>The priority specified by the user.  Not supported on MMS.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum PriorityEnum
     {

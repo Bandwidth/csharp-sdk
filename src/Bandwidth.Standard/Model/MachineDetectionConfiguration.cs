@@ -96,6 +96,7 @@ namespace Bandwidth.Standard.Model
         /// The timeout used for the whole operation, in seconds. If no result is determined in this period, a callback with a &#x60;timeout&#x60; result is sent.
         /// </summary>
         /// <value>The timeout used for the whole operation, in seconds. If no result is determined in this period, a callback with a &#x60;timeout&#x60; result is sent.</value>
+        /// <example>15</example>
         [DataMember(Name = "detectionTimeout", EmitDefaultValue = true)]
         public double? DetectionTimeout { get; set; }
 
@@ -103,6 +104,7 @@ namespace Bandwidth.Standard.Model
         /// If no speech is detected in this period, a callback with a &#39;silence&#39; result is sent.
         /// </summary>
         /// <value>If no speech is detected in this period, a callback with a &#39;silence&#39; result is sent.</value>
+        /// <example>10</example>
         [DataMember(Name = "silenceTimeout", EmitDefaultValue = true)]
         public double? SilenceTimeout { get; set; }
 
@@ -110,6 +112,7 @@ namespace Bandwidth.Standard.Model
         /// When speech has ended and a result couldn&#39;t be determined based on the audio content itself, this value is used to determine if the speaker is a machine based on the speech duration. If the length of the speech detected is greater than or equal to this threshold, the result will be &#39;answering-machine&#39;. If the length of speech detected is below this threshold, the result will be &#39;human&#39;.
         /// </summary>
         /// <value>When speech has ended and a result couldn&#39;t be determined based on the audio content itself, this value is used to determine if the speaker is a machine based on the speech duration. If the length of the speech detected is greater than or equal to this threshold, the result will be &#39;answering-machine&#39;. If the length of speech detected is below this threshold, the result will be &#39;human&#39;.</value>
+        /// <example>10</example>
         [DataMember(Name = "speechThreshold", EmitDefaultValue = true)]
         public double? SpeechThreshold { get; set; }
 
@@ -117,6 +120,7 @@ namespace Bandwidth.Standard.Model
         /// Amount of silence (in seconds) before assuming the callee has finished speaking.
         /// </summary>
         /// <value>Amount of silence (in seconds) before assuming the callee has finished speaking.</value>
+        /// <example>5</example>
         [DataMember(Name = "speechEndThreshold", EmitDefaultValue = true)]
         public double? SpeechEndThreshold { get; set; }
 
@@ -124,6 +128,7 @@ namespace Bandwidth.Standard.Model
         /// When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing.  If not provided it will default to the speechEndThreshold value.
         /// </summary>
         /// <value>When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing.  If not provided it will default to the speechEndThreshold value.</value>
+        /// <example>5</example>
         [DataMember(Name = "machineSpeechEndThreshold", EmitDefaultValue = true)]
         public double? MachineSpeechEndThreshold { get; set; }
 
@@ -131,6 +136,7 @@ namespace Bandwidth.Standard.Model
         /// If set to &#39;true&#39; and if an answering machine is detected, the &#39;answering-machine&#39; callback will be delayed until the machine is done speaking, or an end of message tone is detected, or until the &#39;detectionTimeout&#39; is exceeded. If false, the &#39;answering-machine&#39; result is sent immediately.
         /// </summary>
         /// <value>If set to &#39;true&#39; and if an answering machine is detected, the &#39;answering-machine&#39; callback will be delayed until the machine is done speaking, or an end of message tone is detected, or until the &#39;detectionTimeout&#39; is exceeded. If false, the &#39;answering-machine&#39; result is sent immediately.</value>
+        /// <example>false</example>
         [DataMember(Name = "delayResult", EmitDefaultValue = true)]
         public bool? DelayResult { get; set; }
 
@@ -138,6 +144,7 @@ namespace Bandwidth.Standard.Model
         /// The URL to send the &#39;machineDetectionComplete&#39; webhook when the detection is completed. Only for &#39;async&#39; mode.
         /// </summary>
         /// <value>The URL to send the &#39;machineDetectionComplete&#39; webhook when the detection is completed. Only for &#39;async&#39; mode.</value>
+        /// <example>&quot;https://myServer.example/bandwidth/webhooks/machineDetectionComplete&quot;</example>
         [DataMember(Name = "callbackUrl", EmitDefaultValue = true)]
         public string CallbackUrl { get; set; }
 
@@ -145,6 +152,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth username.
         /// </summary>
         /// <value>Basic auth username.</value>
+        /// <example>&quot;mySecretUsername&quot;</example>
         [DataMember(Name = "username", EmitDefaultValue = true)]
         public string Username { get; set; }
 
@@ -152,6 +160,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth password.
         /// </summary>
         /// <value>Basic auth password.</value>
+        /// <example>&quot;mySecretPassword1!&quot;</example>
         [DataMember(Name = "password", EmitDefaultValue = true)]
         public string Password { get; set; }
 
@@ -159,6 +168,7 @@ namespace Bandwidth.Standard.Model
         /// A fallback URL which, if provided, will be used to retry the machine detection complete webhook delivery in case &#x60;callbackUrl&#x60; fails to respond
         /// </summary>
         /// <value>A fallback URL which, if provided, will be used to retry the machine detection complete webhook delivery in case &#x60;callbackUrl&#x60; fails to respond</value>
+        /// <example>&quot;https://myFallbackServer.example/bandwidth/webhooks/machineDetectionComplete&quot;</example>
         [DataMember(Name = "fallbackUrl", EmitDefaultValue = true)]
         public string FallbackUrl { get; set; }
 
@@ -166,6 +176,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth username.
         /// </summary>
         /// <value>Basic auth username.</value>
+        /// <example>&quot;mySecretUsername&quot;</example>
         [DataMember(Name = "fallbackUsername", EmitDefaultValue = true)]
         public string FallbackUsername { get; set; }
 
@@ -173,6 +184,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth password.
         /// </summary>
         /// <value>Basic auth password.</value>
+        /// <example>&quot;mySecretPassword1!&quot;</example>
         [DataMember(Name = "fallbackPassword", EmitDefaultValue = true)]
         public string FallbackPassword { get; set; }
 
@@ -377,7 +389,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // CallbackUrl (string) maxLength
             if (this.CallbackUrl != null && this.CallbackUrl.Length > 2048)

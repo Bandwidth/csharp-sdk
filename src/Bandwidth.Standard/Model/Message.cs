@@ -59,7 +59,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="text">The contents of the message..</param>
         /// <param name="tag">The custom string set by the user..</param>
         /// <param name="priority">priority.</param>
-        public Message(string id = default(string), string owner = default(string), string applicationId = default(string), string time = default(string), int segmentCount = default(int), MessageDirectionEnum? direction = default(MessageDirectionEnum?), List<string> to = default(List<string>), string from = default(string), List<string> media = default(List<string>), string text = default(string), string tag = default(string), PriorityEnum? priority = default(PriorityEnum?))
+        /// <param name="expiration">The expiration date-time set by the user..</param>
+        public Message(string id = default(string), string owner = default(string), string applicationId = default(string), string time = default(string), int segmentCount = default(int), MessageDirectionEnum? direction = default(MessageDirectionEnum?), List<string> to = default(List<string>), string from = default(string), List<string> media = default(List<string>), string text = default(string), string tag = default(string), PriorityEnum? priority = default(PriorityEnum?), DateTime expiration = default(DateTime))
         {
             this.Id = id;
             this.Owner = owner;
@@ -73,12 +74,14 @@ namespace Bandwidth.Standard.Model
             this.Text = text;
             this.Tag = tag;
             this.Priority = priority;
+            this.Expiration = expiration;
         }
 
         /// <summary>
         /// The id of the message.
         /// </summary>
         /// <value>The id of the message.</value>
+        /// <example>&quot;1589228074636lm4k2je7j7jklbn2&quot;</example>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
@@ -86,6 +89,7 @@ namespace Bandwidth.Standard.Model
         /// The Bandwidth phone number associated with the message.
         /// </summary>
         /// <value>The Bandwidth phone number associated with the message.</value>
+        /// <example>&quot;+15554443333&quot;</example>
         [DataMember(Name = "owner", EmitDefaultValue = false)]
         public string Owner { get; set; }
 
@@ -93,6 +97,7 @@ namespace Bandwidth.Standard.Model
         /// The application ID associated with the message.
         /// </summary>
         /// <value>The application ID associated with the message.</value>
+        /// <example>&quot;93de2206-9669-4e07-948d-329f4b722ee2&quot;</example>
         [DataMember(Name = "applicationId", EmitDefaultValue = false)]
         public string ApplicationId { get; set; }
 
@@ -100,6 +105,7 @@ namespace Bandwidth.Standard.Model
         /// The datetime stamp of the message in ISO 8601
         /// </summary>
         /// <value>The datetime stamp of the message in ISO 8601</value>
+        /// <example>&quot;2022-09-14T18:20:16.000Z&quot;</example>
         [DataMember(Name = "time", EmitDefaultValue = false)]
         public string Time { get; set; }
 
@@ -107,6 +113,7 @@ namespace Bandwidth.Standard.Model
         /// The number of segments the original message from the user is broken into before sending over to carrier networks.
         /// </summary>
         /// <value>The number of segments the original message from the user is broken into before sending over to carrier networks.</value>
+        /// <example>2</example>
         [DataMember(Name = "segmentCount", EmitDefaultValue = false)]
         public int SegmentCount { get; set; }
 
@@ -121,6 +128,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number the message was sent from.
         /// </summary>
         /// <value>The phone number the message was sent from.</value>
+        /// <example>&quot;+15553332222&quot;</example>
         [DataMember(Name = "from", EmitDefaultValue = false)]
         public string From { get; set; }
 
@@ -135,6 +143,7 @@ namespace Bandwidth.Standard.Model
         /// The contents of the message.
         /// </summary>
         /// <value>The contents of the message.</value>
+        /// <example>&quot;Hello world&quot;</example>
         [DataMember(Name = "text", EmitDefaultValue = false)]
         public string Text { get; set; }
 
@@ -142,8 +151,17 @@ namespace Bandwidth.Standard.Model
         /// The custom string set by the user.
         /// </summary>
         /// <value>The custom string set by the user.</value>
+        /// <example>&quot;custom tag&quot;</example>
         [DataMember(Name = "tag", EmitDefaultValue = false)]
         public string Tag { get; set; }
+
+        /// <summary>
+        /// The expiration date-time set by the user.
+        /// </summary>
+        /// <value>The expiration date-time set by the user.</value>
+        /// <example>&quot;2021-02-01T11:29:18-05:00&quot;</example>
+        [DataMember(Name = "expiration", EmitDefaultValue = false)]
+        public DateTime Expiration { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -165,6 +183,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("  Tag: ").Append(Tag).Append("\n");
             sb.Append("  Priority: ").Append(Priority).Append("\n");
+            sb.Append("  Expiration: ").Append(Expiration).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -258,6 +277,11 @@ namespace Bandwidth.Standard.Model
                 (
                     this.Priority == input.Priority ||
                     this.Priority.Equals(input.Priority)
+                ) && 
+                (
+                    this.Expiration == input.Expiration ||
+                    (this.Expiration != null &&
+                    this.Expiration.Equals(input.Expiration))
                 );
         }
 
@@ -309,6 +333,10 @@ namespace Bandwidth.Standard.Model
                     hashCode = (hashCode * 59) + this.Tag.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Priority.GetHashCode();
+                if (this.Expiration != null)
+                {
+                    hashCode = (hashCode * 59) + this.Expiration.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -318,7 +346,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

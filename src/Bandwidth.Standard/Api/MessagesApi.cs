@@ -70,12 +70,13 @@ namespace Bandwidth.Standard.Api
         /// <param name="errorCode">The error code of the message. (optional)</param>
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
+        /// <param name="campaignId">The campaign ID of the message. (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>MessagesList</returns>
-        MessagesList ListMessages(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0);
+        MessagesList ListMessages(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0);
 
         /// <summary>
         /// List Messages
@@ -95,12 +96,13 @@ namespace Bandwidth.Standard.Api
         /// <param name="errorCode">The error code of the message. (optional)</param>
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
+        /// <param name="campaignId">The campaign ID of the message. (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of MessagesList</returns>
-        ApiResponse<MessagesList> ListMessagesWithHttpInfo(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0);
+        ApiResponse<MessagesList> ListMessagesWithHttpInfo(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -155,13 +157,14 @@ namespace Bandwidth.Standard.Api
         /// <param name="errorCode">The error code of the message. (optional)</param>
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
+        /// <param name="campaignId">The campaign ID of the message. (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of MessagesList</returns>
-        System.Threading.Tasks.Task<MessagesList> ListMessagesAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<MessagesList> ListMessagesAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List Messages
@@ -181,13 +184,14 @@ namespace Bandwidth.Standard.Api
         /// <param name="errorCode">The error code of the message. (optional)</param>
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
+        /// <param name="campaignId">The campaign ID of the message. (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (MessagesList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<MessagesList>> ListMessagesWithHttpInfoAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<MessagesList>> ListMessagesWithHttpInfoAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -499,14 +503,15 @@ namespace Bandwidth.Standard.Api
         /// <param name="errorCode">The error code of the message. (optional)</param>
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
+        /// <param name="campaignId">The campaign ID of the message. (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>MessagesList</returns>
-        public MessagesList ListMessages(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0)
+        public MessagesList ListMessages(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0)
         {
-            Bandwidth.Standard.Client.ApiResponse<MessagesList> localVarResponse = ListMessagesWithHttpInfo(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, sort, pageToken, limit);
+            Bandwidth.Standard.Client.ApiResponse<MessagesList> localVarResponse = ListMessagesWithHttpInfo(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, sort, pageToken, limit);
             return localVarResponse.Data;
         }
 
@@ -525,12 +530,13 @@ namespace Bandwidth.Standard.Api
         /// <param name="errorCode">The error code of the message. (optional)</param>
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
+        /// <param name="campaignId">The campaign ID of the message. (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of MessagesList</returns>
-        public Bandwidth.Standard.Client.ApiResponse<MessagesList> ListMessagesWithHttpInfo(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0)
+        public Bandwidth.Standard.Client.ApiResponse<MessagesList> ListMessagesWithHttpInfo(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -600,6 +606,10 @@ namespace Bandwidth.Standard.Api
             if (toDateTime != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "toDateTime", toDateTime));
+            }
+            if (campaignId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
             }
             if (sort != null)
             {
@@ -653,15 +663,16 @@ namespace Bandwidth.Standard.Api
         /// <param name="errorCode">The error code of the message. (optional)</param>
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
+        /// <param name="campaignId">The campaign ID of the message. (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of MessagesList</returns>
-        public async System.Threading.Tasks.Task<MessagesList> ListMessagesAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<MessagesList> ListMessagesAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Bandwidth.Standard.Client.ApiResponse<MessagesList> localVarResponse = await ListMessagesWithHttpInfoAsync(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, sort, pageToken, limit, operationIndex, cancellationToken).ConfigureAwait(false);
+            Bandwidth.Standard.Client.ApiResponse<MessagesList> localVarResponse = await ListMessagesWithHttpInfoAsync(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, sort, pageToken, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -680,13 +691,14 @@ namespace Bandwidth.Standard.Api
         /// <param name="errorCode">The error code of the message. (optional)</param>
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
+        /// <param name="campaignId">The campaign ID of the message. (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (MessagesList)</returns>
-        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<MessagesList>> ListMessagesWithHttpInfoAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<MessagesList>> ListMessagesWithHttpInfoAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -757,6 +769,10 @@ namespace Bandwidth.Standard.Api
             if (toDateTime != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "toDateTime", toDateTime));
+            }
+            if (campaignId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
             }
             if (sort != null)
             {

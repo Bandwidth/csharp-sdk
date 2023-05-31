@@ -15,7 +15,7 @@ All URIs are relative to *http://localhost*
 | [**TranscribeCallRecording**](RecordingsApi.md#transcribecallrecording) | **POST** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Create Transcription Request |
 | [**UpdateCallRecordingState**](RecordingsApi.md#updatecallrecordingstate) | **PUT** /accounts/{accountId}/calls/{callId}/recording | Update Recording |
 
-<a name="deletecalltranscription"></a>
+<a id="deletecalltranscription"></a>
 # **DeleteCallTranscription**
 > void DeleteCallTranscription (string accountId, string callId, string recordingId)
 
@@ -44,9 +44,9 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RecordingsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID
-            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID.
+            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID.
 
             try
             {
@@ -85,9 +85,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **callId** | **string** | Programmable Voice API Call ID |  |
-| **recordingId** | **string** | Programmable Voice API Recording ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **callId** | **string** | Programmable Voice API Call ID. |  |
+| **recordingId** | **string** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -106,19 +106,19 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | The transcription was successfully deleted |  -  |
+| **204** | The transcription was successfully deleted. |  -  |
 | **400** | Bad Request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleterecording"></a>
+<a id="deleterecording"></a>
 # **DeleteRecording**
 > void DeleteRecording (string accountId, string callId, string recordingId)
 
@@ -147,9 +147,9 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RecordingsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID
-            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID.
+            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID.
 
             try
             {
@@ -188,9 +188,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **callId** | **string** | Programmable Voice API Call ID |  |
-| **recordingId** | **string** | Programmable Voice API Recording ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **callId** | **string** | Programmable Voice API Call ID. |  |
+| **recordingId** | **string** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -209,19 +209,19 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Recording Deleted |  -  |
+| **204** | Recording was deleted. |  -  |
 | **400** | Bad Request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleterecordingmedia"></a>
+<a id="deleterecordingmedia"></a>
 # **DeleteRecordingMedia**
 > void DeleteRecordingMedia (string accountId, string callId, string recordingId)
 
@@ -250,9 +250,9 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RecordingsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID
-            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID.
+            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID.
 
             try
             {
@@ -291,9 +291,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **callId** | **string** | Programmable Voice API Call ID |  |
-| **recordingId** | **string** | Programmable Voice API Recording ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **callId** | **string** | Programmable Voice API Call ID. |  |
+| **recordingId** | **string** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -312,19 +312,19 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | The recording media was successfully deleted |  -  |
+| **204** | The recording media was successfully deleted. |  -  |
 | **400** | Bad Request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="downloadcallrecording"></a>
+<a id="downloadcallrecording"></a>
 # **DownloadCallRecording**
 > System.IO.Stream DownloadCallRecording (string accountId, string callId, string recordingId)
 
@@ -353,9 +353,9 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RecordingsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID
-            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID.
+            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID.
 
             try
             {
@@ -398,9 +398,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **callId** | **string** | Programmable Voice API Call ID |  |
-| **recordingId** | **string** | Programmable Voice API Recording ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **callId** | **string** | Programmable Voice API Call ID. |  |
+| **recordingId** | **string** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -426,12 +426,12 @@ catch (ApiException e)
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getcallrecording"></a>
+<a id="getcallrecording"></a>
 # **GetCallRecording**
 > CallRecordingMetadata GetCallRecording (string accountId, string callId, string recordingId)
 
@@ -460,9 +460,9 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RecordingsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID
-            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID.
+            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID.
 
             try
             {
@@ -505,9 +505,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **callId** | **string** | Programmable Voice API Call ID |  |
-| **recordingId** | **string** | Programmable Voice API Recording ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **callId** | **string** | Programmable Voice API Call ID. |  |
+| **recordingId** | **string** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -533,12 +533,12 @@ catch (ApiException e)
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getcalltranscription"></a>
+<a id="getcalltranscription"></a>
 # **GetCallTranscription**
 > TranscriptionList GetCallTranscription (string accountId, string callId, string recordingId)
 
@@ -567,9 +567,9 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RecordingsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID
-            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID.
+            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID.
 
             try
             {
@@ -612,9 +612,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **callId** | **string** | Programmable Voice API Call ID |  |
-| **recordingId** | **string** | Programmable Voice API Recording ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **callId** | **string** | Programmable Voice API Call ID. |  |
+| **recordingId** | **string** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -640,12 +640,12 @@ catch (ApiException e)
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listaccountcallrecordings"></a>
+<a id="listaccountcallrecordings"></a>
 # **ListAccountCallRecordings**
 > List&lt;CallRecordingMetadata&gt; ListAccountCallRecordings (string accountId, string to = null, string from = null, string minStartTime = null, string maxStartTime = null)
 
@@ -674,7 +674,7 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RecordingsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
             var to = %2b19195551234;  // string | Filter results by the `to` field. (optional) 
             var from = %2b19195554321;  // string | Filter results by the `from` field. (optional) 
             var minStartTime = 2022-06-21T19:13:21Z;  // string | Filter results to recordings which have a `startTime` after or including `minStartTime` (in ISO8601 format). (optional) 
@@ -721,7 +721,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
 | **to** | **string** | Filter results by the &#x60;to&#x60; field. | [optional]  |
 | **from** | **string** | Filter results by the &#x60;from&#x60; field. | [optional]  |
 | **minStartTime** | **string** | Filter results to recordings which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). | [optional]  |
@@ -751,12 +751,12 @@ catch (ApiException e)
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listcallrecordings"></a>
+<a id="listcallrecordings"></a>
 # **ListCallRecordings**
 > List&lt;CallRecordingMetadata&gt; ListCallRecordings (string accountId, string callId)
 
@@ -785,8 +785,8 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RecordingsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID.
 
             try
             {
@@ -829,8 +829,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **callId** | **string** | Programmable Voice API Call ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **callId** | **string** | Programmable Voice API Call ID. |  |
 
 ### Return type
 
@@ -856,12 +856,12 @@ catch (ApiException e)
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="transcribecallrecording"></a>
+<a id="transcribecallrecording"></a>
 # **TranscribeCallRecording**
 > void TranscribeCallRecording (string accountId, string callId, string recordingId, TranscribeRecording transcribeRecording)
 
@@ -890,9 +890,9 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RecordingsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID
-            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID.
+            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID.
             var transcribeRecording = new TranscribeRecording(); // TranscribeRecording | 
 
             try
@@ -932,9 +932,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **callId** | **string** | Programmable Voice API Call ID |  |
-| **recordingId** | **string** | Programmable Voice API Recording ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **callId** | **string** | Programmable Voice API Call ID. |  |
+| **recordingId** | **string** | Programmable Voice API Recording ID. |  |
 | **transcribeRecording** | [**TranscribeRecording**](TranscribeRecording.md) |  |  |
 
 ### Return type
@@ -954,19 +954,19 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Transcription successfully requested |  -  |
+| **204** | Transcription was successfully requested. |  -  |
 | **400** | Bad Request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updatecallrecordingstate"></a>
+<a id="updatecallrecordingstate"></a>
 # **UpdateCallRecordingState**
 > void UpdateCallRecordingState (string accountId, string callId, UpdateCallRecording updateCallRecording)
 
@@ -995,8 +995,8 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RecordingsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID.
             var updateCallRecording = new UpdateCallRecording(); // UpdateCallRecording | 
 
             try
@@ -1036,8 +1036,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **callId** | **string** | Programmable Voice API Call ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **callId** | **string** | Programmable Voice API Call ID. |  |
 | **updateCallRecording** | [**UpdateCallRecording**](UpdateCallRecording.md) |  |  |
 
 ### Return type
@@ -1057,14 +1057,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Recording state successfully modified |  -  |
+| **200** | Recording state was successfully modified. |  -  |
 | **400** | Bad Request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

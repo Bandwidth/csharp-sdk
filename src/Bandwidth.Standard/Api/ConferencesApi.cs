@@ -34,9 +34,9 @@ namespace Bandwidth.Standard.Api
         /// Downloads the specified recording file.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>System.IO.Stream</returns>
         System.IO.Stream DownloadConferenceRecording(string accountId, string conferenceId, string recordingId, int operationIndex = 0);
@@ -48,9 +48,9 @@ namespace Bandwidth.Standard.Api
         /// Downloads the specified recording file.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
         ApiResponse<System.IO.Stream> DownloadConferenceRecordingWithHttpInfo(string accountId, string conferenceId, string recordingId, int operationIndex = 0);
@@ -61,8 +61,8 @@ namespace Bandwidth.Standard.Api
         /// Returns information about the specified conference.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Conference</returns>
         Conference GetConference(string accountId, string conferenceId, int operationIndex = 0);
@@ -74,8 +74,8 @@ namespace Bandwidth.Standard.Api
         /// Returns information about the specified conference.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Conference</returns>
         ApiResponse<Conference> GetConferenceWithHttpInfo(string accountId, string conferenceId, int operationIndex = 0);
@@ -86,9 +86,9 @@ namespace Bandwidth.Standard.Api
         /// Returns information about the specified conference member.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ConferenceMember</returns>
         ConferenceMember GetConferenceMember(string accountId, string conferenceId, string memberId, int operationIndex = 0);
@@ -100,9 +100,9 @@ namespace Bandwidth.Standard.Api
         /// Returns information about the specified conference member.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ConferenceMember</returns>
         ApiResponse<ConferenceMember> GetConferenceMemberWithHttpInfo(string accountId, string conferenceId, string memberId, int operationIndex = 0);
@@ -113,9 +113,9 @@ namespace Bandwidth.Standard.Api
         /// Returns metadata for the specified recording.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ConferenceRecordingMetadata</returns>
         ConferenceRecordingMetadata GetConferenceRecording(string accountId, string conferenceId, string recordingId, int operationIndex = 0);
@@ -127,9 +127,9 @@ namespace Bandwidth.Standard.Api
         /// Returns metadata for the specified recording.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ConferenceRecordingMetadata</returns>
         ApiResponse<ConferenceRecordingMetadata> GetConferenceRecordingWithHttpInfo(string accountId, string conferenceId, string recordingId, int operationIndex = 0);
@@ -140,8 +140,8 @@ namespace Bandwidth.Standard.Api
         /// Returns a (potentially empty) list of metadata for the recordings that took place during the specified conference.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;ConferenceRecordingMetadata&gt;</returns>
         List<ConferenceRecordingMetadata> ListConferenceRecordings(string accountId, string conferenceId, int operationIndex = 0);
@@ -153,8 +153,8 @@ namespace Bandwidth.Standard.Api
         /// Returns a (potentially empty) list of metadata for the recordings that took place during the specified conference.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;ConferenceRecordingMetadata&gt;</returns>
         ApiResponse<List<ConferenceRecordingMetadata>> ListConferenceRecordingsWithHttpInfo(string accountId, string conferenceId, int operationIndex = 0);
@@ -165,7 +165,7 @@ namespace Bandwidth.Standard.Api
         /// Returns a max of 1000 conferences, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of conferences in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of conference records.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="name">Filter results by the &#x60;name&#x60; field. (optional)</param>
         /// <param name="minCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; after or at &#x60;minCreatedTime&#x60; (in ISO8601 format). (optional)</param>
         /// <param name="maxCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; before or at &#x60;maxCreatedTime&#x60; (in ISO8601 format). (optional)</param>
@@ -182,7 +182,7 @@ namespace Bandwidth.Standard.Api
         /// Returns a max of 1000 conferences, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of conferences in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of conference records.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="name">Filter results by the &#x60;name&#x60; field. (optional)</param>
         /// <param name="minCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; after or at &#x60;minCreatedTime&#x60; (in ISO8601 format). (optional)</param>
         /// <param name="maxCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; before or at &#x60;maxCreatedTime&#x60; (in ISO8601 format). (optional)</param>
@@ -198,8 +198,8 @@ namespace Bandwidth.Standard.Api
         /// Update the conference state.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="updateConference"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -212,8 +212,8 @@ namespace Bandwidth.Standard.Api
         /// Update the conference state.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="updateConference"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -225,8 +225,8 @@ namespace Bandwidth.Standard.Api
         /// Update the conference BXML document.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -239,8 +239,8 @@ namespace Bandwidth.Standard.Api
         /// Update the conference BXML document.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -252,9 +252,9 @@ namespace Bandwidth.Standard.Api
         /// Updates settings for a particular conference member.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="updateConferenceMember"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -267,9 +267,9 @@ namespace Bandwidth.Standard.Api
         /// Updates settings for a particular conference member.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="updateConferenceMember"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -290,9 +290,9 @@ namespace Bandwidth.Standard.Api
         /// Downloads the specified recording file.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
@@ -305,9 +305,9 @@ namespace Bandwidth.Standard.Api
         /// Downloads the specified recording file.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
@@ -319,8 +319,8 @@ namespace Bandwidth.Standard.Api
         /// Returns information about the specified conference.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Conference</returns>
@@ -333,8 +333,8 @@ namespace Bandwidth.Standard.Api
         /// Returns information about the specified conference.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Conference)</returns>
@@ -346,9 +346,9 @@ namespace Bandwidth.Standard.Api
         /// Returns information about the specified conference member.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ConferenceMember</returns>
@@ -361,9 +361,9 @@ namespace Bandwidth.Standard.Api
         /// Returns information about the specified conference member.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ConferenceMember)</returns>
@@ -375,9 +375,9 @@ namespace Bandwidth.Standard.Api
         /// Returns metadata for the specified recording.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ConferenceRecordingMetadata</returns>
@@ -390,9 +390,9 @@ namespace Bandwidth.Standard.Api
         /// Returns metadata for the specified recording.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ConferenceRecordingMetadata)</returns>
@@ -404,8 +404,8 @@ namespace Bandwidth.Standard.Api
         /// Returns a (potentially empty) list of metadata for the recordings that took place during the specified conference.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;ConferenceRecordingMetadata&gt;</returns>
@@ -418,8 +418,8 @@ namespace Bandwidth.Standard.Api
         /// Returns a (potentially empty) list of metadata for the recordings that took place during the specified conference.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;ConferenceRecordingMetadata&gt;)</returns>
@@ -431,7 +431,7 @@ namespace Bandwidth.Standard.Api
         /// Returns a max of 1000 conferences, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of conferences in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of conference records.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="name">Filter results by the &#x60;name&#x60; field. (optional)</param>
         /// <param name="minCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; after or at &#x60;minCreatedTime&#x60; (in ISO8601 format). (optional)</param>
         /// <param name="maxCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; before or at &#x60;maxCreatedTime&#x60; (in ISO8601 format). (optional)</param>
@@ -449,7 +449,7 @@ namespace Bandwidth.Standard.Api
         /// Returns a max of 1000 conferences, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of conferences in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of conference records.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="name">Filter results by the &#x60;name&#x60; field. (optional)</param>
         /// <param name="minCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; after or at &#x60;minCreatedTime&#x60; (in ISO8601 format). (optional)</param>
         /// <param name="maxCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; before or at &#x60;maxCreatedTime&#x60; (in ISO8601 format). (optional)</param>
@@ -466,8 +466,8 @@ namespace Bandwidth.Standard.Api
         /// Update the conference state.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="updateConference"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -481,8 +481,8 @@ namespace Bandwidth.Standard.Api
         /// Update the conference state.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="updateConference"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -495,8 +495,8 @@ namespace Bandwidth.Standard.Api
         /// Update the conference BXML document.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -510,8 +510,8 @@ namespace Bandwidth.Standard.Api
         /// Update the conference BXML document.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -524,9 +524,9 @@ namespace Bandwidth.Standard.Api
         /// Updates settings for a particular conference member.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="updateConferenceMember"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -540,9 +540,9 @@ namespace Bandwidth.Standard.Api
         /// Updates settings for a particular conference member.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="updateConferenceMember"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -672,9 +672,9 @@ namespace Bandwidth.Standard.Api
         /// Download Conference Recording Downloads the specified recording file.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>System.IO.Stream</returns>
         public System.IO.Stream DownloadConferenceRecording(string accountId, string conferenceId, string recordingId, int operationIndex = 0)
@@ -687,9 +687,9 @@ namespace Bandwidth.Standard.Api
         /// Download Conference Recording Downloads the specified recording file.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
         public Bandwidth.Standard.Client.ApiResponse<System.IO.Stream> DownloadConferenceRecordingWithHttpInfo(string accountId, string conferenceId, string recordingId, int operationIndex = 0)
@@ -768,9 +768,9 @@ namespace Bandwidth.Standard.Api
         /// Download Conference Recording Downloads the specified recording file.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
@@ -784,9 +784,9 @@ namespace Bandwidth.Standard.Api
         /// Download Conference Recording Downloads the specified recording file.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
@@ -868,8 +868,8 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Information Returns information about the specified conference.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Conference</returns>
         public Conference GetConference(string accountId, string conferenceId, int operationIndex = 0)
@@ -882,8 +882,8 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Information Returns information about the specified conference.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Conference</returns>
         public Bandwidth.Standard.Client.ApiResponse<Conference> GetConferenceWithHttpInfo(string accountId, string conferenceId, int operationIndex = 0)
@@ -953,8 +953,8 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Information Returns information about the specified conference.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Conference</returns>
@@ -968,8 +968,8 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Information Returns information about the specified conference.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Conference)</returns>
@@ -1042,9 +1042,9 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Member Returns information about the specified conference member.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ConferenceMember</returns>
         public ConferenceMember GetConferenceMember(string accountId, string conferenceId, string memberId, int operationIndex = 0)
@@ -1057,9 +1057,9 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Member Returns information about the specified conference member.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ConferenceMember</returns>
         public Bandwidth.Standard.Client.ApiResponse<ConferenceMember> GetConferenceMemberWithHttpInfo(string accountId, string conferenceId, string memberId, int operationIndex = 0)
@@ -1136,9 +1136,9 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Member Returns information about the specified conference member.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ConferenceMember</returns>
@@ -1152,9 +1152,9 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Member Returns information about the specified conference member.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ConferenceMember)</returns>
@@ -1234,9 +1234,9 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Recording Information Returns metadata for the specified recording.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ConferenceRecordingMetadata</returns>
         public ConferenceRecordingMetadata GetConferenceRecording(string accountId, string conferenceId, string recordingId, int operationIndex = 0)
@@ -1249,9 +1249,9 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Recording Information Returns metadata for the specified recording.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ConferenceRecordingMetadata</returns>
         public Bandwidth.Standard.Client.ApiResponse<ConferenceRecordingMetadata> GetConferenceRecordingWithHttpInfo(string accountId, string conferenceId, string recordingId, int operationIndex = 0)
@@ -1328,9 +1328,9 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Recording Information Returns metadata for the specified recording.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ConferenceRecordingMetadata</returns>
@@ -1344,9 +1344,9 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Recording Information Returns metadata for the specified recording.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ConferenceRecordingMetadata)</returns>
@@ -1426,8 +1426,8 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Recordings Returns a (potentially empty) list of metadata for the recordings that took place during the specified conference.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;ConferenceRecordingMetadata&gt;</returns>
         public List<ConferenceRecordingMetadata> ListConferenceRecordings(string accountId, string conferenceId, int operationIndex = 0)
@@ -1440,8 +1440,8 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Recordings Returns a (potentially empty) list of metadata for the recordings that took place during the specified conference.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;ConferenceRecordingMetadata&gt;</returns>
         public Bandwidth.Standard.Client.ApiResponse<List<ConferenceRecordingMetadata>> ListConferenceRecordingsWithHttpInfo(string accountId, string conferenceId, int operationIndex = 0)
@@ -1511,8 +1511,8 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Recordings Returns a (potentially empty) list of metadata for the recordings that took place during the specified conference.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;ConferenceRecordingMetadata&gt;</returns>
@@ -1526,8 +1526,8 @@ namespace Bandwidth.Standard.Api
         /// Get Conference Recordings Returns a (potentially empty) list of metadata for the recordings that took place during the specified conference.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;ConferenceRecordingMetadata&gt;)</returns>
@@ -1600,7 +1600,7 @@ namespace Bandwidth.Standard.Api
         /// Get Conferences Returns a max of 1000 conferences, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of conferences in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of conference records.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="name">Filter results by the &#x60;name&#x60; field. (optional)</param>
         /// <param name="minCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; after or at &#x60;minCreatedTime&#x60; (in ISO8601 format). (optional)</param>
         /// <param name="maxCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; before or at &#x60;maxCreatedTime&#x60; (in ISO8601 format). (optional)</param>
@@ -1618,7 +1618,7 @@ namespace Bandwidth.Standard.Api
         /// Get Conferences Returns a max of 1000 conferences, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of conferences in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of conference records.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="name">Filter results by the &#x60;name&#x60; field. (optional)</param>
         /// <param name="minCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; after or at &#x60;minCreatedTime&#x60; (in ISO8601 format). (optional)</param>
         /// <param name="maxCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; before or at &#x60;maxCreatedTime&#x60; (in ISO8601 format). (optional)</param>
@@ -1706,7 +1706,7 @@ namespace Bandwidth.Standard.Api
         /// Get Conferences Returns a max of 1000 conferences, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of conferences in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of conference records.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="name">Filter results by the &#x60;name&#x60; field. (optional)</param>
         /// <param name="minCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; after or at &#x60;minCreatedTime&#x60; (in ISO8601 format). (optional)</param>
         /// <param name="maxCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; before or at &#x60;maxCreatedTime&#x60; (in ISO8601 format). (optional)</param>
@@ -1725,7 +1725,7 @@ namespace Bandwidth.Standard.Api
         /// Get Conferences Returns a max of 1000 conferences, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of conferences in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of conference records.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="name">Filter results by the &#x60;name&#x60; field. (optional)</param>
         /// <param name="minCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; after or at &#x60;minCreatedTime&#x60; (in ISO8601 format). (optional)</param>
         /// <param name="maxCreatedTime">Filter results to conferences which have a &#x60;createdTime&#x60; before or at &#x60;maxCreatedTime&#x60; (in ISO8601 format). (optional)</param>
@@ -1816,8 +1816,8 @@ namespace Bandwidth.Standard.Api
         /// Update Conference Update the conference state.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="updateConference"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -1830,8 +1830,8 @@ namespace Bandwidth.Standard.Api
         /// Update Conference Update the conference state.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="updateConference"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -1910,8 +1910,8 @@ namespace Bandwidth.Standard.Api
         /// Update Conference Update the conference state.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="updateConference"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1925,8 +1925,8 @@ namespace Bandwidth.Standard.Api
         /// Update Conference Update the conference state.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="updateConference"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2008,8 +2008,8 @@ namespace Bandwidth.Standard.Api
         /// Update Conference BXML Update the conference BXML document.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -2022,8 +2022,8 @@ namespace Bandwidth.Standard.Api
         /// Update Conference BXML Update the conference BXML document.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -2102,8 +2102,8 @@ namespace Bandwidth.Standard.Api
         /// Update Conference BXML Update the conference BXML document.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2117,8 +2117,8 @@ namespace Bandwidth.Standard.Api
         /// Update Conference BXML Update the conference BXML document.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2200,9 +2200,9 @@ namespace Bandwidth.Standard.Api
         /// Update Conference Member Updates settings for a particular conference member.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="updateConferenceMember"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -2215,9 +2215,9 @@ namespace Bandwidth.Standard.Api
         /// Update Conference Member Updates settings for a particular conference member.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="updateConferenceMember"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -2303,9 +2303,9 @@ namespace Bandwidth.Standard.Api
         /// Update Conference Member Updates settings for a particular conference member.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="updateConferenceMember"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2319,9 +2319,9 @@ namespace Bandwidth.Standard.Api
         /// Update Conference Member Updates settings for a particular conference member.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="conferenceId">Programmable Voice API Conference ID</param>
-        /// <param name="memberId">Programmable Voice API Conference Member ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="conferenceId">Programmable Voice API Conference ID.</param>
+        /// <param name="memberId">Programmable Voice API Conference Member ID.</param>
         /// <param name="updateConferenceMember"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

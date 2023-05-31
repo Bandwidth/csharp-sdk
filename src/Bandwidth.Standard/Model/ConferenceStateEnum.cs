@@ -27,9 +27,9 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// Setting the conference state to &#x60;completed&#x60; ends the conference and ejects all members
+    /// Setting the conference state to &#x60;completed&#x60; ends the conference and ejects all members.
     /// </summary>
-    /// <value>Setting the conference state to &#x60;completed&#x60; ends the conference and ejects all members</value>
+    /// <value>Setting the conference state to &#x60;completed&#x60; ends the conference and ejects all members.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ConferenceStateEnum
     {

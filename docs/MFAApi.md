@@ -8,7 +8,7 @@ All URIs are relative to *http://localhost*
 | [**GenerateVoiceCode**](MFAApi.md#generatevoicecode) | **POST** /accounts/{accountId}/code/voice | Voice Authentication Code |
 | [**VerifyCode**](MFAApi.md#verifycode) | **POST** /accounts/{accountId}/code/verify | Verify Authentication Code |
 
-<a name="generatemessagingcode"></a>
+<a id="generatemessagingcode"></a>
 # **GenerateMessagingCode**
 > MessagingCodeResponse GenerateMessagingCode (string accountId, CodeRequest codeRequest)
 
@@ -109,7 +109,7 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="generatevoicecode"></a>
+<a id="generatevoicecode"></a>
 # **GenerateVoiceCode**
 > VoiceCodeResponse GenerateVoiceCode (string accountId, CodeRequest codeRequest)
 
@@ -210,7 +210,7 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="verifycode"></a>
+<a id="verifycode"></a>
 # **VerifyCode**
 > VerifyCodeResponse VerifyCode (string accountId, VerifyCodeRequest verifyCodeRequest)
 

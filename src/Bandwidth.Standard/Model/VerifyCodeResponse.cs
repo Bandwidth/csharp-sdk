@@ -45,6 +45,7 @@ namespace Bandwidth.Standard.Model
         /// Whether or not the supplied code is valid.
         /// </summary>
         /// <value>Whether or not the supplied code is valid.</value>
+        /// <example>true</example>
         [DataMember(Name = "valid", EmitDefaultValue = true)]
         public bool Valid { get; set; }
 
@@ -117,7 +118,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

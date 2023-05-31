@@ -54,7 +54,7 @@ namespace Bandwidth.Standard.Model
         /// Initializes a new instance of the <see cref="UpdateConference" /> class.
         /// </summary>
         /// <param name="status">status.</param>
-        /// <param name="redirectUrl">The URL to send the [conferenceRedirect](/docs/voice/webhooks/conferenceRedirect) event which will provide new BXML. Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;, but required if &#x60;state&#x60; is &#x60;active&#x60;.</param>
+        /// <param name="redirectUrl">The URL to send the [conferenceRedirect](/docs/voice/webhooks/conferenceRedirect) event which will provide new BXML. Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;, but required if &#x60;state&#x60; is &#x60;active&#x60;..</param>
         /// <param name="redirectMethod">redirectMethod.</param>
         /// <param name="username">Basic auth username..</param>
         /// <param name="password">Basic auth password..</param>
@@ -76,9 +76,10 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// The URL to send the [conferenceRedirect](/docs/voice/webhooks/conferenceRedirect) event which will provide new BXML. Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;, but required if &#x60;state&#x60; is &#x60;active&#x60;
+        /// The URL to send the [conferenceRedirect](/docs/voice/webhooks/conferenceRedirect) event which will provide new BXML. Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;, but required if &#x60;state&#x60; is &#x60;active&#x60;.
         /// </summary>
-        /// <value>The URL to send the [conferenceRedirect](/docs/voice/webhooks/conferenceRedirect) event which will provide new BXML. Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;, but required if &#x60;state&#x60; is &#x60;active&#x60;</value>
+        /// <value>The URL to send the [conferenceRedirect](/docs/voice/webhooks/conferenceRedirect) event which will provide new BXML. Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;, but required if &#x60;state&#x60; is &#x60;active&#x60;.</value>
+        /// <example>&quot;https://myServer.example/bandwidth/webhooks/conferenceRedirect&quot;</example>
         [DataMember(Name = "redirectUrl", EmitDefaultValue = true)]
         public string RedirectUrl { get; set; }
 
@@ -86,6 +87,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth username.
         /// </summary>
         /// <value>Basic auth username.</value>
+        /// <example>&quot;mySecretUsername&quot;</example>
         [DataMember(Name = "username", EmitDefaultValue = true)]
         public string Username { get; set; }
 
@@ -93,6 +95,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth password.
         /// </summary>
         /// <value>Basic auth password.</value>
+        /// <example>&quot;mySecretPassword1!&quot;</example>
         [DataMember(Name = "password", EmitDefaultValue = true)]
         public string Password { get; set; }
 
@@ -100,6 +103,7 @@ namespace Bandwidth.Standard.Model
         /// A fallback url which, if provided, will be used to retry the &#x60;conferenceRedirect&#x60; webhook delivery in case &#x60;redirectUrl&#x60; fails to respond.  Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;.
         /// </summary>
         /// <value>A fallback url which, if provided, will be used to retry the &#x60;conferenceRedirect&#x60; webhook delivery in case &#x60;redirectUrl&#x60; fails to respond.  Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;.</value>
+        /// <example>&quot;https://myFallbackServer.example/bandwidth/webhooks/conferenceRedirect&quot;</example>
         [DataMember(Name = "redirectFallbackUrl", EmitDefaultValue = true)]
         public string RedirectFallbackUrl { get; set; }
 
@@ -107,6 +111,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth username.
         /// </summary>
         /// <value>Basic auth username.</value>
+        /// <example>&quot;mySecretUsername&quot;</example>
         [DataMember(Name = "fallbackUsername", EmitDefaultValue = true)]
         public string FallbackUsername { get; set; }
 
@@ -114,6 +119,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth password.
         /// </summary>
         /// <value>Basic auth password.</value>
+        /// <example>&quot;mySecretPassword1!&quot;</example>
         [DataMember(Name = "fallbackPassword", EmitDefaultValue = true)]
         public string FallbackPassword { get; set; }
 
@@ -258,7 +264,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Username (string) maxLength
             if (this.Username != null && this.Username.Length > 1024)

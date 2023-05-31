@@ -77,6 +77,7 @@ namespace Bandwidth.Standard.Model
         /// The event type, value can be one of the following: answer, bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect, conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable, disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete, recordingAvailable, redirect, transcriptionAvailable, transferAnswer, transferComplete, transferDisconnect.
         /// </summary>
         /// <value>The event type, value can be one of the following: answer, bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect, conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable, disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete, recordingAvailable, redirect, transcriptionAvailable, transferAnswer, transferComplete, transferDisconnect.</value>
+        /// <example>&quot;bridgeComplete&quot;</example>
         [DataMember(Name = "eventType", EmitDefaultValue = false)]
         public string EventType { get; set; }
 
@@ -91,6 +92,7 @@ namespace Bandwidth.Standard.Model
         /// The unique, Bandwidth-generated ID of the conference that was recorded
         /// </summary>
         /// <value>The unique, Bandwidth-generated ID of the conference that was recorded</value>
+        /// <example>&quot;conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9&quot;</example>
         [DataMember(Name = "conferenceId", EmitDefaultValue = false)]
         public string ConferenceId { get; set; }
 
@@ -98,6 +100,7 @@ namespace Bandwidth.Standard.Model
         /// The user-specified name of the conference that was recorded
         /// </summary>
         /// <value>The user-specified name of the conference that was recorded</value>
+        /// <example>&quot;my-conference-name&quot;</example>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
@@ -105,6 +108,7 @@ namespace Bandwidth.Standard.Model
         /// The user account associated with the call.
         /// </summary>
         /// <value>The user account associated with the call.</value>
+        /// <example>&quot;920012&quot;</example>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 
@@ -112,6 +116,7 @@ namespace Bandwidth.Standard.Model
         /// The unique ID of this recording
         /// </summary>
         /// <value>The unique ID of this recording</value>
+        /// <example>&quot;r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833&quot;</example>
         [DataMember(Name = "recordingId", EmitDefaultValue = false)]
         public string RecordingId { get; set; }
 
@@ -119,6 +124,7 @@ namespace Bandwidth.Standard.Model
         /// Always &#x60;1&#x60; for conference recordings; multi-channel recordings are not supported on conferences.
         /// </summary>
         /// <value>Always &#x60;1&#x60; for conference recordings; multi-channel recordings are not supported on conferences.</value>
+        /// <example>1</example>
         [DataMember(Name = "channels", EmitDefaultValue = false)]
         public int Channels { get; set; }
 
@@ -126,6 +132,7 @@ namespace Bandwidth.Standard.Model
         /// Time the call was started, in ISO 8601 format.
         /// </summary>
         /// <value>Time the call was started, in ISO 8601 format.</value>
+        /// <example>&quot;2022-06-17T22:19:40.375Z&quot;</example>
         [DataMember(Name = "startTime", EmitDefaultValue = false)]
         public DateTime StartTime { get; set; }
 
@@ -133,6 +140,7 @@ namespace Bandwidth.Standard.Model
         /// The time that the recording ended in ISO-8601 format
         /// </summary>
         /// <value>The time that the recording ended in ISO-8601 format</value>
+        /// <example>&quot;2022-06-17T22:20Z&quot;</example>
         [DataMember(Name = "endTime", EmitDefaultValue = false)]
         public DateTime EndTime { get; set; }
 
@@ -140,6 +148,7 @@ namespace Bandwidth.Standard.Model
         /// The duration of the recording in ISO-8601 format
         /// </summary>
         /// <value>The duration of the recording in ISO-8601 format</value>
+        /// <example>&quot;PT13.67S&quot;</example>
         [DataMember(Name = "duration", EmitDefaultValue = false)]
         public string Duration { get; set; }
 
@@ -147,6 +156,7 @@ namespace Bandwidth.Standard.Model
         /// The URL that can be used to download the recording. Only present if the recording is finished and may be downloaded.
         /// </summary>
         /// <value>The URL that can be used to download the recording. Only present if the recording is finished and may be downloaded.</value>
+        /// <example>&quot;https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/recordings/r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833/media&quot;</example>
         [DataMember(Name = "mediaUrl", EmitDefaultValue = true)]
         public string MediaUrl { get; set; }
 
@@ -154,6 +164,7 @@ namespace Bandwidth.Standard.Model
         /// (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present.
         /// </summary>
         /// <value>(optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present.</value>
+        /// <example>&quot;exampleTag&quot;</example>
         [DataMember(Name = "tag", EmitDefaultValue = true)]
         public string Tag { get; set; }
 
@@ -161,6 +172,7 @@ namespace Bandwidth.Standard.Model
         /// The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values.
         /// </summary>
         /// <value>The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values.</value>
+        /// <example>&quot;completed&quot;</example>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 
@@ -359,7 +371,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

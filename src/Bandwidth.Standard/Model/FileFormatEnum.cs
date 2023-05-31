@@ -27,9 +27,9 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The format that the recording is stored in
+    /// The format that the recording is stored in.
     /// </summary>
-    /// <value>The format that the recording is stored in</value>
+    /// <value>The format that the recording is stored in.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum FileFormatEnum
     {

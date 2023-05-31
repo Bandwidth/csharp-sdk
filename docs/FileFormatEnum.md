@@ -1,5 +1,5 @@
 # Bandwidth.Standard.Model.FileFormatEnum
-The format that the recording is stored in
+The format that the recording is stored in.
 
 ## Properties
 

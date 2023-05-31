@@ -41,14 +41,14 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Conference" /> class.
         /// </summary>
-        /// <param name="id">The Bandwidth-generated conference ID.</param>
-        /// <param name="name">The name of the conference, as specified by your application.</param>
+        /// <param name="id">The Bandwidth-generated conference ID..</param>
+        /// <param name="name">The name of the conference, as specified by your application..</param>
         /// <param name="createdTime">The time the conference was initiated, in ISO 8601 format..</param>
         /// <param name="completedTime">The time the conference was terminated, in ISO 8601 format..</param>
         /// <param name="conferenceEventUrl">The URL to send the conference-related events..</param>
         /// <param name="conferenceEventMethod">conferenceEventMethod.</param>
         /// <param name="tag">The custom string attached to the conference that will be sent with callbacks..</param>
-        /// <param name="activeMembers">A list of active members of the conference. Omitted if this is a response to the [Get Conferences endpoint](/apis/voice#tag/Conferences/operation/listConferences).</param>
+        /// <param name="activeMembers">A list of active members of the conference. Omitted if this is a response to the [Get Conferences endpoint](/apis/voice#tag/Conferences/operation/listConferences)..</param>
         public Conference(string id = default(string), string name = default(string), DateTime createdTime = default(DateTime), DateTime? completedTime = default(DateTime?), string conferenceEventUrl = default(string), CallbackMethodEnum? conferenceEventMethod = default(CallbackMethodEnum?), string tag = default(string), List<ConferenceMember> activeMembers = default(List<ConferenceMember>))
         {
             this.Id = id;
@@ -62,16 +62,18 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// The Bandwidth-generated conference ID
+        /// The Bandwidth-generated conference ID.
         /// </summary>
-        /// <value>The Bandwidth-generated conference ID</value>
+        /// <value>The Bandwidth-generated conference ID.</value>
+        /// <example>&quot;conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9&quot;</example>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
-        /// The name of the conference, as specified by your application
+        /// The name of the conference, as specified by your application.
         /// </summary>
-        /// <value>The name of the conference, as specified by your application</value>
+        /// <value>The name of the conference, as specified by your application.</value>
+        /// <example>&quot;my-conference-name&quot;</example>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
@@ -79,6 +81,7 @@ namespace Bandwidth.Standard.Model
         /// The time the conference was initiated, in ISO 8601 format.
         /// </summary>
         /// <value>The time the conference was initiated, in ISO 8601 format.</value>
+        /// <example>&quot;2022-06-17T22:19:40.375Z&quot;</example>
         [DataMember(Name = "createdTime", EmitDefaultValue = false)]
         public DateTime CreatedTime { get; set; }
 
@@ -86,6 +89,7 @@ namespace Bandwidth.Standard.Model
         /// The time the conference was terminated, in ISO 8601 format.
         /// </summary>
         /// <value>The time the conference was terminated, in ISO 8601 format.</value>
+        /// <example>&quot;2022-06-17T22:20Z&quot;</example>
         [DataMember(Name = "completedTime", EmitDefaultValue = true)]
         public DateTime? CompletedTime { get; set; }
 
@@ -93,6 +97,7 @@ namespace Bandwidth.Standard.Model
         /// The URL to send the conference-related events.
         /// </summary>
         /// <value>The URL to send the conference-related events.</value>
+        /// <example>&quot;https://myServer.example/bandwidth/webhooks/conferenceEvent&quot;</example>
         [DataMember(Name = "conferenceEventUrl", EmitDefaultValue = true)]
         public string ConferenceEventUrl { get; set; }
 
@@ -100,13 +105,14 @@ namespace Bandwidth.Standard.Model
         /// The custom string attached to the conference that will be sent with callbacks.
         /// </summary>
         /// <value>The custom string attached to the conference that will be sent with callbacks.</value>
+        /// <example>&quot;my custom tag&quot;</example>
         [DataMember(Name = "tag", EmitDefaultValue = true)]
         public string Tag { get; set; }
 
         /// <summary>
-        /// A list of active members of the conference. Omitted if this is a response to the [Get Conferences endpoint](/apis/voice#tag/Conferences/operation/listConferences)
+        /// A list of active members of the conference. Omitted if this is a response to the [Get Conferences endpoint](/apis/voice#tag/Conferences/operation/listConferences).
         /// </summary>
-        /// <value>A list of active members of the conference. Omitted if this is a response to the [Get Conferences endpoint](/apis/voice#tag/Conferences/operation/listConferences)</value>
+        /// <value>A list of active members of the conference. Omitted if this is a response to the [Get Conferences endpoint](/apis/voice#tag/Conferences/operation/listConferences).</value>
         [DataMember(Name = "activeMembers", EmitDefaultValue = true)]
         public List<ConferenceMember> ActiveMembers { get; set; }
 
@@ -250,7 +256,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

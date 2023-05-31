@@ -34,7 +34,7 @@ namespace Bandwidth.Standard.Api
         /// Creates an outbound phone call.  All calls are initially queued. Your outbound calls will initiated at a specific dequeueing rate, enabling your application to \&quot;fire and forget\&quot; when creating calls. Queued calls may not be modified until they are dequeued and placed, but may be removed from your queue on demand.  &lt;b&gt;Please note:&lt;/b&gt; Calls submitted to your queue will be placed approximately in order, but exact ordering is not guaranteed.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="createCall">JSON object containing information to create an outbound call</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CreateCallResponse</returns>
@@ -47,7 +47,7 @@ namespace Bandwidth.Standard.Api
         /// Creates an outbound phone call.  All calls are initially queued. Your outbound calls will initiated at a specific dequeueing rate, enabling your application to \&quot;fire and forget\&quot; when creating calls. Queued calls may not be modified until they are dequeued and placed, but may be removed from your queue on demand.  &lt;b&gt;Please note:&lt;/b&gt; Calls submitted to your queue will be placed approximately in order, but exact ordering is not guaranteed.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="createCall">JSON object containing information to create an outbound call</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CreateCallResponse</returns>
@@ -59,8 +59,8 @@ namespace Bandwidth.Standard.Api
         /// Retrieve the current state of a specific call. This information is near-realtime, so it may take a few minutes for your call to be accessible using this endpoint.  **Note**: Call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an HTTP 404 response.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CallState</returns>
         CallState GetCallState(string accountId, string callId, int operationIndex = 0);
@@ -72,8 +72,8 @@ namespace Bandwidth.Standard.Api
         /// Retrieve the current state of a specific call. This information is near-realtime, so it may take a few minutes for your call to be accessible using this endpoint.  **Note**: Call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an HTTP 404 response.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CallState</returns>
         ApiResponse<CallState> GetCallStateWithHttpInfo(string accountId, string callId, int operationIndex = 0);
@@ -84,8 +84,8 @@ namespace Bandwidth.Standard.Api
         /// Interrupts and redirects a call to a different URL that should return a BXML document.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -98,8 +98,8 @@ namespace Bandwidth.Standard.Api
         /// Interrupts and redirects a call to a different URL that should return a BXML document.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -111,8 +111,8 @@ namespace Bandwidth.Standard.Api
         /// Interrupts and replaces an active call&#39;s BXML document.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -125,8 +125,8 @@ namespace Bandwidth.Standard.Api
         /// Interrupts and replaces an active call&#39;s BXML document.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -147,7 +147,7 @@ namespace Bandwidth.Standard.Api
         /// Creates an outbound phone call.  All calls are initially queued. Your outbound calls will initiated at a specific dequeueing rate, enabling your application to \&quot;fire and forget\&quot; when creating calls. Queued calls may not be modified until they are dequeued and placed, but may be removed from your queue on demand.  &lt;b&gt;Please note:&lt;/b&gt; Calls submitted to your queue will be placed approximately in order, but exact ordering is not guaranteed.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="createCall">JSON object containing information to create an outbound call</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -161,7 +161,7 @@ namespace Bandwidth.Standard.Api
         /// Creates an outbound phone call.  All calls are initially queued. Your outbound calls will initiated at a specific dequeueing rate, enabling your application to \&quot;fire and forget\&quot; when creating calls. Queued calls may not be modified until they are dequeued and placed, but may be removed from your queue on demand.  &lt;b&gt;Please note:&lt;/b&gt; Calls submitted to your queue will be placed approximately in order, but exact ordering is not guaranteed.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="createCall">JSON object containing information to create an outbound call</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -174,8 +174,8 @@ namespace Bandwidth.Standard.Api
         /// Retrieve the current state of a specific call. This information is near-realtime, so it may take a few minutes for your call to be accessible using this endpoint.  **Note**: Call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an HTTP 404 response.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CallState</returns>
@@ -188,8 +188,8 @@ namespace Bandwidth.Standard.Api
         /// Retrieve the current state of a specific call. This information is near-realtime, so it may take a few minutes for your call to be accessible using this endpoint.  **Note**: Call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an HTTP 404 response.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CallState)</returns>
@@ -201,8 +201,8 @@ namespace Bandwidth.Standard.Api
         /// Interrupts and redirects a call to a different URL that should return a BXML document.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -216,8 +216,8 @@ namespace Bandwidth.Standard.Api
         /// Interrupts and redirects a call to a different URL that should return a BXML document.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -230,8 +230,8 @@ namespace Bandwidth.Standard.Api
         /// Interrupts and replaces an active call&#39;s BXML document.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -245,8 +245,8 @@ namespace Bandwidth.Standard.Api
         /// Interrupts and replaces an active call&#39;s BXML document.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -376,7 +376,7 @@ namespace Bandwidth.Standard.Api
         /// Create Call Creates an outbound phone call.  All calls are initially queued. Your outbound calls will initiated at a specific dequeueing rate, enabling your application to \&quot;fire and forget\&quot; when creating calls. Queued calls may not be modified until they are dequeued and placed, but may be removed from your queue on demand.  &lt;b&gt;Please note:&lt;/b&gt; Calls submitted to your queue will be placed approximately in order, but exact ordering is not guaranteed.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="createCall">JSON object containing information to create an outbound call</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CreateCallResponse</returns>
@@ -390,7 +390,7 @@ namespace Bandwidth.Standard.Api
         /// Create Call Creates an outbound phone call.  All calls are initially queued. Your outbound calls will initiated at a specific dequeueing rate, enabling your application to \&quot;fire and forget\&quot; when creating calls. Queued calls may not be modified until they are dequeued and placed, but may be removed from your queue on demand.  &lt;b&gt;Please note:&lt;/b&gt; Calls submitted to your queue will be placed approximately in order, but exact ordering is not guaranteed.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="createCall">JSON object containing information to create an outbound call</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CreateCallResponse</returns>
@@ -462,7 +462,7 @@ namespace Bandwidth.Standard.Api
         /// Create Call Creates an outbound phone call.  All calls are initially queued. Your outbound calls will initiated at a specific dequeueing rate, enabling your application to \&quot;fire and forget\&quot; when creating calls. Queued calls may not be modified until they are dequeued and placed, but may be removed from your queue on demand.  &lt;b&gt;Please note:&lt;/b&gt; Calls submitted to your queue will be placed approximately in order, but exact ordering is not guaranteed.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="createCall">JSON object containing information to create an outbound call</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -477,7 +477,7 @@ namespace Bandwidth.Standard.Api
         /// Create Call Creates an outbound phone call.  All calls are initially queued. Your outbound calls will initiated at a specific dequeueing rate, enabling your application to \&quot;fire and forget\&quot; when creating calls. Queued calls may not be modified until they are dequeued and placed, but may be removed from your queue on demand.  &lt;b&gt;Please note:&lt;/b&gt; Calls submitted to your queue will be placed approximately in order, but exact ordering is not guaranteed.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="createCall">JSON object containing information to create an outbound call</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -552,8 +552,8 @@ namespace Bandwidth.Standard.Api
         /// Get Call State Information Retrieve the current state of a specific call. This information is near-realtime, so it may take a few minutes for your call to be accessible using this endpoint.  **Note**: Call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an HTTP 404 response.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CallState</returns>
         public CallState GetCallState(string accountId, string callId, int operationIndex = 0)
@@ -566,8 +566,8 @@ namespace Bandwidth.Standard.Api
         /// Get Call State Information Retrieve the current state of a specific call. This information is near-realtime, so it may take a few minutes for your call to be accessible using this endpoint.  **Note**: Call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an HTTP 404 response.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CallState</returns>
         public Bandwidth.Standard.Client.ApiResponse<CallState> GetCallStateWithHttpInfo(string accountId, string callId, int operationIndex = 0)
@@ -637,8 +637,8 @@ namespace Bandwidth.Standard.Api
         /// Get Call State Information Retrieve the current state of a specific call. This information is near-realtime, so it may take a few minutes for your call to be accessible using this endpoint.  **Note**: Call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an HTTP 404 response.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CallState</returns>
@@ -652,8 +652,8 @@ namespace Bandwidth.Standard.Api
         /// Get Call State Information Retrieve the current state of a specific call. This information is near-realtime, so it may take a few minutes for your call to be accessible using this endpoint.  **Note**: Call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an HTTP 404 response.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CallState)</returns>
@@ -726,8 +726,8 @@ namespace Bandwidth.Standard.Api
         /// Update Call Interrupts and redirects a call to a different URL that should return a BXML document.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -740,8 +740,8 @@ namespace Bandwidth.Standard.Api
         /// Update Call Interrupts and redirects a call to a different URL that should return a BXML document.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -820,8 +820,8 @@ namespace Bandwidth.Standard.Api
         /// Update Call Interrupts and redirects a call to a different URL that should return a BXML document.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -835,8 +835,8 @@ namespace Bandwidth.Standard.Api
         /// Update Call Interrupts and redirects a call to a different URL that should return a BXML document.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -918,8 +918,8 @@ namespace Bandwidth.Standard.Api
         /// Update Call BXML Interrupts and replaces an active call&#39;s BXML document.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
@@ -932,8 +932,8 @@ namespace Bandwidth.Standard.Api
         /// Update Call BXML Interrupts and replaces an active call&#39;s BXML document.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -1012,8 +1012,8 @@ namespace Bandwidth.Standard.Api
         /// Update Call BXML Interrupts and replaces an active call&#39;s BXML document.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1027,8 +1027,8 @@ namespace Bandwidth.Standard.Api
         /// Update Call BXML Interrupts and replaces an active call&#39;s BXML document.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID</param>
-        /// <param name="callId">Programmable Voice API Call ID</param>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="body"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

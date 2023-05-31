@@ -69,7 +69,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="attachmentCount">The number of attachments the message has..</param>
         /// <param name="recipientCount">The number of recipients the message has..</param>
         /// <param name="campaignClass">The campaign class of the message if it has one..</param>
-        public ListMessageItem(string messageId = default(string), string accountId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), MessageTypeEnum? messageType = default(MessageTypeEnum?), int segmentCount = default(int), int errorCode = default(int), string receiveTime = default(string), string carrierName = default(string), int? messageSize = default(int?), int messageLength = default(int), int? attachmentCount = default(int?), int? recipientCount = default(int?), string campaignClass = default(string))
+        /// <param name="campaignId">The campaign ID of the message if it has one..</param>
+        public ListMessageItem(string messageId = default(string), string accountId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), MessageTypeEnum? messageType = default(MessageTypeEnum?), int segmentCount = default(int), int errorCode = default(int), string receiveTime = default(string), string carrierName = default(string), int? messageSize = default(int?), int messageLength = default(int), int? attachmentCount = default(int?), int? recipientCount = default(int?), string campaignClass = default(string), string campaignId = default(string))
         {
             this.MessageId = messageId;
             this.AccountId = accountId;
@@ -87,12 +88,14 @@ namespace Bandwidth.Standard.Model
             this.AttachmentCount = attachmentCount;
             this.RecipientCount = recipientCount;
             this.CampaignClass = campaignClass;
+            this.CampaignId = campaignId;
         }
 
         /// <summary>
         /// The message id
         /// </summary>
         /// <value>The message id</value>
+        /// <example>&quot;1589228074636lm4k2je7j7jklbn2&quot;</example>
         [DataMember(Name = "messageId", EmitDefaultValue = false)]
         public string MessageId { get; set; }
 
@@ -100,6 +103,7 @@ namespace Bandwidth.Standard.Model
         /// The account id associated with this message.
         /// </summary>
         /// <value>The account id associated with this message.</value>
+        /// <example>&quot;9900000&quot;</example>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 
@@ -107,6 +111,7 @@ namespace Bandwidth.Standard.Model
         /// The source phone number of the message.
         /// </summary>
         /// <value>The source phone number of the message.</value>
+        /// <example>&quot;+15554443333&quot;</example>
         [DataMember(Name = "sourceTn", EmitDefaultValue = false)]
         public string SourceTn { get; set; }
 
@@ -114,6 +119,7 @@ namespace Bandwidth.Standard.Model
         /// The recipient phone number of the message.
         /// </summary>
         /// <value>The recipient phone number of the message.</value>
+        /// <example>&quot;+15554442222&quot;</example>
         [DataMember(Name = "destinationTn", EmitDefaultValue = false)]
         public string DestinationTn { get; set; }
 
@@ -121,6 +127,7 @@ namespace Bandwidth.Standard.Model
         /// The number of segments the message was sent as.
         /// </summary>
         /// <value>The number of segments the message was sent as.</value>
+        /// <example>1</example>
         [DataMember(Name = "segmentCount", EmitDefaultValue = false)]
         public int SegmentCount { get; set; }
 
@@ -128,6 +135,7 @@ namespace Bandwidth.Standard.Model
         /// The numeric error code of the message.
         /// </summary>
         /// <value>The numeric error code of the message.</value>
+        /// <example>9902</example>
         [DataMember(Name = "errorCode", EmitDefaultValue = false)]
         public int ErrorCode { get; set; }
 
@@ -135,6 +143,7 @@ namespace Bandwidth.Standard.Model
         /// The ISO 8601 datetime of the message.
         /// </summary>
         /// <value>The ISO 8601 datetime of the message.</value>
+        /// <example>&quot;2020-04-07T14:03:07.000Z&quot;</example>
         [DataMember(Name = "receiveTime", EmitDefaultValue = false)]
         public string ReceiveTime { get; set; }
 
@@ -142,6 +151,7 @@ namespace Bandwidth.Standard.Model
         /// The name of the carrier. Not currently supported for MMS coming soon.
         /// </summary>
         /// <value>The name of the carrier. Not currently supported for MMS coming soon.</value>
+        /// <example>&quot;other&quot;</example>
         [DataMember(Name = "carrierName", EmitDefaultValue = true)]
         public string CarrierName { get; set; }
 
@@ -149,6 +159,7 @@ namespace Bandwidth.Standard.Model
         /// The size of the message including message content and headers.
         /// </summary>
         /// <value>The size of the message including message content and headers.</value>
+        /// <example>27</example>
         [DataMember(Name = "messageSize", EmitDefaultValue = true)]
         public int? MessageSize { get; set; }
 
@@ -156,6 +167,7 @@ namespace Bandwidth.Standard.Model
         /// The length of the message content.
         /// </summary>
         /// <value>The length of the message content.</value>
+        /// <example>18</example>
         [DataMember(Name = "messageLength", EmitDefaultValue = false)]
         public int MessageLength { get; set; }
 
@@ -163,6 +175,7 @@ namespace Bandwidth.Standard.Model
         /// The number of attachments the message has.
         /// </summary>
         /// <value>The number of attachments the message has.</value>
+        /// <example>1</example>
         [DataMember(Name = "attachmentCount", EmitDefaultValue = true)]
         public int? AttachmentCount { get; set; }
 
@@ -170,6 +183,7 @@ namespace Bandwidth.Standard.Model
         /// The number of recipients the message has.
         /// </summary>
         /// <value>The number of recipients the message has.</value>
+        /// <example>1</example>
         [DataMember(Name = "recipientCount", EmitDefaultValue = true)]
         public int? RecipientCount { get; set; }
 
@@ -177,8 +191,17 @@ namespace Bandwidth.Standard.Model
         /// The campaign class of the message if it has one.
         /// </summary>
         /// <value>The campaign class of the message if it has one.</value>
+        /// <example>&quot;T&quot;</example>
         [DataMember(Name = "campaignClass", EmitDefaultValue = true)]
         public string CampaignClass { get; set; }
+
+        /// <summary>
+        /// The campaign ID of the message if it has one.
+        /// </summary>
+        /// <value>The campaign ID of the message if it has one.</value>
+        /// <example>&quot;CJEUMDK&quot;</example>
+        [DataMember(Name = "campaignId", EmitDefaultValue = true)]
+        public string CampaignId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -204,6 +227,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  AttachmentCount: ").Append(AttachmentCount).Append("\n");
             sb.Append("  RecipientCount: ").Append(RecipientCount).Append("\n");
             sb.Append("  CampaignClass: ").Append(CampaignClass).Append("\n");
+            sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -312,6 +336,11 @@ namespace Bandwidth.Standard.Model
                     this.CampaignClass == input.CampaignClass ||
                     (this.CampaignClass != null &&
                     this.CampaignClass.Equals(input.CampaignClass))
+                ) && 
+                (
+                    this.CampaignId == input.CampaignId ||
+                    (this.CampaignId != null &&
+                    this.CampaignId.Equals(input.CampaignId))
                 );
         }
 
@@ -370,6 +399,10 @@ namespace Bandwidth.Standard.Model
                 {
                     hashCode = (hashCode * 59) + this.CampaignClass.GetHashCode();
                 }
+                if (this.CampaignId != null)
+                {
+                    hashCode = (hashCode * 59) + this.CampaignId.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -379,7 +412,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

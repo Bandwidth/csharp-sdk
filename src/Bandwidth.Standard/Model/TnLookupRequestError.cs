@@ -45,6 +45,7 @@ namespace Bandwidth.Standard.Model
         /// A description of what validation error occurred.
         /// </summary>
         /// <value>A description of what validation error occurred.</value>
+        /// <example>&quot;example error message&quot;</example>
         [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 
@@ -121,7 +122,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

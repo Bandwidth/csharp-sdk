@@ -9,7 +9,7 @@ All URIs are relative to *http://localhost*
 | [**ListMedia**](MediaApi.md#listmedia) | **GET** /users/{accountId}/media | List Media |
 | [**UploadMedia**](MediaApi.md#uploadmedia) | **PUT** /users/{accountId}/media/{mediaId} | Upload Media |
 
-<a name="deletemedia"></a>
+<a id="deletemedia"></a>
 # **DeleteMedia**
 > void DeleteMedia (string accountId, string mediaId)
 
@@ -109,7 +109,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getmedia"></a>
+<a id="getmedia"></a>
 # **GetMedia**
 > System.IO.Stream GetMedia (string accountId, string mediaId)
 
@@ -213,7 +213,7 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listmedia"></a>
+<a id="listmedia"></a>
 # **ListMedia**
 > List&lt;Media&gt; ListMedia (string accountId, string continuationToken = null)
 
@@ -317,13 +317,13 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="uploadmedia"></a>
+<a id="uploadmedia"></a>
 # **UploadMedia**
 > void UploadMedia (string accountId, string mediaId, System.IO.Stream body, string contentType = null, string cacheControl = null)
 
 Upload Media
 
-Upload a file. You may add headers to the request in order to provide some control to your media file.  A list of supported media types can be found [here](https://support.bandwidth.com/hc/en-us/articles/360014128994-What-MMS-file-types-are-supported-).
+Upload a file. You may add headers to the request in order to provide some control to your media file.  If a file is uploaded with the same name as a file that already exists under this account, the previous file will be overwritten.  A list of supported media types can be found [here](https://support.bandwidth.com/hc/en-us/articles/360014128994-What-MMS-file-types-are-supported-).
 
 ### Example
 ```csharp

@@ -1,5 +1,5 @@
 # Bandwidth.Standard.Model.RedirectMethodEnum
-The HTTP method to use for the request to `redirectUrl`. GET or POST. Default value is POST.<br><br>Not allowed if `state` is `completed`
+The HTTP method to use for the request to `redirectUrl`. GET or POST. Default value is POST.<br><br>Not allowed if `state` is `completed`.
 
 ## Properties
 

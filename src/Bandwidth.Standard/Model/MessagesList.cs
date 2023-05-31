@@ -49,6 +49,7 @@ namespace Bandwidth.Standard.Model
         /// Total number of messages matched by the search.
         /// </summary>
         /// <value>Total number of messages matched by the search.</value>
+        /// <example>100</example>
         [DataMember(Name = "totalCount", EmitDefaultValue = false)]
         public int TotalCount { get; set; }
 
@@ -154,7 +155,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -47,6 +47,7 @@ namespace Bandwidth.Standard.Model
         /// The number of calls currently enqueued.
         /// </summary>
         /// <value>The number of calls currently enqueued.</value>
+        /// <example>0</example>
         [DataMember(Name = "currentCallQueueSize", EmitDefaultValue = false)]
         public int CurrentCallQueueSize { get; set; }
 
@@ -54,6 +55,7 @@ namespace Bandwidth.Standard.Model
         /// The maximum size of the queue before outgoing calls start being rejected.
         /// </summary>
         /// <value>The maximum size of the queue before outgoing calls start being rejected.</value>
+        /// <example>900</example>
         [DataMember(Name = "maxCallQueueSize", EmitDefaultValue = false)]
         public int MaxCallQueueSize { get; set; }
 
@@ -132,7 +134,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

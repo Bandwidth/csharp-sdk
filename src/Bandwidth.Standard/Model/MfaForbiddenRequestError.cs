@@ -45,6 +45,7 @@ namespace Bandwidth.Standard.Model
         /// The message containing the reason behind the request being forbidden.
         /// </summary>
         /// <value>The message containing the reason behind the request being forbidden.</value>
+        /// <example>&quot;Missing Authentication Token&quot;</example>
         [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 
@@ -121,7 +122,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

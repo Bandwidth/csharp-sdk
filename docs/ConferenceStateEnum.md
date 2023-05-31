@@ -1,5 +1,5 @@
 # Bandwidth.Standard.Model.ConferenceStateEnum
-Setting the conference state to `completed` ends the conference and ejects all members
+Setting the conference state to `completed` ends the conference and ejects all members.
 
 ## Properties
 

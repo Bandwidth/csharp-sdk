@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **Text** | **string** | The contents of the message. | [optional] 
 **Tag** | **string** | The custom string set by the user. | [optional] 
 **Priority** | **PriorityEnum** |  | [optional] 
+**Expiration** | **DateTime** | The expiration date-time set by the user. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -14,7 +14,7 @@ All URIs are relative to *http://localhost*
 | [**UpdateConferenceBxml**](ConferencesApi.md#updateconferencebxml) | **PUT** /accounts/{accountId}/conferences/{conferenceId}/bxml | Update Conference BXML |
 | [**UpdateConferenceMember**](ConferencesApi.md#updateconferencemember) | **PUT** /accounts/{accountId}/conferences/{conferenceId}/members/{memberId} | Update Conference Member |
 
-<a name="downloadconferencerecording"></a>
+<a id="downloadconferencerecording"></a>
 # **DownloadConferenceRecording**
 > System.IO.Stream DownloadConferenceRecording (string accountId, string conferenceId, string recordingId)
 
@@ -43,9 +43,9 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new ConferencesApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID
-            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID.
+            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID.
 
             try
             {
@@ -88,9 +88,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **conferenceId** | **string** | Programmable Voice API Conference ID |  |
-| **recordingId** | **string** | Programmable Voice API Recording ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **conferenceId** | **string** | Programmable Voice API Conference ID. |  |
+| **recordingId** | **string** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -116,12 +116,12 @@ catch (ApiException e)
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getconference"></a>
+<a id="getconference"></a>
 # **GetConference**
 > Conference GetConference (string accountId, string conferenceId)
 
@@ -150,8 +150,8 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new ConferencesApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID.
 
             try
             {
@@ -194,8 +194,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **conferenceId** | **string** | Programmable Voice API Conference ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **conferenceId** | **string** | Programmable Voice API Conference ID. |  |
 
 ### Return type
 
@@ -221,12 +221,12 @@ catch (ApiException e)
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getconferencemember"></a>
+<a id="getconferencemember"></a>
 # **GetConferenceMember**
 > ConferenceMember GetConferenceMember (string accountId, string conferenceId, string memberId)
 
@@ -255,9 +255,9 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new ConferencesApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID
-            var memberId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Conference Member ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID.
+            var memberId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Conference Member ID.
 
             try
             {
@@ -300,9 +300,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **conferenceId** | **string** | Programmable Voice API Conference ID |  |
-| **memberId** | **string** | Programmable Voice API Conference Member ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **conferenceId** | **string** | Programmable Voice API Conference ID. |  |
+| **memberId** | **string** | Programmable Voice API Conference Member ID. |  |
 
 ### Return type
 
@@ -328,12 +328,12 @@ catch (ApiException e)
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getconferencerecording"></a>
+<a id="getconferencerecording"></a>
 # **GetConferenceRecording**
 > ConferenceRecordingMetadata GetConferenceRecording (string accountId, string conferenceId, string recordingId)
 
@@ -362,9 +362,9 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new ConferencesApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID
-            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID.
+            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID.
 
             try
             {
@@ -407,9 +407,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **conferenceId** | **string** | Programmable Voice API Conference ID |  |
-| **recordingId** | **string** | Programmable Voice API Recording ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **conferenceId** | **string** | Programmable Voice API Conference ID. |  |
+| **recordingId** | **string** | Programmable Voice API Recording ID. |  |
 
 ### Return type
 
@@ -435,12 +435,12 @@ catch (ApiException e)
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listconferencerecordings"></a>
+<a id="listconferencerecordings"></a>
 # **ListConferenceRecordings**
 > List&lt;ConferenceRecordingMetadata&gt; ListConferenceRecordings (string accountId, string conferenceId)
 
@@ -469,8 +469,8 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new ConferencesApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID.
 
             try
             {
@@ -513,8 +513,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **conferenceId** | **string** | Programmable Voice API Conference ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **conferenceId** | **string** | Programmable Voice API Conference ID. |  |
 
 ### Return type
 
@@ -540,12 +540,12 @@ catch (ApiException e)
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listconferences"></a>
+<a id="listconferences"></a>
 # **ListConferences**
 > List&lt;Conference&gt; ListConferences (string accountId, string name = null, string minCreatedTime = null, string maxCreatedTime = null, int? pageSize = null, string pageToken = null)
 
@@ -574,7 +574,7 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new ConferencesApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
             var name = my-custom-name;  // string | Filter results by the `name` field. (optional) 
             var minCreatedTime = 2022-06-21T19:13:21Z;  // string | Filter results to conferences which have a `createdTime` after or at `minCreatedTime` (in ISO8601 format). (optional) 
             var maxCreatedTime = 2022-06-21T19:13:21Z;  // string | Filter results to conferences which have a `createdTime` before or at `maxCreatedTime` (in ISO8601 format). (optional) 
@@ -622,7 +622,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
 | **name** | **string** | Filter results by the &#x60;name&#x60; field. | [optional]  |
 | **minCreatedTime** | **string** | Filter results to conferences which have a &#x60;createdTime&#x60; after or at &#x60;minCreatedTime&#x60; (in ISO8601 format). | [optional]  |
 | **maxCreatedTime** | **string** | Filter results to conferences which have a &#x60;createdTime&#x60; before or at &#x60;maxCreatedTime&#x60; (in ISO8601 format). | [optional]  |
@@ -653,12 +653,12 @@ catch (ApiException e)
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updateconference"></a>
+<a id="updateconference"></a>
 # **UpdateConference**
 > void UpdateConference (string accountId, string conferenceId, UpdateConference updateConference)
 
@@ -687,8 +687,8 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new ConferencesApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID.
             var updateConference = new UpdateConference(); // UpdateConference | 
 
             try
@@ -728,8 +728,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **conferenceId** | **string** | Programmable Voice API Conference ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **conferenceId** | **string** | Programmable Voice API Conference ID. |  |
 | **updateConference** | [**UpdateConference**](UpdateConference.md) |  |  |
 
 ### Return type
@@ -749,19 +749,19 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Conference successfully modified |  -  |
+| **204** | Conference was successfully modified. |  -  |
 | **400** | Bad Request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updateconferencebxml"></a>
+<a id="updateconferencebxml"></a>
 # **UpdateConferenceBxml**
 > void UpdateConferenceBxml (string accountId, string conferenceId, string body)
 
@@ -790,8 +790,8 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new ConferencesApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID.
             var body = <?xml version="1.0" encoding="UTF-8"?>
 <Bxml>
     <StopRecording/>
@@ -834,8 +834,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **conferenceId** | **string** | Programmable Voice API Conference ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **conferenceId** | **string** | Programmable Voice API Conference ID. |  |
 | **body** | **string** |  |  |
 
 ### Return type
@@ -855,19 +855,19 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Conference successfully modified |  -  |
+| **204** | Conference successfully modified. |  -  |
 | **400** | Bad Request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updateconferencemember"></a>
+<a id="updateconferencemember"></a>
 # **UpdateConferenceMember**
 > void UpdateConferenceMember (string accountId, string conferenceId, string memberId, UpdateConferenceMember updateConferenceMember)
 
@@ -896,9 +896,9 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new ConferencesApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID
-            var memberId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Conference Member ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var conferenceId = conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9;  // string | Programmable Voice API Conference ID.
+            var memberId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Conference Member ID.
             var updateConferenceMember = new UpdateConferenceMember(); // UpdateConferenceMember | 
 
             try
@@ -938,9 +938,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **conferenceId** | **string** | Programmable Voice API Conference ID |  |
-| **memberId** | **string** | Programmable Voice API Conference Member ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **conferenceId** | **string** | Programmable Voice API Conference ID. |  |
+| **memberId** | **string** | Programmable Voice API Conference Member ID. |  |
 | **updateConferenceMember** | [**UpdateConferenceMember**](UpdateConferenceMember.md) |  |  |
 
 ### Return type
@@ -960,14 +960,14 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Conference member successfully modified |  -  |
+| **204** | Conference member was successfully modified. |  -  |
 | **400** | Bad Request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

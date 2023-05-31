@@ -7,7 +7,7 @@ All URIs are relative to *http://localhost*
 | [**CreateLookup**](PhoneNumberLookupApi.md#createlookup) | **POST** /accounts/{accountId}/tnlookup | Create Lookup |
 | [**GetLookupStatus**](PhoneNumberLookupApi.md#getlookupstatus) | **GET** /accounts/{accountId}/tnlookup/{requestId} | Get Lookup Request Status |
 
-<a name="createlookup"></a>
+<a id="createlookup"></a>
 # **CreateLookup**
 > CreateLookupResponse CreateLookup (string accountId, LookupRequest lookupRequest)
 
@@ -110,7 +110,7 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getlookupstatus"></a>
+<a id="getlookupstatus"></a>
 # **GetLookupStatus**
 > LookupStatus GetLookupStatus (string accountId, string requestId)
 

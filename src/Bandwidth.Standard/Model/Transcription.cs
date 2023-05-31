@@ -47,6 +47,7 @@ namespace Bandwidth.Standard.Model
         /// The transcribed text
         /// </summary>
         /// <value>The transcribed text</value>
+        /// <example>&quot;Nice talking to you, friend!&quot;</example>
         [DataMember(Name = "text", EmitDefaultValue = false)]
         public string Text { get; set; }
 
@@ -54,6 +55,7 @@ namespace Bandwidth.Standard.Model
         /// The confidence on the recognized content, ranging from &#x60;0.0&#x60; to &#x60;1.0&#x60; with &#x60;1.0&#x60; being the highest confidence.
         /// </summary>
         /// <value>The confidence on the recognized content, ranging from &#x60;0.0&#x60; to &#x60;1.0&#x60; with &#x60;1.0&#x60; being the highest confidence.</value>
+        /// <example>0.9</example>
         [DataMember(Name = "confidence", EmitDefaultValue = false)]
         public double Confidence { get; set; }
 
@@ -136,7 +138,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **AttachmentCount** | **int?** | The number of attachments the message has. | [optional] 
 **RecipientCount** | **int?** | The number of recipients the message has. | [optional] 
 **CampaignClass** | **string** | The campaign class of the message if it has one. | [optional] 
+**CampaignId** | **string** | The campaign ID of the message if it has one. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

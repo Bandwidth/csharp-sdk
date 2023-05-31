@@ -45,6 +45,7 @@ namespace Bandwidth.Standard.Model
         /// Programmable Voice API Call ID.
         /// </summary>
         /// <value>Programmable Voice API Call ID.</value>
+        /// <example>&quot;c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85&quot;</example>
         [DataMember(Name = "callId", EmitDefaultValue = false)]
         public string CallId { get; set; }
 
@@ -121,7 +122,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

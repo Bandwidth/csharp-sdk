@@ -50,11 +50,11 @@ namespace Bandwidth.Standard.Model
         /// <param name="to">The phone number(s) the message should be sent to in E164 format. (required).</param>
         /// <param name="from">One of your telephone numbers the message should come from in E164 format. (required).</param>
         /// <param name="text">The contents of the text message. Must be 2048 characters or less..</param>
-        /// <param name="media">A list of URLs to include as media attachments as part of the message..</param>
+        /// <param name="media">A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters..</param>
         /// <param name="tag">A custom string that will be included in callback events of the message. Max 1024 characters..</param>
         /// <param name="priority">priority.</param>
-        /// <param name="expiration">A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00..</param>
-        public MessageRequest(string applicationId = default(string), List<string> to = default(List<string>), string from = default(string), string text = default(string), List<string> media = default(List<string>), string tag = default(string), PriorityEnum? priority = default(PriorityEnum?), string expiration = default(string))
+        /// <param name="expiration">A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS..</param>
+        public MessageRequest(string applicationId = default(string), List<string> to = default(List<string>), string from = default(string), string text = default(string), List<string> media = default(List<string>), string tag = default(string), PriorityEnum? priority = default(PriorityEnum?), DateTime expiration = default(DateTime))
         {
             // to ensure "applicationId" is required (not null)
             if (applicationId == null)
@@ -85,6 +85,7 @@ namespace Bandwidth.Standard.Model
         /// The ID of the Application your from number is associated with in the Bandwidth Phone Number Dashboard.
         /// </summary>
         /// <value>The ID of the Application your from number is associated with in the Bandwidth Phone Number Dashboard.</value>
+        /// <example>&quot;93de2206-9669-4e07-948d-329f4b722ee2&quot;</example>
         [DataMember(Name = "applicationId", IsRequired = true, EmitDefaultValue = true)]
         public string ApplicationId { get; set; }
 
@@ -99,6 +100,7 @@ namespace Bandwidth.Standard.Model
         /// One of your telephone numbers the message should come from in E164 format.
         /// </summary>
         /// <value>One of your telephone numbers the message should come from in E164 format.</value>
+        /// <example>&quot;+15551113333&quot;</example>
         [DataMember(Name = "from", IsRequired = true, EmitDefaultValue = true)]
         public string From { get; set; }
 
@@ -106,13 +108,14 @@ namespace Bandwidth.Standard.Model
         /// The contents of the text message. Must be 2048 characters or less.
         /// </summary>
         /// <value>The contents of the text message. Must be 2048 characters or less.</value>
+        /// <example>&quot;Hello world&quot;</example>
         [DataMember(Name = "text", EmitDefaultValue = false)]
         public string Text { get; set; }
 
         /// <summary>
-        /// A list of URLs to include as media attachments as part of the message.
+        /// A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters.
         /// </summary>
-        /// <value>A list of URLs to include as media attachments as part of the message.</value>
+        /// <value>A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters.</value>
         [DataMember(Name = "media", EmitDefaultValue = false)]
         public List<string> Media { get; set; }
 
@@ -120,15 +123,17 @@ namespace Bandwidth.Standard.Model
         /// A custom string that will be included in callback events of the message. Max 1024 characters.
         /// </summary>
         /// <value>A custom string that will be included in callback events of the message. Max 1024 characters.</value>
+        /// <example>&quot;custom string&quot;</example>
         [DataMember(Name = "tag", EmitDefaultValue = false)]
         public string Tag { get; set; }
 
         /// <summary>
-        /// A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.
+        /// A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS.
         /// </summary>
-        /// <value>A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.</value>
+        /// <value>A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS.</value>
+        /// <example>&quot;2021-02-01T11:29:18-05:00&quot;</example>
         [DataMember(Name = "expiration", EmitDefaultValue = false)]
-        public string Expiration { get; set; }
+        public DateTime Expiration { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -271,7 +276,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Text (string) maxLength
             if (this.Text != null && this.Text.Length > 2048)

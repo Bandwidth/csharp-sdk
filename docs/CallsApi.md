@@ -9,7 +9,7 @@ All URIs are relative to *http://localhost*
 | [**UpdateCall**](CallsApi.md#updatecall) | **POST** /accounts/{accountId}/calls/{callId} | Update Call |
 | [**UpdateCallBxml**](CallsApi.md#updatecallbxml) | **PUT** /accounts/{accountId}/calls/{callId}/bxml | Update Call BXML |
 
-<a name="createcall"></a>
+<a id="createcall"></a>
 # **CreateCall**
 > CreateCallResponse CreateCall (string accountId, CreateCall createCall)
 
@@ -38,7 +38,7 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new CallsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
             var createCall = new CreateCall(); // CreateCall | JSON object containing information to create an outbound call
 
             try
@@ -82,7 +82,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
 | **createCall** | [**CreateCall**](CreateCall.md) | JSON object containing information to create an outbound call |  |
 
 ### Return type
@@ -109,12 +109,12 @@ catch (ApiException e)
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getcallstate"></a>
+<a id="getcallstate"></a>
 # **GetCallState**
 > CallState GetCallState (string accountId, string callId)
 
@@ -143,8 +143,8 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new CallsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID.
 
             try
             {
@@ -187,8 +187,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **callId** | **string** | Programmable Voice API Call ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **callId** | **string** | Programmable Voice API Call ID. |  |
 
 ### Return type
 
@@ -214,12 +214,12 @@ catch (ApiException e)
 | **404** | Not Found |  -  |
 | **405** | Method Not Allowed |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updatecall"></a>
+<a id="updatecall"></a>
 # **UpdateCall**
 > void UpdateCall (string accountId, string callId, UpdateCall updateCall)
 
@@ -248,8 +248,8 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new CallsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID.
             var updateCall = new UpdateCall(); // UpdateCall | JSON object containing information to redirect an existing call to a new BXML document
 
             try
@@ -289,8 +289,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **callId** | **string** | Programmable Voice API Call ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **callId** | **string** | Programmable Voice API Call ID. |  |
 | **updateCall** | [**UpdateCall**](UpdateCall.md) | JSON object containing information to redirect an existing call to a new BXML document |  |
 
 ### Return type
@@ -310,7 +310,7 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Call Successfully Modified |  -  |
+| **200** | Call was successfully modified. |  -  |
 | **400** | Bad Request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
@@ -318,12 +318,12 @@ void (empty response body)
 | **405** | Method Not Allowed |  -  |
 | **409** | Conflict |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updatecallbxml"></a>
+<a id="updatecallbxml"></a>
 # **UpdateCallBxml**
 > void UpdateCallBxml (string accountId, string callId, string body)
 
@@ -352,8 +352,8 @@ namespace Example
             config.Password = "YOUR_PASSWORD";
 
             var apiInstance = new CallsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID
-            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID.
             var body = <?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <Bxml>
   <SpeakSentence>This is a test sentence.</SpeakSentence>
@@ -396,8 +396,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID |  |
-| **callId** | **string** | Programmable Voice API Call ID |  |
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **callId** | **string** | Programmable Voice API Call ID. |  |
 | **body** | **string** |  |  |
 
 ### Return type
@@ -417,7 +417,7 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **204** | Call BXML Successfully Replaced |  -  |
+| **204** | Call BXML was successfully replaced. |  -  |
 | **400** | Bad Request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
@@ -425,7 +425,7 @@ void (empty response body)
 | **405** | Method Not Allowed |  -  |
 | **409** | Conflict |  -  |
 | **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again <br>  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
 | **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

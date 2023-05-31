@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **RedirectMethod** | **RedirectMethodEnum** |  | [optional] 
 **Username** | **string** | Basic auth username. | [optional] 
 **Password** | **string** | Basic auth password. | [optional] 
-**RedirectFallbackUrl** | **string** | A fallback url which, if provided, will be used to retry the redirect callback delivery in case &#x60;redirectUrl&#x60; fails to respond | [optional] 
+**RedirectFallbackUrl** | **string** | A fallback url which, if provided, will be used to retry the redirect callback delivery in case &#x60;redirectUrl&#x60; fails to respond. | [optional] 
 **RedirectFallbackMethod** | **RedirectMethodEnum** |  | [optional] 
 **FallbackUsername** | **string** | Basic auth username. | [optional] 
 **FallbackPassword** | **string** | Basic auth password. | [optional] 
