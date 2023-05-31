@@ -647,7 +647,7 @@ catch (ApiException e)
 
 <a id="listaccountcallrecordings"></a>
 # **ListAccountCallRecordings**
-> List&lt;CallRecordingMetadata&gt; ListAccountCallRecordings (string accountId, string to = null, string from = null, string minStartTime = null, string maxStartTime = null)
+> List&lt;CallRecordingMetadata&gt; ListAccountCallRecordings (string accountId, string? to = null, string? from = null, string? minStartTime = null, string? maxStartTime = null)
 
 Get Call Recordings
 
@@ -675,10 +675,10 @@ namespace Example
 
             var apiInstance = new RecordingsApi(config);
             var accountId = 9900000;  // string | Your Bandwidth Account ID.
-            var to = %2b19195551234;  // string | Filter results by the `to` field. (optional) 
-            var from = %2b19195554321;  // string | Filter results by the `from` field. (optional) 
-            var minStartTime = 2022-06-21T19:13:21Z;  // string | Filter results to recordings which have a `startTime` after or including `minStartTime` (in ISO8601 format). (optional) 
-            var maxStartTime = 2022-06-21T19:13:21Z;  // string | Filter results to recordings which have a `startTime` before `maxStartTime` (in ISO8601 format). (optional) 
+            var to = %2b19195551234;  // string? | Filter results by the `to` field. (optional) 
+            var from = %2b19195554321;  // string? | Filter results by the `from` field. (optional) 
+            var minStartTime = 2022-06-21T19:13:21Z;  // string? | Filter results to recordings which have a `startTime` after or including `minStartTime` (in ISO8601 format). (optional) 
+            var maxStartTime = 2022-06-21T19:13:21Z;  // string? | Filter results to recordings which have a `startTime` before `maxStartTime` (in ISO8601 format). (optional) 
 
             try
             {
@@ -722,10 +722,10 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | Your Bandwidth Account ID. |  |
-| **to** | **string** | Filter results by the &#x60;to&#x60; field. | [optional]  |
-| **from** | **string** | Filter results by the &#x60;from&#x60; field. | [optional]  |
-| **minStartTime** | **string** | Filter results to recordings which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). | [optional]  |
-| **maxStartTime** | **string** | Filter results to recordings which have a &#x60;startTime&#x60; before &#x60;maxStartTime&#x60; (in ISO8601 format). | [optional]  |
+| **to** | **string?** | Filter results by the &#x60;to&#x60; field. | [optional]  |
+| **from** | **string?** | Filter results by the &#x60;from&#x60; field. | [optional]  |
+| **minStartTime** | **string?** | Filter results to recordings which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). | [optional]  |
+| **maxStartTime** | **string?** | Filter results to recordings which have a &#x60;startTime&#x60; before &#x60;maxStartTime&#x60; (in ISO8601 format). | [optional]  |
 
 ### Return type
 

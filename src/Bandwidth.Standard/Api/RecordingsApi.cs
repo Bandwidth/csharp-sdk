@@ -203,7 +203,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="maxStartTime">Filter results to recordings which have a &#x60;startTime&#x60; before &#x60;maxStartTime&#x60; (in ISO8601 format). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;CallRecordingMetadata&gt;</returns>
-        List<CallRecordingMetadata> ListAccountCallRecordings(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), int operationIndex = 0);
+        List<CallRecordingMetadata> ListAccountCallRecordings(string accountId, string? to = default(string?), string? from = default(string?), string? minStartTime = default(string?), string? maxStartTime = default(string?), int operationIndex = 0);
 
         /// <summary>
         /// Get Call Recordings
@@ -219,7 +219,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="maxStartTime">Filter results to recordings which have a &#x60;startTime&#x60; before &#x60;maxStartTime&#x60; (in ISO8601 format). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;CallRecordingMetadata&gt;</returns>
-        ApiResponse<List<CallRecordingMetadata>> ListAccountCallRecordingsWithHttpInfo(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), int operationIndex = 0);
+        ApiResponse<List<CallRecordingMetadata>> ListAccountCallRecordingsWithHttpInfo(string accountId, string? to = default(string?), string? from = default(string?), string? minStartTime = default(string?), string? maxStartTime = default(string?), int operationIndex = 0);
         /// <summary>
         /// List Call Recordings
         /// </summary>
@@ -499,7 +499,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;CallRecordingMetadata&gt;</returns>
-        System.Threading.Tasks.Task<List<CallRecordingMetadata>> ListAccountCallRecordingsAsync(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<CallRecordingMetadata>> ListAccountCallRecordingsAsync(string accountId, string? to = default(string?), string? from = default(string?), string? minStartTime = default(string?), string? maxStartTime = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Get Call Recordings
@@ -516,7 +516,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;CallRecordingMetadata&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<CallRecordingMetadata>>> ListAccountCallRecordingsWithHttpInfoAsync(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<CallRecordingMetadata>>> ListAccountCallRecordingsWithHttpInfoAsync(string accountId, string? to = default(string?), string? from = default(string?), string? minStartTime = default(string?), string? maxStartTime = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// List Call Recordings
         /// </summary>
@@ -1885,7 +1885,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="maxStartTime">Filter results to recordings which have a &#x60;startTime&#x60; before &#x60;maxStartTime&#x60; (in ISO8601 format). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;CallRecordingMetadata&gt;</returns>
-        public List<CallRecordingMetadata> ListAccountCallRecordings(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), int operationIndex = 0)
+        public List<CallRecordingMetadata> ListAccountCallRecordings(string accountId, string? to = default(string?), string? from = default(string?), string? minStartTime = default(string?), string? maxStartTime = default(string?), int operationIndex = 0)
         {
             Bandwidth.Standard.Client.ApiResponse<List<CallRecordingMetadata>> localVarResponse = ListAccountCallRecordingsWithHttpInfo(accountId, to, from, minStartTime, maxStartTime);
             return localVarResponse.Data;
@@ -1902,7 +1902,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="maxStartTime">Filter results to recordings which have a &#x60;startTime&#x60; before &#x60;maxStartTime&#x60; (in ISO8601 format). (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;CallRecordingMetadata&gt;</returns>
-        public Bandwidth.Standard.Client.ApiResponse<List<CallRecordingMetadata>> ListAccountCallRecordingsWithHttpInfo(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), int operationIndex = 0)
+        public Bandwidth.Standard.Client.ApiResponse<List<CallRecordingMetadata>> ListAccountCallRecordingsWithHttpInfo(string accountId, string? to = default(string?), string? from = default(string?), string? minStartTime = default(string?), string? maxStartTime = default(string?), int operationIndex = 0)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1986,7 +1986,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;CallRecordingMetadata&gt;</returns>
-        public async System.Threading.Tasks.Task<List<CallRecordingMetadata>> ListAccountCallRecordingsAsync(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<CallRecordingMetadata>> ListAccountCallRecordingsAsync(string accountId, string? to = default(string?), string? from = default(string?), string? minStartTime = default(string?), string? maxStartTime = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Bandwidth.Standard.Client.ApiResponse<List<CallRecordingMetadata>> localVarResponse = await ListAccountCallRecordingsWithHttpInfoAsync(accountId, to, from, minStartTime, maxStartTime, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -2004,7 +2004,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;CallRecordingMetadata&gt;)</returns>
-        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<List<CallRecordingMetadata>>> ListAccountCallRecordingsWithHttpInfoAsync(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<List<CallRecordingMetadata>>> ListAccountCallRecordingsWithHttpInfoAsync(string accountId, string? to = default(string?), string? from = default(string?), string? minStartTime = default(string?), string? maxStartTime = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)

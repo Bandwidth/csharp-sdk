@@ -215,7 +215,7 @@ catch (ApiException e)
 
 <a id="listmedia"></a>
 # **ListMedia**
-> List&lt;Media&gt; ListMedia (string accountId, string continuationToken = null)
+> List&lt;Media&gt; ListMedia (string accountId, string? continuationToken = null)
 
 List Media
 
@@ -243,7 +243,7 @@ namespace Example
 
             var apiInstance = new MediaApi(config);
             var accountId = 9900000;  // string | Your Bandwidth Account ID.
-            var continuationToken = 1XEi2tsFtLo1JbtLwETnM1ZJ+PqAa8w6ENvC5QKvwyrCDYII663Gy5M4s40owR1tjkuWUif6qbWvFtQJR5/ipqbUnfAqL254LKNlPy6tATCzioKSuHuOqgzloDkSwRtX0LtcL2otHS69hK343m+SjdL+vlj71tT39;  // string | Continuation token used to retrieve subsequent media. (optional) 
+            var continuationToken = 1XEi2tsFtLo1JbtLwETnM1ZJ+PqAa8w6ENvC5QKvwyrCDYII663Gy5M4s40owR1tjkuWUif6qbWvFtQJR5/ipqbUnfAqL254LKNlPy6tATCzioKSuHuOqgzloDkSwRtX0LtcL2otHS69hK343m+SjdL+vlj71tT39;  // string? | Continuation token used to retrieve subsequent media. (optional) 
 
             try
             {
@@ -287,7 +287,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | Your Bandwidth Account ID. |  |
-| **continuationToken** | **string** | Continuation token used to retrieve subsequent media. | [optional]  |
+| **continuationToken** | **string?** | Continuation token used to retrieve subsequent media. | [optional]  |
 
 ### Return type
 
@@ -319,7 +319,7 @@ catch (ApiException e)
 
 <a id="uploadmedia"></a>
 # **UploadMedia**
-> void UploadMedia (string accountId, string mediaId, System.IO.Stream body, string contentType = null, string cacheControl = null)
+> void UploadMedia (string accountId, string mediaId, System.IO.Stream body, string? contentType = null, string? cacheControl = null)
 
 Upload Media
 
@@ -349,8 +349,8 @@ namespace Example
             var accountId = 9900000;  // string | Your Bandwidth Account ID.
             var mediaId = 14762070468292kw2fuqty55yp2b2/0/bw.png;  // string | Media ID to retrieve.
             var body = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream | 
-            var contentType = audio/wav;  // string | The media type of the entity-body. (optional) 
-            var cacheControl = no-cache;  // string | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional) 
+            var contentType = audio/wav;  // string? | The media type of the entity-body. (optional) 
+            var cacheControl = no-cache;  // string? | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional) 
 
             try
             {
@@ -392,8 +392,8 @@ catch (ApiException e)
 | **accountId** | **string** | Your Bandwidth Account ID. |  |
 | **mediaId** | **string** | Media ID to retrieve. |  |
 | **body** | **System.IO.Stream****System.IO.Stream** |  |  |
-| **contentType** | **string** | The media type of the entity-body. | [optional]  |
-| **cacheControl** | **string** | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. | [optional]  |
+| **contentType** | **string?** | The media type of the entity-body. | [optional]  |
+| **cacheControl** | **string?** | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. | [optional]  |
 
 ### Return type
 

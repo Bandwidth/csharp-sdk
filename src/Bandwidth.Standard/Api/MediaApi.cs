@@ -88,7 +88,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="continuationToken">Continuation token used to retrieve subsequent media. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Media&gt;</returns>
-        List<Media> ListMedia(string accountId, string continuationToken = default(string), int operationIndex = 0);
+        List<Media> ListMedia(string accountId, string? continuationToken = default(string?), int operationIndex = 0);
 
         /// <summary>
         /// List Media
@@ -101,7 +101,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="continuationToken">Continuation token used to retrieve subsequent media. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Media&gt;</returns>
-        ApiResponse<List<Media>> ListMediaWithHttpInfo(string accountId, string continuationToken = default(string), int operationIndex = 0);
+        ApiResponse<List<Media>> ListMediaWithHttpInfo(string accountId, string? continuationToken = default(string?), int operationIndex = 0);
         /// <summary>
         /// Upload Media
         /// </summary>
@@ -116,7 +116,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        void UploadMedia(string accountId, string mediaId, System.IO.Stream body, string contentType = default(string), string cacheControl = default(string), int operationIndex = 0);
+        void UploadMedia(string accountId, string mediaId, System.IO.Stream body, string? contentType = default(string?), string? cacheControl = default(string?), int operationIndex = 0);
 
         /// <summary>
         /// Upload Media
@@ -132,7 +132,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> UploadMediaWithHttpInfo(string accountId, string mediaId, System.IO.Stream body, string contentType = default(string), string cacheControl = default(string), int operationIndex = 0);
+        ApiResponse<Object> UploadMediaWithHttpInfo(string accountId, string mediaId, System.IO.Stream body, string? contentType = default(string?), string? cacheControl = default(string?), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -208,7 +208,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Media&gt;</returns>
-        System.Threading.Tasks.Task<List<Media>> ListMediaAsync(string accountId, string continuationToken = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<Media>> ListMediaAsync(string accountId, string? continuationToken = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List Media
@@ -222,7 +222,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Media&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Media>>> ListMediaWithHttpInfoAsync(string accountId, string continuationToken = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<Media>>> ListMediaWithHttpInfoAsync(string accountId, string? continuationToken = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Upload Media
         /// </summary>
@@ -238,7 +238,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task UploadMediaAsync(string accountId, string mediaId, System.IO.Stream body, string contentType = default(string), string cacheControl = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task UploadMediaAsync(string accountId, string mediaId, System.IO.Stream body, string? contentType = default(string?), string? cacheControl = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Upload Media
@@ -255,7 +255,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UploadMediaWithHttpInfoAsync(string accountId, string mediaId, System.IO.Stream body, string contentType = default(string), string cacheControl = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> UploadMediaWithHttpInfoAsync(string accountId, string mediaId, System.IO.Stream body, string? contentType = default(string?), string? cacheControl = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -732,7 +732,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="continuationToken">Continuation token used to retrieve subsequent media. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Media&gt;</returns>
-        public List<Media> ListMedia(string accountId, string continuationToken = default(string), int operationIndex = 0)
+        public List<Media> ListMedia(string accountId, string? continuationToken = default(string?), int operationIndex = 0)
         {
             Bandwidth.Standard.Client.ApiResponse<List<Media>> localVarResponse = ListMediaWithHttpInfo(accountId, continuationToken);
             return localVarResponse.Data;
@@ -746,7 +746,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="continuationToken">Continuation token used to retrieve subsequent media. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Media&gt;</returns>
-        public Bandwidth.Standard.Client.ApiResponse<List<Media>> ListMediaWithHttpInfo(string accountId, string continuationToken = default(string), int operationIndex = 0)
+        public Bandwidth.Standard.Client.ApiResponse<List<Media>> ListMediaWithHttpInfo(string accountId, string? continuationToken = default(string?), int operationIndex = 0)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -815,7 +815,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Media&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Media>> ListMediaAsync(string accountId, string continuationToken = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<Media>> ListMediaAsync(string accountId, string? continuationToken = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Bandwidth.Standard.Client.ApiResponse<List<Media>> localVarResponse = await ListMediaWithHttpInfoAsync(accountId, continuationToken, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -830,7 +830,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Media&gt;)</returns>
-        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<List<Media>>> ListMediaWithHttpInfoAsync(string accountId, string continuationToken = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<List<Media>>> ListMediaWithHttpInfoAsync(string accountId, string? continuationToken = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -903,7 +903,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        public void UploadMedia(string accountId, string mediaId, System.IO.Stream body, string contentType = default(string), string cacheControl = default(string), int operationIndex = 0)
+        public void UploadMedia(string accountId, string mediaId, System.IO.Stream body, string? contentType = default(string?), string? cacheControl = default(string?), int operationIndex = 0)
         {
             UploadMediaWithHttpInfo(accountId, mediaId, body, contentType, cacheControl);
         }
@@ -919,7 +919,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Bandwidth.Standard.Client.ApiResponse<Object> UploadMediaWithHttpInfo(string accountId, string mediaId, System.IO.Stream body, string contentType = default(string), string cacheControl = default(string), int operationIndex = 0)
+        public Bandwidth.Standard.Client.ApiResponse<Object> UploadMediaWithHttpInfo(string accountId, string mediaId, System.IO.Stream body, string? contentType = default(string?), string? cacheControl = default(string?), int operationIndex = 0)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1053,7 +1053,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task UploadMediaAsync(string accountId, string mediaId, System.IO.Stream body, string contentType = default(string), string cacheControl = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task UploadMediaAsync(string accountId, string mediaId, System.IO.Stream body, string? contentType = default(string?), string? cacheControl = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             await UploadMediaWithHttpInfoAsync(accountId, mediaId, body, contentType, cacheControl, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -1070,7 +1070,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<Object>> UploadMediaWithHttpInfoAsync(string accountId, string mediaId, System.IO.Stream body, string contentType = default(string), string cacheControl = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<Object>> UploadMediaWithHttpInfoAsync(string accountId, string mediaId, System.IO.Stream body, string? contentType = default(string?), string? cacheControl = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)

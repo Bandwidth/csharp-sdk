@@ -173,7 +173,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="pageToken">Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Conference&gt;</returns>
-        List<Conference> ListConferences(string accountId, string name = default(string), string minCreatedTime = default(string), string maxCreatedTime = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0);
+        List<Conference> ListConferences(string accountId, string? name = default(string?), string? minCreatedTime = default(string?), string? maxCreatedTime = default(string?), int? pageSize = default(int?), string? pageToken = default(string?), int operationIndex = 0);
 
         /// <summary>
         /// Get Conferences
@@ -190,7 +190,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="pageToken">Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Conference&gt;</returns>
-        ApiResponse<List<Conference>> ListConferencesWithHttpInfo(string accountId, string name = default(string), string minCreatedTime = default(string), string maxCreatedTime = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0);
+        ApiResponse<List<Conference>> ListConferencesWithHttpInfo(string accountId, string? name = default(string?), string? minCreatedTime = default(string?), string? maxCreatedTime = default(string?), int? pageSize = default(int?), string? pageToken = default(string?), int operationIndex = 0);
         /// <summary>
         /// Update Conference
         /// </summary>
@@ -440,7 +440,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Conference&gt;</returns>
-        System.Threading.Tasks.Task<List<Conference>> ListConferencesAsync(string accountId, string name = default(string), string minCreatedTime = default(string), string maxCreatedTime = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<Conference>> ListConferencesAsync(string accountId, string? name = default(string?), string? minCreatedTime = default(string?), string? maxCreatedTime = default(string?), int? pageSize = default(int?), string? pageToken = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Get Conferences
@@ -458,7 +458,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Conference&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Conference>>> ListConferencesWithHttpInfoAsync(string accountId, string name = default(string), string minCreatedTime = default(string), string maxCreatedTime = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<Conference>>> ListConferencesWithHttpInfoAsync(string accountId, string? name = default(string?), string? minCreatedTime = default(string?), string? maxCreatedTime = default(string?), int? pageSize = default(int?), string? pageToken = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Update Conference
         /// </summary>
@@ -1608,7 +1608,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="pageToken">Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Conference&gt;</returns>
-        public List<Conference> ListConferences(string accountId, string name = default(string), string minCreatedTime = default(string), string maxCreatedTime = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0)
+        public List<Conference> ListConferences(string accountId, string? name = default(string?), string? minCreatedTime = default(string?), string? maxCreatedTime = default(string?), int? pageSize = default(int?), string? pageToken = default(string?), int operationIndex = 0)
         {
             Bandwidth.Standard.Client.ApiResponse<List<Conference>> localVarResponse = ListConferencesWithHttpInfo(accountId, name, minCreatedTime, maxCreatedTime, pageSize, pageToken);
             return localVarResponse.Data;
@@ -1626,7 +1626,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="pageToken">Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Conference&gt;</returns>
-        public Bandwidth.Standard.Client.ApiResponse<List<Conference>> ListConferencesWithHttpInfo(string accountId, string name = default(string), string minCreatedTime = default(string), string maxCreatedTime = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0)
+        public Bandwidth.Standard.Client.ApiResponse<List<Conference>> ListConferencesWithHttpInfo(string accountId, string? name = default(string?), string? minCreatedTime = default(string?), string? maxCreatedTime = default(string?), int? pageSize = default(int?), string? pageToken = default(string?), int operationIndex = 0)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1715,7 +1715,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Conference&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Conference>> ListConferencesAsync(string accountId, string name = default(string), string minCreatedTime = default(string), string maxCreatedTime = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<Conference>> ListConferencesAsync(string accountId, string? name = default(string?), string? minCreatedTime = default(string?), string? maxCreatedTime = default(string?), int? pageSize = default(int?), string? pageToken = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Bandwidth.Standard.Client.ApiResponse<List<Conference>> localVarResponse = await ListConferencesWithHttpInfoAsync(accountId, name, minCreatedTime, maxCreatedTime, pageSize, pageToken, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1734,7 +1734,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Conference&gt;)</returns>
-        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<List<Conference>>> ListConferencesWithHttpInfoAsync(string accountId, string name = default(string), string minCreatedTime = default(string), string maxCreatedTime = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<List<Conference>>> ListConferencesWithHttpInfoAsync(string accountId, string? name = default(string?), string? minCreatedTime = default(string?), string? maxCreatedTime = default(string?), int? pageSize = default(int?), string? pageToken = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)

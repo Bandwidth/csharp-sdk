@@ -547,7 +547,7 @@ catch (ApiException e)
 
 <a id="listconferences"></a>
 # **ListConferences**
-> List&lt;Conference&gt; ListConferences (string accountId, string name = null, string minCreatedTime = null, string maxCreatedTime = null, int? pageSize = null, string pageToken = null)
+> List&lt;Conference&gt; ListConferences (string accountId, string? name = null, string? minCreatedTime = null, string? maxCreatedTime = null, int? pageSize = null, string? pageToken = null)
 
 Get Conferences
 
@@ -575,11 +575,11 @@ namespace Example
 
             var apiInstance = new ConferencesApi(config);
             var accountId = 9900000;  // string | Your Bandwidth Account ID.
-            var name = my-custom-name;  // string | Filter results by the `name` field. (optional) 
-            var minCreatedTime = 2022-06-21T19:13:21Z;  // string | Filter results to conferences which have a `createdTime` after or at `minCreatedTime` (in ISO8601 format). (optional) 
-            var maxCreatedTime = 2022-06-21T19:13:21Z;  // string | Filter results to conferences which have a `createdTime` before or at `maxCreatedTime` (in ISO8601 format). (optional) 
+            var name = my-custom-name;  // string? | Filter results by the `name` field. (optional) 
+            var minCreatedTime = 2022-06-21T19:13:21Z;  // string? | Filter results to conferences which have a `createdTime` after or at `minCreatedTime` (in ISO8601 format). (optional) 
+            var maxCreatedTime = 2022-06-21T19:13:21Z;  // string? | Filter results to conferences which have a `createdTime` before or at `maxCreatedTime` (in ISO8601 format). (optional) 
             var pageSize = 500;  // int? | Specifies the max number of conferences that will be returned. (optional)  (default to 1000)
-            var pageToken = "pageToken_example";  // string | Not intended for explicit use. To use pagination, follow the links in the `Link` header of the response, as indicated in the endpoint description. (optional) 
+            var pageToken = "pageToken_example";  // string? | Not intended for explicit use. To use pagination, follow the links in the `Link` header of the response, as indicated in the endpoint description. (optional) 
 
             try
             {
@@ -623,11 +623,11 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | Your Bandwidth Account ID. |  |
-| **name** | **string** | Filter results by the &#x60;name&#x60; field. | [optional]  |
-| **minCreatedTime** | **string** | Filter results to conferences which have a &#x60;createdTime&#x60; after or at &#x60;minCreatedTime&#x60; (in ISO8601 format). | [optional]  |
-| **maxCreatedTime** | **string** | Filter results to conferences which have a &#x60;createdTime&#x60; before or at &#x60;maxCreatedTime&#x60; (in ISO8601 format). | [optional]  |
+| **name** | **string?** | Filter results by the &#x60;name&#x60; field. | [optional]  |
+| **minCreatedTime** | **string?** | Filter results to conferences which have a &#x60;createdTime&#x60; after or at &#x60;minCreatedTime&#x60; (in ISO8601 format). | [optional]  |
+| **maxCreatedTime** | **string?** | Filter results to conferences which have a &#x60;createdTime&#x60; before or at &#x60;maxCreatedTime&#x60; (in ISO8601 format). | [optional]  |
 | **pageSize** | **int?** | Specifies the max number of conferences that will be returned. | [optional] [default to 1000] |
-| **pageToken** | **string** | Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description. | [optional]  |
+| **pageToken** | **string?** | Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description. | [optional]  |
 
 ### Return type
 
