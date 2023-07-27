@@ -1,3 +1,4 @@
+
 # Bandwidth.Standard.Model.CallState
 
 ## Properties
@@ -8,11 +9,11 @@ Name | Type | Description | Notes
 **AccountId** | **string** | The account id associated with the call. | [optional] 
 **CallId** | **string** | The programmable voice API call ID. | [optional] 
 **ParentCallId** | **string** | The A-leg call id, set only if this call is the B-leg of a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer). | [optional] 
-**To** | **string** | The phone number that received the call, in E.164 format (e.g. +15555555555), or if the call was to a SIP URI, the SIP URI | [optional] 
+**To** | **string** | The phone number that received the call, in E.164 format (e.g. +15555555555), or if the call was to a SIP URI, the SIP URI. | [optional] 
 **From** | **string** | The phone number that made the call, in E.164 format (e.g. +15555555555). | [optional] 
 **Direction** | **CallDirectionEnum** |  | [optional] 
 **State** | **string** | The current state of the call. Current possible values are &#x60;queued&#x60;, &#x60;initiated&#x60;, &#x60;answered&#x60; and &#x60;disconnected&#x60;. Additional states may be added in the future, so your application must be tolerant of unknown values. | [optional] 
-**StirShaken** | **Dictionary&lt;string, string&gt;** | For inbound calls, the Bandwidth STIR/SHAKEN implementation will verify the information provided in the inbound invite request &#x60;Identity&#x60; header. The verification status is stored in the call state &#x60;stirShaken&#x60; property as follows.  | Property          | Description | |:- -- -- -- -- -- -- -- -- -|:- -- -- -- -- -- -| | verstat | (optional) The verification status indicating whether the verification was successful or not. Possible values are &#x60;TN-Verification-Passed&#x60; or &#x60;TN-Verification-Failed&#x60;. | | attestationIndicator | (optional) The attestation level verified by Bandwidth. Possible values are &#x60;A&#x60; (full), &#x60;B&#x60; (partial) or &#x60;C&#x60; (gateway). | | originatingId | (optional) A unique origination identifier. |  Note that these are common properties but that the &#x60;stirShaken&#x60; object is free form and can contain other key-value pairs.  More information: [Understanding STIR/SHAKEN](https://www.bandwidth.com/regulations/stir-shaken) | [optional] 
+**StirShaken** | **Dictionary&lt;string, string&gt;** | For inbound calls, the Bandwidth STIR/SHAKEN implementation will verify the information provided in the inbound invite request &#x60;Identity&#x60; header. The verification status is stored in the call state &#x60;stirShaken&#x60; property as follows.  | Property          | Description | |:- -- -- -- -- -- -- -- -- -|:- -- -- -- -- -- -| | verstat | (optional) The verification status indicating whether the verification was successful or not. Possible values are &#x60;TN-Verification-Passed&#x60; or &#x60;TN-Verification-Failed&#x60;. | | attestationIndicator | (optional) The attestation level verified by Bandwidth. Possible values are &#x60;A&#x60; (full), &#x60;B&#x60; (partial) or &#x60;C&#x60; (gateway). | | originatingId | (optional) A unique origination identifier. |  Note that these are common properties but that the &#x60;stirShaken&#x60; object is free form and can contain other key-value pairs.  More information: [Understanding STIR/SHAKEN](https://www.bandwidth.com/regulations/stir-shaken). | [optional] 
 **Identity** | **string** | The value of the &#x60;Identity&#x60; header from the inbound invite request. Only present for inbound calls and if the account is configured to forward this header. | [optional] 
 **EnqueuedTime** | **DateTime?** | The time this call was placed in queue. | [optional] 
 **StartTime** | **DateTime?** | The time the call was initiated, in ISO 8601 format. &#x60;null&#x60; if the call is still in your queue. | [optional] 
@@ -23,5 +24,7 @@ Name | Type | Description | Notes
 **ErrorId** | **string** | Populated only if the call ended with an error, with a Bandwidth internal id that references the error event. | [optional] 
 **LastUpdate** | **DateTime** | The last time the call had a state update, in ISO 8601 format. | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 
