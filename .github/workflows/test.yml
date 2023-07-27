@@ -34,7 +34,7 @@ jobs:
           BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
           # Required for multiple target frameworks in the StandardTests project.
           DOTNET: ${{ matrix.dotnet }}
-        run: dotnet test Bandwidth.StandardTests
+        run: dotnet test Bandwidth.Standard.Test
 
       - name: Notify Slack of failures
         uses: Bandwidth/build-notify-slack-action@v1.0.0
