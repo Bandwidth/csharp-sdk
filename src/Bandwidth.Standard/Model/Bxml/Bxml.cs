@@ -1,4 +1,4 @@
-namespace Bandwidth.Standard.Model.Bxml
+namespace bxml
 {
     /// <summary>
     ///   Bxml class for Bandwidth XML
@@ -6,8 +6,9 @@ namespace Bandwidth.Standard.Model.Bxml
     /// [XmlRoot(ElementName = "Bxml")]
     public class Bxml : Root
     {
-        
         public Bxml() : base("Bxml"){}
+
+
         public Bxml(List<IVerb> verbs) : base("Bxml", verbs){}
         
     }

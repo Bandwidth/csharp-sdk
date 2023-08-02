@@ -1,6 +1,6 @@
 using System.Xml.Linq;
 
-namespace Bandwidth.Standard.Model.Bxml
+namespace bxml
 {
     public interface IVerb
     {

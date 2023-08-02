@@ -1,41 +1,37 @@
 using System.Xml.Linq;
-using Bandwidth.Standard.Model.Bxml;
+using bxml;
 
-namespace Bandwidth.Standard.Model.Bxml
+namespace bxml
 {
     public class Root
     {
-        public string Tag { get; set; }
-        public List<IVerb> NestedVerbs = new List<IVerb>();
+       public string Tag { get; set; }
 
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        /// <param name="tag">Either "Bxml" or "Response"</param>
+       public List<IVerb> NestedVerbs = new List<IVerb>();
+
         public Root(string tag)
         {
             this.Tag = tag;
             this.NestedVerbs = new List<IVerb>();
         }
 
-        /// <summary>
-        /// Constructor for when nested verbs are provided
-        /// </summary>
-        /// <param name="tag">Either "Bxml" or "Response"</param>
-        /// <param name="verbs">A list of nested verbs to be nested within the root element</param>
         public Root(string tag, List<IVerb> verbs)
         {
             this.Tag = tag;
             NestedVerbs.AddRange(verbs);
         }
 
-        /// <summary>
-        /// Returns BXML for response
-        /// </summary>
-        /// <returns>Generated XML string</returns>
-        public string ToBxml()
+        public void Add(IVerb verb)
+        {
+            Console.WriteLine("add Type: " + verb.GetType());
+            NestedVerbs.Add(verb);
+        }
+
+
+        public string ToBXML()
         {
             XElement root = new XElement(Tag);
+
             foreach (var item in this.NestedVerbs)
             {
                 XElement nestedVerb = item.GenerateXml();
@@ -43,5 +39,7 @@ namespace Bandwidth.Standard.Model.Bxml
             }
             return root.ToString();
         }
+
+
     }
 }
