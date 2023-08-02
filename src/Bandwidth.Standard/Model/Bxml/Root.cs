@@ -1,47 +1,94 @@
-using System.Xml.Linq;
-using Bandwidth.Standard.Model.Bxml;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 
-namespace Bandwidth.Standard.Model.Bxml
+namespace Bandwidth.Standard.Voice.Bxml
 {
-    public class Root
+    /// <summary>
+    ///   Bxml class for Bandwidth XML
+    /// </summary>
+    public abstract class Root : IXmlSerializable
     {
-        public string Tag { get; set; }
-        public List<IVerb> NestedVerbs = new List<IVerb>();
+        internal static XmlSerializer _serializer;
+        private readonly List<IVerb> _list = new List<IVerb>();
+
+        private static readonly Regex s_xmlRegex = new Regex("&lt;([a-zA-Z//].*?)&gt;");
+
+        private static readonly Regex s_speakSentenceRegex = new Regex("<SpeakSentence.*?>.*?<\\/SpeakSentence>");
 
         /// <summary>
-        /// Default constructor
+        ///   Default constructor
         /// </summary>
-        /// <param name="tag">Either "Bxml" or "Response"</param>
-        public Root(string tag)
+        public Root()
         {
-            this.Tag = tag;
-            this.NestedVerbs = new List<IVerb>();
+
         }
 
         /// <summary>
-        /// Constructor for when nested verbs are provided
+        ///   Constructor with verbs
         /// </summary>
-        /// <param name="tag">Either "Bxml" or "Response"</param>
-        /// <param name="verbs">A list of nested verbs to be nested within the root element</param>
-        public Root(string tag, List<IVerb> verbs)
+        /// <param name="verbs">verbs to be added to response</param>
+        public Root(params IVerb[] verbs)
         {
-            this.Tag = tag;
-            NestedVerbs.AddRange(verbs);
+            _list.AddRange(verbs);
+        }
+
+        XmlSchema IXmlSerializable.GetSchema() => null;
+
+        void IXmlSerializable.ReadXml(XmlReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IXmlSerializable.WriteXml(XmlWriter writer)
+        {
+            var ns = new XmlSerializerNamespaces();
+            ns.Add("", "");
+            foreach (var verb in _list)
+            {
+                var serializer = new XmlSerializer(verb.GetType(), "");
+                serializer.Serialize(writer, verb, ns);
+            }
         }
 
         /// <summary>
-        /// Returns BXML for response
+        ///   Add new verb to response
+        /// </summary>
+        /// <param name="verb">verb instance</param>
+        public void Add(IVerb verb)
+        {
+            _list.Add(verb);
+        }
+
+        /// <summary>
+        ///   Returns BXML for response without escaped SSML
         /// </summary>
         /// <returns>Generated XML string</returns>
-        public string ToBxml()
+        public string ToBXML()
         {
-            XElement root = new XElement(Tag);
-            foreach (var item in this.NestedVerbs)
+
+            string str = "";
+            using (var writer = new Utf8StringWriter { NewLine = "" })
             {
-                XElement nestedVerb = item.GenerateXml();
-                root.Add(nestedVerb);
+                _serializer.Serialize(writer, this);
+                str =  writer.ToString();
             }
-            return root.ToString();
+
+            MatchEvaluator matchEvaluator = new MatchEvaluator(match => 
+                s_xmlRegex.Replace(match.Value, "<$1>")
+            );
+
+            return s_speakSentenceRegex.Replace(str, matchEvaluator);
+        }
+
+        private class Utf8StringWriter : StringWriter
+        {
+            public override Encoding Encoding => Encoding.UTF8;
         }
     }
 }

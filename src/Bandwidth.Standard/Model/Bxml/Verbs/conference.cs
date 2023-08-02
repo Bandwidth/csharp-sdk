@@ -1,18 +1,35 @@
-using System.Collections.Generic;
 using System;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 
-namespace Bandwidth.Standard.Model.Bxml.Verbs
+namespace Bandwidth.Standard.Voice.Bxml
 {
   /// <summary>
   ///   The Conference verb is used to play an audio file in the call.
-  ///   <para><seealso href="https://dev.bandwidth.com/docs/voice/bxml/conference/" /></para>
+  ///   <para><seealso href="https://dev.bandwidth.com/voice/bxml/verbs/conference.html" /></para>
   /// </summary>
-  public class Conference : Verb
+  public class Conference : IXmlSerializable, IVerb
   {
     /// <summary>
     ///   Name of the conference
     /// </summary>
     public string Name { get; set; }
+
+    /// <summary>
+    /// Username for basic auth on the Conference url
+    /// </summary>
+    public string Username { get; set; }
+
+    /// <summary>
+    /// Password for basic auth on the Conference url
+    /// </summary>
+    public string Password { get; set; }
+
+    /// <summary>
+    /// Tag for basic auth on the Conference url
+    /// </summary>
+    public string Tag { get; set; }
 
     /// <summary>
     /// (optional) A boolean value to indicate whether the member should be on mute in the conference. When muted, a member can hear others speak, but others cannot hear them speak. Defaults to false
@@ -41,104 +58,85 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
     /// </summary>
     public string ConferenceEventMethod { get; set; }
 
-    /// <summary>
-    ///	(optional) A fallback url which, if provided, will be used to retry the conference webhook deliveries in case 
-    /// conferenceEventUrl fails to respond.
-    /// </summary>
     public string ConferenceEventFallbackUrl {get; set;}
 
-    /// <summary>
-    /// (optional) The HTTP method to use to deliver the conference webhooks to 
-    /// onferenceEventFallbackUrl. GET or POST. Default value is POST.
-    ///</summary>
     public string ConferenceEventFallbackMethod {get; set;}
 
-    /// <summary>
-    /// Username for basic auth on the Conference url
-    /// </summary>
-    public string Username { get; set; }
-
-    /// <summary>
-    /// Password for basic auth on the Conference url
-    /// </summary>
-    public string Password { get; set; }
-
-    /// <summary>
-    /// (optional) The username to send in the HTTP request to conferenceEventFallbackUrl.
-    /// </summary>
     public string FallbackUsername {get; set;}
 
-    /// <summary>
-    /// (optional) The password to send in the HTTP request to conferenceEventFallbackUrl.
-    /// </summary>
     public string FallbackPassword {get; set;}
-    
-    /// <summary>
-    /// Tag for basic auth on the Conference url
-    /// </summary>
-    public string Tag { get; set; }
 
-    /// <summary>
-    /// (optional) This is the timeout (in seconds) to use when delivering webhooks for the conference. If not set,
-    /// it will inherit the webhook timeout from the call that creates the conference. Can be any numeric value 
-    /// (including decimals) between 1 and 25.
-    public string CallbackTimeout { get; set;}
 
-    public Conference(){
+    XmlSchema IXmlSerializable.GetSchema()
+    {
+      return null;
+    }
 
-      Dictionary<string, string> attributes = new Dictionary<string, string> ();
-      
-      if(this.Mute){
-        attributes.Add("mute","true");
-      }
-      if(this.Hold)
+    void IXmlSerializable.ReadXml(XmlReader reader)
+    {
+      throw new NotImplementedException();
+    }
+
+    void IXmlSerializable.WriteXml(XmlWriter writer)
+    {
+      if (!string.IsNullOrEmpty(Username))
       {
-        attributes.Add("hold","true");
+        writer.WriteAttributeString("username", Username);
       }
-      if(!string.IsNullOrEmpty(this.CallIdsToCoach))
+      if (!string.IsNullOrEmpty(Password))
       {
-        attributes.Add("callIdsToCoach",this.CallIdsToCoach);
+        writer.WriteAttributeString("password", Password);
       }
-      if(!string.IsNullOrEmpty(this.ConferenceEventUrl))
+      if (!string.IsNullOrEmpty(Tag))
       {
-        attributes.Add("conferenceEventUrl",this.ConferenceEventUrl);
+        writer.WriteAttributeString("tag", Tag);
       }
-      if(!string.IsNullOrEmpty(this.ConferenceEventMethod))
+
+      if (Mute)
       {
-        attributes.Add("conferenceEventMethod",this.ConferenceEventMethod);
+        writer.WriteAttributeString("mute", "true");
       }
-      if(!string.IsNullOrEmpty(this.ConferenceEventFallbackUrl))
+      if (Hold)
       {
-        attributes.Add("conferenceEventFallbackUrl",this.ConferenceEventFallbackUrl);
+        writer.WriteAttributeString("hold", "true");
       }
-      if(!string.IsNullOrEmpty(this.ConferenceEventFallbackMethod))
+
+      if (!string.IsNullOrEmpty(CallIdsToCoach))
       {
-        attributes.Add("conferenceEventFallbackMethod",this.ConferenceEventFallbackMethod);
+        writer.WriteAttributeString("callIdsToCoach", CallIdsToCoach);
       }
-      if(!string.IsNullOrEmpty(this.Username))
+
+      if (!string.IsNullOrEmpty(ConferenceEventMethod))
       {
-        attributes.Add("username",this.Username);
+        writer.WriteAttributeString("conferenceEventMethod", ConferenceEventMethod);
       }
-      if(!string.IsNullOrEmpty(this.Password))
+
+      if (!string.IsNullOrEmpty(ConferenceEventUrl))
       {
-        attributes.Add("password",this.Password);
+        writer.WriteAttributeString("conferenceEventUrl", ConferenceEventUrl);
       }
-      if(!string.IsNullOrEmpty(this.FallbackUsername))
+
+      if (!string.IsNullOrEmpty(ConferenceEventFallbackUrl))
       {
-        attributes.Add("fallbackUsername",this.FallbackUsername);
+        writer.WriteAttributeString("conferenceEventFallbackUrl", ConferenceEventFallbackUrl);
       }
-      if(!string.IsNullOrEmpty(this.FallbackPassword))
+
+      if (!string.IsNullOrEmpty(ConferenceEventFallbackMethod))
       {
-        attributes.Add("fallbackPassword",this.FallbackPassword);
+        writer.WriteAttributeString("conferenceEventFallbackMethod", ConferenceEventFallbackMethod);
       }
-      if(!string.IsNullOrEmpty(this.Tag))
+
+      if (!string.IsNullOrEmpty(FallbackUsername))
       {
-        attributes.Add("tag",this.Tag);
+        writer.WriteAttributeString("fallbackUsername", FallbackUsername);
       }
-      if(!string.IsNullOrEmpty(this.CallbackTimeout))
+
+      if (!string.IsNullOrEmpty(FallbackPassword))
       {
-        attributes.Add("callbackTimeout",this.CallbackTimeout);
+        writer.WriteAttributeString("fallbackPassword", FallbackPassword);
       }
+
+      writer.WriteString(Name);
     }
   }
 }

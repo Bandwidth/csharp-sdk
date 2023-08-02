@@ -1,17 +1,20 @@
-using System.Collections.Generic;
-using System;
-namespace Bandwidth.Standard.Model.Bxml
+using System.Xml.Serialization;
+
+namespace Bandwidth.Standard.Voice.Bxml
 {
     /// <summary>
-    /// Response class for Bandwidth XML
+    ///   Bxml response class for Bandwidth XML
     /// </summary>
-    /// [XmlRoot(ElementName = "Response")]
     public class Response : Root
     {
-        
-        public Response() : base("Response"){}
+        public Response() : base()
+        {
+            _serializer = new XmlSerializer(typeof(Response), "");
+        }
 
-        public Response(List<IVerb> verbs) : base("Response", verbs){}
-        
+        public Response(params IVerb[] verbs) : base(verbs)
+        {
+            _serializer = new XmlSerializer(typeof(Response), "");
+        }
     }
 }

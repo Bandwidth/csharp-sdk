@@ -1,12 +1,9 @@
-using System.Xml.Linq;
-
-namespace Bandwidth.Standard.Model.Bxml
+namespace Bandwidth.Standard.Voice.Bxml
 {
-    public interface IVerb
-    {
-        string Tag { get; set;}
-        string Content { get; set;}
-        Dictionary<string, string> Attributes { get; set;}
-        XElement GenerateXml();
-    }
+  /// <summary>
+  ///   Should be implemented by all verb classes
+  /// </summary>
+  public interface IVerb
+  {
+  }
 }
