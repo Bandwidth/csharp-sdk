@@ -1,44 +1,29 @@
-using System;
-using System.Xml;
-using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace Bandwidth.Standard.Voice.Bxml
+namespace Bandwidth.Standard.Model.Bxml.Verbs
 {
   /// <summary>
   ///   The Conference verb is used to play an audio file in the call.
-  ///   <para><seealso href="https://dev.bandwidth.com/voice/bxml/verbs/conference.html" /></para>
+  ///   <para><seealso href="https://dev.bandwidth.com/docs/voice/bxml/conference.html" /></para>
   /// </summary>
-  public class Conference : IXmlSerializable, IVerb
+  public class Conference : IVerb
   {
     /// <summary>
-    ///   Name of the conference
+    /// Name of the conference.
     /// </summary>
+    [XmlText]
     public string Name { get; set; }
 
     /// <summary>
-    /// Username for basic auth on the Conference url
+    /// (optional) A boolean value to indicate whether the member should be on mute in the conference. When muted, a member can hear others speak, but others cannot hear them speak.
     /// </summary>
-    public string Username { get; set; }
-
-    /// <summary>
-    /// Password for basic auth on the Conference url
-    /// </summary>
-    public string Password { get; set; }
-
-    /// <summary>
-    /// Tag for basic auth on the Conference url
-    /// </summary>
-    public string Tag { get; set; }
-
-    /// <summary>
-    /// (optional) A boolean value to indicate whether the member should be on mute in the conference. When muted, a member can hear others speak, but others cannot hear them speak. Defaults to false
-    /// </summary>
+    [XmlAttribute("mute")]
     public bool Mute { get; set; }
 
     /// <summary>
-    /// (optional) A boolean value to indicate whether the member should be on hold in the conference. When on hold, a member cannot hear others, and they cannot be heard. Defaults to false
+    /// (optional) A boolean value to indicate whether the member should be on hold in the conference. When on hold, a member cannot hear others, and they cannot be heard.
     /// </summary>
+    [XmlAttribute("hold")]
     public bool Hold { get; set; }
 
     /// <summary>
@@ -46,97 +31,78 @@ namespace Bandwidth.Standard.Voice.Bxml
     /// Calls may be added to the conference in any order - if the matching calls are not already in the conference, then once the matching calls are added, the coach will be able to hear and speak to the matching calls. Note that this will not add the matching calls to the conference; each call must individually execute a <Conference> verb to join.
     /// A conference may only have one coach.
     /// </summary>
+    [XmlAttribute("callIdsToCoach")]
     public string CallIdsToCoach { get; set; }
 
     /// <summary>
     /// (optional) URL to send Conference events to. The URL, method, username, and password are set by the BXML document that creates the conference, and all events related to that conference will be delivered to that same endpoint. If more calls join afterwards and also have this property (or any other callback related properties like username and password), they will be ignored and the original callback information will be used.
     /// </summary>
+    [XmlAttribute("conferenceEventUrl")]
     public string ConferenceEventUrl { get; set; }
 
     /// <summary>
-    /// (optional) The HTTP method to use for the request to conferenceEventUrl. GET or POST. Default value is POST.
+    /// (optional) The HTTP method to use for the request to conferenceEventUrl.
     /// </summary>
+    [XmlAttribute("conferenceEventMethod")]
     public string ConferenceEventMethod { get; set; }
 
-    public string ConferenceEventFallbackUrl {get; set;}
+    /// <summary>
+    /// (optional) A fallback url which, if provided, will be used to retry the conference webhook deliveries in case conferenceEventUrl fails to respond.
+    /// </summary>
+    [XmlAttribute("conferenceEventFallbackUrl")]
+    public string ConferenceEventFallbackUrl { get; set; }
 
-    public string ConferenceEventFallbackMethod {get; set;}
+    /// <summary>
+    /// (optional) The HTTP method to use to deliver the conference webhooks to conferenceEventFallbackUrl.
+    /// </summary>
+    [XmlAttribute("conferenceEventFallbackMethod")]
+    public string ConferenceEventFallbackMethod { get; set; }
 
-    public string FallbackUsername {get; set;}
+    /// <summary>
+    /// (optional) Username for basic auth on the Conference url.
+    /// </summary>
+    [XmlAttribute("username")]
+    public string Username { get; set; }
 
-    public string FallbackPassword {get; set;}
+    /// <summary>
+    /// (optional) Password for basic auth on the Conference url.
+    /// </summary>
+    [XmlAttribute("password")]
+    public string Password { get; set; }
+
+    /// <summary>
+    /// (optional) The username to send in the HTTP request to conferenceEventFallbackUrl.
+    /// </summary>
+    [XmlAttribute("fallbackUsername")]
+    public string FallbackUsername { get; set; }
+
+    /// <summary>
+    /// (optional) The password to send in the HTTP request to conferenceEventFallbackUrl.
+    /// </summary>
+    [XmlAttribute("fallbackPassword")]
+    public string FallbackPassword { get; set; }
+
+    /// <summary>
+    /// Tag for basic auth on the Conference url.
+    /// </summary>
+    [XmlAttribute("tag")]
+    public string Tag { get; set; }
 
 
-    XmlSchema IXmlSerializable.GetSchema()
+    /// <summary>
+    /// The number of seconds to wait before timing out the call.
+    /// </summary>
+    [XmlIgnore]
+    public double? CallbackTimeout { get; set; }
+
+    /// <summary>
+    ///  The setter does nothing! This is just a surrogate field for nullable xml attribute serialization.
+    /// </summary>
+    [XmlAttribute("callbackTimeout")]
+    public string CallbackTimeoutAsText
     {
-      return null;
-    }
-
-    void IXmlSerializable.ReadXml(XmlReader reader)
-    {
-      throw new NotImplementedException();
-    }
-
-    void IXmlSerializable.WriteXml(XmlWriter writer)
-    {
-      if (!string.IsNullOrEmpty(Username))
-      {
-        writer.WriteAttributeString("username", Username);
-      }
-      if (!string.IsNullOrEmpty(Password))
-      {
-        writer.WriteAttributeString("password", Password);
-      }
-      if (!string.IsNullOrEmpty(Tag))
-      {
-        writer.WriteAttributeString("tag", Tag);
-      }
-
-      if (Mute)
-      {
-        writer.WriteAttributeString("mute", "true");
-      }
-      if (Hold)
-      {
-        writer.WriteAttributeString("hold", "true");
-      }
-
-      if (!string.IsNullOrEmpty(CallIdsToCoach))
-      {
-        writer.WriteAttributeString("callIdsToCoach", CallIdsToCoach);
-      }
-
-      if (!string.IsNullOrEmpty(ConferenceEventMethod))
-      {
-        writer.WriteAttributeString("conferenceEventMethod", ConferenceEventMethod);
-      }
-
-      if (!string.IsNullOrEmpty(ConferenceEventUrl))
-      {
-        writer.WriteAttributeString("conferenceEventUrl", ConferenceEventUrl);
-      }
-
-      if (!string.IsNullOrEmpty(ConferenceEventFallbackUrl))
-      {
-        writer.WriteAttributeString("conferenceEventFallbackUrl", ConferenceEventFallbackUrl);
-      }
-
-      if (!string.IsNullOrEmpty(ConferenceEventFallbackMethod))
-      {
-        writer.WriteAttributeString("conferenceEventFallbackMethod", ConferenceEventFallbackMethod);
-      }
-
-      if (!string.IsNullOrEmpty(FallbackUsername))
-      {
-        writer.WriteAttributeString("fallbackUsername", FallbackUsername);
-      }
-
-      if (!string.IsNullOrEmpty(FallbackPassword))
-      {
-        writer.WriteAttributeString("fallbackPassword", FallbackPassword);
-      }
-
-      writer.WriteString(Name);
+      get { return (CallbackTimeout.HasValue) ? CallbackTimeout.ToString() : null; }
+      set { }
     }
   }
 }

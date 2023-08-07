@@ -1,6 +1,7 @@
 using System.Xml.Serialization;
 
-namespace Bandwidth.Standard.Voice.Bxml
+namespace Bandwidth.Standard.Model.Bxml
+{
 {
     /// <summary>
     ///   Bxml class for Bandwidth XML

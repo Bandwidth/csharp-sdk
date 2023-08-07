@@ -1,4 +1,5 @@
-namespace Bandwidth.Standard.Voice.Bxml
+namespace Bandwidth.Standard.Model.Bxml
+{
 {
   /// <summary>
   ///   Should be implemented by all verb classes
