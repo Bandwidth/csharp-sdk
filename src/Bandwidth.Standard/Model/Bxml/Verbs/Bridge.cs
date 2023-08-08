@@ -34,18 +34,18 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// (optional) A fallback url which, if provided, will be used to retry the Bridge Complete webhook delivery in case bridgeCompleteUrl fails to respond.
         /// </summary>
         [XmlAttribute("bridgeCompleteFallbackUrl")]
-        public string BridgeCompleteFallbackUrl;
+        public string BridgeCompleteFallbackUrl { get; set; }
 
         /// <summary>
         /// (optional) The HTTP method to use to deliver the Bridge Complete webhook to bridgeCompleteFallbackUrl.
         /// </summary>
         [XmlAttribute("bridgeCompleteFallbackMethod")]
-        public string BridgeCompleteFallbackMethod;
+        public string BridgeCompleteFallbackMethod { get; set; }
 
         /// <summary>
-        ///   (optional) URL to send the Bridge Target Complete event to and request new BXML.
-        /// If this attribute is specified, then the BXML returned in this callback is executed on the target call.
-        /// If this attribute is not specified then no callback will be sent, and the target call will be hung up.
+        ///  (optional) URL to send the Bridge Target Complete event to and request new BXML.
+        ///  If this attribute is specified, then the BXML returned in this callback is executed on the target call.
+        ///  If this attribute is not specified then no callback will be sent, and the target call will be hung up.
         /// </summary>
         [XmlAttribute("bridgeTargetCompleteUrl")]
         public string BridgeTargetCompleteUrl { get; set; }
@@ -60,22 +60,22 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// (optional) A fallback url which, if provided, will be used to retry the Bridge Target Complete webhook delivery in case bridgeTargetCompleteUrl fails to respond.
         /// </summary>
         [XmlAttribute("bridgeTargetCompleteFallbackUrl")]
-        public string BridgeTargetCompleteFallbackUrl;
+        public string BridgeTargetCompleteFallbackUrl { get; set; }
 
         /// <summary>
         /// (optional) The HTTP method to use to deliver the Bridge Target Complete webhook to bridgeTargetCompleteFallbackUrl.
         /// </summary>
         [XmlAttribute("bridgeTargetCompleteFallbackMethod")]
-        public string BridgeTargetCompleteFallbackMethod;
+        public string BridgeTargetCompleteFallbackMethod { get; set; }
 
         /// <summary>
-        /// Username for basic auth on the bridgeCompleteUrl & bridgeTargetCompleteUrl.
+        /// (optional) Username for basic auth on the bridgeCompleteUrl & bridgeTargetCompleteUrl.
         /// </summary>
         [XmlAttribute("username")]
         public string Username { get; set; }
 
         /// <summary>
-        /// Password for basic auth on the bridgeCompleteUrl & bridgeTargetCompleteUrl.
+        /// (optional) Password for basic auth on the bridgeCompleteUrl & bridgeTargetCompleteUrl.
         /// </summary>
         [XmlAttribute("password")]
         public string Password { get; set; }
@@ -84,13 +84,13 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// (optional) The username to send in the HTTP request to bridgeCompleteFallbackUrl and to bridgeTargetCompleteFallbackUrl.
         /// </summary>
         [XmlAttribute("fallbackUsername")]
-        public string FallbackUsername;
+        public string FallbackUsername { get; set; }
 
         /// <summary>
         /// (optional) The password to send in the HTTP request to bridgeCompleteFallbackUrl and to bridgeTargetCompleteFallbackUrl.
         /// </summary>
         [XmlAttribute("fallbackPassword")]
-        public string FallbackPassword;
+        public string FallbackPassword { get; set; }
 
         /// <summary>
         /// (optional) A custom string that will be sent with this and all future callbacks unless overwritten by a future tag attribute or cleared.
