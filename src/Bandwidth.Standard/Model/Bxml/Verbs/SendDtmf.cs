@@ -1,3 +1,4 @@
+using Bandwidth.Standard.Model.Bxml;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Model.Bxml.Verbs
@@ -14,7 +15,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// </summary>
         [XmlText]
         public string Digits { get; set; }
-        
+
         /// <summary>
         ///  (optional) The length (in milliseconds) of each DTMF tone.
         /// </summary>

@@ -1,3 +1,4 @@
+using Bandwidth.Standard.Model.Bxml;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -76,10 +77,10 @@ namespace Bandwidth.Standard.Model.Bxml
             using (var writer = new Utf8StringWriter { NewLine = "" })
             {
                 _serializer.Serialize(writer, this);
-                str =  writer.ToString();
+                str = writer.ToString();
             }
 
-            MatchEvaluator matchEvaluator = new MatchEvaluator(match => 
+            MatchEvaluator matchEvaluator = new MatchEvaluator(match =>
                 s_xmlRegex.Replace(match.Value, "<$1>")
             );
 

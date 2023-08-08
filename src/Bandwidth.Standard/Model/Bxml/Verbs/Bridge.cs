@@ -1,3 +1,4 @@
+using Bandwidth.Standard.Model.Bxml;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Model.Bxml.Verbs
@@ -88,7 +89,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// <summary>
         /// (optional) The password to send in the HTTP request to bridgeCompleteFallbackUrl and to bridgeTargetCompleteFallbackUrl.
         /// </summary>
-       [XmlAttribute("fallbackPassword")]
+        [XmlAttribute("fallbackPassword")]
         public string FallbackPassword;
 
         /// <summary>

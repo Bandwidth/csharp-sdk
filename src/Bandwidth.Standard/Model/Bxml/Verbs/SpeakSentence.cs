@@ -1,3 +1,4 @@
+using Bandwidth.Standard.Model.Bxml;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Model.Bxml.Verbs
