@@ -72,8 +72,39 @@ Contact: letstalk@bandwidth.com
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="**\*.cs"
-             Exclude="obj\**"/>
+    <Compile Include="**\*.cs" Exclude="obj\**" />
+    <Compile Include="Model\Bxml\TestBaseClasses.cs" />
+    <Compile Include="Model\Bxml\TestBxml.cs" />
+    <Compile Include="Model\Bxml\TestResponse.cs" />
+    <Compile Include="Model\Bxml\TestRoot.cs" />
+    <Compile Include="Model\Bxml\TestBridge.cs" />
+    <Compile Include="Model\Bxml\TestConference.cs" />
+    <Compile Include="Model\Bxml\TestCustomParam.cs" />
+    <Compile Include="Model\Bxml\TestForward.cs" />
+    <Compile Include="Model\Bxml\TestGather.cs" />
+    <Compile Include="Model\Bxml\TestHangup.cs" />
+    <Compile Include="Model\Bxml\TestPause.cs" />
+    <Compile Include="Model\Bxml\TestPauseRecording.cs" />
+    <Compile Include="Model\Bxml\TestPhoneNumber.cs" />
+    <Compile Include="Model\Bxml\TestPlayAudio.cs" />
+    <Compile Include="Model\Bxml\TestRecord.cs" />
+    <Compile Include="Model\Bxml\TestRedirect.cs" />
+    <Compile Include="Model\Bxml\TestResumeRecording.cs" />
+    <Compile Include="Model\Bxml\TestRing.cs" />
+    <Compile Include="Model\Bxml\TestSendDtmf.cs" />
+    <Compile Include="Model\Bxml\TestSipUri.cs" />
+    <Compile Include="Model\Bxml\TestSpeakSentence.cs" />
+    <Compile Include="Model\Bxml\TestStartGather.cs" />
+    <Compile Include="Model\Bxml\TestStartRecording.cs" />
+    <Compile Include="Model\Bxml\TestStartStream.cs" />
+    <Compile Include="Model\Bxml\TestStartTranscription.cs" />
+    <Compile Include="Model\Bxml\TestStopGather.cs" />
+    <Compile Include="Model\Bxml\TestStopRecording.cs" />
+    <Compile Include="Model\Bxml\TestStopStream.cs" />
+    <Compile Include="Model\Bxml\TestStopTranscription.cs" />
+    <Compile Include="Model\Bxml\TestStreamParam.cs" />
+    <Compile Include="Model\Bxml\TestTag.cs" />
+    <Compile Include="Model\Bxml\TestTransfer.cs" />
   </ItemGroup>
   <ItemGroup>
       <None Include="packages.config" />
@@ -83,6 +114,10 @@ Contact: letstalk@bandwidth.com
       <ProjectReference Include="..\Bandwidth.Standard\Bandwidth.Standard.csproj">
           <Project>{9B8BEAD0-8361-4CDF-9339-41BB86C7A208}</Project>
           <Name>Bandwidth.Standard</Name>
+          <ReferenceSourceTarget></ReferenceSourceTarget>
       </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Bxml\" />
   </ItemGroup>
 </Project>
