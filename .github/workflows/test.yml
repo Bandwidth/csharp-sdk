@@ -11,14 +11,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-2022, windows-2019, ubuntu-18.04, ubuntu-20.04]
-        dotnet: [3.1.x, 5.0.x]
+        os: [windows-2022, windows-2019, ubuntu-22.04, ubuntu-20.04]
+        dotnet: [6.0.x, 7.0.x]
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.dotnet }}
 
@@ -34,7 +34,7 @@ jobs:
           BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
           # Required for multiple target frameworks in the StandardTests project.
           DOTNET: ${{ matrix.dotnet }}
-        run: dotnet test Bandwidth.StandardTests
+        run: dotnet test src/Bandwidth.Standard.Test
 
       - name: Notify Slack of failures
         uses: Bandwidth/build-notify-slack-action@v1.0.0

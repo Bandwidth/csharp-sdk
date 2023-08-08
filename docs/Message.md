@@ -1,3 +1,4 @@
+
 # Bandwidth.Standard.Model.Message
 
 ## Properties
@@ -7,7 +8,7 @@ Name | Type | Description | Notes
 **Id** | **string** | The id of the message. | [optional] 
 **Owner** | **string** | The Bandwidth phone number associated with the message. | [optional] 
 **ApplicationId** | **string** | The application ID associated with the message. | [optional] 
-**Time** | **string** | The datetime stamp of the message in ISO 8601 | [optional] 
+**Time** | **DateTime** | The datetime stamp of the message in ISO 8601 | [optional] 
 **SegmentCount** | **int** | The number of segments the original message from the user is broken into before sending over to carrier networks. | [optional] 
 **Direction** | **MessageDirectionEnum** |  | [optional] 
 **To** | **List&lt;string&gt;** | The phone number recipients of the message. | [optional] 
@@ -16,6 +17,9 @@ Name | Type | Description | Notes
 **Text** | **string** | The contents of the message. | [optional] 
 **Tag** | **string** | The custom string set by the user. | [optional] 
 **Priority** | **PriorityEnum** |  | [optional] 
+**Expiration** | **DateTime** | The expiration date-time set by the user. | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

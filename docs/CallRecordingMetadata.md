@@ -1,3 +1,4 @@
+
 # Bandwidth.Standard.Model.CallRecordingMetadata
 
 ## Properties
@@ -23,5 +24,7 @@ Name | Type | Description | Notes
 **MediaUrl** | **string** | The URL that can be used to download the recording. Only present if the recording is finished and may be downloaded. | [optional] 
 **Transcription** | [**TranscriptionMetadata**](TranscriptionMetadata.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

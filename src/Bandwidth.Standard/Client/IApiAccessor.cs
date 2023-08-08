@@ -10,6 +10,10 @@
 
 
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using RestSharp;
 
 namespace Bandwidth.Standard.Client
 {
@@ -22,13 +26,13 @@ namespace Bandwidth.Standard.Client
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        IReadableConfiguration Configuration { get; set; }
+        Configuration Configuration {get; set;}
 
         /// <summary>
         /// Gets the base path of the API client.
         /// </summary>
         /// <value>The base path</value>
-        string GetBasePath();
+        String GetBasePath();
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
