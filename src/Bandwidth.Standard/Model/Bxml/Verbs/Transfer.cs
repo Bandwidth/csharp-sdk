@@ -41,7 +41,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         [XmlAttribute("callTimeout")]
         public string callTimeoutAsText
         {
-            get { return (ToneInterval.HasValue) ? ToneInterval.ToString() : null; }
+            get { return (CallTimeout.HasValue) ? CallTimeout.ToString() : null; }
             set { }
         }
 

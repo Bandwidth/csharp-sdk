@@ -6,7 +6,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
     /// <summary>
     /// The Bridge verb is used to bridge another party (target call) onto the current call.
     /// <para><seealso href="https://dev.bandwidth.com/docs/voice/bxml/bridge.html" /></para>
-    /// /// </summary>
+    /// </summary>
     public class Bridge : IVerb
     {
 
@@ -94,8 +94,6 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
 
         /// <summary>
         /// (optional) A custom string that will be sent with this and all future callbacks unless overwritten by a future tag attribute or cleared.
-        ///   May be cleared by setting tag = ""
-        ///   Max length 256 characters.
         /// </summary>
         [XmlAttribute("tag")]
         public string Tag { get; set; }

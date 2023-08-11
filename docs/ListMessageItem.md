@@ -1,4 +1,3 @@
-
 # Bandwidth.Standard.Model.ListMessageItem
 
 ## Properties
@@ -23,7 +22,5 @@ Name | Type | Description | Notes
 **CampaignClass** | **string** | The campaign class of the message if it has one. | [optional] 
 **CampaignId** | **string** | The campaign ID of the message if it has one. | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

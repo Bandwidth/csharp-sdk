@@ -1,5 +1,5 @@
-
 # Bandwidth.Standard.Model.InitiateCallback
+The Initiate event is fired when an inbound call is received for a Telephone Number on your Account. It is sent to the URL specified in the application associated with the location (sip-peer) that the called telephone number belongs to.
 
 ## Properties
 
@@ -18,7 +18,5 @@ Name | Type | Description | Notes
 **Diversion** | [**Diversion**](Diversion.md) |  | [optional] 
 **StirShaken** | [**StirShaken**](StirShaken.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,5 +1,5 @@
-
 # Bandwidth.Standard.Model.BridgeTargetCompleteCallback
+If the originating call leaves the <Bridge>, then this callback is sent to the bridgeTargetCompleteUrl, and the BXML returned in it is executed on the target call. If this webhook is sent, the Bridge Complete webhook is NOT sent.
 
 ## Properties
 
@@ -19,7 +19,5 @@ Name | Type | Description | Notes
 **AnswerTime** | **DateTime?** | Time the call was answered, in ISO 8601 format. | [optional] 
 **Tag** | **string** | (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present. | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

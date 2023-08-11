@@ -6,9 +6,12 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
     /// <summary>
     /// BXML tag to represent custom params for the startTranscription verb.
     /// <para><seealso href="https://dev.bandwidth.com/docs/voice/bxml/startTranscription.html"/></para>
-    /// /// </summary>
+    /// </summary>
     public class CustomParam : IVerb
     {
+        /// <summary>
+        ///  Default constructor.
+        /// </summary> 
         public CustomParam()
         {
         }

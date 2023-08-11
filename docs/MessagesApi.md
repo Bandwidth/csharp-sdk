@@ -2,15 +2,13 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**CreateMessage**](MessagesApi.md#createmessage) | **POST** /users/{accountId}/messages | Create Message
-[**ListMessages**](MessagesApi.md#listmessages) | **GET** /users/{accountId}/messages | List Messages
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**CreateMessage**](MessagesApi.md#createmessage) | **POST** /users/{accountId}/messages | Create Message |
+| [**ListMessages**](MessagesApi.md#listmessages) | **GET** /users/{accountId}/messages | List Messages |
 
-
-
-## CreateMessage
-
+<a id="createmessage"></a>
+# **CreateMessage**
 > Message CreateMessage (string accountId, MessageRequest messageRequest)
 
 Create Message
@@ -18,7 +16,6 @@ Create Message
 Endpoint for sending text messages and picture messages using V2 messaging.
 
 ### Example
-
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -32,12 +29,13 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "http://localhost";
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
             // Configure HTTP basic authorization: Basic
-            Configuration.Default.Username = "YOUR_USERNAME";
-            Configuration.Default.Password = "YOUR_PASSWORD";
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new MessagesApi(Configuration.Default);
+            var apiInstance = new MessagesApi(config);
             var accountId = 9900000;  // string | Your Bandwidth Account ID.
             var messageRequest = new MessageRequest(); // MessageRequest | 
 
@@ -47,10 +45,10 @@ namespace Example
                 Message result = apiInstance.CreateMessage(accountId, messageRequest);
                 Debug.WriteLine(result);
             }
-            catch (ApiException e)
+            catch (ApiException  e)
             {
-                Debug.Print("Exception when calling MessagesApi.CreateMessage: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling MessagesApi.CreateMessage: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -58,13 +56,32 @@ namespace Example
 }
 ```
 
+#### Using the CreateMessageWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create Message
+    ApiResponse<Message> response = apiInstance.CreateMessageWithHttpInfo(accountId, messageRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MessagesApi.CreateMessageWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **accountId** | **string**| Your Bandwidth Account ID. | 
- **messageRequest** | [**MessageRequest**](MessageRequest.md)|  | 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **messageRequest** | [**MessageRequest**](MessageRequest.md) |  |  |
 
 ### Return type
 
@@ -76,8 +93,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
 ### HTTP response details
@@ -92,14 +109,10 @@ Name | Type | Description  | Notes
 | **429** | Too Many Requests |  -  |
 | **500** | Internal Server Error |  -  |
 
-[[Back to top]](#)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## ListMessages
-
+<a id="listmessages"></a>
+# **ListMessages**
 > MessagesList ListMessages (string accountId, string messageId = null, string sourceTn = null, string destinationTn = null, MessageStatusEnum? messageStatus = null, ListMessageDirectionEnum? messageDirection = null, string carrierName = null, MessageTypeEnum? messageType = null, int? errorCode = null, string fromDateTime = null, string toDateTime = null, string campaignId = null, string sort = null, string pageToken = null, int? limit = null)
 
 List Messages
@@ -107,7 +120,6 @@ List Messages
 Returns a list of messages based on query parameters.
 
 ### Example
-
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -121,12 +133,13 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "http://localhost";
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
             // Configure HTTP basic authorization: Basic
-            Configuration.Default.Username = "YOUR_USERNAME";
-            Configuration.Default.Password = "YOUR_PASSWORD";
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new MessagesApi(Configuration.Default);
+            var apiInstance = new MessagesApi(config);
             var accountId = 9900000;  // string | Your Bandwidth Account ID.
             var messageId = 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6;  // string | The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional) 
             var sourceTn = %2B15554443333;  // string | The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919'). (optional) 
@@ -149,10 +162,10 @@ namespace Example
                 MessagesList result = apiInstance.ListMessages(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, sort, pageToken, limit);
                 Debug.WriteLine(result);
             }
-            catch (ApiException e)
+            catch (ApiException  e)
             {
-                Debug.Print("Exception when calling MessagesApi.ListMessages: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling MessagesApi.ListMessages: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -160,26 +173,45 @@ namespace Example
 }
 ```
 
+#### Using the ListMessagesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List Messages
+    ApiResponse<MessagesList> response = apiInstance.ListMessagesWithHttpInfo(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, sort, pageToken, limit);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MessagesApi.ListMessagesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **accountId** | **string**| Your Bandwidth Account ID. | 
- **messageId** | **string**| The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. | [optional] 
- **sourceTn** | **string**| The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). | [optional] 
- **destinationTn** | **string**| The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). | [optional] 
- **messageStatus** | **MessageStatusEnum?**| The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. | [optional] 
- **messageDirection** | **ListMessageDirectionEnum?**| The direction of the message. One of INBOUND OUTBOUND. | [optional] 
- **carrierName** | **string**| The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&amp;T should be passed as AT%26T). | [optional] 
- **messageType** | **MessageTypeEnum?**| The type of message. Either sms or mms. | [optional] 
- **errorCode** | **int?**| The error code of the message. | [optional] 
- **fromDateTime** | **string**| The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. | [optional] 
- **toDateTime** | **string**| The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. | [optional] 
- **campaignId** | **string**| The campaign ID of the message. | [optional] 
- **sort** | **string**| The field and direction to sort by combined with a colon. Direction is either asc or desc. | [optional] 
- **pageToken** | **string**| A base64 encoded value used for pagination of results. | [optional] 
- **limit** | **int?**| The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. | [optional] 
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **messageId** | **string** | The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. | [optional]  |
+| **sourceTn** | **string** | The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). | [optional]  |
+| **destinationTn** | **string** | The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). | [optional]  |
+| **messageStatus** | **MessageStatusEnum?** | The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. | [optional]  |
+| **messageDirection** | **ListMessageDirectionEnum?** | The direction of the message. One of INBOUND OUTBOUND. | [optional]  |
+| **carrierName** | **string** | The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&amp;T should be passed as AT%26T). | [optional]  |
+| **messageType** | **MessageTypeEnum?** | The type of message. Either sms or mms. | [optional]  |
+| **errorCode** | **int?** | The error code of the message. | [optional]  |
+| **fromDateTime** | **string** | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. | [optional]  |
+| **toDateTime** | **string** | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. | [optional]  |
+| **campaignId** | **string** | The campaign ID of the message. | [optional]  |
+| **sort** | **string** | The field and direction to sort by combined with a colon. Direction is either asc or desc. | [optional]  |
+| **pageToken** | **string** | A base64 encoded value used for pagination of results. | [optional]  |
+| **limit** | **int?** | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. | [optional]  |
 
 ### Return type
 
@@ -191,8 +223,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
@@ -207,8 +239,5 @@ Name | Type | Description  | Notes
 | **429** | Too Many Requests |  -  |
 | **500** | Internal Server Error |  -  |
 
-[[Back to top]](#)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -1,4 +1,3 @@
-
 # Bandwidth.Standard.Model.Conference
 
 ## Properties
@@ -14,7 +13,5 @@ Name | Type | Description | Notes
 **Tag** | **string** | The custom string attached to the conference that will be sent with callbacks. | [optional] 
 **ActiveMembers** | [**List&lt;ConferenceMember&gt;**](ConferenceMember.md) | A list of active members of the conference. Omitted if this is a response to the [Get Conferences endpoint](/apis/voice#tag/Conferences/operation/listConferences). | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

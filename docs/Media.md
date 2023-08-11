@@ -1,4 +1,3 @@
-
 # Bandwidth.Standard.Model.Media
 
 ## Properties
@@ -9,7 +8,5 @@ Name | Type | Description | Notes
 **ContentLength** | **int** |  | [optional] 
 **MediaName** | **string** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
