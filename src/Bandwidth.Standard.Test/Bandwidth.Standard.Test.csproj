@@ -3,7 +3,7 @@
   <PropertyGroup>
     <AssemblyName>Bandwidth.Standard.Test</AssemblyName>
     <RootNamespace>Bandwidth.Standard.Test</RootNamespace>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp7.0</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
