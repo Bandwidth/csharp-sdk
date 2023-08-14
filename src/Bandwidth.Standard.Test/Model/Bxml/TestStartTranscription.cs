@@ -11,7 +11,7 @@ namespace Bandwidth.Standard.Test.Model.Bxml
 		[Fact]
 		public void StartTranscriptionTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StartTranscription name=\"test\" tracks=\"inbound\" transcriptionEventUrl=\"https://test.url/\" transcriptionEventMethod=\"POST\" username=\"username\" password=\"password\" destination=\"wss://test.url/\" stabilized=\"true\">    <CustomParam name=\"testName\" value=\"testValue\" /></StartTranscription></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StartTranscription name=\"test\" tracks=\"inbound\" transcriptionEventUrl=\"https://test.url/\" transcriptionEventMethod=\"POST\" username=\"username\" password=\"password\" destination=\"wss://test.url/\" stabilized=\"true\">    <CustomParam name=\"testName\" value=\"testValue\" />  </StartTranscription></Response>";
 			
 			var customParam = new CustomParam();
 			customParam.Name = "testName";

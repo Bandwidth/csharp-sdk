@@ -10,7 +10,7 @@ namespace Bandwidth.Standard.Test.Model.Bxml
 		[Fact]
 		public void BridgeTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Bridge bridgeCompleteUrl=\"https://bridge.url/nextBXMLForSecondCall\" bridgeCompleteMethod=\"POST\" bridgeCompleteFallbackUrl=\"https://fallbackbridge.url/nextBXMLForSecondCall\" bridgeCompleteFallbackMethod=\"POST\" bridgeTargetCompleteUrl=\"https://bridge.url/nextBXMLForFirstCall\" bridgeTargetCompleteMethod=\"POST\" bridgeTargetCompleteFallbackUrl=\"https://fallbackbridge.url/nextBXMLForFirstCall\" bridgeTargetCompleteFallbackMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\"> c-1234abcd </Bridge></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Bridge bridgeCompleteUrl=\"https://bridge.url/nextBXMLForSecondCall\" bridgeCompleteMethod=\"POST\" bridgeCompleteFallbackUrl=\"https://fallbackbridge.url/nextBXMLForSecondCall\" bridgeCompleteFallbackMethod=\"POST\" bridgeTargetCompleteUrl=\"https://bridge.url/nextBXMLForFirstCall\" bridgeTargetCompleteMethod=\"POST\" bridgeTargetCompleteFallbackUrl=\"https://fallbackbridge.url/nextBXMLForFirstCall\" bridgeTargetCompleteFallbackMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\">c-1234abcd</Bridge></Response>";
 
 			var bridge = new Bridge();
 			bridge.TargetCall = "c-1234abcd";
