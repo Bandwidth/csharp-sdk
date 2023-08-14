@@ -10,7 +10,7 @@ namespace Bandwidth.Standard.Test.Model.Bxml
 		[Fact]
 		public void ForwardTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Forward to=\"+15551234567\" from=\"+15557654321\" callTimeout=10 diversionTreatment=\"propagate\" diversionReason=\"away\" uui=\"93d6f3c0be5845960b744fa28015d8ede84bd1a4;encoding=base64,asdf;encoding=jwt\"/></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Forward to=\"+15551234567\" from=\"+15557654321\" callTimeout=\"10\" diversionTreatment=\"propagate\" diversionReason=\"away\" uui=\"93d6f3c0be5845960b744fa28015d8ede84bd1a4;encoding=base64,asdf;encoding=jwt\" /></Response>";
 
 			var forward = new Forward();
 			forward.To = "+15551234567";

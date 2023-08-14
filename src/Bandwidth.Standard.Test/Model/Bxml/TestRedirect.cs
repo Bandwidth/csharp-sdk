@@ -10,7 +10,7 @@ namespace Bandwidth.Standard.Test.Model.Bxml
 		[Fact]
 		public void RedirectTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Redirect redirectUrl=\"https://test.url/\" redirectMethod=\"POST\" redirectFallbackUrl=\"\" redirectFallbackMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\"/><Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Redirect redirectUrl=\"https://test.url/\" redirectMethod=\"POST\" redirectFallbackUrl=\"https://fallbacktest.url/\" redirectFallbackMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\" /></Response>";
 
 			var redirect = new Redirect();
 			redirect.RedirectUrl = "https://test.url/";

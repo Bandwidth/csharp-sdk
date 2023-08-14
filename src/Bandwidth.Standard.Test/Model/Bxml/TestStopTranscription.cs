@@ -10,7 +10,7 @@ namespace Bandwidth.Standard.Test.Model.Bxml
 		[Fact]
 		public void StopTranscriptionTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StopTranscription name=\"test\"/></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StopTranscription name=\"test\" /></Response>";
 
 			var stopTranscription = new StopTranscription();
 			stopTranscription.Name = "test";

@@ -10,7 +10,7 @@ namespace Bandwidth.Standard.Test.Model.Bxml
 		[Fact]
 		public void RingTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Ring duration=\"5\" answerCall=\"true\"/></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Ring duration=\"5\" answerCall=\"true\" /></Response>";
 
 			var ring = new Ring();
 			ring.Duration = 5;

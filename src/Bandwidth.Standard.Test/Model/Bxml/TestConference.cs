@@ -10,7 +10,7 @@ namespace Bandwidth.Standard.Test.Model.Bxml
 		[Fact]
 		public void ConferenceTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Conference mute=\"true\" hold=\"true\" callIdsToCoach=\"c-1234abcd,c-9876zyxwv\" conferenceEventUrl=\"https://test.url/\" conferenceEventMethod=\"POST\" conferenceEventFallbackUrl=\"https://fallbackTest.url/\" conferenceEventFallbackMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\" callbackTimeout=10 > test </Conference></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Conference mute=\"true\" hold=\"true\" callIdsToCoach=\"c-1234abcd,c-9876zyxwv\" conferenceEventUrl=\"https://test.url/\" conferenceEventMethod=\"POST\" conferenceEventFallbackUrl=\"https://fallbackTest.url/\" conferenceEventFallbackMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\" callbackTimeout=\"10\"> test </Conference></Response>";
 
 			var conference = new Conference();
 

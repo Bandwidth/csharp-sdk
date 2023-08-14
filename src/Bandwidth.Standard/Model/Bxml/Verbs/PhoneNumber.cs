@@ -31,7 +31,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// <summary>
         ///   (optional) A fallback url which, if provided, will be used to retry the Transfer Answer callback delivery in case transferAnswerUrl fails to respond.
         /// </summary>
-        [XmlAttribute("TransferAnswerFallbackUrl")]
+        [XmlAttribute("transferAnswerFallbackUrl")]
         public string TransferAnswerFallbackUrl { get; set; }
 
         /// <summary>

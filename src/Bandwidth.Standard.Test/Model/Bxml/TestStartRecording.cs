@@ -10,7 +10,7 @@ namespace Bandwidth.Standard.Test.Model.Bxml
 		[Fact]
 		public void StartRecordingTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StartRecording recordAvailableUrl=\"https://test.url/\" recordingAvailableMethod=\"POST\" transcribe=\"true\" detectLanguage=\"true\" transcriptionAvailableUrl=\"https://transcriptionTest.url/\" transcriptionAvailableMethod=\"POST\" username=\"username\" password=\"password\" tag=\"test\" fileFormat=\"mp3\" multiChannel=\"true\"/></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StartRecording recordingAvailableUrl=\"https://test.url/\" recordingAvailableMethod=\"POST\" transcribe=\"true\" detectLanguage=\"true\" transcriptionAvailableUrl=\"https://transcriptionTest.url/\" transcriptionAvailableMethod=\"POST\" username=\"username\" password=\"password\" tag=\"test\" fileFormat=\"mp3\" multiChannel=\"true\" /></Response>";
 
 			var startRecording = new StartRecording();
 			startRecording.RecordingAvailableUrl = "https://test.url/";

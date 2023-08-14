@@ -10,7 +10,7 @@ namespace Bandwidth.Standard.Test.Model.Bxml
 		[Fact]
 		public void StreamParamTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StreamParam name=\"testName\" value=\"testValue\"/></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StreamParam name=\"testName\" value=\"testValue\" /></Response>";
 
 			var streamParam = new StreamParam();
 			streamParam.Name = "testName";

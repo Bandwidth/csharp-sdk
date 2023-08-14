@@ -10,7 +10,7 @@ namespace Bandwidth.Standard.Test.Model.Bxml
 		[Fact]
 		public void StartGatherTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StartGather gatherUrl=\"https://test.url/\" gatherMethod=\"POST\" username=\"username\" password=\"password\" tag=\"test\"></StartGather></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StartGather dtmfUrl=\"https://test.url/\" dtmfMethod=\"POST\" username=\"username\" password=\"password\" tag=\"test\" /></Response>";
 
 			var startGather = new StartGather();
 			startGather.DtmfUrl = "https://test.url/";

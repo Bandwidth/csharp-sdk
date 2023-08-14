@@ -9,7 +9,7 @@ namespace Bandwidth.Standard.Test.Model.Bxml
 	{
 		public TestSipUri()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <SipUri uui=\"abc123\" transferAnswerUrl=\"https.://test.url/\" transferAnswerMethod=\"POST\" transferAnswerFallbackUrl=\"https://fallbackTest.url/\" transferAnswerFallbackMethod=\"POST\" transferDisconnectUrl=\"https://disconnectTest.url/\" transferDisconnectMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\">sip:1-999-123-4567@voip-provider.example.net</SipUri><Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <SipUri uui=\"abc123\" transferAnswerUrl=\"https.://test.url/\" transferAnswerMethod=\"POST\" transferAnswerFallbackUrl=\"https://fallbackTest.url/\" transferAnswerFallbackMethod=\"POST\" transferDisconnectUrl=\"https://disconnectTest.url/\" transferDisconnectMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\">sip:1-999-123-4567@voip-provider.example.net</SipUri></Response>";
 		
 			var sipUri = new SipUri();
 			sipUri.Uri = "sip:1-999-123-4567@voip-provider.example.net";

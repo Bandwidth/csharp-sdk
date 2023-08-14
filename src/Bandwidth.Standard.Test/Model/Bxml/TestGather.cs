@@ -11,7 +11,7 @@ namespace Bandwidth.Standard.Test.Model.Bxml
 		[Fact]
 		public void GatherTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Gather gatherUrl=\"https://test.url/\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://fallbackTest.url/\" gatherFallbackMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\" terminatingDigit=\"#\" maxDigits=\"50\" internalDigitTimeout=\"5\" firstDigitTimeout=\"5\" repeatCount=\"1\">    <SpeakSentence>test</SpeakSentence>    <PlayAudio>https://test.url/test.mp3</PlayAudio>  </Gather></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Gather gatherUrl=\"https://test.url/\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://fallbackTest.url/\" gatherFallbackMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\" terminatingDigits=\"#\" maxDigits=\"50\" internalDigitTimeout=\"5\" firstDigitTimeout=\"5\" repeatCount=\"1\">    <SpeakSentence>test</SpeakSentence>    <PlayAudio>https://test.url/test.mp3</PlayAudio>  </Gather></Response>";
 
 			var speakSentence = new SpeakSentence();
 			speakSentence.Text = "test";

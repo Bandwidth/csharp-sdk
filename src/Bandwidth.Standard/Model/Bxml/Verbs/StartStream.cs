@@ -15,7 +15,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// </summary>
         public StartStream()
         {
-            StreamParams = new List<StreamParam>();
+            StreamParam = new List<StreamParam>();
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// <summary>
         /// List of StreamParam verbs.
         /// </summary>
-        [XmlElement("StreamParams")]
-        public List<StreamParam> StreamParams { get; set; }
+        [XmlElement("StreamParam")]
+        public List<StreamParam> StreamParam { get; set; }
     }
 }
