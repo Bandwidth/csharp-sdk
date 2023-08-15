@@ -11,7 +11,7 @@ namespace Bandwidth.Standard.Test.Model.Bxml
 		[Fact]
 		public void StartStreamTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StartStream name=\"test\" tracks=\"inbound\" destination=\"wss://test.url/\" streamEventUrl=\"https://test.url/\" streamEventMethod=\"POST\" username=\"username\" password=\"password\">    <StreamParam name=\"testName\" value=\"testValue\" /></StartStream></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StartStream name=\"test\" tracks=\"inbound\" destination=\"wss://test.url/\" streamEventUrl=\"https://test.url/\" streamEventMethod=\"POST\" username=\"username\" password=\"password\">    <StreamParam name=\"testName\" value=\"testValue\" />  </StartStream></Response>";
 
 			var streamParam = new StreamParam();
 			streamParam.Name = "testName";
