@@ -10,7 +10,7 @@ namespace Bandwidth.Standard.Test.Model.Bxml
 		[Fact]
 		public void StopRecordingTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StopRecording/></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StopRecording /></Response>";
 
 			var stopRecording = new StopRecording();
 
@@ -21,4 +21,3 @@ namespace Bandwidth.Standard.Test.Model.Bxml
 		}
 	}
 }
-
