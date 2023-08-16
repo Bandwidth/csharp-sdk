@@ -6,7 +6,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
     /// <summary>
     /// The Bridge verb is used to bridge another party (target call) onto the current call.
     /// <para><seealso href="https://dev.bandwidth.com/docs/voice/bxml/bridge.html" /></para>
-    /// /// </summary>
+    /// </summary>
     public class Bridge : IVerb
     {
 
@@ -18,8 +18,6 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
 
         /// <summary>
         ///   (optional) URL to send the Bridge Complete event to and request new BXML.
-        /// If this attribute is specified, then Verbs following the <Bridge> verb will be ignored and the BXML returned in this callback is executed on the call.
-        /// If this attribute is not specified then no callback will be sent, and execution of the verbs following the <Bridge> verb continues.
         /// </summary>
         [XmlAttribute("bridgeCompleteUrl")]
         public string BridgeCompleteUrl { get; set; }
@@ -69,13 +67,13 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         public string BridgeTargetCompleteFallbackMethod { get; set; }
 
         /// <summary>
-        /// (optional) Username for basic auth on the bridgeCompleteUrl & bridgeTargetCompleteUrl.
+        /// (optional) Username for basic auth on the bridgeCompleteUrl and bridgeTargetCompleteUrl.
         /// </summary>
         [XmlAttribute("username")]
         public string Username { get; set; }
 
         /// <summary>
-        /// (optional) Password for basic auth on the bridgeCompleteUrl & bridgeTargetCompleteUrl.
+        /// (optional) Password for basic auth on the bridgeCompleteUrl and bridgeTargetCompleteUrl.
         /// </summary>
         [XmlAttribute("password")]
         public string Password { get; set; }
@@ -94,8 +92,6 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
 
         /// <summary>
         /// (optional) A custom string that will be sent with this and all future callbacks unless overwritten by a future tag attribute or cleared.
-        ///   May be cleared by setting tag = ""
-        ///   Max length 256 characters.
         /// </summary>
         [XmlAttribute("tag")]
         public string Tag { get; set; }

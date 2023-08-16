@@ -1,5 +1,5 @@
-
 # Bandwidth.Standard.Model.MachineDetectionCompleteCallback
+This event is sent to the url informed when requesting a machine detection operation. It contains the machine detection operation result, which can be: human, answering-machine, silence, timeout, error. This event is not sent when sync answering machine detection mode is chosen.
 
 ## Properties
 
@@ -20,7 +20,5 @@ Name | Type | Description | Notes
 **Tag** | **string** | (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present. | [optional] 
 **MachineDetectionResult** | [**MachineDetectionResult**](MachineDetectionResult.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

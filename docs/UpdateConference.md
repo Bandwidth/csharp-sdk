@@ -1,4 +1,3 @@
-
 # Bandwidth.Standard.Model.UpdateConference
 
 ## Properties
@@ -15,7 +14,5 @@ Name | Type | Description | Notes
 **FallbackUsername** | **string** | Basic auth username. | [optional] 
 **FallbackPassword** | **string** | Basic auth password. | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

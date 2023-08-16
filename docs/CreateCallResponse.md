@@ -1,4 +1,3 @@
-
 # Bandwidth.Standard.Model.CreateCallResponse
 
 ## Properties
@@ -27,7 +26,5 @@ Name | Type | Description | Notes
 **FallbackPassword** | **string** | Basic auth password. | [optional] 
 **Priority** | **int?** | The priority of this call over other calls from your account. | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

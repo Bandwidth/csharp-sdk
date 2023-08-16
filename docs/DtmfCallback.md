@@ -1,5 +1,5 @@
-
 # Bandwidth.Standard.Model.DtmfCallback
+The DTMF event is sent for every digit detected after a <StartGather> verb is executed. You may not respond to this event with BXML.
 
 ## Properties
 
@@ -23,7 +23,5 @@ Name | Type | Description | Notes
 **TransferTo** | **string** | The phone number used as the to field of the B-leg call, in E.164 format (e.g. +15555555555). | [optional] 
 **Tag** | **string** | (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present. | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

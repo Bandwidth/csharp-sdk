@@ -1,5 +1,5 @@
-
 # Bandwidth.Standard.Model.DisconnectCallback
+The Disconnect event is fired when a call ends, for any reason.
 
 ## Properties
 
@@ -23,7 +23,5 @@ Name | Type | Description | Notes
 **ErrorId** | **string** | Bandwidth&#39;s internal id that references the error event. | [optional] 
 **Tag** | **string** | (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present. | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

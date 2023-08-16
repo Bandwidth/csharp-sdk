@@ -1,5 +1,5 @@
-
 # Bandwidth.Standard.Model.MachineDetectionConfiguration
+The machine detection request used to perform <a href='/docs/voice/guides/machineDetection'>machine detection</a> on the call.
 
 ## Properties
 
@@ -21,7 +21,5 @@ Name | Type | Description | Notes
 **FallbackUsername** | **string** | Basic auth username. | [optional] 
 **FallbackPassword** | **string** | Basic auth password. | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,5 +1,5 @@
-
 # Bandwidth.Standard.Model.TransferDisconnectCallback
+This event is sent to the transferDisconnectUrl of each <PhoneNumber> tag when its respective call leg ends for any reason. The event is sent in the normal case, when the transferred leg is answered and later hung up, but is also sent if the new leg was never answered in the first place, if it was rejected, and if the original call leg hung up before the transferred leg.
 
 ## Properties
 
@@ -26,7 +26,5 @@ Name | Type | Description | Notes
 **ErrorMessage** | **string** | Text explaining the reason that caused the call to fail in case of errors. | [optional] 
 **ErrorId** | **string** | Bandwidth&#39;s internal id that references the error event. | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

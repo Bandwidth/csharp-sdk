@@ -4,33 +4,31 @@ using System.Xml.Serialization;
 namespace Bandwidth.Standard.Model.Bxml.Verbs
 {
     /// <summary>
-    ///   The Conference verb is used to play an audio file in the call.
-    ///   <para><seealso href="https://dev.bandwidth.com/docs/voice/bxml/conference.html" /></para>
+    ///     The Conference verb is used to play an audio file in the call.
+    ///     <para><seealso href="https://dev.bandwidth.com/docs/voice/bxml/conference.html" /></para>
     /// </summary>
     public class Conference : IVerb
     {
         /// <summary>
-        /// Name of the conference.
+        ///     Name of the conference.
         /// </summary>
         [XmlText]
         public string Name { get; set; }
 
         /// <summary>
-        /// (optional) A boolean value to indicate whether the member should be on mute in the conference. When muted, a member can hear others speak, but others cannot hear them speak.
+        ///     (optional) A boolean value to indicate whether the member should be on mute in the conference. When muted, a member can hear others speak, but others cannot hear them speak.
         /// </summary>
         [XmlAttribute("mute")]
         public bool Mute { get; set; }
 
         /// <summary>
-        /// (optional) A boolean value to indicate whether the member should be on hold in the conference. When on hold, a member cannot hear others, and they cannot be heard.
+        ///     (optional) A boolean value to indicate whether the member should be on hold in the conference. When on hold, a member cannot hear others, and they cannot be heard.
         /// </summary>
         [XmlAttribute("hold")]
         public bool Hold { get; set; }
 
         /// <summary>
-        /// (optional) A comma-separated list of call ids to coach. When a call joins a conference with this attribute set, it will coach the listed calls. Those calls will be able to hear and be heard by the coach, but other calls in the conference will not hear the coach.
-        /// Calls may be added to the conference in any order - if the matching calls are not already in the conference, then once the matching calls are added, the coach will be able to hear and speak to the matching calls. Note that this will not add the matching calls to the conference; each call must individually execute a <Conference> verb to join.
-        /// A conference may only have one coach.
+        ///     (optional) A comma-separated list of call ids to coach.
         /// </summary>
         [XmlAttribute("callIdsToCoach")]
         public string CallIdsToCoach { get; set; }

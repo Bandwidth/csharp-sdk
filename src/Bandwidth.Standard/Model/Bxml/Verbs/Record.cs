@@ -1,4 +1,5 @@
 using Bandwidth.Standard.Model.Bxml;
+using System;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Model.Bxml.Verbs
@@ -107,7 +108,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         public string TerminatingDigits { get; set; }
 
         /// <summary>
-        ///   (optional) Maximum length of recording (in seconds). Max 10800 (3 hours).
+        ///   (optional) Maximum length of recording (in seconds).
         /// </summary>
         [XmlIgnore]
         public Nullable<int> MaxDuration { get; set; }

@@ -1,4 +1,3 @@
-
 # Bandwidth.Standard.Model.CallState
 
 ## Properties
@@ -24,7 +23,5 @@ Name | Type | Description | Notes
 **ErrorId** | **string** | Populated only if the call ended with an error, with a Bandwidth internal id that references the error event. | [optional] 
 **LastUpdate** | **DateTime** | The last time the call had a state update, in ISO 8601 format. | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

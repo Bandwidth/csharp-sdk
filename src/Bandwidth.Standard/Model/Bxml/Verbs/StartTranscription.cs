@@ -1,4 +1,5 @@
 using Bandwidth.Standard.Model.Bxml;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Model.Bxml.Verbs
@@ -9,6 +10,9 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
     /// </summary>
     public class StartTranscription : IVerb
     {
+        /// <summary>
+        ///  Default constructor.
+        /// </summary>
         public StartTranscription()
         {
             Stabilized = true;
@@ -65,7 +69,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
 
 
         /// <summary>
-        /// You may specify up to 12 <CustomParam/> elements nested within a <StartTranscription> tag.
+        /// You may specify up to 12 CustomParam elements nested within a StartTranscription tag.
         /// </summary>
         [XmlElement("CustomParam")]
         public List<CustomParam> CustomParams { get; set; }

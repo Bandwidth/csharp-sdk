@@ -1,4 +1,6 @@
 using Bandwidth.Standard.Model.Bxml;
+using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Model.Bxml.Verbs
@@ -148,12 +150,12 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         ///  Using the SpeakSentence inside the Gather verb will speak the text to the callee.
         /// </summary>
         [XmlElement("SpeakSentence")]
-        public SpeakSentence SpeakSentence { get; set; }
+        public List<SpeakSentence> SpeakSentence { get; set; }
 
         /// <summary>
         /// Using the PlayAudio inside the Gather verb will play the media to the callee.
         /// </summary>
         [XmlElement("PlayAudio")]
-        public PlayAudio PlayAudio { get; set; }
+        public List<PlayAudio> PlayAudio { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace Bandwidth.Standard.Model.Bxml
     /// <summary>
     ///   Bxml class for Bandwidth XML
     /// </summary>
-    public abstract class Root : IXmlSerializable
+    public class Root : IXmlSerializable
     {
         internal static XmlSerializer _serializer;
         private readonly List<IVerb> _list = new List<IVerb>();

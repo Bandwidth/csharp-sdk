@@ -1,5 +1,5 @@
-
 # Bandwidth.Standard.Model.ConferenceCompletedCallback
+The Conference Completed event is fired when the last member leaves the conference. The response to this event may not contain BXML.
 
 ## Properties
 
@@ -11,7 +11,5 @@ Name | Type | Description | Notes
 **Name** | **string** | The user-specified name of the conference that was recorded | [optional] 
 **Tag** | **string** | (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present. | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

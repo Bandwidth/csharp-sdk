@@ -1,5 +1,5 @@
-
 # Bandwidth.Standard.Model.TransferCompleteCallback
+This event is sent to the transferCompleteUrl of the A-leg's <Transfer> verb when the transferred call (B-leg) completes. In a simultaneous ringing scenario, only one B-leg succeeds and this event corresponds to that successful leg. If none of the calls were answered, the transferComplete event corresponds to one of the legs.
 
 ## Properties
 
@@ -24,7 +24,5 @@ Name | Type | Description | Notes
 **ErrorMessage** | **string** | Text explaining the reason that caused the call to fail in case of errors. | [optional] 
 **ErrorId** | **string** | Bandwidth&#39;s internal id that references the error event. | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

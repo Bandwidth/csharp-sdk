@@ -1,5 +1,5 @@
-
 # Bandwidth.Standard.Model.BridgeCompleteCallback
+If the target call leaves the <Bridge>, then this callback is sent to the bridgeCompleteUrl, and the BXML returned in it is executed on the call. If this webhook is sent, the Bridge Target Complete webhook is NOT sent. This callback is also sent if any problem occurs that prevents the calls to be bridged.
 
 ## Properties
 
@@ -22,7 +22,5 @@ Name | Type | Description | Notes
 **ErrorMessage** | **string** | Text explaining the reason that caused the call to fail in case of errors. | [optional] 
 **ErrorId** | **string** | Bandwidth&#39;s internal id that references the error event. | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

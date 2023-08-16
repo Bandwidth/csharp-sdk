@@ -1,5 +1,5 @@
-
 # Bandwidth.Standard.Model.RedirectCallback
+The Redirect event is fired when a <Redirect> verb is executed. Its purpose is to get the next set of verbs from the calling application.
 
 ## Properties
 
@@ -22,7 +22,5 @@ Name | Type | Description | Notes
 **TransferCallerId** | **string** | The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous, Private, or Unavailable. | [optional] 
 **TransferTo** | **string** | The phone number used as the to field of the B-leg call, in E.164 format (e.g. +15555555555). | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

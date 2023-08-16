@@ -1,5 +1,5 @@
-
 # Bandwidth.Standard.Model.TranscriptionMetadata
+If the recording was transcribed, metadata about the transcription
 
 ## Properties
 
@@ -10,7 +10,5 @@ Name | Type | Description | Notes
 **CompletedTime** | **string** | The time that the transcription was completed | [optional] 
 **Url** | **string** | The URL of the [transcription](#operation/getCallTranscription) | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
