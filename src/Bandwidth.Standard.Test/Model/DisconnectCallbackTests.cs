@@ -9,209 +9,217 @@
  */
 
 
-using NUnit.Framework;
+using Xunit;
 
 using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace Bandwidth.Standard.Test
+namespace Bandwidth.Standard.Test.Model
 {
     /// <summary>
     ///  Class for testing DisconnectCallback
     /// </summary>
-    public class DisconnectCallbackTests
+    public class DisconnectCallbackTests : IDisposable
     {
         private DisconnectCallback instance;
 
-        /// <summary>
-        /// Setup before each test
-        /// </summary>
-        [SetUp]
-        public void Init()
+        public DisconnectCallbackTests()
         {
             instance = new DisconnectCallback();
         }
 
-        /// <summary>
-        /// Clean up after each test
-        /// </summary>
-        [TearDown]
-        public void Cleanup()
+        public void Dispose()
         {
-
+            // Cleanup when everything is done.
         }
 
         /// <summary>
         /// Test an instance of DisconnectCallback
         /// </summary>
-        [Test]
+        [Fact]
         public void DisconnectCallbackInstanceTest()
         {
-            Assert.IsInstanceOf(typeof(DisconnectCallback), instance);
+            Assert.IsType<DisconnectCallback>(instance);
         }
 
 
         /// <summary>
         /// Test the property 'EventType'
         /// </summary>
-        [Test]
+        [Fact]
         public void EventTypeTest()
         {
-            instance.EventType = "bridgeComplete";
-            Assert.IsInstanceOf(typeof(string), instance.EventType);
-            Assert.AreEqual("bridgeComplete", instance.EventType);
+            instance.EventType = "disconnect";
+            Assert.IsType<string>(instance.EventType);
+            Assert.Equal("disconnect", instance.EventType);
         }
         /// <summary>
         /// Test the property 'EventTime'
         /// </summary>
-        [Test]
+        [Fact]
         public void EventTimeTest()
         {
-            var eventTime = new DateTime(2020, 3, 13);
-            instance.EventTime = eventTime;
-            Assert.IsInstanceOf(typeof(DateTime), instance.EventTime);
-            Assert.AreEqual(eventTime, instance.EventTime);
+            instance.EventTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.EventTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EventTime);
         }
         /// <summary>
         /// Test the property 'AccountId'
         /// </summary>
-        [Test]
+        [Fact]
         public void AccountIdTest()
         {
-            instance.AccountId = "920000";
-            Assert.IsInstanceOf(typeof(string), instance.AccountId);
-            Assert.AreEqual("920000", instance.AccountId);
+            instance.AccountId = "123-456-abcd";
+            Assert.IsType<string>(instance.AccountId);
+            Assert.Equal("123-456-abcd", instance.AccountId);
         }
         /// <summary>
         /// Test the property 'ApplicationId'
         /// </summary>
-        [Test]
+        [Fact]
         public void ApplicationIdTest()
         {
             instance.ApplicationId = "123-456-abcd";
-            Assert.IsInstanceOf(typeof(string), instance.ApplicationId);
-            Assert.AreEqual("123-456-abcd", instance.ApplicationId);
+            Assert.IsType<string>(instance.ApplicationId);
+            Assert.Equal("123-456-abcd", instance.ApplicationId);
         }
         /// <summary>
         /// Test the property 'From'
         /// </summary>
-        [Test]
+        [Fact]
         public void FromTest()
         {
             instance.From = "+15551234567";
-            Assert.IsInstanceOf(typeof(string), instance.From);
-            Assert.AreEqual("+15551234567", instance.From);
+            Assert.IsType<string>(instance.From);
+            Assert.Equal("+15551234567", instance.From);
         }
         /// <summary>
         /// Test the property 'To'
         /// </summary>
-        [Test]
+        [Fact]
         public void ToTest()
         {
             instance.To = "+15557654321";
-            Assert.IsInstanceOf(typeof(string), instance.To);
-            Assert.AreEqual("+15557654321", instance.To);
+            Assert.IsType<string>(instance.To);
+            Assert.Equal("+15557654321", instance.To);
         }
         /// <summary>
         /// Test the property 'CallId'
         /// </summary>
-        [Test]
+        [Fact]
         public void CallIdTest()
         {
             instance.CallId = "c-1234";
-            Assert.IsInstanceOf(typeof(string), instance.CallId);
-            Assert.AreEqual("c-1234", instance.CallId);  
+            Assert.IsType<string>(instance.CallId);
+            Assert.Equal("c-1234", instance.CallId);
         }
         /// <summary>
         /// Test the property 'Direction'
         /// </summary>
-        [Test]
+        [Fact]
         public void DirectionTest()
         {
             instance.Direction = CallDirectionEnum.Inbound;
-            Assert.IsInstanceOf(typeof(CallDirectionEnum), instance.Direction);
-            Assert.AreEqual(CallDirectionEnum.Inbound, instance.Direction);
+            Assert.IsType<CallDirectionEnum>(instance.Direction);
+            Assert.Equal(CallDirectionEnum.Inbound, instance.Direction);
         }
         /// <summary>
         /// Test the property 'CallUrl'
         /// </summary>
-        [Test]
+        [Fact]
         public void CallUrlTest()
         {
-            // TODO unit test for the property 'CallUrl'
+            instance.CallUrl = "http://test.url/";
+            Assert.IsType<string>(instance.CallUrl);
+            Assert.Equal("http://test.url/", instance.CallUrl);
         }
         /// <summary>
         /// Test the property 'EnqueuedTime'
         /// </summary>
-        [Test]
+        [Fact]
         public void EnqueuedTimeTest()
         {
-            // TODO unit test for the property 'EnqueuedTime'
+            instance.EnqueuedTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.EnqueuedTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EnqueuedTime);
         }
         /// <summary>
         /// Test the property 'StartTime'
         /// </summary>
-        [Test]
+        [Fact]
         public void StartTimeTest()
         {
-            // TODO unit test for the property 'StartTime'
+            instance.StartTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.StartTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.StartTime);
         }
         /// <summary>
         /// Test the property 'AnswerTime'
         /// </summary>
-        [Test]
+        [Fact]
         public void AnswerTimeTest()
         {
-            // TODO unit test for the property 'AnswerTime'
+            instance.AnswerTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.AnswerTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.AnswerTime);
         }
         /// <summary>
         /// Test the property 'EndTime'
         /// </summary>
-        [Test]
+        [Fact]
         public void EndTimeTest()
         {
-            // TODO unit test for the property 'EndTime'
+            instance.EndTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.EndTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EndTime);
         }
         /// <summary>
         /// Test the property 'Cause'
         /// </summary>
-        [Test]
+        [Fact]
         public void CauseTest()
         {
-            // TODO unit test for the property 'Cause'
+            instance.Cause = "busy";
+            Assert.IsType<string>(instance.Cause);
+            Assert.Equal("busy", instance.Cause);
         }
         /// <summary>
         /// Test the property 'ErrorMessage'
         /// </summary>
-        [Test]
+        [Fact]
         public void ErrorMessageTest()
         {
-            // TODO unit test for the property 'ErrorMessage'
+            instance.ErrorMessage = "Call c-123 is already bridged with another call";
+            Assert.IsType<string>(instance.ErrorMessage);
+            Assert.Equal("Call c-123 is already bridged with another call", instance.ErrorMessage);
         }
         /// <summary>
         /// Test the property 'ErrorId'
         /// </summary>
-        [Test]
+        [Fact]
         public void ErrorIdTest()
         {
-            // TODO unit test for the property 'ErrorId'
+            instance.ErrorId = "123-456";
+            Assert.IsType<string>(instance.ErrorId);
+            Assert.Equal("123-456", instance.ErrorId);
         }
         /// <summary>
         /// Test the property 'Tag'
         /// </summary>
-        [Test]
+        [Fact]
         public void TagTest()
         {
             instance.Tag = "test";
-            Assert.IsInstanceOf(typeof(string), instance.Tag);
-            Assert.AreEqual("test", instance.Tag);
+            Assert.IsType<string>(instance.Tag);
+            Assert.Equal("test", instance.Tag);
         }
+
     }
+
 }

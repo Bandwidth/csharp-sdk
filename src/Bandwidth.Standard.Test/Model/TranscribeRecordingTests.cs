@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CallbackUrlTest()
         {
-            // TODO unit test for the property 'CallbackUrl'
+            instance.CallbackUrl = "https://test.url/";
+            Assert.IsType<string>(instance.CallbackUrl);
+            Assert.Equal("https://test.url/", instance.CallbackUrl);
         }
         /// <summary>
         /// Test the property 'CallbackMethod'
@@ -64,7 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CallbackMethodTest()
         {
-            // TODO unit test for the property 'CallbackMethod'
+            instance.CallbackMethod = CallbackMethodEnum.POST;
+            Assert.IsType<CallbackMethodEnum>(instance.CallbackMethod);
+            Assert.Equal(CallbackMethodEnum.POST, instance.CallbackMethod);
         }
         /// <summary>
         /// Test the property 'Username'
@@ -72,7 +75,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void UsernameTest()
         {
-            // TODO unit test for the property 'Username'
+            instance.Username = "username";
+            Assert.IsType<string>(instance.Username);
+            Assert.Equal("username", instance.Username);
         }
         /// <summary>
         /// Test the property 'Password'
@@ -80,7 +85,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void PasswordTest()
         {
-            // TODO unit test for the property 'Password'
+            instance.Password = "password";
+            Assert.IsType<string>(instance.Password);
+            Assert.Equal("password", instance.Password);
         }
         /// <summary>
         /// Test the property 'Tag'
@@ -98,7 +105,21 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CallbackTimeoutTest()
         {
-            // TODO unit test for the property 'CallbackTimeout'
+            instance.CallbackTimeout = 5.5;
+            Assert.IsType<double>(instance.CallbackTimeout);
+            Assert.Equal(5.5, instance.CallbackTimeout);
         }
+        /// <summary>
+        /// Test the property 'DetectLanguage'
+        /// </summary>
+        [Fact]
+        public void DetectLanguageTest()
+        {
+            instance.DetectLanguage = true;
+            Assert.IsType<bool>(instance.DetectLanguage);
+            Assert.Equal(true, instance.DetectLanguage);
+        }
+
     }
+
 }

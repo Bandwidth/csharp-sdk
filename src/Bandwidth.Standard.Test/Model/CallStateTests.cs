@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -158,10 +157,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EnqueuedTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.EnqueuedTime = date;
+            instance.EnqueuedTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.EnqueuedTime);
-            Assert.Equal(date, instance.EnqueuedTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EnqueuedTime);
         }
         /// <summary>
         /// Test the property 'StartTime'
@@ -169,10 +167,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void StartTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.StartTime = date;
+            instance.StartTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.StartTime);
-            Assert.Equal(date, instance.StartTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.StartTime);
         }
         /// <summary>
         /// Test the property 'AnswerTime'
@@ -180,10 +177,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void AnswerTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.AnswerTime = date;
+            instance.AnswerTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.AnswerTime);
-            Assert.Equal(date, instance.AnswerTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.AnswerTime);
         }
         /// <summary>
         /// Test the property 'EndTime'
@@ -191,10 +187,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EndTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.EndTime = date;
+            instance.EndTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.EndTime);
-            Assert.Equal(date, instance.EndTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EndTime);
         }
         /// <summary>
         /// Test the property 'DisconnectCause'
@@ -232,10 +227,11 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void LastUpdateTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.LastUpdate = date;
+            instance.LastUpdate = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.LastUpdate);
-            Assert.Equal(date, instance.LastUpdate);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.LastUpdate);
         }
+
     }
+
 }

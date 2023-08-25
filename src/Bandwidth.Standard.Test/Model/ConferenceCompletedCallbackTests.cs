@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,9 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EventTypeTest()
         {
-            instance.EventType = "bridgeComplete";
+            instance.EventType = "conferenceCompleted";
             Assert.IsType<string>(instance.EventType);
-            Assert.Equal("bridgeComplete", instance.EventType);
+            Assert.Equal("conferenceCompleted", instance.EventType);
         }
         /// <summary>
         /// Test the property 'EventTime'
@@ -66,10 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EventTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.EventTime = date;
+            instance.EventTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.EventTime);
-            Assert.Equal(date, instance.EventTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EventTime);
         }
         /// <summary>
         /// Test the property 'ConferenceId'
@@ -101,5 +99,7 @@ namespace Bandwidth.Standard.Test.Model
             Assert.IsType<string>(instance.Tag);
             Assert.Equal("test", instance.Tag);
         }
+
     }
+
 }

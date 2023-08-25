@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EventTypeTest()
         {
-            // TODO unit test for the property 'EventType'
+            instance.EventType = "initiate";
+            Assert.IsType<string>(instance.EventType);
+            Assert.Equal("initiate", instance.EventType);
         }
         /// <summary>
         /// Test the property 'EventTime'
@@ -64,7 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EventTimeTest()
         {
-            // TODO unit test for the property 'EventTime'
+            instance.EventTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.EventTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EventTime);
         }
         /// <summary>
         /// Test the property 'AccountId'
@@ -72,9 +75,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void AccountIdTest()
         {
-            instance.AccountId = "123-456-abcd";
+            instance.AccountId = "920000";
             Assert.IsType<string>(instance.AccountId);
-            Assert.Equal("123-456-abcd", instance.AccountId);
+            Assert.Equal("920000", instance.AccountId);
         }
         /// <summary>
         /// Test the property 'ApplicationId'
@@ -132,7 +135,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CallUrlTest()
         {
-            // TODO unit test for the property 'CallUrl'
+            instance.CallUrl = "https://test.url/";
+            Assert.IsType<string>(instance.CallUrl);
+            Assert.Equal("https://test.url/", instance.CallUrl);
         }
         /// <summary>
         /// Test the property 'StartTime'
@@ -140,7 +145,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void StartTimeTest()
         {
-            // TODO unit test for the property 'StartTime'
+            instance.StartTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.StartTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.StartTime);
         }
         /// <summary>
         /// Test the property 'Diversion'
@@ -148,7 +155,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void DiversionTest()
         {
-            // TODO unit test for the property 'Diversion'
+            instance.Diversion = new Diversion();
+            Assert.IsType<Diversion>(instance.Diversion);
+            Assert.Equal(new Diversion(), instance.Diversion);
         }
         /// <summary>
         /// Test the property 'StirShaken'
@@ -156,7 +165,11 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void StirShakenTest()
         {
-            // TODO unit test for the property 'StirShaken'
+            instance.StirShaken = new StirShaken();
+            Assert.IsType<StirShaken>(instance.StirShaken);
+            Assert.Equal(new StirShaken(), instance.StirShaken);
         }
+
     }
+
 }

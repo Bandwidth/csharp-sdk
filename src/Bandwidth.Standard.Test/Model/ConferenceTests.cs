@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -76,10 +75,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CreatedTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.CreatedTime = date;
+            instance.CreatedTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.CreatedTime);
-            Assert.Equal(date, instance.CreatedTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.CreatedTime);
         }
         /// <summary>
         /// Test the property 'CompletedTime'
@@ -87,10 +85,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CompletedTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.CompletedTime = date;
+            instance.CompletedTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.CompletedTime);
-            Assert.Equal(date, instance.CompletedTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.CompletedTime);
         }
         /// <summary>
         /// Test the property 'ConferenceEventUrl'
@@ -98,9 +95,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ConferenceEventUrlTest()
         {
-            instance.ConferenceEventUrl = "https://test.com";
+            instance.ConferenceEventUrl = "https://test.url";
             Assert.IsType<string>(instance.ConferenceEventUrl);
-            Assert.Equal("https://test.com", instance.ConferenceEventUrl);
+            Assert.Equal("https://test.url", instance.ConferenceEventUrl);
         }
         /// <summary>
         /// Test the property 'ConferenceEventMethod'
@@ -108,10 +105,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ConferenceEventMethodTest()
         {
-            var method = CallbackMethodEnum.POST;
-            instance.ConferenceEventMethod = method;
-            Assert.IsType<string>(instance.ConferenceEventMethod);
-            Assert.Equal(method, instance.ConferenceEventMethod);
+            instance.ConferenceEventMethod = CallbackMethodEnum.POST;
+            Assert.IsType<CallbackMethodEnum>(instance.ConferenceEventMethod);
+            Assert.Equal(CallbackMethodEnum.POST, instance.ConferenceEventMethod);
         }
         /// <summary>
         /// Test the property 'Tag'
@@ -136,5 +132,7 @@ namespace Bandwidth.Standard.Test.Model
             Assert.IsType<List<ConferenceMember>>(instance.ActiveMembers);
             Assert.Equal(memberList, instance.ActiveMembers);
         }
+
     }
+
 }

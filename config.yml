@@ -1,0 +1,3 @@
+additionalProperties:
+  targetFramework: netstandard2.1
+  packageName: Bandwidth.Standard

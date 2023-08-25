@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void IdTest()
         {
-            // TODO unit test for the property 'Id'
+            instance.Id = "abc123";
+            Assert.IsType<string>(instance.Id);
+            Assert.Equal("abc123", instance.Id);
         }
         /// <summary>
         /// Test the property 'Owner'
@@ -64,7 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void OwnerTest()
         {
-            // TODO unit test for the property 'Owner'
+            instance.Owner = "+15551234567";
+            Assert.IsType<string>(instance.Owner);
+            Assert.Equal("+15551234567", instance.Owner);
         }
         /// <summary>
         /// Test the property 'ApplicationId'
@@ -82,10 +85,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TimeTest()
         {
-            var time = new DateTime(2020, 1, 1, 0, 0, 0);
-            instance.Time = time;
+            instance.Time = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.Time);
-            Assert.Equal(time, instance.Time);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.Time);
         }
         /// <summary>
         /// Test the property 'SegmentCount'
@@ -93,7 +95,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void SegmentCountTest()
         {
-            // TODO unit test for the property 'SegmentCount'
+            instance.SegmentCount = 2;
+            Assert.IsType<int>(instance.SegmentCount);
+            Assert.Equal(2, instance.SegmentCount);
         }
         /// <summary>
         /// Test the property 'Direction'
@@ -101,9 +105,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void DirectionTest()
         {
-            instance.Direction = MessageDirectionEnum.In;
+            instance.Direction =  MessageDirectionEnum.In;
             Assert.IsType<MessageDirectionEnum>(instance.Direction);
-            Assert.Equal(MessageDirectionEnum.In, instance.Direction);
+            Assert.Equal( MessageDirectionEnum.In, instance.Direction);
         }
         /// <summary>
         /// Test the property 'To'
@@ -111,11 +115,10 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ToTest()
         {
-            var to = new List<string>();
-            to.Add("+15557654321");
-            instance.To = to;
-            Assert.IsType<string>(instance.To);
-            Assert.Equal(to, instance.To);
+            instance.To = new List<string> { "+15551234567" };
+            Assert.IsType<List<string>>(instance.To);
+            Assert.Equal(new List<string> { "+15551234567" }, instance.To);
+
         }
         /// <summary>
         /// Test the property 'From'
@@ -123,9 +126,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FromTest()
         {
-            instance.From = "+15551234567";
+            instance.From = "+15557654321";
             Assert.IsType<string>(instance.From);
-            Assert.Equal("+15551234567", instance.From);
+            Assert.Equal("+15557654321", instance.From);
         }
         /// <summary>
         /// Test the property 'Media'
@@ -133,7 +136,10 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MediaTest()
         {
-            // TODO unit test for the property 'Media'
+            instance.Media = new List<string> { "https://test.url/" };
+            Assert.IsType<List<string>>(instance.Media);
+            Assert.Equal(new List<string> { "https://test.url/" }, instance.Media);
+
         }
         /// <summary>
         /// Test the property 'Text'
@@ -141,7 +147,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TextTest()
         {
-            // TODO unit test for the property 'Text'
+            instance.Text = "Hello World";
+            Assert.IsType<string>(instance.Text);
+            Assert.Equal("Hello World", instance.Text);
         }
         /// <summary>
         /// Test the property 'Tag'
@@ -149,9 +157,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TagTest()
         {
-            instance.Tag = "test";
+            instance.Tag = "tag";
             Assert.IsType<string>(instance.Tag);
-            Assert.Equal("test", instance.Tag);
+            Assert.Equal("tag", instance.Tag);
         }
         /// <summary>
         /// Test the property 'Priority'
@@ -159,7 +167,21 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void PriorityTest()
         {
-            // TODO unit test for the property 'Priority'
+            instance.Priority = PriorityEnum.High;
+            Assert.IsType<PriorityEnum>(instance.Priority);
+            Assert.Equal(PriorityEnum.High, instance.Priority);
         }
+        /// <summary>
+        /// Test the property 'Expiration'
+        /// </summary>
+        [Fact]
+        public void ExpirationTest()
+        {
+            instance.Expiration = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.Expiration);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.Expiration);
+        }
+
     }
+
 }

@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ModeTest()
         {
-            // TODO unit test for the property 'Mode'
+            instance.Mode = MachineDetectionModeEnum.Sync;
+            Assert.IsType<MachineDetectionModeEnum>(instance.Mode);
+            Assert.Equal(MachineDetectionModeEnum.Sync, instance.Mode);
         }
         /// <summary>
         /// Test the property 'DetectionTimeout'
@@ -64,7 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void DetectionTimeoutTest()
         {
-            // TODO unit test for the property 'DetectionTimeout'
+            instance.DetectionTimeout = 15;
+            Assert.IsType<double>(instance.DetectionTimeout);
+            Assert.Equal(15, instance.DetectionTimeout);
         }
         /// <summary>
         /// Test the property 'SilenceTimeout'
@@ -72,7 +75,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void SilenceTimeoutTest()
         {
-            // TODO unit test for the property 'SilenceTimeout'
+            instance.SilenceTimeout = 10;
+            Assert.IsType<double>(instance.SilenceTimeout);
+            Assert.Equal(10, instance.SilenceTimeout);
         }
         /// <summary>
         /// Test the property 'SpeechThreshold'
@@ -80,7 +85,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void SpeechThresholdTest()
         {
-            // TODO unit test for the property 'SpeechThreshold'
+            instance.SpeechThreshold = 5;
+            Assert.IsType<double>(instance.SpeechThreshold);
+            Assert.Equal(5, instance.SpeechThreshold);
         }
         /// <summary>
         /// Test the property 'SpeechEndThreshold'
@@ -88,7 +95,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void SpeechEndThresholdTest()
         {
-            // TODO unit test for the property 'SpeechEndThreshold'
+            instance.SpeechEndThreshold = 5;
+            Assert.IsType<double>(instance.SpeechEndThreshold);
+            Assert.Equal(5, instance.SpeechEndThreshold);
         }
         /// <summary>
         /// Test the property 'MachineSpeechEndThreshold'
@@ -96,7 +105,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MachineSpeechEndThresholdTest()
         {
-            // TODO unit test for the property 'MachineSpeechEndThreshold'
+            instance.MachineSpeechEndThreshold = 5;
+            Assert.IsType<double>(instance.MachineSpeechEndThreshold);
+            Assert.Equal(5, instance.MachineSpeechEndThreshold);
         }
         /// <summary>
         /// Test the property 'DelayResult'
@@ -104,7 +115,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void DelayResultTest()
         {
-            // TODO unit test for the property 'DelayResult'
+            instance.DelayResult = false;
+            Assert.IsType<bool>(instance.DelayResult);
+            Assert.Equal(false, instance.DelayResult);
         }
         /// <summary>
         /// Test the property 'CallbackUrl'
@@ -112,7 +125,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CallbackUrlTest()
         {
-            // TODO unit test for the property 'CallbackUrl'
+            instance.CallbackUrl = "https://test.url/";
+            Assert.IsType<string>(instance.CallbackUrl);
+            Assert.Equal("https://test.url/", instance.CallbackUrl);
         }
         /// <summary>
         /// Test the property 'CallbackMethod'
@@ -120,7 +135,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CallbackMethodTest()
         {
-            // TODO unit test for the property 'CallbackMethod'
+            instance.CallbackMethod = CallbackMethodEnum.POST;
+            Assert.IsType<CallbackMethodEnum>(instance.CallbackMethod);
+            Assert.Equal(CallbackMethodEnum.POST, instance.CallbackMethod);
         }
         /// <summary>
         /// Test the property 'Username'
@@ -128,7 +145,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void UsernameTest()
         {
-            // TODO unit test for the property 'Username'
+            instance.Username = "username";
+            Assert.IsType<string>(instance.Username);
+            Assert.Equal("username", instance.Username);
         }
         /// <summary>
         /// Test the property 'Password'
@@ -136,7 +155,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void PasswordTest()
         {
-            // TODO unit test for the property 'Password'
+            instance.Password = "password";
+            Assert.IsType<string>(instance.Password);
+            Assert.Equal("password", instance.Password);
         }
         /// <summary>
         /// Test the property 'FallbackUrl'
@@ -144,7 +165,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FallbackUrlTest()
         {
-            // TODO unit test for the property 'FallbackUrl'
+            instance.FallbackUrl = "https://fallbackTest.url/";
+            Assert.IsType<string>(instance.FallbackUrl);
+            Assert.Equal("https://fallbackTest.url/", instance.FallbackUrl);
         }
         /// <summary>
         /// Test the property 'FallbackMethod'
@@ -152,7 +175,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FallbackMethodTest()
         {
-            // TODO unit test for the property 'FallbackMethod'
+            instance.FallbackMethod = CallbackMethodEnum.POST;
+            Assert.IsType<CallbackMethodEnum>(instance.FallbackMethod);
+            Assert.Equal(CallbackMethodEnum.POST, instance.FallbackMethod);
         }
         /// <summary>
         /// Test the property 'FallbackUsername'
@@ -160,7 +185,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FallbackUsernameTest()
         {
-            // TODO unit test for the property 'FallbackUsername'
+            instance.FallbackUsername = "fallbackUsername";
+            Assert.IsType<string>(instance.FallbackUsername);
+            Assert.Equal("fallbackUsername", instance.FallbackUsername);
         }
         /// <summary>
         /// Test the property 'FallbackPassword'
@@ -168,7 +195,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FallbackPasswordTest()
         {
-            // TODO unit test for the property 'FallbackPassword'
+            instance.FallbackPassword = "fallbackPassword";
+            Assert.IsType<string>(instance.FallbackPassword);
+            Assert.Equal("fallbackPassword", instance.FallbackPassword);
         }
 
     }

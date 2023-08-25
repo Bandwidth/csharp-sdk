@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void KeyTest()
         {
-            // TODO unit test for the property 'Key'
+            instance.Key = "test";
+            Assert.IsType<string>(instance.Key);
+            Assert.Equal("test", instance.Key);
         }
         /// <summary>
         /// Test the property 'Value'
@@ -64,7 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ValueTest()
         {
-            // TODO unit test for the property 'Value'
+            instance.Value = "test";
+            Assert.IsType<string>(instance.Value);
+            Assert.Equal("test", instance.Value);
         }
 
     }

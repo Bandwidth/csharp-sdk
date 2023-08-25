@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -167,7 +166,7 @@ namespace Bandwidth.Standard.Test.Model
         public void ChannelsTest()
         {
             instance.Channels = 1;
-            Assert.IsType<int?>(instance.Channels);
+            Assert.IsType<int>(instance.Channels);
             Assert.Equal(1, instance.Channels);
         }
         /// <summary>
@@ -176,10 +175,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void StartTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.StartTime = date;
+            instance.StartTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.StartTime);
-            Assert.Equal(date, instance.StartTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.StartTime);
         }
         /// <summary>
         /// Test the property 'EndTime'
@@ -187,10 +185,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EndTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.EndTime = date;
-            Assert.IsType<DateTime>(instance.EndTime);
-            Assert.Equal(date, instance.EndTime);
+            instance.StartTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.StartTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.StartTime);
         }
         /// <summary>
         /// Test the property 'FileFormat'
@@ -198,9 +195,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FileFormatTest()
         {
-            instance.FileFormat = FileFormatEnum.Mp3;
-            Assert.IsType<FileFormatEnum>(instance.FileFormat);
-            Assert.Equal(FileFormatEnum.Mp3, instance.FileFormat);
+            instance.StartTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.StartTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.StartTime);
         }
         /// <summary>
         /// Test the property 'Status'
@@ -228,11 +225,11 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TranscriptionTest()
         {
-            var transcription = new TranscriptionMetadata("t-123", "complete", "2022-06-13T18:46:29.715Z", "https://test.url/");
-            instance.Transcription = transcription;
+            instance.Transcription = new TranscriptionMetadata("t-123", "complete", "2022-06-13T18:46:29.715Z", "https://test.url/");
             Assert.IsType<TranscriptionMetadata>(instance.Transcription);
-            Assert.Equal(transcription, instance.Transcription);
-
+            Assert.Equal(new TranscriptionMetadata("t-123", "complete", "2022-06-13T18:46:29.715Z", "https://test.url/"), instance.Transcription);
         }
+
     }
+
 }

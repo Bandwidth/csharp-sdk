@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void PrevPageTest()
         {
-            // TODO unit test for the property 'PrevPage'
+            instance.PrevPage = "https://test.url/";
+            Assert.IsType<string>(instance.PrevPage);
+            Assert.Equal("https://test.url/", instance.PrevPage);
         }
         /// <summary>
         /// Test the property 'NextPage'
@@ -64,7 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void NextPageTest()
         {
-            // TODO unit test for the property 'NextPage'
+            instance.NextPage = "https://test.url/";
+            Assert.IsType<string>(instance.NextPage);
+            Assert.Equal("https://test.url/", instance.NextPage);
         }
         /// <summary>
         /// Test the property 'PrevPageToken'
@@ -72,7 +75,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void PrevPageTokenTest()
         {
-            // TODO unit test for the property 'PrevPageToken'
+            instance.PrevPageToken = "DLAPE902";
+            Assert.IsType<string>(instance.PrevPageToken);
+            Assert.Equal("DLAPE902", instance.PrevPageToken);
         }
         /// <summary>
         /// Test the property 'NextPageToken'
@@ -80,7 +85,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void NextPageTokenTest()
         {
-            // TODO unit test for the property 'NextPageToken'
+            instance.NextPageToken = "GL83PD3C";
+            Assert.IsType<string>(instance.NextPageToken);
+            Assert.Equal("GL83PD3C", instance.NextPageToken);
         }
 
     }

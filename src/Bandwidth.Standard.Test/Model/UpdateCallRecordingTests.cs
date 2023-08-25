@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -49,13 +48,18 @@ namespace Bandwidth.Standard.Test.Model
             Assert.IsType<UpdateCallRecording>(instance);
         }
 
+
         /// <summary>
         /// Test the property 'State'
         /// </summary>
         [Fact]
         public void StateTest()
         {
-            // TODO unit test for the property 'State'
+            instance.State = RecordingStateEnum.Recording;
+            Assert.IsType<RecordingStateEnum>(instance.State);
+            Assert.Equal(RecordingStateEnum.Recording, instance.State);
         }
+
     }
+
 }

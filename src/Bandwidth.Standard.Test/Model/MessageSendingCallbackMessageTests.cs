@@ -9,165 +9,160 @@
  */
 
 
-using NUnit.Framework;
+using Xunit;
 
 using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace Bandwidth.Standard.Test
+namespace Bandwidth.Standard.Test.Model
 {
     /// <summary>
     ///  Class for testing MessageSendingCallbackMessage
     /// </summary>
-    public class MessageSendingCallbackMessageTests
+    public class MessageSendingCallbackMessageTests : IDisposable
     {
         private MessageSendingCallbackMessage instance;
 
-        /// <summary>
-        /// Setup before each test
-        /// </summary>
-        [SetUp]
-        public void Init()
+        public MessageSendingCallbackMessageTests()
         {
-            instance = new MessageSendingCallbackMessage();
+            instance = new MessageSendingCallbackMessage(id: "1661365814859loidf7mcwd4qacn7", owner: "+15553332222", applicationId: "93de2206-9669-4e07-948d-329f4b722ee2", to: new List<string> { "+15557654321" }, from: "+15553332222", text: "Hello world", media: new List<string> { "https://test.url/" });
         }
 
-        /// <summary>
-        /// Clean up after each test
-        /// </summary>
-        [TearDown]
-        public void Cleanup()
+        public void Dispose()
         {
-
+            // Cleanup when everything is done.
         }
 
         /// <summary>
         /// Test an instance of MessageSendingCallbackMessage
         /// </summary>
-        [Test]
+        [Fact]
         public void MessageSendingCallbackMessageInstanceTest()
         {
-            Assert.IsInstanceOf(typeof(MessageSendingCallbackMessage), instance);
+            Assert.IsType<MessageSendingCallbackMessage>(instance);
         }
 
 
         /// <summary>
         /// Test the property 'Id'
         /// </summary>
-        [Test]
+        [Fact]
         public void IdTest()
         {
-            // TODO unit test for the property 'Id'
+            Assert.IsType<string>(instance.Id);
+            Assert.Equal("1661365814859loidf7mcwd4qacn7", instance.Id);
         }
         /// <summary>
         /// Test the property 'Owner'
         /// </summary>
-        [Test]
+        [Fact]
         public void OwnerTest()
         {
-            // TODO unit test for the property 'Owner'
+            Assert.IsType<string>(instance.Owner);
+            Assert.Equal("+15553332222", instance.Owner);
         }
         /// <summary>
         /// Test the property 'ApplicationId'
         /// </summary>
-        [Test]
+        [Fact]
         public void ApplicationIdTest()
         {
-            instance.ApplicationId = "123-456-abcd";
-            Assert.IsInstanceOf(typeof(string), instance.ApplicationId);
-            Assert.AreEqual("123-456-abcd", instance.ApplicationId);
+            Assert.IsType<string>(instance.ApplicationId);
+            Assert.Equal("93de2206-9669-4e07-948d-329f4b722ee2", instance.ApplicationId);
         }
         /// <summary>
         /// Test the property 'Time'
         /// </summary>
-        [Test]
+        [Fact]
         public void TimeTest()
         {
-            var time = new DateTime(2020, 1, 1, 0, 0, 0);
-            instance.Time = time;
-            Assert.IsInstanceOf(typeof(DateTime), instance.Time);
-            Assert.AreEqual(time, instance.Time);
+            instance.Time = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.Time);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.Time);
         }
         /// <summary>
         /// Test the property 'SegmentCount'
         /// </summary>
-        [Test]
+        [Fact]
         public void SegmentCountTest()
         {
-            // TODO unit test for the property 'SegmentCount'
+            instance.SegmentCount = 1;
+            Assert.IsType<int>(instance.SegmentCount);
+            Assert.Equal(1, instance.SegmentCount);
         }
         /// <summary>
         /// Test the property 'Direction'
         /// </summary>
-        [Test]
+        [Fact]
         public void DirectionTest()
         {
             instance.Direction = MessageDirectionEnum.In;
-            Assert.IsInstanceOf(typeof(MessageDirectionEnum), instance.Direction);
-            Assert.AreEqual(MessageDirectionEnum.In, instance.Direction);
+            Assert.IsType<MessageDirectionEnum>(instance.Direction);
+            Assert.Equal(MessageDirectionEnum.In, instance.Direction);
         }
         /// <summary>
         /// Test the property 'To'
         /// </summary>
-        [Test]
+        [Fact]
         public void ToTest()
         {
-            var to = new List<string>();
-            to.Add("+15557654321");
-            instance.To = to;
-            Assert.IsInstanceOf(typeof(List<string>), instance.To);
-            Assert.AreEqual(to, instance.To);
+            Assert.IsType <List<string>> (instance.To);
+            Assert.Equal(new List<string> { "+15557654321" }, instance.To);
         }
         /// <summary>
         /// Test the property 'From'
         /// </summary>
-        [Test]
+        [Fact]
         public void FromTest()
         {
-            instance.From = "+15551234567";
-            Assert.IsInstanceOf(typeof(string), instance.From);
-            Assert.AreEqual("+15551234567", instance.From);
+            Assert.IsType<string>(instance.From);
+            Assert.Equal("+15553332222", instance.From);
         }
         /// <summary>
         /// Test the property 'Text'
         /// </summary>
-        [Test]
+        [Fact]
         public void TextTest()
         {
-            // TODO unit test for the property 'Text'
+            Assert.IsType<string>(instance.Text);
+            Assert.Equal("Hello world", instance.Text);
         }
         /// <summary>
         /// Test the property 'Tag'
         /// </summary>
-        [Test]
+        [Fact]
         public void TagTest()
         {
-            instance.Tag = "test";
-            Assert.IsInstanceOf(typeof(string), instance.Tag);
-            Assert.AreEqual("test", instance.Tag);
+            instance.Tag = "tag";
+            Assert.IsType<string>(instance.Tag);
+            Assert.Equal("tag", instance.Tag);
         }
         /// <summary>
         /// Test the property 'Media'
         /// </summary>
-        [Test]
+        [Fact]
         public void MediaTest()
         {
-            // TODO unit test for the property 'Media'
+            Assert.IsType<List<string>>(instance.Media);
+            Assert.Equal(new List<string> { "https://test.url/" }, instance.Media);
         }
         /// <summary>
         /// Test the property 'Priority'
         /// </summary>
-        [Test]
+        [Fact]
         public void PriorityTest()
         {
-            // TODO unit test for the property 'Priority'
+            instance.Priority = PriorityEnum.Default;
+            Assert.IsType<PriorityEnum>(instance.Priority);
+            Assert.Equal(PriorityEnum.Default, instance.Priority);
         }
+
     }
+
 }

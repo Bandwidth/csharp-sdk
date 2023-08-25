@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TotalCountTest()
         {
-            // TODO unit test for the property 'TotalCount'
+            instance.TotalCount = 100;
+            Assert.IsType<int>(instance.TotalCount);
+            Assert.Equal(100, instance.TotalCount);
         }
         /// <summary>
         /// Test the property 'PageInfo'
@@ -64,7 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void PageInfoTest()
         {
-            // TODO unit test for the property 'PageInfo'
+            instance.PageInfo = new PageInfo();
+            Assert.IsType<PageInfo>(instance.PageInfo);
+            Assert.Equal(new PageInfo(), instance.PageInfo);
         }
         /// <summary>
         /// Test the property 'Messages'
@@ -72,7 +75,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MessagesTest()
         {
-            // TODO unit test for the property 'Messages'
+            instance.Messages = new List<ListMessageItem>();
+            Assert.IsType<List<ListMessageItem>>(instance.Messages);
+            Assert.Equal(new List<ListMessageItem>(), instance.Messages);
         }
 
     }

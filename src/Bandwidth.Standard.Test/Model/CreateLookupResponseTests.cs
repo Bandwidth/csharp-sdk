@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -66,10 +65,11 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void StatusTest()
         {
-            var status = LookupStatusEnum.COMPLETE;
-            instance.Status = status;
-            Assert.IsType<LookupStatusEnum?>(instance.Status);
-            Assert.Equal(status, instance.Status);
+            instance.Status = LookupStatusEnum.COMPLETE;
+            Assert.IsType<LookupStatusEnum>(instance.Status);
+            Assert.Equal(LookupStatusEnum.COMPLETE, instance.Status);
         }
+
     }
+
 }

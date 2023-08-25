@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EventTypeTest()
         {
-            // TODO unit test for the property 'EventType'
+            instance.EventType = "recordingComplete";
+            Assert.IsType<string>(instance.EventType);
+            Assert.Equal("recordingComplete", instance.EventType);
         }
         /// <summary>
         /// Test the property 'EventTime'
@@ -64,7 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EventTimeTest()
         {
-            // TODO unit test for the property 'EventTime'
+            instance.EventTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.EventTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EventTime);
         }
         /// <summary>
         /// Test the property 'AccountId'
@@ -72,9 +75,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void AccountIdTest()
         {
-            instance.AccountId = "123-456-abcd";
+            instance.AccountId = "920000";
             Assert.IsType<string>(instance.AccountId);
-            Assert.Equal("123-456-abcd", instance.AccountId);
+            Assert.Equal("920000", instance.AccountId);
         }
         /// <summary>
         /// Test the property 'ApplicationId'
@@ -132,7 +135,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CallUrlTest()
         {
-            // TODO unit test for the property 'CallUrl'
+            instance.CallUrl = "http://test.url/";
+            Assert.IsType<string>(instance.CallUrl);
+            Assert.Equal("http://test.url/", instance.CallUrl);
         }
         /// <summary>
         /// Test the property 'ParentCallId'
@@ -140,7 +145,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ParentCallIdTest()
         {
-            // TODO unit test for the property 'ParentCallId'
+            instance.ParentCallId = "c-1234";
+            Assert.IsType<string>(instance.ParentCallId);
+            Assert.Equal("c-1234", instance.ParentCallId);
         }
         /// <summary>
         /// Test the property 'RecordingId'
@@ -148,7 +155,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void RecordingIdTest()
         {
-            // TODO unit test for the property 'RecordingId'
+            instance.RecordingId = "r-1234";
+            Assert.IsType<string>(instance.RecordingId);
+            Assert.Equal("r-1234", instance.RecordingId);
         }
         /// <summary>
         /// Test the property 'MediaUrl'
@@ -156,7 +165,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MediaUrlTest()
         {
-            // TODO unit test for the property 'MediaUrl'
+            instance.MediaUrl = "http://mediaTest.url/";
+            Assert.IsType<string>(instance.MediaUrl);
+            Assert.Equal("http://mediaTest.url/", instance.MediaUrl);
         }
         /// <summary>
         /// Test the property 'EnqueuedTime'
@@ -164,7 +175,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EnqueuedTimeTest()
         {
-            // TODO unit test for the property 'EnqueuedTime'
+            instance.EnqueuedTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.EnqueuedTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EnqueuedTime);
         }
         /// <summary>
         /// Test the property 'StartTime'
@@ -172,7 +185,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void StartTimeTest()
         {
-            // TODO unit test for the property 'StartTime'
+            instance.StartTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.StartTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.StartTime);
         }
         /// <summary>
         /// Test the property 'AnswerTime'
@@ -180,7 +195,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void AnswerTimeTest()
         {
-            // TODO unit test for the property 'AnswerTime'
+            instance.AnswerTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.AnswerTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.AnswerTime);
         }
         /// <summary>
         /// Test the property 'EndTime'
@@ -188,7 +205,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EndTimeTest()
         {
-            // TODO unit test for the property 'EndTime'
+            instance.EndTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.EndTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EndTime);
         }
         /// <summary>
         /// Test the property 'Duration'
@@ -196,7 +215,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void DurationTest()
         {
-            // TODO unit test for the property 'Duration'
+            instance.Duration = "PT13.67S";
+            Assert.IsType<string>(instance.Duration);
+            Assert.Equal("PT13.67S", instance.Duration);
         }
         /// <summary>
         /// Test the property 'FileFormat'
@@ -204,7 +225,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FileFormatTest()
         {
-            // TODO unit test for the property 'FileFormat'
+            instance.FileFormat = FileFormatEnum.Mp3;
+            Assert.IsType<FileFormatEnum>(instance.FileFormat);
+            Assert.Equal(FileFormatEnum.Mp3, instance.FileFormat);
         }
         /// <summary>
         /// Test the property 'Channels'
@@ -212,7 +235,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ChannelsTest()
         {
-            // TODO unit test for the property 'Channels'
+            instance.Channels = 1;
+            Assert.IsType<int>(instance.Channels);
+            Assert.Equal(1, instance.Channels);
         }
         /// <summary>
         /// Test the property 'Tag'
@@ -230,7 +255,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TransferCallerIdTest()
         {
-            // TODO unit test for the property 'TransferCallerId'
+            instance.TransferCallerId = "+15551234567";
+            Assert.IsType<string>(instance.TransferCallerId);
+            Assert.Equal("+15551234567", instance.TransferCallerId);
         }
         /// <summary>
         /// Test the property 'TransferTo'
@@ -238,7 +265,11 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TransferToTest()
         {
-            // TODO unit test for the property 'TransferTo'
+            instance.TransferTo = "+15557654321";
+            Assert.IsType<string>(instance.TransferTo);
+            Assert.Equal("+15557654321", instance.TransferTo);
         }
+
     }
+
 }

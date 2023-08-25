@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void VerstatTest()
         {
-            // TODO unit test for the property 'Verstat'
+            instance.Verstat = "Tn-Verification-Passed";
+            Assert.IsType<string>(instance.Verstat);
+            Assert.Equal("Tn-Verification-Passed", instance.Verstat);
         }
         /// <summary>
         /// Test the property 'AttestationIndicator'
@@ -64,7 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void AttestationIndicatorTest()
         {
-            // TODO unit test for the property 'AttestationIndicator'
+            instance.AttestationIndicator = "A";
+            Assert.IsType<string>(instance.AttestationIndicator);
+            Assert.Equal("A", instance.AttestationIndicator);
         }
         /// <summary>
         /// Test the property 'OriginatingId'
@@ -72,7 +75,11 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void OriginatingIdTest()
         {
-            // TODO unit test for the property 'OriginatingId'
+            instance.OriginatingId = "1234567890";
+            Assert.IsType<string>(instance.OriginatingId);
+            Assert.Equal("1234567890", instance.OriginatingId);
         }
+
     }
+
 }

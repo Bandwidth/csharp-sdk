@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ErrorTest()
         {
-            // TODO unit test for the property 'Error'
+            instance.Error = "400 Request is malformed or invalid";
+            Assert.IsType<string>(instance.Error);
+            Assert.Equal("400 Request is malformed or invalid", instance.Error);
         }
         /// <summary>
         /// Test the property 'RequestId'
@@ -64,7 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void RequestIdTest()
         {
-            // TODO unit test for the property 'RequestId'
+            instance.RequestId = "1234-abcd";
+            Assert.IsType<string>(instance.RequestId);
+            Assert.Equal("1234-abcd", instance.RequestId);
         }
 
     }

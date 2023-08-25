@@ -86,10 +86,11 @@ namespace Bandwidth.Standard.Test.Api
             //int? errorCode = null;
             //string fromDateTime = null;
             //string toDateTime = null;
+            //string campaignId = null;
             //string sort = null;
             //string pageToken = null;
             //int? limit = null;
-            //var response = instance.ListMessages(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, sort, pageToken, limit);
+            //var response = instance.ListMessages(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, sort, pageToken, limit);
             //Assert.IsType<MessagesList>(response);
         }
     }

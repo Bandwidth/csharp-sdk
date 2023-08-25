@@ -9,109 +9,93 @@
  */
 
 
-using NUnit.Framework;
+using Xunit;
 
 using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace Bandwidth.Standard.Test
+namespace Bandwidth.Standard.Test.Model
 {
     /// <summary>
     ///  Class for testing InboundMessageCallback
     /// </summary>
-    public class InboundMessageCallbackTests
+    public class InboundMessageCallbackTests : IDisposable
     {
         private InboundMessageCallback instance;
 
-        /// <summary>
-        /// Setup before each test
-        /// </summary>
-        [SetUp]
-        public void Init()
+        public InboundMessageCallbackTests()
         {
-            instance = new InboundMessageCallback();
+            instance = new InboundMessageCallback(type: "message-received", to: "+15552223333", description: "Incoming message received", message: new InboundMessageCallbackMessage(id: "1661365814859loidf7mcwd4qacn7", owner: "+15553332222", applicationId: "93de2206-9669-4e07-948d-329f4b722ee", to: new List<string> {"15552223333"}, from: "+15553332222", text: "Hello world" ));
         }
 
-        /// <summary>
-        /// Clean up after each test
-        /// </summary>
-        [TearDown]
-        public void Cleanup()
+        public void Dispose()
         {
-
+            // Cleanup when everything is done.
         }
 
         /// <summary>
         /// Test an instance of InboundMessageCallback
         /// </summary>
-        [Test]
+        [Fact]
         public void InboundMessageCallbackInstanceTest()
         {
-            Assert.IsInstanceOf(typeof(InboundMessageCallback), instance);
+            Assert.IsType<InboundMessageCallback>(instance);
         }
 
 
         /// <summary>
         /// Test the property 'Time'
         /// </summary>
-        [Test]
+        [Fact]
         public void TimeTest()
         {
-            var time = new DateTime(2020, 1, 1, 0, 0, 0);
-            instance.Time = time;
-            Assert.IsInstanceOf(typeof(DateTime), instance.Time);
-            Assert.AreEqual(time, instance.Time);
+            instance.Time = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.Time);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.Time);
         }
         /// <summary>
         /// Test the property 'Type'
         /// </summary>
-        [Test]
+        [Fact]
         public void TypeTest()
         {
-            instance.Type = "message-received";
-            Assert.IsInstanceOf(typeof(string), instance.Type);
-            Assert.AreEqual("message-received", instance.Type);
+            Assert.IsType<string>(instance.Type);
+            Assert.Equal("message-received", instance.Type);
         }
         /// <summary>
         /// Test the property 'To'
         /// </summary>
-        [Test]
+        [Fact]
         public void ToTest()
         {
-            instance.To = "+15557654321";
-            Assert.IsInstanceOf(typeof(string), instance.To);
-            Assert.AreEqual("+15557654321", instance.To);
+            Assert.IsType<string>(instance.To);
+            Assert.Equal("+15552223333", instance.To);
         }
         /// <summary>
         /// Test the property 'Description'
         /// </summary>
-        [Test]
+        [Fact]
         public void DescriptionTest()
         {
-            instance.Description = "Incoming message received";
-            Assert.IsInstanceOf(typeof(string), instance.Description);
-            Assert.AreEqual("Incoming message received", instance.Description);
+            Assert.IsType<string>(instance.Description);
+            Assert.Equal("Incoming message received", instance.Description);
         }
         /// <summary>
         /// Test the property 'Message'
         /// </summary>
-        [Test]
+        [Fact]
         public void MessageTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            var to = new List<string>(){ "+15557654321" };
-            var direction = MessageDirectionEnum.In;
-            var inboundMessageCallbackMessage = new InboundMessageCallbackMessage("12345","+15553332222","123-abc", date, 1, direction, to, "+15553332222", "Hello world");
-            instance.Message = inboundMessageCallbackMessage;
-            Assert.IsInstanceOf(typeof(InboundMessageCallbackMessage), instance.Message);
-            Assert.AreEqual(inboundMessageCallbackMessage, instance.Message);
+            Assert.IsType<InboundMessageCallbackMessage>(instance.Message);
+            Assert.Equal(new InboundMessageCallbackMessage(id: "1661365814859loidf7mcwd4qacn7", owner: "+15553332222", applicationId: "93de2206-9669-4e07-948d-329f4b722ee", to: new List<string> {"15552223333"}, from: "+15553332222", text: "Hello world" ), instance.Message);
         }
+
     }
+
 }

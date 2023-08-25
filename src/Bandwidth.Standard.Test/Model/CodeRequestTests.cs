@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -32,7 +31,7 @@ namespace Bandwidth.Standard.Test.Model
 
         public CodeRequestTests()
         {
-            instance = new CodeRequest();
+            instance = new CodeRequest(to:"+19195551234", from:"+19195554321", applicationId:"66fd98ae-ac8d-a00f-7fcd-ba3280aeb9b1", message: "Your temporary {NAME} {SCOPE} code is {CODE}");
         }
 
         public void Dispose()
@@ -56,9 +55,8 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ToTest()
         {
-            instance.To = "+15557654321";
             Assert.IsType<string>(instance.To);
-            Assert.Equal("+15557654321", instance.To);
+            Assert.Equal("+19195551234", instance.To);
         }
         /// <summary>
         /// Test the property 'From'
@@ -66,9 +64,8 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FromTest()
         {
-            instance.From = "+15551234567";
             Assert.IsType<string>(instance.From);
-            Assert.Equal("+15551234567", instance.From);
+            Assert.Equal("+19195554321", instance.From);
         }
         /// <summary>
         /// Test the property 'ApplicationId'
@@ -76,9 +73,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ApplicationIdTest()
         {
-            instance.ApplicationId = "123-456-abcd";
+            instance.ApplicationId = "66fd98ae-ac8d-a00f-7fcd-ba3280aeb9b1";
             Assert.IsType<string>(instance.ApplicationId);
-            Assert.Equal("123-456-abcd", instance.ApplicationId);
+            Assert.Equal("66fd98ae-ac8d-a00f-7fcd-ba3280aeb9b1", instance.ApplicationId);
         }
         /// <summary>
         /// Test the property 'Scope'
@@ -107,8 +104,10 @@ namespace Bandwidth.Standard.Test.Model
         public void DigitsTest()
         {
             instance.Digits = 6;
-            Assert.IsType<int?>(instance.Digits);
+            Assert.IsType<int>(instance.Digits);
             Assert.Equal(6, instance.Digits);
         }
+
     }
+
 }

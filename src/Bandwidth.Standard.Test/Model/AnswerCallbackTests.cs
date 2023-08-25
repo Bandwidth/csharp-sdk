@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -66,10 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EventTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.EventTime = date;
+            instance.EventTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.EventTime);
-            Assert.Equal(date, instance.EventTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EventTime);
         }
         /// <summary>
         /// Test the property 'AccountId'
@@ -147,10 +145,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EnqueuedTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.EnqueuedTime = date;
+            instance.EnqueuedTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.EnqueuedTime);
-            Assert.Equal(date, instance.EnqueuedTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EnqueuedTime);
         }
         /// <summary>
         /// Test the property 'StartTime'
@@ -158,10 +155,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void StartTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.StartTime = date;
+            instance.StartTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.StartTime);
-            Assert.Equal(date, instance.StartTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.StartTime);
         }
         /// <summary>
         /// Test the property 'AnswerTime'
@@ -169,10 +165,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void AnswerTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.AnswerTime = date;
+            instance.AnswerTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.AnswerTime);
-            Assert.Equal(date, instance.AnswerTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.AnswerTime);
         }
         /// <summary>
         /// Test the property 'Tag'
@@ -190,10 +185,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MachineDetectionResultTest()
         {
-            var result = new MachineDetectionResult("human", "test");
-            instance.MachineDetectionResult = result;
+            instance.MachineDetectionResult = new MachineDetectionResult("human", "test");
             Assert.IsType<MachineDetectionResult>(instance.MachineDetectionResult);
-            Assert.Equal(result, instance.MachineDetectionResult);
+            Assert.Equal(new MachineDetectionResult("human", "test"), instance.MachineDetectionResult);
         }
 
     }

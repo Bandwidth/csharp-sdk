@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,12 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TranscriptsTest()
         {
-            // TODO unit test for the property 'Transcripts'
+            var transcripts = new List<Transcription>() {new Transcription()};
+            instance.Transcripts = transcripts;
+            Assert.IsType<List<Transcription>>(instance.Transcripts);
+            Assert.Equal(new List<Transcription>() {new Transcription()}, instance.Transcripts);
         }
+
     }
+
 }

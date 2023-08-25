@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -32,7 +31,7 @@ namespace Bandwidth.Standard.Test.Model
 
         public CreateMessageRequestErrorTests()
         {
-            instance = new CreateMessageRequestError();
+            instance = new CreateMessageRequestError(type: "type", description: "description");
         }
 
         public void Dispose()
@@ -56,7 +55,6 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TypeTest()
         {
-            instance.Type = "type";
             Assert.IsType<string>(instance.Type);
             Assert.Equal("type", instance.Type);
         }
@@ -66,7 +64,6 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void DescriptionTest()
         {
-            instance.Description = "description";
             Assert.IsType<string>(instance.Description);
             Assert.Equal("description", instance.Description);
         }
@@ -76,12 +73,12 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FieldErrorsTest()
         {
-            var fieldErrors = new List<FieldError>();
-            FieldError fieldErrorsItem = new FieldError("from", "`invalid` must be replaced with a valid E164 formatted telephone number");
-            fieldErrors.Add(fieldErrorsItem);
+            var fieldErrors = new List<FieldError>() {new FieldError("from", "`invalid` must be replaced with a valid E164 formatted telephone number")};
             instance.FieldErrors = fieldErrors;
             Assert.IsType<List<FieldError>>(instance.FieldErrors);
             Assert.Equal(fieldErrors, instance.FieldErrors);
         }
+
     }
+
 }

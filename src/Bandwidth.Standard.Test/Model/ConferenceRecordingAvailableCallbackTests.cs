@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,9 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EventTypeTest()
         {
-            instance.EventType = "bridgeComplete";
+            instance.EventType = "conferenceMemberRecordingAvailable";
             Assert.IsType<string>(instance.EventType);
-            Assert.Equal("bridgeComplete", instance.EventType);
+            Assert.Equal("conferenceMemberRecordingAvailable", instance.EventType);
         }
         /// <summary>
         /// Test the property 'EventTime'
@@ -66,10 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EventTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.EventTime = date;
+            instance.EventTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.EventTime);
-            Assert.Equal(date, instance.EventTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EventTime);
         }
         /// <summary>
         /// Test the property 'ConferenceId'
@@ -118,7 +116,7 @@ namespace Bandwidth.Standard.Test.Model
         public void ChannelsTest()
         {
             instance.Channels = 1;
-            Assert.IsType<int?>(instance.Channels);
+            Assert.IsType<int>(instance.Channels);
             Assert.Equal(1, instance.Channels);
         }
         /// <summary>
@@ -127,10 +125,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void StartTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.StartTime = date;
+            instance.StartTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.StartTime);
-            Assert.Equal(date, instance.StartTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.StartTime);
         }
         /// <summary>
         /// Test the property 'EndTime'
@@ -138,10 +135,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EndTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.EndTime = date;
+            instance.EndTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.EndTime);
-            Assert.Equal(date, instance.EndTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EndTime);
         }
         /// <summary>
         /// Test the property 'Duration'
@@ -159,8 +155,7 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FileFormatTest()
         {
-            var fileFormat = FileFormatEnum.Mp3;
-            instance.FileFormat = fileFormat;
+            instance.FileFormat = FileFormatEnum.Mp3;
             Assert.IsType<FileFormatEnum>(instance.FileFormat);
             Assert.Equal(FileFormatEnum.Mp3, instance.FileFormat);
         }
@@ -194,5 +189,7 @@ namespace Bandwidth.Standard.Test.Model
             Assert.IsType<string>(instance.Status);
             Assert.Equal("completed", instance.Status);
         }
+
     }
+
 }

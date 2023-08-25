@@ -9,70 +9,65 @@
  */
 
 
-using NUnit.Framework;
+using Xunit;
 
 using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace Bandwidth.Standard.Test
+namespace Bandwidth.Standard.Test.Model
 {
     /// <summary>
     ///  Class for testing MachineDetectionResult
     /// </summary>
-    public class MachineDetectionResultTests
+    public class MachineDetectionResultTests : IDisposable
     {
         private MachineDetectionResult instance;
 
-        /// <summary>
-        /// Setup before each test
-        /// </summary>
-        [SetUp]
-        public void Init()
+        public MachineDetectionResultTests()
         {
             instance = new MachineDetectionResult();
         }
 
-        /// <summary>
-        /// Clean up after each test
-        /// </summary>
-        [TearDown]
-        public void Cleanup()
+        public void Dispose()
         {
-
+            // Cleanup when everything is done.
         }
 
         /// <summary>
         /// Test an instance of MachineDetectionResult
         /// </summary>
-        [Test]
+        [Fact]
         public void MachineDetectionResultInstanceTest()
         {
-            Assert.IsInstanceOf(typeof(MachineDetectionResult), instance);
+            Assert.IsType<MachineDetectionResult>(instance);
         }
 
 
         /// <summary>
         /// Test the property 'Value'
         /// </summary>
-        [Test]
+        [Fact]
         public void ValueTest()
         {
-            // TODO unit test for the property 'Value'
+            instance.Value = "value";
+            Assert.IsType<string>(instance.Value);
+            Assert.Equal("value", instance.Value);
         }
         /// <summary>
         /// Test the property 'Duration'
         /// </summary>
-        [Test]
+        [Fact]
         public void DurationTest()
         {
-            // TODO unit test for the property 'Duration'
+            instance.Duration = "PT4.9891287S";
+            Assert.IsType<string>(instance.Duration);
+            Assert.Equal("PT4.9891287S", instance.Duration);
         }
 
     }

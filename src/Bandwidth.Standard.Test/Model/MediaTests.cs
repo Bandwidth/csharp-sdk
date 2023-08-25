@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ContentTest()
         {
-            // TODO unit test for the property 'Content'
+            instance.Content = "test";
+            Assert.IsType<string>(instance.Content);
+            Assert.Equal("test", instance.Content);
         }
         /// <summary>
         /// Test the property 'ContentLength'
@@ -64,7 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ContentLengthTest()
         {
-            // TODO unit test for the property 'ContentLength'
+            instance.ContentLength = 500;
+            Assert.IsType<int>(instance.ContentLength);
+            Assert.Equal(500, instance.ContentLength);
         }
         /// <summary>
         /// Test the property 'MediaName'
@@ -72,7 +75,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MediaNameTest()
         {
-            // TODO unit test for the property 'MediaName'
+            instance.MediaName = "test";
+            Assert.IsType<string>(instance.MediaName);
+            Assert.Equal("test", instance.MediaName);
         }
 
     }

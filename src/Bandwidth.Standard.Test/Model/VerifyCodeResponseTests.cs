@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,11 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ValidTest()
         {
-            // TODO unit test for the property 'Valid'
+            instance.Valid = true;
+            Assert.IsType<bool>(instance.Valid);
+            Assert.True(instance.Valid);
         }
+
     }
+
 }

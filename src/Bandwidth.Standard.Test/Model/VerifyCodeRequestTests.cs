@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -32,7 +31,7 @@ namespace Bandwidth.Standard.Test.Model
 
         public VerifyCodeRequestTests()
         {
-            instance = new VerifyCodeRequest();
+            instance = new VerifyCodeRequest(to:"+19195551234", code:"123456");
         }
 
         public void Dispose()
@@ -56,9 +55,8 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ToTest()
         {
-            instance.To = "+15557654321";
             Assert.IsType<string>(instance.To);
-            Assert.Equal("+15557654321", instance.To);
+            Assert.Equal("+19195551234", instance.To);
         }
         /// <summary>
         /// Test the property 'Scope'
@@ -76,9 +74,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ExpirationTimeInMinutesTest()
         {
-            instance.ExpirationTimeInMinutes = 10;
-            Assert.IsType<decimal?>(instance.ExpirationTimeInMinutes);
-            Assert.Equal(10, instance.ExpirationTimeInMinutes);
+            instance.ExpirationTimeInMinutes = 3;
+            Assert.IsType<decimal>(instance.ExpirationTimeInMinutes);
+            Assert.Equal(3, instance.ExpirationTimeInMinutes);
         }
         /// <summary>
         /// Test the property 'Code'
@@ -86,9 +84,10 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CodeTest()
         {
-            instance.Code = "1234";
             Assert.IsType<string>(instance.Code);
-            Assert.Equal("1234", instance.Code);
+            Assert.Equal("123456", instance.Code);
         }
+
     }
+
 }

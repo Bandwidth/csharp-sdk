@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -32,7 +31,7 @@ namespace Bandwidth.Standard.Test.Model
 
         public LookupRequestTests()
         {
-            instance = new LookupRequest();
+            instance = new LookupRequest(new List<string> {"+19195551234"});
         }
 
         public void Dispose()
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TnsTest()
         {
-            // TODO unit test for the property 'Tns'
+            instance.Tns = new List<string> {"+15551234567"};
+            Assert.IsType<List<string>>(instance.Tns);
+            Assert.Equal(new List<string> {"+15551234567"}, instance.Tns);
         }
 
     }

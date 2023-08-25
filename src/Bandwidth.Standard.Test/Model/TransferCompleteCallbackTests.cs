@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EventTypeTest()
         {
-            // TODO unit test for the property 'EventType'
+            instance.EventType = "transferComplete";
+            Assert.IsType<string>(instance.EventType);
+            Assert.Equal("transferComplete", instance.EventType);
         }
         /// <summary>
         /// Test the property 'EventTime'
@@ -64,7 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EventTimeTest()
         {
-            // TODO unit test for the property 'EventTime'
+            instance.EventTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.EventTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EventTime);
         }
         /// <summary>
         /// Test the property 'AccountId'
@@ -72,9 +75,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void AccountIdTest()
         {
-            instance.AccountId = "123-456-abcd";
+            instance.AccountId = "920000";
             Assert.IsType<string>(instance.AccountId);
-            Assert.Equal("123-456-abcd", instance.AccountId);
+            Assert.Equal("920000", instance.AccountId);
         }
         /// <summary>
         /// Test the property 'ApplicationId'
@@ -122,9 +125,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CallIdTest()
         {
-            instance.CallId = "c-1234";
+            instance.CallId = "123-456-abcd";
             Assert.IsType<string>(instance.CallId);
-            Assert.Equal("c-1234", instance.CallId);
+            Assert.Equal("123-456-abcd", instance.CallId);
         }
         /// <summary>
         /// Test the property 'CallUrl'
@@ -132,7 +135,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CallUrlTest()
         {
-            // TODO unit test for the property 'CallUrl'
+            instance.CallUrl = "https://test.url/";
+            Assert.IsType<string>(instance.CallUrl);
+            Assert.Equal("https://test.url/", instance.CallUrl);
         }
         /// <summary>
         /// Test the property 'EnqueuedTime'
@@ -140,7 +145,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EnqueuedTimeTest()
         {
-            // TODO unit test for the property 'EnqueuedTime'
+            instance.EnqueuedTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.EnqueuedTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EnqueuedTime);
         }
         /// <summary>
         /// Test the property 'StartTime'
@@ -148,7 +155,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void StartTimeTest()
         {
-            // TODO unit test for the property 'StartTime'
+            instance.StartTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.StartTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.StartTime);
         }
         /// <summary>
         /// Test the property 'AnswerTime'
@@ -156,7 +165,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void AnswerTimeTest()
         {
-            // TODO unit test for the property 'AnswerTime'
+            instance.AnswerTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.AnswerTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.AnswerTime);
         }
         /// <summary>
         /// Test the property 'Tag'
@@ -174,7 +185,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TransferCallerIdTest()
         {
-            // TODO unit test for the property 'TransferCallerId'
+            instance.TransferCallerId = "+15551234567";
+            Assert.IsType<string>(instance.TransferCallerId);
+            Assert.Equal("+15551234567", instance.TransferCallerId);
         }
         /// <summary>
         /// Test the property 'TransferTo'
@@ -182,7 +195,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TransferToTest()
         {
-            // TODO unit test for the property 'TransferTo'
+            instance.TransferTo = "+15557654321";
+            Assert.IsType<string>(instance.TransferTo);
+            Assert.Equal("+15557654321", instance.TransferTo);
         }
         /// <summary>
         /// Test the property 'Cause'
@@ -190,7 +205,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CauseTest()
         {
-            // TODO unit test for the property 'Cause'
+            instance.Cause = "busy";
+            Assert.IsType<string>(instance.Cause);
+            Assert.Equal("busy", instance.Cause);
         }
         /// <summary>
         /// Test the property 'ErrorMessage'
@@ -198,7 +215,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ErrorMessageTest()
         {
-            // TODO unit test for the property 'ErrorMessage'
+            instance.ErrorMessage = "Call c-123 is already bridged with another call";
+            Assert.IsType<string>(instance.ErrorMessage);
+            Assert.Equal("Call c-123 is already bridged with another call", instance.ErrorMessage);
         }
         /// <summary>
         /// Test the property 'ErrorId'
@@ -206,7 +225,11 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ErrorIdTest()
         {
-            // TODO unit test for the property 'ErrorId'
+            instance.ErrorId = "123456";
+            Assert.IsType<string>(instance.ErrorId);
+            Assert.Equal("123456", instance.ErrorId);
         }
+
     }
+
 }

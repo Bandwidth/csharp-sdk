@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -107,7 +106,7 @@ namespace Bandwidth.Standard.Test.Model
         public void ChannelsTest()
         {
             instance.Channels = 1;
-            Assert.IsType<int?>(instance.Channels);
+            Assert.IsType<int>(instance.Channels);
             Assert.Equal(1, instance.Channels);
         }
         /// <summary>
@@ -116,10 +115,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void StartTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.StartTime = date;
+            instance.StartTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.StartTime);
-            Assert.Equal(date, instance.StartTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.StartTime);
         }
         /// <summary>
         /// Test the property 'EndTime'
@@ -127,10 +125,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EndTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.EndTime = date;
+            instance.EndTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.EndTime);
-            Assert.Equal(date, instance.EndTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EndTime);
         }
         /// <summary>
         /// Test the property 'FileFormat'
@@ -138,8 +135,7 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FileFormatTest()
         {
-            var fileFormat = FileFormatEnum.Mp3;
-            instance.FileFormat = fileFormat;
+            instance.FileFormat = FileFormatEnum.Mp3;
             Assert.IsType<FileFormatEnum>(instance.FileFormat);
             Assert.Equal(FileFormatEnum.Mp3, instance.FileFormat);
         }
@@ -159,9 +155,11 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MediaUrlTest()
         {
-            instance.MediaUrl = "http://test.com";
+            instance.MediaUrl = "http://test.url";
             Assert.IsType<string>(instance.MediaUrl);
-            Assert.Equal("http://test.com", instance.MediaUrl);
+            Assert.Equal("http://test.url", instance.MediaUrl);
         }
+
     }
+
 }

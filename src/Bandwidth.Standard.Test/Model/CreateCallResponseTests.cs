@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -32,7 +31,7 @@ namespace Bandwidth.Standard.Test.Model
 
         public CreateCallResponseTests()
         {
-            instance = new CreateCallResponse();
+            instance = new CreateCallResponse(applicationId:"04e88489-df02-4e34-a0ee-27a91849555f", accountId:"04e88489-df02-4e34-a0ee-27a91849555f", callId:"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", to:"+19195551234", from:"+19195554321", callUrl:"https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", answerUrl:"https://myServer.example/bandwidth/webhooks/answer");
         }
 
         public void Dispose()
@@ -56,9 +55,8 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ApplicationIdTest()
         {
-            instance.ApplicationId = "123-456-abcd";
             Assert.IsType<string>(instance.ApplicationId);
-            Assert.Equal("123-456-abcd", instance.ApplicationId);
+            Assert.Equal("04e88489-df02-4e34-a0ee-27a91849555f", instance.ApplicationId);
         }
         /// <summary>
         /// Test the property 'AccountId'
@@ -66,9 +64,8 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void AccountIdTest()
         {
-            instance.AccountId = "123-456-abcd";
             Assert.IsType<string>(instance.AccountId);
-            Assert.Equal("123-456-abcd", instance.AccountId);
+            Assert.Equal("04e88489-df02-4e34-a0ee-27a91849555f", instance.AccountId);
         }
         /// <summary>
         /// Test the property 'CallId'
@@ -76,9 +73,8 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CallIdTest()
         {
-            instance.CallId = "c-1234";
             Assert.IsType<string>(instance.CallId);
-            Assert.Equal("c-1234", instance.CallId);
+            Assert.Equal("c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", instance.CallId);
         }
         /// <summary>
         /// Test the property 'To'
@@ -86,9 +82,8 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ToTest()
         {
-            instance.To = "+15557654321";
             Assert.IsType<string>(instance.To);
-            Assert.Equal("+15557654321", instance.To);
+            Assert.Equal("+19195551234", instance.To);
         }
         /// <summary>
         /// Test the property 'From'
@@ -96,9 +91,8 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FromTest()
         {
-            instance.From = "+15551234567";
             Assert.IsType<string>(instance.From);
-            Assert.Equal("+15551234567", instance.From);
+            Assert.Equal("+19195554321", instance.From);
         }
         /// <summary>
         /// Test the property 'EnqueuedTime'
@@ -106,10 +100,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EnqueuedTimeTest()
         {
-            var date = new DateTime(2020, 1, 1);
-            instance.EnqueuedTime = date;
+            instance.EnqueuedTime =  new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.EnqueuedTime);
-            Assert.Equal(date, instance.EnqueuedTime);
+            Assert.Equal( new DateTime(2020, 1, 1), instance.EnqueuedTime);
         }
         /// <summary>
         /// Test the property 'CallUrl'
@@ -117,9 +110,8 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CallUrlTest()
         {
-            instance.CallUrl = "https://test.com";
             Assert.IsType<string>(instance.CallUrl);
-            Assert.Equal("https://test.com", instance.CallUrl);
+            Assert.Equal("https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", instance.CallUrl);
         }
         /// <summary>
         /// Test the property 'CallTimeout'
@@ -128,7 +120,7 @@ namespace Bandwidth.Standard.Test.Model
         public void CallTimeoutTest()
         {
             instance.CallTimeout = 30;
-            Assert.IsType<double?>(instance.CallTimeout);
+            Assert.IsType<double>(instance.CallTimeout);
             Assert.Equal(30, instance.CallTimeout);
         }
         /// <summary>
@@ -138,7 +130,7 @@ namespace Bandwidth.Standard.Test.Model
         public void CallbackTimeoutTest()
         {
             instance.CallbackTimeout = 15;
-            Assert.IsType<double?>(instance.CallbackTimeout);
+            Assert.IsType<double>(instance.CallbackTimeout);
             Assert.Equal(15, instance.CallbackTimeout);
         }
         /// <summary>
@@ -157,10 +149,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void AnswerMethodTest()
         {
-            var method = CallbackMethodEnum.POST;
-            instance.AnswerMethod = method;
+            instance.AnswerMethod = CallbackMethodEnum.POST;
             Assert.IsType<CallbackMethodEnum>(instance.AnswerMethod);
-            Assert.Equal(method, instance.AnswerMethod);
+            Assert.Equal(CallbackMethodEnum.POST, instance.AnswerMethod);
         }
         /// <summary>
         /// Test the property 'AnswerUrl'
@@ -168,9 +159,8 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void AnswerUrlTest()
         {
-            instance.AnswerUrl = "https://test.com";
             Assert.IsType<string>(instance.AnswerUrl);
-            Assert.Equal("https://test.com", instance.AnswerUrl);
+            Assert.Equal("https://myServer.example/bandwidth/webhooks/answer", instance.AnswerUrl);
         }
         /// <summary>
         /// Test the property 'AnswerFallbackMethod'
@@ -178,10 +168,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void AnswerFallbackMethodTest()
         {
-            var method = CallbackMethodEnum.POST;
-            instance.AnswerFallbackMethod = method;
+            instance.AnswerFallbackMethod = CallbackMethodEnum.POST;
             Assert.IsType<CallbackMethodEnum>(instance.AnswerFallbackMethod);
-            Assert.Equal(method, instance.AnswerFallbackMethod);
+            Assert.Equal(CallbackMethodEnum.POST, instance.AnswerFallbackMethod);
         }
         /// <summary>
         /// Test the property 'AnswerFallbackUrl'
@@ -189,9 +178,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void AnswerFallbackUrlTest()
         {
-            instance.AnswerFallbackUrl = "https://fallbackTest.com";
+            instance.AnswerFallbackUrl = "https://fallbackTest.url/";
             Assert.IsType<string>(instance.AnswerFallbackUrl);
-            Assert.Equal("https://fallbackTest.com", instance.AnswerFallbackUrl);
+            Assert.Equal("https://fallbackTest.url/", instance.AnswerFallbackUrl);
         }
         /// <summary>
         /// Test the property 'DisconnectMethod'
@@ -199,10 +188,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void DisconnectMethodTest()
         {
-            var method = CallbackMethodEnum.POST;
-            instance.DisconnectMethod = method;
+            instance.DisconnectMethod = CallbackMethodEnum.POST;
             Assert.IsType<CallbackMethodEnum>(instance.DisconnectMethod);
-            Assert.Equal(method, instance.DisconnectMethod);
+            Assert.Equal(CallbackMethodEnum.POST, instance.DisconnectMethod);
         }
         /// <summary>
         /// Test the property 'DisconnectUrl'
@@ -210,9 +198,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void DisconnectUrlTest()
         {
-            instance.DisconnectUrl = "https://disconnectTest.com";
+            instance.DisconnectUrl = "https://disconnectTest.url/";
             Assert.IsType<string>(instance.DisconnectUrl);
-            Assert.Equal("https://disconnectTest.com", instance.DisconnectUrl);
+            Assert.Equal("https://disconnectTest.url/", instance.DisconnectUrl);
         }
         /// <summary>
         /// Test the property 'Username'
@@ -261,8 +249,10 @@ namespace Bandwidth.Standard.Test.Model
         public void PriorityTest()
         {
             instance.Priority = 1;
-            Assert.IsType<int?>(instance.Priority);
+            Assert.IsType<int>(instance.Priority);
             Assert.Equal(1, instance.Priority);
         }
+
     }
+
 }

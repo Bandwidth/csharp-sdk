@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,7 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FieldNameTest()
         {
-            // TODO unit test for the property 'FieldName'
+            instance.FieldName = "from";
         }
         /// <summary>
         /// Test the property 'Description'
@@ -64,9 +63,11 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void DescriptionTest()
         {
-            instance.Description = "'+invalid' must be replaced with a valid E164 formatted telephone number";
+            instance.Description = "`invalid` must be replaced with a valid E164 formatted telephone number";
             Assert.IsType<string>(instance.Description);
-            Assert.Equal("'+invalid' must be replaced with a valid E164 formatted telephone number", instance.Description);
+            Assert.Equal("`invalid` must be replaced with a valid E164 formatted telephone number", instance.Description);
         }
+
     }
+
 }

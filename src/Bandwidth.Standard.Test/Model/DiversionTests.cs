@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ReasonTest()
         {
-            // TODO unit test for the property 'Reason'
+            instance.Reason = "unavailable";
+            Assert.IsType<string>(instance.Reason);
+            Assert.Equal("unavailable", instance.Reason);
         }
         /// <summary>
         /// Test the property 'Privacy'
@@ -64,7 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void PrivacyTest()
         {
-            // TODO unit test for the property 'Privacy'
+            instance.Privacy = "off";
+            Assert.IsType<string>(instance.Privacy);
+            Assert.Equal("off", instance.Privacy);
         }
         /// <summary>
         /// Test the property 'Screen'
@@ -72,7 +75,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ScreenTest()
         {
-            // TODO unit test for the property 'Screen'
+            instance.Screen = "no";
+            Assert.IsType<string>(instance.Screen);
+            Assert.Equal("no", instance.Screen);
         }
         /// <summary>
         /// Test the property 'Counter'
@@ -80,7 +85,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CounterTest()
         {
-            // TODO unit test for the property 'Counter'
+            instance.Counter = "2";
+            Assert.IsType<string>(instance.Counter);
+            Assert.Equal("2", instance.Counter);
         }
         /// <summary>
         /// Test the property 'Limit'
@@ -88,7 +95,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void LimitTest()
         {
-            // TODO unit test for the property 'Limit'
+            instance.Limit = "3";
+            Assert.IsType<string>(instance.Limit);
+            Assert.Equal("3", instance.Limit);
         }
         /// <summary>
         /// Test the property 'Unknown'
@@ -96,7 +105,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void UnknownTest()
         {
-            // TODO unit test for the property 'Unknown'
+            instance.Unknown = "unknownValue";
+            Assert.IsType<string>(instance.Unknown);
+            Assert.Equal("unknownValue", instance.Unknown);
         }
         /// <summary>
         /// Test the property 'OrigTo'
@@ -104,7 +115,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void OrigToTest()
         {
-            // TODO unit test for the property 'OrigTo'
+            instance.OrigTo = "+15558884444";
+            Assert.IsType<string>(instance.OrigTo);
+            Assert.Equal("+15558884444", instance.OrigTo);
         }
 
     }

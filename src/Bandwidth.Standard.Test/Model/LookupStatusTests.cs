@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void RequestIdTest()
         {
-            // TODO unit test for the property 'RequestId'
+            instance.RequestId = "1234";
+            Assert.IsType<string>(instance.RequestId);
+            Assert.Equal("1234", instance.RequestId);
         }
         /// <summary>
         /// Test the property 'Status'
@@ -64,7 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void StatusTest()
         {
-            // TODO unit test for the property 'Status'
+            instance.Status = LookupStatusEnum.INPROGRESS;
+            Assert.IsType<LookupStatusEnum>(instance.Status);
+            Assert.Equal(LookupStatusEnum.INPROGRESS, instance.Status);
         }
         /// <summary>
         /// Test the property 'Result'
@@ -72,7 +75,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ResultTest()
         {
-            // TODO unit test for the property 'Result'
+            instance.Result = new List<LookupResult>();
+            Assert.IsType<List<LookupResult>>(instance.Result);
+            Assert.Equal(new List<LookupResult>(), instance.Result);
         }
         /// <summary>
         /// Test the property 'FailedTelephoneNumbers'
@@ -80,7 +85,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FailedTelephoneNumbersTest()
         {
-            // TODO unit test for the property 'FailedTelephoneNumbers'
+            instance.FailedTelephoneNumbers = new List<string>() { "+15551234567"};
+            Assert.IsType<List<string>>(instance.FailedTelephoneNumbers);
+            Assert.Equal(new List<string>() { "+15551234567"}, instance.FailedTelephoneNumbers);
         }
 
     }

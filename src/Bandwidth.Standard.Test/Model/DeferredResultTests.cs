@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,9 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ResultTest()
         {
-            instance.Result = false;
-            Assert.IsType<Object>(instance.Result);
-            Assert.Equal(false, instance.Result);
+            instance.Result = "test";
+            Assert.IsAssignableFrom<Object>(instance.Result);
+            Assert.Equal( "test", instance.Result);
         }
         /// <summary>
         /// Test the property 'SetOrExpired'
@@ -70,5 +69,7 @@ namespace Bandwidth.Standard.Test.Model
             Assert.IsType<bool>(instance.SetOrExpired);
             Assert.True(instance.SetOrExpired);
         }
+
     }
+
 }

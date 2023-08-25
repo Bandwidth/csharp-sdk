@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -57,6 +56,7 @@ namespace Bandwidth.Standard.Test.Model
         public void CurrentCallQueueSizeTest()
         {
             instance.CurrentCallQueueSize = 500;
+            Assert.IsType<int>(instance.CurrentCallQueueSize);
             Assert.Equal(500, instance.CurrentCallQueueSize);
         }
         /// <summary>
@@ -66,6 +66,7 @@ namespace Bandwidth.Standard.Test.Model
         public void MaxCallQueueSizeTest()
         {
             instance.MaxCallQueueSize = 500;
+            Assert.IsType<int>(instance.MaxCallQueueSize);
             Assert.Equal(500, instance.MaxCallQueueSize);
         }
 

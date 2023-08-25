@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MuteTest()
         {
-            // TODO unit test for the property 'Mute'
+            instance.Mute = true;
+            Assert.IsType<bool>(instance.Mute);
+            Assert.True(instance.Mute);
         }
         /// <summary>
         /// Test the property 'Hold'
@@ -64,7 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void HoldTest()
         {
-            // TODO unit test for the property 'Hold'
+            instance.Hold = true;
+            Assert.IsType<bool>(instance.Hold);
+            Assert.True(instance.Hold);
         }
         /// <summary>
         /// Test the property 'CallIdsToCoach'
@@ -72,7 +75,11 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CallIdsToCoachTest()
         {
-            // TODO unit test for the property 'CallIdsToCoach'
+            instance.CallIdsToCoach = new List<string> { "callId1", "callId2" };
+            Assert.IsType<List<string>>(instance.CallIdsToCoach);
+            Assert.Equal(new List<string> { "callId1", "callId2" }, instance.CallIdsToCoach);
         }
+
     }
+
 }

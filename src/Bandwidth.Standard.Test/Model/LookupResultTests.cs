@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,7 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ResponseCodeTest()
         {
-            // TODO unit test for the property 'ResponseCode'
+            instance.ResponseCode = 0;
+            Assert.IsType<int>(instance.ResponseCode);
+            Assert.Equal(0, instance.ResponseCode);
         }
         /// <summary>
         /// Test the property 'Message'
@@ -74,7 +75,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void E164FormatTest()
         {
-            // TODO unit test for the property 'E164Format'
+            instance.E164Format = "+15551234567";
+            Assert.IsType<string>(instance.E164Format);
+            Assert.Equal("+15551234567", instance.E164Format);
         }
         /// <summary>
         /// Test the property 'Formatted'
@@ -82,7 +85,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FormattedTest()
         {
-            // TODO unit test for the property 'Formatted'
+            instance.Formatted = "(555) 1230-4567";
+            Assert.IsType<string>(instance.Formatted);
+            Assert.Equal("(555) 1230-4567", instance.Formatted);
         }
         /// <summary>
         /// Test the property 'Country'
@@ -90,7 +95,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void CountryTest()
         {
-            // TODO unit test for the property 'Country'
+            instance.Country = "US";
+            Assert.IsType<string>(instance.Country);
+            Assert.Equal("US", instance.Country);
         }
         /// <summary>
         /// Test the property 'LineType'
@@ -98,7 +105,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void LineTypeTest()
         {
-            // TODO unit test for the property 'LineType'
+            instance.LineType = "mobile";
+            Assert.IsType<string>(instance.LineType);
+            Assert.Equal("mobile", instance.LineType);
         }
         /// <summary>
         /// Test the property 'LineProvider'
@@ -106,7 +115,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void LineProviderTest()
         {
-            // TODO unit test for the property 'LineProvider'
+            instance.LineProvider = "Verizon Wireless";
+            Assert.IsType<string>(instance.LineProvider);
+            Assert.Equal("Verizon Wireless", instance.LineProvider);
         }
         /// <summary>
         /// Test the property 'MobileCountryCode'
@@ -114,7 +125,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MobileCountryCodeTest()
         {
-            // TODO unit test for the property 'MobileCountryCode'
+            instance.MobileCountryCode = "310";
+            Assert.IsType<string>(instance.MobileCountryCode);
+            Assert.Equal("310", instance.MobileCountryCode);
         }
         /// <summary>
         /// Test the property 'MobileNetworkCode'
@@ -122,7 +135,11 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MobileNetworkCodeTest()
         {
-            // TODO unit test for the property 'MobileNetworkCode'
+            instance.MobileNetworkCode = "010";
+            Assert.IsType<string>(instance.MobileNetworkCode);
+            Assert.Equal("010", instance.MobileNetworkCode);
         }
+
     }
+
 }

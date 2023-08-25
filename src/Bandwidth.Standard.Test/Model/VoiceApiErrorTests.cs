@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -56,9 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TypeTest()
         {
-            instance.Type = "type";
+            instance.Type = "test";
             Assert.IsType<string>(instance.Type);
-            Assert.Equal("type", instance.Type);
+            Assert.Equal("test", instance.Type);
         }
         /// <summary>
         /// Test the property 'Description'
@@ -66,9 +65,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void DescriptionTest()
         {
-            instance.Description = "description";
+            instance.Description = "test";
             Assert.IsType<string>(instance.Description);
-            Assert.Equal("description", instance.Description);
+            Assert.Equal("test", instance.Description);
         }
         /// <summary>
         /// Test the property 'Id'
@@ -76,7 +75,11 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void IdTest()
         {
-            // TODO unit test for the property 'Id'
+            instance.Id = "abc123";
+            Assert.IsType<string>(instance.Id);
+            Assert.Equal("abc123", instance.Id);
         }
+
     }
+
 }
