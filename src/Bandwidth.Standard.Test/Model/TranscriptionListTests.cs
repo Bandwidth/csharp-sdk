@@ -55,10 +55,10 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TranscriptsTest()
         {
-            var transcripts = new List<Transcription>() {new Transcription()};
+            var transcripts = new List<Transcription>() { new Transcription() };
             instance.Transcripts = transcripts;
             Assert.IsType<List<Transcription>>(instance.Transcripts);
-            Assert.Equal(new List<Transcription>() {new Transcription()}, instance.Transcripts);
+            Assert.Equal(new List<Transcription>() { new Transcription() }, instance.Transcripts);
         }
 
     }

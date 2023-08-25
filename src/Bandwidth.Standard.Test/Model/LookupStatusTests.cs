@@ -85,9 +85,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FailedTelephoneNumbersTest()
         {
-            instance.FailedTelephoneNumbers = new List<string>() { "+15551234567"};
+            instance.FailedTelephoneNumbers = new List<string>() { "+15551234567" };
             Assert.IsType<List<string>>(instance.FailedTelephoneNumbers);
-            Assert.Equal(new List<string>() { "+15551234567"}, instance.FailedTelephoneNumbers);
+            Assert.Equal(new List<string>() { "+15551234567" }, instance.FailedTelephoneNumbers);
         }
 
     }

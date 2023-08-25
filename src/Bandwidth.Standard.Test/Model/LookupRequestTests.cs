@@ -31,7 +31,7 @@ namespace Bandwidth.Standard.Test.Model
 
         public LookupRequestTests()
         {
-            instance = new LookupRequest(new List<string> {"+19195551234"});
+            instance = new LookupRequest(new List<string> { "+19195551234" });
         }
 
         public void Dispose()
@@ -55,9 +55,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TnsTest()
         {
-            instance.Tns = new List<string> {"+15551234567"};
+            instance.Tns = new List<string> { "+15551234567" };
             Assert.IsType<List<string>>(instance.Tns);
-            Assert.Equal(new List<string> {"+15551234567"}, instance.Tns);
+            Assert.Equal(new List<string> { "+15551234567" }, instance.Tns);
         }
 
     }

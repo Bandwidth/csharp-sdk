@@ -57,7 +57,7 @@ namespace Bandwidth.Standard.Test.Model
         {
             instance.Result = "test";
             Assert.IsAssignableFrom<Object>(instance.Result);
-            Assert.Equal( "test", instance.Result);
+            Assert.Equal("test", instance.Result);
         }
         /// <summary>
         /// Test the property 'SetOrExpired'

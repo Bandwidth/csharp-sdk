@@ -112,7 +112,7 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ToTest()
         {
-            Assert.IsType <List<string>> (instance.To);
+            Assert.IsType<List<string>>(instance.To);
             Assert.Equal(new List<string> { "+15557654321" }, instance.To);
         }
         /// <summary>
@@ -139,9 +139,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TagTest()
         {
-            instance.Tag = "tag";
+            instance.Tag = "test";
             Assert.IsType<string>(instance.Tag);
-            Assert.Equal("tag", instance.Tag);
+            Assert.Equal("test", instance.Tag);
         }
         /// <summary>
         /// Test the property 'Media'

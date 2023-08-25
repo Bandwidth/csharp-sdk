@@ -115,7 +115,7 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void DirectionTest()
         {
-            instance.Direction =  CallDirectionEnum.Inbound;
+            instance.Direction = CallDirectionEnum.Inbound;
             Assert.IsType<CallDirectionEnum>(instance.Direction);
             Assert.Equal(CallDirectionEnum.Inbound, instance.Direction);
         }

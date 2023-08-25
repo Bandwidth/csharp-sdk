@@ -31,7 +31,7 @@ namespace Bandwidth.Standard.Test.Model
 
         public MessagingRequestErrorTests()
         {
-            instance = new MessagingRequestError(type:"type", description:"description");
+            instance = new MessagingRequestError(type: "type", description: "description");
         }
 
         public void Dispose()

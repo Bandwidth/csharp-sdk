@@ -176,9 +176,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TagTest()
         {
-            instance.Tag = "tag";
+            instance.Tag = "test";
             Assert.IsType<string>(instance.Tag);
-            Assert.Equal("tag", instance.Tag);
+            Assert.Equal("test", instance.Tag);
         }
         /// <summary>
         /// Test the property 'MachineDetectionResult'

@@ -31,7 +31,7 @@ namespace Bandwidth.Standard.Test.Model
 
         public CodeRequestTests()
         {
-            instance = new CodeRequest(to:"+19195551234", from:"+19195554321", applicationId:"66fd98ae-ac8d-a00f-7fcd-ba3280aeb9b1", message: "Your temporary {NAME} {SCOPE} code is {CODE}");
+            instance = new CodeRequest(to: "+19195551234", from: "+19195554321", applicationId: "66fd98ae-ac8d-a00f-7fcd-ba3280aeb9b1", message: "Your temporary {NAME} {SCOPE} code is {CODE}");
         }
 
         public void Dispose()

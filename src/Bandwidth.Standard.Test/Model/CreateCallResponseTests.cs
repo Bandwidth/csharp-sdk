@@ -31,7 +31,7 @@ namespace Bandwidth.Standard.Test.Model
 
         public CreateCallResponseTests()
         {
-            instance = new CreateCallResponse(applicationId:"04e88489-df02-4e34-a0ee-27a91849555f", accountId:"04e88489-df02-4e34-a0ee-27a91849555f", callId:"c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", to:"+19195551234", from:"+19195554321", callUrl:"https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", answerUrl:"https://myServer.example/bandwidth/webhooks/answer");
+            instance = new CreateCallResponse(applicationId: "04e88489-df02-4e34-a0ee-27a91849555f", accountId: "04e88489-df02-4e34-a0ee-27a91849555f", callId: "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", to: "+19195551234", from: "+19195554321", callUrl: "https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", answerUrl: "https://myServer.example/bandwidth/webhooks/answer");
         }
 
         public void Dispose()
@@ -100,9 +100,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void EnqueuedTimeTest()
         {
-            instance.EnqueuedTime =  new DateTime(2020, 1, 1);
+            instance.EnqueuedTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.EnqueuedTime);
-            Assert.Equal( new DateTime(2020, 1, 1), instance.EnqueuedTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.EnqueuedTime);
         }
         /// <summary>
         /// Test the property 'CallUrl'

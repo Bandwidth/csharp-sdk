@@ -31,7 +31,7 @@ namespace Bandwidth.Standard.Test.Model
 
         public InboundMessageCallbackTests()
         {
-            instance = new InboundMessageCallback(type: "message-received", to: "+15552223333", description: "Incoming message received", message: new InboundMessageCallbackMessage(id: "1661365814859loidf7mcwd4qacn7", owner: "+15553332222", applicationId: "93de2206-9669-4e07-948d-329f4b722ee", to: new List<string> {"15552223333"}, from: "+15553332222", text: "Hello world" ));
+            instance = new InboundMessageCallback(type: "message-received", to: "+15552223333", description: "Incoming message received", message: new InboundMessageCallbackMessage(id: "1661365814859loidf7mcwd4qacn7", owner: "+15553332222", applicationId: "93de2206-9669-4e07-948d-329f4b722ee", to: new List<string> { "15552223333" }, from: "+15553332222", text: "Hello world"));
         }
 
         public void Dispose()
@@ -93,7 +93,7 @@ namespace Bandwidth.Standard.Test.Model
         public void MessageTest()
         {
             Assert.IsType<InboundMessageCallbackMessage>(instance.Message);
-            Assert.Equal(new InboundMessageCallbackMessage(id: "1661365814859loidf7mcwd4qacn7", owner: "+15553332222", applicationId: "93de2206-9669-4e07-948d-329f4b722ee", to: new List<string> {"15552223333"}, from: "+15553332222", text: "Hello world" ), instance.Message);
+            Assert.Equal(new InboundMessageCallbackMessage(id: "1661365814859loidf7mcwd4qacn7", owner: "+15553332222", applicationId: "93de2206-9669-4e07-948d-329f4b722ee", to: new List<string> { "15552223333" }, from: "+15553332222", text: "Hello world"), instance.Message);
         }
 
     }

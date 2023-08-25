@@ -105,9 +105,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void DirectionTest()
         {
-            instance.Direction =  MessageDirectionEnum.In;
+            instance.Direction = MessageDirectionEnum.In;
             Assert.IsType<MessageDirectionEnum>(instance.Direction);
-            Assert.Equal( MessageDirectionEnum.In, instance.Direction);
+            Assert.Equal(MessageDirectionEnum.In, instance.Direction);
         }
         /// <summary>
         /// Test the property 'To'
@@ -157,9 +157,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TagTest()
         {
-            instance.Tag = "tag";
+            instance.Tag = "test";
             Assert.IsType<string>(instance.Tag);
-            Assert.Equal("tag", instance.Tag);
+            Assert.Equal("test", instance.Tag);
         }
         /// <summary>
         /// Test the property 'Priority'
@@ -167,9 +167,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void PriorityTest()
         {
-            instance.Priority = PriorityEnum.High;
+            instance.Priority = PriorityEnum.Default;
             Assert.IsType<PriorityEnum>(instance.Priority);
-            Assert.Equal(PriorityEnum.High, instance.Priority);
+            Assert.Equal(PriorityEnum.Default, instance.Priority);
         }
         /// <summary>
         /// Test the property 'Expiration'

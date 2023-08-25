@@ -31,7 +31,7 @@ namespace Bandwidth.Standard.Test.Model
 
         public MessageRequestTests()
         {
-            instance = new MessageRequest("123-456-abcd", new List<string> {"+15557654321"}, "+15551113333");
+            instance = new MessageRequest("123-456-abcd", new List<string> { "+15557654321" }, "+15551113333");
         }
 
         public void Dispose()
@@ -65,7 +65,7 @@ namespace Bandwidth.Standard.Test.Model
         public void ToTest()
         {
             Assert.IsType<List<string>>(instance.To);
-            Assert.Equal(new List<string> {"+15557654321"}, instance.To);
+            Assert.Equal(new List<string> { "+15557654321" }, instance.To);
         }
         /// <summary>
         /// Test the property 'From'
@@ -92,9 +92,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MediaTest()
         {
-            instance.Media = new List<string> {"https://test.com"};
+            instance.Media = new List<string> { "https://test.com" };
             Assert.IsType<List<string>>(instance.Media);
-            Assert.Equal(new List<string> {"https://test.com"}, instance.Media);
+            Assert.Equal(new List<string> { "https://test.com" }, instance.Media);
         }
         /// <summary>
         /// Test the property 'Tag'
@@ -102,9 +102,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TagTest()
         {
-            instance.Tag = "tag";
+            instance.Tag = "test";
             Assert.IsType<string>(instance.Tag);
-            Assert.Equal("tag", instance.Tag);
+            Assert.Equal("test", instance.Tag);
         }
         /// <summary>
         /// Test the property 'Priority'

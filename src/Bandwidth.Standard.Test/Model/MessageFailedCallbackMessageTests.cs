@@ -35,7 +35,7 @@ namespace Bandwidth.Standard.Test.Model
 
         public MessageFailedCallbackMessageTests()
         {
-            instance = new MessageFailedCallbackMessage(id:"1661365814859loidf7mcwd4qacn7", owner: "+15553332222", applicationId: "93de2206-9669-4e07-948d-329f4b722ee2", to: new List<string> {"+15557654321"}, from: "+15553332222", text: "Hello world", tag: "test");
+            instance = new MessageFailedCallbackMessage(id: "1661365814859loidf7mcwd4qacn7", owner: "+15553332222", applicationId: "93de2206-9669-4e07-948d-329f4b722ee2", to: new List<string> { "+15557654321" }, from: "+15553332222", text: "Hello world", tag: "test");
         }
 
         public void Dispose()
@@ -106,9 +106,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void DirectionTest()
         {
-            instance.Direction =  MessageDirectionEnum.In;
+            instance.Direction = MessageDirectionEnum.In;
             Assert.IsType<MessageDirectionEnum>(instance.Direction);
-            Assert.Equal( MessageDirectionEnum.In, instance.Direction);
+            Assert.Equal(MessageDirectionEnum.In, instance.Direction);
         }
         /// <summary>
         /// Test the property 'To'
@@ -117,7 +117,7 @@ namespace Bandwidth.Standard.Test.Model
         public void ToTest()
         {
             Assert.IsType<List<string>>(instance.To);
-            Assert.Equal(new List<string> {"+15557654321"} , instance.To);
+            Assert.Equal(new List<string> { "+15557654321" }, instance.To);
         }
         /// <summary>
         /// Test the property 'From'

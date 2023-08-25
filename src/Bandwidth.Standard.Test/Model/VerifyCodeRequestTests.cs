@@ -31,7 +31,7 @@ namespace Bandwidth.Standard.Test.Model
 
         public VerifyCodeRequestTests()
         {
-            instance = new VerifyCodeRequest(to:"+19195551234", code:"123456");
+            instance = new VerifyCodeRequest(to: "+19195551234", code: "123456");
         }
 
         public void Dispose()

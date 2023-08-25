@@ -47,7 +47,7 @@ namespace Bandwidth.Standard.Test.Model
         {
             Assert.IsType<CallDirectionEnum>(instance);
         }
-        
+
     }
 
 }

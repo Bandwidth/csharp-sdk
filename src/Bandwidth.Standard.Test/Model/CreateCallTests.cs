@@ -31,7 +31,7 @@ namespace Bandwidth.Standard.Test.Model
 
         public CreateCallTests()
         {
-            instance = new CreateCall(to:"+19195551234", from:"+19195554321", applicationId:"1234-qwer-5679-tyui", answerUrl:"https://www.myCallbackServer.example/webhooks/answer");
+            instance = new CreateCall(to: "+19195551234", from: "+19195554321", applicationId: "1234-qwer-5679-tyui", answerUrl: "https://www.myCallbackServer.example/webhooks/answer");
         }
 
         public void Dispose()
@@ -212,9 +212,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MachineDetectionTest()
         {
-            instance.MachineDetection = new MachineDetectionConfiguration(mode: MachineDetectionModeEnum.Async, callbackUrl : "https://test.url/", callbackMethod: CallbackMethodEnum.POST, username: "username", password: "password", fallbackUrl: "https://fallbackTest.url/", fallbackMethod: CallbackMethodEnum.POST, fallbackUsername: "fallbackUsername", fallbackPassword: "fallbackPassword");
+            instance.MachineDetection = new MachineDetectionConfiguration(mode: MachineDetectionModeEnum.Async, callbackUrl: "https://test.url/", callbackMethod: CallbackMethodEnum.POST, username: "username", password: "password", fallbackUrl: "https://fallbackTest.url/", fallbackMethod: CallbackMethodEnum.POST, fallbackUsername: "fallbackUsername", fallbackPassword: "fallbackPassword");
             Assert.IsType<MachineDetectionConfiguration>(instance.MachineDetection);
-            Assert.Equal(new MachineDetectionConfiguration(mode: MachineDetectionModeEnum.Async, callbackUrl : "https://test.url/", callbackMethod: CallbackMethodEnum.POST, username: "username", password: "password", fallbackUrl: "https://fallbackTest.url/", fallbackMethod: CallbackMethodEnum.POST, fallbackUsername: "fallbackUsername", fallbackPassword: "fallbackPassword"), instance.MachineDetection);
+            Assert.Equal(new MachineDetectionConfiguration(mode: MachineDetectionModeEnum.Async, callbackUrl: "https://test.url/", callbackMethod: CallbackMethodEnum.POST, username: "username", password: "password", fallbackUrl: "https://fallbackTest.url/", fallbackMethod: CallbackMethodEnum.POST, fallbackUsername: "fallbackUsername", fallbackPassword: "fallbackPassword"), instance.MachineDetection);
         }
         /// <summary>
         /// Test the property 'Priority'

@@ -31,7 +31,7 @@ namespace Bandwidth.Standard.Test.Model
 
         public InboundMessageCallbackMessageTests()
         {
-            instance = new InboundMessageCallbackMessage(id: "abc123", owner: "+15553332222", applicationId: "123-456-abcd", to: new List<string> {"+15557654321"}, from: "+15553332222", text: "Hello world");
+            instance = new InboundMessageCallbackMessage(id: "abc123", owner: "+15553332222", applicationId: "123-456-abcd", to: new List<string> { "+15557654321" }, from: "+15553332222", text: "Hello world");
         }
 
         public void Dispose()

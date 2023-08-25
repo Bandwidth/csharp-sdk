@@ -73,7 +73,7 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void FieldErrorsTest()
         {
-            var fieldErrors = new List<FieldError>() {new FieldError("from", "`invalid` must be replaced with a valid E164 formatted telephone number")};
+            var fieldErrors = new List<FieldError>() { new FieldError("from", "`invalid` must be replaced with a valid E164 formatted telephone number") };
             instance.FieldErrors = fieldErrors;
             Assert.IsType<List<FieldError>>(instance.FieldErrors);
             Assert.Equal(fieldErrors, instance.FieldErrors);
