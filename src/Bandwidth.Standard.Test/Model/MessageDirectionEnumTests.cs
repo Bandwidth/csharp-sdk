@@ -15,7 +15,6 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
-using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
@@ -32,13 +31,11 @@ namespace Bandwidth.Standard.Test.Model
     /// </remarks>
     public class MessageDirectionEnumTests : IDisposable
     {
-        // TODO uncomment below to declare an instance variable for MessageDirectionEnum
-        //private MessageDirectionEnum instance;
+        private MessageDirectionEnum instance;
 
         public MessageDirectionEnumTests()
         {
-            // TODO uncomment below to create an instance of MessageDirectionEnum
-            //instance = new MessageDirectionEnum();
+            instance = new MessageDirectionEnum();
         }
 
         public void Dispose()
@@ -52,11 +49,8 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MessageDirectionEnumInstanceTest()
         {
-            // TODO uncomment below to test "IsType" MessageDirectionEnum
-            //Assert.IsType<MessageDirectionEnum>(instance);
+            Assert.IsType<MessageDirectionEnum>(instance);
         }
-
-
 
     }
 

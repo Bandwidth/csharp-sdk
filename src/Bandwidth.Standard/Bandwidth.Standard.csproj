@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo><!-- setting GenerateAssemblyInfo to false causes this bug https://github.com/dotnet/project-system/issues/3934 -->
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>Bandwidth.Standard</AssemblyName>
     <PackageId>Bandwidth.Standard</PackageId>
     <OutputType>Library</OutputType>
@@ -17,7 +17,6 @@
     <RepositoryUrl>https://github.com/GIT_USER_ID/GIT_REPO_ID.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>Minor update</PackageReleaseNotes>
-    <PackageTags>Bandwidth</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,10 +27,10 @@
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
-  <!-- <ItemGroup>
+  <ItemGroup>
     <None Remove="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web" />
-  </ItemGroup> -->
+  </ItemGroup>
 </Project>
