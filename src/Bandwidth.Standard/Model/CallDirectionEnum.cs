@@ -44,7 +44,6 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         [EnumMember(Value = "outbound")]
         Outbound = 2
-
     }
 
 }

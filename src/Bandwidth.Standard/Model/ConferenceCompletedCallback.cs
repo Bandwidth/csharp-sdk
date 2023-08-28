@@ -53,7 +53,7 @@ namespace Bandwidth.Standard.Model
         /// The event type, value can be one of the following: answer, bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect, conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable, disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete, recordingAvailable, redirect, transcriptionAvailable, transferAnswer, transferComplete, transferDisconnect.
         /// </summary>
         /// <value>The event type, value can be one of the following: answer, bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect, conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable, disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete, recordingAvailable, redirect, transcriptionAvailable, transferAnswer, transferComplete, transferDisconnect.</value>
-        /// <example>&quot;bridgeComplete&quot;</example>
+        /// <example>bridgeComplete</example>
         [DataMember(Name = "eventType", EmitDefaultValue = false)]
         public string EventType { get; set; }
 
@@ -68,7 +68,7 @@ namespace Bandwidth.Standard.Model
         /// The unique, Bandwidth-generated ID of the conference that was recorded
         /// </summary>
         /// <value>The unique, Bandwidth-generated ID of the conference that was recorded</value>
-        /// <example>&quot;conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9&quot;</example>
+        /// <example>conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9</example>
         [DataMember(Name = "conferenceId", EmitDefaultValue = false)]
         public string ConferenceId { get; set; }
 
@@ -76,7 +76,7 @@ namespace Bandwidth.Standard.Model
         /// The user-specified name of the conference that was recorded
         /// </summary>
         /// <value>The user-specified name of the conference that was recorded</value>
-        /// <example>&quot;my-conference-name&quot;</example>
+        /// <example>my-conference-name</example>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
@@ -84,7 +84,7 @@ namespace Bandwidth.Standard.Model
         /// (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present.
         /// </summary>
         /// <value>(optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present.</value>
-        /// <example>&quot;exampleTag&quot;</example>
+        /// <example>exampleTag</example>
         [DataMember(Name = "tag", EmitDefaultValue = true)]
         public string Tag { get; set; }
 

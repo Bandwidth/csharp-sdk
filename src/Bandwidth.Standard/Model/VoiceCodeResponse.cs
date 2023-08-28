@@ -45,7 +45,7 @@ namespace Bandwidth.Standard.Model
         /// Programmable Voice API Call ID.
         /// </summary>
         /// <value>Programmable Voice API Call ID.</value>
-        /// <example>&quot;c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85&quot;</example>
+        /// <example>c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85</example>
         [DataMember(Name = "callId", EmitDefaultValue = false)]
         public string CallId { get; set; }
 

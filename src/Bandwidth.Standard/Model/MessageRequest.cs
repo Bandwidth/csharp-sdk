@@ -85,7 +85,7 @@ namespace Bandwidth.Standard.Model
         /// The ID of the Application your from number is associated with in the Bandwidth Phone Number Dashboard.
         /// </summary>
         /// <value>The ID of the Application your from number is associated with in the Bandwidth Phone Number Dashboard.</value>
-        /// <example>&quot;93de2206-9669-4e07-948d-329f4b722ee2&quot;</example>
+        /// <example>93de2206-9669-4e07-948d-329f4b722ee2</example>
         [DataMember(Name = "applicationId", IsRequired = true, EmitDefaultValue = true)]
         public string ApplicationId { get; set; }
 
@@ -93,6 +93,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number(s) the message should be sent to in E164 format.
         /// </summary>
         /// <value>The phone number(s) the message should be sent to in E164 format.</value>
+        /// <example>[&quot;+15554443333&quot;,&quot;+15552223333&quot;]</example>
         [DataMember(Name = "to", IsRequired = true, EmitDefaultValue = true)]
         public List<string> To { get; set; }
 
@@ -100,7 +101,7 @@ namespace Bandwidth.Standard.Model
         /// One of your telephone numbers the message should come from in E164 format.
         /// </summary>
         /// <value>One of your telephone numbers the message should come from in E164 format.</value>
-        /// <example>&quot;+15551113333&quot;</example>
+        /// <example>+15551113333</example>
         [DataMember(Name = "from", IsRequired = true, EmitDefaultValue = true)]
         public string From { get; set; }
 
@@ -108,7 +109,7 @@ namespace Bandwidth.Standard.Model
         /// The contents of the text message. Must be 2048 characters or less.
         /// </summary>
         /// <value>The contents of the text message. Must be 2048 characters or less.</value>
-        /// <example>&quot;Hello world&quot;</example>
+        /// <example>Hello world</example>
         [DataMember(Name = "text", EmitDefaultValue = false)]
         public string Text { get; set; }
 
@@ -116,6 +117,7 @@ namespace Bandwidth.Standard.Model
         /// A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters.
         /// </summary>
         /// <value>A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters.</value>
+        /// <example>[&quot;https://dev.bandwidth.com/images/bandwidth-logo.png&quot;,&quot;https://dev.bandwidth.com/images/github_logo.png&quot;]</example>
         [DataMember(Name = "media", EmitDefaultValue = false)]
         public List<string> Media { get; set; }
 
@@ -123,7 +125,7 @@ namespace Bandwidth.Standard.Model
         /// A custom string that will be included in callback events of the message. Max 1024 characters.
         /// </summary>
         /// <value>A custom string that will be included in callback events of the message. Max 1024 characters.</value>
-        /// <example>&quot;custom string&quot;</example>
+        /// <example>custom string</example>
         [DataMember(Name = "tag", EmitDefaultValue = false)]
         public string Tag { get; set; }
 
@@ -131,7 +133,7 @@ namespace Bandwidth.Standard.Model
         /// A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS.
         /// </summary>
         /// <value>A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS.</value>
-        /// <example>&quot;2021-02-01T11:29:18-05:00&quot;</example>
+        /// <example>2021-02-01T11:29:18-05:00</example>
         [DataMember(Name = "expiration", EmitDefaultValue = false)]
         public DateTime Expiration { get; set; }
 

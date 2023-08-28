@@ -95,7 +95,7 @@ namespace Bandwidth.Standard.Model
         /// The message id
         /// </summary>
         /// <value>The message id</value>
-        /// <example>&quot;1589228074636lm4k2je7j7jklbn2&quot;</example>
+        /// <example>1589228074636lm4k2je7j7jklbn2</example>
         [DataMember(Name = "messageId", EmitDefaultValue = false)]
         public string MessageId { get; set; }
 
@@ -103,7 +103,7 @@ namespace Bandwidth.Standard.Model
         /// The account id associated with this message.
         /// </summary>
         /// <value>The account id associated with this message.</value>
-        /// <example>&quot;9900000&quot;</example>
+        /// <example>9900000</example>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 
@@ -111,7 +111,7 @@ namespace Bandwidth.Standard.Model
         /// The source phone number of the message.
         /// </summary>
         /// <value>The source phone number of the message.</value>
-        /// <example>&quot;+15554443333&quot;</example>
+        /// <example>+15554443333</example>
         [DataMember(Name = "sourceTn", EmitDefaultValue = false)]
         public string SourceTn { get; set; }
 
@@ -119,7 +119,7 @@ namespace Bandwidth.Standard.Model
         /// The recipient phone number of the message.
         /// </summary>
         /// <value>The recipient phone number of the message.</value>
-        /// <example>&quot;+15554442222&quot;</example>
+        /// <example>+15554442222</example>
         [DataMember(Name = "destinationTn", EmitDefaultValue = false)]
         public string DestinationTn { get; set; }
 
@@ -143,7 +143,7 @@ namespace Bandwidth.Standard.Model
         /// The ISO 8601 datetime of the message.
         /// </summary>
         /// <value>The ISO 8601 datetime of the message.</value>
-        /// <example>&quot;2020-04-07T14:03:07Z&quot;</example>
+        /// <example>2020-04-07T14:03:07Z</example>
         [DataMember(Name = "receiveTime", EmitDefaultValue = false)]
         public DateTime ReceiveTime { get; set; }
 
@@ -151,7 +151,7 @@ namespace Bandwidth.Standard.Model
         /// The name of the carrier. Not currently supported for MMS coming soon.
         /// </summary>
         /// <value>The name of the carrier. Not currently supported for MMS coming soon.</value>
-        /// <example>&quot;other&quot;</example>
+        /// <example>other</example>
         [DataMember(Name = "carrierName", EmitDefaultValue = true)]
         public string CarrierName { get; set; }
 
@@ -191,7 +191,7 @@ namespace Bandwidth.Standard.Model
         /// The campaign class of the message if it has one.
         /// </summary>
         /// <value>The campaign class of the message if it has one.</value>
-        /// <example>&quot;T&quot;</example>
+        /// <example>T</example>
         [DataMember(Name = "campaignClass", EmitDefaultValue = true)]
         public string CampaignClass { get; set; }
 
@@ -199,7 +199,7 @@ namespace Bandwidth.Standard.Model
         /// The campaign ID of the message if it has one.
         /// </summary>
         /// <value>The campaign ID of the message if it has one.</value>
-        /// <example>&quot;CJEUMDK&quot;</example>
+        /// <example>CJEUMDK</example>
         [DataMember(Name = "campaignId", EmitDefaultValue = true)]
         public string CampaignId { get; set; }
 

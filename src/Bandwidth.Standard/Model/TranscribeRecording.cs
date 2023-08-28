@@ -65,7 +65,7 @@ namespace Bandwidth.Standard.Model
         /// The URL to send the [TranscriptionAvailable](/docs/voice/webhooks/transcriptionAvailable) event to. You should not include sensitive or personally-identifiable information in the callbackUrl field! Always use the proper username and password fields for authorization.
         /// </summary>
         /// <value>The URL to send the [TranscriptionAvailable](/docs/voice/webhooks/transcriptionAvailable) event to. You should not include sensitive or personally-identifiable information in the callbackUrl field! Always use the proper username and password fields for authorization.</value>
-        /// <example>&quot;https://myServer.example/bandwidth/webhooks/transcriptionAvailable&quot;</example>
+        /// <example>https://myServer.example/bandwidth/webhooks/transcriptionAvailable</example>
         [DataMember(Name = "callbackUrl", EmitDefaultValue = false)]
         public string CallbackUrl { get; set; }
 
@@ -73,7 +73,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth username.
         /// </summary>
         /// <value>Basic auth username.</value>
-        /// <example>&quot;mySecretUsername&quot;</example>
+        /// <example>mySecretUsername</example>
         [DataMember(Name = "username", EmitDefaultValue = true)]
         public string Username { get; set; }
 
@@ -81,7 +81,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth password.
         /// </summary>
         /// <value>Basic auth password.</value>
-        /// <example>&quot;mySecretPassword1!&quot;</example>
+        /// <example>mySecretPassword1!</example>
         [DataMember(Name = "password", EmitDefaultValue = true)]
         public string Password { get; set; }
 
@@ -89,7 +89,7 @@ namespace Bandwidth.Standard.Model
         /// (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present.
         /// </summary>
         /// <value>(optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present.</value>
-        /// <example>&quot;exampleTag&quot;</example>
+        /// <example>exampleTag</example>
         [DataMember(Name = "tag", EmitDefaultValue = true)]
         public string Tag { get; set; }
 

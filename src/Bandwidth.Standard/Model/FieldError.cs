@@ -47,7 +47,7 @@ namespace Bandwidth.Standard.Model
         /// The name of the field that contains the error
         /// </summary>
         /// <value>The name of the field that contains the error</value>
-        /// <example>&quot;from&quot;</example>
+        /// <example>from</example>
         [DataMember(Name = "fieldName", EmitDefaultValue = false)]
         public string FieldName { get; set; }
 
@@ -55,7 +55,7 @@ namespace Bandwidth.Standard.Model
         /// The error associated with the field
         /// </summary>
         /// <value>The error associated with the field</value>
-        /// <example>&quot;&#39;+invalid&#39; must be replaced with a valid E164 formatted telephone number&quot;</example>
+        /// <example>&#39;+invalid&#39; must be replaced with a valid E164 formatted telephone number</example>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 

@@ -143,7 +143,7 @@ namespace Bandwidth.Standard.Model
         /// The id of the application associated with the &#x60;from&#x60; number.
         /// </summary>
         /// <value>The id of the application associated with the &#x60;from&#x60; number.</value>
-        /// <example>&quot;04e88489-df02-4e34-a0ee-27a91849555f&quot;</example>
+        /// <example>04e88489-df02-4e34-a0ee-27a91849555f</example>
         [DataMember(Name = "applicationId", IsRequired = true, EmitDefaultValue = true)]
         public string ApplicationId { get; set; }
 
@@ -151,7 +151,7 @@ namespace Bandwidth.Standard.Model
         /// The bandwidth account ID associated with the call.
         /// </summary>
         /// <value>The bandwidth account ID associated with the call.</value>
-        /// <example>&quot;9900000&quot;</example>
+        /// <example>9900000</example>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
@@ -159,7 +159,7 @@ namespace Bandwidth.Standard.Model
         /// Programmable Voice API Call ID.
         /// </summary>
         /// <value>Programmable Voice API Call ID.</value>
-        /// <example>&quot;c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85&quot;</example>
+        /// <example>c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85</example>
         [DataMember(Name = "callId", IsRequired = true, EmitDefaultValue = true)]
         public string CallId { get; set; }
 
@@ -167,7 +167,7 @@ namespace Bandwidth.Standard.Model
         /// Recipient of the outgoing call.
         /// </summary>
         /// <value>Recipient of the outgoing call.</value>
-        /// <example>&quot;+19195551234&quot;</example>
+        /// <example>+19195551234</example>
         [DataMember(Name = "to", IsRequired = true, EmitDefaultValue = true)]
         public string To { get; set; }
 
@@ -175,7 +175,7 @@ namespace Bandwidth.Standard.Model
         /// Phone number that created the outbound call.
         /// </summary>
         /// <value>Phone number that created the outbound call.</value>
-        /// <example>&quot;+19195554321&quot;</example>
+        /// <example>+19195554321</example>
         [DataMember(Name = "from", IsRequired = true, EmitDefaultValue = true)]
         public string From { get; set; }
 
@@ -183,7 +183,7 @@ namespace Bandwidth.Standard.Model
         /// The time at which the call was accepted into the queue.
         /// </summary>
         /// <value>The time at which the call was accepted into the queue.</value>
-        /// <example>&quot;2022-06-16T13:15:07.160Z&quot;</example>
+        /// <example>2022-06-16T13:15:07.160Z</example>
         [DataMember(Name = "enqueuedTime", EmitDefaultValue = true)]
         public DateTime? EnqueuedTime { get; set; }
 
@@ -191,7 +191,7 @@ namespace Bandwidth.Standard.Model
         /// The URL to update this call&#39;s state.
         /// </summary>
         /// <value>The URL to update this call&#39;s state.</value>
-        /// <example>&quot;https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85&quot;</example>
+        /// <example>https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85</example>
         [DataMember(Name = "callUrl", IsRequired = true, EmitDefaultValue = true)]
         public string CallUrl { get; set; }
 
@@ -215,7 +215,7 @@ namespace Bandwidth.Standard.Model
         /// Custom tag value.
         /// </summary>
         /// <value>Custom tag value.</value>
-        /// <example>&quot;My custom tag value&quot;</example>
+        /// <example>My custom tag value</example>
         [DataMember(Name = "tag", EmitDefaultValue = true)]
         public string Tag { get; set; }
 
@@ -223,7 +223,7 @@ namespace Bandwidth.Standard.Model
         /// URL to deliver the &#x60;answer&#x60; event webhook.
         /// </summary>
         /// <value>URL to deliver the &#x60;answer&#x60; event webhook.</value>
-        /// <example>&quot;https://myServer.example/bandwidth/webhooks/answer&quot;</example>
+        /// <example>https://myServer.example/bandwidth/webhooks/answer</example>
         [DataMember(Name = "answerUrl", IsRequired = true, EmitDefaultValue = true)]
         public string AnswerUrl { get; set; }
 
@@ -231,7 +231,7 @@ namespace Bandwidth.Standard.Model
         /// Fallback URL to deliver the &#x60;answer&#x60; event webhook.
         /// </summary>
         /// <value>Fallback URL to deliver the &#x60;answer&#x60; event webhook.</value>
-        /// <example>&quot;https://myFallbackServer.example/bandwidth/webhooks/answer&quot;</example>
+        /// <example>https://myFallbackServer.example/bandwidth/webhooks/answer</example>
         [DataMember(Name = "answerFallbackUrl", EmitDefaultValue = true)]
         public string AnswerFallbackUrl { get; set; }
 
@@ -239,7 +239,7 @@ namespace Bandwidth.Standard.Model
         /// URL to deliver the &#x60;disconnect&#x60; event webhook.
         /// </summary>
         /// <value>URL to deliver the &#x60;disconnect&#x60; event webhook.</value>
-        /// <example>&quot;https://myServer.example/bandwidth/webhooks/disconnect&quot;</example>
+        /// <example>https://myServer.example/bandwidth/webhooks/disconnect</example>
         [DataMember(Name = "disconnectUrl", EmitDefaultValue = true)]
         public string DisconnectUrl { get; set; }
 
@@ -247,7 +247,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth username.
         /// </summary>
         /// <value>Basic auth username.</value>
-        /// <example>&quot;mySecretUsername&quot;</example>
+        /// <example>mySecretUsername</example>
         [DataMember(Name = "username", EmitDefaultValue = true)]
         public string Username { get; set; }
 
@@ -255,7 +255,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth password.
         /// </summary>
         /// <value>Basic auth password.</value>
-        /// <example>&quot;mySecretPassword1!&quot;</example>
+        /// <example>mySecretPassword1!</example>
         [DataMember(Name = "password", EmitDefaultValue = true)]
         public string Password { get; set; }
 
@@ -263,7 +263,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth username.
         /// </summary>
         /// <value>Basic auth username.</value>
-        /// <example>&quot;mySecretUsername&quot;</example>
+        /// <example>mySecretUsername</example>
         [DataMember(Name = "fallbackUsername", EmitDefaultValue = true)]
         public string FallbackUsername { get; set; }
 
@@ -271,7 +271,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth password.
         /// </summary>
         /// <value>Basic auth password.</value>
-        /// <example>&quot;mySecretPassword1!&quot;</example>
+        /// <example>mySecretPassword1!</example>
         [DataMember(Name = "fallbackPassword", EmitDefaultValue = true)]
         public string FallbackPassword { get; set; }
 

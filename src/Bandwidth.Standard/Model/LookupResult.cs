@@ -69,7 +69,7 @@ namespace Bandwidth.Standard.Model
         /// Message associated with the response code.
         /// </summary>
         /// <value>Message associated with the response code.</value>
-        /// <example>&quot;NOERROR&quot;</example>
+        /// <example>NOERROR</example>
         [DataMember(Name = "Message", EmitDefaultValue = false)]
         public string Message { get; set; }
 
@@ -77,7 +77,7 @@ namespace Bandwidth.Standard.Model
         /// The telephone number in E.164 format.
         /// </summary>
         /// <value>The telephone number in E.164 format.</value>
-        /// <example>&quot;+19195551234&quot;</example>
+        /// <example>+19195551234</example>
         [DataMember(Name = "E.164 Format", EmitDefaultValue = false)]
         public string E164Format { get; set; }
 
@@ -85,7 +85,7 @@ namespace Bandwidth.Standard.Model
         /// The formatted version of the telephone number.
         /// </summary>
         /// <value>The formatted version of the telephone number.</value>
-        /// <example>&quot;(919) 555-1234&quot;</example>
+        /// <example>(919) 555-1234</example>
         [DataMember(Name = "Formatted", EmitDefaultValue = false)]
         public string Formatted { get; set; }
 
@@ -93,7 +93,7 @@ namespace Bandwidth.Standard.Model
         /// The country of the telephone number.
         /// </summary>
         /// <value>The country of the telephone number.</value>
-        /// <example>&quot;US&quot;</example>
+        /// <example>US</example>
         [DataMember(Name = "Country", EmitDefaultValue = false)]
         public string Country { get; set; }
 
@@ -101,7 +101,7 @@ namespace Bandwidth.Standard.Model
         /// The line type of the telephone number.
         /// </summary>
         /// <value>The line type of the telephone number.</value>
-        /// <example>&quot;Mobile&quot;</example>
+        /// <example>Mobile</example>
         [DataMember(Name = "Line Type", EmitDefaultValue = false)]
         public string LineType { get; set; }
 
@@ -109,7 +109,7 @@ namespace Bandwidth.Standard.Model
         /// The messaging service provider of the telephone number.
         /// </summary>
         /// <value>The messaging service provider of the telephone number.</value>
-        /// <example>&quot;Verizon Wireless&quot;</example>
+        /// <example>Verizon Wireless</example>
         [DataMember(Name = "Line Provider", EmitDefaultValue = false)]
         public string LineProvider { get; set; }
 
@@ -117,7 +117,7 @@ namespace Bandwidth.Standard.Model
         /// The first half of the Home Network Identity (HNI).
         /// </summary>
         /// <value>The first half of the Home Network Identity (HNI).</value>
-        /// <example>&quot;310&quot;</example>
+        /// <example>310</example>
         [DataMember(Name = "Mobile Country Code", EmitDefaultValue = false)]
         public string MobileCountryCode { get; set; }
 
@@ -125,7 +125,7 @@ namespace Bandwidth.Standard.Model
         /// The second half of the HNI.
         /// </summary>
         /// <value>The second half of the HNI.</value>
-        /// <example>&quot;010&quot;</example>
+        /// <example>010</example>
         [DataMember(Name = "Mobile Network Code", EmitDefaultValue = false)]
         public string MobileNetworkCode { get; set; }
 

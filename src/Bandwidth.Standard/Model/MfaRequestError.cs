@@ -47,7 +47,7 @@ namespace Bandwidth.Standard.Model
         /// A message describing the error with your request.
         /// </summary>
         /// <value>A message describing the error with your request.</value>
-        /// <example>&quot;400 Request is malformed or invalid&quot;</example>
+        /// <example>400 Request is malformed or invalid</example>
         [DataMember(Name = "error", EmitDefaultValue = false)]
         public string Error { get; set; }
 
@@ -55,7 +55,7 @@ namespace Bandwidth.Standard.Model
         /// The associated requestId from AWS.
         /// </summary>
         /// <value>The associated requestId from AWS.</value>
-        /// <example>&quot;354cc8a3-6701-461e-8fa7-8671703dd898&quot;</example>
+        /// <example>354cc8a3-6701-461e-8fa7-8671703dd898</example>
         [DataMember(Name = "requestId", EmitDefaultValue = false)]
         public string RequestId { get; set; }
 

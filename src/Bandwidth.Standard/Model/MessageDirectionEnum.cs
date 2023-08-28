@@ -44,7 +44,6 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         [EnumMember(Value = "out")]
         Out = 2
-
     }
 
 }

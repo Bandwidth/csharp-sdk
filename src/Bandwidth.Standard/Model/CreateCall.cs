@@ -127,7 +127,7 @@ namespace Bandwidth.Standard.Model
         /// The destination to call (must be an E.164 formatted number (e.g. &#x60;+15555551212&#x60;) or a SIP URI (e.g. &#x60;sip:user@server.example&#x60;)).
         /// </summary>
         /// <value>The destination to call (must be an E.164 formatted number (e.g. &#x60;+15555551212&#x60;) or a SIP URI (e.g. &#x60;sip:user@server.example&#x60;)).</value>
-        /// <example>&quot;+19195551234&quot;</example>
+        /// <example>+19195551234</example>
         [DataMember(Name = "to", IsRequired = true, EmitDefaultValue = true)]
         public string To { get; set; }
 
@@ -135,7 +135,7 @@ namespace Bandwidth.Standard.Model
         /// A Bandwidth phone number on your account the call should come from (must be in E.164 format, like &#x60;+15555551212&#x60;, or be one of the following strings: &#x60;Restricted&#x60;, &#x60;Anonymous&#x60;, &#x60;Private&#x60;, or &#x60;Unavailable&#x60;).
         /// </summary>
         /// <value>A Bandwidth phone number on your account the call should come from (must be in E.164 format, like &#x60;+15555551212&#x60;, or be one of the following strings: &#x60;Restricted&#x60;, &#x60;Anonymous&#x60;, &#x60;Private&#x60;, or &#x60;Unavailable&#x60;).</value>
-        /// <example>&quot;+19195554321&quot;</example>
+        /// <example>+19195554321</example>
         [DataMember(Name = "from", IsRequired = true, EmitDefaultValue = true)]
         public string From { get; set; }
 
@@ -143,7 +143,7 @@ namespace Bandwidth.Standard.Model
         /// A comma-separated list of &#39;User-To-User&#39; headers to be sent in the INVITE when calling a SIP URI. Each value must end with an &#39;encoding&#39; parameter as described in &lt;a href&#x3D;&#39;https://tools.ietf.org/html/rfc7433&#39;&gt;RFC 7433&lt;/a&gt;. Only &#39;jwt&#39; and &#39;base64&#39; encodings are allowed. The entire value cannot exceed 350 characters, including parameters and separators.
         /// </summary>
         /// <value>A comma-separated list of &#39;User-To-User&#39; headers to be sent in the INVITE when calling a SIP URI. Each value must end with an &#39;encoding&#39; parameter as described in &lt;a href&#x3D;&#39;https://tools.ietf.org/html/rfc7433&#39;&gt;RFC 7433&lt;/a&gt;. Only &#39;jwt&#39; and &#39;base64&#39; encodings are allowed. The entire value cannot exceed 350 characters, including parameters and separators.</value>
-        /// <example>&quot;eyJhbGciOiJIUzI1NiJ9.WyJoaSJd.-znkjYyCkgz4djmHUPSXl9YrJ6Nix_XvmlwKGFh5ERM;encoding&#x3D;jwt,aGVsbG8gd29ybGQ;encoding&#x3D;base64&quot;</example>
+        /// <example>eyJhbGciOiJIUzI1NiJ9.WyJoaSJd.-znkjYyCkgz4djmHUPSXl9YrJ6Nix_XvmlwKGFh5ERM;encoding&#x3D;jwt,aGVsbG8gd29ybGQ;encoding&#x3D;base64</example>
         [DataMember(Name = "uui", EmitDefaultValue = true)]
         public string Uui { get; set; }
 
@@ -151,7 +151,7 @@ namespace Bandwidth.Standard.Model
         /// The id of the application associated with the &#x60;from&#x60; number.
         /// </summary>
         /// <value>The id of the application associated with the &#x60;from&#x60; number.</value>
-        /// <example>&quot;1234-qwer-5679-tyui&quot;</example>
+        /// <example>1234-qwer-5679-tyui</example>
         [DataMember(Name = "applicationId", IsRequired = true, EmitDefaultValue = true)]
         public string ApplicationId { get; set; }
 
@@ -159,7 +159,7 @@ namespace Bandwidth.Standard.Model
         /// The full URL to send the &lt;a href&#x3D;&#39;/docs/voice/webhooks/answer&#39;&gt;Answer&lt;/a&gt; event to when the called party answers. This endpoint should return the first &lt;a href&#x3D;&#39;/docs/voice/bxml&#39;&gt;BXML document&lt;/a&gt; to be executed in the call.  Must use &#x60;https&#x60; if specifying &#x60;username&#x60; and &#x60;password&#x60;.
         /// </summary>
         /// <value>The full URL to send the &lt;a href&#x3D;&#39;/docs/voice/webhooks/answer&#39;&gt;Answer&lt;/a&gt; event to when the called party answers. This endpoint should return the first &lt;a href&#x3D;&#39;/docs/voice/bxml&#39;&gt;BXML document&lt;/a&gt; to be executed in the call.  Must use &#x60;https&#x60; if specifying &#x60;username&#x60; and &#x60;password&#x60;.</value>
-        /// <example>&quot;https://www.myCallbackServer.example/webhooks/answer&quot;</example>
+        /// <example>https://www.myCallbackServer.example/webhooks/answer</example>
         [DataMember(Name = "answerUrl", IsRequired = true, EmitDefaultValue = true)]
         public string AnswerUrl { get; set; }
 
@@ -167,7 +167,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth username.
         /// </summary>
         /// <value>Basic auth username.</value>
-        /// <example>&quot;mySecretUsername&quot;</example>
+        /// <example>mySecretUsername</example>
         [DataMember(Name = "username", EmitDefaultValue = true)]
         public string Username { get; set; }
 
@@ -175,7 +175,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth password.
         /// </summary>
         /// <value>Basic auth password.</value>
-        /// <example>&quot;mySecretPassword1!&quot;</example>
+        /// <example>mySecretPassword1!</example>
         [DataMember(Name = "password", EmitDefaultValue = true)]
         public string Password { get; set; }
 
@@ -183,7 +183,7 @@ namespace Bandwidth.Standard.Model
         /// A fallback url which, if provided, will be used to retry the &#x60;answer&#x60; webhook delivery in case &#x60;answerUrl&#x60; fails to respond  Must use &#x60;https&#x60; if specifying &#x60;fallbackUsername&#x60; and &#x60;fallbackPassword&#x60;.
         /// </summary>
         /// <value>A fallback url which, if provided, will be used to retry the &#x60;answer&#x60; webhook delivery in case &#x60;answerUrl&#x60; fails to respond  Must use &#x60;https&#x60; if specifying &#x60;fallbackUsername&#x60; and &#x60;fallbackPassword&#x60;.</value>
-        /// <example>&quot;https://www.myFallbackServer.example/webhooks/answer&quot;</example>
+        /// <example>https://www.myFallbackServer.example/webhooks/answer</example>
         [DataMember(Name = "answerFallbackUrl", EmitDefaultValue = true)]
         public string AnswerFallbackUrl { get; set; }
 
@@ -191,7 +191,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth username.
         /// </summary>
         /// <value>Basic auth username.</value>
-        /// <example>&quot;mySecretUsername&quot;</example>
+        /// <example>mySecretUsername</example>
         [DataMember(Name = "fallbackUsername", EmitDefaultValue = true)]
         public string FallbackUsername { get; set; }
 
@@ -199,7 +199,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth password.
         /// </summary>
         /// <value>Basic auth password.</value>
-        /// <example>&quot;mySecretPassword1!&quot;</example>
+        /// <example>mySecretPassword1!</example>
         [DataMember(Name = "fallbackPassword", EmitDefaultValue = true)]
         public string FallbackPassword { get; set; }
 
@@ -207,7 +207,7 @@ namespace Bandwidth.Standard.Model
         /// The URL to send the &lt;a href&#x3D;&#39;/docs/voice/webhooks/disconnect&#39;&gt;Disconnect&lt;/a&gt; event to when the call ends. This event does not expect a BXML response.
         /// </summary>
         /// <value>The URL to send the &lt;a href&#x3D;&#39;/docs/voice/webhooks/disconnect&#39;&gt;Disconnect&lt;/a&gt; event to when the call ends. This event does not expect a BXML response.</value>
-        /// <example>&quot;https://www.myCallbackServer.example/webhooks/disconnect&quot;</example>
+        /// <example>https://www.myCallbackServer.example/webhooks/disconnect</example>
         [DataMember(Name = "disconnectUrl", EmitDefaultValue = true)]
         public string DisconnectUrl { get; set; }
 
@@ -245,7 +245,7 @@ namespace Bandwidth.Standard.Model
         /// A custom string that will be sent with all webhooks for this call unless overwritten by a future &lt;a href&#x3D;&#39;/docs/voice/bxml/tag&#39;&gt;&#x60;&lt;Tag&gt;&#x60;&lt;/a&gt; verb or &#x60;tag&#x60; attribute on another verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;  Max length 256 characters.
         /// </summary>
         /// <value>A custom string that will be sent with all webhooks for this call unless overwritten by a future &lt;a href&#x3D;&#39;/docs/voice/bxml/tag&#39;&gt;&#x60;&lt;Tag&gt;&#x60;&lt;/a&gt; verb or &#x60;tag&#x60; attribute on another verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;  Max length 256 characters.</value>
-        /// <example>&quot;arbitrary text here&quot;</example>
+        /// <example>arbitrary text here</example>
         [DataMember(Name = "tag", EmitDefaultValue = true)]
         public string Tag { get; set; }
 

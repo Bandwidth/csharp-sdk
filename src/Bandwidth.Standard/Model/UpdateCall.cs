@@ -81,7 +81,7 @@ namespace Bandwidth.Standard.Model
         /// The URL to send the [Redirect](/docs/voice/bxml/redirect) event to which will provide new BXML.  Required if &#x60;state&#x60; is &#x60;active&#x60;.  Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;.
         /// </summary>
         /// <value>The URL to send the [Redirect](/docs/voice/bxml/redirect) event to which will provide new BXML.  Required if &#x60;state&#x60; is &#x60;active&#x60;.  Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;.</value>
-        /// <example>&quot;https://myServer.example/bandwidth/webhooks/redirect&quot;</example>
+        /// <example>https://myServer.example/bandwidth/webhooks/redirect</example>
         [DataMember(Name = "redirectUrl", EmitDefaultValue = true)]
         public string RedirectUrl { get; set; }
 
@@ -89,7 +89,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth username.
         /// </summary>
         /// <value>Basic auth username.</value>
-        /// <example>&quot;mySecretUsername&quot;</example>
+        /// <example>mySecretUsername</example>
         [DataMember(Name = "username", EmitDefaultValue = true)]
         public string Username { get; set; }
 
@@ -97,7 +97,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth password.
         /// </summary>
         /// <value>Basic auth password.</value>
-        /// <example>&quot;mySecretPassword1!&quot;</example>
+        /// <example>mySecretPassword1!</example>
         [DataMember(Name = "password", EmitDefaultValue = true)]
         public string Password { get; set; }
 
@@ -105,7 +105,7 @@ namespace Bandwidth.Standard.Model
         /// A fallback url which, if provided, will be used to retry the redirect callback delivery in case &#x60;redirectUrl&#x60; fails to respond.
         /// </summary>
         /// <value>A fallback url which, if provided, will be used to retry the redirect callback delivery in case &#x60;redirectUrl&#x60; fails to respond.</value>
-        /// <example>&quot;https://myFallbackServer.example/bandwidth/webhooks/redirect&quot;</example>
+        /// <example>https://myFallbackServer.example/bandwidth/webhooks/redirect</example>
         [DataMember(Name = "redirectFallbackUrl", EmitDefaultValue = true)]
         public string RedirectFallbackUrl { get; set; }
 
@@ -113,7 +113,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth username.
         /// </summary>
         /// <value>Basic auth username.</value>
-        /// <example>&quot;mySecretUsername&quot;</example>
+        /// <example>mySecretUsername</example>
         [DataMember(Name = "fallbackUsername", EmitDefaultValue = true)]
         public string FallbackUsername { get; set; }
 
@@ -121,7 +121,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth password.
         /// </summary>
         /// <value>Basic auth password.</value>
-        /// <example>&quot;mySecretPassword1!&quot;</example>
+        /// <example>mySecretPassword1!</example>
         [DataMember(Name = "fallbackPassword", EmitDefaultValue = true)]
         public string FallbackPassword { get; set; }
 
@@ -129,7 +129,7 @@ namespace Bandwidth.Standard.Model
         /// A custom string that will be sent with this and all future callbacks unless overwritten by a future &#x60;tag&#x60; attribute or [&#x60;&lt;Tag&gt;&#x60;](/docs/voice/bxml/tag) verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;.  Max length 256 characters.  Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;.
         /// </summary>
         /// <value>A custom string that will be sent with this and all future callbacks unless overwritten by a future &#x60;tag&#x60; attribute or [&#x60;&lt;Tag&gt;&#x60;](/docs/voice/bxml/tag) verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;.  Max length 256 characters.  Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;.</value>
-        /// <example>&quot;My Custom Tag&quot;</example>
+        /// <example>My Custom Tag</example>
         [DataMember(Name = "tag", EmitDefaultValue = true)]
         public string Tag { get; set; }
 

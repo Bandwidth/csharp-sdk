@@ -55,7 +55,7 @@ namespace Bandwidth.Standard.Model
         /// The call id associated with the event.
         /// </summary>
         /// <value>The call id associated with the event.</value>
-        /// <example>&quot;c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85&quot;</example>
+        /// <example>c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85</example>
         [DataMember(Name = "callId", EmitDefaultValue = false)]
         public string CallId { get; set; }
 
@@ -63,7 +63,7 @@ namespace Bandwidth.Standard.Model
         /// The unique, Bandwidth-generated ID of the conference that was recorded
         /// </summary>
         /// <value>The unique, Bandwidth-generated ID of the conference that was recorded</value>
-        /// <example>&quot;conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9&quot;</example>
+        /// <example>conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9</example>
         [DataMember(Name = "conferenceId", EmitDefaultValue = false)]
         public string ConferenceId { get; set; }
 
@@ -71,7 +71,7 @@ namespace Bandwidth.Standard.Model
         /// A URL that may be used to retrieve information about or update the state of this conference member. This is the URL of this member&#39;s [Get Conference Member](/apis/voice/#operation/getConferenceMember) endpoint and [Modify Conference Member](/apis/voice/#operation/updateConferenceMember) endpoint.
         /// </summary>
         /// <value>A URL that may be used to retrieve information about or update the state of this conference member. This is the URL of this member&#39;s [Get Conference Member](/apis/voice/#operation/getConferenceMember) endpoint and [Modify Conference Member](/apis/voice/#operation/updateConferenceMember) endpoint.</value>
-        /// <example>&quot;https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/members/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85&quot;</example>
+        /// <example>https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/members/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85</example>
         [DataMember(Name = "memberUrl", EmitDefaultValue = false)]
         public string MemberUrl { get; set; }
 
@@ -95,6 +95,7 @@ namespace Bandwidth.Standard.Model
         /// If this member had a value set for &#x60;callIdsToCoach&#x60; in its [Conference](/docs/voice/bxml/conference) verb or this list was added with a previous PUT request to modify the member, this is that list of calls.  If present in a PUT request, modifies the calls that this member is coaching. Has no effect if omitted. See the documentation for the [Conference](/docs/voice/bxml/conference) verb for more details about coaching. Note that this will not add the matching calls to the conference; each call must individually execute a Conference verb to join.
         /// </summary>
         /// <value>If this member had a value set for &#x60;callIdsToCoach&#x60; in its [Conference](/docs/voice/bxml/conference) verb or this list was added with a previous PUT request to modify the member, this is that list of calls.  If present in a PUT request, modifies the calls that this member is coaching. Has no effect if omitted. See the documentation for the [Conference](/docs/voice/bxml/conference) verb for more details about coaching. Note that this will not add the matching calls to the conference; each call must individually execute a Conference verb to join.</value>
+        /// <example>[&quot;c-25ac29a2-1331029c-2cb0-4a07-b215-b22865662d85&quot;]</example>
         [DataMember(Name = "callIdsToCoach", EmitDefaultValue = true)]
         public List<string> CallIdsToCoach { get; set; }
 

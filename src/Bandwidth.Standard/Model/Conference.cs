@@ -65,7 +65,7 @@ namespace Bandwidth.Standard.Model
         /// The Bandwidth-generated conference ID.
         /// </summary>
         /// <value>The Bandwidth-generated conference ID.</value>
-        /// <example>&quot;conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9&quot;</example>
+        /// <example>conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9</example>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
@@ -73,7 +73,7 @@ namespace Bandwidth.Standard.Model
         /// The name of the conference, as specified by your application.
         /// </summary>
         /// <value>The name of the conference, as specified by your application.</value>
-        /// <example>&quot;my-conference-name&quot;</example>
+        /// <example>my-conference-name</example>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
@@ -81,7 +81,7 @@ namespace Bandwidth.Standard.Model
         /// The time the conference was initiated, in ISO 8601 format.
         /// </summary>
         /// <value>The time the conference was initiated, in ISO 8601 format.</value>
-        /// <example>&quot;2022-06-17T22:19:40.375Z&quot;</example>
+        /// <example>2022-06-17T22:19:40.375Z</example>
         [DataMember(Name = "createdTime", EmitDefaultValue = false)]
         public DateTime CreatedTime { get; set; }
 
@@ -89,7 +89,7 @@ namespace Bandwidth.Standard.Model
         /// The time the conference was terminated, in ISO 8601 format.
         /// </summary>
         /// <value>The time the conference was terminated, in ISO 8601 format.</value>
-        /// <example>&quot;2022-06-17T22:20Z&quot;</example>
+        /// <example>2022-06-17T22:20Z</example>
         [DataMember(Name = "completedTime", EmitDefaultValue = true)]
         public DateTime? CompletedTime { get; set; }
 
@@ -97,7 +97,7 @@ namespace Bandwidth.Standard.Model
         /// The URL to send the conference-related events.
         /// </summary>
         /// <value>The URL to send the conference-related events.</value>
-        /// <example>&quot;https://myServer.example/bandwidth/webhooks/conferenceEvent&quot;</example>
+        /// <example>https://myServer.example/bandwidth/webhooks/conferenceEvent</example>
         [DataMember(Name = "conferenceEventUrl", EmitDefaultValue = true)]
         public string ConferenceEventUrl { get; set; }
 
@@ -105,7 +105,7 @@ namespace Bandwidth.Standard.Model
         /// The custom string attached to the conference that will be sent with callbacks.
         /// </summary>
         /// <value>The custom string attached to the conference that will be sent with callbacks.</value>
-        /// <example>&quot;my custom tag&quot;</example>
+        /// <example>my custom tag</example>
         [DataMember(Name = "tag", EmitDefaultValue = true)]
         public string Tag { get; set; }
 
