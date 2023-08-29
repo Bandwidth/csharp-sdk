@@ -57,7 +57,7 @@ namespace Bandwidth.Standard.Model
         /// The requestId.
         /// </summary>
         /// <value>The requestId.</value>
-        /// <example>&quot;004223a0-8b17-41b1-bf81-20732adf5590&quot;</example>
+        /// <example>004223a0-8b17-41b1-bf81-20732adf5590</example>
         [DataMember(Name = "requestId", EmitDefaultValue = false)]
         public string RequestId { get; set; }
 
@@ -72,6 +72,7 @@ namespace Bandwidth.Standard.Model
         /// The telephone numbers whose lookup failed.
         /// </summary>
         /// <value>The telephone numbers whose lookup failed.</value>
+        /// <example>[&quot;+191955512345&quot;]</example>
         [DataMember(Name = "failedTelephoneNumbers", EmitDefaultValue = false)]
         public List<string> FailedTelephoneNumbers { get; set; }
 

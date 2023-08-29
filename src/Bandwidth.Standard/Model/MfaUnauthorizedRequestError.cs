@@ -45,7 +45,7 @@ namespace Bandwidth.Standard.Model
         /// Unauthorized
         /// </summary>
         /// <value>Unauthorized</value>
-        /// <example>&quot;Unauthorized&quot;</example>
+        /// <example>Unauthorized</example>
         [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 

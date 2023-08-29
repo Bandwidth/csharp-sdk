@@ -56,7 +56,6 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         [EnumMember(Value = "FAILED")]
         FAILED = 4
-
     }
 
 }

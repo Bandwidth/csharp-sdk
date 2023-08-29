@@ -77,28 +77,28 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Gets or Sets Time
         /// </summary>
-        /// <example>&quot;2016-09-14T18:20:16Z&quot;</example>
+        /// <example>2016-09-14T18:20:16Z</example>
         [DataMember(Name = "time", IsRequired = true, EmitDefaultValue = true)]
         public DateTime Time { get; set; }
 
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
-        /// <example>&quot;message-delivered&quot;</example>
+        /// <example>message-delivered</example>
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public string Type { get; set; }
 
         /// <summary>
         /// Gets or Sets To
         /// </summary>
-        /// <example>&quot;+15552223333&quot;</example>
+        /// <example>+15552223333</example>
         [DataMember(Name = "to", IsRequired = true, EmitDefaultValue = true)]
         public string To { get; set; }
 
         /// <summary>
         /// Gets or Sets Description
         /// </summary>
-        /// <example>&quot;Message delivered to carrier.&quot;</example>
+        /// <example>Message delivered to carrier.</example>
         [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
         public string Description { get; set; }
 

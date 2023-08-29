@@ -65,6 +65,7 @@ namespace Bandwidth.Standard.Model
         /// If this member had a value set for &#x60;callIdsToCoach&#x60; in its [Conference](/docs/voice/bxml/conference) verb or this list was added with a previous PUT request to modify the member, this is that list of calls.  Modifies the calls that this member is coaching. Has no effect if omitted. See the documentation for the [Conference](/docs/voice/bxml/conference) verb for more details about coaching.  Note that this will not add the matching calls to the conference; each call must individually execute a Conference verb to join.
         /// </summary>
         /// <value>If this member had a value set for &#x60;callIdsToCoach&#x60; in its [Conference](/docs/voice/bxml/conference) verb or this list was added with a previous PUT request to modify the member, this is that list of calls.  Modifies the calls that this member is coaching. Has no effect if omitted. See the documentation for the [Conference](/docs/voice/bxml/conference) verb for more details about coaching.  Note that this will not add the matching calls to the conference; each call must individually execute a Conference verb to join.</value>
+        /// <example>[&quot;c-25ac29a2-1331029c-2cb0-4a07-b215-b22865662d85&quot;]</example>
         [DataMember(Name = "callIdsToCoach", EmitDefaultValue = true)]
         public List<string> CallIdsToCoach { get; set; }
 

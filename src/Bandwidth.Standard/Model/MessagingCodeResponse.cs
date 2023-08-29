@@ -45,7 +45,7 @@ namespace Bandwidth.Standard.Model
         /// Messaging API Message ID.
         /// </summary>
         /// <value>Messaging API Message ID.</value>
-        /// <example>&quot;9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6&quot;</example>
+        /// <example>9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6</example>
         [DataMember(Name = "messageId", EmitDefaultValue = false)]
         public string MessageId { get; set; }
 

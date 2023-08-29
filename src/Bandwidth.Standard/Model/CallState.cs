@@ -85,7 +85,7 @@ namespace Bandwidth.Standard.Model
         /// The application id associated with the call.
         /// </summary>
         /// <value>The application id associated with the call.</value>
-        /// <example>&quot;04e88489-df02-4e34-a0ee-27a91849555f&quot;</example>
+        /// <example>04e88489-df02-4e34-a0ee-27a91849555f</example>
         [DataMember(Name = "applicationId", EmitDefaultValue = false)]
         public string ApplicationId { get; set; }
 
@@ -93,7 +93,7 @@ namespace Bandwidth.Standard.Model
         /// The account id associated with the call.
         /// </summary>
         /// <value>The account id associated with the call.</value>
-        /// <example>&quot;9900000&quot;</example>
+        /// <example>9900000</example>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 
@@ -101,7 +101,7 @@ namespace Bandwidth.Standard.Model
         /// The programmable voice API call ID.
         /// </summary>
         /// <value>The programmable voice API call ID.</value>
-        /// <example>&quot;c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85&quot;</example>
+        /// <example>c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85</example>
         [DataMember(Name = "callId", EmitDefaultValue = false)]
         public string CallId { get; set; }
 
@@ -109,7 +109,7 @@ namespace Bandwidth.Standard.Model
         /// The A-leg call id, set only if this call is the B-leg of a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer).
         /// </summary>
         /// <value>The A-leg call id, set only if this call is the B-leg of a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer).</value>
-        /// <example>&quot;c-25ac29a2-1331029c-2cb0-4a07-b215-b22865662d85&quot;</example>
+        /// <example>c-25ac29a2-1331029c-2cb0-4a07-b215-b22865662d85</example>
         [DataMember(Name = "parentCallId", EmitDefaultValue = true)]
         public string ParentCallId { get; set; }
 
@@ -117,7 +117,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number that received the call, in E.164 format (e.g. +15555555555), or if the call was to a SIP URI, the SIP URI.
         /// </summary>
         /// <value>The phone number that received the call, in E.164 format (e.g. +15555555555), or if the call was to a SIP URI, the SIP URI.</value>
-        /// <example>&quot;+19195551234&quot;</example>
+        /// <example>+19195551234</example>
         [DataMember(Name = "to", EmitDefaultValue = false)]
         public string To { get; set; }
 
@@ -125,7 +125,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number that made the call, in E.164 format (e.g. +15555555555).
         /// </summary>
         /// <value>The phone number that made the call, in E.164 format (e.g. +15555555555).</value>
-        /// <example>&quot;19195554321&quot;</example>
+        /// <example>19195554321</example>
         [DataMember(Name = "from", EmitDefaultValue = false)]
         public string From { get; set; }
 
@@ -133,7 +133,7 @@ namespace Bandwidth.Standard.Model
         /// The current state of the call. Current possible values are &#x60;queued&#x60;, &#x60;initiated&#x60;, &#x60;answered&#x60; and &#x60;disconnected&#x60;. Additional states may be added in the future, so your application must be tolerant of unknown values.
         /// </summary>
         /// <value>The current state of the call. Current possible values are &#x60;queued&#x60;, &#x60;initiated&#x60;, &#x60;answered&#x60; and &#x60;disconnected&#x60;. Additional states may be added in the future, so your application must be tolerant of unknown values.</value>
-        /// <example>&quot;disconnected&quot;</example>
+        /// <example>disconnected</example>
         [DataMember(Name = "state", EmitDefaultValue = false)]
         public string State { get; set; }
 
@@ -141,6 +141,7 @@ namespace Bandwidth.Standard.Model
         /// For inbound calls, the Bandwidth STIR/SHAKEN implementation will verify the information provided in the inbound invite request &#x60;Identity&#x60; header. The verification status is stored in the call state &#x60;stirShaken&#x60; property as follows.  | Property          | Description | |:- -- -- -- -- -- -- -- -- -|:- -- -- -- -- -- -| | verstat | (optional) The verification status indicating whether the verification was successful or not. Possible values are &#x60;TN-Verification-Passed&#x60; or &#x60;TN-Verification-Failed&#x60;. | | attestationIndicator | (optional) The attestation level verified by Bandwidth. Possible values are &#x60;A&#x60; (full), &#x60;B&#x60; (partial) or &#x60;C&#x60; (gateway). | | originatingId | (optional) A unique origination identifier. |  Note that these are common properties but that the &#x60;stirShaken&#x60; object is free form and can contain other key-value pairs.  More information: [Understanding STIR/SHAKEN](https://www.bandwidth.com/regulations/stir-shaken).
         /// </summary>
         /// <value>For inbound calls, the Bandwidth STIR/SHAKEN implementation will verify the information provided in the inbound invite request &#x60;Identity&#x60; header. The verification status is stored in the call state &#x60;stirShaken&#x60; property as follows.  | Property          | Description | |:- -- -- -- -- -- -- -- -- -|:- -- -- -- -- -- -| | verstat | (optional) The verification status indicating whether the verification was successful or not. Possible values are &#x60;TN-Verification-Passed&#x60; or &#x60;TN-Verification-Failed&#x60;. | | attestationIndicator | (optional) The attestation level verified by Bandwidth. Possible values are &#x60;A&#x60; (full), &#x60;B&#x60; (partial) or &#x60;C&#x60; (gateway). | | originatingId | (optional) A unique origination identifier. |  Note that these are common properties but that the &#x60;stirShaken&#x60; object is free form and can contain other key-value pairs.  More information: [Understanding STIR/SHAKEN](https://www.bandwidth.com/regulations/stir-shaken).</value>
+        /// <example>{&quot;verstat&quot;:&quot;TN-Verification-Passed&quot;,&quot;attestationIndicator&quot;:&quot;A&quot;,&quot;originatingId&quot;:&quot;abc123&quot;}</example>
         [DataMember(Name = "stirShaken", EmitDefaultValue = true)]
         public Dictionary<string, string> StirShaken { get; set; }
 
@@ -148,7 +149,7 @@ namespace Bandwidth.Standard.Model
         /// The value of the &#x60;Identity&#x60; header from the inbound invite request. Only present for inbound calls and if the account is configured to forward this header.
         /// </summary>
         /// <value>The value of the &#x60;Identity&#x60; header from the inbound invite request. Only present for inbound calls and if the account is configured to forward this header.</value>
-        /// <example>&quot;eyJhbGciOiJFUzI1NiIsInBwdCI6InNoYWtlbiIsInR5cCI6InBhc3Nwb3J0IiwieDV1IjoiaHR0cHM6Ly9idy1zaGFrZW4tY2VydC1wdWIuczMuYW1hem9uYXdzLmNvbS9iYW5kd2lkdGgtc2hha2VuLWNlcnRfMjAyMzA3MTYucGVtIn0.eyJhdHRlc3QiOiJBIiwiZGVzdCI6eyJ0biI6WyIxOTg0MjgyMDI4MCJdfSwiaWF0IjoxNjU2NTM0MzM2LCJvcmlnIjp7InRuIjoiMTkxOTQ0NDI2ODMifSwib3JpZ2lkIjoiNDk0NTlhOGEtNDJmNi0zNTFjLTkzNjEtYWRmNTdhOWUwOGNhIn0.56un9sRw_uH-sbJvnUsqdevlVxbOVjn8MVlGTlBMicjaZuRRwxfiNp-C9zYCMKTTCbc-QdYPN05F61XNVN4D3w;info&#x3D;&lt;https://bw-shaken-cert-pub.s3.amazonaws.com/bandwidth-shaken-cert_20230716.pem&gt;;alg&#x3D;ES256;ppt&#x3D;shaken&quot;</example>
+        /// <example>eyJhbGciOiJFUzI1NiIsInBwdCI6InNoYWtlbiIsInR5cCI6InBhc3Nwb3J0IiwieDV1IjoiaHR0cHM6Ly9idy1zaGFrZW4tY2VydC1wdWIuczMuYW1hem9uYXdzLmNvbS9iYW5kd2lkdGgtc2hha2VuLWNlcnRfMjAyMzA3MTYucGVtIn0.eyJhdHRlc3QiOiJBIiwiZGVzdCI6eyJ0biI6WyIxOTg0MjgyMDI4MCJdfSwiaWF0IjoxNjU2NTM0MzM2LCJvcmlnIjp7InRuIjoiMTkxOTQ0NDI2ODMifSwib3JpZ2lkIjoiNDk0NTlhOGEtNDJmNi0zNTFjLTkzNjEtYWRmNTdhOWUwOGNhIn0.56un9sRw_uH-sbJvnUsqdevlVxbOVjn8MVlGTlBMicjaZuRRwxfiNp-C9zYCMKTTCbc-QdYPN05F61XNVN4D3w;info&#x3D;&lt;https://bw-shaken-cert-pub.s3.amazonaws.com/bandwidth-shaken-cert_20230716.pem&gt;;alg&#x3D;ES256;ppt&#x3D;shaken</example>
         [DataMember(Name = "identity", EmitDefaultValue = true)]
         public string Identity { get; set; }
 
@@ -156,7 +157,7 @@ namespace Bandwidth.Standard.Model
         /// The time this call was placed in queue.
         /// </summary>
         /// <value>The time this call was placed in queue.</value>
-        /// <example>&quot;2022-06-16T13:15:07.160Z&quot;</example>
+        /// <example>2022-06-16T13:15:07.160Z</example>
         [DataMember(Name = "enqueuedTime", EmitDefaultValue = true)]
         public DateTime? EnqueuedTime { get; set; }
 
@@ -164,7 +165,7 @@ namespace Bandwidth.Standard.Model
         /// The time the call was initiated, in ISO 8601 format. &#x60;null&#x60; if the call is still in your queue.
         /// </summary>
         /// <value>The time the call was initiated, in ISO 8601 format. &#x60;null&#x60; if the call is still in your queue.</value>
-        /// <example>&quot;2022-06-16T13:15:07.160Z&quot;</example>
+        /// <example>2022-06-16T13:15:07.160Z</example>
         [DataMember(Name = "startTime", EmitDefaultValue = true)]
         public DateTime? StartTime { get; set; }
 
@@ -172,7 +173,7 @@ namespace Bandwidth.Standard.Model
         /// Populated once the call has been answered, with the time in ISO 8601 format.
         /// </summary>
         /// <value>Populated once the call has been answered, with the time in ISO 8601 format.</value>
-        /// <example>&quot;2022-06-16T13:15:18.126Z&quot;</example>
+        /// <example>2022-06-16T13:15:18.126Z</example>
         [DataMember(Name = "answerTime", EmitDefaultValue = true)]
         public DateTime? AnswerTime { get; set; }
 
@@ -180,7 +181,7 @@ namespace Bandwidth.Standard.Model
         /// Populated once the call has ended, with the time in ISO 8601 format.
         /// </summary>
         /// <value>Populated once the call has ended, with the time in ISO 8601 format.</value>
-        /// <example>&quot;2022-06-16T13:15:18.314Z&quot;</example>
+        /// <example>2022-06-16T13:15:18.314Z</example>
         [DataMember(Name = "endTime", EmitDefaultValue = true)]
         public DateTime? EndTime { get; set; }
 
@@ -209,7 +210,7 @@ namespace Bandwidth.Standard.Model
         /// The last time the call had a state update, in ISO 8601 format.
         /// </summary>
         /// <value>The last time the call had a state update, in ISO 8601 format.</value>
-        /// <example>&quot;2022-06-16T13:15:18.314Z&quot;</example>
+        /// <example>2022-06-16T13:15:18.314Z</example>
         [DataMember(Name = "lastUpdate", EmitDefaultValue = false)]
         public DateTime LastUpdate { get; set; }
 

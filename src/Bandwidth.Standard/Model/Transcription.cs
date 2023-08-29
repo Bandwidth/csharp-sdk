@@ -47,7 +47,7 @@ namespace Bandwidth.Standard.Model
         /// The transcribed text
         /// </summary>
         /// <value>The transcribed text</value>
-        /// <example>&quot;Nice talking to you, friend!&quot;</example>
+        /// <example>Nice talking to you, friend!</example>
         [DataMember(Name = "text", EmitDefaultValue = false)]
         public string Text { get; set; }
 

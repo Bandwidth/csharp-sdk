@@ -80,7 +80,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number to send the mfa code to.
         /// </summary>
         /// <value>The phone number to send the mfa code to.</value>
-        /// <example>&quot;+19195551234&quot;</example>
+        /// <example>+19195551234</example>
         [DataMember(Name = "to", IsRequired = true, EmitDefaultValue = true)]
         public string To { get; set; }
 
@@ -88,7 +88,7 @@ namespace Bandwidth.Standard.Model
         /// The application phone number, the sender of the mfa code.
         /// </summary>
         /// <value>The application phone number, the sender of the mfa code.</value>
-        /// <example>&quot;+19195554321&quot;</example>
+        /// <example>+19195554321</example>
         [DataMember(Name = "from", IsRequired = true, EmitDefaultValue = true)]
         public string From { get; set; }
 
@@ -96,7 +96,7 @@ namespace Bandwidth.Standard.Model
         /// The application unique ID, obtained from Bandwidth.
         /// </summary>
         /// <value>The application unique ID, obtained from Bandwidth.</value>
-        /// <example>&quot;66fd98ae-ac8d-a00f-7fcd-ba3280aeb9b1&quot;</example>
+        /// <example>66fd98ae-ac8d-a00f-7fcd-ba3280aeb9b1</example>
         [DataMember(Name = "applicationId", IsRequired = true, EmitDefaultValue = true)]
         public string ApplicationId { get; set; }
 
@@ -104,7 +104,7 @@ namespace Bandwidth.Standard.Model
         /// An optional field to denote what scope or action the mfa code is addressing.  If not supplied, defaults to \&quot;2FA\&quot;.
         /// </summary>
         /// <value>An optional field to denote what scope or action the mfa code is addressing.  If not supplied, defaults to \&quot;2FA\&quot;.</value>
-        /// <example>&quot;2FA&quot;</example>
+        /// <example>2FA</example>
         [DataMember(Name = "scope", EmitDefaultValue = false)]
         public string Scope { get; set; }
 
@@ -112,7 +112,7 @@ namespace Bandwidth.Standard.Model
         /// The message format of the mfa code.  There are three values that the system will replace \&quot;{CODE}\&quot;, \&quot;{NAME}\&quot;, \&quot;{SCOPE}\&quot;.  The \&quot;{SCOPE}\&quot; and \&quot;{NAME} value template are optional, while \&quot;{CODE}\&quot; must be supplied.  As the name would suggest, code will be replace with the actual mfa code.  Name is replaced with the application name, configured during provisioning of mfa.  The scope value is the same value sent during the call and partitioned by the server.
         /// </summary>
         /// <value>The message format of the mfa code.  There are three values that the system will replace \&quot;{CODE}\&quot;, \&quot;{NAME}\&quot;, \&quot;{SCOPE}\&quot;.  The \&quot;{SCOPE}\&quot; and \&quot;{NAME} value template are optional, while \&quot;{CODE}\&quot; must be supplied.  As the name would suggest, code will be replace with the actual mfa code.  Name is replaced with the application name, configured during provisioning of mfa.  The scope value is the same value sent during the call and partitioned by the server.</value>
-        /// <example>&quot;Your temporary {NAME} {SCOPE} code is {CODE}&quot;</example>
+        /// <example>Your temporary {NAME} {SCOPE} code is {CODE}</example>
         [DataMember(Name = "message", IsRequired = true, EmitDefaultValue = true)]
         public string Message { get; set; }
 
@@ -245,11 +245,13 @@ namespace Bandwidth.Standard.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // To (string) pattern
-            Regex regexTo = new Regex(@"^\+[1-9]\d{1,14}$", RegexOptions.CultureInvariant);
-            if (false == regexTo.Match(this.To).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for To, must match a pattern of " + regexTo, new [] { "To" });
+            if (this.To != null) {
+                // To (string) pattern
+                Regex regexTo = new Regex(@"^\+[1-9]\d{1,14}$", RegexOptions.CultureInvariant);
+                if (!regexTo.Match(this.To).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for To, must match a pattern of " + regexTo, new [] { "To" });
+                }
             }
 
             // From (string) maxLength
@@ -258,11 +260,13 @@ namespace Bandwidth.Standard.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for From, length must be less than 32.", new [] { "From" });
             }
 
-            // From (string) pattern
-            Regex regexFrom = new Regex(@"^\+[1-9]\d{1,14}$", RegexOptions.CultureInvariant);
-            if (false == regexFrom.Match(this.From).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for From, must match a pattern of " + regexFrom, new [] { "From" });
+            if (this.From != null) {
+                // From (string) pattern
+                Regex regexFrom = new Regex(@"^\+[1-9]\d{1,14}$", RegexOptions.CultureInvariant);
+                if (!regexFrom.Match(this.From).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for From, must match a pattern of " + regexFrom, new [] { "From" });
+                }
             }
 
             // ApplicationId (string) maxLength

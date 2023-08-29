@@ -47,7 +47,7 @@ namespace Bandwidth.Standard.Model
         /// Possible values are answering-machine, human, silence, timeout, or error.
         /// </summary>
         /// <value>Possible values are answering-machine, human, silence, timeout, or error.</value>
-        /// <example>&quot;answering-machine&quot;</example>
+        /// <example>answering-machine</example>
         [DataMember(Name = "value", EmitDefaultValue = false)]
         public string Value { get; set; }
 
@@ -55,7 +55,7 @@ namespace Bandwidth.Standard.Model
         /// The amount of time it took to determine the result.
         /// </summary>
         /// <value>The amount of time it took to determine the result.</value>
-        /// <example>&quot;PT4.9891287S&quot;</example>
+        /// <example>PT4.9891287S</example>
         [DataMember(Name = "duration", EmitDefaultValue = false)]
         public string Duration { get; set; }
 

@@ -45,7 +45,7 @@ namespace Bandwidth.Standard.Model
         /// The message containing the reason behind the request being forbidden.
         /// </summary>
         /// <value>The message containing the reason behind the request being forbidden.</value>
-        /// <example>&quot;Missing Authentication Token&quot;</example>
+        /// <example>Missing Authentication Token</example>
         [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 

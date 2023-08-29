@@ -80,7 +80,6 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         [EnumMember(Value = "UNDELIVERED")]
         UNDELIVERED = 8
-
     }
 
 }

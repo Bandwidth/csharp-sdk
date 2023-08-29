@@ -118,28 +118,28 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
-        /// <example>&quot;1661365814859loidf7mcwd4qacn7&quot;</example>
+        /// <example>1661365814859loidf7mcwd4qacn7</example>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Owner
         /// </summary>
-        /// <example>&quot;+15553332222&quot;</example>
+        /// <example>+15553332222</example>
         [DataMember(Name = "owner", IsRequired = true, EmitDefaultValue = true)]
         public string Owner { get; set; }
 
         /// <summary>
         /// Gets or Sets ApplicationId
         /// </summary>
-        /// <example>&quot;93de2206-9669-4e07-948d-329f4b722ee2&quot;</example>
+        /// <example>93de2206-9669-4e07-948d-329f4b722ee2</example>
         [DataMember(Name = "applicationId", IsRequired = true, EmitDefaultValue = true)]
         public string ApplicationId { get; set; }
 
         /// <summary>
         /// Gets or Sets Time
         /// </summary>
-        /// <example>&quot;2016-09-14T18:20:16Z&quot;</example>
+        /// <example>2016-09-14T18:20:16Z</example>
         [DataMember(Name = "time", IsRequired = true, EmitDefaultValue = true)]
         public DateTime Time { get; set; }
 
@@ -153,33 +153,35 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Gets or Sets To
         /// </summary>
+        /// <example>[&quot;+15552223333&quot;]</example>
         [DataMember(Name = "to", IsRequired = true, EmitDefaultValue = true)]
         public List<string> To { get; set; }
 
         /// <summary>
         /// Gets or Sets From
         /// </summary>
-        /// <example>&quot;+15553332222&quot;</example>
+        /// <example>+15553332222</example>
         [DataMember(Name = "from", IsRequired = true, EmitDefaultValue = true)]
         public string From { get; set; }
 
         /// <summary>
         /// Gets or Sets Text
         /// </summary>
-        /// <example>&quot;Hello world&quot;</example>
+        /// <example>Hello world</example>
         [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
         public string Text { get; set; }
 
         /// <summary>
         /// Gets or Sets Tag
         /// </summary>
-        /// <example>&quot;custom string&quot;</example>
+        /// <example>custom string</example>
         [DataMember(Name = "tag", IsRequired = true, EmitDefaultValue = true)]
         public string Tag { get; set; }
 
         /// <summary>
         /// Gets or Sets Media
         /// </summary>
+        /// <example>[&quot;https://dev.bandwidth.com/images/bandwidth-logo.png&quot;,&quot;https://dev.bandwidth.com/images/github_logo.png&quot;]</example>
         [DataMember(Name = "media", EmitDefaultValue = false)]
         public List<string> Media { get; set; }
 

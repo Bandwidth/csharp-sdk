@@ -45,7 +45,7 @@ namespace Bandwidth.Standard.Model
         /// A description of what validation error occurred.
         /// </summary>
         /// <value>A description of what validation error occurred.</value>
-        /// <example>&quot;example error message&quot;</example>
+        /// <example>example error message</example>
         [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 

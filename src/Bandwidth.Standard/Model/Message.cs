@@ -81,7 +81,7 @@ namespace Bandwidth.Standard.Model
         /// The id of the message.
         /// </summary>
         /// <value>The id of the message.</value>
-        /// <example>&quot;1589228074636lm4k2je7j7jklbn2&quot;</example>
+        /// <example>1589228074636lm4k2je7j7jklbn2</example>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
@@ -89,7 +89,7 @@ namespace Bandwidth.Standard.Model
         /// The Bandwidth phone number associated with the message.
         /// </summary>
         /// <value>The Bandwidth phone number associated with the message.</value>
-        /// <example>&quot;+15554443333&quot;</example>
+        /// <example>+15554443333</example>
         [DataMember(Name = "owner", EmitDefaultValue = false)]
         public string Owner { get; set; }
 
@@ -97,7 +97,7 @@ namespace Bandwidth.Standard.Model
         /// The application ID associated with the message.
         /// </summary>
         /// <value>The application ID associated with the message.</value>
-        /// <example>&quot;93de2206-9669-4e07-948d-329f4b722ee2&quot;</example>
+        /// <example>93de2206-9669-4e07-948d-329f4b722ee2</example>
         [DataMember(Name = "applicationId", EmitDefaultValue = false)]
         public string ApplicationId { get; set; }
 
@@ -105,7 +105,7 @@ namespace Bandwidth.Standard.Model
         /// The datetime stamp of the message in ISO 8601
         /// </summary>
         /// <value>The datetime stamp of the message in ISO 8601</value>
-        /// <example>&quot;2022-09-14T18:20:16Z&quot;</example>
+        /// <example>2022-09-14T18:20:16Z</example>
         [DataMember(Name = "time", EmitDefaultValue = false)]
         public DateTime Time { get; set; }
 
@@ -121,6 +121,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number recipients of the message.
         /// </summary>
         /// <value>The phone number recipients of the message.</value>
+        /// <example>[&quot;+15552223333&quot;]</example>
         [DataMember(Name = "to", EmitDefaultValue = false)]
         public List<string> To { get; set; }
 
@@ -128,7 +129,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number the message was sent from.
         /// </summary>
         /// <value>The phone number the message was sent from.</value>
-        /// <example>&quot;+15553332222&quot;</example>
+        /// <example>+15553332222</example>
         [DataMember(Name = "from", EmitDefaultValue = false)]
         public string From { get; set; }
 
@@ -136,6 +137,7 @@ namespace Bandwidth.Standard.Model
         /// The list of media URLs sent in the message. Including a &#x60;filename&#x60; field in the &#x60;Content-Disposition&#x60; header of the media linked with a URL will set the displayed file name. This is a best practice to ensure that your media has a readable file name.
         /// </summary>
         /// <value>The list of media URLs sent in the message. Including a &#x60;filename&#x60; field in the &#x60;Content-Disposition&#x60; header of the media linked with a URL will set the displayed file name. This is a best practice to ensure that your media has a readable file name.</value>
+        /// <example>[&quot;https://dev.bandwidth.com/images/bandwidth-logo.png&quot;]</example>
         [DataMember(Name = "media", EmitDefaultValue = false)]
         public List<string> Media { get; set; }
 
@@ -143,7 +145,7 @@ namespace Bandwidth.Standard.Model
         /// The contents of the message.
         /// </summary>
         /// <value>The contents of the message.</value>
-        /// <example>&quot;Hello world&quot;</example>
+        /// <example>Hello world</example>
         [DataMember(Name = "text", EmitDefaultValue = false)]
         public string Text { get; set; }
 
@@ -151,7 +153,7 @@ namespace Bandwidth.Standard.Model
         /// The custom string set by the user.
         /// </summary>
         /// <value>The custom string set by the user.</value>
-        /// <example>&quot;custom tag&quot;</example>
+        /// <example>custom tag</example>
         [DataMember(Name = "tag", EmitDefaultValue = false)]
         public string Tag { get; set; }
 
@@ -159,7 +161,7 @@ namespace Bandwidth.Standard.Model
         /// The expiration date-time set by the user.
         /// </summary>
         /// <value>The expiration date-time set by the user.</value>
-        /// <example>&quot;2021-02-01T11:29:18-05:00&quot;</example>
+        /// <example>2021-02-01T11:29:18-05:00</example>
         [DataMember(Name = "expiration", EmitDefaultValue = false)]
         public DateTime Expiration { get; set; }
 

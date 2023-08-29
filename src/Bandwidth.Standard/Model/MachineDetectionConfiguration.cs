@@ -144,7 +144,7 @@ namespace Bandwidth.Standard.Model
         /// The URL to send the &#39;machineDetectionComplete&#39; webhook when the detection is completed. Only for &#39;async&#39; mode.
         /// </summary>
         /// <value>The URL to send the &#39;machineDetectionComplete&#39; webhook when the detection is completed. Only for &#39;async&#39; mode.</value>
-        /// <example>&quot;https://myServer.example/bandwidth/webhooks/machineDetectionComplete&quot;</example>
+        /// <example>https://myServer.example/bandwidth/webhooks/machineDetectionComplete</example>
         [DataMember(Name = "callbackUrl", EmitDefaultValue = true)]
         public string CallbackUrl { get; set; }
 
@@ -152,7 +152,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth username.
         /// </summary>
         /// <value>Basic auth username.</value>
-        /// <example>&quot;mySecretUsername&quot;</example>
+        /// <example>mySecretUsername</example>
         [DataMember(Name = "username", EmitDefaultValue = true)]
         public string Username { get; set; }
 
@@ -160,7 +160,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth password.
         /// </summary>
         /// <value>Basic auth password.</value>
-        /// <example>&quot;mySecretPassword1!&quot;</example>
+        /// <example>mySecretPassword1!</example>
         [DataMember(Name = "password", EmitDefaultValue = true)]
         public string Password { get; set; }
 
@@ -168,7 +168,7 @@ namespace Bandwidth.Standard.Model
         /// A fallback URL which, if provided, will be used to retry the machine detection complete webhook delivery in case &#x60;callbackUrl&#x60; fails to respond
         /// </summary>
         /// <value>A fallback URL which, if provided, will be used to retry the machine detection complete webhook delivery in case &#x60;callbackUrl&#x60; fails to respond</value>
-        /// <example>&quot;https://myFallbackServer.example/bandwidth/webhooks/machineDetectionComplete&quot;</example>
+        /// <example>https://myFallbackServer.example/bandwidth/webhooks/machineDetectionComplete</example>
         [DataMember(Name = "fallbackUrl", EmitDefaultValue = true)]
         public string FallbackUrl { get; set; }
 
@@ -176,7 +176,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth username.
         /// </summary>
         /// <value>Basic auth username.</value>
-        /// <example>&quot;mySecretUsername&quot;</example>
+        /// <example>mySecretUsername</example>
         [DataMember(Name = "fallbackUsername", EmitDefaultValue = true)]
         public string FallbackUsername { get; set; }
 
@@ -184,7 +184,7 @@ namespace Bandwidth.Standard.Model
         /// Basic auth password.
         /// </summary>
         /// <value>Basic auth password.</value>
-        /// <example>&quot;mySecretPassword1!&quot;</example>
+        /// <example>mySecretPassword1!</example>
         [DataMember(Name = "fallbackPassword", EmitDefaultValue = true)]
         public string FallbackPassword { get; set; }
 

@@ -57,7 +57,7 @@ namespace Bandwidth.Standard.Model
         /// The reason for the diversion. Common values: unknown, user-busy, no-answer, unavailable, unconditional, time-of-day, do-not-disturb, deflection, follow-me, out-of-service, away.
         /// </summary>
         /// <value>The reason for the diversion. Common values: unknown, user-busy, no-answer, unavailable, unconditional, time-of-day, do-not-disturb, deflection, follow-me, out-of-service, away.</value>
-        /// <example>&quot;unavailable&quot;</example>
+        /// <example>unavailable</example>
         [DataMember(Name = "reason", EmitDefaultValue = false)]
         public string Reason { get; set; }
 
@@ -65,7 +65,7 @@ namespace Bandwidth.Standard.Model
         /// off or full
         /// </summary>
         /// <value>off or full</value>
-        /// <example>&quot;off&quot;</example>
+        /// <example>off</example>
         [DataMember(Name = "privacy", EmitDefaultValue = false)]
         public string Privacy { get; set; }
 
@@ -73,7 +73,7 @@ namespace Bandwidth.Standard.Model
         /// No if the number was provided by the user, yes if the number was provided by the network
         /// </summary>
         /// <value>No if the number was provided by the user, yes if the number was provided by the network</value>
-        /// <example>&quot;no&quot;</example>
+        /// <example>no</example>
         [DataMember(Name = "screen", EmitDefaultValue = false)]
         public string Screen { get; set; }
 
@@ -81,7 +81,7 @@ namespace Bandwidth.Standard.Model
         /// The number of diversions that have occurred
         /// </summary>
         /// <value>The number of diversions that have occurred</value>
-        /// <example>&quot;2&quot;</example>
+        /// <example>2</example>
         [DataMember(Name = "counter", EmitDefaultValue = false)]
         public string Counter { get; set; }
 
@@ -89,7 +89,7 @@ namespace Bandwidth.Standard.Model
         /// The maximum number of diversions allowed for this session
         /// </summary>
         /// <value>The maximum number of diversions allowed for this session</value>
-        /// <example>&quot;3&quot;</example>
+        /// <example>3</example>
         [DataMember(Name = "limit", EmitDefaultValue = false)]
         public string Limit { get; set; }
 
@@ -97,7 +97,7 @@ namespace Bandwidth.Standard.Model
         /// The normal list of values is not exhaustive. Your application must be tolerant of unlisted keys and unlisted values of those keys.
         /// </summary>
         /// <value>The normal list of values is not exhaustive. Your application must be tolerant of unlisted keys and unlisted values of those keys.</value>
-        /// <example>&quot;unknownValue&quot;</example>
+        /// <example>unknownValue</example>
         [DataMember(Name = "unknown", EmitDefaultValue = false)]
         public string Unknown { get; set; }
 
@@ -105,7 +105,7 @@ namespace Bandwidth.Standard.Model
         /// Always present. Indicates the last telephone number that the call was diverted from.
         /// </summary>
         /// <value>Always present. Indicates the last telephone number that the call was diverted from.</value>
-        /// <example>&quot;+15558884444&quot;</example>
+        /// <example>+15558884444</example>
         [DataMember(Name = "origTo", EmitDefaultValue = false)]
         public string OrigTo { get; set; }
 

@@ -91,7 +91,7 @@ namespace Bandwidth.Standard.Model
         /// The id of the application associated with the call.
         /// </summary>
         /// <value>The id of the application associated with the call.</value>
-        /// <example>&quot;04e88489-df02-4e34-a0ee-27a91849555f&quot;</example>
+        /// <example>04e88489-df02-4e34-a0ee-27a91849555f</example>
         [DataMember(Name = "applicationId", EmitDefaultValue = false)]
         public string ApplicationId { get; set; }
 
@@ -99,7 +99,7 @@ namespace Bandwidth.Standard.Model
         /// The user account associated with the call.
         /// </summary>
         /// <value>The user account associated with the call.</value>
-        /// <example>&quot;920012&quot;</example>
+        /// <example>920012</example>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 
@@ -107,7 +107,7 @@ namespace Bandwidth.Standard.Model
         /// The call id associated with the event.
         /// </summary>
         /// <value>The call id associated with the event.</value>
-        /// <example>&quot;c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85&quot;</example>
+        /// <example>c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85</example>
         [DataMember(Name = "callId", EmitDefaultValue = false)]
         public string CallId { get; set; }
 
@@ -115,7 +115,7 @@ namespace Bandwidth.Standard.Model
         /// (optional) If the event is related to the B leg of a &lt;Transfer&gt;, the call id of the original call leg that executed the &lt;Transfer&gt;. Otherwise, this field will not be present.
         /// </summary>
         /// <value>(optional) If the event is related to the B leg of a &lt;Transfer&gt;, the call id of the original call leg that executed the &lt;Transfer&gt;. Otherwise, this field will not be present.</value>
-        /// <example>&quot;c-95ac8d6e-1a31c52e-b38f-4198-93c1-51633ec68f8d&quot;</example>
+        /// <example>c-95ac8d6e-1a31c52e-b38f-4198-93c1-51633ec68f8d</example>
         [DataMember(Name = "parentCallId", EmitDefaultValue = false)]
         public string ParentCallId { get; set; }
 
@@ -123,7 +123,7 @@ namespace Bandwidth.Standard.Model
         /// The unique ID of this recording
         /// </summary>
         /// <value>The unique ID of this recording</value>
-        /// <example>&quot;r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833&quot;</example>
+        /// <example>r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833</example>
         [DataMember(Name = "recordingId", EmitDefaultValue = false)]
         public string RecordingId { get; set; }
 
@@ -131,7 +131,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number that received the call, in E.164 format (e.g. +15555555555).
         /// </summary>
         /// <value>The phone number that received the call, in E.164 format (e.g. +15555555555).</value>
-        /// <example>&quot;+15555555555&quot;</example>
+        /// <example>+15555555555</example>
         [DataMember(Name = "to", EmitDefaultValue = false)]
         public string To { get; set; }
 
@@ -139,7 +139,7 @@ namespace Bandwidth.Standard.Model
         /// The provided identifier of the caller: can be a phone number in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable, or Anonymous.
         /// </summary>
         /// <value>The provided identifier of the caller: can be a phone number in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable, or Anonymous.</value>
-        /// <example>&quot;+15555555555&quot;</example>
+        /// <example>+15555555555</example>
         [DataMember(Name = "from", EmitDefaultValue = false)]
         public string From { get; set; }
 
@@ -147,7 +147,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous, Private, or Unavailable.
         /// </summary>
         /// <value>The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous, Private, or Unavailable.</value>
-        /// <example>&quot;+15555555555&quot;</example>
+        /// <example>+15555555555</example>
         [DataMember(Name = "transferCallerId", EmitDefaultValue = false)]
         public string TransferCallerId { get; set; }
 
@@ -155,7 +155,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number used as the to field of the B-leg call, in E.164 format (e.g. +15555555555).
         /// </summary>
         /// <value>The phone number used as the to field of the B-leg call, in E.164 format (e.g. +15555555555).</value>
-        /// <example>&quot;+15555555555)&quot;</example>
+        /// <example>+15555555555)</example>
         [DataMember(Name = "transferTo", EmitDefaultValue = false)]
         public string TransferTo { get; set; }
 
@@ -163,7 +163,7 @@ namespace Bandwidth.Standard.Model
         /// The duration of the recording in ISO-8601 format
         /// </summary>
         /// <value>The duration of the recording in ISO-8601 format</value>
-        /// <example>&quot;PT13.67S&quot;</example>
+        /// <example>PT13.67S</example>
         [DataMember(Name = "duration", EmitDefaultValue = false)]
         public string Duration { get; set; }
 
@@ -179,7 +179,7 @@ namespace Bandwidth.Standard.Model
         /// Time the call was started, in ISO 8601 format.
         /// </summary>
         /// <value>Time the call was started, in ISO 8601 format.</value>
-        /// <example>&quot;2022-06-17T22:19:40.375Z&quot;</example>
+        /// <example>2022-06-17T22:19:40.375Z</example>
         [DataMember(Name = "startTime", EmitDefaultValue = false)]
         public DateTime StartTime { get; set; }
 
@@ -187,7 +187,7 @@ namespace Bandwidth.Standard.Model
         /// The time that the recording ended in ISO-8601 format
         /// </summary>
         /// <value>The time that the recording ended in ISO-8601 format</value>
-        /// <example>&quot;2022-06-17T22:20Z&quot;</example>
+        /// <example>2022-06-17T22:20Z</example>
         [DataMember(Name = "endTime", EmitDefaultValue = false)]
         public DateTime EndTime { get; set; }
 
@@ -195,7 +195,7 @@ namespace Bandwidth.Standard.Model
         /// The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values.
         /// </summary>
         /// <value>The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values.</value>
-        /// <example>&quot;completed&quot;</example>
+        /// <example>completed</example>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 
@@ -203,7 +203,7 @@ namespace Bandwidth.Standard.Model
         /// The URL that can be used to download the recording. Only present if the recording is finished and may be downloaded.
         /// </summary>
         /// <value>The URL that can be used to download the recording. Only present if the recording is finished and may be downloaded.</value>
-        /// <example>&quot;https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/recordings/r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833/media&quot;</example>
+        /// <example>https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/recordings/r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833/media</example>
         [DataMember(Name = "mediaUrl", EmitDefaultValue = true)]
         public string MediaUrl { get; set; }
 
