@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalCount** | **int** | Total number of messages matched by the search. | [optional] 
+**TotalCount** | **int** | The total number of messages matched by the search. When the request has limitTotalCount set to true this value is limited to 10,000. | [optional] 
 **PageInfo** | [**PageInfo**](PageInfo.md) |  | [optional] 
 **Messages** | [**List&lt;ListMessageItem&gt;**](ListMessageItem.md) |  | [optional] 
 

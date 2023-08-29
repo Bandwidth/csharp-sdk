@@ -84,6 +84,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/messagingRequestError'
           description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/messagingRequestError'
+          description: Not Acceptable
         "415":
           content:
             application/json:
@@ -163,6 +169,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/messagingRequestError'
           description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/messagingRequestError'
+          description: Not Acceptable
         "415":
           content:
             application/json:
@@ -239,6 +251,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/messagingRequestError'
           description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/messagingRequestError'
+          description: Not Acceptable
         "415":
           content:
             application/json:
@@ -335,6 +353,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/messagingRequestError'
           description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/messagingRequestError'
+          description: Not Acceptable
         "415":
           content:
             application/json:
@@ -513,6 +537,19 @@ paths:
         schema:
           type: integer
         style: form
+      - description: "When set to true, the response's totalCount field will have\
+          \ a maximum value of 10,000. When set to false, or excluded, this will give\
+          \ an accurate totalCount of all messages that match the provided filters.\
+          \ If you are experiencing latency, try using this parameter to limit your\
+          \ results."
+        example: true
+        explode: true
+        in: query
+        name: limitTotalCount
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -617,6 +654,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/messagingRequestError'
           description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/messagingRequestError'
+          description: Not Acceptable
         "415":
           content:
             application/json:
@@ -4367,6 +4410,20 @@ components:
       schema:
         type: integer
       style: form
+    limitTotalCount:
+      description: "When set to true, the response's totalCount field will have a\
+        \ maximum value of 10,000. When set to false, or excluded, this will give\
+        \ an accurate totalCount of all messages that match the provided filters.\
+        \ If you are experiencing latency, try using this parameter to limit your\
+        \ results."
+      example: true
+      explode: true
+      in: query
+      name: limitTotalCount
+      required: false
+      schema:
+        type: boolean
+      style: form
     callId:
       description: Programmable Voice API Call ID.
       example: c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
@@ -4845,6 +4902,12 @@ components:
           schema:
             $ref: '#/components/schemas/messagingRequestError'
       description: Bad Request
+    messagingNotAcceptableError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/messagingRequestError'
+      description: Not Acceptable
     createMessageBadRequestError:
       content:
         application/json:
@@ -5318,7 +5381,8 @@ components:
         totalCount: 100
       properties:
         totalCount:
-          description: Total number of messages matched by the search.
+          description: "The total number of messages matched by the search. When the\
+            \ request has limitTotalCount set to true this value is limited to 10,000."
           example: 100
           type: integer
         pageInfo:
@@ -6080,6 +6144,14 @@ components:
             from (must be in E.164 format, like `+15555551212`, or be one of the following
             strings: `Restricted`, `Anonymous`, `Private`, or `Unavailable`).
           example: +19195554321
+          type: string
+        displayName:
+          description: "The caller display name to use when the call is created. \n\
+            May not exceed 256 characters nor contain control characters such as new\
+            \ lines."
+          example: John Doe
+          maxLength: 256
+          nullable: true
           type: string
         uui:
           description: |-
@@ -7218,6 +7290,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         accountId:
@@ -7296,6 +7369,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         accountId:
@@ -7389,6 +7463,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         accountId:
@@ -7467,6 +7542,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         conferenceId:
@@ -7508,6 +7584,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         conferenceId:
@@ -7548,6 +7625,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         conferenceId:
@@ -7603,6 +7681,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         conferenceId:
@@ -7653,6 +7732,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         conferenceId:
@@ -7689,6 +7769,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         conferenceId:
@@ -7769,6 +7850,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         accountId:
@@ -7865,6 +7947,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         accountId:
@@ -7959,6 +8042,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         accountId:
@@ -8062,6 +8146,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         accountId:
@@ -8122,6 +8207,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         accountId:
@@ -8199,6 +8285,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         accountId:
@@ -8317,6 +8404,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         accountId:
@@ -8441,6 +8529,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         accountId:
@@ -8531,6 +8620,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         accountId:
@@ -8644,6 +8734,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         accountId:
@@ -8731,6 +8822,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         accountId:
@@ -8837,6 +8929,7 @@ components:
           description: "The approximate UTC date and time when the event was generated\
             \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
             \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
           format: date-time
           type: string
         accountId:
@@ -8946,6 +9039,7 @@ components:
       description: "The approximate UTC date and time when the event was generated\
         \ by the Bandwidth server, in ISO 8601 format. This may not be exactly the\
         \ time of event execution."
+      example: 2022-06-17T22:19:40.375Z
       format: date-time
       type: string
     accountId:

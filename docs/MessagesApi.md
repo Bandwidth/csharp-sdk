@@ -105,6 +105,7 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
+| **406** | Not Acceptable |  -  |
 | **415** | Unsupported Media Type |  -  |
 | **429** | Too Many Requests |  -  |
 | **500** | Internal Server Error |  -  |
@@ -113,7 +114,7 @@ catch (ApiException e)
 
 <a id="listmessages"></a>
 # **ListMessages**
-> MessagesList ListMessages (string accountId, string messageId = null, string sourceTn = null, string destinationTn = null, MessageStatusEnum messageStatus = null, ListMessageDirectionEnum messageDirection = null, string carrierName = null, MessageTypeEnum messageType = null, int? errorCode = null, string fromDateTime = null, string toDateTime = null, string campaignId = null, string sort = null, string pageToken = null, int? limit = null)
+> MessagesList ListMessages (string accountId, string messageId = null, string sourceTn = null, string destinationTn = null, MessageStatusEnum messageStatus = null, ListMessageDirectionEnum messageDirection = null, string carrierName = null, MessageTypeEnum messageType = null, int? errorCode = null, string fromDateTime = null, string toDateTime = null, string campaignId = null, string sort = null, string pageToken = null, int? limit = null, bool? limitTotalCount = null)
 
 List Messages
 
@@ -155,11 +156,12 @@ namespace Example
             var sort = sourceTn:desc;  // string | The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional) 
             var pageToken = gdEewhcJLQRB5;  // string | A base64 encoded value used for pagination of results. (optional) 
             var limit = 50;  // int? | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional) 
+            var limitTotalCount = true;  // bool? | When set to true, the response's totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results. (optional) 
 
             try
             {
                 // List Messages
-                MessagesList result = apiInstance.ListMessages(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, sort, pageToken, limit);
+                MessagesList result = apiInstance.ListMessages(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, sort, pageToken, limit, limitTotalCount);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -180,7 +182,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List Messages
-    ApiResponse<MessagesList> response = apiInstance.ListMessagesWithHttpInfo(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, sort, pageToken, limit);
+    ApiResponse<MessagesList> response = apiInstance.ListMessagesWithHttpInfo(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, sort, pageToken, limit, limitTotalCount);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -212,6 +214,7 @@ catch (ApiException e)
 | **sort** | **string** | The field and direction to sort by combined with a colon. Direction is either asc or desc. | [optional]  |
 | **pageToken** | **string** | A base64 encoded value used for pagination of results. | [optional]  |
 | **limit** | **int?** | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. | [optional]  |
+| **limitTotalCount** | **bool?** | When set to true, the response&#39;s totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results. | [optional]  |
 
 ### Return type
 
