@@ -103,6 +103,7 @@ void (empty response body)
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
+| **406** | Not Acceptable |  -  |
 | **415** | Unsupported Media Type |  -  |
 | **429** | Too Many Requests |  -  |
 | **500** | Internal Server Error |  -  |
@@ -207,6 +208,7 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
+| **406** | Not Acceptable |  -  |
 | **415** | Unsupported Media Type |  -  |
 | **429** | Too Many Requests |  -  |
 | **500** | Internal Server Error |  -  |
@@ -311,6 +313,7 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
+| **406** | Not Acceptable |  -  |
 | **415** | Unsupported Media Type |  -  |
 | **429** | Too Many Requests |  -  |
 | **500** | Internal Server Error |  -  |
@@ -417,6 +420,7 @@ void (empty response body)
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Not Found |  -  |
+| **406** | Not Acceptable |  -  |
 | **415** | Unsupported Media Type |  -  |
 | **429** | Too Many Requests |  -  |
 | **500** | Internal Server Error |  -  |

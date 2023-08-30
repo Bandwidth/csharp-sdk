@@ -68,6 +68,16 @@ namespace Bandwidth.Standard.Test.Model
             Assert.Equal("+19195554321", instance.From);
         }
         /// <summary>
+        /// Test the property 'DisplayName'
+        ///  </summary>
+        [Fact]
+        public void DisplayNameTest()
+        {
+            instance.DisplayName = "John Doe";
+            Assert.IsType<string>(instance.DisplayName);
+            Assert.Equal("John Doe", instance.DisplayName);
+        } 
+        /// <summary>
         /// Test the property 'Uui'
         /// </summary>
         [Fact]

@@ -35,7 +35,7 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MessagesList" /> class.
         /// </summary>
-        /// <param name="totalCount">Total number of messages matched by the search..</param>
+        /// <param name="totalCount">The total number of messages matched by the search. When the request has limitTotalCount set to true this value is limited to 10,000..</param>
         /// <param name="pageInfo">pageInfo.</param>
         /// <param name="messages">messages.</param>
         public MessagesList(int totalCount = default(int), PageInfo pageInfo = default(PageInfo), List<ListMessageItem> messages = default(List<ListMessageItem>))
@@ -46,9 +46,9 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Total number of messages matched by the search.
+        /// The total number of messages matched by the search. When the request has limitTotalCount set to true this value is limited to 10,000.
         /// </summary>
-        /// <value>Total number of messages matched by the search.</value>
+        /// <value>The total number of messages matched by the search. When the request has limitTotalCount set to true this value is limited to 10,000.</value>
         /// <example>100</example>
         [DataMember(Name = "totalCount", EmitDefaultValue = false)]
         public int TotalCount { get; set; }
