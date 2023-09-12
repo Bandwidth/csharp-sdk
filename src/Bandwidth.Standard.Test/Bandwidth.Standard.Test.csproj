@@ -3,7 +3,8 @@
   <PropertyGroup>
     <AssemblyName>Bandwidth.Standard.Test</AssemblyName>
     <RootNamespace>Bandwidth.Standard.Test</RootNamespace>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework Condition="'$(DOTNET)' == '6.0.x' Or '$(DOTNET)' == ''">net6.0</TargetFramework>
+    <TargetFramework Condition="'$(DOTNET)' == '7.0.x'">net7.0</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
