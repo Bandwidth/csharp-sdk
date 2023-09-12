@@ -96,6 +96,7 @@ namespace Bandwidth.Standard.Test.Api
 
             Assert.IsAssignableFrom<ApiResponse<System.IO.Stream>>(response);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            body.Close();
         }
 
         /// <summary>
@@ -136,6 +137,7 @@ namespace Bandwidth.Standard.Test.Api
 
             Assert.IsType<ApiResponse<Object>>(response);
             Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+            body.Close();
         }
     }
 }

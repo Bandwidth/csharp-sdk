@@ -255,6 +255,7 @@ namespace Bandwidth.Standard.Test.Api
 
             Assert.IsAssignableFrom<ApiResponse<System.IO.Stream>>(response);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            body.Close();
         }
 
         /// <summary>
