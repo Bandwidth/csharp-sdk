@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <AssemblyName>Bandwidth.Standard.Test</AssemblyName>
+    <RootNamespace>Bandwidth.Standard.Test</RootNamespace>
     <TargetFramework Condition="'$(DOTNET)' == '6.0.x' Or '$(DOTNET)' == ''">net6.0</TargetFramework>
     <TargetFramework Condition="'$(DOTNET)' == '7.0.x'">net7.0</TargetFramework>
     <IsPackable>false</IsPackable>
@@ -9,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.2" />
+    <PackageReference Include="Moq" Version="4.20.69" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" />
   </ItemGroup>
