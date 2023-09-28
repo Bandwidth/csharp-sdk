@@ -9,41 +9,33 @@
  */
 
 using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using RestSharp;
 using Xunit;
 
 using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
-using Moq;
 using System.Net;
 
-namespace Bandwidth.Standard.Test.Api
+namespace Bandwidth.Standard.Test.Integration
 {
     /// <summary>
     ///  Class for testing StatisticsApi
     /// </summary>
-    public class StatisticsApiTests : IDisposable
+    public class StatisticsIntegrationTests : IDisposable
     {
         private StatisticsApi instance;
-        private Mock<ISynchronousClient> mockClient;
-        private Mock<IAsynchronousClient> mockAsynchronousClient;
         private Configuration fakeConfiguration;
+        private string accountId;
 
-        public StatisticsApiTests()
+        public StatisticsIntegrationTests()
         {
-            mockClient = new Mock<ISynchronousClient>();
-            mockAsynchronousClient = new Mock<IAsynchronousClient>();
             fakeConfiguration = new Configuration();
             fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
-            fakeConfiguration.Username = "username";
-            fakeConfiguration.Password = "password";
-            instance = new StatisticsApi(mockClient.Object, mockAsynchronousClient.Object, fakeConfiguration);
+            fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
+            fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
+            instance = new StatisticsApi(fakeConfiguration);
+
+            accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
         }
 
         public void Dispose()
@@ -66,11 +58,6 @@ namespace Bandwidth.Standard.Test.Api
         [Fact]
         public void GetStatisticsTest()
         {
-            string accountId = "9900000";
-            var accountStatistics = new AccountStatistics(0, 900);
-
-            var apiResponse = new ApiResponse<AccountStatistics>(HttpStatusCode.OK, accountStatistics);
-            mockClient.Setup(x => x.Get<AccountStatistics>("/accounts/{accountId}/statistics", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
             var response = instance.GetStatisticsWithHttpInfo(accountId);
 
             Assert.IsType<ApiResponse<AccountStatistics>>(response);
