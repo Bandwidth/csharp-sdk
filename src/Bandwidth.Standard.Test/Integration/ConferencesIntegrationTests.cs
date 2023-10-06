@@ -1,17 +1,12 @@
 using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using RestSharp;
 using Xunit;
 
 using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
-using Moq;
 using System.Net;
+using System.Text.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Bandwidth.Standard.Test.Integration
 {
@@ -27,7 +22,6 @@ namespace Bandwidth.Standard.Test.Integration
         private UpdateConference updateConferenceBody;
         private CallsApi callsApiInstance;
         private Configuration fakeConfiguration;
-        private CreateCall createCallBody;
         private CreateCall mantecaCallBody;
         private UpdateConferenceMember updateConferenceMember;
         private string accountId;
@@ -38,12 +32,15 @@ namespace Bandwidth.Standard.Test.Integration
 
         public ConferencesIntegrationTests()
         {
+            accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+
+            // Authorized API Client
             fakeConfiguration = new Configuration();
             fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
             fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
             fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
             conferenceApiInstance = new ConferencesApi(fakeConfiguration);
-
+            callsApiInstance = new CallsApi(fakeConfiguration);
 
             // Unauthorized API Client
             fakeConfiguration.Username = "badUsername";
@@ -55,7 +52,6 @@ namespace Bandwidth.Standard.Test.Integration
             fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
             forbiddenInstance = new ConferencesApi(fakeConfiguration);
 
-            accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
 
             restClient =  new ApiClient(basePath: "https://voice.bandwidth.com/api/v2");
 
@@ -71,53 +67,13 @@ namespace Bandwidth.Standard.Test.Integration
                 fallbackPassword: "mySecretPassword!"
             );
 
-            createCallBody = new CreateCall(
-                to: Environment.GetEnvironmentVariable("USER_NUMBER"),
-                from: Environment.GetEnvironmentVariable("BW_NUMBER"),
-                displayName: "Test Call",
-                applicationId: Environment.GetEnvironmentVariable("BW_VOICE_APPLICATION_ID"),
-                answerUrl: Environment.GetEnvironmentVariable("BASE_CALLBACK_URL"),
-                answerMethod: CallbackMethodEnum.POST,
-                username: "mySecretUsername",
-                password: "mySecretPassword!",
-                answerFallbackUrl: "https://www.myFallbackServer.com/webhooks/answer",
-                answerFallbackMethod: CallbackMethodEnum.POST,
-                fallbackUsername: "mySecretUsername",
-                fallbackPassword: "mySecretPassword!",
-                disconnectUrl: "https://myServer.com/bandwidth/webhooks/disconnectUrl",
-                disconnectMethod: CallbackMethodEnum.POST,
-                callTimeout: 30,
-                callbackTimeout: 15,
-                machineDetection: new MachineDetectionConfiguration(
-                    mode: MachineDetectionModeEnum.Async,
-                    detectionTimeout: 15,
-                    silenceTimeout: 10,
-                    speechThreshold: 10,
-                    speechEndThreshold: 5,
-                    machineSpeechEndThreshold: 5,
-                    delayResult: false,
-                    callbackUrl: "https://myServer.com/bandwidth/webhooks/machineDetectionComplete",
-                    callbackMethod: CallbackMethodEnum.POST,
-                    username: "MySecretUsername",
-                    password: "MySecretPassword!",
-                    fallbackUrl: "https://myFallbackServer.com/bandwidth/webhooks/machineDetectionComplete",
-                    fallbackMethod: CallbackMethodEnum.POST,
-                    fallbackUsername: "MySecretUsername",
-                    fallbackPassword: "MySecretPassword!"
-                ),
-                priority: 5,
-                tag: "tag Example"
-            );
-
             mantecaCallBody = new CreateCall(
                 to: Environment.GetEnvironmentVariable("MANTECA_IDLE_NUMBER"),
                 from: Environment.GetEnvironmentVariable("MANTECA_ACTIVE_NUMBER"),
                 applicationId: Environment.GetEnvironmentVariable("MANTECA_APPLICATION_ID"),
-                answerUrl: Environment.GetEnvironmentVariable("MANTECA_BASE_URL") + "/bxml/joinConferencePause",
-                tag: "testID"
+                answerUrl: Environment.GetEnvironmentVariable("MANTECA_BASE_URL") + "/bxml/joinConferencePause"
             );
 
-            callsApiInstance = new CallsApi(fakeConfiguration);
             updateConferenceMember = new UpdateConferenceMember(mute: false);
             testConferenceId = "Conf-Id";
             testMemberId = "Member-Id";
@@ -131,29 +87,43 @@ namespace Bandwidth.Standard.Test.Integration
         }
 
         /// <summary>
-        /// 
+        /// Create and validate a call between two bandwidth numbers.  Initializes the call with the Manteca
+        /// system.
         /// </summary>
+        /// <returns> 
+        /// A tuple containing the test id created in Manteca to track this call, as well as the conference and call id for the created call.
+        /// </returns>
         [Fact]
-        public void CreateConferenceTest()
+        public Tuple<string, string> CreateConferenceTest()
         {
             // set up request options for creating a call
-            var options = new RequestOptions();
-            options.HeaderParameters.Add("os", Environment.GetEnvironmentVariable("OPERATING_SYSTEM"));
-            options.HeaderParameters.Add("language", "csharp" + Environment.GetEnvironmentVariable("CSHARP_VERSION"));
-            options.HeaderParameters.Add("type", "CONFERENCE");
+            var jsonBody = JsonSerializer.Serialize(new
+            {
+                os = Environment.GetEnvironmentVariable("OPERATING_SYSTEM"),
+                language = "csharp" + Environment.GetEnvironmentVariable("CSHARP_VERSION"),
+                type = "CONFERENCE"
+            });
+            var options = new RequestOptions
+            {
+                Data = jsonBody,
+                HeaderParameters = new Multimap<string, string>
+                {
+                    { "Content-Type", "application/json" }
+                }
+            };
 
             // initialize call with Manteca
-            var response = restClient.Post<CreateCallResponse>(
-                path: Environment.GetEnvironmentVariable("MANTECA_BASE_URL") + "tests",
+            var response = restClient.Post<object>(
+                path: Environment.GetEnvironmentVariable("MANTECA_BASE_URL") + "/tests",
                 options: options
             );
-
-            var testId = response.Data.ToString();
+            var testId = response.RawContent;
             mantecaCallBody.Tag = testId;
 
             CreateCallResponse callResponse = callsApiInstance.CreateCall(accountId, mantecaCallBody);
+            var callId = callResponse.CallId;
 
-            Assert.IsType<string>(callResponse.CallId);
+            Assert.IsType<string>(callId);
             Assert.Equal(Environment.GetEnvironmentVariable("BW_ACCOUNT_ID"), callResponse.AccountId);
             Assert.Equal(Environment.GetEnvironmentVariable("MANTECA_APPLICATION_ID"), callResponse.ApplicationId);
             Assert.Equal(Environment.GetEnvironmentVariable("MANTECA_IDLE_NUMBER"), callResponse.To);
@@ -166,7 +136,146 @@ namespace Bandwidth.Standard.Test.Integration
                 name: testId
             );
             Assert.Equal(HttpStatusCode.OK, listConferencesResponse.StatusCode);
+
+            // TODO: This is not deterministic; our latest conference may not always be the one we just created due to parallelism.
+            // This new solution should guarantee the right conference id is grabbed.
+            var conferenceId = listConferencesResponse.Data[0].Id;
+
+            var getConferenceResponse = conferenceApiInstance.GetConferenceWithHttpInfo(
+                accountId: accountId,
+                conferenceId: conferenceId
+            );
+            Assert.Equal(HttpStatusCode.OK, getConferenceResponse.StatusCode);
+            Assert.Equal(conferenceId, getConferenceResponse.Data.Id);
+            Assert.Equal(testId, getConferenceResponse.Data.Name);
+
+
+            return Tuple.Create(testId, conferenceId);
         }
+
+        /// <summary>
+        /// Get the status of the specified test by its id value from Manteca services.
+        /// </summary>
+        /// <param name="testId">The test id associated with the test to get the status of.</param>
+        /// <returns>
+        /// A string containing the status of the test requested.
+        /// </returns>
+        
+        public string GetTestStatus(string testId)
+        {
+            var options = new RequestOptions
+            {
+                HeaderParameters = new Multimap<string, string>
+                {
+                    { "Content-Type", "text/plain" }
+                }
+            };
+
+            // get test status from Manteca
+            var response = restClient.Get<object>(
+                path: Environment.GetEnvironmentVariable("MANTECA_BASE_URL") + "/tests/" + testId,
+                options: options
+            );
+            
+            return response.Content.ToString();
+        }
+
+        /// <summary>
+        /// Tests a successful flow of creating and ending a conference.
+        /// </summary>
+        [Fact]
+        public void testConferenceAndMembers()
+        {
+            Tuple <string, string> createCoferenceResponse = CreateConferenceTest();
+            var testId = createCoferenceResponse.Item1;
+            var conferenceId = createCoferenceResponse.Item2;
+
+            var listConferencesResponse = conferenceApiInstance.ListConferencesWithHttpInfo(accountId);
+            Assert.Equal(HttpStatusCode.OK, listConferencesResponse.StatusCode);
+            Assert.IsType<string>(listConferencesResponse.Data[0].Name);
+            Assert.IsType<string>(listConferencesResponse.Data[0].Id);
+
+            var getConferenceResponse = conferenceApiInstance.GetConferenceWithHttpInfo(accountId, conferenceId);
+            Assert.Equal(HttpStatusCode.OK, getConferenceResponse.StatusCode);
+            Assert.Equal(conferenceId, getConferenceResponse.Data.Id);
+            Assert.IsType<string>(getConferenceResponse.Data.Name);
+            
+            var callId = getConferenceResponse.Data.ActiveMembers[0].CallId;
+
+            var GetConferenceMemberResponse = conferenceApiInstance.GetConferenceMemberWithHttpInfo(accountId, conferenceId, callId);
+            Assert.Equal(HttpStatusCode.OK, GetConferenceMemberResponse.StatusCode);
+            Assert.Equal(conferenceId, GetConferenceMemberResponse.Data.ConferenceId);
+            Assert.Equal(callId, GetConferenceMemberResponse.Data.CallId);
+
+            var updateConferenceMemberResponse = conferenceApiInstance.UpdateConferenceMemberWithHttpInfo(accountId, conferenceId, callId, updateConferenceMember);
+            Assert.Equal(HttpStatusCode.NoContent, updateConferenceMemberResponse.StatusCode);
+
+            var updateConferenceResponse = conferenceApiInstance.UpdateConferenceWithHttpInfo(accountId, conferenceId, updateConferenceBody);
+            Assert.Equal(HttpStatusCode.NoContent, updateConferenceResponse.StatusCode);
+
+            testUpdateBxml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml><SpeakSentence locale=\"en_US\" gender=\"female\" voice=\"susan\">This is a test bxml response</SpeakSentence></Bxml>";
+
+            var updateConferenceBxmlResponse = conferenceApiInstance.UpdateConferenceBxmlWithHttpInfo(accountId, conferenceId, testUpdateBxml);
+            Assert.Equal(HttpStatusCode.NoContent, updateConferenceBxmlResponse.StatusCode);
+
+            var updateCall = new UpdateCall(
+                state: CallStateEnum.Completed
+            );
+            // hang up call
+            callsApiInstance.UpdateCall(accountId, callId, updateCall);
+        }   
+
+        /// <summary>
+        /// Test Conference Recordings
+        /// Tests a successful flow of creating a call with a recording.
+        /// </summary>
+        [Fact]
+        public void testConferenceRecordings()
+        {
+            Tuple <string, string> createCoferenceResponse = CreateConferenceTest();
+            var testId = createCoferenceResponse.Item1;
+            var conferenceId = createCoferenceResponse.Item2;
+            var listConferencesResponse = conferenceApiInstance.ListConferencesWithHttpInfo(accountId);
+            Assert.Equal(HttpStatusCode.OK, listConferencesResponse.StatusCode);
+
+            testUpdateBxml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml><StartRecording/><SpeakSentence locale=\"en_US\" gender=\"female\" voice=\"susan\">This should be a conference recording.</SpeakSentence><StopRecording/></Bxml>";
+
+            var updateConferenceBxmlResponse = conferenceApiInstance.UpdateConferenceBxmlWithHttpInfo(accountId, conferenceId, testUpdateBxml);
+            Assert.Equal(HttpStatusCode.NoContent, updateConferenceBxmlResponse.StatusCode);
+
+            var callStatus = GetTestStatus(testId);
+            var retryCounter = 0;
+            JObject callStatusJson = JObject.Parse(callStatus);
+
+            while (!(Boolean)callStatusJson["callRecorded"] && retryCounter < 10)
+            {
+                System.Threading.Thread.Sleep(5000);
+                callStatus = GetTestStatus(testId);
+                callStatusJson = JObject.Parse(callStatus);
+                retryCounter++;
+            }
+            Assert.True((Boolean)callStatusJson["callRecorded"]);
+
+            var listConferenceRecordingsResponse = conferenceApiInstance.ListConferenceRecordingsWithHttpInfo(accountId, conferenceId);
+            Assert.Equal(HttpStatusCode.OK, listConferenceRecordingsResponse.StatusCode);
+            Assert.NotEmpty(listConferenceRecordingsResponse.Data);
+
+            ConferenceRecordingMetadata firstRecording = listConferenceRecordingsResponse.Data[0];
+            Assert.Equal("complete", firstRecording.Status);
+            Assert.Equal(FileFormatEnum.Wav, firstRecording.FileFormat);
+
+            var firstRecordingId = firstRecording.RecordingId;
+            var getConferenceRecordingResponse = conferenceApiInstance.GetConferenceRecordingWithHttpInfo(accountId, conferenceId, firstRecordingId);
+            Assert.Equal(HttpStatusCode.OK, getConferenceRecordingResponse.StatusCode);
+            Assert.Equal(conferenceId, getConferenceRecordingResponse.Data.ConferenceId);
+            Assert.Equal(firstRecordingId, getConferenceRecordingResponse.Data.RecordingId);
+            Assert.IsType<string>(getConferenceRecordingResponse.Data.Name);
+            Assert.Equal("complete", getConferenceRecordingResponse.Data.Status);
+            Assert.Equal(FileFormatEnum.Wav, getConferenceRecordingResponse.Data.FileFormat);
+
+            var recordingMediaResponse = conferenceApiInstance.DownloadConferenceRecordingWithHttpInfo(accountId, conferenceId, firstRecordingId);
+            Assert.Equal(HttpStatusCode.OK, recordingMediaResponse.StatusCode);
+        } 
 
         /// <summary>
         /// Test List Conferences Unauthorized
@@ -174,19 +283,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void ListConferencesUnauthorizedRequest()
         {
-            // string accountId = "9900000";
-            // string name = "my-custom-name";
-            // string minCreatedTime = "2022-06-21T19:13:21Z";
-            // string maxCreatedTime = "2022-06-21T19:13:21Z";
-            // int? pageSize = 500;
-
-            // fakeConfiguration.Username = "badUsername";
-            // fakeConfiguration.Password = "badPassword";
-
-            // ApiException Exception = Assert.Throws<ApiException>(() => conferenceApiInstance.ListConferencesWithHttpInfo(accountId, name, minCreatedTime, maxCreatedTime, pageSize));
-
-            // Assert.Equal("Error calling ListConferences: ", Exception.Message);
-            // Assert.Equal(401, Exception.ErrorCode);
+            ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.ListConferencesWithHttpInfo(accountId));
+            Assert.Equal(401, Exception.ErrorCode);
         }
 
         /// <summary>
@@ -195,21 +293,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void ListConferenceForbiddenRequest()
         {
-            // string accountId = "9900000";
-            // string name = "my-custom-name";
-            // string minCreatedTime = "2022-06-21T19:13:21Z";
-            // string maxCreatedTime = "2022-06-21T19:13:21Z";
-            // int? pageSize = 500;
-
-            // fakeConfiguration.Username = "forbiddenUsername";
-            // fakeConfiguration.Password = "forbiddenPassword";
-
-            // var apiResponse = new ApiResponse<List<Conference>>(HttpStatusCode.OK, null);
-            // mockClient.Setup(x => x.Get<List<Conference>>("/accounts/{accountId}/conferences", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            // var response = conferenceApiInstance.ListConferencesWithHttpInfo(accountId, name, minCreatedTime, maxCreatedTime, pageSize);
-
-            // Assert.IsType<ApiResponse<List<Conference>>>(response);
-            // Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.ListConferencesWithHttpInfo(accountId));
+            Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
@@ -218,8 +303,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void GetConferencesUnauthorizedRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.ListConferencesWithHttpInfo(accountId));
-            Assert.Equal(401, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.ListConferencesWithHttpInfo(accountId));
+            Assert.Equal(401, exception.ErrorCode);
         }
 
         /// <summary>
@@ -228,8 +313,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void GetConferencesForbiddenRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetConferenceWithHttpInfo(accountId, testConferenceId));
-            Assert.Equal(403, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetConferenceWithHttpInfo(accountId, testConferenceId));
+            Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
@@ -238,8 +323,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void GetConferencesNotFound()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => conferenceApiInstance.GetConferenceWithHttpInfo(accountId, testConferenceId));
-            Assert.Equal(404, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => conferenceApiInstance.GetConferenceWithHttpInfo(accountId, testConferenceId));
+            Assert.Equal(404, exception.ErrorCode);
         }
 
         /// <summary>
@@ -248,8 +333,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void GetConferenceMemberUnauthorizedRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.GetConferenceMemberWithHttpInfo(accountId, testConferenceId, testMemberId));
-            Assert.Equal(401, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.GetConferenceMemberWithHttpInfo(accountId, testConferenceId, testMemberId));
+            Assert.Equal(401, exception.ErrorCode);
         }
 
         /// <summary>
@@ -258,8 +343,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void GetConferenceMemberForbiddenRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetConferenceMemberWithHttpInfo(accountId, testConferenceId, testMemberId));
-            Assert.Equal(403, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetConferenceMemberWithHttpInfo(accountId, testConferenceId, testMemberId));
+            Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
@@ -268,8 +353,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void GetConferenceMemberNotFoundRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => conferenceApiInstance.GetConferenceMemberWithHttpInfo(accountId, testConferenceId, testMemberId));
-            Assert.Equal(404, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => conferenceApiInstance.GetConferenceMemberWithHttpInfo(accountId, testConferenceId, testMemberId));
+            Assert.Equal(404, exception.ErrorCode);
         }
 
         /// <summary>
@@ -278,8 +363,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void ListConferenceRecordingsUnauthorizedRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.ListConferenceRecordingsWithHttpInfo(accountId, testConferenceId));
-            Assert.Equal(401, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.ListConferenceRecordingsWithHttpInfo(accountId, testConferenceId));
+            Assert.Equal(401, exception.ErrorCode);
         }
 
         /// <summary>
@@ -288,8 +373,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void ListConferenceRecordingsForbiddenRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.ListConferenceRecordingsWithHttpInfo(accountId, testConferenceId));
-            Assert.Equal(403, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.ListConferenceRecordingsWithHttpInfo(accountId, testConferenceId));
+            Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
@@ -298,8 +383,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void GetConferenceRecordingUnauthorizedRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.GetConferenceRecordingWithHttpInfo(accountId, testConferenceId, testRecordingId));
-            Assert.Equal(401, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.GetConferenceRecordingWithHttpInfo(accountId, testConferenceId, testRecordingId));
+            Assert.Equal(401, exception.ErrorCode);
         }
 
         /// <summary>
@@ -308,8 +393,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void GetConferenceRecordingForbiddenRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetConferenceRecordingWithHttpInfo(accountId, testConferenceId, testRecordingId));
-            Assert.Equal(403, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetConferenceRecordingWithHttpInfo(accountId, testConferenceId, testRecordingId));
+            Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
@@ -318,8 +403,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact(Skip = "Actually throws a 500 error and needs to be fixed by the voice team")]
         public void GetConferenceRecordingNotFound()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => conferenceApiInstance.GetConferenceRecordingWithHttpInfo(accountId, testConferenceId, testRecordingId));
-            Assert.Equal(404, Exception.ErrorCode); 
+            ApiException exception = Assert.Throws<ApiException>(() => conferenceApiInstance.GetConferenceRecordingWithHttpInfo(accountId, testConferenceId, testRecordingId));
+            Assert.Equal(404, exception.ErrorCode); 
         }
 
         /// <summary>
@@ -328,8 +413,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void UpdateConferenceUnauthorizedRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.UpdateConferenceWithHttpInfo(accountId, testConferenceId, updateConferenceBody));
-            Assert.Equal(401, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.UpdateConferenceWithHttpInfo(accountId, testConferenceId, updateConferenceBody));
+            Assert.Equal(401, exception.ErrorCode);
         }
 
         /// <summary>
@@ -338,8 +423,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void UpdateConferenceForbiddenRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateConferenceWithHttpInfo(accountId, testConferenceId, updateConferenceBody));
-            Assert.Equal(403, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateConferenceWithHttpInfo(accountId, testConferenceId, updateConferenceBody));
+            Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
@@ -348,9 +433,9 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void UpdateConferenceNotFoundRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => conferenceApiInstance.UpdateConferenceWithHttpInfo(accountId, testConferenceId, updateConferenceBody));
+            ApiException exception = Assert.Throws<ApiException>(() => conferenceApiInstance.UpdateConferenceWithHttpInfo(accountId, testConferenceId, updateConferenceBody));
 
-            Assert.Equal(404, Exception.ErrorCode);
+            Assert.Equal(404, exception.ErrorCode);
         }
 
         /// <summary>
@@ -359,8 +444,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void UpdateConferenceBxmlUnauthorizedRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.UpdateConferenceBxmlWithHttpInfo(accountId, testConferenceId, testUpdateBxml));
-            Assert.Equal(401, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.UpdateConferenceBxmlWithHttpInfo(accountId, testConferenceId, testUpdateBxml));
+            Assert.Equal(401, exception.ErrorCode);
         }
 
         /// <summary>
@@ -369,8 +454,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void UpdateConferenceBxmlForbiddenRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateConferenceBxmlWithHttpInfo(accountId, testConferenceId, testUpdateBxml));
-            Assert.Equal(403, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateConferenceBxmlWithHttpInfo(accountId, testConferenceId, testUpdateBxml));
+            Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
@@ -379,8 +464,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void UpdateConferenceBxmlNotFoundRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => conferenceApiInstance.UpdateConferenceBxmlWithHttpInfo(accountId, testConferenceId, testUpdateBxml));
-            Assert.Equal(404, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => conferenceApiInstance.UpdateConferenceBxmlWithHttpInfo(accountId, testConferenceId, testUpdateBxml));
+            Assert.Equal(404, exception.ErrorCode);
         }
 
         /// <summary>
@@ -389,8 +474,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void UpdateConferenceMemberUnauthorizedRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.UpdateConferenceMemberWithHttpInfo(accountId, testConferenceId, testMemberId, updateConferenceMember));
-            Assert.Equal(401, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.UpdateConferenceMemberWithHttpInfo(accountId, testConferenceId, testMemberId, updateConferenceMember));
+            Assert.Equal(401, exception.ErrorCode);
         }
 
         /// <summary>
@@ -399,8 +484,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void UpdateConferenceMemberForbiddenRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateConferenceMemberWithHttpInfo(accountId, testConferenceId, testMemberId, updateConferenceMember));
-            Assert.Equal(403, Exception.ErrorCode); // not erroring out
+            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateConferenceMemberWithHttpInfo(accountId, testConferenceId, testMemberId, updateConferenceMember));
+            Assert.Equal(403, exception.ErrorCode); // not erroring out
         }
 
         /// <summary>
@@ -409,8 +494,8 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void UpdateConferenceMemberNotFoundRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => conferenceApiInstance.UpdateConferenceMember(accountId, testConferenceId, testMemberId, updateConferenceMember));
-            Assert.Equal(404, Exception.ErrorCode);
+            ApiException exception = Assert.Throws<ApiException>(() => conferenceApiInstance.UpdateConferenceMember(accountId, testConferenceId, testMemberId, updateConferenceMember));
+            Assert.Equal(404, exception.ErrorCode);
         }
     }
 }

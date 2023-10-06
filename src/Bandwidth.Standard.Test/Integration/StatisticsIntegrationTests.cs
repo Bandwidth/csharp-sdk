@@ -23,19 +23,32 @@ namespace Bandwidth.Standard.Test.Integration
     /// </summary>
     public class StatisticsIntegrationTests : IDisposable
     {
-        private StatisticsApi instance;
-        private Configuration fakeConfiguration;
         private string accountId;
+        private Configuration fakeConfiguration;
+        private StatisticsApi forbiddenInstance;
+        private StatisticsApi instance;
+        private StatisticsApi unauthorizedInstance;
 
         public StatisticsIntegrationTests()
         {
+            accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+
+            // Authorized API Client
             fakeConfiguration = new Configuration();
             fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
             fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
             fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
             instance = new StatisticsApi(fakeConfiguration);
 
-            accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+            // Unauthorized API Client
+            fakeConfiguration.Username = "badUsername";
+            fakeConfiguration.Password = "badPassword";
+            unauthorizedInstance = new StatisticsApi(fakeConfiguration);
+
+            // Forbidden API Client
+            fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
+            fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
+            forbiddenInstance = new StatisticsApi(fakeConfiguration);
         }
 
         public void Dispose()
@@ -53,15 +66,34 @@ namespace Bandwidth.Standard.Test.Integration
         }
 
         /// <summary>
-        /// Test GetStatistics
+        /// Test successful GetStatistics
         /// </summary>
         [Fact]
         public void GetStatisticsTest()
         {
             var response = instance.GetStatisticsWithHttpInfo(accountId);
-
             Assert.IsType<ApiResponse<AccountStatistics>>(response);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
+
+        /// <summary>
+        /// Tests GetStatistics with an unauthorized client
+        /// </summary>
+        [Fact]
+        public void GetStatisticsUnauthorizedRequest()
+        {
+            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.GetStatisticsWithHttpInfo(accountId));
+            Assert.Equal(401, exception.ErrorCode);
+        }
+
+        /// <summary>
+        /// Tests GetStatistics with a forbidden client
+        /// </summary>
+        [Fact]
+        public void GetStatisticsForbiddenRequest()
+        {
+            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetStatisticsWithHttpInfo(accountId));
+            Assert.Equal(403, exception.ErrorCode);
+        }  
     }
 }

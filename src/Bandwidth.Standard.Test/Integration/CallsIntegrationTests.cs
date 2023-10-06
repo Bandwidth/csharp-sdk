@@ -1,16 +1,9 @@
 using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using RestSharp;
 using Xunit;
 
 using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
-using Moq;
 using System.Net;
 
 namespace Bandwidth.Standard.Test.Integration
@@ -20,17 +13,24 @@ namespace Bandwidth.Standard.Test.Integration
     /// </summary>
     public class CallsIntegrationTests : IDisposable
     {
-        private CallsApi instance;
-        private CallsApi unauthorizedInstance;
-        private CallsApi forbiddenInstance;
-        private Configuration fakeConfiguration;
-        private CreateCall createCallBody;
-        private CreateCall mantecaCallBody;
-        private UpdateCall fakeUpdateCall;
         private string accountId;
+        private CreateCall createCallBody;
+        private Configuration fakeConfiguration;
+        private UpdateCall fakeUpdateCall;
+        private CallsApi forbiddenInstance;
+        private CallsApi instance;
+        private CreateCall mantecaCallBody;
+        private string testCallId;
+        private int testSleep;
+        private CallsApi unauthorizedInstance;
         public CallsIntegrationTests()
         {   
+            // Test Constants
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+            testSleep = 5000;
+            testCallId = "testCallId";
+
+            // Authorized API Client
             fakeConfiguration = new Configuration();
             fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
             fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
@@ -46,8 +46,6 @@ namespace Bandwidth.Standard.Test.Integration
             fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
             fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
             forbiddenInstance = new CallsApi(fakeConfiguration);
-
-
 
             createCallBody = new CreateCall(
                 to: Environment.GetEnvironmentVariable("USER_NUMBER"),
@@ -114,7 +112,7 @@ namespace Bandwidth.Standard.Test.Integration
         }
 
         /// <summary>
-        /// Test CreateCall
+        /// Test successful CreateCall request
         /// </summary>
         [Fact] 
         public void CreateCallTest()
@@ -122,17 +120,17 @@ namespace Bandwidth.Standard.Test.Integration
             ApiResponse<CreateCallResponse> response = instance.CreateCallWithHttpInfo(accountId, createCallBody);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Assert.IsType<string>(response.Data.CallId);
-            Assert.Equal(Environment.GetEnvironmentVariable("BW_ACCOUNT_ID"), response.Data.AccountId);
+            Assert.Equal(accountId, response.Data.AccountId);
             Assert.Equal(Environment.GetEnvironmentVariable("BW_VOICE_APPLICATION_ID"), response.Data.ApplicationId);
             Assert.Equal(Environment.GetEnvironmentVariable("USER_NUMBER"), response.Data.To);
             Assert.Equal(Environment.GetEnvironmentVariable("BW_NUMBER"), response.Data.From);
         }
 
         /// <summary>
-        /// Test Create Call bad request
+        /// Test CreateCall with a bad phone number
         /// </summary>
         [Fact]
-        public void CreateCallBadRequestTest()
+        public void CreateCallBadRequest()
         {
             createCallBody.To = "not a phone number";
             ApiException Exception = Assert.Throws<ApiException>(() => instance.CreateCallWithHttpInfo(accountId, createCallBody));
@@ -140,7 +138,7 @@ namespace Bandwidth.Standard.Test.Integration
         }
 
         /// <summary>
-        /// Test Create Call unauthorized request
+        /// Test CreateCall with an unauthorized client
         /// </summary>
         [Fact]
         public void CreateCallUnauthorizedRequest()
@@ -150,7 +148,7 @@ namespace Bandwidth.Standard.Test.Integration
         }
 
         /// <summary>
-        /// Test Create Call forbidden request
+        /// Test CreateCall with a forbidden client
         /// </summary>
         [Fact]
         public void CreateCallForbiddenRequest()
@@ -160,7 +158,7 @@ namespace Bandwidth.Standard.Test.Integration
         }
 
         /// <summary>
-        /// Test Get Call State
+        /// Test successful GetCallState request
         /// </summary>
         [Fact]
         public void GetCallStateTest()
@@ -168,7 +166,7 @@ namespace Bandwidth.Standard.Test.Integration
             CreateCallResponse createCallResponse = instance.CreateCall(accountId, createCallBody);
             var callId = createCallResponse.CallId;
 
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(testSleep);
 
             ApiResponse<CallState> response = instance.GetCallStateWithHttpInfo(accountId, callId);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -181,37 +179,37 @@ namespace Bandwidth.Standard.Test.Integration
         }
 
         /// <summary>
-        /// Test Get Call State unauthorized request
+        /// Test GetCallState with an unauthorized client
         /// </summary>
         [Fact]
         public void GetCallStateUnauthorizedRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.GetCallStateWithHttpInfo(accountId, "Call-Id"));
+            ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.GetCallStateWithHttpInfo(accountId, testCallId));
             Assert.Equal(401, Exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test Get Call State forbidden request
+        /// Test GetCallState with a forbidden client
         /// </summary>
         [Fact]
         public void GetCallStateForbiddenRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetCallStateWithHttpInfo(accountId, "Call-Id"));
+            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetCallStateWithHttpInfo(accountId, testCallId));
             Assert.Equal(403, Exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test Get Call State not found request
+        /// Test GetCallState with a fake call-id
         /// </summary>
         [Fact]
         public void GetCallStateNotFoundRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.GetCallStateWithHttpInfo(accountId, "Call-Id"));
+            ApiException Exception = Assert.Throws<ApiException>(() => instance.GetCallStateWithHttpInfo(accountId, testCallId));
             Assert.Equal(404, Exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test Update Call
+        /// Test successful UpdateCall request
         /// </summary>
         [Fact]
         public void UpdateCallTest()
@@ -232,11 +230,13 @@ namespace Bandwidth.Standard.Test.Integration
                 tag: "My Custom Tag"
             );
 
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(testSleep);
+            
             ApiResponse<Object> response = instance.UpdateCallWithHttpInfo(accountId, callId, updateCallBody);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(testSleep);
+            
             //Hanging up the call
             updateCallBody.State = CallStateEnum.Completed;
             response = instance.UpdateCallWithHttpInfo(accountId, callId, updateCallBody);
@@ -244,7 +244,7 @@ namespace Bandwidth.Standard.Test.Integration
         }
 
         /// <summary>
-        /// Test Update Call bad request
+        /// Test UpdateCall with a bad request
         /// </summary>
         [Fact]
         public void UpdateCallBadRequest()
@@ -252,7 +252,7 @@ namespace Bandwidth.Standard.Test.Integration
             CreateCallResponse createCallResponse = instance.CreateCall(accountId, mantecaCallBody);
             string callId = createCallResponse.CallId;
 
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(testSleep);
             
             fakeUpdateCall.State = null;
             ApiException Exception = Assert.Throws<ApiException>(() => instance.UpdateCall(accountId, callId, fakeUpdateCall));
@@ -265,125 +265,124 @@ namespace Bandwidth.Standard.Test.Integration
         }
 
         /// <summary>
-        /// Test Update Call unauthorized request
+        /// Test UpdateCall with an unauthorized client
         /// </summary>
         [Fact]
         public void UpdateCallUnauthorizedRequest()
         {
             fakeUpdateCall.State = CallStateEnum.Completed;
-
-            ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.UpdateCallWithHttpInfo(accountId, "Call-Id", fakeUpdateCall));
+            ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.UpdateCallWithHttpInfo(accountId, testCallId, fakeUpdateCall));
             Assert.Equal(401, Exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test Update Call forbidden request
+        /// Test UpdateCall with a forbidden client
         /// </summary>
         [Fact]
         public void UpdateCallForbiddenRequest()
         {
             CreateCallResponse createCallResponse = instance.CreateCall(accountId, mantecaCallBody);
-
             string callId = createCallResponse.CallId;
-            System.Threading.Thread.Sleep(5000);
+            
+            System.Threading.Thread.Sleep(testSleep);
+            
             fakeUpdateCall.State = CallStateEnum.Completed;
-
             ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateCall(accountId, callId, fakeUpdateCall));
             Assert.Equal(403, Exception.ErrorCode);
 
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(testSleep);
 
             ApiResponse<Object> response = instance.UpdateCallWithHttpInfo(accountId, callId, fakeUpdateCall);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
         /// <summary>
-        /// Test Update Call not found request
+        /// Test UpdateCall with a fake call-id
         /// </summary>
         [Fact]
         public void UpdateCallNotFoundRequest()
         {
             fakeUpdateCall.State = CallStateEnum.Completed;
-
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.UpdateCallWithHttpInfo(accountId, "Call-Id", fakeUpdateCall));
-            
+            ApiException Exception = Assert.Throws<ApiException>(() => instance.UpdateCallWithHttpInfo(accountId, testCallId, fakeUpdateCall));
             Assert.Equal(404, Exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test Update Call BXML
+        /// Test successful UpdateCallBxml request
         /// </summary>
         [Fact]
         public void UpdateCallBxml()
         {
             CreateCallResponse createCallResponse = instance.CreateCall(accountId, mantecaCallBody);
-
             string callId = createCallResponse.CallId;
-            System.Threading.Thread.Sleep(5000);
+            
+            System.Threading.Thread.Sleep(testSleep);
 
             ApiResponse<Object> updateCallBxmlResponse = instance.UpdateCallBxmlWithHttpInfo(accountId, callId, "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml>  <SpeakSentence>This is a test sentence.</SpeakSentence></Bxml>");
             Assert.Equal(HttpStatusCode.NoContent, updateCallBxmlResponse.StatusCode);
 
-            System.Threading.Thread.Sleep(5000);
-            
+            System.Threading.Thread.Sleep(testSleep);
+
+            // hangup call
             fakeUpdateCall.State = CallStateEnum.Completed;
             ApiResponse<Object> updateCallResponse = instance.UpdateCallWithHttpInfo(accountId, callId, fakeUpdateCall);
             Assert.Equal(HttpStatusCode.OK, updateCallResponse.StatusCode);
         }
 
         /// <summary>
-        /// Test Update Call BXML bad request
+        /// Test UpdateCallBxml with invalid BXML
         /// </summary>
         [Fact]
         public void UpdateCallBxmlBadRequest()
         {
             ApiResponse<CreateCallResponse> createCallResponse = instance.CreateCallWithHttpInfo(accountId, mantecaCallBody);
-
             string callId = createCallResponse.Data.CallId;
-            System.Threading.Thread.Sleep(5000);
+            
+            System.Threading.Thread.Sleep(testSleep);
 
             ApiException Exception = Assert.Throws<ApiException>(() => instance.UpdateCallBxmlWithHttpInfo(accountId, callId, "invalid BXML"));
             Assert.Equal(400, Exception.ErrorCode);
 
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(testSleep);
 
+            // hangup call
             fakeUpdateCall.State = CallStateEnum.Completed;
             ApiResponse<Object> updateCallResponse = instance.UpdateCallWithHttpInfo(accountId, callId, fakeUpdateCall);
             Assert.Equal(HttpStatusCode.OK, updateCallResponse.StatusCode);
         }
 
         /// <summary>
-        /// Test Update Call BXML unauthorized request
+        /// Test UpdateCallBxml with an unauthorized client
         /// </summary>
         [Fact]
         public void UpdateCallBxmlUnauthorizedRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.UpdateCallBxmlWithHttpInfo(accountId, "Call-Id", "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml>  <SpeakSentence>This is a test sentence.</SpeakSentence></Bxml>"));
+            ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.UpdateCallBxmlWithHttpInfo(accountId, testCallId, "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml>  <SpeakSentence>This is a test sentence.</SpeakSentence></Bxml>"));
             Assert.Equal(401, Exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test Update Call BXML forbidden request
+        /// Test UpdateCallBxml with a forbidden client
         /// </summary>
         [Fact]
         public void UpdateCallBxmlForbiddenRequest()
         {
             CreateCallResponse createCallResponse = instance.CreateCall(accountId, mantecaCallBody);
-
             string callId = createCallResponse.CallId;
-            System.Threading.Thread.Sleep(5000);
+            
+            System.Threading.Thread.Sleep(testSleep);
 
             ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateCallBxmlWithHttpInfo(accountId, callId, "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml>  <SpeakSentence>This is a test sentence.</SpeakSentence></Bxml>"));
             Assert.Equal(403, Exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test Update Call BXML not found request
+        /// Test UpdateCallBxml with a fake call-id
         /// </summary>
         [Fact]
         public void UpdateCallBxmlNotFoundRequest()
         {
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.UpdateCallBxmlWithHttpInfo(accountId, "Call-Id", "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml>  <SpeakSentence>This is a test sentence.</SpeakSentence></Bxml>"));
+            ApiException Exception = Assert.Throws<ApiException>(() => instance.UpdateCallBxmlWithHttpInfo(accountId, testCallId, "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml>  <SpeakSentence>This is a test sentence.</SpeakSentence></Bxml>"));
             Assert.Equal(404, Exception.ErrorCode);
         }
     }
