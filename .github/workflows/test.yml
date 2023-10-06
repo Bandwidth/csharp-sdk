@@ -32,6 +32,12 @@ jobs:
           BW_NUMBER: ${{ secrets.BW_NUMBER }}
           USER_NUMBER: ${{ secrets.USER_NUMBER }}
           BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
+          MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
+          MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
+          MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
+          MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
+          OPERATING_SYSTEM: ${{ matrix.os }}
+          CSHARP_VERSION: ${{ matrix.dotnet }}
           # Required for multiple target frameworks in the StandardTests project.
           DOTNET: ${{ matrix.dotnet }}
         run: dotnet test src/Bandwidth.Standard.Test

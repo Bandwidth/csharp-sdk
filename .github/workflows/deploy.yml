@@ -28,6 +28,12 @@ jobs:
           BW_NUMBER: ${{ secrets.BW_NUMBER }}
           USER_NUMBER: ${{ secrets.USER_NUMBER }}
           BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
+          MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
+          MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
+          MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
+          MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
+          OPERATING_SYSTEM: ${{ matrix.os }}
+          CSHARP_VERSION: ${{ matrix.dotnet }}
         run: dotnet test $BW_PROJECT_TEST_NAME
       - name: Pack NuGet package
         run: dotnet pack --configuration Release $BW_PROJECT_NAME -p:PackageVersion=$RELEASE_VERSION
