@@ -5,6 +5,8 @@ using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using System.Net;
+using System.Linq;
+using System.Diagnostics;
 
 namespace Bandwidth.Standard.Test.Integration
 {
@@ -25,6 +27,8 @@ namespace Bandwidth.Standard.Test.Integration
 
         public MFAIntegrationTests()
         {
+            accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+
             // Authorized API Client
             fakeConfiguration = new Configuration();
             fakeConfiguration.BasePath = "https://mfa.bandwidth.com/api/v1";
@@ -70,14 +74,13 @@ namespace Bandwidth.Standard.Test.Integration
                 digits: 6
             );
 
-            // Verify Code Request
+            // Verify Code Request to a random number
             verifyCodeRequest = new VerifyCodeRequest(
-                to: Environment.GetEnvironmentVariable("USER_NUMBER"),
+                to: "+1",
+                scope: "2FA",
                 expirationTimeInMinutes: 3,
                 code: "123456"
             );
-
-            accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
         }
 
         public void Dispose()
@@ -178,13 +181,22 @@ namespace Bandwidth.Standard.Test.Integration
 
         /// <summary>
         /// Test a successful VerifyCode request
+        ///  Will always have to test against False codes unless we incorporate the Manteca project into MFA
         /// </summary>
         [Fact]
         public void VerifyCodeTest()
         {
-            var response = instance.VerifyCodeWithHttpInfo(accountId, verifyCodeRequest);
-            Assert.IsType<ApiResponse<VerifyCodeResponse>>(response);
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            for(int i = 0; i < 10; i++)
+            {
+                verifyCodeRequest.To.Concat(new Random().Next(10).ToString());
+            }
+            var responseWithHttpInfo = instance.VerifyCodeWithHttpInfo(accountId, verifyCodeRequest);
+            Assert.Equal(HttpStatusCode.OK, responseWithHttpInfo.StatusCode);
+
+            var response = instance.VerifyCode(accountId, verifyCodeRequest);
+            Assert.IsType<VerifyCodeResponse>(response);
+            Assert.IsType<bool>(response.Valid);
+            Assert.False(response.Valid);
         }
 
         /// <summary>
@@ -206,5 +218,48 @@ namespace Bandwidth.Standard.Test.Integration
             ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.VerifyCode(accountId, verifyCodeRequest));
             Assert.Equal(403, Exception.ErrorCode);
         }
+
+        /// <summary>
+        /// Test VerifyCode rate limiting
+        /// </summary>
+        [Fact]
+        public void VerifyCodeRateLimiting()
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                verifyCodeRequest.To.Concat(new Random().Next(10).ToString());
+            }
+            var callCount = 1;
+            while (true)
+            {
+                try
+                {
+                    Trace.WriteLine($"Testing rate limit, attempt #{callCount}");
+                    var response = instance.VerifyCodeWithHttpInfo(accountId, verifyCodeRequest);
+                    callCount++;
+                }
+                catch (ApiException e)
+                {
+                    if (e.ErrorCode == 429)
+                    {
+                        Trace.WriteLine($"Rate limit reached");
+                        System.Threading.Thread.Sleep(35000);
+                        var response = instance.VerifyCodeWithHttpInfo(accountId, verifyCodeRequest);
+                        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+                        break;
+                    }
+                    else
+                    {
+                        throw e;
+                    }
+                }
+                catch (Exception)
+                {
+                    Trace.WriteLine($"Unexpected exception while testing rate limit");
+                    throw;
+                }
+            }
+        }
+
     }
 }
