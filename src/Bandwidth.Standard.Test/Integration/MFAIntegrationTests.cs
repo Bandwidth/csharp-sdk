@@ -188,7 +188,7 @@ namespace Bandwidth.Standard.Test.Integration
         {
             for(int i = 0; i < 10; i++)
             {
-                verifyCodeRequest.To.Concat(new Random().Next(10).ToString());
+                verifyCodeRequest.To = verifyCodeRequest.To + new Random().Next(10).ToString();
             }
             var responseWithHttpInfo = instance.VerifyCodeWithHttpInfo(accountId, verifyCodeRequest);
             Assert.Equal(HttpStatusCode.OK, responseWithHttpInfo.StatusCode);
@@ -227,7 +227,7 @@ namespace Bandwidth.Standard.Test.Integration
         {
             for(int i = 0; i < 10; i++)
             {
-                verifyCodeRequest.To.Concat(new Random().Next(10).ToString());
+                verifyCodeRequest.To = verifyCodeRequest.To + new Random().Next(10).ToString();
             }
             var callCount = 1;
             while (true)
