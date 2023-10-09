@@ -18,15 +18,17 @@ namespace Bandwidth.Standard.Test.Integration
         private string accountId;
         private Configuration fakeConfiguration;
         private MediaApi instance;
-        private System.IO.Stream testMediaBody;
         private string testMediaId;
         private string testContentType;
+        private string filePath;
         private MediaApi unauthorizedInstance;
 
 
         public MediaIntegrationTests()
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+            testContentType = "image/jpeg";
+            testMediaId = $"test-media-id-{Guid.NewGuid()}";
             // Authorized API Client
             fakeConfiguration = new Configuration();
             fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
@@ -42,12 +44,9 @@ namespace Bandwidth.Standard.Test.Integration
             unauthorizedInstance = new MediaApi(fakeConfiguration);
 
             // Create a media file to use for testing
-            testMediaId = $"test-media-id-{Guid.NewGuid()}";
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string relativePath = "../../../Fixtures/csharp_cat.jpeg";
-            string filePath = Path.Combine(baseDirectory, relativePath);
-            testMediaBody = new System.IO.FileStream(filePath, FileMode.Open);
-            testContentType = "image/jpeg";
+            filePath = Path.Combine(baseDirectory, relativePath);
         }
 
         public void Dispose()
@@ -70,6 +69,7 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void UploadMediaTest()
         {
+            var testMediaBody = new System.IO.FileStream(filePath, FileMode.Open);
             var responseWithHttpInfo = instance.UploadMediaWithHttpInfo(accountId, testMediaId, testMediaBody, testContentType);
             Assert.IsType<ApiResponse<Object>>(responseWithHttpInfo);
             Assert.Equal(HttpStatusCode.NoContent, responseWithHttpInfo.StatusCode);
@@ -82,8 +82,10 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void UploadMediaUnauthorized()
         {
+            var testMediaBody = new System.IO.FileStream(filePath, FileMode.Open);
             ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.UploadMediaWithHttpInfo(accountId, testMediaId, testMediaBody, testContentType));
             Assert.Equal(401, exception.ErrorCode);
+            testMediaBody.Close();
         }
 
         /// <summary>
@@ -92,8 +94,10 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void UploadMediaForbidden()
         {
+            var testMediaBody = new System.IO.FileStream(filePath, FileMode.Open);
             ApiException exception = Assert.Throws<ApiException>(() => instance.UploadMediaWithHttpInfo("not-an-account-id", testMediaId, testMediaBody, testContentType));
             Assert.Equal(403, exception.ErrorCode);
+            testMediaBody.Close();
         }
 
         /// <summary>
@@ -136,6 +140,7 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void GetMediaTest()
         {  
+            var testMediaBody = new System.IO.FileStream(filePath, FileMode.Open);
             var uploadResponse = instance.UploadMediaWithHttpInfo(accountId, testMediaId, testMediaBody, testContentType);
 
             var responseWithHttpInfo = instance.GetMediaWithHttpInfo(accountId, testMediaId);
@@ -182,6 +187,7 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void DeleteMediaTest()
         {
+            var testMediaBody = new System.IO.FileStream(filePath, FileMode.Open);
             var uploadResponse = instance.UploadMediaWithHttpInfo(accountId, testMediaId, testMediaBody, testContentType);
 
             var responseWithHttpInfo = instance.DeleteMediaWithHttpInfo(accountId, testMediaId);
