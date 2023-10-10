@@ -33,6 +33,10 @@ namespace Bandwidth.Standard.Test.Integration
         public ConferencesIntegrationTests()
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+            testConferenceId = "Conf-Id";
+            testMemberId = "Member-Id";
+            testRecordingId = "Recording-Id";
+            testUpdateBxml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml><SpeakSentence locale=\"en_US\" gender=\"female\" voice=\"susan\">This is test BXML.</SpeakSentence></Bxml>";
 
             // Authorized API Client
             fakeConfiguration = new Configuration();
@@ -51,7 +55,6 @@ namespace Bandwidth.Standard.Test.Integration
             fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
             fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
             forbiddenInstance = new ConferencesApi(fakeConfiguration);
-
 
             restClient =  new ApiClient(basePath: "https://voice.bandwidth.com/api/v2");
 
@@ -75,10 +78,6 @@ namespace Bandwidth.Standard.Test.Integration
             );
 
             updateConferenceMember = new UpdateConferenceMember(mute: false);
-            testConferenceId = "Conf-Id";
-            testMemberId = "Member-Id";
-            testRecordingId = "Recording-Id";
-            testUpdateBxml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml><SpeakSentence locale=\"en_US\" gender=\"female\" voice=\"susan\">This is test BXML.</SpeakSentence></Bxml>";
         }
 
         public void Dispose()

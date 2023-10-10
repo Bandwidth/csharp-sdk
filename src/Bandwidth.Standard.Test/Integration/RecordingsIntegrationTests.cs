@@ -38,7 +38,6 @@ namespace Bandwidth.Standard.Test.Integration
 
         public RecordingsIntegrationTests()
         {
-            //Constants
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
             testCallId = "callId";
             testRecordingId = "recordingId";

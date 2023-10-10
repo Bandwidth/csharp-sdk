@@ -17,17 +17,21 @@ namespace Bandwidth.Standard.Test.Integration
     {
         private string accountId;
         private CodeRequest badCodeRequest;
+        private string BW_NUMBER;
         private Configuration fakeConfiguration;
         private MFAApi forbiddenInstance;
         private MFAApi instance;
         private CodeRequest messagingCodeRequest;
         private MFAApi unauthorizedInstance;
+        private string USER_NUMBER;
         private VerifyCodeRequest verifyCodeRequest;
         private CodeRequest voiceCodeRequest;
 
         public MFAIntegrationTests()
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+            BW_NUMBER = Environment.GetEnvironmentVariable("BW_NUMBER");
+            USER_NUMBER = Environment.GetEnvironmentVariable("USER_NUMBER");
 
             // Authorized API Client
             fakeConfiguration = new Configuration();
@@ -46,8 +50,8 @@ namespace Bandwidth.Standard.Test.Integration
 
             // Code Request for generating a messaging code
             messagingCodeRequest = new CodeRequest(
-                to: Environment.GetEnvironmentVariable("USER_NUMBER"),
-                from: Environment.GetEnvironmentVariable("BW_NUMBER"),
+                to: USER_NUMBER,
+                from: BW_NUMBER,
                 applicationId: Environment.GetEnvironmentVariable("BW_MESSAGING_APPLICATION_ID"),
                 message: "Your temporary {NAME} {SCOPE} code is {CODE}",
                 scope: "2FA",
@@ -56,8 +60,8 @@ namespace Bandwidth.Standard.Test.Integration
 
             // Code Request for generating a voice code
             voiceCodeRequest = new CodeRequest(
-                to: Environment.GetEnvironmentVariable("USER_NUMBER"),
-                from: Environment.GetEnvironmentVariable("BW_NUMBER"),
+                to: USER_NUMBER,
+                from: BW_NUMBER,
                 applicationId: Environment.GetEnvironmentVariable("BW_VOICE_APPLICATION_ID"),
                 message: "Your temporary {NAME} {SCOPE} code is {CODE}",
                 scope: "2FA",
@@ -66,8 +70,8 @@ namespace Bandwidth.Standard.Test.Integration
 
             // Bad Code Request
             badCodeRequest = new CodeRequest(
-                to: Environment.GetEnvironmentVariable("USER_NUMBER"),
-                from: Environment.GetEnvironmentVariable("BW_NUMBER"),
+                to: USER_NUMBER,
+                from: BW_NUMBER,
                 applicationId: "not an application id",
                 message: "Your temporary {NAME} {SCOPE} code is {CODE}",
                 scope: "2FA",

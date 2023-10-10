@@ -24,8 +24,7 @@ namespace Bandwidth.Standard.Test.Integration
         private int testSleep;
         private CallsApi unauthorizedInstance;
         public CallsIntegrationTests()
-        {   
-            // Test Constants
+        {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
             testSleep = 5000;
             testCallId = "testCallId";

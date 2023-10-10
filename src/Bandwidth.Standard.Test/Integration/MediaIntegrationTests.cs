@@ -29,6 +29,7 @@ namespace Bandwidth.Standard.Test.Integration
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
             testContentType = "image/jpeg";
             testMediaId = $"test-media-id-{Guid.NewGuid()}";
+            
             // Authorized API Client
             fakeConfiguration = new Configuration();
             fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";

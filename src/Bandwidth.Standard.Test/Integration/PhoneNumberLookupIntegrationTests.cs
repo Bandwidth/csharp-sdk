@@ -15,6 +15,7 @@ namespace Bandwidth.Standard.Test.Integration
     public class PhoneNumberLookupIntegrationTests : IDisposable
     {
         private string accountId;
+        private string BW_NUMBER;
         private Configuration fakeConfiguration;
         private PhoneNumberLookupApi forbiddenInstance;
         private PhoneNumberLookupApi instance;
@@ -25,6 +26,7 @@ namespace Bandwidth.Standard.Test.Integration
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
             testRequestId = "test-request-id";
+            BW_NUMBER = Environment.GetEnvironmentVariable("BW_NUMBER");
 
             // Authorized API Client
             fakeConfiguration = new Configuration();
@@ -64,13 +66,13 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void GetLookupStatusTest()
         {
-            LookupRequest lookupRequest = new LookupRequest(new List<string> { Environment.GetEnvironmentVariable("BW_NUMBER") });
+            LookupRequest lookupRequest = new LookupRequest(new List<string> { BW_NUMBER });
             var response = instance.CreateLookupWithHttpInfo(accountId, lookupRequest);
 
             var lookupStatus = instance.GetLookupStatus(accountId, response.Data.RequestId);
             Assert.IsType<LookupStatus>(lookupStatus);
             Assert.Equal(response.Data.RequestId, lookupStatus.RequestId);
-            Assert.Equal(Environment.GetEnvironmentVariable("BW_NUMBER"), lookupStatus.Result[0].E164Format);
+            Assert.Equal(BW_NUMBER, lookupStatus.Result[0].E164Format);
         }
 
         /// <summary>
@@ -101,7 +103,7 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void CreateLookupTest()
         {
-            LookupRequest lookupRequest = new LookupRequest(new List<string> { Environment.GetEnvironmentVariable("BW_NUMBER") });
+            LookupRequest lookupRequest = new LookupRequest(new List<string> { BW_NUMBER });
             var response = instance.CreateLookupWithHttpInfo(accountId, lookupRequest);
             Assert.IsType<ApiResponse<CreateLookupResponse>>(response);
             Assert.Equal(LookupStatusEnum.INPROGRESS, response.Data.Status);
@@ -112,7 +114,7 @@ namespace Bandwidth.Standard.Test.Integration
             var lookupStatus = instance.GetLookupStatus(accountId, response.Data.RequestId);
             Assert.IsType<LookupStatus>(lookupStatus);
             Assert.Equal(response.Data.RequestId, lookupStatus.RequestId);
-            Assert.Equal(Environment.GetEnvironmentVariable("BW_NUMBER"), lookupStatus.Result[0].E164Format);
+            Assert.Equal(BW_NUMBER, lookupStatus.Result[0].E164Format);
 
         }
 
@@ -136,7 +138,7 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void CreateLookupDuplicateRequest()
         {
-            LookupRequest lookupRequest = new LookupRequest(new List<string> { Environment.GetEnvironmentVariable("BW_NUMBER"), Environment.GetEnvironmentVariable("BW_NUMBER") });
+            LookupRequest lookupRequest = new LookupRequest(new List<string> { BW_NUMBER, BW_NUMBER });
             ApiException Exception = Assert.Throws<ApiException>(() => instance.CreateLookup(accountId, lookupRequest));
             Assert.Equal(400, Exception.ErrorCode); 
             Assert.IsType<string>(Exception.Message);
@@ -148,7 +150,7 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void CreateLookupUnauthorizedRequest()
         {
-            LookupRequest lookupRequest = new LookupRequest(new List<string> { Environment.GetEnvironmentVariable("BW_NUMBER") });
+            LookupRequest lookupRequest = new LookupRequest(new List<string> { BW_NUMBER });
             ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.CreateLookup(accountId, lookupRequest));
             Assert.Equal(401, Exception.ErrorCode);
         }
@@ -159,7 +161,7 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void CreateLookupForbiddenRequest()
         {
-            LookupRequest lookupRequest = new LookupRequest(new List<string> { Environment.GetEnvironmentVariable("BW_NUMBER") });
+            LookupRequest lookupRequest = new LookupRequest(new List<string> { BW_NUMBER });
             ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.CreateLookup(accountId, lookupRequest));
             //This API throws a 401 when a user provides valid credentials with the `TN Lookup` role disabled
             // Assert.Equal(403, Exception.ErrorCode);
