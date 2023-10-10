@@ -40,7 +40,7 @@ namespace Bandwidth.Standard.Test.Api
             mockClient = new Mock<ISynchronousClient>();
             mockAsynchronousClient = new Mock<IAsynchronousClient>();
             fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://numbers.bandwidth.com/api/v1";
+            fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
             fakeConfiguration.Username = "username";
             fakeConfiguration.Password = "password";
             instance = new StatisticsApi(mockClient.Object, mockAsynchronousClient.Object, fakeConfiguration);

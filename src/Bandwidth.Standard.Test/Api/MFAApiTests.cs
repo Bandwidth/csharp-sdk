@@ -9,12 +9,6 @@
  */
 
 using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using RestSharp;
 using Xunit;
 
 using Bandwidth.Standard.Client;
@@ -91,7 +85,7 @@ namespace Bandwidth.Standard.Test.Api
             var response = instance.GenerateVoiceCodeWithHttpInfo(accountId, codeRequest);
             
             Assert.IsType<ApiResponse<VoiceCodeResponse>>(response);
-            Assert.Equal(HttpStatusCode.OK, apiResponse.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
         /// <summary>
