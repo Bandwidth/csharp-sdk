@@ -1,13 +1,11 @@
-name: Test
+name: Test Main Branch Nightly
 on:
   schedule:
-    - cron: '0 4 * * *'
-  pull_request:
-  workflow_dispatch:
+    - cron: "0 4 * * *"
 
 jobs:
-  test:
-    name: Test
+  test_main:
+    name: Test Main Branch Nightly
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -16,6 +14,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          ref: "main"
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
@@ -44,10 +44,15 @@ jobs:
           DOTNET: ${{ matrix.dotnet }}
         run: dotnet test src/Bandwidth.Standard.Test
 
+  notify_for_failures:
+    name: Notify for failures
+    needs: [test_main]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
       - name: Notify Slack of failures
         uses: Bandwidth/build-notify-slack-action@v1.0.0
-        if: failure() && !github.event.pull_request.draft
         with:
-          job-status: ${{ job.status }}
+          job-status: failure
           slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
           slack-channel: ${{ secrets.SLACK_CHANNEL }}
