@@ -26,7 +26,7 @@ env:
 jobs:
   deploy_pre_release:
     name: Deploy OpenAPI Generator Client Pre-Release
-    if: ${{ !github.event.release.prerelease && github.event.release.target_commitish == 'feature/openapi-generator-sdk' }}
+    if: ${{ github.event.release.prerelease && github.event.release.target_commitish == 'feature/openapi-generator-sdk' }}
     runs-on: ubuntu-latest
     env:
       BW_PROJECT_NAME: src/Bandwidth.Standard
