@@ -1,46 +1,125 @@
-name: Deploy
+name: Deploy SDK
+
 on:
   release:
     types:
       - published
+
+env:
+  BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
+  BW_USERNAME: ${{ secrets.BW_USERNAME }}
+  BW_PASSWORD: ${{ secrets.BW_PASSWORD }}
+  BW_USERNAME_FORBIDDEN: ${{ secrets.BW_USERNAME_FORBIDDEN}}
+  BW_PASSWORD_FORBIDDEN: ${{ secrets.BW_PASSWORD_FORBIDDEN}}
+  BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
+  BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
+  BW_NUMBER: ${{ secrets.BW_NUMBER }}
+  USER_NUMBER: ${{ secrets.USER_NUMBER }}
+  BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
+  MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
+  MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
+  MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
+  MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
+  OPERATING_SYSTEM: ubuntu-latest
+  CSHARP_VERSION: 7.0.x
+
 jobs:
-  publish:
-    name: Publish
-    if: ${{ !github.event.release.prerelease && github.event.release.target_commitish == 'main' }}
-    env:
-      BW_PROJECT_NAME: Bandwidth.Standard
-      BW_PROJECT_TEST_NAME: Bandwidth.StandardTests
+  deploy_pre_release:
+    name: Deploy OpenAPI Generator Client Pre-Release
+    if: ${{ !github.event.release.prerelease && github.event.release.target_commitish == 'feature/openapi-generator-sdk' }}
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+    env:
+      BW_PROJECT_NAME: src/Bandwidth.Standard
+      BW_PROJECT_TEST_NAME: src/Bandwidth.Standard.Test
+    steps: 
       - name: Set release version
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/v}" >> $GITHUB_ENV
-      - uses: actions/setup-dotnet@v1
+      
+      - name: Check Release Tag Format
+        run: |
+          re=[0-9]+\.[0-9]+\.[0-9]+b[0-9]+
+          if ! [[ $RELEASE_VERSION =~ $re ]]; then
+            echo 'Tag does not match expected regex pattern for beta releases (v[0-9]+.[0-9]+.[0-9]+b[0-9]+)'
+            echo $RELEASE_VERSION
+            echo 'Please update your tag to match the expected regex pattern'
+            exit 1
+          fi
+      
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: feature/openapi-generator-sdk
+
+      - name: Setup Dotnet
+        uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '7.0.x'
+
       - name: Run integration tests
-        env:
-          BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
-          BW_USERNAME: ${{ secrets.BW_USERNAME }}
-          BW_PASSWORD: ${{ secrets.BW_PASSWORD }}
-          BW_USERNAME_FORBIDDEN: ${{ secrets.BW_USERNAME_FORBIDDEN}}
-          BW_PASSWORD_FORBIDDEN: ${{ secrets.BW_PASSWORD_FORBIDDEN}}
-          BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
-          BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
-          BW_NUMBER: ${{ secrets.BW_NUMBER }}
-          USER_NUMBER: ${{ secrets.USER_NUMBER }}
-          BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
-          MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
-          MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
-          MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
-          MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
-          OPERATING_SYSTEM: ${{ matrix.os }}
-          CSHARP_VERSION: ${{ matrix.dotnet }}
         run: dotnet test $BW_PROJECT_TEST_NAME
+        
       - name: Pack NuGet package
         run: dotnet pack --configuration Release $BW_PROJECT_NAME -p:PackageVersion=$RELEASE_VERSION
+      
       - name: Publish NuGet package
         env:
           NUGET_KEY: ${{ secrets.NUGET_KEY }}
           NUGET_SOURCE: https://api.nuget.org/v3/index.json
         run: dotnet nuget push $BW_PROJECT_NAME/bin/Release/*.nupkg -s $NUGET_SOURCE -k $NUGET_KEY
+
+      - name: Notify Slack of build status
+        uses: Bandwidth/build-notify-slack-action@v1.0.0
+        if: always()
+        with:
+          job-status: ${{ job.status }}
+          slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
+          slack-channel: ${{ secrets.SLACK_CHANNEL }}
+
+  deploy:
+    name: deploy 'main' branch
+    if: ${{ !github.event.release.prerelease && github.event.release.target_commitish == 'main' }}
+    runs-on: ubuntu-latest
+    env:
+      BW_PROJECT_NAME: src/Bandwidth.Standard
+      BW_PROJECT_TEST_NAME: src/Bandwidth.Standard.Test
+    steps: 
+      - name: Set release version
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/v}" >> $GITHUB_ENV
+      
+      - name: Check Release Tag Format
+        run: |
+          re=[0-9]+\.[0-9]+\.[0-9]+[0-9]+
+          if ! [[ $RELEASE_VERSION =~ $re ]]; then
+            echo 'Tag does not match expected regex pattern for beta releases (v[0-9]+.[0-9]+.[0-9]+[0-9]+)'
+            echo $RELEASE_VERSION
+            echo 'Please update your tag to match the expected regex pattern'
+            exit 1
+          fi
+      
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Run integration tests
+        run: dotnet test $BW_PROJECT_TEST_NAME
+        
+      - name: Pack NuGet package
+        run: dotnet pack --configuration Release $BW_PROJECT_NAME -p:PackageVersion=$RELEASE_VERSION
+      
+      - name: Publish NuGet package
+        env:
+          NUGET_KEY: ${{ secrets.NUGET_KEY }}
+          NUGET_SOURCE: https://api.nuget.org/v3/index.json
+        run: dotnet nuget push $BW_PROJECT_NAME/bin/Release/*.nupkg -s $NUGET_SOURCE -k $NUGET_KEY
+
+      - name: Notify Slack of build status
+        uses: Bandwidth/build-notify-slack-action@v1.0.0
+        if: always()
+        with:
+          job-status: ${{ job.status }}
+          slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
+          slack-channel: ${{ secrets.SLACK_CHANNEL }}

@@ -1,0 +1,45 @@
+name: Test PR
+on:
+  pull_request:
+  workflow_dispatch:
+
+env:
+  BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
+  BW_USERNAME: ${{ secrets.BW_USERNAME }}
+  BW_PASSWORD: ${{ secrets.BW_PASSWORD }}
+  BW_USERNAME_FORBIDDEN: ${{ secrets.BW_USERNAME_FORBIDDEN}}
+  BW_PASSWORD_FORBIDDEN: ${{ secrets.BW_PASSWORD_FORBIDDEN}}
+  BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
+  BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
+  BW_NUMBER: ${{ secrets.BW_NUMBER }}
+  USER_NUMBER: ${{ secrets.USER_NUMBER }}
+  BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
+  MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
+  MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
+  MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
+  MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
+
+jobs:
+  test_pr:
+    name: Test PR
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-2022, windows-2019, ubuntu-22.04, ubuntu-20.04]
+        dotnet: [6.0.x, 7.0.x]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet }}
+
+      - name: Run functional tests
+        env:
+          OPERATING_SYSTEM: ${{ matrix.os }}
+          CSHARP_VERSION: ${{ matrix.dotnet }}
+          # Required for multiple target frameworks in the StandardTests project.
+          DOTNET: ${{ matrix.dotnet }}
+        run: dotnet test src/Bandwidth.Standard.Test
