@@ -37,9 +37,9 @@ jobs:
       
       - name: Check Release Tag Format
         run: |
-          re=[0-9]+\.[0-9]+\.[0-9]+b[0-9]+
+          re=^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-(beta|alpha|rc))(\.[0-9]+)?$
           if ! [[ $RELEASE_VERSION =~ $re ]]; then
-            echo 'Tag does not match expected regex pattern for beta releases (v[0-9]+.[0-9]+.[0-9]+b[0-9]+)'
+            echo 'Tag does not match expected regex pattern for beta releases (^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-(beta|alpha|rc))(\.[0-9]+)?$)'
             echo $RELEASE_VERSION
             echo 'Please update your tag to match the expected regex pattern'
             exit 1
@@ -88,9 +88,9 @@ jobs:
       
       - name: Check Release Tag Format
         run: |
-          re=[0-9]+\.[0-9]+\.[0-9]+[0-9]+
+          re=^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$
           if ! [[ $RELEASE_VERSION =~ $re ]]; then
-            echo 'Tag does not match expected regex pattern for beta releases (v[0-9]+.[0-9]+.[0-9]+[0-9]+)'
+            echo 'Tag does not match expected regex pattern for beta releases (^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$)'
             echo $RELEASE_VERSION
             echo 'Please update your tag to match the expected regex pattern'
             exit 1
