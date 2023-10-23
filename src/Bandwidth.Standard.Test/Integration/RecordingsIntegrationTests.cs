@@ -109,7 +109,7 @@ namespace Bandwidth.Standard.Test.Integration
             var jsonBody = JsonSerializer.Serialize(new
             {
                 os = Environment.GetEnvironmentVariable("OPERATING_SYSTEM"),
-                language = "csharp" + Environment.GetEnvironmentVariable("CSHARP_VERSION"),
+                language = "csharp" + Environment.GetEnvironmentVariable("DOTNET_VERSION"),
                 type = "CALL"
             });
             var options = new RequestOptions
