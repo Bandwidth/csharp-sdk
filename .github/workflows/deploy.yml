@@ -19,9 +19,10 @@ env:
   MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
   MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
   MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
-  MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
+  MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }} 
   OPERATING_SYSTEM: ubuntu-latest
   CSHARP_VERSION: 7.0.x
+  DOTNET: 7.0.x
 
 jobs:
   deploy_pre_release:
@@ -54,7 +55,7 @@ jobs:
         with:
           dotnet-version: '7.0.x'
 
-      - name: Run integration tests
+      - name: Run functional tests
         run: dotnet test $BW_PROJECT_TEST_NAME
         
       - name: Pack NuGet package
@@ -102,7 +103,7 @@ jobs:
         with:
           dotnet-version: '7.0.x'
 
-      - name: Run integration tests
+      - name: Run functional tests
         run: dotnet test $BW_PROJECT_TEST_NAME
         
       - name: Pack NuGet package
