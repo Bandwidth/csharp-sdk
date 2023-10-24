@@ -41,9 +41,7 @@ jobs:
       - name: Run functional tests
         env:
           OPERATING_SYSTEM: ${{ matrix.os }}
-          CSHARP_VERSION: ${{ matrix.dotnet }}
-          # Required for multiple target frameworks in the StandardTests project.
-          DOTNET: ${{ matrix.dotnet }}
+          DOTNET_VERSION: ${{ matrix.dotnet }}
         run: dotnet test src/Bandwidth.Standard.Test
 
   test_feature:
@@ -67,9 +65,7 @@ jobs:
       - name: Run functional tests
         env:
           OPERATING_SYSTEM: ${{ matrix.os }}
-          CSHARP_VERSION: ${{ matrix.dotnet }}
-          # Required for multiple target frameworks in the StandardTests project.
-          DOTNET: ${{ matrix.dotnet }}
+          DOTNET_VERSION: ${{ matrix.dotnet }}
         run: dotnet test src/Bandwidth.Standard.Test
 
   notify_for_failures:
