@@ -11,6 +11,7 @@
     <FileVersion>1.0.0.0</FileVersion>
     <Description>.NET client library for the bandwidth API</Description>
     <LangVersion>7.3</LangVersion>
+    <Copyright>Copyright © Bandwidth 2023</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
