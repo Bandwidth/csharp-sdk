@@ -1,8 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <AssemblyName>Bandwidth.Standard.Test</AssemblyName>
-    <RootNamespace>Bandwidth.Standard.Test</RootNamespace>
     <TargetFramework Condition="'$(DOTNET_VERSION)' == '6.0.x' Or '$(DOTNET_VERSION)' == ''">net6.0</TargetFramework>
     <TargetFramework Condition="'$(DOTNET_VERSION)' == '7.0.x'">net7.0</TargetFramework>
     <IsPackable>false</IsPackable>

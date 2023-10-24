@@ -23,4 +23,5 @@
 #!docs/README.md
 
 .gitignore
-
+src/Bandwidth.Standard.Test/Bandwidth.Standard.Test.csproj
+src/Bandwidth.Standard/Bandwidth.Standard.csproj
