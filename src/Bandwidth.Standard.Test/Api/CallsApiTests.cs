@@ -250,7 +250,7 @@ namespace Bandwidth.Standard.Test.Api
             mockClient.Setup(x => x.Get<List<CallState>>("/accounts/{accountId}/calls", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
             var response = instance.ListCallsWithHttpInfo(accountId);
 
-            Assert.IsType<ApiResponse<CallState[]>>(response);
+            Assert.IsType<ApiResponse<List<CallState>>>(response);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
