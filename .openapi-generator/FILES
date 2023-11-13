@@ -99,7 +99,6 @@ docs/VerifyCodeResponse.md
 docs/VoiceApiError.md
 docs/VoiceCodeResponse.md
 git_push.sh
-src/Bandwidth.Standard.Test/Bandwidth.Standard.Test.csproj
 src/Bandwidth.Standard/Api/CallsApi.cs
 src/Bandwidth.Standard/Api/ConferencesApi.cs
 src/Bandwidth.Standard/Api/MFAApi.cs
@@ -108,7 +107,6 @@ src/Bandwidth.Standard/Api/MessagesApi.cs
 src/Bandwidth.Standard/Api/PhoneNumberLookupApi.cs
 src/Bandwidth.Standard/Api/RecordingsApi.cs
 src/Bandwidth.Standard/Api/StatisticsApi.cs
-src/Bandwidth.Standard/Bandwidth.Standard.csproj
 src/Bandwidth.Standard/Client/ApiClient.cs
 src/Bandwidth.Standard/Client/ApiException.cs
 src/Bandwidth.Standard/Client/ApiResponse.cs

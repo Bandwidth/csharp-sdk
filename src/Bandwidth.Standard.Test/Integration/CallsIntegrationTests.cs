@@ -5,6 +5,7 @@ using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using System.Net;
+using System.Collections.Generic;
 
 namespace Bandwidth.Standard.Test.Integration
 {
@@ -205,6 +206,37 @@ namespace Bandwidth.Standard.Test.Integration
         {
             ApiException Exception = Assert.Throws<ApiException>(() => instance.GetCallStateWithHttpInfo(accountId, testCallId));
             Assert.Equal(404, Exception.ErrorCode);
+        }
+
+        /// <summary>
+        /// Test successful ListCalls request
+        /// </summary>
+        [Fact]
+        public void ListCallsTest()
+        {
+            ApiResponse<List<CallState>> response = instance.ListCallsWithHttpInfo(accountId);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsType<List<CallState>>(response.Data);
+        }
+
+        /// <summary>
+        /// Test ListCalls with an unauthorized client
+        /// </summary>
+        [Fact]
+        public void ListCallsUnauthorizedRequest()
+        {
+            ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.ListCallsWithHttpInfo(accountId));
+            Assert.Equal(401, Exception.ErrorCode);
+        } 
+
+        /// <summary>
+        /// Test ListCalls with a forbidden client
+        /// </summary>
+        [Fact]
+        public void ListCallsForbiddenRequest()
+        {
+            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.ListCallsWithHttpInfo(accountId));
+            Assert.Equal(403, Exception.ErrorCode);
         }
 
         /// <summary>
