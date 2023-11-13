@@ -238,7 +238,7 @@ namespace Bandwidth.Standard.Test.Api
         /// <summary>
         /// Test ListCalls
         /// </summary>
-        // [Fact]
+        [Fact]
         public void ListCallsTest()
         {
             string accountId = "9900000";
