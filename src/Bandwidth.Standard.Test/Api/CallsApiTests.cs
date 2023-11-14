@@ -152,8 +152,8 @@ namespace Bandwidth.Standard.Test.Api
                 applicationId: "1234-qwer-5679-tyui",
                 answerUrl: "https://www.myCallbackServer.example/webhooks/answer"
             );
-            fakeConfiguration.Username = "badUsername";
-            fakeConfiguration.Password = "badPassword";
+            fakeConfiguration.Username = "forbiddenUsername";
+            fakeConfiguration.Password = "forbiddenPassword";
 
             var apiResponse = new ApiResponse<CreateCallResponse>(HttpStatusCode.Forbidden, null);
             mockClient.Setup(x => x.Post<CreateCallResponse>("/accounts/{accountId}/calls", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
@@ -233,6 +233,61 @@ namespace Bandwidth.Standard.Test.Api
 
             Assert.Equal("Error calling GetCallState: ", Exception.Message);
             Assert.Equal(404, Exception.ErrorCode);
+        }
+        
+        /// <summary>
+        /// Test ListCalls
+        /// </summary>
+        [Fact]
+        public void ListCallsTest()
+        {
+            string accountId = "9900000";
+            CallState callState = new CallState(
+                state: "answered"
+            );
+
+            var apiResponse = new ApiResponse<List<CallState>>(HttpStatusCode.OK, new List<CallState>() { callState });
+            mockClient.Setup(x => x.Get<List<CallState>>("/accounts/{accountId}/calls", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
+            var response = instance.ListCallsWithHttpInfo(accountId);
+
+            Assert.IsType<ApiResponse<List<CallState>>>(response);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        /// <summary>
+        /// Test unauthorized ListCalls Request
+        /// </summary>
+        [Fact]
+        public void ListCallsUnauthorizedRequest()
+        {
+            string accountId = "9900000";
+            fakeConfiguration.Username = "badUsername";
+            fakeConfiguration.Password = "badPassword";
+
+            var apiResponse = new ApiResponse<List<CallState>>(HttpStatusCode.Unauthorized, null);
+            mockClient.Setup(x => x.Get<List<CallState>>("/accounts/{accountId}/calls", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
+            ApiException Exception = Assert.Throws<ApiException>(() => instance.ListCalls(accountId));
+
+            Assert.Equal("Error calling ListCalls: ", Exception.Message);
+            Assert.Equal(401, Exception.ErrorCode);
+        }
+
+        /// <summary>
+        /// Test forbidden ListCalls Request
+        /// </summary>
+        [Fact]
+        public void ListCallsForbiddenRequest()
+        {
+            string accountId = "9900000";
+            fakeConfiguration.Username = "forbiddenUsername";
+            fakeConfiguration.Password = "forbiddenPassword";
+
+            var apiResponse = new ApiResponse<List<CallState>>(HttpStatusCode.Forbidden, null);
+            mockClient.Setup(x => x.Get<List<CallState>>("/accounts/{accountId}/calls", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
+            ApiException Exception = Assert.Throws<ApiException>(() => instance.ListCalls(accountId));
+
+            Assert.Equal("Error calling ListCalls: ", Exception.Message);
+            Assert.Equal(403, Exception.ErrorCode);
         }
 
         /// <summary>

@@ -109,6 +109,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *CallsApi* | [**CreateCall**](docs/CallsApi.md#createcall) | **POST** /accounts/{accountId}/calls | Create Call
 *CallsApi* | [**GetCallState**](docs/CallsApi.md#getcallstate) | **GET** /accounts/{accountId}/calls/{callId} | Get Call State Information
+*CallsApi* | [**ListCalls**](docs/CallsApi.md#listcalls) | **GET** /accounts/{accountId}/calls | Get Calls
 *CallsApi* | [**UpdateCall**](docs/CallsApi.md#updatecall) | **POST** /accounts/{accountId}/calls/{callId} | Update Call
 *CallsApi* | [**UpdateCallBxml**](docs/CallsApi.md#updatecallbxml) | **PUT** /accounts/{accountId}/calls/{callId}/bxml | Update Call BXML
 *ConferencesApi* | [**DownloadConferenceRecording**](docs/ConferencesApi.md#downloadconferencerecording) | **GET** /accounts/{accountId}/conferences/{conferenceId}/recordings/{recordingId}/media | Download Conference Recording

@@ -78,6 +78,43 @@ namespace Bandwidth.Standard.Api
         /// <returns>ApiResponse of CallState</returns>
         ApiResponse<CallState> GetCallStateWithHttpInfo(string accountId, string callId, int operationIndex = 0);
         /// <summary>
+        /// Get Calls
+        /// </summary>
+        /// <remarks>
+        /// Returns a max of 10000 calls, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of calls in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of call records. Also, call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an empty array [] in response.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
+        /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
+        /// <param name="minStartTime">Filter results to calls which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="maxStartTime">Filter results to calls which have a &#x60;startTime&#x60; before or including &#x60;maxStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="disconnectCause">Filter results to calls with specified call Disconnect Cause. (optional)</param>
+        /// <param name="pageSize">Specifies the max number of calls that will be returned. (optional, default to 1000)</param>
+        /// <param name="pageToken">Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>List&lt;CallState&gt;</returns>
+        List<CallState> ListCalls(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), string disconnectCause = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0);
+
+        /// <summary>
+        /// Get Calls
+        /// </summary>
+        /// <remarks>
+        /// Returns a max of 10000 calls, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of calls in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of call records. Also, call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an empty array [] in response.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
+        /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
+        /// <param name="minStartTime">Filter results to calls which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="maxStartTime">Filter results to calls which have a &#x60;startTime&#x60; before or including &#x60;maxStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="disconnectCause">Filter results to calls with specified call Disconnect Cause. (optional)</param>
+        /// <param name="pageSize">Specifies the max number of calls that will be returned. (optional, default to 1000)</param>
+        /// <param name="pageToken">Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of List&lt;CallState&gt;</returns>
+        ApiResponse<List<CallState>> ListCallsWithHttpInfo(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), string disconnectCause = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0);
+        /// <summary>
         /// Update Call
         /// </summary>
         /// <remarks>
@@ -194,6 +231,45 @@ namespace Bandwidth.Standard.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CallState)</returns>
         System.Threading.Tasks.Task<ApiResponse<CallState>> GetCallStateWithHttpInfoAsync(string accountId, string callId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Get Calls
+        /// </summary>
+        /// <remarks>
+        /// Returns a max of 10000 calls, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of calls in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of call records. Also, call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an empty array [] in response.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
+        /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
+        /// <param name="minStartTime">Filter results to calls which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="maxStartTime">Filter results to calls which have a &#x60;startTime&#x60; before or including &#x60;maxStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="disconnectCause">Filter results to calls with specified call Disconnect Cause. (optional)</param>
+        /// <param name="pageSize">Specifies the max number of calls that will be returned. (optional, default to 1000)</param>
+        /// <param name="pageToken">Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of List&lt;CallState&gt;</returns>
+        System.Threading.Tasks.Task<List<CallState>> ListCallsAsync(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), string disconnectCause = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Get Calls
+        /// </summary>
+        /// <remarks>
+        /// Returns a max of 10000 calls, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of calls in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of call records. Also, call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an empty array [] in response.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
+        /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
+        /// <param name="minStartTime">Filter results to calls which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="maxStartTime">Filter results to calls which have a &#x60;startTime&#x60; before or including &#x60;maxStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="disconnectCause">Filter results to calls with specified call Disconnect Cause. (optional)</param>
+        /// <param name="pageSize">Specifies the max number of calls that will be returned. (optional, default to 1000)</param>
+        /// <param name="pageToken">Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (List&lt;CallState&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<CallState>>> ListCallsWithHttpInfoAsync(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), string disconnectCause = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Update Call
         /// </summary>
@@ -713,6 +789,246 @@ namespace Bandwidth.Standard.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetCallState", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Calls Returns a max of 10000 calls, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of calls in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of call records. Also, call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an empty array [] in response.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
+        /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
+        /// <param name="minStartTime">Filter results to calls which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="maxStartTime">Filter results to calls which have a &#x60;startTime&#x60; before or including &#x60;maxStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="disconnectCause">Filter results to calls with specified call Disconnect Cause. (optional)</param>
+        /// <param name="pageSize">Specifies the max number of calls that will be returned. (optional, default to 1000)</param>
+        /// <param name="pageToken">Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>List&lt;CallState&gt;</returns>
+        public List<CallState> ListCalls(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), string disconnectCause = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0)
+        {
+            Bandwidth.Standard.Client.ApiResponse<List<CallState>> localVarResponse = ListCallsWithHttpInfo(accountId, to, from, minStartTime, maxStartTime, disconnectCause, pageSize, pageToken);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Calls Returns a max of 10000 calls, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of calls in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of call records. Also, call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an empty array [] in response.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
+        /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
+        /// <param name="minStartTime">Filter results to calls which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="maxStartTime">Filter results to calls which have a &#x60;startTime&#x60; before or including &#x60;maxStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="disconnectCause">Filter results to calls with specified call Disconnect Cause. (optional)</param>
+        /// <param name="pageSize">Specifies the max number of calls that will be returned. (optional, default to 1000)</param>
+        /// <param name="pageToken">Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of List&lt;CallState&gt;</returns>
+        public Bandwidth.Standard.Client.ApiResponse<List<CallState>> ListCallsWithHttpInfo(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), string disconnectCause = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+            {
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling CallsApi->ListCalls");
+            }
+
+            Bandwidth.Standard.Client.RequestOptions localVarRequestOptions = new Bandwidth.Standard.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Bandwidth.Standard.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Bandwidth.Standard.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("accountId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (to != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "to", to));
+            }
+            if (from != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "from", from));
+            }
+            if (minStartTime != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "minStartTime", minStartTime));
+            }
+            if (maxStartTime != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "maxStartTime", maxStartTime));
+            }
+            if (disconnectCause != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "disconnectCause", disconnectCause));
+            }
+            if (pageSize != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "pageSize", pageSize));
+            }
+            if (pageToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "pageToken", pageToken));
+            }
+
+            localVarRequestOptions.Operation = "CallsApi.ListCalls";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<List<CallState>>("/accounts/{accountId}/calls", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListCalls", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Calls Returns a max of 10000 calls, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of calls in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of call records. Also, call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an empty array [] in response.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
+        /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
+        /// <param name="minStartTime">Filter results to calls which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="maxStartTime">Filter results to calls which have a &#x60;startTime&#x60; before or including &#x60;maxStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="disconnectCause">Filter results to calls with specified call Disconnect Cause. (optional)</param>
+        /// <param name="pageSize">Specifies the max number of calls that will be returned. (optional, default to 1000)</param>
+        /// <param name="pageToken">Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of List&lt;CallState&gt;</returns>
+        public async System.Threading.Tasks.Task<List<CallState>> ListCallsAsync(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), string disconnectCause = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Bandwidth.Standard.Client.ApiResponse<List<CallState>> localVarResponse = await ListCallsWithHttpInfoAsync(accountId, to, from, minStartTime, maxStartTime, disconnectCause, pageSize, pageToken, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Calls Returns a max of 10000 calls, sorted by &#x60;createdTime&#x60; from oldest to newest.  **NOTE:** If the number of calls in the account is bigger than &#x60;pageSize&#x60;, a &#x60;Link&#x60; header (with format &#x60;&lt;{url}&gt;; rel&#x3D;\&quot;next\&quot;&#x60;) will be returned in the response. The url can be used to retrieve the next page of call records. Also, call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an empty array [] in response.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="to">Filter results by the &#x60;to&#x60; field. (optional)</param>
+        /// <param name="from">Filter results by the &#x60;from&#x60; field. (optional)</param>
+        /// <param name="minStartTime">Filter results to calls which have a &#x60;startTime&#x60; after or including &#x60;minStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="maxStartTime">Filter results to calls which have a &#x60;startTime&#x60; before or including &#x60;maxStartTime&#x60; (in ISO8601 format). (optional)</param>
+        /// <param name="disconnectCause">Filter results to calls with specified call Disconnect Cause. (optional)</param>
+        /// <param name="pageSize">Specifies the max number of calls that will be returned. (optional, default to 1000)</param>
+        /// <param name="pageToken">Not intended for explicit use. To use pagination, follow the links in the &#x60;Link&#x60; header of the response, as indicated in the endpoint description. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (List&lt;CallState&gt;)</returns>
+        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<List<CallState>>> ListCallsWithHttpInfoAsync(string accountId, string to = default(string), string from = default(string), string minStartTime = default(string), string maxStartTime = default(string), string disconnectCause = default(string), int? pageSize = default(int?), string pageToken = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+            {
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling CallsApi->ListCalls");
+            }
+
+
+            Bandwidth.Standard.Client.RequestOptions localVarRequestOptions = new Bandwidth.Standard.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Bandwidth.Standard.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Bandwidth.Standard.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("accountId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (to != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "to", to));
+            }
+            if (from != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "from", from));
+            }
+            if (minStartTime != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "minStartTime", minStartTime));
+            }
+            if (maxStartTime != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "maxStartTime", maxStartTime));
+            }
+            if (disconnectCause != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "disconnectCause", disconnectCause));
+            }
+            if (pageSize != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "pageSize", pageSize));
+            }
+            if (pageToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "pageToken", pageToken));
+            }
+
+            localVarRequestOptions.Operation = "CallsApi.ListCalls";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<CallState>>("/accounts/{accountId}/calls", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListCalls", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;

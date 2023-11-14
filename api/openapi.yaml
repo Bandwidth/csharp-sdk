@@ -685,6 +685,184 @@ paths:
     - description: Production
       url: https://messaging.bandwidth.com/api/v2
   /accounts/{accountId}/calls:
+    get:
+      description: |-
+        Returns a max of 10000 calls, sorted by `createdTime` from oldest to newest.
+
+        **NOTE:** If the number of calls in the account is bigger than `pageSize`, a `Link` header (with format `<{url}>; rel="next"`) will be returned in the response. The url can be used to retrieve the next page of call records.
+        Also, call information is kept for 7 days after the calls are hung up. If you attempt to retrieve information for a call that is older than 7 days, you will get an empty array [] in response.
+      operationId: listCalls
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Filter results by the `to` field.
+        example: '%2b19195551234'
+        explode: true
+        in: query
+        name: to
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results by the `from` field.
+        example: '%2b19195554321'
+        explode: true
+        in: query
+        name: from
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results to calls which have a `startTime` after or including
+          `minStartTime` (in ISO8601 format).
+        example: 2022-06-21T19:13:21Z
+        explode: true
+        in: query
+        name: minStartTime
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results to calls which have a `startTime` before or including
+          `maxStartTime` (in ISO8601 format).
+        example: 2022-06-21T19:13:21Z
+        explode: true
+        in: query
+        name: maxStartTime
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter results to calls with specified call Disconnect Cause.
+        example: hangup
+        explode: true
+        in: query
+        name: disconnectCause
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Specifies the max number of calls that will be returned.
+        example: 500
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 1000
+          format: int32
+          maximum: 10000
+          minimum: 1
+          type: integer
+        style: form
+      - description: "Not intended for explicit use. To use pagination, follow the\
+          \ links in the `Link` header of the response, as indicated in the endpoint\
+          \ description."
+        explode: true
+        in: query
+        name: pageToken
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/callState'
+                type: array
+          description: Calls retrieved successfully
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestErrorExample:
+                  $ref: '#/components/examples/voiceBadRequestErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedErrorExample:
+                  $ref: '#/components/examples/voiceUnauthorizedErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenErrorExample:
+                  $ref: '#/components/examples/voiceForbiddenErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundErrorExample:
+                  $ref: '#/components/examples/voiceNotFoundErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                notAllowedErrorExample:
+                  $ref: '#/components/examples/voiceNotAllowedErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Method Not Allowed
+        "415":
+          content:
+            application/json:
+              examples:
+                tooManyRequestsErrorExample:
+                  $ref: '#/components/examples/voiceUnsupportedMediaTypeErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Unsupported Media Type
+        "429":
+          content:
+            application/json:
+              examples:
+                tooManyRequestsErrorExample:
+                  $ref: '#/components/examples/voiceTooManyRequestsErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: When you should try your request again.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerErrorExample:
+                  $ref: '#/components/examples/voiceInternalServerErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Internal Server Error
+      summary: Get Calls
+      tags:
+      - Calls
     post:
       description: |-
         Creates an outbound phone call.
@@ -4552,12 +4730,58 @@ components:
         minimum: 1
         type: integer
       style: form
+    minStartTimeCalls:
+      description: Filter results to calls which have a `startTime` after or including
+        `minStartTime` (in ISO8601 format).
+      example: 2022-06-21T19:13:21Z
+      explode: true
+      in: query
+      name: minStartTime
+      required: false
+      schema:
+        type: string
+      style: form
+    maxStartTimeCalls:
+      description: Filter results to calls which have a `startTime` before or including
+        `maxStartTime` (in ISO8601 format).
+      example: 2022-06-21T19:13:21Z
+      explode: true
+      in: query
+      name: maxStartTime
+      required: false
+      schema:
+        type: string
+      style: form
+    pageSizeCalls:
+      description: Specifies the max number of calls that will be returned.
+      example: 500
+      explode: true
+      in: query
+      name: pageSize
+      required: false
+      schema:
+        default: 1000
+        format: int32
+        maximum: 10000
+        minimum: 1
+        type: integer
+      style: form
     pageToken1:
       description: "Not intended for explicit use. To use pagination, follow the links\
         \ in the `Link` header of the response, as indicated in the endpoint description."
       explode: true
       in: query
       name: pageToken
+      required: false
+      schema:
+        type: string
+      style: form
+    disconnectCause:
+      description: Filter results to calls with specified call Disconnect Cause.
+      example: hangup
+      explode: true
+      in: query
+      name: disconnectCause
       required: false
       schema:
         type: string
@@ -4972,6 +5196,14 @@ components:
           schema:
             $ref: '#/components/schemas/callState'
       description: Call found
+    listCallsResponse:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/callState'
+            type: array
+      description: Calls retrieved successfully
     getStatisticsResponse:
       content:
         application/json:

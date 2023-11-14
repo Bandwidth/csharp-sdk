@@ -154,6 +154,18 @@ namespace Bandwidth.Standard.Client
                     }
                 },
                 {
+                    "CallsApi.ListCalls", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://voice.bandwidth.com/api/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
                     "CallsApi.UpdateCall", new List<IReadOnlyDictionary<string, object>>
                     {
                         {
