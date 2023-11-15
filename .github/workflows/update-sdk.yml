@@ -70,10 +70,6 @@ jobs:
           language: csharp
           config: openapi-config.yml
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-            dotnet-version: ${{ matrix.dotnet }}
 
       - name: Open Pull Request
         if: steps.build.outputs.changes
