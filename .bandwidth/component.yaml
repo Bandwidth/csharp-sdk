@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  schemaVersion: v1.0.0
+  name: csharp-sdk
+  description: C# sdk
+  annotations:
+    github.com/project-slug: Bandwidth/csharp-sdk
+  organization: BW
+  costCenter: UNKNOWN
+  buildPlatform: GitHub Actions
+spec:
+  type: Library
+  owner: github/band-swi
+  lifecycle: Available
