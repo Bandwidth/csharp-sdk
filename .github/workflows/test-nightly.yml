@@ -44,33 +44,9 @@ jobs:
           DOTNET_VERSION: ${{ matrix.dotnet }}
         run: dotnet test src/Bandwidth.Standard.Test
 
-  test_feature:
-    name: Test Feature Branch Nightly
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-2022, windows-2019, ubuntu-22.04, ubuntu-20.04]
-        dotnet: [6.0.x, 7.0.x]
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-        with:
-          ref: "feature/openapi-generator-sdk"
-
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: ${{ matrix.dotnet }}
-
-      - name: Run functional tests
-        env:
-          OPERATING_SYSTEM: ${{ matrix.os }}
-          DOTNET_VERSION: ${{ matrix.dotnet }}
-        run: dotnet test src/Bandwidth.Standard.Test
-
   notify_for_failures:
     name: Notify for failures
-    needs: [test_main, test_feature]
+    needs: [test_main]
     if: failure()
     runs-on: ubuntu-latest
     steps:
