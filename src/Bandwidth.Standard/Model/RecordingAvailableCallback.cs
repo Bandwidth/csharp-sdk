@@ -64,12 +64,12 @@ namespace Bandwidth.Standard.Model
         /// <param name="endTime">The time that the recording ended in ISO-8601 format.</param>
         /// <param name="duration">The duration of the recording in ISO-8601 format.</param>
         /// <param name="fileFormat">fileFormat.</param>
-        /// <param name="channels">The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values..</param>
+        /// <param name="channels">Always &#x60;1&#x60; for conference recordings; multi-channel recordings are not supported on conferences..</param>
         /// <param name="tag">(optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present..</param>
         /// <param name="status">The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values..</param>
         /// <param name="transferCallerId">The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous, Private, or Unavailable..</param>
         /// <param name="transferTo">The phone number used as the to field of the B-leg call, in E.164 format (e.g. +15555555555)..</param>
-        public RecordingAvailableCallback(string eventType = default(string), DateTime eventTime = default(DateTime), string accountId = default(string), string applicationId = default(string), string from = default(string), string to = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), string callId = default(string), string callUrl = default(string), string parentCallId = default(string), string recordingId = default(string), string mediaUrl = default(string), DateTime? enqueuedTime = default(DateTime?), DateTime startTime = default(DateTime), DateTime endTime = default(DateTime), string duration = default(string), FileFormatEnum? fileFormat = default(FileFormatEnum?), string channels = default(string), string tag = default(string), string status = default(string), string transferCallerId = default(string), string transferTo = default(string))
+        public RecordingAvailableCallback(string eventType = default(string), DateTime eventTime = default(DateTime), string accountId = default(string), string applicationId = default(string), string from = default(string), string to = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), string callId = default(string), string callUrl = default(string), string parentCallId = default(string), string recordingId = default(string), string mediaUrl = default(string), DateTime? enqueuedTime = default(DateTime?), DateTime startTime = default(DateTime), DateTime endTime = default(DateTime), string duration = default(string), FileFormatEnum? fileFormat = default(FileFormatEnum?), int channels = default(int), string tag = default(string), string status = default(string), string transferCallerId = default(string), string transferTo = default(string))
         {
             this.EventType = eventType;
             this.EventTime = eventTime;
@@ -216,12 +216,12 @@ namespace Bandwidth.Standard.Model
         public string Duration { get; set; }
 
         /// <summary>
-        /// The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values.
+        /// Always &#x60;1&#x60; for conference recordings; multi-channel recordings are not supported on conferences.
         /// </summary>
-        /// <value>The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values.</value>
-        /// <example>completed</example>
+        /// <value>Always &#x60;1&#x60; for conference recordings; multi-channel recordings are not supported on conferences.</value>
+        /// <example>1</example>
         [DataMember(Name = "channels", EmitDefaultValue = false)]
-        public string Channels { get; set; }
+        public int Channels { get; set; }
 
         /// <summary>
         /// (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present.
@@ -405,8 +405,7 @@ namespace Bandwidth.Standard.Model
                 ) && 
                 (
                     this.Channels == input.Channels ||
-                    (this.Channels != null &&
-                    this.Channels.Equals(input.Channels))
+                    this.Channels.Equals(input.Channels)
                 ) && 
                 (
                     this.Tag == input.Tag ||
@@ -501,10 +500,7 @@ namespace Bandwidth.Standard.Model
                     hashCode = (hashCode * 59) + this.Duration.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.FileFormat.GetHashCode();
-                if (this.Channels != null)
-                {
-                    hashCode = (hashCode * 59) + this.Channels.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Channels.GetHashCode();
                 if (this.Tag != null)
                 {
                     hashCode = (hashCode * 59) + this.Tag.GetHashCode();
