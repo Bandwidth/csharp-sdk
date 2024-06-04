@@ -48,7 +48,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="applicationId">The ID of the Application your from number is associated with in the Bandwidth Phone Number Dashboard. (required).</param>
         /// <param name="to">The phone number(s) the message should be sent to in E164 format. (required).</param>
-        /// <param name="from">One of your telephone numbers the message should come from in E164 format. (required).</param>
+        /// <param name="from">Either an alphanumeric sender ID or the sender&#39;s Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.  Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &amp;. Alphanumeric Sender IDs must contain at least one letter. (required).</param>
         /// <param name="text">The contents of the text message. Must be 2048 characters or less..</param>
         /// <param name="media">A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters..</param>
         /// <param name="tag">A custom string that will be included in callback events of the message. Max 1024 characters..</param>
@@ -98,9 +98,9 @@ namespace Bandwidth.Standard.Model
         public List<string> To { get; set; }
 
         /// <summary>
-        /// One of your telephone numbers the message should come from in E164 format.
+        /// Either an alphanumeric sender ID or the sender&#39;s Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.  Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &amp;. Alphanumeric Sender IDs must contain at least one letter.
         /// </summary>
-        /// <value>One of your telephone numbers the message should come from in E164 format.</value>
+        /// <value>Either an alphanumeric sender ID or the sender&#39;s Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.  Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &amp;. Alphanumeric Sender IDs must contain at least one letter.</value>
         /// <example>+15551113333</example>
         [DataMember(Name = "from", IsRequired = true, EmitDefaultValue = true)]
         public string From { get; set; }
