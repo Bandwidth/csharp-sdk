@@ -18,6 +18,7 @@ tags:
 - name: Conferences
 - name: Recordings
 - name: Statistics
+- name: Transcriptions
 - name: MFA
 - name: Phone Number Lookup
 paths:
@@ -3336,7 +3337,7 @@ paths:
         Deletes the specified recording's transcription.
 
         Note: After the deletion is requested and a `204` is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
-      operationId: deleteCallTranscription
+      operationId: deleteRecordingTranscription
       parameters:
       - description: Your Bandwidth Account ID.
         example: "9900000"
@@ -3453,11 +3454,10 @@ paths:
     get:
       description: |-
         Downloads the specified transcription.
-
-        If the transcribed recording was multi-channel, then there will be 2 transcripts.
+        If the recording was multi-channel, then there will be 2 transcripts.
         The caller/called party transcript will be the first item while [`<PlayAudio>`](/docs/voice/bxml/playAudio) and [`<SpeakSentence>`](/docs/voice/bxml/speakSentence) transcript will be the second item.
         During a [`<Transfer>`](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
-      operationId: getCallTranscription
+      operationId: getRecordingTranscription
       parameters:
       - description: Your Bandwidth Account ID.
         example: "9900000"
@@ -3491,8 +3491,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/transcriptionList'
-          description: Transcription found
+                $ref: '#/components/schemas/recordingTranscriptions'
+          description: Transcription found.
         "400":
           content:
             application/json:
@@ -3802,6 +3802,365 @@ paths:
       summary: Get Account Statistics
       tags:
       - Statistics
+    servers:
+    - description: Production
+      url: https://voice.bandwidth.com/api/v2
+  /accounts/{accountId}/calls/{callId}/transcriptions:
+    get:
+      description: "Enumerates the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription)."
+      operationId: listRealTimeTranscriptions
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Programmable Voice API Call ID.
+        example: c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        explode: false
+        in: path
+        name: callId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/callTranscriptionMetadataList'
+          description: Transcription found.
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestErrorExample:
+                  $ref: '#/components/examples/voiceBadRequestErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedErrorExample:
+                  $ref: '#/components/examples/voiceUnauthorizedErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenErrorExample:
+                  $ref: '#/components/examples/voiceForbiddenErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundErrorExample:
+                  $ref: '#/components/examples/voiceNotFoundErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                notAllowedErrorExample:
+                  $ref: '#/components/examples/voiceNotAllowedErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Method Not Allowed
+        "415":
+          content:
+            application/json:
+              examples:
+                tooManyRequestsErrorExample:
+                  $ref: '#/components/examples/voiceUnsupportedMediaTypeErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Unsupported Media Type
+        "429":
+          content:
+            application/json:
+              examples:
+                tooManyRequestsErrorExample:
+                  $ref: '#/components/examples/voiceTooManyRequestsErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: When you should try your request again.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerErrorExample:
+                  $ref: '#/components/examples/voiceInternalServerErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Internal Server Error
+      summary: Enumerate transcriptions made with StartTranscription
+      tags:
+      - Transcriptions
+    servers:
+    - description: Production
+      url: https://voice.bandwidth.com/api/v2
+  /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId}:
+    delete:
+      description: |-
+        Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
+
+        Note: After the deletion is requested and a `204` is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+      operationId: deleteRealTimeTranscription
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Programmable Voice API Call ID.
+        example: c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        explode: false
+        in: path
+        name: callId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Programmable Voice API Transcription ID.
+        example: t-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        explode: false
+        in: path
+        name: transcriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Transcription data was deleted.
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestErrorExample:
+                  $ref: '#/components/examples/voiceBadRequestErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedErrorExample:
+                  $ref: '#/components/examples/voiceUnauthorizedErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenErrorExample:
+                  $ref: '#/components/examples/voiceForbiddenErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundErrorExample:
+                  $ref: '#/components/examples/voiceNotFoundErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                notAllowedErrorExample:
+                  $ref: '#/components/examples/voiceNotAllowedErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Method Not Allowed
+        "415":
+          content:
+            application/json:
+              examples:
+                tooManyRequestsErrorExample:
+                  $ref: '#/components/examples/voiceUnsupportedMediaTypeErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Unsupported Media Type
+        "429":
+          content:
+            application/json:
+              examples:
+                tooManyRequestsErrorExample:
+                  $ref: '#/components/examples/voiceTooManyRequestsErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: When you should try your request again.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerErrorExample:
+                  $ref: '#/components/examples/voiceInternalServerErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Internal Server Error
+      summary: Delete a specific transcription
+      tags:
+      - Transcriptions
+    get:
+      description: "Retrieve the specified transcription that was created on this\
+        \ call via [startTranscription](/docs/voice/bxml/startTranscription)."
+      operationId: getRealTimeTranscription
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Programmable Voice API Call ID.
+        example: c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        explode: false
+        in: path
+        name: callId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Programmable Voice API Transcription ID.
+        example: t-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        explode: false
+        in: path
+        name: transcriptionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/callTranscriptionResponse'
+          description: Transcription found.
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestErrorExample:
+                  $ref: '#/components/examples/voiceBadRequestErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedErrorExample:
+                  $ref: '#/components/examples/voiceUnauthorizedErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenErrorExample:
+                  $ref: '#/components/examples/voiceForbiddenErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundErrorExample:
+                  $ref: '#/components/examples/voiceNotFoundErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                notAllowedErrorExample:
+                  $ref: '#/components/examples/voiceNotAllowedErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Method Not Allowed
+        "415":
+          content:
+            application/json:
+              examples:
+                tooManyRequestsErrorExample:
+                  $ref: '#/components/examples/voiceUnsupportedMediaTypeErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Unsupported Media Type
+        "429":
+          content:
+            application/json:
+              examples:
+                tooManyRequestsErrorExample:
+                  $ref: '#/components/examples/voiceTooManyRequestsErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: When you should try your request again.
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerErrorExample:
+                  $ref: '#/components/examples/voiceInternalServerErrorExample'
+              schema:
+                $ref: '#/components/schemas/voiceApiError'
+          description: Internal Server Error
+      summary: Retrieve a specific transcription
+      tags:
+      - Transcriptions
     servers:
     - description: Production
       url: https://voice.bandwidth.com/api/v2
@@ -4642,6 +5001,16 @@ components:
       schema:
         type: string
       style: simple
+    transcriptionId:
+      description: Programmable Voice API Transcription ID.
+      example: t-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+      explode: false
+      in: path
+      name: transcriptionId
+      required: true
+      schema:
+        type: string
+      style: simple
     to:
       description: Filter results by the `to` field.
       example: '%2b19195551234'
@@ -5235,12 +5604,26 @@ components:
             format: binary
             type: string
       description: Media found
+    getRecordingTranscriptionResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/recordingTranscriptions'
+      description: Transcription found.
+    listTranscriptionsResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/callTranscriptionMetadataList'
+      description: Transcription found.
     getCallTranscriptionResponse:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/transcriptionList'
-      description: Transcription found
+            $ref: '#/components/schemas/callTranscriptionResponse'
+      description: Transcription found.
+    deleteCallTranscriptionResponse:
+      description: Transcription data was deleted.
     listConferencesResponse:
       content:
         application/json:
@@ -5897,8 +6280,13 @@ components:
           type: array
           uniqueItems: true
         from:
-          description: One of your telephone numbers the message should come from
-            in E164 format.
+          description: "Either an alphanumeric sender ID or the sender's Bandwidth\
+            \ phone number in E.164 format, which must be hosted within Bandwidth\
+            \ and linked to the account that is generating the message. \nAlphanumeric\
+            \ Sender IDs can contain up to 11 characters, upper-case letters A-Z,\
+            \ lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore\
+            \ _ and ampersand &. Alphanumeric Sender IDs must contain at least one\
+            \ letter."
           example: "+15551113333"
           type: string
         text:
@@ -6373,14 +6761,20 @@ components:
         from:
           description: |-
             A Bandwidth phone number on your account the call should come
-            from (must be in E.164 format, like `+15555551212`, or be one of the following
-            strings: `Restricted`, `Anonymous`, `Private`, or `Unavailable`).
-          example: "+19195554321"
+            from (must be in E.164 format, like `+15555551212`) even if `privacy` is set to true.
+          example: "+15555551212"
           type: string
+        privacy:
+          description: Hide the calling number. The `displayName` field can be used
+            to customize the displayed name.
+          example: false
+          nullable: true
+          type: boolean
         displayName:
           description: "The caller display name to use when the call is created. \n\
             May not exceed 256 characters nor contain control characters such as new\
-            \ lines."
+            \ lines.\nIf `privacy` is true, only the following values are valid: `Restricted`,\
+            \ `Anonymous`, `Private`, or `Unavailable`."
           example: John Doe
           maxLength: 256
           nullable: true
@@ -6955,15 +7349,13 @@ components:
           example: "+15555555555"
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         transferCallerId:
           description: "The phone number used as the from field of the B-leg call,\
-            \ in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous,\
-            \ Private, or Unavailable."
+            \ in E.164 format (e.g. +15555555555)."
           example: "+15555555555"
           type: string
         transferTo:
@@ -7012,7 +7404,7 @@ components:
           nullable: true
           type: string
         transcription:
-          $ref: '#/components/schemas/transcriptionMetadata'
+          $ref: '#/components/schemas/recordingTranscriptionMetadata'
       type: object
     conference:
       example:
@@ -7288,8 +7680,11 @@ components:
           type: string
       type: object
     machineDetectionConfiguration:
-      description: The machine detection request used to perform <a href='/docs/voice/guides/machineDetection'>machine
-        detection</a> on the call.
+      description: "The machine detection request used to perform <a href='/docs/voice/guides/machineDetection'>machine\
+        \ detection</a> on the call. Currently, there is an issue where decimal values\
+        \ are not getting processed correctly. Please use whole number values. We\
+        \ are working to resolve this issue. Please contact Bandwidth Support if you\
+        \ need more information."
       properties:
         mode:
           $ref: '#/components/schemas/machineDetectionModeEnum'
@@ -7450,7 +7845,7 @@ components:
           nullable: true
           type: boolean
       type: object
-    transcriptionList:
+    recordingTranscriptions:
       example:
         transcripts:
         - confidence: 0.9
@@ -7463,7 +7858,90 @@ components:
             $ref: '#/components/schemas/transcription'
           type: array
       type: object
-    transcriptionMetadata:
+    callTranscriptionMetadataList:
+      example:
+      - transcriptionId: t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
+        transcriptionUrl: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-fef240ff-5cfc9091-8069-4863-a8c0-a4dcbbf1f1a4/transcriptions/t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
+      items:
+        $ref: '#/components/schemas/callTranscriptionMetadata'
+      type: array
+    callTranscriptionMetadata:
+      properties:
+        transcriptionId:
+          description: The programmable voice API transcription ID.
+          example: t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
+          type: string
+        transcriptionUrl:
+          description: |-
+            A URL that may be used to retrieve the transcription itself. This points to the
+            [Get Call Transcription](/apis/voice/#operation/getCallTranscription) endpoint.
+          example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-fef240ff-5cfc9091-8069-4863-a8c0-a4dcbbf1f1a4/transcriptions/t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
+          type: string
+      type: object
+    callTranscriptionResponse:
+      example:
+        callId: c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        accountId: "920012"
+        transcriptionId: t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
+        tracks:
+        - detectedLanguage: en-US
+          track: inbound
+          text: Hello World! This is an example.
+          confidence: 0.9
+      properties:
+        accountId:
+          description: The user account associated with the call.
+          example: "920012"
+          type: string
+        callId:
+          description: The call id associated with the event.
+          example: c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          type: string
+        transcriptionId:
+          description: The programmable voice API transcription ID.
+          example: t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
+          type: string
+        tracks:
+          example:
+          - detectedLanguage: en-US
+            track: inbound
+            text: Hello World! This is an example.
+            confidence: 0.9
+          items:
+            $ref: '#/components/schemas/callTranscription'
+          type: array
+      type: object
+    callTranscription:
+      properties:
+        detectedLanguage:
+          description: The detected language for this transcription.
+          enum:
+          - en-US
+          - es-US
+          - fr-FR
+          example: en-US
+          type: string
+        track:
+          description: Which `track` this transcription is derived from.
+          enum:
+          - inbound
+          - outbound
+          example: inbound
+          type: string
+        text:
+          description: The transcription itself.
+          example: Hello World! This is an example.
+          type: string
+        confidence:
+          description: How confident the transcription engine was in transcribing
+            the associated audio (from `0` to `1`).
+          example: 0.9
+          format: double
+          maximum: 1
+          minimum: 0
+          type: number
+      type: object
+    recordingTranscriptionMetadata:
       description: "If the recording was transcribed, metadata about the transcription"
       example:
         completedTime: 2022-06-13T18:46:29.715Z
@@ -7534,9 +8012,8 @@ components:
           example: 04e88489-df02-4e34-a0ee-27a91849555f
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -7613,9 +8090,8 @@ components:
           example: 04e88489-df02-4e34-a0ee-27a91849555f
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -7707,9 +8183,8 @@ components:
           example: 04e88489-df02-4e34-a0ee-27a91849555f
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -7870,9 +8345,8 @@ components:
           example: my-conference-name
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -7926,9 +8400,8 @@ components:
           example: my-conference-name
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -8094,9 +8567,8 @@ components:
           example: 04e88489-df02-4e34-a0ee-27a91849555f
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -8191,9 +8663,8 @@ components:
           example: 04e88489-df02-4e34-a0ee-27a91849555f
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -8241,8 +8712,7 @@ components:
           type: string
         transferCallerId:
           description: "The phone number used as the from field of the B-leg call,\
-            \ in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous,\
-            \ Private, or Unavailable."
+            \ in E.164 format (e.g. +15555555555)."
           example: "+15555555555"
           type: string
         transferTo:
@@ -8286,9 +8756,8 @@ components:
           example: 04e88489-df02-4e34-a0ee-27a91849555f
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -8343,8 +8812,7 @@ components:
           type: string
         transferCallerId:
           description: "The phone number used as the from field of the B-leg call,\
-            \ in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous,\
-            \ Private, or Unavailable."
+            \ in E.164 format (e.g. +15555555555)."
           example: "+15555555555"
           type: string
         transferTo:
@@ -8390,9 +8858,8 @@ components:
           example: 04e88489-df02-4e34-a0ee-27a91849555f
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -8451,9 +8918,8 @@ components:
           example: 04e88489-df02-4e34-a0ee-27a91849555f
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -8529,9 +8995,8 @@ components:
           example: 04e88489-df02-4e34-a0ee-27a91849555f
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -8609,8 +9074,7 @@ components:
           type: string
         transferCallerId:
           description: "The phone number used as the from field of the B-leg call,\
-            \ in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous,\
-            \ Private, or Unavailable."
+            \ in E.164 format (e.g. +15555555555)."
           example: "+15555555555"
           type: string
         transferTo:
@@ -8648,9 +9112,8 @@ components:
           example: 04e88489-df02-4e34-a0ee-27a91849555f
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -8709,14 +9172,11 @@ components:
         fileFormat:
           $ref: '#/components/schemas/fileFormatEnum'
         channels:
-          description: "The current status of the process. For recording, current\
-            \ possible values are 'processing', 'partial', 'complete', 'deleted',\
-            \ and 'error'. For transcriptions, current possible values are 'none',\
-            \ 'processing', 'available', 'error', 'timeout', 'file-size-too-big',\
-            \ and 'file-size-too-small'. Additional states may be added in the future,\
-            \ so your application must be tolerant of unknown values."
-          example: completed
-          type: string
+          description: Always `1` for conference recordings; multi-channel recordings
+            are not supported on conferences.
+          example: 1
+          format: int32
+          type: integer
         tag:
           description: "(optional) The tag specified on call creation. If no tag was\
             \ specified or it was previously cleared, this field will not be present."
@@ -8734,8 +9194,7 @@ components:
           type: string
         transferCallerId:
           description: "The phone number used as the from field of the B-leg call,\
-            \ in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous,\
-            \ Private, or Unavailable."
+            \ in E.164 format (e.g. +15555555555)."
           example: "+15555555555"
           type: string
         transferTo:
@@ -8773,9 +9232,8 @@ components:
           example: 04e88489-df02-4e34-a0ee-27a91849555f
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -8825,8 +9283,7 @@ components:
           type: string
         transferCallerId:
           description: "The phone number used as the from field of the B-leg call,\
-            \ in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous,\
-            \ Private, or Unavailable."
+            \ in E.164 format (e.g. +15555555555)."
           example: "+15555555555"
           type: string
         transferTo:
@@ -8864,9 +9321,8 @@ components:
           example: 04e88489-df02-4e34-a0ee-27a91849555f
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -8934,8 +9390,7 @@ components:
           $ref: '#/components/schemas/transcription'
         transferCallerId:
           description: "The phone number used as the from field of the B-leg call,\
-            \ in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous,\
-            \ Private, or Unavailable."
+            \ in E.164 format (e.g. +15555555555)."
           example: "+15555555555"
           type: string
         transferTo:
@@ -8978,9 +9433,8 @@ components:
           example: 04e88489-df02-4e34-a0ee-27a91849555f
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -9024,8 +9478,7 @@ components:
           type: string
         transferCallerId:
           description: "The phone number used as the from field of the B-leg call,\
-            \ in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous,\
-            \ Private, or Unavailable."
+            \ in E.164 format (e.g. +15555555555)."
           example: "+15555555555"
           type: string
         transferTo:
@@ -9066,9 +9519,8 @@ components:
           example: 04e88489-df02-4e34-a0ee-27a91849555f
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -9112,8 +9564,7 @@ components:
           type: string
         transferCallerId:
           description: "The phone number used as the from field of the B-leg call,\
-            \ in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous,\
-            \ Private, or Unavailable."
+            \ in E.164 format (e.g. +15555555555)."
           example: "+15555555555"
           type: string
         transferTo:
@@ -9173,9 +9624,8 @@ components:
           example: 04e88489-df02-4e34-a0ee-27a91849555f
           type: string
         from:
-          description: "The provided identifier of the caller: can be a phone number\
-            \ in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-            \ or Anonymous."
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
           example: "+15555555555"
           type: string
         to:
@@ -9230,8 +9680,7 @@ components:
           type: string
         transferCallerId:
           description: "The phone number used as the from field of the B-leg call,\
-            \ in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous,\
-            \ Private, or Unavailable."
+            \ in E.164 format (e.g. +15555555555)."
           example: "+15555555555"
           type: string
         transferTo:
@@ -9288,9 +9737,8 @@ components:
       example: "+15555555555"
       type: string
     from:
-      description: "The provided identifier of the caller: can be a phone number in\
-        \ E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable,\
-        \ or Anonymous."
+      description: The provided identifier of the caller. Must be a phone number in
+        E.164 format (e.g. +15555555555).
       example: "+15555555555"
       type: string
     conferenceId:
@@ -9365,8 +9813,7 @@ components:
       type: string
     transferCallerId:
       description: "The phone number used as the from field of the B-leg call, in\
-        \ E.164 format (e.g. +15555555555) or one of Restricted, Anonymous, Private,\
-        \ or Unavailable."
+        \ E.164 format (e.g. +15555555555)."
       example: "+15555555555"
       type: string
     transferTo:
@@ -9783,11 +10230,9 @@ components:
   securitySchemes:
     Basic:
       description: |-
-        Basic authentication is a simple authentication scheme built into the
-        HTTP protocol. To use it, send your HTTP requests with an Authorization
-        header that contains the word Basic followed by a space and a
-        base64-encoded string `username:password`Example: `Authorization: Basic
-        ZGVtbZpwQDU1dzByZA==`
+        Basic authentication is a simple authentication scheme built into the HTTP protocol. To use it, send your HTTP requests with an `Authorization` header that contains the word `Basic` followed by a space and a Base64-encoded string `username:password`.
+
+        - Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
       scheme: basic
       type: http
 

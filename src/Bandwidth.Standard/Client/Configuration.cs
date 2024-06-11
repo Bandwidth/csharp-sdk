@@ -430,18 +430,6 @@ namespace Bandwidth.Standard.Client
                     }
                 },
                 {
-                    "RecordingsApi.DeleteCallTranscription", new List<IReadOnlyDictionary<string, object>>
-                    {
-                        {
-                            new Dictionary<string, object>
-                            {
-                                {"url", "https://voice.bandwidth.com/api/v2"},
-                                {"description", "Production"}
-                            }
-                        },
-                    }
-                },
-                {
                     "RecordingsApi.DeleteRecording", new List<IReadOnlyDictionary<string, object>>
                     {
                         {
@@ -455,6 +443,18 @@ namespace Bandwidth.Standard.Client
                 },
                 {
                     "RecordingsApi.DeleteRecordingMedia", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://voice.bandwidth.com/api/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "RecordingsApi.DeleteRecordingTranscription", new List<IReadOnlyDictionary<string, object>>
                     {
                         {
                             new Dictionary<string, object>
@@ -490,7 +490,7 @@ namespace Bandwidth.Standard.Client
                     }
                 },
                 {
-                    "RecordingsApi.GetCallTranscription", new List<IReadOnlyDictionary<string, object>>
+                    "RecordingsApi.GetRecordingTranscription", new List<IReadOnlyDictionary<string, object>>
                     {
                         {
                             new Dictionary<string, object>
@@ -551,6 +551,42 @@ namespace Bandwidth.Standard.Client
                 },
                 {
                     "StatisticsApi.GetStatistics", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://voice.bandwidth.com/api/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "TranscriptionsApi.DeleteRealTimeTranscription", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://voice.bandwidth.com/api/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "TranscriptionsApi.GetRealTimeTranscription", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://voice.bandwidth.com/api/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "TranscriptionsApi.ListRealTimeTranscriptions", new List<IReadOnlyDictionary<string, object>>
                     {
                         {
                             new Dictionary<string, object>
