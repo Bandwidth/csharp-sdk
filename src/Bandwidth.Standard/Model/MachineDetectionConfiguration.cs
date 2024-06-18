@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The machine detection request used to perform &lt;a href&#x3D;&#39;/docs/voice/guides/machineDetection&#39;&gt;machine detection&lt;/a&gt; on the call.
+    /// The machine detection request used to perform &lt;a href&#x3D;&#39;/docs/voice/guides/machineDetection&#39;&gt;machine detection&lt;/a&gt; on the call. Currently, there is an issue where decimal values are not getting processed correctly. Please use whole number values. We are working to resolve this issue. Please contact Bandwidth Support if you need more information.
     /// </summary>
     [DataContract(Name = "machineDetectionConfiguration")]
     public partial class MachineDetectionConfiguration : IEquatable<MachineDetectionConfiguration>, IValidatableObject

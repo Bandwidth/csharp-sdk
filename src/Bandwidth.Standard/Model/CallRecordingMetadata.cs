@@ -53,8 +53,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="parentCallId">(optional) If the event is related to the B leg of a &lt;Transfer&gt;, the call id of the original call leg that executed the &lt;Transfer&gt;. Otherwise, this field will not be present..</param>
         /// <param name="recordingId">The unique ID of this recording.</param>
         /// <param name="to">The phone number that received the call, in E.164 format (e.g. +15555555555)..</param>
-        /// <param name="from">The provided identifier of the caller: can be a phone number in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable, or Anonymous..</param>
-        /// <param name="transferCallerId">The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous, Private, or Unavailable..</param>
+        /// <param name="from">The provided identifier of the caller. Must be a phone number in E.164 format (e.g. +15555555555)..</param>
+        /// <param name="transferCallerId">The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555)..</param>
         /// <param name="transferTo">The phone number used as the to field of the B-leg call, in E.164 format (e.g. +15555555555)..</param>
         /// <param name="duration">The duration of the recording in ISO-8601 format.</param>
         /// <param name="direction">direction.</param>
@@ -65,7 +65,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="status">The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values..</param>
         /// <param name="mediaUrl">The URL that can be used to download the recording. Only present if the recording is finished and may be downloaded..</param>
         /// <param name="transcription">transcription.</param>
-        public CallRecordingMetadata(string applicationId = default(string), string accountId = default(string), string callId = default(string), string parentCallId = default(string), string recordingId = default(string), string to = default(string), string from = default(string), string transferCallerId = default(string), string transferTo = default(string), string duration = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), int channels = default(int), DateTime startTime = default(DateTime), DateTime endTime = default(DateTime), FileFormatEnum? fileFormat = default(FileFormatEnum?), string status = default(string), string mediaUrl = default(string), TranscriptionMetadata transcription = default(TranscriptionMetadata))
+        public CallRecordingMetadata(string applicationId = default(string), string accountId = default(string), string callId = default(string), string parentCallId = default(string), string recordingId = default(string), string to = default(string), string from = default(string), string transferCallerId = default(string), string transferTo = default(string), string duration = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), int channels = default(int), DateTime startTime = default(DateTime), DateTime endTime = default(DateTime), FileFormatEnum? fileFormat = default(FileFormatEnum?), string status = default(string), string mediaUrl = default(string), RecordingTranscriptionMetadata transcription = default(RecordingTranscriptionMetadata))
         {
             this.ApplicationId = applicationId;
             this.AccountId = accountId;
@@ -99,7 +99,7 @@ namespace Bandwidth.Standard.Model
         /// The user account associated with the call.
         /// </summary>
         /// <value>The user account associated with the call.</value>
-        /// <example>920012</example>
+        /// <example>9900000</example>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 
@@ -136,17 +136,17 @@ namespace Bandwidth.Standard.Model
         public string To { get; set; }
 
         /// <summary>
-        /// The provided identifier of the caller: can be a phone number in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable, or Anonymous.
+        /// The provided identifier of the caller. Must be a phone number in E.164 format (e.g. +15555555555).
         /// </summary>
-        /// <value>The provided identifier of the caller: can be a phone number in E.164 format (e.g. +15555555555) or one of Private, Restricted, Unavailable, or Anonymous.</value>
+        /// <value>The provided identifier of the caller. Must be a phone number in E.164 format (e.g. +15555555555).</value>
         /// <example>+15555555555</example>
         [DataMember(Name = "from", EmitDefaultValue = false)]
         public string From { get; set; }
 
         /// <summary>
-        /// The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous, Private, or Unavailable.
+        /// The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555).
         /// </summary>
-        /// <value>The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555) or one of Restricted, Anonymous, Private, or Unavailable.</value>
+        /// <value>The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555).</value>
         /// <example>+15555555555</example>
         [DataMember(Name = "transferCallerId", EmitDefaultValue = false)]
         public string TransferCallerId { get; set; }
@@ -155,7 +155,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number used as the to field of the B-leg call, in E.164 format (e.g. +15555555555).
         /// </summary>
         /// <value>The phone number used as the to field of the B-leg call, in E.164 format (e.g. +15555555555).</value>
-        /// <example>+15555555555)</example>
+        /// <example>+15555555555</example>
         [DataMember(Name = "transferTo", EmitDefaultValue = false)]
         public string TransferTo { get; set; }
 
@@ -211,7 +211,7 @@ namespace Bandwidth.Standard.Model
         /// Gets or Sets Transcription
         /// </summary>
         [DataMember(Name = "transcription", EmitDefaultValue = true)]
-        public TranscriptionMetadata Transcription { get; set; }
+        public RecordingTranscriptionMetadata Transcription { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -10,6 +10,9 @@ docs/CallDirectionEnum.md
 docs/CallRecordingMetadata.md
 docs/CallState.md
 docs/CallStateEnum.md
+docs/CallTranscription.md
+docs/CallTranscriptionMetadata.md
+docs/CallTranscriptionResponse.md
 docs/CallbackMethodEnum.md
 docs/CallsApi.md
 docs/CodeRequest.md
@@ -75,6 +78,8 @@ docs/PriorityEnum.md
 docs/RecordingAvailableCallback.md
 docs/RecordingCompleteCallback.md
 docs/RecordingStateEnum.md
+docs/RecordingTranscriptionMetadata.md
+docs/RecordingTranscriptions.md
 docs/RecordingsApi.md
 docs/RedirectCallback.md
 docs/RedirectMethodEnum.md
@@ -85,8 +90,7 @@ docs/TnLookupRequestError.md
 docs/TranscribeRecording.md
 docs/Transcription.md
 docs/TranscriptionAvailableCallback.md
-docs/TranscriptionList.md
-docs/TranscriptionMetadata.md
+docs/TranscriptionsApi.md
 docs/TransferAnswerCallback.md
 docs/TransferCompleteCallback.md
 docs/TransferDisconnectCallback.md
@@ -99,6 +103,12 @@ docs/VerifyCodeResponse.md
 docs/VoiceApiError.md
 docs/VoiceCodeResponse.md
 git_push.sh
+src/Bandwidth.Standard.Test/Api/TranscriptionsApiTests.cs
+src/Bandwidth.Standard.Test/Model/CallTranscriptionMetadataTests.cs
+src/Bandwidth.Standard.Test/Model/CallTranscriptionResponseTests.cs
+src/Bandwidth.Standard.Test/Model/CallTranscriptionTests.cs
+src/Bandwidth.Standard.Test/Model/RecordingTranscriptionMetadataTests.cs
+src/Bandwidth.Standard.Test/Model/RecordingTranscriptionsTests.cs
 src/Bandwidth.Standard/Api/CallsApi.cs
 src/Bandwidth.Standard/Api/ConferencesApi.cs
 src/Bandwidth.Standard/Api/MFAApi.cs
@@ -107,6 +117,7 @@ src/Bandwidth.Standard/Api/MessagesApi.cs
 src/Bandwidth.Standard/Api/PhoneNumberLookupApi.cs
 src/Bandwidth.Standard/Api/RecordingsApi.cs
 src/Bandwidth.Standard/Api/StatisticsApi.cs
+src/Bandwidth.Standard/Api/TranscriptionsApi.cs
 src/Bandwidth.Standard/Client/ApiClient.cs
 src/Bandwidth.Standard/Client/ApiException.cs
 src/Bandwidth.Standard/Client/ApiResponse.cs
@@ -132,6 +143,9 @@ src/Bandwidth.Standard/Model/CallDirectionEnum.cs
 src/Bandwidth.Standard/Model/CallRecordingMetadata.cs
 src/Bandwidth.Standard/Model/CallState.cs
 src/Bandwidth.Standard/Model/CallStateEnum.cs
+src/Bandwidth.Standard/Model/CallTranscription.cs
+src/Bandwidth.Standard/Model/CallTranscriptionMetadata.cs
+src/Bandwidth.Standard/Model/CallTranscriptionResponse.cs
 src/Bandwidth.Standard/Model/CallbackMethodEnum.cs
 src/Bandwidth.Standard/Model/CodeRequest.cs
 src/Bandwidth.Standard/Model/Conference.cs
@@ -191,6 +205,8 @@ src/Bandwidth.Standard/Model/PriorityEnum.cs
 src/Bandwidth.Standard/Model/RecordingAvailableCallback.cs
 src/Bandwidth.Standard/Model/RecordingCompleteCallback.cs
 src/Bandwidth.Standard/Model/RecordingStateEnum.cs
+src/Bandwidth.Standard/Model/RecordingTranscriptionMetadata.cs
+src/Bandwidth.Standard/Model/RecordingTranscriptions.cs
 src/Bandwidth.Standard/Model/RedirectCallback.cs
 src/Bandwidth.Standard/Model/RedirectMethodEnum.cs
 src/Bandwidth.Standard/Model/StirShaken.cs
@@ -199,8 +215,6 @@ src/Bandwidth.Standard/Model/TnLookupRequestError.cs
 src/Bandwidth.Standard/Model/TranscribeRecording.cs
 src/Bandwidth.Standard/Model/Transcription.cs
 src/Bandwidth.Standard/Model/TranscriptionAvailableCallback.cs
-src/Bandwidth.Standard/Model/TranscriptionList.cs
-src/Bandwidth.Standard/Model/TranscriptionMetadata.cs
 src/Bandwidth.Standard/Model/TransferAnswerCallback.cs
 src/Bandwidth.Standard/Model/TransferCompleteCallback.cs
 src/Bandwidth.Standard/Model/TransferDisconnectCallback.cs
