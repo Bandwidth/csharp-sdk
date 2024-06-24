@@ -21,6 +21,7 @@ using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
 using Moq;
 using System.Net;
+using System.Data.SqlTypes;
 
 namespace Bandwidth.Standard.Test.Api
 {
@@ -73,9 +74,12 @@ namespace Bandwidth.Standard.Test.Api
             string callId = "c-12345";
             string transcriptionId = "t-12345";
 
-            //var apiResponse = new ApiResponse<null>(HttpStatusCode.NoContent, null);
-            mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId}", It.IsAny<RequestOptions>(), fakeConfiguration));
-            instance.DeleteRealTimeTranscription(accountId, callId, transcriptionId);
+            var apiResponse = new ApiResponse<Object>(HttpStatusCode.NoContent, null);
+            mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
+            var response = instance.DeleteRealTimeTranscriptionWithHttpInfo(accountId, callId, transcriptionId);
+
+            Assert.IsType<ApiResponse<Object>>(response);
+            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
         }
 
         /// <summary>
