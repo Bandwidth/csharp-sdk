@@ -61,10 +61,10 @@ namespace Bandwidth.Standard.Test.Api
         }
 
         /// <summary>
-        /// Test DeleteCallTranscription
+        /// Test DeleteRecordingTranscription
         /// </summary>
         [Fact]
-        public void DeleteCallTranscriptionTest()
+        public void DeleteRecordingTranscriptionTest()
         {
             string accountId = "9900000";
             string callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
@@ -79,10 +79,10 @@ namespace Bandwidth.Standard.Test.Api
         }
 
         /// <summary>
-        /// Test Unauthorized DeleteCallTranscription
+        /// Test Unauthorized DeleteRecordingTranscription
         /// </summary>
         [Fact]
-        public void DeleteCallTranscriptionUnauthorizedRequest()
+        public void DeleteRecordingTranscriptionUnauthorizedRequest()
         {
             string accountId = "9900000";
             string callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
@@ -94,15 +94,15 @@ namespace Bandwidth.Standard.Test.Api
             mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
             ApiException Exception = Assert.Throws<ApiException>(() => instance.DeleteRecordingTranscriptionWithHttpInfo(accountId, callId, recordingId));
 
-            Assert.Equal("Error calling DeleteCallTranscription: ", Exception.Message);
+            Assert.Equal("Error calling DeleteRecordingTranscription: ", Exception.Message);
             Assert.Equal(401, Exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test Forbidden DeleteCallTranscription
+        /// Test Forbidden DeleteRecordingTranscription
         /// </summary>
         [Fact]
-        public void DeleteCallTranscriptionForbiddenRequest()
+        public void DeleteRecordingTranscriptionForbiddenRequest()
         {
             string accountId = "9900000";
             string callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
@@ -114,7 +114,7 @@ namespace Bandwidth.Standard.Test.Api
             mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
             ApiException Exception = Assert.Throws<ApiException>(() => instance.DeleteRecordingTranscriptionWithHttpInfo(accountId, callId, recordingId));
 
-            Assert.Equal("Error calling DeleteCallTranscription: ", Exception.Message);
+            Assert.Equal("Error calling DeleteRecordingTranscription: ", Exception.Message);
             Assert.Equal(403, Exception.ErrorCode);
         }
 
@@ -401,10 +401,10 @@ namespace Bandwidth.Standard.Test.Api
         }
 
         /// <summary>
-        /// Test GetCallTranscription
+        /// Test GetRecordingTranscription
         /// </summary>
         [Fact]
-        public void GetCallTranscriptionTest()
+        public void GetRecordingTranscriptionTest()
         {
             string accountId = "9900000";
             string callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
