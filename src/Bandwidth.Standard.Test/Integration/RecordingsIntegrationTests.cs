@@ -254,7 +254,7 @@ namespace Bandwidth.Standard.Test.Integration
                 retries++;
             }
             Assert.True((Boolean)callStatusJson["callTranscribed"]);
-            var transcriptionResponse = recordingApiInstance.GetCallTranscriptionWithHttpInfo(accountId, callId, firstRecordingId);
+            var transcriptionResponse = recordingApiInstance.GetRecordingTranscriptionWithHttpInfo(accountId, callId, firstRecordingId);
             Assert.Equal(HttpStatusCode.OK, transcriptionResponse.StatusCode);
             
             var transcription = transcriptionResponse.Data;
@@ -266,11 +266,11 @@ namespace Bandwidth.Standard.Test.Integration
             Assert.IsType<double>(firstTranscript.Confidence);
 
             // delete transcription
-            var deleteTranscriptionResponse = recordingApiInstance.DeleteCallTranscriptionWithHttpInfo(accountId, callId, firstRecordingId);
+            var deleteTranscriptionResponse = recordingApiInstance.DeleteRecordingTranscriptionWithHttpInfo(accountId, callId, firstRecordingId);
             Assert.Equal(HttpStatusCode.NoContent, deleteTranscriptionResponse.StatusCode);
 
             // making sure transcription is deleted
-            ApiException exception = Assert.Throws<ApiException>(() => recordingApiInstance.GetCallTranscription(accountId, callId, firstRecordingId));
+            ApiException exception = Assert.Throws<ApiException>(() => recordingApiInstance.GetRecordingTranscription(accountId, callId, firstRecordingId));
             Assert.Equal(404, exception.ErrorCode);
 
             var deleteRecordingMediaResponse = recordingApiInstance.DeleteRecordingMediaWithHttpInfo(accountId, callId, firstRecordingId);
@@ -450,32 +450,32 @@ namespace Bandwidth.Standard.Test.Integration
         }
 
         /// <summary>
-        /// Test GetCallTranscription with an unauthorized client
+        /// Test GetRecordingTranscription with an unauthorized client
         /// </summary>
         [Fact]
-        public void GetCallTranscriptionUnauthorizedRequest()
+        public void GetRecordingTranscriptionUnauthorizedRequest()
         {
-            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.GetCallTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
+            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.GetRecordingTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
             Assert.Equal(401, exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test GetCallTranscription with a forbidden client
+        /// Test GetRecordingTranscription with a forbidden client
         /// </summary>
         [Fact]
-        public void GetCallTranscriptionForbiddenRequest()
+        public void GetRecordingTranscriptionForbiddenRequest()
         {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetCallTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
+            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetRecordingTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
             Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test GetCallTranscription with a nonexistent recording id
+        /// Test GetRecordingTranscription with a nonexistent recording id
         /// </summary>
         [Fact]
-        public void GetCallTranscriptionNotFound()
+        public void GetRecordingTranscriptionNotFound()
         {
-            ApiException exception = Assert.Throws<ApiException>(() => recordingApiInstance.GetCallTranscriptionWithHttpInfo(accountId, testCallId, "not-a-recording-id"));
+            ApiException exception = Assert.Throws<ApiException>(() => recordingApiInstance.GetRecordingTranscriptionWithHttpInfo(accountId, testCallId, "not-a-recording-id"));
             Assert.Equal(404, exception.ErrorCode);
         }
 
@@ -485,7 +485,7 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void DeleteCallTranscriptionUnauthorizedRequest()
         {
-            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.DeleteCallTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
+            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.DeleteRecordingTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
             Assert.Equal(401, exception.ErrorCode);
         }
 
@@ -495,7 +495,7 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void DeleteCallTranscriptionForbiddenRequest()
         {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.DeleteCallTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
+            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.DeleteRecordingTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
             Assert.Equal(403, exception.ErrorCode);
         }
 
@@ -505,7 +505,7 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void DeleteCallTranscriptionNotFound()
         {
-            ApiException exception = Assert.Throws<ApiException>(() => recordingApiInstance.DeleteCallTranscriptionWithHttpInfo(accountId, testCallId, "not-a-recording-id"));
+            ApiException exception = Assert.Throws<ApiException>(() => recordingApiInstance.DeleteRecordingTranscriptionWithHttpInfo(accountId, testCallId, "not-a-recording-id"));
             Assert.Equal(404, exception.ErrorCode);
         }
 

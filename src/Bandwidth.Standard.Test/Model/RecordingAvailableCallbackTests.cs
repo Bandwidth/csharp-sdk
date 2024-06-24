@@ -225,9 +225,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ChannelsTest()
         {
-            instance.Channels = "completed";
-            Assert.IsType<string>(instance.Channels);
-            Assert.Equal("completed", instance.Channels);
+            instance.Channels = 1;
+            Assert.IsType<int>(instance.Channels);
+            Assert.Equal(1, instance.Channels);
         }
         /// <summary>
         /// Test the property 'Tag'

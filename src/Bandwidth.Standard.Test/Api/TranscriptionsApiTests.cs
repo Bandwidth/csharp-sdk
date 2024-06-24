@@ -19,8 +19,8 @@ using Xunit;
 
 using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
-// uncomment below to import models
-//using Bandwidth.Standard.Model;
+using Moq;
+using System.Net;
 
 namespace Bandwidth.Standard.Test.Api
 {
@@ -34,10 +34,19 @@ namespace Bandwidth.Standard.Test.Api
     public class TranscriptionsApiTests : IDisposable
     {
         private TranscriptionsApi instance;
+        private Mock<ISynchronousClient> mockClient;
+        private Mock<IAsynchronousClient> mockAsynchronousClient;
+        private Configuration fakeConfiguration;
 
         public TranscriptionsApiTests()
         {
-            instance = new TranscriptionsApi();
+            mockClient = new Mock<ISynchronousClient>();
+            mockAsynchronousClient = new Mock<IAsynchronousClient>();
+            fakeConfiguration = new Configuration();
+            fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
+            fakeConfiguration.Username = "username";
+            fakeConfiguration.Password = "password";
+            instance = new TranscriptionsApi(mockClient.Object, mockAsynchronousClient.Object, fakeConfiguration);
         }
 
         public void Dispose()
@@ -51,8 +60,7 @@ namespace Bandwidth.Standard.Test.Api
         [Fact]
         public void InstanceTest()
         {
-            // TODO uncomment below to test 'IsType' TranscriptionsApi
-            //Assert.IsType<TranscriptionsApi>(instance);
+            Assert.IsType<TranscriptionsApi>(instance);
         }
 
         /// <summary>
@@ -61,38 +69,52 @@ namespace Bandwidth.Standard.Test.Api
         [Fact]
         public void DeleteRealTimeTranscriptionTest()
         {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string accountId = null;
-            //string callId = null;
-            //string transcriptionId = null;
-            //instance.DeleteRealTimeTranscription(accountId, callId, transcriptionId);
+            string accountId = "9900000";
+            string callId = "c-12345";
+            string transcriptionId = "t-12345";
+
+            //var apiResponse = new ApiResponse<null>(HttpStatusCode.NoContent, null);
+            mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId}", It.IsAny<RequestOptions>(), fakeConfiguration));
+            instance.DeleteRealTimeTranscription(accountId, callId, transcriptionId);
         }
 
         /// <summary>
         /// Test GetRealTimeTranscription
         /// </summary>
-        [Fact]
-        public void GetRealTimeTranscriptionTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string accountId = null;
-            //string callId = null;
-            //string transcriptionId = null;
-            //var response = instance.GetRealTimeTranscription(accountId, callId, transcriptionId);
-            //Assert.IsType<CallTranscriptionResponse>(response);
-        }
+        //[Fact]
+        //public void GetRealTimeTranscriptionTest()
+        //{
+        //    string accountId = "9900000";
+        //    string callId = "c-12345";
+        //    string transcriptionId = "t-12345";
+
+        //    var callTranscriptionResponse = new CallTranscriptionResponse();
+
+        //    var apiResponse = new ApiResponse<CallTranscriptionResponse>(HttpStatusCode.OK, callTranscriptionResponse);
+        //    mockClient.Setup(x => x.Get<CallTranscriptionResponse>("/accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
+        //    var response = instance.GetRealTimeTranscription(accountId, callId, transcriptionId);
+
+        //    Assert.IsType<ApiResponse<CallTranscriptionResponse>>(response);
+        //    Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        //}
 
         /// <summary>
         /// Test ListRealTimeTranscriptions
         /// </summary>
-        [Fact]
-        public void ListRealTimeTranscriptionsTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //string accountId = null;
-            //string callId = null;
-            //var response = instance.ListRealTimeTranscriptions(accountId, callId);
-            //Assert.IsType<List<CallTranscriptionMetadata>>(response);
-        }
+        //[Fact]
+        //public void ListRealTimeTranscriptionsTest()
+        //{
+        //    string accountId = "9900000";
+        //    string callId = "c-12345";
+
+        //    var listTranscriptionResponse = new List<CallTranscriptionMetadata>();
+
+        //    var apiResponse = new ApiResponse<CallTranscriptionResponse>(HttpStatusCode.OK, listTranscriptionResponse);
+        //    mockClient.Setup(x => x.Get<CallTranscriptionResponse>("/accounts/{accountId}/calls/{callId}/transcriptions", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
+        //    var response = instance.ListRealTimeTranscriptions(accountId, callId);
+
+        //    Assert.IsType<ApiResponse<CallTranscriptionResponse>>(response);
+        //    Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        //}
     }
 }
