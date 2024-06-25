@@ -109,7 +109,7 @@ namespace Bandwidth.Standard.Model
         /// The user account associated with the call.
         /// </summary>
         /// <value>The user account associated with the call.</value>
-        /// <example>920012</example>
+        /// <example>9900000</example>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 

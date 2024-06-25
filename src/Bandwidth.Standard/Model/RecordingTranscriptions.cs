@@ -27,27 +27,25 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// MessagingCodeResponse
+    /// RecordingTranscriptions
     /// </summary>
-    [DataContract(Name = "messagingCodeResponse")]
-    public partial class MessagingCodeResponse : IEquatable<MessagingCodeResponse>, IValidatableObject
+    [DataContract(Name = "recordingTranscriptions")]
+    public partial class RecordingTranscriptions : IEquatable<RecordingTranscriptions>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MessagingCodeResponse" /> class.
+        /// Initializes a new instance of the <see cref="RecordingTranscriptions" /> class.
         /// </summary>
-        /// <param name="messageId">Messaging API Message ID..</param>
-        public MessagingCodeResponse(string messageId = default(string))
+        /// <param name="transcripts">transcripts.</param>
+        public RecordingTranscriptions(List<Transcription> transcripts = default(List<Transcription>))
         {
-            this.MessageId = messageId;
+            this.Transcripts = transcripts;
         }
 
         /// <summary>
-        /// Messaging API Message ID.
+        /// Gets or Sets Transcripts
         /// </summary>
-        /// <value>Messaging API Message ID.</value>
-        /// <example>1589228074636lm4k2je7j7jklbn2</example>
-        [DataMember(Name = "messageId", EmitDefaultValue = false)]
-        public string MessageId { get; set; }
+        [DataMember(Name = "transcripts", EmitDefaultValue = false)]
+        public List<Transcription> Transcripts { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -56,8 +54,8 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class MessagingCodeResponse {\n");
-            sb.Append("  MessageId: ").Append(MessageId).Append("\n");
+            sb.Append("class RecordingTranscriptions {\n");
+            sb.Append("  Transcripts: ").Append(Transcripts).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -78,15 +76,15 @@ namespace Bandwidth.Standard.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as MessagingCodeResponse);
+            return this.Equals(input as RecordingTranscriptions);
         }
 
         /// <summary>
-        /// Returns true if MessagingCodeResponse instances are equal
+        /// Returns true if RecordingTranscriptions instances are equal
         /// </summary>
-        /// <param name="input">Instance of MessagingCodeResponse to be compared</param>
+        /// <param name="input">Instance of RecordingTranscriptions to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(MessagingCodeResponse input)
+        public bool Equals(RecordingTranscriptions input)
         {
             if (input == null)
             {
@@ -94,9 +92,10 @@ namespace Bandwidth.Standard.Model
             }
             return 
                 (
-                    this.MessageId == input.MessageId ||
-                    (this.MessageId != null &&
-                    this.MessageId.Equals(input.MessageId))
+                    this.Transcripts == input.Transcripts ||
+                    this.Transcripts != null &&
+                    input.Transcripts != null &&
+                    this.Transcripts.SequenceEqual(input.Transcripts)
                 );
         }
 
@@ -109,9 +108,9 @@ namespace Bandwidth.Standard.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.MessageId != null)
+                if (this.Transcripts != null)
                 {
-                    hashCode = (hashCode * 59) + this.MessageId.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Transcripts.GetHashCode();
                 }
                 return hashCode;
             }

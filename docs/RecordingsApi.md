@@ -4,119 +4,16 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**DeleteCallTranscription**](RecordingsApi.md#deletecalltranscription) | **DELETE** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Delete Transcription |
 | [**DeleteRecording**](RecordingsApi.md#deleterecording) | **DELETE** /accounts/{accountId}/calls/{callId}/recordings/{recordingId} | Delete Recording |
 | [**DeleteRecordingMedia**](RecordingsApi.md#deleterecordingmedia) | **DELETE** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media | Delete Recording Media |
+| [**DeleteRecordingTranscription**](RecordingsApi.md#deleterecordingtranscription) | **DELETE** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Delete Transcription |
 | [**DownloadCallRecording**](RecordingsApi.md#downloadcallrecording) | **GET** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media | Download Recording |
 | [**GetCallRecording**](RecordingsApi.md#getcallrecording) | **GET** /accounts/{accountId}/calls/{callId}/recordings/{recordingId} | Get Call Recording |
-| [**GetCallTranscription**](RecordingsApi.md#getcalltranscription) | **GET** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Get Transcription |
+| [**GetRecordingTranscription**](RecordingsApi.md#getrecordingtranscription) | **GET** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Get Transcription |
 | [**ListAccountCallRecordings**](RecordingsApi.md#listaccountcallrecordings) | **GET** /accounts/{accountId}/recordings | Get Call Recordings |
 | [**ListCallRecordings**](RecordingsApi.md#listcallrecordings) | **GET** /accounts/{accountId}/calls/{callId}/recordings | List Call Recordings |
 | [**TranscribeCallRecording**](RecordingsApi.md#transcribecallrecording) | **POST** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Create Transcription Request |
 | [**UpdateCallRecordingState**](RecordingsApi.md#updatecallrecordingstate) | **PUT** /accounts/{accountId}/calls/{callId}/recording | Update Recording |
-
-<a id="deletecalltranscription"></a>
-# **DeleteCallTranscription**
-> void DeleteCallTranscription (string accountId, string callId, string recordingId)
-
-Delete Transcription
-
-Deletes the specified recording's transcription.  Note: After the deletion is requested and a `204` is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Bandwidth.Standard.Api;
-using Bandwidth.Standard.Client;
-using Bandwidth.Standard.Model;
-
-namespace Example
-{
-    public class DeleteCallTranscriptionExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: Basic
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new RecordingsApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID.
-            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID.
-            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID.
-
-            try
-            {
-                // Delete Transcription
-                apiInstance.DeleteCallTranscription(accountId, callId, recordingId);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling RecordingsApi.DeleteCallTranscription: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the DeleteCallTranscriptionWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Delete Transcription
-    apiInstance.DeleteCallTranscriptionWithHttpInfo(accountId, callId, recordingId);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling RecordingsApi.DeleteCallTranscriptionWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID. |  |
-| **callId** | **string** | Programmable Voice API Call ID. |  |
-| **recordingId** | **string** | Programmable Voice API Recording ID. |  |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[Basic](../README.md#Basic)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | The transcription was successfully deleted. |  -  |
-| **400** | Bad Request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Forbidden |  -  |
-| **404** | Not Found |  -  |
-| **405** | Method Not Allowed |  -  |
-| **415** | Unsupported Media Type |  -  |
-| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
-| **500** | Internal Server Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="deleterecording"></a>
 # **DeleteRecording**
@@ -313,6 +210,109 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **204** | The recording media was successfully deleted. |  -  |
+| **400** | Bad Request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not Found |  -  |
+| **405** | Method Not Allowed |  -  |
+| **415** | Unsupported Media Type |  -  |
+| **429** | Too Many Requests |  * Retry-After - When you should try your request again. <br>  |
+| **500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deleterecordingtranscription"></a>
+# **DeleteRecordingTranscription**
+> void DeleteRecordingTranscription (string accountId, string callId, string recordingId)
+
+Delete Transcription
+
+Deletes the specified recording's transcription.  Note: After the deletion is requested and a `204` is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Bandwidth.Standard.Api;
+using Bandwidth.Standard.Client;
+using Bandwidth.Standard.Model;
+
+namespace Example
+{
+    public class DeleteRecordingTranscriptionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure HTTP basic authorization: Basic
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new RecordingsApi(config);
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID.
+            var recordingId = r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Recording ID.
+
+            try
+            {
+                // Delete Transcription
+                apiInstance.DeleteRecordingTranscription(accountId, callId, recordingId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling RecordingsApi.DeleteRecordingTranscription: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteRecordingTranscriptionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete Transcription
+    apiInstance.DeleteRecordingTranscriptionWithHttpInfo(accountId, callId, recordingId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling RecordingsApi.DeleteRecordingTranscriptionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **callId** | **string** | Programmable Voice API Call ID. |  |
+| **recordingId** | **string** | Programmable Voice API Recording ID. |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Basic](../README.md#Basic)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | The transcription was successfully deleted. |  -  |
 | **400** | Bad Request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
@@ -538,13 +538,13 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a id="getcalltranscription"></a>
-# **GetCallTranscription**
-> TranscriptionList GetCallTranscription (string accountId, string callId, string recordingId)
+<a id="getrecordingtranscription"></a>
+# **GetRecordingTranscription**
+> RecordingTranscriptions GetRecordingTranscription (string accountId, string callId, string recordingId)
 
 Get Transcription
 
-Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [`<PlayAudio>`](/docs/voice/bxml/playAudio) and [`<SpeakSentence>`](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [`<Transfer>`](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
+Downloads the specified transcription. If the recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [`<PlayAudio>`](/docs/voice/bxml/playAudio) and [`<SpeakSentence>`](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [`<Transfer>`](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
 
 ### Example
 ```csharp
@@ -556,7 +556,7 @@ using Bandwidth.Standard.Model;
 
 namespace Example
 {
-    public class GetCallTranscriptionExample
+    public class GetRecordingTranscriptionExample
     {
         public static void Main()
         {
@@ -574,12 +574,12 @@ namespace Example
             try
             {
                 // Get Transcription
-                TranscriptionList result = apiInstance.GetCallTranscription(accountId, callId, recordingId);
+                RecordingTranscriptions result = apiInstance.GetRecordingTranscription(accountId, callId, recordingId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling RecordingsApi.GetCallTranscription: " + e.Message);
+                Debug.Print("Exception when calling RecordingsApi.GetRecordingTranscription: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -588,21 +588,21 @@ namespace Example
 }
 ```
 
-#### Using the GetCallTranscriptionWithHttpInfo variant
+#### Using the GetRecordingTranscriptionWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Get Transcription
-    ApiResponse<TranscriptionList> response = apiInstance.GetCallTranscriptionWithHttpInfo(accountId, callId, recordingId);
+    ApiResponse<RecordingTranscriptions> response = apiInstance.GetRecordingTranscriptionWithHttpInfo(accountId, callId, recordingId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling RecordingsApi.GetCallTranscriptionWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling RecordingsApi.GetRecordingTranscriptionWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -618,7 +618,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**TranscriptionList**](TranscriptionList.md)
+[**RecordingTranscriptions**](RecordingTranscriptions.md)
 
 ### Authorization
 
@@ -633,7 +633,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Transcription found |  -  |
+| **200** | Transcription found. |  -  |
 | **400** | Bad Request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
