@@ -26,7 +26,7 @@ namespace Bandwidth.Standard.Test.Integration
         private CreateCall mantecaCallBody;
         private string accountId;
         private string testCallId;
-        private string testRecordingId;
+        private string testTranscriptionId;
         private string BW_USERNAME;
         private string BW_PASSWORD;
         private string MANTECA_ACTIVE_NUMBER;
@@ -39,8 +39,6 @@ namespace Bandwidth.Standard.Test.Integration
         public TranscriptionsIntegrationTests()
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
-            testCallId = "callId";
-            testRecordingId = "recordingId";
             BW_USERNAME = Environment.GetEnvironmentVariable("BW_USERNAME");
             BW_PASSWORD = Environment.GetEnvironmentVariable("BW_PASSWORD");
             MANTECA_ACTIVE_NUMBER = Environment.GetEnvironmentVariable("MANTECA_ACTIVE_NUMBER");
@@ -149,16 +147,20 @@ namespace Bandwidth.Standard.Test.Integration
 
         private void ListRealTimeTranscriptions()
         {
+            List<CallTranscriptionMetadata> callTranscriptions = transcriptionsApiInstance.ListRealTimeTranscriptions(accountId, testCallId);
+            Assert.NotEmpty(callTranscriptions);
 
+            testTranscriptionId = callTranscriptions[0].TranscriptionId;
         }
         private void GetRealTimeTranscription()
         {
-
+            CallTranscriptionResponse response = transcriptionsApiInstance.GetRealTimeTranscription(accountId, testCallId, testTranscriptionId);
+            Assert.Equal(testCallId, response.CallId);
         }
 
         private void DeleteRealTimeTranscription()
         {
-
+            transcriptionsApiInstance.DeleteRealTimeTranscription(accountId, testCallId, testTranscriptionId);
         }
 
         // Need these to run in a specific order
