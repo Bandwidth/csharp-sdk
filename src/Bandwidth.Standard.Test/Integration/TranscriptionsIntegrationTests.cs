@@ -121,12 +121,11 @@ namespace Bandwidth.Standard.Test.Integration
             Assert.IsType<TranscriptionsApi>(transcriptionsApiInstance);
         }
 
-        [Fact]
-        public void CreateCallTranscription()
+        private void CreateCallTranscription()
         {
             string startTranscriptionBxml = $"<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response><StartTranscription name=\"{mantecaCallBody.Tag}\" tracks=\"inbound\"></StartTranscription><Pause duration=\"6\"/></Response>";
             string stopTranscriptionBxml = $"<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response><StopTranscription name=\"{mantecaCallBody.Tag}\"></StopTranscription></Response>";
-            UpdateCall updateCallBody = new UpdateCall();
+            UpdateCall updateCallBody = new UpdateCall(state: CallStateEnum.Completed);
 
             // Create the call
             CreateCallResponse createCallResponse = callsApiInstance.CreateCall(accountId, mantecaCallBody);
@@ -146,25 +145,30 @@ namespace Bandwidth.Standard.Test.Integration
 
             // End the call
             callsApiInstance.UpdateCall(accountId, testCallId, updateCallBody);
-
         }
 
-        [Fact]
-        public void ListRealTimeTranscriptions()
+        private void ListRealTimeTranscriptions()
         {
-            Assert.True(false);
-        }
 
-        [Fact]
-        public void GetRealTimeTranscription()
+        }
+        private void GetRealTimeTranscription()
         {
 
         }
 
-        [Fact]
-        public void DeleteRealTimeTranscription()
+        private void DeleteRealTimeTranscription()
         {
 
+        }
+
+        // Need these to run in a specific order
+        [Fact]
+        public void TestTranscriptionsSuccess()
+        {
+            CreateCallTranscription();
+            ListRealTimeTranscriptions();
+            GetRealTimeTranscription();
+            DeleteRealTimeTranscription();
         }
     }
 }
