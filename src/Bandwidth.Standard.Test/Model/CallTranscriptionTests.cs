@@ -74,12 +74,12 @@ namespace Bandwidth.Standard.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Text'
+        /// Test the property 'Transcript'
         /// </summary>
         [Fact]
-        public void TextTest()
+        public void TranscriptTest()
         {
-            // TODO unit test for the property 'Text'
+            // TODO unit test for the property 'Transcript'
         }
 
         /// <summary>

@@ -99,13 +99,13 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="detectedLanguage">The detected language for this transcription..</param>
         /// <param name="track">Which &#x60;track&#x60; this transcription is derived from..</param>
-        /// <param name="text">The transcription itself..</param>
+        /// <param name="transcript">The transcription itself..</param>
         /// <param name="confidence">How confident the transcription engine was in transcribing the associated audio (from &#x60;0&#x60; to &#x60;1&#x60;)..</param>
-        public CallTranscription(DetectedLanguageEnum? detectedLanguage = default(DetectedLanguageEnum?), TrackEnum? track = default(TrackEnum?), string text = default(string), double confidence = default(double))
+        public CallTranscription(DetectedLanguageEnum? detectedLanguage = default(DetectedLanguageEnum?), TrackEnum? track = default(TrackEnum?), string transcript = default(string), double confidence = default(double))
         {
             this.DetectedLanguage = detectedLanguage;
             this.Track = track;
-            this.Text = text;
+            this.Transcript = transcript;
             this.Confidence = confidence;
         }
 
@@ -114,8 +114,8 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <value>The transcription itself.</value>
         /// <example>Hello World! This is an example.</example>
-        [DataMember(Name = "text", EmitDefaultValue = false)]
-        public string Text { get; set; }
+        [DataMember(Name = "transcript", EmitDefaultValue = false)]
+        public string Transcript { get; set; }
 
         /// <summary>
         /// How confident the transcription engine was in transcribing the associated audio (from &#x60;0&#x60; to &#x60;1&#x60;).
@@ -135,7 +135,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("class CallTranscription {\n");
             sb.Append("  DetectedLanguage: ").Append(DetectedLanguage).Append("\n");
             sb.Append("  Track: ").Append(Track).Append("\n");
-            sb.Append("  Text: ").Append(Text).Append("\n");
+            sb.Append("  Transcript: ").Append(Transcript).Append("\n");
             sb.Append("  Confidence: ").Append(Confidence).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -181,9 +181,9 @@ namespace Bandwidth.Standard.Model
                     this.Track.Equals(input.Track)
                 ) && 
                 (
-                    this.Text == input.Text ||
-                    (this.Text != null &&
-                    this.Text.Equals(input.Text))
+                    this.Transcript == input.Transcript ||
+                    (this.Transcript != null &&
+                    this.Transcript.Equals(input.Transcript))
                 ) && 
                 (
                     this.Confidence == input.Confidence ||
@@ -202,9 +202,9 @@ namespace Bandwidth.Standard.Model
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.DetectedLanguage.GetHashCode();
                 hashCode = (hashCode * 59) + this.Track.GetHashCode();
-                if (this.Text != null)
+                if (this.Transcript != null)
                 {
-                    hashCode = (hashCode * 59) + this.Text.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Transcript.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Confidence.GetHashCode();
                 return hashCode;

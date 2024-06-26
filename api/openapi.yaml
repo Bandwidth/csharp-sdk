@@ -7929,7 +7929,7 @@ components:
           - outbound
           example: inbound
           type: string
-        text:
+        transcript:
           description: The transcription itself.
           example: Hello World! This is an example.
           type: string

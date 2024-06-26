@@ -3301,7 +3301,7 @@ components:
             - outbound
           description: Which `track` this transcription is derived from.
           example: inbound
-        text:
+        transcript:
           type: string
           description: The transcription itself.
           example: Hello World! This is an example.
