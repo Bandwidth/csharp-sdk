@@ -410,13 +410,13 @@ namespace Bandwidth.Standard.Test.Api
             string callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
             string recordingId = "r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
             Transcription transcription = new Transcription(text: "Nice talking to you, friend!", confidence: .9);
-            TranscriptionList transcriptionList = new TranscriptionList(transcripts: new List<Transcription> { transcription });
+            RecordingTranscriptions recordingTranscriptions = new RecordingTranscriptions(transcripts: new List<Transcription> { transcription });
 
-            var apiResponse = new ApiResponse<TranscriptionList>(HttpStatusCode.OK, transcriptionList);
-            mockClient.Setup(x => x.Get<TranscriptionList>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
+            var apiResponse = new ApiResponse<RecordingTranscriptions>(HttpStatusCode.OK, recordingTranscriptions);
+            mockClient.Setup(x => x.Get<RecordingTranscriptions>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
             var response = instance.GetRecordingTranscriptionWithHttpInfo(accountId, callId, recordingId);
 
-            Assert.IsType<ApiResponse<TranscriptionList>>(response);
+            Assert.IsType<ApiResponse<RecordingTranscriptions>>(response);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
