@@ -147,8 +147,8 @@ namespace Bandwidth.Standard.Test.Integration
 
         private void ListRealTimeTranscriptions()
         {
-            // Sleep for 10 seconds
-            System.Threading.Thread.Sleep(10000);
+            // Sleep for 20 seconds
+            System.Threading.Thread.Sleep(20000);
 
             List<CallTranscriptionMetadata> callTranscriptions = transcriptionsApiInstance.ListRealTimeTranscriptions(accountId, testCallId);
             Assert.NotEmpty(callTranscriptions);
