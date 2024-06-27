@@ -54,7 +54,7 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice/#operation/getRecordingTranscription) endpoint.
         /// </summary>
-        /// <value>A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice/#operation/getCallTranscription) endpoint.</value>
+        /// <value>A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice/#operation/getRecordingTranscription) endpoint.</value>
         /// <example>https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-fef240ff-5cfc9091-8069-4863-a8c0-a4dcbbf1f1a4/transcriptions/t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b</example>
         [DataMember(Name = "transcriptionUrl", EmitDefaultValue = false)]
         public string TranscriptionUrl { get; set; }
