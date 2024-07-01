@@ -125,7 +125,7 @@ namespace Bandwidth.Standard.Model
         /// The phone number that made the call, in E.164 format (e.g. +15555555555).
         /// </summary>
         /// <value>The phone number that made the call, in E.164 format (e.g. +15555555555).</value>
-        /// <example>19195554321</example>
+        /// <example>+19195554321</example>
         [DataMember(Name = "from", EmitDefaultValue = false)]
         public string From { get; set; }
 

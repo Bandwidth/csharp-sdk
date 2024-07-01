@@ -1,4 +1,4 @@
-# Bandwidth.Standard.Model.TranscriptionList
+# Bandwidth.Standard.Model.RecordingTranscriptions
 
 ## Properties
 

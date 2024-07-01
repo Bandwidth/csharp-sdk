@@ -27,16 +27,16 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// TranscriptionList
+    /// RecordingTranscriptions
     /// </summary>
-    [DataContract(Name = "transcriptionList")]
-    public partial class TranscriptionList : IEquatable<TranscriptionList>, IValidatableObject
+    [DataContract(Name = "recordingTranscriptions")]
+    public partial class RecordingTranscriptions : IEquatable<RecordingTranscriptions>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TranscriptionList" /> class.
+        /// Initializes a new instance of the <see cref="RecordingTranscriptions" /> class.
         /// </summary>
         /// <param name="transcripts">transcripts.</param>
-        public TranscriptionList(List<Transcription> transcripts = default(List<Transcription>))
+        public RecordingTranscriptions(List<Transcription> transcripts = default(List<Transcription>))
         {
             this.Transcripts = transcripts;
         }
@@ -54,7 +54,7 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TranscriptionList {\n");
+            sb.Append("class RecordingTranscriptions {\n");
             sb.Append("  Transcripts: ").Append(Transcripts).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -76,15 +76,15 @@ namespace Bandwidth.Standard.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TranscriptionList);
+            return this.Equals(input as RecordingTranscriptions);
         }
 
         /// <summary>
-        /// Returns true if TranscriptionList instances are equal
+        /// Returns true if RecordingTranscriptions instances are equal
         /// </summary>
-        /// <param name="input">Instance of TranscriptionList to be compared</param>
+        /// <param name="input">Instance of RecordingTranscriptions to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TranscriptionList input)
+        public bool Equals(RecordingTranscriptions input)
         {
             if (input == null)
             {

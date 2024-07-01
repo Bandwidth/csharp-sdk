@@ -29,17 +29,17 @@ namespace Bandwidth.Standard.Model
     /// <summary>
     /// If the recording was transcribed, metadata about the transcription
     /// </summary>
-    [DataContract(Name = "transcriptionMetadata")]
-    public partial class TranscriptionMetadata : IEquatable<TranscriptionMetadata>, IValidatableObject
+    [DataContract(Name = "recordingTranscriptionMetadata")]
+    public partial class RecordingTranscriptionMetadata : IEquatable<RecordingTranscriptionMetadata>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TranscriptionMetadata" /> class.
+        /// Initializes a new instance of the <see cref="RecordingTranscriptionMetadata" /> class.
         /// </summary>
         /// <param name="id">The unique transcription ID.</param>
         /// <param name="status">The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values..</param>
         /// <param name="completedTime">The time that the transcription was completed.</param>
         /// <param name="url">The URL of the [transcription](#operation/getCallTranscription).</param>
-        public TranscriptionMetadata(string id = default(string), string status = default(string), string completedTime = default(string), string url = default(string))
+        public RecordingTranscriptionMetadata(string id = default(string), string status = default(string), string completedTime = default(string), string url = default(string))
         {
             this.Id = id;
             this.Status = status;
@@ -86,7 +86,7 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TranscriptionMetadata {\n");
+            sb.Append("class RecordingTranscriptionMetadata {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  CompletedTime: ").Append(CompletedTime).Append("\n");
@@ -111,15 +111,15 @@ namespace Bandwidth.Standard.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TranscriptionMetadata);
+            return this.Equals(input as RecordingTranscriptionMetadata);
         }
 
         /// <summary>
-        /// Returns true if TranscriptionMetadata instances are equal
+        /// Returns true if RecordingTranscriptionMetadata instances are equal
         /// </summary>
-        /// <param name="input">Instance of TranscriptionMetadata to be compared</param>
+        /// <param name="input">Instance of RecordingTranscriptionMetadata to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TranscriptionMetadata input)
+        public bool Equals(RecordingTranscriptionMetadata input)
         {
             if (input == null)
             {

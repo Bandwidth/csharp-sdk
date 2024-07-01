@@ -61,10 +61,10 @@ namespace Bandwidth.Standard.Test.Api
         }
 
         /// <summary>
-        /// Test DeleteCallTranscription
+        /// Test DeleteRecordingTranscription
         /// </summary>
         [Fact]
-        public void DeleteCallTranscriptionTest()
+        public void DeleteRecordingTranscriptionTest()
         {
             string accountId = "9900000";
             string callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
@@ -72,17 +72,17 @@ namespace Bandwidth.Standard.Test.Api
 
             var apiResponse = new ApiResponse<Object>(HttpStatusCode.NoContent, null);
             mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.DeleteCallTranscriptionWithHttpInfo(accountId, callId, recordingId);
+            var response = instance.DeleteRecordingTranscriptionWithHttpInfo(accountId, callId, recordingId);
 
             Assert.IsType<ApiResponse<Object>>(response);
             Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
         }
 
         /// <summary>
-        /// Test Unauthorized DeleteCallTranscription
+        /// Test Unauthorized DeleteRecordingTranscription
         /// </summary>
         [Fact]
-        public void DeleteCallTranscriptionUnauthorizedRequest()
+        public void DeleteRecordingTranscriptionUnauthorizedRequest()
         {
             string accountId = "9900000";
             string callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
@@ -92,17 +92,17 @@ namespace Bandwidth.Standard.Test.Api
 
             var apiResponse = new ApiResponse<Object>(HttpStatusCode.Unauthorized, null);
             mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.DeleteCallTranscriptionWithHttpInfo(accountId, callId, recordingId));
+            ApiException Exception = Assert.Throws<ApiException>(() => instance.DeleteRecordingTranscriptionWithHttpInfo(accountId, callId, recordingId));
 
-            Assert.Equal("Error calling DeleteCallTranscription: ", Exception.Message);
+            Assert.Equal("Error calling DeleteRecordingTranscription: ", Exception.Message);
             Assert.Equal(401, Exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test Forbidden DeleteCallTranscription
+        /// Test Forbidden DeleteRecordingTranscription
         /// </summary>
         [Fact]
-        public void DeleteCallTranscriptionForbiddenRequest()
+        public void DeleteRecordingTranscriptionForbiddenRequest()
         {
             string accountId = "9900000";
             string callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
@@ -112,9 +112,9 @@ namespace Bandwidth.Standard.Test.Api
 
             var apiResponse = new ApiResponse<Object>(HttpStatusCode.Forbidden, null);
             mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.DeleteCallTranscriptionWithHttpInfo(accountId, callId, recordingId));
+            ApiException Exception = Assert.Throws<ApiException>(() => instance.DeleteRecordingTranscriptionWithHttpInfo(accountId, callId, recordingId));
 
-            Assert.Equal("Error calling DeleteCallTranscription: ", Exception.Message);
+            Assert.Equal("Error calling DeleteRecordingTranscription: ", Exception.Message);
             Assert.Equal(403, Exception.ErrorCode);
         }
 
@@ -150,12 +150,12 @@ namespace Bandwidth.Standard.Test.Api
 
             var apiResponse = new ApiResponse<Object>(HttpStatusCode.Unauthorized, null);
             mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            
+
             ApiException Exception = Assert.Throws<ApiException>(() => instance.DeleteRecordingWithHttpInfo(accountId, callId, recordingId));
-            
+
             Assert.Equal("Error calling DeleteRecording: ", Exception.Message);
             Assert.Equal(401, Exception.ErrorCode);
-        } 
+        }
 
         /// <summary>
         /// Test forbidden DeleteRecording
@@ -172,10 +172,10 @@ namespace Bandwidth.Standard.Test.Api
             var apiResponse = new ApiResponse<Object>(HttpStatusCode.Forbidden, null);
             mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
             ApiException Exception = Assert.Throws<ApiException>(() => instance.DeleteRecordingWithHttpInfo(accountId, callId, recordingId));
-            
+
             Assert.Equal("Error calling DeleteRecording: ", Exception.Message);
             Assert.Equal(403, Exception.ErrorCode);
-        } 
+        }
 
         /// <summary>
         /// Test DeleteRecordingMedia
@@ -210,14 +210,14 @@ namespace Bandwidth.Standard.Test.Api
             var apiResponse = new ApiResponse<Object>(HttpStatusCode.Unauthorized, null);
             mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
             ApiException Exception = Assert.Throws<ApiException>(() => instance.DeleteRecordingMediaWithHttpInfo(accountId, callId, recordingId));
-            
+
             Assert.Equal("Error calling DeleteRecordingMedia: ", Exception.Message);
             Assert.Equal(401, Exception.ErrorCode);
         }
 
         /// <summary>
         /// Test forbidden DeleteRecordingMedia
-        /// </summary> 
+        /// </summary>
         [Fact]
         public void DeleteRecordingMediaForbiddenRequest()
         {
@@ -230,7 +230,7 @@ namespace Bandwidth.Standard.Test.Api
             var apiResponse = new ApiResponse<Object>(HttpStatusCode.Forbidden, null);
             mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
             ApiException Exception = Assert.Throws<ApiException>(() => instance.DeleteRecordingMediaWithHttpInfo(accountId, callId, recordingId));
-            
+
             Assert.Equal("Error calling DeleteRecordingMedia: ", Exception.Message);
             Assert.Equal(403, Exception.ErrorCode);
         }
@@ -273,7 +273,7 @@ namespace Bandwidth.Standard.Test.Api
             var apiResponse = new ApiResponse<System.IO.Stream>(HttpStatusCode.Unauthorized, null);
             mockClient.Setup(x => x.Get<System.IO.Stream>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
             ApiException Exception = Assert.Throws<ApiException>(() => instance.DownloadCallRecordingWithHttpInfo(accountId, callId, recordingId));
-            
+
             Assert.Equal("Error calling DownloadCallRecording: ", Exception.Message);
             Assert.Equal(401, Exception.ErrorCode);
         }
@@ -294,7 +294,7 @@ namespace Bandwidth.Standard.Test.Api
             var apiResponse = new ApiResponse<System.IO.Stream>(HttpStatusCode.Forbidden, null);
             mockClient.Setup(x => x.Get<System.IO.Stream>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
             ApiException Exception = Assert.Throws<ApiException>(() => instance.DownloadCallRecordingWithHttpInfo(accountId, callId, recordingId));
-            
+
             Assert.Equal("Error calling DownloadCallRecording: ", Exception.Message);
             Assert.Equal(403, Exception.ErrorCode);
         }
@@ -326,7 +326,7 @@ namespace Bandwidth.Standard.Test.Api
                 fileFormat: FileFormatEnum.Wav,
                 status: "completed",
                 mediaUrl: "https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/recordings/r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833/media",
-                transcription: new TranscriptionMetadata(
+                transcription: new RecordingTranscriptionMetadata(
                     id: "t-387bd648-18f3-4823-9d16-746bca0003c9",
                     status: "completed",
                     completedTime: "2022-06-13T18:46:29.715Z",
@@ -355,10 +355,10 @@ namespace Bandwidth.Standard.Test.Api
             var apiResponse = new ApiResponse<CallRecordingMetadata>(HttpStatusCode.NotFound, null);
             mockClient.Setup(x => x.Get<CallRecordingMetadata>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
             ApiException Exception = Assert.Throws<ApiException>(() => instance.GetCallRecordingWithHttpInfo(accountId, callId, recordingId));
-            
+
             Assert.Equal("Error calling GetCallRecording: ", Exception.Message);
             Assert.Equal(404, Exception.ErrorCode);
-        } 
+        }
 
         /// <summary>
         /// Test Unauthorized GetCallRecording
@@ -375,7 +375,7 @@ namespace Bandwidth.Standard.Test.Api
             var apiResponse = new ApiResponse<CallRecordingMetadata>(HttpStatusCode.Unauthorized, null);
             mockClient.Setup(x => x.Get<CallRecordingMetadata>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
             ApiException Exception = Assert.Throws<ApiException>(() => instance.GetCallRecordingWithHttpInfo(accountId, callId, recordingId));
-            
+
             Assert.Equal("Error calling GetCallRecording: ", Exception.Message);
             Assert.Equal(401, Exception.ErrorCode);
         }
@@ -395,28 +395,28 @@ namespace Bandwidth.Standard.Test.Api
             var apiResponse = new ApiResponse<CallRecordingMetadata>(HttpStatusCode.Forbidden, null);
             mockClient.Setup(x => x.Get<CallRecordingMetadata>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
             ApiException Exception = Assert.Throws<ApiException>(() => instance.GetCallRecordingWithHttpInfo(accountId, callId, recordingId));
-            
+
             Assert.Equal("Error calling GetCallRecording: ", Exception.Message);
             Assert.Equal(403, Exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test GetCallTranscription
+        /// Test GetRecordingTranscription
         /// </summary>
         [Fact]
-        public void GetCallTranscriptionTest()
+        public void GetRecordingTranscriptionTest()
         {
             string accountId = "9900000";
             string callId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
             string recordingId = "r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
             Transcription transcription = new Transcription(text: "Nice talking to you, friend!", confidence: .9);
-            TranscriptionList transcriptionList = new TranscriptionList(transcripts: new List<Transcription> { transcription } );
+            RecordingTranscriptions recordingTranscriptions = new RecordingTranscriptions(transcripts: new List<Transcription> { transcription });
 
-            var apiResponse = new ApiResponse<TranscriptionList>(HttpStatusCode.OK, transcriptionList);
-            mockClient.Setup(x => x.Get<TranscriptionList>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.GetCallTranscriptionWithHttpInfo(accountId, callId, recordingId);
+            var apiResponse = new ApiResponse<RecordingTranscriptions>(HttpStatusCode.OK, recordingTranscriptions);
+            mockClient.Setup(x => x.Get<RecordingTranscriptions>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
+            var response = instance.GetRecordingTranscriptionWithHttpInfo(accountId, callId, recordingId);
 
-            Assert.IsType<ApiResponse<TranscriptionList>>(response);
+            Assert.IsType<ApiResponse<RecordingTranscriptions>>(response);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
@@ -445,11 +445,11 @@ namespace Bandwidth.Standard.Test.Api
                 fileFormat: FileFormatEnum.Wav,
                 status: "completed",
                 mediaUrl: "https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/recordings/r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833/media",
-                transcription: new TranscriptionMetadata(
+                transcription: new RecordingTranscriptionMetadata(
                     id: "t-387bd648-18f3-4823-9d16-746bca0003c9",
                     status: "completed",
                     completedTime: "2022-06-13T18:46:29.715Z",
-                    url:"https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/recordings/r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/transcription"
+                    url: "https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/recordings/r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/transcription"
                 )
             );
 
@@ -459,7 +459,7 @@ namespace Bandwidth.Standard.Test.Api
                 accountId: accountId,
                 to: "+19195551234",
                 from: "+19195554321",
-                minStartTime: "2022-06-21T19:13:21Z", 
+                minStartTime: "2022-06-21T19:13:21Z",
                 maxStartTime: "2022-06-21T19:13:21Z"
             );
 
@@ -483,7 +483,7 @@ namespace Bandwidth.Standard.Test.Api
                 accountId: accountId,
                 to: "+19195551234",
                 from: "+19195554321",
-                minStartTime: "2022-06-21T19:13:21Z", 
+                minStartTime: "2022-06-21T19:13:21Z",
                 maxStartTime: "2022-06-21T19:13:21Z"
             ));
 
@@ -505,7 +505,7 @@ namespace Bandwidth.Standard.Test.Api
                 accountId: accountId,
                 to: "+19195551234",
                 from: "+19195554321",
-                minStartTime: "2022-06-21T19:13:21Z", 
+                minStartTime: "2022-06-21T19:13:21Z",
                 maxStartTime: "2022-06-21T19:13:21Z"
             ));
 
@@ -540,7 +540,7 @@ namespace Bandwidth.Standard.Test.Api
                 fileFormat: FileFormatEnum.Wav,
                 status: "completed",
                 mediaUrl: "https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/recordings/r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833/media",
-                transcription: new TranscriptionMetadata(
+                transcription: new RecordingTranscriptionMetadata(
                     id: "t-387bd648-18f3-4823-9d16-746bca0003c9",
                     status: "completed",
                     completedTime: "2022-06-13T18:46:29.715Z",

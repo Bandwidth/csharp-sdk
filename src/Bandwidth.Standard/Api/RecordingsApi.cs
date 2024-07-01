@@ -28,33 +28,6 @@ namespace Bandwidth.Standard.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Delete Transcription
-        /// </summary>
-        /// <remarks>
-        /// Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
-        /// </remarks>
-        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns></returns>
-        void DeleteCallTranscription(string accountId, string callId, string recordingId, int operationIndex = 0);
-
-        /// <summary>
-        /// Delete Transcription
-        /// </summary>
-        /// <remarks>
-        /// Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
-        /// </remarks>
-        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeleteCallTranscriptionWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0);
-        /// <summary>
         /// Delete Recording
         /// </summary>
         /// <remarks>
@@ -108,6 +81,33 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteRecordingMediaWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0);
+        /// <summary>
+        /// Delete Transcription
+        /// </summary>
+        /// <remarks>
+        /// Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns></returns>
+        void DeleteRecordingTranscription(string accountId, string callId, string recordingId, int operationIndex = 0);
+
+        /// <summary>
+        /// Delete Transcription
+        /// </summary>
+        /// <remarks>
+        /// Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeleteRecordingTranscriptionWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0);
         /// <summary>
         /// Download Recording
         /// </summary>
@@ -166,29 +166,29 @@ namespace Bandwidth.Standard.Api
         /// Get Transcription
         /// </summary>
         /// <remarks>
-        /// Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
+        /// Downloads the specified transcription. If the recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>TranscriptionList</returns>
-        TranscriptionList GetCallTranscription(string accountId, string callId, string recordingId, int operationIndex = 0);
+        /// <returns>RecordingTranscriptions</returns>
+        RecordingTranscriptions GetRecordingTranscription(string accountId, string callId, string recordingId, int operationIndex = 0);
 
         /// <summary>
         /// Get Transcription
         /// </summary>
         /// <remarks>
-        /// Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
+        /// Downloads the specified transcription. If the recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of TranscriptionList</returns>
-        ApiResponse<TranscriptionList> GetCallTranscriptionWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0);
+        /// <returns>ApiResponse of RecordingTranscriptions</returns>
+        ApiResponse<RecordingTranscriptions> GetRecordingTranscriptionWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0);
         /// <summary>
         /// Get Call Recordings
         /// </summary>
@@ -311,35 +311,6 @@ namespace Bandwidth.Standard.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Delete Transcription
-        /// </summary>
-        /// <remarks>
-        /// Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
-        /// </remarks>
-        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteCallTranscriptionAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-
-        /// <summary>
-        /// Delete Transcription
-        /// </summary>
-        /// <remarks>
-        /// Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
-        /// </remarks>
-        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteCallTranscriptionWithHttpInfoAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
-        /// <summary>
         /// Delete Recording
         /// </summary>
         /// <remarks>
@@ -397,6 +368,35 @@ namespace Bandwidth.Standard.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DeleteRecordingMediaWithHttpInfoAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Delete Transcription
+        /// </summary>
+        /// <remarks>
+        /// Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeleteRecordingTranscriptionAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Delete Transcription
+        /// </summary>
+        /// <remarks>
+        /// Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteRecordingTranscriptionWithHttpInfoAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Download Recording
         /// </summary>
@@ -459,7 +459,7 @@ namespace Bandwidth.Standard.Api
         /// Get Transcription
         /// </summary>
         /// <remarks>
-        /// Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
+        /// Downloads the specified transcription. If the recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -467,14 +467,14 @@ namespace Bandwidth.Standard.Api
         /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of TranscriptionList</returns>
-        System.Threading.Tasks.Task<TranscriptionList> GetCallTranscriptionAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of RecordingTranscriptions</returns>
+        System.Threading.Tasks.Task<RecordingTranscriptions> GetRecordingTranscriptionAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Get Transcription
         /// </summary>
         /// <remarks>
-        /// Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
+        /// Downloads the specified transcription. If the recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -482,8 +482,8 @@ namespace Bandwidth.Standard.Api
         /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (TranscriptionList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TranscriptionList>> GetCallTranscriptionWithHttpInfoAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (RecordingTranscriptions)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RecordingTranscriptions>> GetRecordingTranscriptionWithHttpInfoAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get Call Recordings
         /// </summary>
@@ -722,196 +722,6 @@ namespace Bandwidth.Standard.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
-        }
-
-        /// <summary>
-        /// Delete Transcription Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
-        /// </summary>
-        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns></returns>
-        public void DeleteCallTranscription(string accountId, string callId, string recordingId, int operationIndex = 0)
-        {
-            DeleteCallTranscriptionWithHttpInfo(accountId, callId, recordingId);
-        }
-
-        /// <summary>
-        /// Delete Transcription Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
-        /// </summary>
-        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Bandwidth.Standard.Client.ApiResponse<Object> DeleteCallTranscriptionWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0)
-        {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-            {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling RecordingsApi->DeleteCallTranscription");
-            }
-
-            // verify the required parameter 'callId' is set
-            if (callId == null)
-            {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'callId' when calling RecordingsApi->DeleteCallTranscription");
-            }
-
-            // verify the required parameter 'recordingId' is set
-            if (recordingId == null)
-            {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'recordingId' when calling RecordingsApi->DeleteCallTranscription");
-            }
-
-            Bandwidth.Standard.Client.RequestOptions localVarRequestOptions = new Bandwidth.Standard.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Bandwidth.Standard.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = Bandwidth.Standard.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("accountId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(accountId)); // path parameter
-            localVarRequestOptions.PathParameters.Add("callId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(callId)); // path parameter
-            localVarRequestOptions.PathParameters.Add("recordingId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(recordingId)); // path parameter
-
-            localVarRequestOptions.Operation = "RecordingsApi.DeleteCallTranscription";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (Basic) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteCallTranscription", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Delete Transcription Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
-        /// </summary>
-        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteCallTranscriptionAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            await DeleteCallTranscriptionWithHttpInfoAsync(accountId, callId, recordingId, operationIndex, cancellationToken).ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Delete Transcription Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
-        /// </summary>
-        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<Object>> DeleteCallTranscriptionWithHttpInfoAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-            {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling RecordingsApi->DeleteCallTranscription");
-            }
-
-            // verify the required parameter 'callId' is set
-            if (callId == null)
-            {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'callId' when calling RecordingsApi->DeleteCallTranscription");
-            }
-
-            // verify the required parameter 'recordingId' is set
-            if (recordingId == null)
-            {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'recordingId' when calling RecordingsApi->DeleteCallTranscription");
-            }
-
-
-            Bandwidth.Standard.Client.RequestOptions localVarRequestOptions = new Bandwidth.Standard.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Bandwidth.Standard.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = Bandwidth.Standard.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("accountId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(accountId)); // path parameter
-            localVarRequestOptions.PathParameters.Add("callId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(callId)); // path parameter
-            localVarRequestOptions.PathParameters.Add("recordingId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(recordingId)); // path parameter
-
-            localVarRequestOptions.Operation = "RecordingsApi.DeleteCallTranscription";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (Basic) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DeleteCallTranscription", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
         }
 
         /// <summary>
@@ -1285,6 +1095,196 @@ namespace Bandwidth.Standard.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteRecordingMedia", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete Transcription Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns></returns>
+        public void DeleteRecordingTranscription(string accountId, string callId, string recordingId, int operationIndex = 0)
+        {
+            DeleteRecordingTranscriptionWithHttpInfo(accountId, callId, recordingId);
+        }
+
+        /// <summary>
+        /// Delete Transcription Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Bandwidth.Standard.Client.ApiResponse<Object> DeleteRecordingTranscriptionWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+            {
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling RecordingsApi->DeleteRecordingTranscription");
+            }
+
+            // verify the required parameter 'callId' is set
+            if (callId == null)
+            {
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'callId' when calling RecordingsApi->DeleteRecordingTranscription");
+            }
+
+            // verify the required parameter 'recordingId' is set
+            if (recordingId == null)
+            {
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'recordingId' when calling RecordingsApi->DeleteRecordingTranscription");
+            }
+
+            Bandwidth.Standard.Client.RequestOptions localVarRequestOptions = new Bandwidth.Standard.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Bandwidth.Standard.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Bandwidth.Standard.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("accountId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("callId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(callId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("recordingId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(recordingId)); // path parameter
+
+            localVarRequestOptions.Operation = "RecordingsApi.DeleteRecordingTranscription";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<Object>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteRecordingTranscription", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete Transcription Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeleteRecordingTranscriptionAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            await DeleteRecordingTranscriptionWithHttpInfoAsync(accountId, callId, recordingId, operationIndex, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete Transcription Deletes the specified recording&#39;s transcription.  Note: After the deletion is requested and a &#x60;204&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="callId">Programmable Voice API Call ID.</param>
+        /// <param name="recordingId">Programmable Voice API Recording ID.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<Object>> DeleteRecordingTranscriptionWithHttpInfoAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+            {
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling RecordingsApi->DeleteRecordingTranscription");
+            }
+
+            // verify the required parameter 'callId' is set
+            if (callId == null)
+            {
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'callId' when calling RecordingsApi->DeleteRecordingTranscription");
+            }
+
+            // verify the required parameter 'recordingId' is set
+            if (recordingId == null)
+            {
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'recordingId' when calling RecordingsApi->DeleteRecordingTranscription");
+            }
+
+
+            Bandwidth.Standard.Client.RequestOptions localVarRequestOptions = new Bandwidth.Standard.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Bandwidth.Standard.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Bandwidth.Standard.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("accountId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("callId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(callId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("recordingId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(recordingId)); // path parameter
+
+            localVarRequestOptions.Operation = "RecordingsApi.DeleteRecordingTranscription";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteRecordingTranscription", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1683,47 +1683,47 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Get Transcription Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
+        /// Get Transcription Downloads the specified transcription. If the recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>TranscriptionList</returns>
-        public TranscriptionList GetCallTranscription(string accountId, string callId, string recordingId, int operationIndex = 0)
+        /// <returns>RecordingTranscriptions</returns>
+        public RecordingTranscriptions GetRecordingTranscription(string accountId, string callId, string recordingId, int operationIndex = 0)
         {
-            Bandwidth.Standard.Client.ApiResponse<TranscriptionList> localVarResponse = GetCallTranscriptionWithHttpInfo(accountId, callId, recordingId);
+            Bandwidth.Standard.Client.ApiResponse<RecordingTranscriptions> localVarResponse = GetRecordingTranscriptionWithHttpInfo(accountId, callId, recordingId);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get Transcription Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
+        /// Get Transcription Downloads the specified transcription. If the recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="callId">Programmable Voice API Call ID.</param>
         /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of TranscriptionList</returns>
-        public Bandwidth.Standard.Client.ApiResponse<TranscriptionList> GetCallTranscriptionWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0)
+        /// <returns>ApiResponse of RecordingTranscriptions</returns>
+        public Bandwidth.Standard.Client.ApiResponse<RecordingTranscriptions> GetRecordingTranscriptionWithHttpInfo(string accountId, string callId, string recordingId, int operationIndex = 0)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
             {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling RecordingsApi->GetCallTranscription");
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling RecordingsApi->GetRecordingTranscription");
             }
 
             // verify the required parameter 'callId' is set
             if (callId == null)
             {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'callId' when calling RecordingsApi->GetCallTranscription");
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'callId' when calling RecordingsApi->GetRecordingTranscription");
             }
 
             // verify the required parameter 'recordingId' is set
             if (recordingId == null)
             {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'recordingId' when calling RecordingsApi->GetCallTranscription");
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'recordingId' when calling RecordingsApi->GetRecordingTranscription");
             }
 
             Bandwidth.Standard.Client.RequestOptions localVarRequestOptions = new Bandwidth.Standard.Client.RequestOptions();
@@ -1752,7 +1752,7 @@ namespace Bandwidth.Standard.Api
             localVarRequestOptions.PathParameters.Add("callId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(callId)); // path parameter
             localVarRequestOptions.PathParameters.Add("recordingId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(recordingId)); // path parameter
 
-            localVarRequestOptions.Operation = "RecordingsApi.GetCallTranscription";
+            localVarRequestOptions.Operation = "RecordingsApi.GetRecordingTranscription";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
@@ -1763,10 +1763,10 @@ namespace Bandwidth.Standard.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<TranscriptionList>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<RecordingTranscriptions>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("GetCallTranscription", localVarResponse);
+                Exception _exception = this.ExceptionFactory("GetRecordingTranscription", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1777,7 +1777,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Get Transcription Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
+        /// Get Transcription Downloads the specified transcription. If the recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -1785,15 +1785,15 @@ namespace Bandwidth.Standard.Api
         /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of TranscriptionList</returns>
-        public async System.Threading.Tasks.Task<TranscriptionList> GetCallTranscriptionAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of RecordingTranscriptions</returns>
+        public async System.Threading.Tasks.Task<RecordingTranscriptions> GetRecordingTranscriptionAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Bandwidth.Standard.Client.ApiResponse<TranscriptionList> localVarResponse = await GetCallTranscriptionWithHttpInfoAsync(accountId, callId, recordingId, operationIndex, cancellationToken).ConfigureAwait(false);
+            Bandwidth.Standard.Client.ApiResponse<RecordingTranscriptions> localVarResponse = await GetRecordingTranscriptionWithHttpInfoAsync(accountId, callId, recordingId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get Transcription Downloads the specified transcription.  If the transcribed recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
+        /// Get Transcription Downloads the specified transcription. If the recording was multi-channel, then there will be 2 transcripts. The caller/called party transcript will be the first item while [&#x60;&lt;PlayAudio&gt;&#x60;](/docs/voice/bxml/playAudio) and [&#x60;&lt;SpeakSentence&gt;&#x60;](/docs/voice/bxml/speakSentence) transcript will be the second item. During a [&#x60;&lt;Transfer&gt;&#x60;](/docs/voice/bxml/transfer) the A-leg transcript will be the first item while the B-leg transcript will be the second item.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -1801,25 +1801,25 @@ namespace Bandwidth.Standard.Api
         /// <param name="recordingId">Programmable Voice API Recording ID.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (TranscriptionList)</returns>
-        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<TranscriptionList>> GetCallTranscriptionWithHttpInfoAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (RecordingTranscriptions)</returns>
+        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<RecordingTranscriptions>> GetRecordingTranscriptionWithHttpInfoAsync(string accountId, string callId, string recordingId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
             {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling RecordingsApi->GetCallTranscription");
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling RecordingsApi->GetRecordingTranscription");
             }
 
             // verify the required parameter 'callId' is set
             if (callId == null)
             {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'callId' when calling RecordingsApi->GetCallTranscription");
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'callId' when calling RecordingsApi->GetRecordingTranscription");
             }
 
             // verify the required parameter 'recordingId' is set
             if (recordingId == null)
             {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'recordingId' when calling RecordingsApi->GetCallTranscription");
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'recordingId' when calling RecordingsApi->GetRecordingTranscription");
             }
 
 
@@ -1849,7 +1849,7 @@ namespace Bandwidth.Standard.Api
             localVarRequestOptions.PathParameters.Add("callId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(callId)); // path parameter
             localVarRequestOptions.PathParameters.Add("recordingId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(recordingId)); // path parameter
 
-            localVarRequestOptions.Operation = "RecordingsApi.GetCallTranscription";
+            localVarRequestOptions.Operation = "RecordingsApi.GetRecordingTranscription";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
@@ -1860,11 +1860,11 @@ namespace Bandwidth.Standard.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<TranscriptionList>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<RecordingTranscriptions>("/accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("GetCallTranscription", localVarResponse);
+                Exception _exception = this.ExceptionFactory("GetRecordingTranscription", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;

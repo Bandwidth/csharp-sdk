@@ -225,9 +225,9 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TranscriptionTest()
         {
-            instance.Transcription = new TranscriptionMetadata("t-123", "complete", "2022-06-13T18:46:29.715Z", "https://test.url/");
-            Assert.IsType<TranscriptionMetadata>(instance.Transcription);
-            Assert.Equal(new TranscriptionMetadata("t-123", "complete", "2022-06-13T18:46:29.715Z", "https://test.url/"), instance.Transcription);
+            instance.Transcription = new RecordingTranscriptionMetadata("t-123", "complete", "2022-06-13T18:46:29.715Z", "https://test.url/");
+            Assert.IsType<RecordingTranscriptionMetadata>(instance.Transcription);
+            Assert.Equal(new RecordingTranscriptionMetadata("t-123", "complete", "2022-06-13T18:46:29.715Z", "https://test.url/"), instance.Transcription);
         }
 
     }

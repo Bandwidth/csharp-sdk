@@ -68,7 +68,7 @@ namespace Bandwidth.Standard.Test.Integration
             fakeConfiguration.Password = BW_FORBIDDEN_PASSWORD;
             forbiddenInstance = new RecordingsApi(fakeConfiguration);
 
-            restClient =  new ApiClient(basePath: "https://voice.bandwidth.com/api/v2");
+            restClient = new ApiClient(basePath: "https://voice.bandwidth.com/api/v2");
 
             mantecaCallBody = new CreateCall(
                 to: MANTECA_IDLE_NUMBER,
@@ -142,15 +142,15 @@ namespace Bandwidth.Standard.Test.Integration
         }
 
         /// <summary>
-        /// Creates and completes an entire recorded call lifecycle.  A call should be completed and fully recorded. 
-        /// </summary> 
+        /// Creates and completes an entire recorded call lifecycle.  A call should be completed and fully recorded.
+        /// </summary>
         /// <returns>
         /// A tuple containing the test id to track this call in the Manteca system and the call id associated with the call in Bandwidth services.
         /// </returns>
-        public Tuple <string,string> CompleteRecordedCall()
+        public Tuple<string, string> CompleteRecordedCall()
         {
             mantecaCallBody.AnswerUrl = MANTECA_BASE_URL + "/bxml/startRecording";
-            Tuple<string,string> createCallResponse = CreateAndValidateCall();
+            Tuple<string, string> createCallResponse = CreateAndValidateCall();
             var testId = createCallResponse.Item1;
             var callId = createCallResponse.Item2;
 
@@ -159,7 +159,7 @@ namespace Bandwidth.Standard.Test.Integration
             JObject callStatusJson = JObject.Parse(callStatus);
             var retryCounter = 0;
 
-            while(!(Boolean)callStatusJson["callRecorded"] && retryCounter < 40)
+            while (!(Boolean)callStatusJson["callRecorded"] && retryCounter < 40)
             {
                 System.Threading.Thread.Sleep(5000);
                 callStatus = GetTestStatus(testId);
@@ -169,7 +169,7 @@ namespace Bandwidth.Standard.Test.Integration
 
             Assert.True((Boolean)callStatusJson["callRecorded"]);
 
-            return(new Tuple <string, string> (testId,callId));
+            return (new Tuple<string, string>(testId, callId));
 
         }
 
@@ -195,7 +195,7 @@ namespace Bandwidth.Standard.Test.Integration
                 path: Environment.GetEnvironmentVariable("MANTECA_BASE_URL") + "/tests/" + testId,
                 options: options
             );
-            
+
             return response.Content.ToString();
         }
 
@@ -205,11 +205,11 @@ namespace Bandwidth.Standard.Test.Integration
         [Fact]
         public void TestSuccessfulCallRecording()
         {
-            Tuple <string, string> recordedCallResponse = CompleteRecordedCall();
+            Tuple<string, string> recordedCallResponse = CompleteRecordedCall();
             var testId = recordedCallResponse.Item1;
             var callId = recordedCallResponse.Item2;
 
-            var listCallResponse = recordingApiInstance.ListCallRecordingsWithHttpInfo(accountId,callId);
+            var listCallResponse = recordingApiInstance.ListCallRecordingsWithHttpInfo(accountId, callId);
             Assert.Equal(HttpStatusCode.OK, listCallResponse.StatusCode);
 
             List<CallRecordingMetadata> callRecording = listCallResponse.Data;
@@ -246,7 +246,7 @@ namespace Bandwidth.Standard.Test.Integration
             var callStatus = GetTestStatus(testId);
             var retries = 0;
             JObject callStatusJson = JObject.Parse(callStatus);
-            while(!(Boolean)callStatusJson["callTranscribed"] && retries < 40)
+            while (!(Boolean)callStatusJson["callTranscribed"] && retries < 40)
             {
                 System.Threading.Thread.Sleep(5000);
                 callStatus = GetTestStatus(testId);
@@ -254,9 +254,9 @@ namespace Bandwidth.Standard.Test.Integration
                 retries++;
             }
             Assert.True((Boolean)callStatusJson["callTranscribed"]);
-            var transcriptionResponse = recordingApiInstance.GetCallTranscriptionWithHttpInfo(accountId, callId, firstRecordingId);
+            var transcriptionResponse = recordingApiInstance.GetRecordingTranscriptionWithHttpInfo(accountId, callId, firstRecordingId);
             Assert.Equal(HttpStatusCode.OK, transcriptionResponse.StatusCode);
-            
+
             var transcription = transcriptionResponse.Data;
             Assert.Single(transcription.Transcripts);
 
@@ -266,11 +266,11 @@ namespace Bandwidth.Standard.Test.Integration
             Assert.IsType<double>(firstTranscript.Confidence);
 
             // delete transcription
-            var deleteTranscriptionResponse = recordingApiInstance.DeleteCallTranscriptionWithHttpInfo(accountId, callId, firstRecordingId);
+            var deleteTranscriptionResponse = recordingApiInstance.DeleteRecordingTranscriptionWithHttpInfo(accountId, callId, firstRecordingId);
             Assert.Equal(HttpStatusCode.NoContent, deleteTranscriptionResponse.StatusCode);
 
             // making sure transcription is deleted
-            ApiException exception = Assert.Throws<ApiException>(() => recordingApiInstance.GetCallTranscription(accountId, callId, firstRecordingId));
+            ApiException exception = Assert.Throws<ApiException>(() => recordingApiInstance.GetRecordingTranscription(accountId, callId, firstRecordingId));
             Assert.Equal(404, exception.ErrorCode);
 
             var deleteRecordingMediaResponse = recordingApiInstance.DeleteRecordingMediaWithHttpInfo(accountId, callId, firstRecordingId);
@@ -290,7 +290,7 @@ namespace Bandwidth.Standard.Test.Integration
         public void TestSuccessfulUpdateActiveRecording()
         {
             mantecaCallBody.AnswerUrl = MANTECA_BASE_URL + "/bxml/startLongRecording";
-            Tuple<string,string> createCallResponse = CreateAndValidateCall();
+            Tuple<string, string> createCallResponse = CreateAndValidateCall();
             var testId = createCallResponse.Item1;
             var callId = createCallResponse.Item2;
 
@@ -299,7 +299,7 @@ namespace Bandwidth.Standard.Test.Integration
             JObject callStatusJson = JObject.Parse(callStatus);
             var retryCounter = 0;
 
-            while((string)callStatusJson["status"] == "DEAD" && retryCounter < 40)
+            while ((string)callStatusJson["status"] == "DEAD" && retryCounter < 40)
             {
                 System.Threading.Thread.Sleep(5000);
                 callStatus = GetTestStatus(testId);
@@ -373,7 +373,7 @@ namespace Bandwidth.Standard.Test.Integration
         /// </summary>
         [Fact]
         public void GetCallRecordingForbiddenRequest()
-        {   
+        {
             ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetCallRecordingWithHttpInfo(accountId, testCallId, testRecordingId));
             Assert.Equal(403, exception.ErrorCode);
         }
@@ -383,7 +383,7 @@ namespace Bandwidth.Standard.Test.Integration
         /// </summary>
         [Fact]
         public void GetCallRecordingNotFound()
-        { 
+        {
             ApiException exception = Assert.Throws<ApiException>(() => recordingApiInstance.GetCallRecordingWithHttpInfo(accountId, testCallId, "not-a-recording-id"));
             Assert.Equal(404, exception.ErrorCode);
         }
@@ -450,62 +450,62 @@ namespace Bandwidth.Standard.Test.Integration
         }
 
         /// <summary>
-        /// Test GetCallTranscription with an unauthorized client
+        /// Test GetRecordingTranscription with an unauthorized client
         /// </summary>
         [Fact]
-        public void GetCallTranscriptionUnauthorizedRequest()
+        public void GetRecordingTranscriptionUnauthorizedRequest()
         {
-            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.GetCallTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
+            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.GetRecordingTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
             Assert.Equal(401, exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test GetCallTranscription with a forbidden client
+        /// Test GetRecordingTranscription with a forbidden client
         /// </summary>
         [Fact]
-        public void GetCallTranscriptionForbiddenRequest()
+        public void GetRecordingTranscriptionForbiddenRequest()
         {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetCallTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
+            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetRecordingTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
             Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test GetCallTranscription with a nonexistent recording id
+        /// Test GetRecordingTranscription with a nonexistent recording id
         /// </summary>
         [Fact]
-        public void GetCallTranscriptionNotFound()
+        public void GetRecordingTranscriptionNotFound()
         {
-            ApiException exception = Assert.Throws<ApiException>(() => recordingApiInstance.GetCallTranscriptionWithHttpInfo(accountId, testCallId, "not-a-recording-id"));
+            ApiException exception = Assert.Throws<ApiException>(() => recordingApiInstance.GetRecordingTranscriptionWithHttpInfo(accountId, testCallId, "not-a-recording-id"));
             Assert.Equal(404, exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test DeleteCallTranscription with an unauthorized client
+        /// Test DeleteRecordingTranscription with an unauthorized client
         /// </summary>
         [Fact]
-        public void DeleteCallTranscriptionUnauthorizedRequest()
+        public void DeleteRecordingTranscriptionUnauthorizedRequest()
         {
-            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.DeleteCallTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
+            ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.DeleteRecordingTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
             Assert.Equal(401, exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test DeleteCallTranscription with a forbidden client
+        /// Test DeleteRecordingTranscription with a forbidden client
         /// </summary>
         [Fact]
-        public void DeleteCallTranscriptionForbiddenRequest()
+        public void DeleteRecordingTranscriptionForbiddenRequest()
         {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.DeleteCallTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
+            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.DeleteRecordingTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
             Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
-        /// Test DeleteCallTranscription with a nonexistent recording id
+        /// Test DeleteRecordingTranscription with a nonexistent recording id
         /// </summary>
         [Fact]
-        public void DeleteCallTranscriptionNotFound()
+        public void DeleteRecordingTranscriptionNotFound()
         {
-            ApiException exception = Assert.Throws<ApiException>(() => recordingApiInstance.DeleteCallTranscriptionWithHttpInfo(accountId, testCallId, "not-a-recording-id"));
+            ApiException exception = Assert.Throws<ApiException>(() => recordingApiInstance.DeleteRecordingTranscriptionWithHttpInfo(accountId, testCallId, "not-a-recording-id"));
             Assert.Equal(404, exception.ErrorCode);
         }
 

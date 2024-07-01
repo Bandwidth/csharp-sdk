@@ -1,4 +1,4 @@
-# Bandwidth.Standard.Model.TranscriptionMetadata
+# Bandwidth.Standard.Model.RecordingTranscriptionMetadata
 If the recording was transcribed, metadata about the transcription
 
 ## Properties
