@@ -39,7 +39,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="status">The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values..</param>
         /// <param name="completedTime">The time that the transcription was completed.</param>
         /// <param name="url">The URL of the [transcription](#operation/getCallTranscription).</param>
-        public RecordingTranscriptionMetadata(string id = default(string), string status = default(string), string completedTime = default(string), string url = default(string))
+        public RecordingTranscriptionMetadata(string id = default(string), string status = default(string), DateTime completedTime = default(DateTime), string url = default(string))
         {
             this.Id = id;
             this.Status = status;
@@ -69,7 +69,7 @@ namespace Bandwidth.Standard.Model
         /// <value>The time that the transcription was completed</value>
         /// <example>2022-06-13T18:46:29.715Z</example>
         [DataMember(Name = "completedTime", EmitDefaultValue = false)]
-        public string CompletedTime { get; set; }
+        public DateTime CompletedTime { get; set; }
 
         /// <summary>
         /// The URL of the [transcription](#operation/getCallTranscription)

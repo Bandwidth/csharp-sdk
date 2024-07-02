@@ -6751,6 +6751,21 @@ components:
       - async
       example: async
       type: string
+    callTranscriptionDetectedLanguageEnum:
+      description: The detected language for this transcription.
+      enum:
+      - en-US
+      - es-US
+      - fr-FR
+      example: en-US
+      type: string
+    callTranscriptionTrackEnum:
+      description: Which `track` this transcription is derived from.
+      enum:
+      - inbound
+      - outbound
+      example: inbound
+      type: string
     createCall:
       properties:
         to:
@@ -7882,17 +7897,17 @@ components:
     callTranscriptionResponse:
       example:
         callId: c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
-        accountId: "920012"
+        accountId: "9900000"
         transcriptionId: t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
         tracks:
         - detectedLanguage: en-US
           track: inbound
-          text: Hello World! This is an example.
+          transcript: Hello World! This is an example.
           confidence: 0.9
       properties:
         accountId:
           description: The user account associated with the call.
-          example: "920012"
+          example: "9900000"
           type: string
         callId:
           description: The call id associated with the event.
@@ -7906,7 +7921,7 @@ components:
           example:
           - detectedLanguage: en-US
             track: inbound
-            text: Hello World! This is an example.
+            transcript: Hello World! This is an example.
             confidence: 0.9
           items:
             $ref: '#/components/schemas/callTranscription'
@@ -7915,20 +7930,9 @@ components:
     callTranscription:
       properties:
         detectedLanguage:
-          description: The detected language for this transcription.
-          enum:
-          - en-US
-          - es-US
-          - fr-FR
-          example: en-US
-          type: string
+          $ref: '#/components/schemas/callTranscriptionDetectedLanguageEnum'
         track:
-          description: Which `track` this transcription is derived from.
-          enum:
-          - inbound
-          - outbound
-          example: inbound
-          type: string
+          $ref: '#/components/schemas/callTranscriptionTrackEnum'
         transcript:
           description: The transcription itself.
           example: Hello World! This is an example.
@@ -7967,6 +7971,7 @@ components:
         completedTime:
           description: The time that the transcription was completed
           example: 2022-06-13T18:46:29.715Z
+          format: date-time
           type: string
         url:
           description: "The URL of the [transcription](#operation/getCallTranscription)"

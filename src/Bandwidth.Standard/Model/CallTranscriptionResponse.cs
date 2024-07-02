@@ -51,7 +51,7 @@ namespace Bandwidth.Standard.Model
         /// The user account associated with the call.
         /// </summary>
         /// <value>The user account associated with the call.</value>
-        /// <example>920012</example>
+        /// <example>9900000</example>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 
@@ -74,7 +74,7 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Gets or Sets Tracks
         /// </summary>
-        /// <example>[{&quot;detectedLanguage&quot;:&quot;en-US&quot;,&quot;track&quot;:&quot;inbound&quot;,&quot;text&quot;:&quot;Hello World! This is an example.&quot;,&quot;confidence&quot;:0.9}]</example>
+        /// <example>[{&quot;detectedLanguage&quot;:&quot;en-US&quot;,&quot;track&quot;:&quot;inbound&quot;,&quot;transcript&quot;:&quot;Hello World! This is an example.&quot;,&quot;confidence&quot;:0.9}]</example>
         [DataMember(Name = "tracks", EmitDefaultValue = false)]
         public List<CallTranscription> Tracks { get; set; }
 
