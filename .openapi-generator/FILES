@@ -11,8 +11,10 @@ docs/CallRecordingMetadata.md
 docs/CallState.md
 docs/CallStateEnum.md
 docs/CallTranscription.md
+docs/CallTranscriptionDetectedLanguageEnum.md
 docs/CallTranscriptionMetadata.md
 docs/CallTranscriptionResponse.md
+docs/CallTranscriptionTrackEnum.md
 docs/CallbackMethodEnum.md
 docs/CallsApi.md
 docs/CodeRequest.md
@@ -103,12 +105,8 @@ docs/VerifyCodeResponse.md
 docs/VoiceApiError.md
 docs/VoiceCodeResponse.md
 git_push.sh
-src/Bandwidth.Standard.Test/Api/TranscriptionsApiTests.cs
-src/Bandwidth.Standard.Test/Model/CallTranscriptionMetadataTests.cs
-src/Bandwidth.Standard.Test/Model/CallTranscriptionResponseTests.cs
-src/Bandwidth.Standard.Test/Model/CallTranscriptionTests.cs
-src/Bandwidth.Standard.Test/Model/RecordingTranscriptionMetadataTests.cs
-src/Bandwidth.Standard.Test/Model/RecordingTranscriptionsTests.cs
+src/Bandwidth.Standard.Test/Model/CallTranscriptionDetectedLanguageEnumTests.cs
+src/Bandwidth.Standard.Test/Model/CallTranscriptionTrackEnumTests.cs
 src/Bandwidth.Standard/Api/CallsApi.cs
 src/Bandwidth.Standard/Api/ConferencesApi.cs
 src/Bandwidth.Standard/Api/MFAApi.cs
@@ -144,8 +142,10 @@ src/Bandwidth.Standard/Model/CallRecordingMetadata.cs
 src/Bandwidth.Standard/Model/CallState.cs
 src/Bandwidth.Standard/Model/CallStateEnum.cs
 src/Bandwidth.Standard/Model/CallTranscription.cs
+src/Bandwidth.Standard/Model/CallTranscriptionDetectedLanguageEnum.cs
 src/Bandwidth.Standard/Model/CallTranscriptionMetadata.cs
 src/Bandwidth.Standard/Model/CallTranscriptionResponse.cs
+src/Bandwidth.Standard/Model/CallTranscriptionTrackEnum.cs
 src/Bandwidth.Standard/Model/CallbackMethodEnum.cs
 src/Bandwidth.Standard/Model/CodeRequest.cs
 src/Bandwidth.Standard/Model/Conference.cs

@@ -94,8 +94,8 @@ namespace Bandwidth.Standard.Test.Api
             string callId = "c-12345";
             string transcriptionId = "t-12345";
 
-            CallTranscription.DetectedLanguageEnum detectedLanguage = CallTranscription.DetectedLanguageEnum.EnUS;
-            CallTranscription.TrackEnum track = CallTranscription.TrackEnum.Inbound;
+            CallTranscriptionDetectedLanguageEnum detectedLanguage = CallTranscriptionDetectedLanguageEnum.EnUS;
+            CallTranscriptionTrackEnum track = CallTranscriptionTrackEnum.Inbound;
 
             CallTranscription transcription = new CallTranscription(detectedLanguage: detectedLanguage, track: track, transcript: "abc 123 this is a test", confidence: 0.9);
 

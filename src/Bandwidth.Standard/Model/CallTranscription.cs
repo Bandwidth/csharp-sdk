@@ -32,76 +32,26 @@ namespace Bandwidth.Standard.Model
     [DataContract(Name = "callTranscription")]
     public partial class CallTranscription : IEquatable<CallTranscription>, IValidatableObject
     {
-        /// <summary>
-        /// The detected language for this transcription.
-        /// </summary>
-        /// <value>The detected language for this transcription.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum DetectedLanguageEnum
-        {
-            /// <summary>
-            /// Enum EnUS for value: en-US
-            /// </summary>
-            [EnumMember(Value = "en-US")]
-            EnUS = 1,
-
-            /// <summary>
-            /// Enum EsUS for value: es-US
-            /// </summary>
-            [EnumMember(Value = "es-US")]
-            EsUS = 2,
-
-            /// <summary>
-            /// Enum FrFR for value: fr-FR
-            /// </summary>
-            [EnumMember(Value = "fr-FR")]
-            FrFR = 3
-        }
-
 
         /// <summary>
-        /// The detected language for this transcription.
+        /// Gets or Sets DetectedLanguage
         /// </summary>
-        /// <value>The detected language for this transcription.</value>
-        /// <example>en-US</example>
         [DataMember(Name = "detectedLanguage", EmitDefaultValue = false)]
-        public DetectedLanguageEnum? DetectedLanguage { get; set; }
-        /// <summary>
-        /// Which &#x60;track&#x60; this transcription is derived from.
-        /// </summary>
-        /// <value>Which &#x60;track&#x60; this transcription is derived from.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TrackEnum
-        {
-            /// <summary>
-            /// Enum Inbound for value: inbound
-            /// </summary>
-            [EnumMember(Value = "inbound")]
-            Inbound = 1,
-
-            /// <summary>
-            /// Enum Outbound for value: outbound
-            /// </summary>
-            [EnumMember(Value = "outbound")]
-            Outbound = 2
-        }
-
+        public CallTranscriptionDetectedLanguageEnum? DetectedLanguage { get; set; }
 
         /// <summary>
-        /// Which &#x60;track&#x60; this transcription is derived from.
+        /// Gets or Sets Track
         /// </summary>
-        /// <value>Which &#x60;track&#x60; this transcription is derived from.</value>
-        /// <example>inbound</example>
         [DataMember(Name = "track", EmitDefaultValue = false)]
-        public TrackEnum? Track { get; set; }
+        public CallTranscriptionTrackEnum? Track { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CallTranscription" /> class.
         /// </summary>
-        /// <param name="detectedLanguage">The detected language for this transcription..</param>
-        /// <param name="track">Which &#x60;track&#x60; this transcription is derived from..</param>
+        /// <param name="detectedLanguage">detectedLanguage.</param>
+        /// <param name="track">track.</param>
         /// <param name="transcript">The transcription itself..</param>
         /// <param name="confidence">How confident the transcription engine was in transcribing the associated audio (from &#x60;0&#x60; to &#x60;1&#x60;)..</param>
-        public CallTranscription(DetectedLanguageEnum? detectedLanguage = default(DetectedLanguageEnum?), TrackEnum? track = default(TrackEnum?), string transcript = default(string), double confidence = default(double))
+        public CallTranscription(CallTranscriptionDetectedLanguageEnum? detectedLanguage = default(CallTranscriptionDetectedLanguageEnum?), CallTranscriptionTrackEnum? track = default(CallTranscriptionTrackEnum?), string transcript = default(string), double confidence = default(double))
         {
             this.DetectedLanguage = detectedLanguage;
             this.Track = track;

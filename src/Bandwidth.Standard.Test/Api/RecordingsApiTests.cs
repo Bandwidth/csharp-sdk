@@ -329,7 +329,7 @@ namespace Bandwidth.Standard.Test.Api
                 transcription: new RecordingTranscriptionMetadata(
                     id: "t-387bd648-18f3-4823-9d16-746bca0003c9",
                     status: "completed",
-                    completedTime: "2022-06-13T18:46:29.715Z",
+                    completedTime: DateTime.UtcNow,
                     url: "https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/recordings/r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/transcription"
                 )
             );
@@ -448,7 +448,7 @@ namespace Bandwidth.Standard.Test.Api
                 transcription: new RecordingTranscriptionMetadata(
                     id: "t-387bd648-18f3-4823-9d16-746bca0003c9",
                     status: "completed",
-                    completedTime: "2022-06-13T18:46:29.715Z",
+                    completedTime: DateTime.UtcNow,
                     url: "https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/recordings/r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/transcription"
                 )
             );
@@ -543,7 +543,7 @@ namespace Bandwidth.Standard.Test.Api
                 transcription: new RecordingTranscriptionMetadata(
                     id: "t-387bd648-18f3-4823-9d16-746bca0003c9",
                     status: "completed",
-                    completedTime: "2022-06-13T18:46:29.715Z",
+                    completedTime: DateTime.UtcNow,
                     url: "https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/recordings/r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/transcription"
                 )
             );

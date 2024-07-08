@@ -2131,6 +2131,21 @@ components:
 
         and will include its result.
       example: async
+    callTranscriptionDetectedLanguageEnum:
+      type: string
+      enum:
+        - en-US
+        - es-US
+        - fr-FR
+      description: The detected language for this transcription.
+      example: en-US
+    callTranscriptionTrackEnum:
+      type: string
+      enum:
+        - inbound
+        - outbound
+      description: Which `track` this transcription is derived from.
+      example: inbound
     createCall:
       type: object
       required:
@@ -3265,7 +3280,7 @@ components:
         accountId:
           type: string
           description: The user account associated with the call.
-          example: '920012'
+          example: '9900000'
         callId:
           type: string
           description: The call id associated with the event.
@@ -3281,26 +3296,15 @@ components:
           example:
             - detectedLanguage: en-US
               track: inbound
-              text: Hello World! This is an example.
+              transcript: Hello World! This is an example.
               confidence: 0.9
     callTranscription:
       type: object
       properties:
         detectedLanguage:
-          type: string
-          enum:
-            - en-US
-            - es-US
-            - fr-FR
-          description: The detected language for this transcription.
-          example: en-US
+          $ref: '#/components/schemas/callTranscriptionDetectedLanguageEnum'
         track:
-          type: string
-          enum:
-            - inbound
-            - outbound
-          description: Which `track` this transcription is derived from.
-          example: inbound
+          $ref: '#/components/schemas/callTranscriptionTrackEnum'
         transcript:
           type: string
           description: The transcription itself.
@@ -3327,6 +3331,7 @@ components:
           $ref: '#/components/schemas/status'
         completedTime:
           type: string
+          format: date-time
           description: The time that the transcription was completed
           example: '2022-06-13T18:46:29.715Z'
         url:
