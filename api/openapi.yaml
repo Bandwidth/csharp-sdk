@@ -7877,6 +7877,7 @@ components:
     callTranscriptionMetadataList:
       example:
       - transcriptionId: t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
+        transcriptionName: live_transcription
         transcriptionUrl: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-fef240ff-5cfc9091-8069-4863-a8c0-a4dcbbf1f1a4/transcriptions/t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
       items:
         $ref: '#/components/schemas/callTranscriptionMetadata'
@@ -7886,6 +7887,11 @@ components:
         transcriptionId:
           description: The programmable voice API transcription ID.
           example: t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
+          type: string
+        transcriptionName:
+          description: The programmable voice API transcription name. This name could
+            be provided by the user when creating the transcription.
+          example: live_transcription
           type: string
         transcriptionUrl:
           description: |-
