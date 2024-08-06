@@ -2802,6 +2802,8 @@ components:
           $ref: '#/components/schemas/mediaUrl'
         transcription:
           $ref: '#/components/schemas/recordingTranscriptionMetadata'
+        recordingName:
+          $ref: '#/components/schemas/recordingName'
     conference:
       type: object
       properties:
@@ -3041,6 +3043,8 @@ components:
           $ref: '#/components/schemas/status'
         mediaUrl:
           $ref: '#/components/schemas/mediaUrl'
+        recordingName:
+          $ref: '#/components/schemas/recordingName'
     machineDetectionConfiguration:
       type: object
       description: >-
@@ -3254,6 +3258,7 @@ components:
         $ref: '#/components/schemas/callTranscriptionMetadata'
       example:
         - transcriptionId: t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
+          transcriptionName: live_transcription
           transcriptionUrl: >-
             https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-fef240ff-5cfc9091-8069-4863-a8c0-a4dcbbf1f1a4/transcriptions/t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
     callTranscriptionMetadata:
@@ -3263,6 +3268,12 @@ components:
           type: string
           description: The programmable voice API transcription ID.
           example: t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
+        transcriptionName:
+          type: string
+          description: >-
+            The programmable voice API transcription name. This name could be
+            provided by the user when creating the transcription.
+          example: live_transcription
         transcriptionUrl:
           type: string
           description: >-
@@ -4259,6 +4270,10 @@ components:
       type: string
       description: The call id associated with the event.
       example: c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+    recordingName:
+      type: string
+      description: A name to identify this recording.
+      example: my-recording-name
     callUrl:
       type: string
       description: The URL of the call associated with the event.

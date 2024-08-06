@@ -36,10 +36,12 @@ namespace Bandwidth.Standard.Model
         /// Initializes a new instance of the <see cref="CallTranscriptionMetadata" /> class.
         /// </summary>
         /// <param name="transcriptionId">The programmable voice API transcription ID..</param>
+        /// <param name="transcriptionName">The programmable voice API transcription name. This name could be provided by the user when creating the transcription..</param>
         /// <param name="transcriptionUrl">A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice/#operation/getCallTranscription) endpoint..</param>
-        public CallTranscriptionMetadata(string transcriptionId = default(string), string transcriptionUrl = default(string))
+        public CallTranscriptionMetadata(string transcriptionId = default(string), string transcriptionName = default(string), string transcriptionUrl = default(string))
         {
             this.TranscriptionId = transcriptionId;
+            this.TranscriptionName = transcriptionName;
             this.TranscriptionUrl = transcriptionUrl;
         }
 
@@ -50,6 +52,14 @@ namespace Bandwidth.Standard.Model
         /// <example>t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b</example>
         [DataMember(Name = "transcriptionId", EmitDefaultValue = false)]
         public string TranscriptionId { get; set; }
+
+        /// <summary>
+        /// The programmable voice API transcription name. This name could be provided by the user when creating the transcription.
+        /// </summary>
+        /// <value>The programmable voice API transcription name. This name could be provided by the user when creating the transcription.</value>
+        /// <example>live_transcription</example>
+        [DataMember(Name = "transcriptionName", EmitDefaultValue = false)]
+        public string TranscriptionName { get; set; }
 
         /// <summary>
         /// A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice/#operation/getCallTranscription) endpoint.
@@ -68,6 +78,7 @@ namespace Bandwidth.Standard.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CallTranscriptionMetadata {\n");
             sb.Append("  TranscriptionId: ").Append(TranscriptionId).Append("\n");
+            sb.Append("  TranscriptionName: ").Append(TranscriptionName).Append("\n");
             sb.Append("  TranscriptionUrl: ").Append(TranscriptionUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -110,6 +121,11 @@ namespace Bandwidth.Standard.Model
                     this.TranscriptionId.Equals(input.TranscriptionId))
                 ) && 
                 (
+                    this.TranscriptionName == input.TranscriptionName ||
+                    (this.TranscriptionName != null &&
+                    this.TranscriptionName.Equals(input.TranscriptionName))
+                ) && 
+                (
                     this.TranscriptionUrl == input.TranscriptionUrl ||
                     (this.TranscriptionUrl != null &&
                     this.TranscriptionUrl.Equals(input.TranscriptionUrl))
@@ -128,6 +144,10 @@ namespace Bandwidth.Standard.Model
                 if (this.TranscriptionId != null)
                 {
                     hashCode = (hashCode * 59) + this.TranscriptionId.GetHashCode();
+                }
+                if (this.TranscriptionName != null)
+                {
+                    hashCode = (hashCode * 59) + this.TranscriptionName.GetHashCode();
                 }
                 if (this.TranscriptionUrl != null)
                 {

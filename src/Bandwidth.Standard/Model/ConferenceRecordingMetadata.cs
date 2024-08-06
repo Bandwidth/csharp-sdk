@@ -52,7 +52,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="fileFormat">fileFormat.</param>
         /// <param name="status">The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values..</param>
         /// <param name="mediaUrl">The URL that can be used to download the recording. Only present if the recording is finished and may be downloaded..</param>
-        public ConferenceRecordingMetadata(string accountId = default(string), string conferenceId = default(string), string name = default(string), string recordingId = default(string), string duration = default(string), int channels = default(int), DateTime startTime = default(DateTime), DateTime endTime = default(DateTime), FileFormatEnum? fileFormat = default(FileFormatEnum?), string status = default(string), string mediaUrl = default(string))
+        /// <param name="recordingName">A name to identify this recording..</param>
+        public ConferenceRecordingMetadata(string accountId = default(string), string conferenceId = default(string), string name = default(string), string recordingId = default(string), string duration = default(string), int channels = default(int), DateTime startTime = default(DateTime), DateTime endTime = default(DateTime), FileFormatEnum? fileFormat = default(FileFormatEnum?), string status = default(string), string mediaUrl = default(string), string recordingName = default(string))
         {
             this.AccountId = accountId;
             this.ConferenceId = conferenceId;
@@ -65,6 +66,7 @@ namespace Bandwidth.Standard.Model
             this.FileFormat = fileFormat;
             this.Status = status;
             this.MediaUrl = mediaUrl;
+            this.RecordingName = recordingName;
         }
 
         /// <summary>
@@ -148,6 +150,14 @@ namespace Bandwidth.Standard.Model
         public string MediaUrl { get; set; }
 
         /// <summary>
+        /// A name to identify this recording.
+        /// </summary>
+        /// <value>A name to identify this recording.</value>
+        /// <example>my-recording-name</example>
+        [DataMember(Name = "recordingName", EmitDefaultValue = false)]
+        public string RecordingName { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -166,6 +176,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  FileFormat: ").Append(FileFormat).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  MediaUrl: ").Append(MediaUrl).Append("\n");
+            sb.Append("  RecordingName: ").Append(RecordingName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -253,6 +264,11 @@ namespace Bandwidth.Standard.Model
                     this.MediaUrl == input.MediaUrl ||
                     (this.MediaUrl != null &&
                     this.MediaUrl.Equals(input.MediaUrl))
+                ) && 
+                (
+                    this.RecordingName == input.RecordingName ||
+                    (this.RecordingName != null &&
+                    this.RecordingName.Equals(input.RecordingName))
                 );
         }
 
@@ -302,6 +318,10 @@ namespace Bandwidth.Standard.Model
                 if (this.MediaUrl != null)
                 {
                     hashCode = (hashCode * 59) + this.MediaUrl.GetHashCode();
+                }
+                if (this.RecordingName != null)
+                {
+                    hashCode = (hashCode * 59) + this.RecordingName.GetHashCode();
                 }
                 return hashCode;
             }
