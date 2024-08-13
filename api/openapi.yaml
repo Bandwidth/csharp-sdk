@@ -7322,6 +7322,7 @@ components:
           url: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/recordings/r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85/transcription
           status: completed
         parentCallId: c-95ac8d6e-1a31c52e-b38f-4198-93c1-51633ec68f8d
+        recordingName: my-recording-name
         transferCallerId: "+15555555555"
         transferTo: "+15555555555"
         duration: PT13.67S
@@ -7421,6 +7422,10 @@ components:
           type: string
         transcription:
           $ref: '#/components/schemas/recordingTranscriptionMetadata'
+        recordingName:
+          description: A name to identify this recording.
+          example: my-recording-name
+          type: string
       type: object
     conference:
       example:
@@ -7632,6 +7637,7 @@ components:
         channels: 1
         mediaUrl: https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/recordings/r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833/media
         conferenceId: conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9
+        recordingName: my-recording-name
         name: my-conference-name
         startTime: 2022-06-17T22:19:40.375Z
         endTime: 2022-06-17T22:20:00Z
@@ -7693,6 +7699,10 @@ components:
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/recordings/r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833/media
           format: uri
           nullable: true
+          type: string
+        recordingName:
+          description: A name to identify this recording.
+          example: my-recording-name
           type: string
       type: object
     machineDetectionConfiguration:
@@ -7877,6 +7887,7 @@ components:
     callTranscriptionMetadataList:
       example:
       - transcriptionId: t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
+        transcriptionName: live_transcription
         transcriptionUrl: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-fef240ff-5cfc9091-8069-4863-a8c0-a4dcbbf1f1a4/transcriptions/t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
       items:
         $ref: '#/components/schemas/callTranscriptionMetadata'
@@ -7886,6 +7897,11 @@ components:
         transcriptionId:
           description: The programmable voice API transcription ID.
           example: t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
+          type: string
+        transcriptionName:
+          description: The programmable voice API transcription name. This name could
+            be provided by the user when creating the transcription.
+          example: live_transcription
           type: string
         transcriptionUrl:
           description: |-
@@ -9837,6 +9853,10 @@ components:
     callId:
       description: The call id associated with the event.
       example: c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+      type: string
+    recordingName:
+      description: A name to identify this recording.
+      example: my-recording-name
       type: string
     callUrl:
       description: The URL of the call associated with the event.
