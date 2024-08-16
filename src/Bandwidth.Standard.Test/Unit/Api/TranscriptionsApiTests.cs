@@ -25,7 +25,7 @@ using System.Data.SqlTypes;
 using Bandwidth.Standard.Model;
 using System.Security.Authentication;
 
-namespace Bandwidth.Standard.Test.Api
+namespace Bandwidth.Standard.Test.Unit.Api
 {
     /// <summary>
     ///  Class for testing TranscriptionsApi

@@ -23,7 +23,7 @@ using Bandwidth.Standard.Model;
 using Moq;
 using System.Net;
 
-namespace Bandwidth.Standard.Test.Api
+namespace Bandwidth.Standard.Test.Unit.Api
 {
     /// <summary>
     ///  Class for testing MediaApi
