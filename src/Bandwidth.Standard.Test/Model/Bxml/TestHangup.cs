@@ -3,7 +3,7 @@ using Bandwidth.Standard.Model.Bxml;
 using Bandwidth.Standard.Model.Bxml.Verbs;
 using Xunit;
 
-namespace Bandwidth.Standard.Test.Model.Bxml
+namespace Bandwidth.Standard.Test.Unit.Model.Bxml
 {
 	public class TestHangup
 	{

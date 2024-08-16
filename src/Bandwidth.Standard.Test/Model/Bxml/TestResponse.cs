@@ -2,7 +2,7 @@
 using Bandwidth.Standard.Model.Bxml;
 using Xunit;
 
-namespace Bandwidth.Standard.Test.Model.Bxml
+namespace Bandwidth.Standard.Test.Unit.Model.Bxml
 {
 	public class TestResponse
 	{
