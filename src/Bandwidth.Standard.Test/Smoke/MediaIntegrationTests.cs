@@ -8,12 +8,12 @@ using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using System.Net;
 
-namespace Bandwidth.Standard.Test.Integration
+namespace Bandwidth.Standard.Test.Smoke
 {
     /// <summary>
     ///  Class for testing MediaApi
     /// </summary>
-    public class MediaIntegrationTests : IDisposable
+    public class MediaSmokeTests : IDisposable
     {
         private string accountId;
         private Configuration fakeConfiguration;
@@ -24,7 +24,7 @@ namespace Bandwidth.Standard.Test.Integration
         private MediaApi unauthorizedInstance;
 
 
-        public MediaIntegrationTests()
+        public MediaSmokeTests()
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
             testContentType = "image/jpeg";

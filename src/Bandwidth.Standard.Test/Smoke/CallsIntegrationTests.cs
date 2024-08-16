@@ -7,12 +7,12 @@ using Bandwidth.Standard.Model;
 using System.Net;
 using System.Collections.Generic;
 
-namespace Bandwidth.Standard.Test.Integration
+namespace Bandwidth.Standard.Test.Smoke
 {
     /// <summary>
     ///  Class for testing CallsApi
     /// </summary>
-    public class CallsIntegrationTests : IDisposable
+    public class CallsSmokeTests : IDisposable
     {
         private string accountId;
         private CreateCall createCallBody;
@@ -24,7 +24,7 @@ namespace Bandwidth.Standard.Test.Integration
         private string testCallId;
         private int testSleep;
         private CallsApi unauthorizedInstance;
-        public CallsIntegrationTests()
+        public CallsSmokeTests()
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
             testSleep = 5000;

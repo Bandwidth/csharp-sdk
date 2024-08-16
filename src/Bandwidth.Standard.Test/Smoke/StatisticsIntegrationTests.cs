@@ -16,12 +16,12 @@ using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using System.Net;
 
-namespace Bandwidth.Standard.Test.Integration
+namespace Bandwidth.Standard.Test.Smoke
 {
     /// <summary>
     ///  Class for testing StatisticsApi
     /// </summary>
-    public class StatisticsIntegrationTests : IDisposable
+    public class StatisticsSmokeTests : IDisposable
     {
         private string accountId;
         private Configuration fakeConfiguration;
@@ -29,7 +29,7 @@ namespace Bandwidth.Standard.Test.Integration
         private StatisticsApi instance;
         private StatisticsApi unauthorizedInstance;
 
-        public StatisticsIntegrationTests()
+        public StatisticsSmokeTests()
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
 

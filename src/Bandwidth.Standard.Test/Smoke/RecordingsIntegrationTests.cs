@@ -9,12 +9,12 @@ using System.Net;
 using System.Text.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Bandwidth.Standard.Test.Integration
+namespace Bandwidth.Standard.Test.Smoke
 {
     /// <summary>
     ///  Class for testing RecordingsApi
     /// </summary>
-    public class RecordingsIntegrationTests : IDisposable
+    public class RecordingsSmokeTests : IDisposable
     {
         private RecordingsApi recordingApiInstance;
         private CallsApi callsApiInstance;
@@ -36,7 +36,7 @@ namespace Bandwidth.Standard.Test.Integration
         private string BW_FORBIDDEN_USERNAME;
         private string BW_FORBIDDEN_PASSWORD;
 
-        public RecordingsIntegrationTests()
+        public RecordingsSmokeTests()
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
             testCallId = "callId";

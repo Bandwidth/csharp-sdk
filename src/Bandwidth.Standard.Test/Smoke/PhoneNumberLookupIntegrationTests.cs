@@ -7,12 +7,12 @@ using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using System.Net;
 
-namespace Bandwidth.Standard.Test.Integration
+namespace Bandwidth.Standard.Test.Smoke
 {
     /// <summary>
     ///  Class for testing PhoneNumberLookupApi
     /// </summary>
-    public class PhoneNumberLookupIntegrationTests : IDisposable
+    public class PhoneNumberLookupSmokeTests : IDisposable
     {
         private string accountId;
         private string BW_NUMBER;
@@ -22,7 +22,7 @@ namespace Bandwidth.Standard.Test.Integration
         private string testRequestId;
         private PhoneNumberLookupApi unauthorizedInstance;
 
-        public PhoneNumberLookupIntegrationTests()
+        public PhoneNumberLookupSmokeTests()
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
             testRequestId = "test-request-id";

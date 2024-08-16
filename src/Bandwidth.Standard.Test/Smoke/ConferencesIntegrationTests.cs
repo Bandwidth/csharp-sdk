@@ -8,12 +8,12 @@ using System.Net;
 using System.Text.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Bandwidth.Standard.Test.Integration
+namespace Bandwidth.Standard.Test.Smoke
 {
     /// <summary>
     ///  Class for testing ConferencesApi
     /// </summary>
-    public class ConferencesIntegrationTests : IDisposable
+    public class ConferencesSmokeTests : IDisposable
     {
         private ConferencesApi conferenceApiInstance;
         private ConferencesApi unauthorizedInstance;
@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Test.Integration
         private string testRecordingId;
         private string testUpdateBxml;
 
-        public ConferencesIntegrationTests()
+        public ConferencesSmokeTests()
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
             testConferenceId = "Conf-Id";

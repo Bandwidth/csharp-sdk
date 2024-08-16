@@ -8,12 +8,12 @@ using System.Net;
 using System.Linq;
 using System.Diagnostics;
 
-namespace Bandwidth.Standard.Test.Integration
+namespace Bandwidth.Standard.Test.Smoke
 {
     /// <summary>
     ///  Class for testing MFAApi
     /// </summary>
-    public class MFAIntegrationTests : IDisposable
+    public class MFASmokeTests : IDisposable
     {
         private string accountId;
         private CodeRequest badCodeRequest;
@@ -27,7 +27,7 @@ namespace Bandwidth.Standard.Test.Integration
         private VerifyCodeRequest verifyCodeRequest;
         private CodeRequest voiceCodeRequest;
 
-        public MFAIntegrationTests()
+        public MFASmokeTests()
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
             BW_NUMBER = Environment.GetEnvironmentVariable("BW_NUMBER");

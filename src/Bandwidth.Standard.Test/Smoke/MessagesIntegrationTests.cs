@@ -7,12 +7,12 @@ using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 using System.Net;
 
-namespace Bandwidth.Standard.Test.Integration
+namespace Bandwidth.Standard.Test.Smoke
 {
     /// <summary>
     ///  Class for testing MessagesApi
     /// </summary>
-    public class MessagesIntegrationTests : IDisposable
+    public class MessagesSmokeTests : IDisposable
     {
         private string accountId;
         private Configuration fakeConfiguration;
@@ -21,7 +21,7 @@ namespace Bandwidth.Standard.Test.Integration
         private MessageRequest messageRequest;
         private MessagesApi unauthorizedInstance;
 
-        public MessagesIntegrationTests()
+        public MessagesSmokeTests()
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
 
@@ -51,9 +51,9 @@ namespace Bandwidth.Standard.Test.Integration
                 applicationId: Environment.GetEnvironmentVariable("BW_MESSAGING_APPLICATION_ID"),
                 to: new List<string> {Environment.GetEnvironmentVariable("USER_NUMBER") },
                 from: Environment.GetEnvironmentVariable("BW_NUMBER"),
-                text: "c# integration test",
+                text: "c# Smoke test",
                 media: new List<string> { "https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg" },
-                tag: "c# integration test",
+                tag: "c# Smoke test",
                 priority: PriorityEnum.Default
             );
         }
