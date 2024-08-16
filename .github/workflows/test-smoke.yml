@@ -1,7 +1,12 @@
-name: Test Main Branch Nightly
+name: Smoke Test
 on:
   schedule:
     - cron: "0 4 * * *"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "src/Bandwidth.Standard.Test/Smoke/*"
 
 env:
   BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
@@ -20,39 +25,32 @@ env:
   MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
 
 jobs:
-  test_main:
-    name: Test Main Branch Nightly
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-2022, windows-2019, ubuntu-22.04, ubuntu-20.04]
-        dotnet: [6.0.x, 7.0.x]
-      fail-fast: false
+  test:
+    name: Smoke Test
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-        with:
-          ref: "main"
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ matrix.dotnet }}
+          dotnet-version: 8.0.x
 
       - name: Run functional tests
         env:
-          OPERATING_SYSTEM: ${{ matrix.os }}
-          DOTNET_VERSION: ${{ matrix.dotnet }}
+          OPERATING_SYSTEM: ubuntu-latest
+          DOTNET_VERSION: 8.0.x
         run: dotnet test src/Bandwidth.Standard.Test
 
   notify_for_failures:
     name: Notify for failures
-    needs: [test_main]
+    needs: [test]
     if: failure()
     runs-on: ubuntu-latest
     steps:
       - name: Notify Slack of failures
-        uses: Bandwidth/build-notify-slack-action@v1.0.0
+        uses: Bandwidth/build-notify-slack-action@v2.0.0
         with:
           job-status: failure
           slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}

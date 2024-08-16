@@ -1,6 +1,8 @@
 name: Test PR
 on:
   pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 env:
@@ -20,24 +22,24 @@ env:
   MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
 
 jobs:
-  test_pr:
+  test:
     name: Test PR
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [windows-2022, windows-2019, ubuntu-22.04, ubuntu-20.04]
-        dotnet: [6.0.x, 7.0.x]
+        dotnet: [6.0.x, 7.0.x, 8.0.x]
       fail-fast: false
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ matrix.dotnet }}
 
-      - name: Run functional tests
+      - name: Run Tests
         env:
           OPERATING_SYSTEM: ${{ matrix.os }}
           DOTNET_VERSION: ${{ matrix.dotnet }}
