@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// MessagingCodeResponse
     /// </summary>
     [DataContract(Name = "messagingCodeResponse")]
-    public partial class MessagingCodeResponse : IEquatable<MessagingCodeResponse>, IValidatableObject
+    public partial class MessagingCodeResponse : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MessagingCodeResponse" /> class.
@@ -72,57 +72,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as MessagingCodeResponse);
-        }
-
-        /// <summary>
-        /// Returns true if MessagingCodeResponse instances are equal
-        /// </summary>
-        /// <param name="input">Instance of MessagingCodeResponse to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(MessagingCodeResponse input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.MessageId == input.MessageId ||
-                    (this.MessageId != null &&
-                    this.MessageId.Equals(input.MessageId))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.MessageId != null)
-                {
-                    hashCode = (hashCode * 59) + this.MessageId.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// ListMessageItem
     /// </summary>
     [DataContract(Name = "listMessageItem")]
-    public partial class ListMessageItem : IEquatable<ListMessageItem>, IValidatableObject
+    public partial class ListMessageItem : IValidatableObject
     {
 
         /// <summary>
@@ -242,177 +242,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as ListMessageItem);
-        }
-
-        /// <summary>
-        /// Returns true if ListMessageItem instances are equal
-        /// </summary>
-        /// <param name="input">Instance of ListMessageItem to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ListMessageItem input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.MessageId == input.MessageId ||
-                    (this.MessageId != null &&
-                    this.MessageId.Equals(input.MessageId))
-                ) && 
-                (
-                    this.AccountId == input.AccountId ||
-                    (this.AccountId != null &&
-                    this.AccountId.Equals(input.AccountId))
-                ) && 
-                (
-                    this.SourceTn == input.SourceTn ||
-                    (this.SourceTn != null &&
-                    this.SourceTn.Equals(input.SourceTn))
-                ) && 
-                (
-                    this.DestinationTn == input.DestinationTn ||
-                    (this.DestinationTn != null &&
-                    this.DestinationTn.Equals(input.DestinationTn))
-                ) && 
-                (
-                    this.MessageStatus == input.MessageStatus ||
-                    this.MessageStatus.Equals(input.MessageStatus)
-                ) && 
-                (
-                    this.MessageDirection == input.MessageDirection ||
-                    this.MessageDirection.Equals(input.MessageDirection)
-                ) && 
-                (
-                    this.MessageType == input.MessageType ||
-                    this.MessageType.Equals(input.MessageType)
-                ) && 
-                (
-                    this.SegmentCount == input.SegmentCount ||
-                    this.SegmentCount.Equals(input.SegmentCount)
-                ) && 
-                (
-                    this.ErrorCode == input.ErrorCode ||
-                    this.ErrorCode.Equals(input.ErrorCode)
-                ) && 
-                (
-                    this.ReceiveTime == input.ReceiveTime ||
-                    (this.ReceiveTime != null &&
-                    this.ReceiveTime.Equals(input.ReceiveTime))
-                ) && 
-                (
-                    this.CarrierName == input.CarrierName ||
-                    (this.CarrierName != null &&
-                    this.CarrierName.Equals(input.CarrierName))
-                ) && 
-                (
-                    this.MessageSize == input.MessageSize ||
-                    (this.MessageSize != null &&
-                    this.MessageSize.Equals(input.MessageSize))
-                ) && 
-                (
-                    this.MessageLength == input.MessageLength ||
-                    this.MessageLength.Equals(input.MessageLength)
-                ) && 
-                (
-                    this.AttachmentCount == input.AttachmentCount ||
-                    (this.AttachmentCount != null &&
-                    this.AttachmentCount.Equals(input.AttachmentCount))
-                ) && 
-                (
-                    this.RecipientCount == input.RecipientCount ||
-                    (this.RecipientCount != null &&
-                    this.RecipientCount.Equals(input.RecipientCount))
-                ) && 
-                (
-                    this.CampaignClass == input.CampaignClass ||
-                    (this.CampaignClass != null &&
-                    this.CampaignClass.Equals(input.CampaignClass))
-                ) && 
-                (
-                    this.CampaignId == input.CampaignId ||
-                    (this.CampaignId != null &&
-                    this.CampaignId.Equals(input.CampaignId))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.MessageId != null)
-                {
-                    hashCode = (hashCode * 59) + this.MessageId.GetHashCode();
-                }
-                if (this.AccountId != null)
-                {
-                    hashCode = (hashCode * 59) + this.AccountId.GetHashCode();
-                }
-                if (this.SourceTn != null)
-                {
-                    hashCode = (hashCode * 59) + this.SourceTn.GetHashCode();
-                }
-                if (this.DestinationTn != null)
-                {
-                    hashCode = (hashCode * 59) + this.DestinationTn.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.MessageStatus.GetHashCode();
-                hashCode = (hashCode * 59) + this.MessageDirection.GetHashCode();
-                hashCode = (hashCode * 59) + this.MessageType.GetHashCode();
-                hashCode = (hashCode * 59) + this.SegmentCount.GetHashCode();
-                hashCode = (hashCode * 59) + this.ErrorCode.GetHashCode();
-                if (this.ReceiveTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.ReceiveTime.GetHashCode();
-                }
-                if (this.CarrierName != null)
-                {
-                    hashCode = (hashCode * 59) + this.CarrierName.GetHashCode();
-                }
-                if (this.MessageSize != null)
-                {
-                    hashCode = (hashCode * 59) + this.MessageSize.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.MessageLength.GetHashCode();
-                if (this.AttachmentCount != null)
-                {
-                    hashCode = (hashCode * 59) + this.AttachmentCount.GetHashCode();
-                }
-                if (this.RecipientCount != null)
-                {
-                    hashCode = (hashCode * 59) + this.RecipientCount.GetHashCode();
-                }
-                if (this.CampaignClass != null)
-                {
-                    hashCode = (hashCode * 59) + this.CampaignClass.GetHashCode();
-                }
-                if (this.CampaignId != null)
-                {
-                    hashCode = (hashCode * 59) + this.CampaignId.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

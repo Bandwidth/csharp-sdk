@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// The Conference Redirect event is fired whenever an existing conference is modified via a POST request made to the /conferences/{conferenceId} endpoint. The response may be either empty or a BXML document. Only the following verbs are valid for conferences: PlayAudio, SpeakSentence, StartRecording, StopRecording, PauseRecording, ResumeRecording. Audio verbs will be heard by all members of the conference. Recordings capture audio from all members who are not muted or on hold, as well as any audio verbs that are played into the conference.
     /// </summary>
     [DataContract(Name = "conferenceRedirectCallback")]
-    public partial class ConferenceRedirectCallback : IEquatable<ConferenceRedirectCallback>, IValidatableObject
+    public partial class ConferenceRedirectCallback : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConferenceRedirectCallback" /> class.
@@ -116,93 +116,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as ConferenceRedirectCallback);
-        }
-
-        /// <summary>
-        /// Returns true if ConferenceRedirectCallback instances are equal
-        /// </summary>
-        /// <param name="input">Instance of ConferenceRedirectCallback to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ConferenceRedirectCallback input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.EventType == input.EventType ||
-                    (this.EventType != null &&
-                    this.EventType.Equals(input.EventType))
-                ) && 
-                (
-                    this.EventTime == input.EventTime ||
-                    (this.EventTime != null &&
-                    this.EventTime.Equals(input.EventTime))
-                ) && 
-                (
-                    this.ConferenceId == input.ConferenceId ||
-                    (this.ConferenceId != null &&
-                    this.ConferenceId.Equals(input.ConferenceId))
-                ) && 
-                (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
-                (
-                    this.Tag == input.Tag ||
-                    (this.Tag != null &&
-                    this.Tag.Equals(input.Tag))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.EventType != null)
-                {
-                    hashCode = (hashCode * 59) + this.EventType.GetHashCode();
-                }
-                if (this.EventTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.EventTime.GetHashCode();
-                }
-                if (this.ConferenceId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ConferenceId.GetHashCode();
-                }
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                if (this.Tag != null)
-                {
-                    hashCode = (hashCode * 59) + this.Tag.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

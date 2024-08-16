@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// MessageRequest
     /// </summary>
     [DataContract(Name = "messageRequest")]
-    public partial class MessageRequest : IEquatable<MessageRequest>, IValidatableObject
+    public partial class MessageRequest : IValidatableObject
     {
 
         /// <summary>
@@ -167,123 +167,16 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as MessageRequest);
-        }
-
-        /// <summary>
-        /// Returns true if MessageRequest instances are equal
-        /// </summary>
-        /// <param name="input">Instance of MessageRequest to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(MessageRequest input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.ApplicationId == input.ApplicationId ||
-                    (this.ApplicationId != null &&
-                    this.ApplicationId.Equals(input.ApplicationId))
-                ) && 
-                (
-                    this.To == input.To ||
-                    this.To != null &&
-                    input.To != null &&
-                    this.To.SequenceEqual(input.To)
-                ) && 
-                (
-                    this.From == input.From ||
-                    (this.From != null &&
-                    this.From.Equals(input.From))
-                ) && 
-                (
-                    this.Text == input.Text ||
-                    (this.Text != null &&
-                    this.Text.Equals(input.Text))
-                ) && 
-                (
-                    this.Media == input.Media ||
-                    this.Media != null &&
-                    input.Media != null &&
-                    this.Media.SequenceEqual(input.Media)
-                ) && 
-                (
-                    this.Tag == input.Tag ||
-                    (this.Tag != null &&
-                    this.Tag.Equals(input.Tag))
-                ) && 
-                (
-                    this.Priority == input.Priority ||
-                    this.Priority.Equals(input.Priority)
-                ) && 
-                (
-                    this.Expiration == input.Expiration ||
-                    (this.Expiration != null &&
-                    this.Expiration.Equals(input.Expiration))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ApplicationId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApplicationId.GetHashCode();
-                }
-                if (this.To != null)
-                {
-                    hashCode = (hashCode * 59) + this.To.GetHashCode();
-                }
-                if (this.From != null)
-                {
-                    hashCode = (hashCode * 59) + this.From.GetHashCode();
-                }
-                if (this.Text != null)
-                {
-                    hashCode = (hashCode * 59) + this.Text.GetHashCode();
-                }
-                if (this.Media != null)
-                {
-                    hashCode = (hashCode * 59) + this.Media.GetHashCode();
-                }
-                if (this.Tag != null)
-                {
-                    hashCode = (hashCode * 59) + this.Tag.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Priority.GetHashCode();
-                if (this.Expiration != null)
-                {
-                    hashCode = (hashCode * 59) + this.Expiration.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Text (string) maxLength
             if (this.Text != null && this.Text.Length > 2048)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Text, length must be less than 2048.", new [] { "Text" });
+                yield return new ValidationResult("Invalid value for Text, length must be less than 2048.", new [] { "Text" });
             }
 
             yield break;

@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// The Conference Recording Available event is sent after a conference recording has been processed. It indicates that the recording is available for download.
     /// </summary>
     [DataContract(Name = "conferenceRecordingAvailableCallback")]
-    public partial class ConferenceRecordingAvailableCallback : IEquatable<ConferenceRecordingAvailableCallback>, IValidatableObject
+    public partial class ConferenceRecordingAvailableCallback : IValidatableObject
     {
 
         /// <summary>
@@ -213,166 +213,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as ConferenceRecordingAvailableCallback);
-        }
-
-        /// <summary>
-        /// Returns true if ConferenceRecordingAvailableCallback instances are equal
-        /// </summary>
-        /// <param name="input">Instance of ConferenceRecordingAvailableCallback to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ConferenceRecordingAvailableCallback input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.EventType == input.EventType ||
-                    (this.EventType != null &&
-                    this.EventType.Equals(input.EventType))
-                ) && 
-                (
-                    this.EventTime == input.EventTime ||
-                    (this.EventTime != null &&
-                    this.EventTime.Equals(input.EventTime))
-                ) && 
-                (
-                    this.ConferenceId == input.ConferenceId ||
-                    (this.ConferenceId != null &&
-                    this.ConferenceId.Equals(input.ConferenceId))
-                ) && 
-                (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
-                (
-                    this.AccountId == input.AccountId ||
-                    (this.AccountId != null &&
-                    this.AccountId.Equals(input.AccountId))
-                ) && 
-                (
-                    this.RecordingId == input.RecordingId ||
-                    (this.RecordingId != null &&
-                    this.RecordingId.Equals(input.RecordingId))
-                ) && 
-                (
-                    this.Channels == input.Channels ||
-                    this.Channels.Equals(input.Channels)
-                ) && 
-                (
-                    this.StartTime == input.StartTime ||
-                    (this.StartTime != null &&
-                    this.StartTime.Equals(input.StartTime))
-                ) && 
-                (
-                    this.EndTime == input.EndTime ||
-                    (this.EndTime != null &&
-                    this.EndTime.Equals(input.EndTime))
-                ) && 
-                (
-                    this.Duration == input.Duration ||
-                    (this.Duration != null &&
-                    this.Duration.Equals(input.Duration))
-                ) && 
-                (
-                    this.FileFormat == input.FileFormat ||
-                    this.FileFormat.Equals(input.FileFormat)
-                ) && 
-                (
-                    this.MediaUrl == input.MediaUrl ||
-                    (this.MediaUrl != null &&
-                    this.MediaUrl.Equals(input.MediaUrl))
-                ) && 
-                (
-                    this.Tag == input.Tag ||
-                    (this.Tag != null &&
-                    this.Tag.Equals(input.Tag))
-                ) && 
-                (
-                    this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.EventType != null)
-                {
-                    hashCode = (hashCode * 59) + this.EventType.GetHashCode();
-                }
-                if (this.EventTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.EventTime.GetHashCode();
-                }
-                if (this.ConferenceId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ConferenceId.GetHashCode();
-                }
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                if (this.AccountId != null)
-                {
-                    hashCode = (hashCode * 59) + this.AccountId.GetHashCode();
-                }
-                if (this.RecordingId != null)
-                {
-                    hashCode = (hashCode * 59) + this.RecordingId.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Channels.GetHashCode();
-                if (this.StartTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.StartTime.GetHashCode();
-                }
-                if (this.EndTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.EndTime.GetHashCode();
-                }
-                if (this.Duration != null)
-                {
-                    hashCode = (hashCode * 59) + this.Duration.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.FileFormat.GetHashCode();
-                if (this.MediaUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.MediaUrl.GetHashCode();
-                }
-                if (this.Tag != null)
-                {
-                    hashCode = (hashCode * 59) + this.Tag.GetHashCode();
-                }
-                if (this.Status != null)
-                {
-                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

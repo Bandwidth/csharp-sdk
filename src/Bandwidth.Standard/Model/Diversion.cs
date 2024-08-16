@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// Diversion
     /// </summary>
     [DataContract(Name = "diversion")]
-    public partial class Diversion : IEquatable<Diversion>, IValidatableObject
+    public partial class Diversion : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Diversion" /> class.
@@ -138,111 +138,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as Diversion);
-        }
-
-        /// <summary>
-        /// Returns true if Diversion instances are equal
-        /// </summary>
-        /// <param name="input">Instance of Diversion to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Diversion input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.Reason == input.Reason ||
-                    (this.Reason != null &&
-                    this.Reason.Equals(input.Reason))
-                ) && 
-                (
-                    this.Privacy == input.Privacy ||
-                    (this.Privacy != null &&
-                    this.Privacy.Equals(input.Privacy))
-                ) && 
-                (
-                    this.Screen == input.Screen ||
-                    (this.Screen != null &&
-                    this.Screen.Equals(input.Screen))
-                ) && 
-                (
-                    this.Counter == input.Counter ||
-                    (this.Counter != null &&
-                    this.Counter.Equals(input.Counter))
-                ) && 
-                (
-                    this.Limit == input.Limit ||
-                    (this.Limit != null &&
-                    this.Limit.Equals(input.Limit))
-                ) && 
-                (
-                    this.Unknown == input.Unknown ||
-                    (this.Unknown != null &&
-                    this.Unknown.Equals(input.Unknown))
-                ) && 
-                (
-                    this.OrigTo == input.OrigTo ||
-                    (this.OrigTo != null &&
-                    this.OrigTo.Equals(input.OrigTo))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Reason != null)
-                {
-                    hashCode = (hashCode * 59) + this.Reason.GetHashCode();
-                }
-                if (this.Privacy != null)
-                {
-                    hashCode = (hashCode * 59) + this.Privacy.GetHashCode();
-                }
-                if (this.Screen != null)
-                {
-                    hashCode = (hashCode * 59) + this.Screen.GetHashCode();
-                }
-                if (this.Counter != null)
-                {
-                    hashCode = (hashCode * 59) + this.Counter.GetHashCode();
-                }
-                if (this.Limit != null)
-                {
-                    hashCode = (hashCode * 59) + this.Limit.GetHashCode();
-                }
-                if (this.Unknown != null)
-                {
-                    hashCode = (hashCode * 59) + this.Unknown.GetHashCode();
-                }
-                if (this.OrigTo != null)
-                {
-                    hashCode = (hashCode * 59) + this.OrigTo.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

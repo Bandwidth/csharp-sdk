@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// CallTranscriptionMetadata
     /// </summary>
     [DataContract(Name = "callTranscriptionMetadata")]
-    public partial class CallTranscriptionMetadata : IEquatable<CallTranscriptionMetadata>, IValidatableObject
+    public partial class CallTranscriptionMetadata : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CallTranscriptionMetadata" /> class.
@@ -94,75 +94,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as CallTranscriptionMetadata);
-        }
-
-        /// <summary>
-        /// Returns true if CallTranscriptionMetadata instances are equal
-        /// </summary>
-        /// <param name="input">Instance of CallTranscriptionMetadata to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CallTranscriptionMetadata input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.TranscriptionId == input.TranscriptionId ||
-                    (this.TranscriptionId != null &&
-                    this.TranscriptionId.Equals(input.TranscriptionId))
-                ) && 
-                (
-                    this.TranscriptionName == input.TranscriptionName ||
-                    (this.TranscriptionName != null &&
-                    this.TranscriptionName.Equals(input.TranscriptionName))
-                ) && 
-                (
-                    this.TranscriptionUrl == input.TranscriptionUrl ||
-                    (this.TranscriptionUrl != null &&
-                    this.TranscriptionUrl.Equals(input.TranscriptionUrl))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.TranscriptionId != null)
-                {
-                    hashCode = (hashCode * 59) + this.TranscriptionId.GetHashCode();
-                }
-                if (this.TranscriptionName != null)
-                {
-                    hashCode = (hashCode * 59) + this.TranscriptionName.GetHashCode();
-                }
-                if (this.TranscriptionUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.TranscriptionUrl.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

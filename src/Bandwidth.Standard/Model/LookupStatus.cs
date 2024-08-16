@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// If requestId exists, the result for that request is returned. See the Examples for details on the various responses that you can receive. Generally, if you see a Response Code of 0 in a result for a TN, information will be available for it.  Any other Response Code will indicate no information was available for the TN.
     /// </summary>
     [DataContract(Name = "lookupStatus")]
-    public partial class LookupStatus : IEquatable<LookupStatus>, IValidatableObject
+    public partial class LookupStatus : IValidatableObject
     {
 
         /// <summary>
@@ -102,82 +102,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as LookupStatus);
-        }
-
-        /// <summary>
-        /// Returns true if LookupStatus instances are equal
-        /// </summary>
-        /// <param name="input">Instance of LookupStatus to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(LookupStatus input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.RequestId == input.RequestId ||
-                    (this.RequestId != null &&
-                    this.RequestId.Equals(input.RequestId))
-                ) && 
-                (
-                    this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
-                ) && 
-                (
-                    this.Result == input.Result ||
-                    this.Result != null &&
-                    input.Result != null &&
-                    this.Result.SequenceEqual(input.Result)
-                ) && 
-                (
-                    this.FailedTelephoneNumbers == input.FailedTelephoneNumbers ||
-                    this.FailedTelephoneNumbers != null &&
-                    input.FailedTelephoneNumbers != null &&
-                    this.FailedTelephoneNumbers.SequenceEqual(input.FailedTelephoneNumbers)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.RequestId != null)
-                {
-                    hashCode = (hashCode * 59) + this.RequestId.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
-                if (this.Result != null)
-                {
-                    hashCode = (hashCode * 59) + this.Result.GetHashCode();
-                }
-                if (this.FailedTelephoneNumbers != null)
-                {
-                    hashCode = (hashCode * 59) + this.FailedTelephoneNumbers.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

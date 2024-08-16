@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// ConferenceRecordingMetadata
     /// </summary>
     [DataContract(Name = "conferenceRecordingMetadata")]
-    public partial class ConferenceRecordingMetadata : IEquatable<ConferenceRecordingMetadata>, IValidatableObject
+    public partial class ConferenceRecordingMetadata : IValidatableObject
     {
 
         /// <summary>
@@ -191,148 +191,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as ConferenceRecordingMetadata);
-        }
-
-        /// <summary>
-        /// Returns true if ConferenceRecordingMetadata instances are equal
-        /// </summary>
-        /// <param name="input">Instance of ConferenceRecordingMetadata to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ConferenceRecordingMetadata input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.AccountId == input.AccountId ||
-                    (this.AccountId != null &&
-                    this.AccountId.Equals(input.AccountId))
-                ) && 
-                (
-                    this.ConferenceId == input.ConferenceId ||
-                    (this.ConferenceId != null &&
-                    this.ConferenceId.Equals(input.ConferenceId))
-                ) && 
-                (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
-                (
-                    this.RecordingId == input.RecordingId ||
-                    (this.RecordingId != null &&
-                    this.RecordingId.Equals(input.RecordingId))
-                ) && 
-                (
-                    this.Duration == input.Duration ||
-                    (this.Duration != null &&
-                    this.Duration.Equals(input.Duration))
-                ) && 
-                (
-                    this.Channels == input.Channels ||
-                    this.Channels.Equals(input.Channels)
-                ) && 
-                (
-                    this.StartTime == input.StartTime ||
-                    (this.StartTime != null &&
-                    this.StartTime.Equals(input.StartTime))
-                ) && 
-                (
-                    this.EndTime == input.EndTime ||
-                    (this.EndTime != null &&
-                    this.EndTime.Equals(input.EndTime))
-                ) && 
-                (
-                    this.FileFormat == input.FileFormat ||
-                    this.FileFormat.Equals(input.FileFormat)
-                ) && 
-                (
-                    this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
-                ) && 
-                (
-                    this.MediaUrl == input.MediaUrl ||
-                    (this.MediaUrl != null &&
-                    this.MediaUrl.Equals(input.MediaUrl))
-                ) && 
-                (
-                    this.RecordingName == input.RecordingName ||
-                    (this.RecordingName != null &&
-                    this.RecordingName.Equals(input.RecordingName))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.AccountId != null)
-                {
-                    hashCode = (hashCode * 59) + this.AccountId.GetHashCode();
-                }
-                if (this.ConferenceId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ConferenceId.GetHashCode();
-                }
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                if (this.RecordingId != null)
-                {
-                    hashCode = (hashCode * 59) + this.RecordingId.GetHashCode();
-                }
-                if (this.Duration != null)
-                {
-                    hashCode = (hashCode * 59) + this.Duration.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Channels.GetHashCode();
-                if (this.StartTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.StartTime.GetHashCode();
-                }
-                if (this.EndTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.EndTime.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.FileFormat.GetHashCode();
-                if (this.Status != null)
-                {
-                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
-                }
-                if (this.MediaUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.MediaUrl.GetHashCode();
-                }
-                if (this.RecordingName != null)
-                {
-                    hashCode = (hashCode * 59) + this.RecordingName.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

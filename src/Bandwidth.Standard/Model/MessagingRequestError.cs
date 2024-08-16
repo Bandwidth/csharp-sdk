@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// MessagingRequestError
     /// </summary>
     [DataContract(Name = "messagingRequestError")]
-    public partial class MessagingRequestError : IEquatable<MessagingRequestError>, IValidatableObject
+    public partial class MessagingRequestError : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MessagingRequestError" /> class.
@@ -94,66 +94,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as MessagingRequestError);
-        }
-
-        /// <summary>
-        /// Returns true if MessagingRequestError instances are equal
-        /// </summary>
-        /// <param name="input">Instance of MessagingRequestError to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(MessagingRequestError input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
-                ) && 
-                (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Type != null)
-                {
-                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                }
-                if (this.Description != null)
-                {
-                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

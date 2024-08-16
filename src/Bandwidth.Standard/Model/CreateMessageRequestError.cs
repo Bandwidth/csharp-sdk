@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// CreateMessageRequestError
     /// </summary>
     [DataContract(Name = "createMessageRequestError")]
-    public partial class CreateMessageRequestError : IEquatable<CreateMessageRequestError>, IValidatableObject
+    public partial class CreateMessageRequestError : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateMessageRequestError" /> class.
@@ -103,76 +103,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as CreateMessageRequestError);
-        }
-
-        /// <summary>
-        /// Returns true if CreateMessageRequestError instances are equal
-        /// </summary>
-        /// <param name="input">Instance of CreateMessageRequestError to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CreateMessageRequestError input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
-                ) && 
-                (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
-                ) && 
-                (
-                    this.FieldErrors == input.FieldErrors ||
-                    this.FieldErrors != null &&
-                    input.FieldErrors != null &&
-                    this.FieldErrors.SequenceEqual(input.FieldErrors)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Type != null)
-                {
-                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                }
-                if (this.Description != null)
-                {
-                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
-                }
-                if (this.FieldErrors != null)
-                {
-                    hashCode = (hashCode * 59) + this.FieldErrors.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

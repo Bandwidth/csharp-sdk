@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// TranscribeRecording
     /// </summary>
     [DataContract(Name = "transcribeRecording")]
-    public partial class TranscribeRecording : IEquatable<TranscribeRecording>, IValidatableObject
+    public partial class TranscribeRecording : IValidatableObject
     {
 
         /// <summary>
@@ -138,130 +138,34 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TranscribeRecording);
-        }
-
-        /// <summary>
-        /// Returns true if TranscribeRecording instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TranscribeRecording to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TranscribeRecording input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.CallbackUrl == input.CallbackUrl ||
-                    (this.CallbackUrl != null &&
-                    this.CallbackUrl.Equals(input.CallbackUrl))
-                ) && 
-                (
-                    this.CallbackMethod == input.CallbackMethod ||
-                    this.CallbackMethod.Equals(input.CallbackMethod)
-                ) && 
-                (
-                    this.Username == input.Username ||
-                    (this.Username != null &&
-                    this.Username.Equals(input.Username))
-                ) && 
-                (
-                    this.Password == input.Password ||
-                    (this.Password != null &&
-                    this.Password.Equals(input.Password))
-                ) && 
-                (
-                    this.Tag == input.Tag ||
-                    (this.Tag != null &&
-                    this.Tag.Equals(input.Tag))
-                ) && 
-                (
-                    this.CallbackTimeout == input.CallbackTimeout ||
-                    (this.CallbackTimeout != null &&
-                    this.CallbackTimeout.Equals(input.CallbackTimeout))
-                ) && 
-                (
-                    this.DetectLanguage == input.DetectLanguage ||
-                    (this.DetectLanguage != null &&
-                    this.DetectLanguage.Equals(input.DetectLanguage))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.CallbackUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.CallbackUrl.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.CallbackMethod.GetHashCode();
-                if (this.Username != null)
-                {
-                    hashCode = (hashCode * 59) + this.Username.GetHashCode();
-                }
-                if (this.Password != null)
-                {
-                    hashCode = (hashCode * 59) + this.Password.GetHashCode();
-                }
-                if (this.Tag != null)
-                {
-                    hashCode = (hashCode * 59) + this.Tag.GetHashCode();
-                }
-                if (this.CallbackTimeout != null)
-                {
-                    hashCode = (hashCode * 59) + this.CallbackTimeout.GetHashCode();
-                }
-                if (this.DetectLanguage != null)
-                {
-                    hashCode = (hashCode * 59) + this.DetectLanguage.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Username (string) maxLength
             if (this.Username != null && this.Username.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Username, length must be less than 1024.", new [] { "Username" });
+                yield return new ValidationResult("Invalid value for Username, length must be less than 1024.", new [] { "Username" });
             }
 
             // Password (string) maxLength
             if (this.Password != null && this.Password.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Password, length must be less than 1024.", new [] { "Password" });
+                yield return new ValidationResult("Invalid value for Password, length must be less than 1024.", new [] { "Password" });
             }
 
             // CallbackTimeout (double?) maximum
             if (this.CallbackTimeout > (double?)25)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallbackTimeout, must be a value less than or equal to 25.", new [] { "CallbackTimeout" });
+                yield return new ValidationResult("Invalid value for CallbackTimeout, must be a value less than or equal to 25.", new [] { "CallbackTimeout" });
             }
 
             // CallbackTimeout (double?) minimum
             if (this.CallbackTimeout < (double?)1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallbackTimeout, must be a value greater than or equal to 1.", new [] { "CallbackTimeout" });
+                yield return new ValidationResult("Invalid value for CallbackTimeout, must be a value greater than or equal to 1.", new [] { "CallbackTimeout" });
             }
 
             yield break;

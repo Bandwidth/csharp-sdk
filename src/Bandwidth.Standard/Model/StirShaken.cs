@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// StirShaken
     /// </summary>
     [DataContract(Name = "stirShaken")]
-    public partial class StirShaken : IEquatable<StirShaken>, IValidatableObject
+    public partial class StirShaken : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StirShaken" /> class.
@@ -94,75 +94,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as StirShaken);
-        }
-
-        /// <summary>
-        /// Returns true if StirShaken instances are equal
-        /// </summary>
-        /// <param name="input">Instance of StirShaken to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(StirShaken input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.Verstat == input.Verstat ||
-                    (this.Verstat != null &&
-                    this.Verstat.Equals(input.Verstat))
-                ) && 
-                (
-                    this.AttestationIndicator == input.AttestationIndicator ||
-                    (this.AttestationIndicator != null &&
-                    this.AttestationIndicator.Equals(input.AttestationIndicator))
-                ) && 
-                (
-                    this.OriginatingId == input.OriginatingId ||
-                    (this.OriginatingId != null &&
-                    this.OriginatingId.Equals(input.OriginatingId))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Verstat != null)
-                {
-                    hashCode = (hashCode * 59) + this.Verstat.GetHashCode();
-                }
-                if (this.AttestationIndicator != null)
-                {
-                    hashCode = (hashCode * 59) + this.AttestationIndicator.GetHashCode();
-                }
-                if (this.OriginatingId != null)
-                {
-                    hashCode = (hashCode * 59) + this.OriginatingId.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

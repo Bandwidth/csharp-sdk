@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// When processing a &lt;Transfer&gt; verb, this event is sent when a called party (B-leg) answers. The event is sent to the endpoint specified in the transferAnswerUrl attribute of the &lt;PhoneNumber&gt; tag that answered. BXML returned by this callback will be executed for the called party only. After all BXML has been executed, the called party will be bridged to the original call. Most BXML verbs are allowed in response to a transferAnswer event, but some are not allowed.
     /// </summary>
     [DataContract(Name = "transferAnswerCallback")]
-    public partial class TransferAnswerCallback : IEquatable<TransferAnswerCallback>, IValidatableObject
+    public partial class TransferAnswerCallback : IValidatableObject
     {
 
         /// <summary>
@@ -224,179 +224,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as TransferAnswerCallback);
-        }
-
-        /// <summary>
-        /// Returns true if TransferAnswerCallback instances are equal
-        /// </summary>
-        /// <param name="input">Instance of TransferAnswerCallback to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(TransferAnswerCallback input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.EventType == input.EventType ||
-                    (this.EventType != null &&
-                    this.EventType.Equals(input.EventType))
-                ) && 
-                (
-                    this.EventTime == input.EventTime ||
-                    (this.EventTime != null &&
-                    this.EventTime.Equals(input.EventTime))
-                ) && 
-                (
-                    this.AccountId == input.AccountId ||
-                    (this.AccountId != null &&
-                    this.AccountId.Equals(input.AccountId))
-                ) && 
-                (
-                    this.ApplicationId == input.ApplicationId ||
-                    (this.ApplicationId != null &&
-                    this.ApplicationId.Equals(input.ApplicationId))
-                ) && 
-                (
-                    this.From == input.From ||
-                    (this.From != null &&
-                    this.From.Equals(input.From))
-                ) && 
-                (
-                    this.To == input.To ||
-                    (this.To != null &&
-                    this.To.Equals(input.To))
-                ) && 
-                (
-                    this.Direction == input.Direction ||
-                    this.Direction.Equals(input.Direction)
-                ) && 
-                (
-                    this.CallId == input.CallId ||
-                    (this.CallId != null &&
-                    this.CallId.Equals(input.CallId))
-                ) && 
-                (
-                    this.CallUrl == input.CallUrl ||
-                    (this.CallUrl != null &&
-                    this.CallUrl.Equals(input.CallUrl))
-                ) && 
-                (
-                    this.EnqueuedTime == input.EnqueuedTime ||
-                    (this.EnqueuedTime != null &&
-                    this.EnqueuedTime.Equals(input.EnqueuedTime))
-                ) && 
-                (
-                    this.StartTime == input.StartTime ||
-                    (this.StartTime != null &&
-                    this.StartTime.Equals(input.StartTime))
-                ) && 
-                (
-                    this.AnswerTime == input.AnswerTime ||
-                    (this.AnswerTime != null &&
-                    this.AnswerTime.Equals(input.AnswerTime))
-                ) && 
-                (
-                    this.Tag == input.Tag ||
-                    (this.Tag != null &&
-                    this.Tag.Equals(input.Tag))
-                ) && 
-                (
-                    this.TransferCallerId == input.TransferCallerId ||
-                    (this.TransferCallerId != null &&
-                    this.TransferCallerId.Equals(input.TransferCallerId))
-                ) && 
-                (
-                    this.TransferTo == input.TransferTo ||
-                    (this.TransferTo != null &&
-                    this.TransferTo.Equals(input.TransferTo))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.EventType != null)
-                {
-                    hashCode = (hashCode * 59) + this.EventType.GetHashCode();
-                }
-                if (this.EventTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.EventTime.GetHashCode();
-                }
-                if (this.AccountId != null)
-                {
-                    hashCode = (hashCode * 59) + this.AccountId.GetHashCode();
-                }
-                if (this.ApplicationId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApplicationId.GetHashCode();
-                }
-                if (this.From != null)
-                {
-                    hashCode = (hashCode * 59) + this.From.GetHashCode();
-                }
-                if (this.To != null)
-                {
-                    hashCode = (hashCode * 59) + this.To.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Direction.GetHashCode();
-                if (this.CallId != null)
-                {
-                    hashCode = (hashCode * 59) + this.CallId.GetHashCode();
-                }
-                if (this.CallUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.CallUrl.GetHashCode();
-                }
-                if (this.EnqueuedTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.EnqueuedTime.GetHashCode();
-                }
-                if (this.StartTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.StartTime.GetHashCode();
-                }
-                if (this.AnswerTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.AnswerTime.GetHashCode();
-                }
-                if (this.Tag != null)
-                {
-                    hashCode = (hashCode * 59) + this.Tag.GetHashCode();
-                }
-                if (this.TransferCallerId != null)
-                {
-                    hashCode = (hashCode * 59) + this.TransferCallerId.GetHashCode();
-                }
-                if (this.TransferTo != null)
-                {
-                    hashCode = (hashCode * 59) + this.TransferTo.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

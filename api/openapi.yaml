@@ -5941,6 +5941,10 @@ components:
       example: sms
       type: string
     fieldError:
+      example:
+        fieldName: from
+        description: '''+invalid'' must be replaced with a valid E164 formatted telephone
+          number'
       properties:
         fieldName:
           description: The name of the field that contains the error
@@ -5970,7 +5974,7 @@ components:
           messageStatus: RECEIVED
           receiveTime: 2020-04-07T14:03:07Z
           accountId: "9900000"
-          messageDirection: null
+          messageDirection: INBOUND
           messageType: sms
           carrierName: other
           recipientCount: 1
@@ -5987,7 +5991,7 @@ components:
           messageStatus: RECEIVED
           receiveTime: 2020-04-07T14:03:07Z
           accountId: "9900000"
-          messageDirection: null
+          messageDirection: INBOUND
           messageType: sms
           carrierName: other
           recipientCount: 1
@@ -6021,7 +6025,7 @@ components:
         messageStatus: RECEIVED
         receiveTime: 2020-04-07T14:03:07Z
         accountId: "9900000"
-        messageDirection: null
+        messageDirection: INBOUND
         messageType: sms
         carrierName: other
         recipientCount: 1
@@ -6127,6 +6131,9 @@ components:
       title: PageInfo
       type: object
     messagingRequestError:
+      example:
+        description: description
+        type: type
       properties:
         type:
           type: string
@@ -6138,6 +6145,16 @@ components:
       title: MessagingRequestError
       type: object
     createMessageRequestError:
+      example:
+        fieldErrors:
+        - fieldName: from
+          description: '''+invalid'' must be replaced with a valid E164 formatted
+            telephone number'
+        - fieldName: from
+          description: '''+invalid'' must be replaced with a valid E164 formatted
+            telephone number'
+        description: description
+        type: type
       properties:
         type:
           type: string
@@ -6198,7 +6215,7 @@ components:
         text: Hello world
         tag: custom tag
         applicationId: 93de2206-9669-4e07-948d-329f4b722ee2
-        direction: null
+        direction: in
       properties:
         id:
           description: The id of the message.
@@ -7996,6 +8013,10 @@ components:
           type: string
       type: object
     voiceApiError:
+      example:
+        description: description
+        id: id
+        type: type
       properties:
         type:
           type: string
@@ -10087,6 +10108,9 @@ components:
           type: boolean
       type: object
     mfaRequestError:
+      example:
+        requestId: 354cc8a3-6701-461e-8fa7-8671703dd898
+        error: 400 Request is malformed or invalid
       properties:
         error:
           description: A message describing the error with your request.
@@ -10098,6 +10122,8 @@ components:
           type: string
       type: object
     mfaUnauthorizedRequestError:
+      example:
+        message: Unauthorized
       properties:
         message:
           description: Unauthorized
@@ -10105,6 +10131,8 @@ components:
           type: string
       type: object
     mfaForbiddenRequestError:
+      example:
+        message: Missing Authentication Token
       properties:
         message:
           description: The message containing the reason behind the request being
@@ -10247,6 +10275,8 @@ components:
           type: string
       type: object
     tnLookupRequestError:
+      example:
+        message: example error message
       properties:
         message:
           description: A description of what validation error occurred.

@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// AccountStatistics
     /// </summary>
     [DataContract(Name = "accountStatistics")]
-    public partial class AccountStatistics : IEquatable<AccountStatistics>, IValidatableObject
+    public partial class AccountStatistics : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountStatistics" /> class.
@@ -83,58 +83,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as AccountStatistics);
-        }
-
-        /// <summary>
-        /// Returns true if AccountStatistics instances are equal
-        /// </summary>
-        /// <param name="input">Instance of AccountStatistics to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(AccountStatistics input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.CurrentCallQueueSize == input.CurrentCallQueueSize ||
-                    this.CurrentCallQueueSize.Equals(input.CurrentCallQueueSize)
-                ) && 
-                (
-                    this.MaxCallQueueSize == input.MaxCallQueueSize ||
-                    this.MaxCallQueueSize.Equals(input.MaxCallQueueSize)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                hashCode = (hashCode * 59) + this.CurrentCallQueueSize.GetHashCode();
-                hashCode = (hashCode * 59) + this.MaxCallQueueSize.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// UpdateCall
     /// </summary>
     [DataContract(Name = "updateCall")]
-    public partial class UpdateCall : IEquatable<UpdateCall>, IValidatableObject
+    public partial class UpdateCall : IValidatableObject
     {
 
         /// <summary>
@@ -165,155 +165,40 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as UpdateCall);
-        }
-
-        /// <summary>
-        /// Returns true if UpdateCall instances are equal
-        /// </summary>
-        /// <param name="input">Instance of UpdateCall to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(UpdateCall input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.State == input.State ||
-                    this.State.Equals(input.State)
-                ) && 
-                (
-                    this.RedirectUrl == input.RedirectUrl ||
-                    (this.RedirectUrl != null &&
-                    this.RedirectUrl.Equals(input.RedirectUrl))
-                ) && 
-                (
-                    this.RedirectMethod == input.RedirectMethod ||
-                    this.RedirectMethod.Equals(input.RedirectMethod)
-                ) && 
-                (
-                    this.Username == input.Username ||
-                    (this.Username != null &&
-                    this.Username.Equals(input.Username))
-                ) && 
-                (
-                    this.Password == input.Password ||
-                    (this.Password != null &&
-                    this.Password.Equals(input.Password))
-                ) && 
-                (
-                    this.RedirectFallbackUrl == input.RedirectFallbackUrl ||
-                    (this.RedirectFallbackUrl != null &&
-                    this.RedirectFallbackUrl.Equals(input.RedirectFallbackUrl))
-                ) && 
-                (
-                    this.RedirectFallbackMethod == input.RedirectFallbackMethod ||
-                    this.RedirectFallbackMethod.Equals(input.RedirectFallbackMethod)
-                ) && 
-                (
-                    this.FallbackUsername == input.FallbackUsername ||
-                    (this.FallbackUsername != null &&
-                    this.FallbackUsername.Equals(input.FallbackUsername))
-                ) && 
-                (
-                    this.FallbackPassword == input.FallbackPassword ||
-                    (this.FallbackPassword != null &&
-                    this.FallbackPassword.Equals(input.FallbackPassword))
-                ) && 
-                (
-                    this.Tag == input.Tag ||
-                    (this.Tag != null &&
-                    this.Tag.Equals(input.Tag))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                hashCode = (hashCode * 59) + this.State.GetHashCode();
-                if (this.RedirectUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.RedirectUrl.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.RedirectMethod.GetHashCode();
-                if (this.Username != null)
-                {
-                    hashCode = (hashCode * 59) + this.Username.GetHashCode();
-                }
-                if (this.Password != null)
-                {
-                    hashCode = (hashCode * 59) + this.Password.GetHashCode();
-                }
-                if (this.RedirectFallbackUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.RedirectFallbackUrl.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.RedirectFallbackMethod.GetHashCode();
-                if (this.FallbackUsername != null)
-                {
-                    hashCode = (hashCode * 59) + this.FallbackUsername.GetHashCode();
-                }
-                if (this.FallbackPassword != null)
-                {
-                    hashCode = (hashCode * 59) + this.FallbackPassword.GetHashCode();
-                }
-                if (this.Tag != null)
-                {
-                    hashCode = (hashCode * 59) + this.Tag.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Username (string) maxLength
             if (this.Username != null && this.Username.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Username, length must be less than 1024.", new [] { "Username" });
+                yield return new ValidationResult("Invalid value for Username, length must be less than 1024.", new [] { "Username" });
             }
 
             // Password (string) maxLength
             if (this.Password != null && this.Password.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Password, length must be less than 1024.", new [] { "Password" });
+                yield return new ValidationResult("Invalid value for Password, length must be less than 1024.", new [] { "Password" });
             }
 
             // FallbackUsername (string) maxLength
             if (this.FallbackUsername != null && this.FallbackUsername.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FallbackUsername, length must be less than 1024.", new [] { "FallbackUsername" });
+                yield return new ValidationResult("Invalid value for FallbackUsername, length must be less than 1024.", new [] { "FallbackUsername" });
             }
 
             // FallbackPassword (string) maxLength
             if (this.FallbackPassword != null && this.FallbackPassword.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FallbackPassword, length must be less than 1024.", new [] { "FallbackPassword" });
+                yield return new ValidationResult("Invalid value for FallbackPassword, length must be less than 1024.", new [] { "FallbackPassword" });
             }
 
             // Tag (string) maxLength
             if (this.Tag != null && this.Tag.Length > 256)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Tag, length must be less than 256.", new [] { "Tag" });
+                yield return new ValidationResult("Invalid value for Tag, length must be less than 256.", new [] { "Tag" });
             }
 
             yield break;

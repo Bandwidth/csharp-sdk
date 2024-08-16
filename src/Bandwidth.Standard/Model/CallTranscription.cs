@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// CallTranscription
     /// </summary>
     [DataContract(Name = "callTranscription")]
-    public partial class CallTranscription : IEquatable<CallTranscription>, IValidatableObject
+    public partial class CallTranscription : IValidatableObject
     {
 
         /// <summary>
@@ -101,83 +101,22 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as CallTranscription);
-        }
-
-        /// <summary>
-        /// Returns true if CallTranscription instances are equal
-        /// </summary>
-        /// <param name="input">Instance of CallTranscription to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CallTranscription input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.DetectedLanguage == input.DetectedLanguage ||
-                    this.DetectedLanguage.Equals(input.DetectedLanguage)
-                ) && 
-                (
-                    this.Track == input.Track ||
-                    this.Track.Equals(input.Track)
-                ) && 
-                (
-                    this.Transcript == input.Transcript ||
-                    (this.Transcript != null &&
-                    this.Transcript.Equals(input.Transcript))
-                ) && 
-                (
-                    this.Confidence == input.Confidence ||
-                    this.Confidence.Equals(input.Confidence)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                hashCode = (hashCode * 59) + this.DetectedLanguage.GetHashCode();
-                hashCode = (hashCode * 59) + this.Track.GetHashCode();
-                if (this.Transcript != null)
-                {
-                    hashCode = (hashCode * 59) + this.Transcript.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Confidence.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Confidence (double) maximum
             if (this.Confidence > (double)1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Confidence, must be a value less than or equal to 1.", new [] { "Confidence" });
+                yield return new ValidationResult("Invalid value for Confidence, must be a value less than or equal to 1.", new [] { "Confidence" });
             }
 
             // Confidence (double) minimum
             if (this.Confidence < (double)0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Confidence, must be a value greater than or equal to 0.", new [] { "Confidence" });
+                yield return new ValidationResult("Invalid value for Confidence, must be a value greater than or equal to 0.", new [] { "Confidence" });
             }
 
             yield break;
