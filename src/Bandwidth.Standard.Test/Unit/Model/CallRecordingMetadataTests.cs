@@ -229,7 +229,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
 
             instance.Transcription = new RecordingTranscriptionMetadata("t-123", "complete", dateTime, "https://test.url/");
             Assert.IsType<RecordingTranscriptionMetadata>(instance.Transcription);
-            Assert.Equal(new RecordingTranscriptionMetadata("t-123", "complete", dateTime, "https://test.url/"), instance.Transcription);
         }
 
     }

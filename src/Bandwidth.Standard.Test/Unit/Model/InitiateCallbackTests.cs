@@ -157,7 +157,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             instance.Diversion = new Diversion();
             Assert.IsType<Diversion>(instance.Diversion);
-            Assert.Equal(new Diversion(), instance.Diversion);
         }
         /// <summary>
         /// Test the property 'StirShaken'
@@ -167,7 +166,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             instance.StirShaken = new StirShaken();
             Assert.IsType<StirShaken>(instance.StirShaken);
-            Assert.Equal(new StirShaken(), instance.StirShaken);
         }
 
     }

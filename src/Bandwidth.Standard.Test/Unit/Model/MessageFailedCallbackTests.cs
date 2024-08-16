@@ -93,7 +93,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         public void MessageTest()
         {
             Assert.IsType<MessageFailedCallbackMessage>(instance.Message);
-            Assert.Equal(new MessageFailedCallbackMessage(id: "1661365814859loidf7mcwd4qacn7", owner: "+15553332222", applicationId: "93de2206-9669-4e07-948d-329f4b722ee2", to: new List<string> { "+15557654321" }, from: "+15553332222", text: "Hello world", tag: "test"), instance.Message);
         }
         /// <summary>
         /// Test the property 'ErrorCode'

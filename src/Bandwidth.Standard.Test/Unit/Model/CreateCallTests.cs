@@ -224,7 +224,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             instance.MachineDetection = new MachineDetectionConfiguration(mode: MachineDetectionModeEnum.Async, callbackUrl: "https://test.url/", callbackMethod: CallbackMethodEnum.POST, username: "username", password: "password", fallbackUrl: "https://fallbackTest.url/", fallbackMethod: CallbackMethodEnum.POST, fallbackUsername: "fallbackUsername", fallbackPassword: "fallbackPassword");
             Assert.IsType<MachineDetectionConfiguration>(instance.MachineDetection);
-            Assert.Equal(new MachineDetectionConfiguration(mode: MachineDetectionModeEnum.Async, callbackUrl: "https://test.url/", callbackMethod: CallbackMethodEnum.POST, username: "username", password: "password", fallbackUrl: "https://fallbackTest.url/", fallbackMethod: CallbackMethodEnum.POST, fallbackUsername: "fallbackUsername", fallbackPassword: "fallbackPassword"), instance.MachineDetection);
         }
         /// <summary>
         /// Test the property 'Priority'

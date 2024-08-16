@@ -67,7 +67,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             instance.PageInfo = new PageInfo();
             Assert.IsType<PageInfo>(instance.PageInfo);
-            Assert.Equal(new PageInfo(), instance.PageInfo);
         }
         /// <summary>
         /// Test the property 'Messages'

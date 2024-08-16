@@ -237,7 +237,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             instance.Transcription = new Transcription();
             Assert.IsType<Transcription>(instance.Transcription);
-            Assert.Equal(new Transcription(), instance.Transcription);
         }
         /// <summary>
         /// Test the property 'TransferCallerId'

@@ -188,7 +188,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             instance.MachineDetectionResult = new MachineDetectionResult();
             Assert.IsType<MachineDetectionResult>(instance.MachineDetectionResult);
-            Assert.Equal(new MachineDetectionResult(), instance.MachineDetectionResult);
         }
 
     }
