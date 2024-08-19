@@ -31,13 +31,11 @@ namespace Bandwidth.Standard.Test.Unit.Model
     /// </remarks>
     public class CallTranscriptionTests : IDisposable
     {
-        // TODO uncomment below to declare an instance variable for CallTranscription
-        //private CallTranscription instance;
+        private CallTranscription instance;
 
         public CallTranscriptionTests()
         {
-            // TODO uncomment below to create an instance of CallTranscription
-            //instance = new CallTranscription();
+            instance = new CallTranscription();
         }
 
         public void Dispose()
@@ -51,8 +49,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void CallTranscriptionInstanceTest()
         {
-            // TODO uncomment below to test "IsType" CallTranscription
-            //Assert.IsType<CallTranscription>(instance);
+            Assert.IsType<CallTranscription>(instance);
         }
 
         /// <summary>
@@ -61,7 +58,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void DetectedLanguageTest()
         {
-            // TODO unit test for the property 'DetectedLanguage'
+            instance.DetectedLanguage = CallTranscriptionDetectedLanguageEnum.EnUS;
+            Assert.IsType<CallTranscriptionDetectedLanguageEnum>(instance.DetectedLanguage);
+            Assert.Equal(CallTranscriptionDetectedLanguageEnum.EnUS, instance.DetectedLanguage);
         }
 
         /// <summary>
@@ -70,7 +69,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void TrackTest()
         {
-            // TODO unit test for the property 'Track'
+            instance.Track = CallTranscriptionTrackEnum.Inbound;
+            Assert.IsType<CallTranscriptionTrackEnum>(instance.Track);
+            Assert.Equal(CallTranscriptionTrackEnum.Inbound, instance.Track);
         }
 
         /// <summary>
@@ -79,7 +80,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void TranscriptTest()
         {
-            // TODO unit test for the property 'Transcript'
+            instance.Transcript = "test";
+            Assert.IsType<string>(instance.Transcript);
+            Assert.Equal("test", instance.Transcript);
         }
 
         /// <summary>
@@ -88,7 +91,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void ConfidenceTest()
         {
-            // TODO unit test for the property 'Confidence'
+            instance.Confidence = 0.5;
+            Assert.IsType<double>(instance.Confidence);
+            Assert.Equal(0.5, instance.Confidence);
         }
     }
 }

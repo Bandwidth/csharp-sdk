@@ -31,13 +31,11 @@ namespace Bandwidth.Standard.Test.Unit.Model
     /// </remarks>
     public class CallTranscriptionResponseTests : IDisposable
     {
-        // TODO uncomment below to declare an instance variable for CallTranscriptionResponse
-        //private CallTranscriptionResponse instance;
+        private CallTranscriptionResponse instance;
 
         public CallTranscriptionResponseTests()
         {
-            // TODO uncomment below to create an instance of CallTranscriptionResponse
-            //instance = new CallTranscriptionResponse();
+            instance = new CallTranscriptionResponse();
         }
 
         public void Dispose()
@@ -51,8 +49,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void CallTranscriptionResponseInstanceTest()
         {
-            // TODO uncomment below to test "IsType" CallTranscriptionResponse
-            //Assert.IsType<CallTranscriptionResponse>(instance);
+            Assert.IsType<CallTranscriptionResponse>(instance);
         }
 
         /// <summary>
@@ -61,7 +58,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void AccountIdTest()
         {
-            // TODO unit test for the property 'AccountId'
+            instance.AccountId = "12345";
+            Assert.IsType<string>(instance.AccountId);
+            Assert.Equal("12345", instance.AccountId);
         }
 
         /// <summary>
@@ -70,7 +69,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void CallIdTest()
         {
-            // TODO unit test for the property 'CallId'
+            instance.CallId = "12345";
+            Assert.IsType<string>(instance.CallId);
+            Assert.Equal("12345", instance.CallId);
         }
 
         /// <summary>
@@ -79,7 +80,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void TranscriptionIdTest()
         {
-            // TODO unit test for the property 'TranscriptionId'
+            instance.TranscriptionId = "12345";
+            Assert.IsType<string>(instance.TranscriptionId);
+            Assert.Equal("12345", instance.TranscriptionId);
         }
 
         /// <summary>
@@ -88,7 +91,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void TracksTest()
         {
-            // TODO unit test for the property 'Tracks'
+            instance.Tracks = new List<CallTranscription>();
+            Assert.IsType<List<CallTranscription>>(instance.Tracks);
         }
     }
 }

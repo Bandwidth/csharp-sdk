@@ -31,13 +31,11 @@ namespace Bandwidth.Standard.Test.Unit.Model
     /// </remarks>
     public class CallTranscriptionMetadataTests : IDisposable
     {
-        // TODO uncomment below to declare an instance variable for CallTranscriptionMetadata
-        //private CallTranscriptionMetadata instance;
+        private CallTranscriptionMetadata instance;
 
         public CallTranscriptionMetadataTests()
         {
-            // TODO uncomment below to create an instance of CallTranscriptionMetadata
-            //instance = new CallTranscriptionMetadata();
+            instance = new CallTranscriptionMetadata();
         }
 
         public void Dispose()
@@ -51,8 +49,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void CallTranscriptionMetadataInstanceTest()
         {
-            // TODO uncomment below to test "IsType" CallTranscriptionMetadata
-            //Assert.IsType<CallTranscriptionMetadata>(instance);
+            Assert.IsType<CallTranscriptionMetadata>(instance);
         }
 
         /// <summary>
@@ -61,7 +58,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void TranscriptionIdTest()
         {
-            // TODO unit test for the property 'TranscriptionId'
+            instance.TranscriptionId = "test";
+            Assert.IsType<string>(instance.TranscriptionId);
+            Assert.Equal("test", instance.TranscriptionId);
         }
 
         /// <summary>
@@ -70,7 +69,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void TranscriptionUrlTest()
         {
-            // TODO unit test for the property 'TranscriptionUrl'
+            instance.TranscriptionUrl = "test";
+            Assert.IsType<string>(instance.TranscriptionUrl);
+            Assert.Equal("test", instance.TranscriptionUrl);
         }
     }
 }

@@ -31,13 +31,11 @@ namespace Bandwidth.Standard.Test.Unit.Model
     /// </remarks>
     public class CallTranscriptionTrackEnumTests : IDisposable
     {
-        // TODO uncomment below to declare an instance variable for CallTranscriptionTrackEnum
-        //private CallTranscriptionTrackEnum instance;
+        private CallTranscriptionTrackEnum instance;
 
         public CallTranscriptionTrackEnumTests()
         {
-            // TODO uncomment below to create an instance of CallTranscriptionTrackEnum
-            //instance = new CallTranscriptionTrackEnum();
+            instance = new CallTranscriptionTrackEnum();
         }
 
         public void Dispose()
@@ -51,8 +49,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void CallTranscriptionTrackEnumInstanceTest()
         {
-            // TODO uncomment below to test "IsType" CallTranscriptionTrackEnum
-            //Assert.IsType<CallTranscriptionTrackEnum>(instance);
+            Assert.IsType<CallTranscriptionTrackEnum>(instance);
         }
     }
 }

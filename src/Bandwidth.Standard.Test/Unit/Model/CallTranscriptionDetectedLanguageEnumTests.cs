@@ -31,13 +31,11 @@ namespace Bandwidth.Standard.Test.Unit.Model
     /// </remarks>
     public class CallTranscriptionDetectedLanguageEnumTests : IDisposable
     {
-        // TODO uncomment below to declare an instance variable for CallTranscriptionDetectedLanguageEnum
-        //private CallTranscriptionDetectedLanguageEnum instance;
+        private CallTranscriptionDetectedLanguageEnum instance;
 
         public CallTranscriptionDetectedLanguageEnumTests()
         {
-            // TODO uncomment below to create an instance of CallTranscriptionDetectedLanguageEnum
-            //instance = new CallTranscriptionDetectedLanguageEnum();
+            instance = new CallTranscriptionDetectedLanguageEnum();
         }
 
         public void Dispose()
@@ -51,8 +49,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void CallTranscriptionDetectedLanguageEnumInstanceTest()
         {
-            // TODO uncomment below to test "IsType" CallTranscriptionDetectedLanguageEnum
-            //Assert.IsType<CallTranscriptionDetectedLanguageEnum>(instance);
+            Assert.IsType<CallTranscriptionDetectedLanguageEnum>(instance);
         }
     }
 }

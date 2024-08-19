@@ -31,13 +31,11 @@ namespace Bandwidth.Standard.Test.Unit.Model
     /// </remarks>
     public class RecordingTranscriptionsTests : IDisposable
     {
-        // TODO uncomment below to declare an instance variable for RecordingTranscriptions
-        //private RecordingTranscriptions instance;
+        private RecordingTranscriptions instance;
 
         public RecordingTranscriptionsTests()
         {
-            // TODO uncomment below to create an instance of RecordingTranscriptions
-            //instance = new RecordingTranscriptions();
+            instance = new RecordingTranscriptions();
         }
 
         public void Dispose()
@@ -51,8 +49,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void RecordingTranscriptionsInstanceTest()
         {
-            // TODO uncomment below to test "IsType" RecordingTranscriptions
-            //Assert.IsType<RecordingTranscriptions>(instance);
+            Assert.IsType<RecordingTranscriptions>(instance);
         }
 
         /// <summary>
@@ -61,7 +58,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void TranscriptsTest()
         {
-            // TODO unit test for the property 'Transcripts'
+            instance.Transcripts = new List<Transcription>();
+            Assert.IsType<List<Transcription>>(instance.Transcripts);
         }
     }
 }

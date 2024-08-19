@@ -31,13 +31,11 @@ namespace Bandwidth.Standard.Test.Unit.Model
     /// </remarks>
     public class RecordingTranscriptionMetadataTests : IDisposable
     {
-        // TODO uncomment below to declare an instance variable for RecordingTranscriptionMetadata
-        //private RecordingTranscriptionMetadata instance;
+        private RecordingTranscriptionMetadata instance;
 
         public RecordingTranscriptionMetadataTests()
         {
-            // TODO uncomment below to create an instance of RecordingTranscriptionMetadata
-            //instance = new RecordingTranscriptionMetadata();
+            instance = new RecordingTranscriptionMetadata();
         }
 
         public void Dispose()
@@ -51,8 +49,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void RecordingTranscriptionMetadataInstanceTest()
         {
-            // TODO uncomment below to test "IsType" RecordingTranscriptionMetadata
-            //Assert.IsType<RecordingTranscriptionMetadata>(instance);
+            Assert.IsType<RecordingTranscriptionMetadata>(instance);
         }
 
         /// <summary>
@@ -61,7 +58,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void IdTest()
         {
-            // TODO unit test for the property 'Id'
+            instance.Id = "test";
+            Assert.IsType<string>(instance.Id);
+            Assert.Equal("test", instance.Id);
         }
 
         /// <summary>
@@ -70,7 +69,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void StatusTest()
         {
-            // TODO unit test for the property 'Status'
+            instance.Status = "test";
+            Assert.IsType<string>(instance.Status);
+            Assert.Equal("test", instance.Status);
         }
 
         /// <summary>
@@ -79,7 +80,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void CompletedTimeTest()
         {
-            // TODO unit test for the property 'CompletedTime'
+            instance.CompletedTime = new DateTime(2020, 1, 1);
+            Assert.IsType<DateTime>(instance.CompletedTime);
+            Assert.Equal(new DateTime(2020, 1, 1), instance.CompletedTime);
         }
 
         /// <summary>
@@ -88,7 +91,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void UrlTest()
         {
-            // TODO unit test for the property 'Url'
+            instance.Url = "test";
+            Assert.IsType<string>(instance.Url);
+            Assert.Equal("test", instance.Url);
         }
     }
 }
