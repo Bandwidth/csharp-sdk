@@ -89,7 +89,7 @@ namespace Bandwidth.Standard.Test.Smoke
             var jsonBody = JsonSerializer.Serialize(new
             {
                 os = Environment.GetEnvironmentVariable("OPERATING_SYSTEM"),
-                language = "csharp" + Environment.GetEnvironmentVariable("DOTNET_VERSION"),
+                language = "csharp",
                 type = "REAL_TIME_TRANSCRIPTION"
             });
             var options = new RequestOptions
