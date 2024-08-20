@@ -45,17 +45,17 @@ jobs:
           fi
       
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: feature/openapi-generator-sdk
 
       - name: Setup Dotnet
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '7.0.x'
+          dotnet-version: '8.0.x'
 
-      - name: Run functional tests
-        run: dotnet test $BW_PROJECT_TEST_NAME
+      - name: Run Unit Tests
+        run: dotnet test src/Bandwidth.Standard.Test --filter DisplayName~Bandwidth.Standard.Test.Unit
         
       - name: Pack NuGet package
         run: dotnet pack --configuration Release $BW_PROJECT_NAME -p:PackageVersion=$RELEASE_VERSION
@@ -67,7 +67,7 @@ jobs:
         run: dotnet nuget push $BW_PROJECT_NAME/bin/Release/*.nupkg -s $NUGET_SOURCE -k $NUGET_KEY
 
       - name: Notify Slack of build status
-        uses: Bandwidth/build-notify-slack-action@v1.0.0
+        uses: Bandwidth/build-notify-slack-action@v2.0.0
         if: always()
         with:
           job-status: ${{ job.status }}
@@ -95,16 +95,16 @@ jobs:
           fi
       
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Dotnet
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '7.0.x'
+          dotnet-version: '8.0.x'
 
-      - name: Run functional tests
-        run: dotnet test $BW_PROJECT_TEST_NAME
-        
+      - name: Run Unit Tests
+        run: dotnet test src/Bandwidth.Standard.Test --filter DisplayName~Bandwidth.Standard.Test.Unit
+
       - name: Pack NuGet package
         run: dotnet pack --configuration Release $BW_PROJECT_NAME -p:PackageVersion=$RELEASE_VERSION
       
@@ -115,7 +115,7 @@ jobs:
         run: dotnet nuget push $BW_PROJECT_NAME/bin/Release/*.nupkg -s $NUGET_SOURCE -k $NUGET_KEY
 
       - name: Notify Slack of build status
-        uses: Bandwidth/build-notify-slack-action@v1.0.0
+        uses: Bandwidth/build-notify-slack-action@v2.0.0
         if: always()
         with:
           job-status: ${{ job.status }}
