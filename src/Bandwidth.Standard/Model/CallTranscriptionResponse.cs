@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// CallTranscriptionResponse
     /// </summary>
     [DataContract(Name = "callTranscriptionResponse")]
-    public partial class CallTranscriptionResponse : IEquatable<CallTranscriptionResponse>, IValidatableObject
+    public partial class CallTranscriptionResponse : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CallTranscriptionResponse" /> class.
@@ -104,85 +104,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as CallTranscriptionResponse);
-        }
-
-        /// <summary>
-        /// Returns true if CallTranscriptionResponse instances are equal
-        /// </summary>
-        /// <param name="input">Instance of CallTranscriptionResponse to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CallTranscriptionResponse input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.AccountId == input.AccountId ||
-                    (this.AccountId != null &&
-                    this.AccountId.Equals(input.AccountId))
-                ) && 
-                (
-                    this.CallId == input.CallId ||
-                    (this.CallId != null &&
-                    this.CallId.Equals(input.CallId))
-                ) && 
-                (
-                    this.TranscriptionId == input.TranscriptionId ||
-                    (this.TranscriptionId != null &&
-                    this.TranscriptionId.Equals(input.TranscriptionId))
-                ) && 
-                (
-                    this.Tracks == input.Tracks ||
-                    this.Tracks != null &&
-                    input.Tracks != null &&
-                    this.Tracks.SequenceEqual(input.Tracks)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.AccountId != null)
-                {
-                    hashCode = (hashCode * 59) + this.AccountId.GetHashCode();
-                }
-                if (this.CallId != null)
-                {
-                    hashCode = (hashCode * 59) + this.CallId.GetHashCode();
-                }
-                if (this.TranscriptionId != null)
-                {
-                    hashCode = (hashCode * 59) + this.TranscriptionId.GetHashCode();
-                }
-                if (this.Tracks != null)
-                {
-                    hashCode = (hashCode * 59) + this.Tracks.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

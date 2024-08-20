@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// Media
     /// </summary>
     [DataContract(Name = "media")]
-    public partial class Media : IEquatable<Media>, IValidatableObject
+    public partial class Media : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Media" /> class.
@@ -88,71 +88,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as Media);
-        }
-
-        /// <summary>
-        /// Returns true if Media instances are equal
-        /// </summary>
-        /// <param name="input">Instance of Media to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Media input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.Content == input.Content ||
-                    (this.Content != null &&
-                    this.Content.Equals(input.Content))
-                ) && 
-                (
-                    this.ContentLength == input.ContentLength ||
-                    this.ContentLength.Equals(input.ContentLength)
-                ) && 
-                (
-                    this.MediaName == input.MediaName ||
-                    (this.MediaName != null &&
-                    this.MediaName.Equals(input.MediaName))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Content != null)
-                {
-                    hashCode = (hashCode * 59) + this.Content.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.ContentLength.GetHashCode();
-                if (this.MediaName != null)
-                {
-                    hashCode = (hashCode * 59) + this.MediaName.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

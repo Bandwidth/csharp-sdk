@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// The machine detection request used to perform &lt;a href&#x3D;&#39;/docs/voice/guides/machineDetection&#39;&gt;machine detection&lt;/a&gt; on the call. Currently, there is an issue where decimal values are not getting processed correctly. Please use whole number values. We are working to resolve this issue. Please contact Bandwidth Support if you need more information.
     /// </summary>
     [DataContract(Name = "machineDetectionConfiguration")]
-    public partial class MachineDetectionConfiguration : IEquatable<MachineDetectionConfiguration>, IValidatableObject
+    public partial class MachineDetectionConfiguration : IValidatableObject
     {
 
         /// <summary>
@@ -225,206 +225,46 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as MachineDetectionConfiguration);
-        }
-
-        /// <summary>
-        /// Returns true if MachineDetectionConfiguration instances are equal
-        /// </summary>
-        /// <param name="input">Instance of MachineDetectionConfiguration to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(MachineDetectionConfiguration input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.Mode == input.Mode ||
-                    this.Mode.Equals(input.Mode)
-                ) && 
-                (
-                    this.DetectionTimeout == input.DetectionTimeout ||
-                    (this.DetectionTimeout != null &&
-                    this.DetectionTimeout.Equals(input.DetectionTimeout))
-                ) && 
-                (
-                    this.SilenceTimeout == input.SilenceTimeout ||
-                    (this.SilenceTimeout != null &&
-                    this.SilenceTimeout.Equals(input.SilenceTimeout))
-                ) && 
-                (
-                    this.SpeechThreshold == input.SpeechThreshold ||
-                    (this.SpeechThreshold != null &&
-                    this.SpeechThreshold.Equals(input.SpeechThreshold))
-                ) && 
-                (
-                    this.SpeechEndThreshold == input.SpeechEndThreshold ||
-                    (this.SpeechEndThreshold != null &&
-                    this.SpeechEndThreshold.Equals(input.SpeechEndThreshold))
-                ) && 
-                (
-                    this.MachineSpeechEndThreshold == input.MachineSpeechEndThreshold ||
-                    (this.MachineSpeechEndThreshold != null &&
-                    this.MachineSpeechEndThreshold.Equals(input.MachineSpeechEndThreshold))
-                ) && 
-                (
-                    this.DelayResult == input.DelayResult ||
-                    (this.DelayResult != null &&
-                    this.DelayResult.Equals(input.DelayResult))
-                ) && 
-                (
-                    this.CallbackUrl == input.CallbackUrl ||
-                    (this.CallbackUrl != null &&
-                    this.CallbackUrl.Equals(input.CallbackUrl))
-                ) && 
-                (
-                    this.CallbackMethod == input.CallbackMethod ||
-                    this.CallbackMethod.Equals(input.CallbackMethod)
-                ) && 
-                (
-                    this.Username == input.Username ||
-                    (this.Username != null &&
-                    this.Username.Equals(input.Username))
-                ) && 
-                (
-                    this.Password == input.Password ||
-                    (this.Password != null &&
-                    this.Password.Equals(input.Password))
-                ) && 
-                (
-                    this.FallbackUrl == input.FallbackUrl ||
-                    (this.FallbackUrl != null &&
-                    this.FallbackUrl.Equals(input.FallbackUrl))
-                ) && 
-                (
-                    this.FallbackMethod == input.FallbackMethod ||
-                    this.FallbackMethod.Equals(input.FallbackMethod)
-                ) && 
-                (
-                    this.FallbackUsername == input.FallbackUsername ||
-                    (this.FallbackUsername != null &&
-                    this.FallbackUsername.Equals(input.FallbackUsername))
-                ) && 
-                (
-                    this.FallbackPassword == input.FallbackPassword ||
-                    (this.FallbackPassword != null &&
-                    this.FallbackPassword.Equals(input.FallbackPassword))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Mode.GetHashCode();
-                if (this.DetectionTimeout != null)
-                {
-                    hashCode = (hashCode * 59) + this.DetectionTimeout.GetHashCode();
-                }
-                if (this.SilenceTimeout != null)
-                {
-                    hashCode = (hashCode * 59) + this.SilenceTimeout.GetHashCode();
-                }
-                if (this.SpeechThreshold != null)
-                {
-                    hashCode = (hashCode * 59) + this.SpeechThreshold.GetHashCode();
-                }
-                if (this.SpeechEndThreshold != null)
-                {
-                    hashCode = (hashCode * 59) + this.SpeechEndThreshold.GetHashCode();
-                }
-                if (this.MachineSpeechEndThreshold != null)
-                {
-                    hashCode = (hashCode * 59) + this.MachineSpeechEndThreshold.GetHashCode();
-                }
-                if (this.DelayResult != null)
-                {
-                    hashCode = (hashCode * 59) + this.DelayResult.GetHashCode();
-                }
-                if (this.CallbackUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.CallbackUrl.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.CallbackMethod.GetHashCode();
-                if (this.Username != null)
-                {
-                    hashCode = (hashCode * 59) + this.Username.GetHashCode();
-                }
-                if (this.Password != null)
-                {
-                    hashCode = (hashCode * 59) + this.Password.GetHashCode();
-                }
-                if (this.FallbackUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.FallbackUrl.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.FallbackMethod.GetHashCode();
-                if (this.FallbackUsername != null)
-                {
-                    hashCode = (hashCode * 59) + this.FallbackUsername.GetHashCode();
-                }
-                if (this.FallbackPassword != null)
-                {
-                    hashCode = (hashCode * 59) + this.FallbackPassword.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // CallbackUrl (string) maxLength
             if (this.CallbackUrl != null && this.CallbackUrl.Length > 2048)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallbackUrl, length must be less than 2048.", new [] { "CallbackUrl" });
+                yield return new ValidationResult("Invalid value for CallbackUrl, length must be less than 2048.", new [] { "CallbackUrl" });
             }
 
             // Username (string) maxLength
             if (this.Username != null && this.Username.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Username, length must be less than 1024.", new [] { "Username" });
+                yield return new ValidationResult("Invalid value for Username, length must be less than 1024.", new [] { "Username" });
             }
 
             // Password (string) maxLength
             if (this.Password != null && this.Password.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Password, length must be less than 1024.", new [] { "Password" });
+                yield return new ValidationResult("Invalid value for Password, length must be less than 1024.", new [] { "Password" });
             }
 
             // FallbackUrl (string) maxLength
             if (this.FallbackUrl != null && this.FallbackUrl.Length > 2048)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FallbackUrl, length must be less than 2048.", new [] { "FallbackUrl" });
+                yield return new ValidationResult("Invalid value for FallbackUrl, length must be less than 2048.", new [] { "FallbackUrl" });
             }
 
             // FallbackUsername (string) maxLength
             if (this.FallbackUsername != null && this.FallbackUsername.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FallbackUsername, length must be less than 1024.", new [] { "FallbackUsername" });
+                yield return new ValidationResult("Invalid value for FallbackUsername, length must be less than 1024.", new [] { "FallbackUsername" });
             }
 
             // FallbackPassword (string) maxLength
             if (this.FallbackPassword != null && this.FallbackPassword.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FallbackPassword, length must be less than 1024.", new [] { "FallbackPassword" });
+                yield return new ValidationResult("Invalid value for FallbackPassword, length must be less than 1024.", new [] { "FallbackPassword" });
             }
 
             yield break;

@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// This event is sent to the url informed when requesting a machine detection operation. It contains the machine detection operation result, which can be: human, answering-machine, silence, timeout, error. This event is not sent when sync answering machine detection mode is chosen.
     /// </summary>
     [DataContract(Name = "machineDetectionCompleteCallback")]
-    public partial class MachineDetectionCompleteCallback : IEquatable<MachineDetectionCompleteCallback>, IValidatableObject
+    public partial class MachineDetectionCompleteCallback : IValidatableObject
     {
 
         /// <summary>
@@ -211,170 +211,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as MachineDetectionCompleteCallback);
-        }
-
-        /// <summary>
-        /// Returns true if MachineDetectionCompleteCallback instances are equal
-        /// </summary>
-        /// <param name="input">Instance of MachineDetectionCompleteCallback to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(MachineDetectionCompleteCallback input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.EventType == input.EventType ||
-                    (this.EventType != null &&
-                    this.EventType.Equals(input.EventType))
-                ) && 
-                (
-                    this.EventTime == input.EventTime ||
-                    (this.EventTime != null &&
-                    this.EventTime.Equals(input.EventTime))
-                ) && 
-                (
-                    this.AccountId == input.AccountId ||
-                    (this.AccountId != null &&
-                    this.AccountId.Equals(input.AccountId))
-                ) && 
-                (
-                    this.ApplicationId == input.ApplicationId ||
-                    (this.ApplicationId != null &&
-                    this.ApplicationId.Equals(input.ApplicationId))
-                ) && 
-                (
-                    this.From == input.From ||
-                    (this.From != null &&
-                    this.From.Equals(input.From))
-                ) && 
-                (
-                    this.To == input.To ||
-                    (this.To != null &&
-                    this.To.Equals(input.To))
-                ) && 
-                (
-                    this.Direction == input.Direction ||
-                    this.Direction.Equals(input.Direction)
-                ) && 
-                (
-                    this.CallId == input.CallId ||
-                    (this.CallId != null &&
-                    this.CallId.Equals(input.CallId))
-                ) && 
-                (
-                    this.CallUrl == input.CallUrl ||
-                    (this.CallUrl != null &&
-                    this.CallUrl.Equals(input.CallUrl))
-                ) && 
-                (
-                    this.EnqueuedTime == input.EnqueuedTime ||
-                    (this.EnqueuedTime != null &&
-                    this.EnqueuedTime.Equals(input.EnqueuedTime))
-                ) && 
-                (
-                    this.StartTime == input.StartTime ||
-                    (this.StartTime != null &&
-                    this.StartTime.Equals(input.StartTime))
-                ) && 
-                (
-                    this.AnswerTime == input.AnswerTime ||
-                    (this.AnswerTime != null &&
-                    this.AnswerTime.Equals(input.AnswerTime))
-                ) && 
-                (
-                    this.Tag == input.Tag ||
-                    (this.Tag != null &&
-                    this.Tag.Equals(input.Tag))
-                ) && 
-                (
-                    this.MachineDetectionResult == input.MachineDetectionResult ||
-                    (this.MachineDetectionResult != null &&
-                    this.MachineDetectionResult.Equals(input.MachineDetectionResult))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.EventType != null)
-                {
-                    hashCode = (hashCode * 59) + this.EventType.GetHashCode();
-                }
-                if (this.EventTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.EventTime.GetHashCode();
-                }
-                if (this.AccountId != null)
-                {
-                    hashCode = (hashCode * 59) + this.AccountId.GetHashCode();
-                }
-                if (this.ApplicationId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApplicationId.GetHashCode();
-                }
-                if (this.From != null)
-                {
-                    hashCode = (hashCode * 59) + this.From.GetHashCode();
-                }
-                if (this.To != null)
-                {
-                    hashCode = (hashCode * 59) + this.To.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Direction.GetHashCode();
-                if (this.CallId != null)
-                {
-                    hashCode = (hashCode * 59) + this.CallId.GetHashCode();
-                }
-                if (this.CallUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.CallUrl.GetHashCode();
-                }
-                if (this.EnqueuedTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.EnqueuedTime.GetHashCode();
-                }
-                if (this.StartTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.StartTime.GetHashCode();
-                }
-                if (this.AnswerTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.AnswerTime.GetHashCode();
-                }
-                if (this.Tag != null)
-                {
-                    hashCode = (hashCode * 59) + this.Tag.GetHashCode();
-                }
-                if (this.MachineDetectionResult != null)
-                {
-                    hashCode = (hashCode * 59) + this.MachineDetectionResult.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

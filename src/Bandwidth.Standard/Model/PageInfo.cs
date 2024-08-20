@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// PageInfo
     /// </summary>
     [DataContract(Name = "pageInfo")]
-    public partial class PageInfo : IEquatable<PageInfo>, IValidatableObject
+    public partial class PageInfo : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PageInfo" /> class.
@@ -105,84 +105,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as PageInfo);
-        }
-
-        /// <summary>
-        /// Returns true if PageInfo instances are equal
-        /// </summary>
-        /// <param name="input">Instance of PageInfo to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(PageInfo input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.PrevPage == input.PrevPage ||
-                    (this.PrevPage != null &&
-                    this.PrevPage.Equals(input.PrevPage))
-                ) && 
-                (
-                    this.NextPage == input.NextPage ||
-                    (this.NextPage != null &&
-                    this.NextPage.Equals(input.NextPage))
-                ) && 
-                (
-                    this.PrevPageToken == input.PrevPageToken ||
-                    (this.PrevPageToken != null &&
-                    this.PrevPageToken.Equals(input.PrevPageToken))
-                ) && 
-                (
-                    this.NextPageToken == input.NextPageToken ||
-                    (this.NextPageToken != null &&
-                    this.NextPageToken.Equals(input.NextPageToken))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.PrevPage != null)
-                {
-                    hashCode = (hashCode * 59) + this.PrevPage.GetHashCode();
-                }
-                if (this.NextPage != null)
-                {
-                    hashCode = (hashCode * 59) + this.NextPage.GetHashCode();
-                }
-                if (this.PrevPageToken != null)
-                {
-                    hashCode = (hashCode * 59) + this.PrevPageToken.GetHashCode();
-                }
-                if (this.NextPageToken != null)
-                {
-                    hashCode = (hashCode * 59) + this.NextPageToken.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

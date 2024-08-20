@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework Condition="'$(DOTNET_VERSION)' == '6.0.x' Or '$(DOTNET_VERSION)' == ''">net6.0</TargetFramework>
     <TargetFramework Condition="'$(DOTNET_VERSION)' == '7.0.x'">net7.0</TargetFramework>
+    <TargetFramework Condition="'$(DOTNET_VERSION)' == '8.0.x'">net8.0</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 

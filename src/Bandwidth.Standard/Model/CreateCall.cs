@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// CreateCall
     /// </summary>
     [DataContract(Name = "createCall")]
-    public partial class CreateCall : IEquatable<CreateCall>, IValidatableObject
+    public partial class CreateCall : IValidatableObject
     {
 
         /// <summary>
@@ -312,314 +312,100 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as CreateCall);
-        }
-
-        /// <summary>
-        /// Returns true if CreateCall instances are equal
-        /// </summary>
-        /// <param name="input">Instance of CreateCall to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CreateCall input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.To == input.To ||
-                    (this.To != null &&
-                    this.To.Equals(input.To))
-                ) && 
-                (
-                    this.From == input.From ||
-                    (this.From != null &&
-                    this.From.Equals(input.From))
-                ) && 
-                (
-                    this.Privacy == input.Privacy ||
-                    (this.Privacy != null &&
-                    this.Privacy.Equals(input.Privacy))
-                ) && 
-                (
-                    this.DisplayName == input.DisplayName ||
-                    (this.DisplayName != null &&
-                    this.DisplayName.Equals(input.DisplayName))
-                ) && 
-                (
-                    this.Uui == input.Uui ||
-                    (this.Uui != null &&
-                    this.Uui.Equals(input.Uui))
-                ) && 
-                (
-                    this.ApplicationId == input.ApplicationId ||
-                    (this.ApplicationId != null &&
-                    this.ApplicationId.Equals(input.ApplicationId))
-                ) && 
-                (
-                    this.AnswerUrl == input.AnswerUrl ||
-                    (this.AnswerUrl != null &&
-                    this.AnswerUrl.Equals(input.AnswerUrl))
-                ) && 
-                (
-                    this.AnswerMethod == input.AnswerMethod ||
-                    this.AnswerMethod.Equals(input.AnswerMethod)
-                ) && 
-                (
-                    this.Username == input.Username ||
-                    (this.Username != null &&
-                    this.Username.Equals(input.Username))
-                ) && 
-                (
-                    this.Password == input.Password ||
-                    (this.Password != null &&
-                    this.Password.Equals(input.Password))
-                ) && 
-                (
-                    this.AnswerFallbackUrl == input.AnswerFallbackUrl ||
-                    (this.AnswerFallbackUrl != null &&
-                    this.AnswerFallbackUrl.Equals(input.AnswerFallbackUrl))
-                ) && 
-                (
-                    this.AnswerFallbackMethod == input.AnswerFallbackMethod ||
-                    this.AnswerFallbackMethod.Equals(input.AnswerFallbackMethod)
-                ) && 
-                (
-                    this.FallbackUsername == input.FallbackUsername ||
-                    (this.FallbackUsername != null &&
-                    this.FallbackUsername.Equals(input.FallbackUsername))
-                ) && 
-                (
-                    this.FallbackPassword == input.FallbackPassword ||
-                    (this.FallbackPassword != null &&
-                    this.FallbackPassword.Equals(input.FallbackPassword))
-                ) && 
-                (
-                    this.DisconnectUrl == input.DisconnectUrl ||
-                    (this.DisconnectUrl != null &&
-                    this.DisconnectUrl.Equals(input.DisconnectUrl))
-                ) && 
-                (
-                    this.DisconnectMethod == input.DisconnectMethod ||
-                    this.DisconnectMethod.Equals(input.DisconnectMethod)
-                ) && 
-                (
-                    this.CallTimeout == input.CallTimeout ||
-                    (this.CallTimeout != null &&
-                    this.CallTimeout.Equals(input.CallTimeout))
-                ) && 
-                (
-                    this.CallbackTimeout == input.CallbackTimeout ||
-                    (this.CallbackTimeout != null &&
-                    this.CallbackTimeout.Equals(input.CallbackTimeout))
-                ) && 
-                (
-                    this.MachineDetection == input.MachineDetection ||
-                    (this.MachineDetection != null &&
-                    this.MachineDetection.Equals(input.MachineDetection))
-                ) && 
-                (
-                    this.Priority == input.Priority ||
-                    (this.Priority != null &&
-                    this.Priority.Equals(input.Priority))
-                ) && 
-                (
-                    this.Tag == input.Tag ||
-                    (this.Tag != null &&
-                    this.Tag.Equals(input.Tag))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.To != null)
-                {
-                    hashCode = (hashCode * 59) + this.To.GetHashCode();
-                }
-                if (this.From != null)
-                {
-                    hashCode = (hashCode * 59) + this.From.GetHashCode();
-                }
-                if (this.Privacy != null)
-                {
-                    hashCode = (hashCode * 59) + this.Privacy.GetHashCode();
-                }
-                if (this.DisplayName != null)
-                {
-                    hashCode = (hashCode * 59) + this.DisplayName.GetHashCode();
-                }
-                if (this.Uui != null)
-                {
-                    hashCode = (hashCode * 59) + this.Uui.GetHashCode();
-                }
-                if (this.ApplicationId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApplicationId.GetHashCode();
-                }
-                if (this.AnswerUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.AnswerUrl.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.AnswerMethod.GetHashCode();
-                if (this.Username != null)
-                {
-                    hashCode = (hashCode * 59) + this.Username.GetHashCode();
-                }
-                if (this.Password != null)
-                {
-                    hashCode = (hashCode * 59) + this.Password.GetHashCode();
-                }
-                if (this.AnswerFallbackUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.AnswerFallbackUrl.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.AnswerFallbackMethod.GetHashCode();
-                if (this.FallbackUsername != null)
-                {
-                    hashCode = (hashCode * 59) + this.FallbackUsername.GetHashCode();
-                }
-                if (this.FallbackPassword != null)
-                {
-                    hashCode = (hashCode * 59) + this.FallbackPassword.GetHashCode();
-                }
-                if (this.DisconnectUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.DisconnectUrl.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.DisconnectMethod.GetHashCode();
-                if (this.CallTimeout != null)
-                {
-                    hashCode = (hashCode * 59) + this.CallTimeout.GetHashCode();
-                }
-                if (this.CallbackTimeout != null)
-                {
-                    hashCode = (hashCode * 59) + this.CallbackTimeout.GetHashCode();
-                }
-                if (this.MachineDetection != null)
-                {
-                    hashCode = (hashCode * 59) + this.MachineDetection.GetHashCode();
-                }
-                if (this.Priority != null)
-                {
-                    hashCode = (hashCode * 59) + this.Priority.GetHashCode();
-                }
-                if (this.Tag != null)
-                {
-                    hashCode = (hashCode * 59) + this.Tag.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // DisplayName (string) maxLength
             if (this.DisplayName != null && this.DisplayName.Length > 256)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DisplayName, length must be less than 256.", new [] { "DisplayName" });
+                yield return new ValidationResult("Invalid value for DisplayName, length must be less than 256.", new [] { "DisplayName" });
             }
 
             // AnswerUrl (string) maxLength
             if (this.AnswerUrl != null && this.AnswerUrl.Length > 2048)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AnswerUrl, length must be less than 2048.", new [] { "AnswerUrl" });
+                yield return new ValidationResult("Invalid value for AnswerUrl, length must be less than 2048.", new [] { "AnswerUrl" });
             }
 
             // Username (string) maxLength
             if (this.Username != null && this.Username.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Username, length must be less than 1024.", new [] { "Username" });
+                yield return new ValidationResult("Invalid value for Username, length must be less than 1024.", new [] { "Username" });
             }
 
             // Password (string) maxLength
             if (this.Password != null && this.Password.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Password, length must be less than 1024.", new [] { "Password" });
+                yield return new ValidationResult("Invalid value for Password, length must be less than 1024.", new [] { "Password" });
             }
 
             // AnswerFallbackUrl (string) maxLength
             if (this.AnswerFallbackUrl != null && this.AnswerFallbackUrl.Length > 2048)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AnswerFallbackUrl, length must be less than 2048.", new [] { "AnswerFallbackUrl" });
+                yield return new ValidationResult("Invalid value for AnswerFallbackUrl, length must be less than 2048.", new [] { "AnswerFallbackUrl" });
             }
 
             // FallbackUsername (string) maxLength
             if (this.FallbackUsername != null && this.FallbackUsername.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FallbackUsername, length must be less than 1024.", new [] { "FallbackUsername" });
+                yield return new ValidationResult("Invalid value for FallbackUsername, length must be less than 1024.", new [] { "FallbackUsername" });
             }
 
             // FallbackPassword (string) maxLength
             if (this.FallbackPassword != null && this.FallbackPassword.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FallbackPassword, length must be less than 1024.", new [] { "FallbackPassword" });
+                yield return new ValidationResult("Invalid value for FallbackPassword, length must be less than 1024.", new [] { "FallbackPassword" });
             }
 
             // DisconnectUrl (string) maxLength
             if (this.DisconnectUrl != null && this.DisconnectUrl.Length > 2048)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DisconnectUrl, length must be less than 2048.", new [] { "DisconnectUrl" });
+                yield return new ValidationResult("Invalid value for DisconnectUrl, length must be less than 2048.", new [] { "DisconnectUrl" });
             }
 
             // CallTimeout (double?) maximum
             if (this.CallTimeout > (double?)300)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallTimeout, must be a value less than or equal to 300.", new [] { "CallTimeout" });
+                yield return new ValidationResult("Invalid value for CallTimeout, must be a value less than or equal to 300.", new [] { "CallTimeout" });
             }
 
             // CallTimeout (double?) minimum
             if (this.CallTimeout < (double?)1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallTimeout, must be a value greater than or equal to 1.", new [] { "CallTimeout" });
+                yield return new ValidationResult("Invalid value for CallTimeout, must be a value greater than or equal to 1.", new [] { "CallTimeout" });
             }
 
             // CallbackTimeout (double?) maximum
             if (this.CallbackTimeout > (double?)25)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallbackTimeout, must be a value less than or equal to 25.", new [] { "CallbackTimeout" });
+                yield return new ValidationResult("Invalid value for CallbackTimeout, must be a value less than or equal to 25.", new [] { "CallbackTimeout" });
             }
 
             // CallbackTimeout (double?) minimum
             if (this.CallbackTimeout < (double?)1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CallbackTimeout, must be a value greater than or equal to 1.", new [] { "CallbackTimeout" });
+                yield return new ValidationResult("Invalid value for CallbackTimeout, must be a value greater than or equal to 1.", new [] { "CallbackTimeout" });
             }
 
             // Priority (int?) maximum
             if (this.Priority > (int?)5)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Priority, must be a value less than or equal to 5.", new [] { "Priority" });
+                yield return new ValidationResult("Invalid value for Priority, must be a value less than or equal to 5.", new [] { "Priority" });
             }
 
             // Priority (int?) minimum
             if (this.Priority < (int?)1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Priority, must be a value greater than or equal to 1.", new [] { "Priority" });
+                yield return new ValidationResult("Invalid value for Priority, must be a value greater than or equal to 1.", new [] { "Priority" });
             }
 
             // Tag (string) maxLength
             if (this.Tag != null && this.Tag.Length > 256)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Tag, length must be less than 256.", new [] { "Tag" });
+                yield return new ValidationResult("Invalid value for Tag, length must be less than 256.", new [] { "Tag" });
             }
 
             yield break;

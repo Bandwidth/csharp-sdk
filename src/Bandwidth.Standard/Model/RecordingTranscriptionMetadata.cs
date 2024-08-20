@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// If the recording was transcribed, metadata about the transcription
     /// </summary>
     [DataContract(Name = "recordingTranscriptionMetadata")]
-    public partial class RecordingTranscriptionMetadata : IEquatable<RecordingTranscriptionMetadata>, IValidatableObject
+    public partial class RecordingTranscriptionMetadata : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RecordingTranscriptionMetadata" /> class.
@@ -105,84 +105,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as RecordingTranscriptionMetadata);
-        }
-
-        /// <summary>
-        /// Returns true if RecordingTranscriptionMetadata instances are equal
-        /// </summary>
-        /// <param name="input">Instance of RecordingTranscriptionMetadata to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(RecordingTranscriptionMetadata input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
-                ) && 
-                (
-                    this.CompletedTime == input.CompletedTime ||
-                    (this.CompletedTime != null &&
-                    this.CompletedTime.Equals(input.CompletedTime))
-                ) && 
-                (
-                    this.Url == input.Url ||
-                    (this.Url != null &&
-                    this.Url.Equals(input.Url))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Id != null)
-                {
-                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
-                }
-                if (this.Status != null)
-                {
-                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
-                }
-                if (this.CompletedTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.CompletedTime.GetHashCode();
-                }
-                if (this.Url != null)
-                {
-                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

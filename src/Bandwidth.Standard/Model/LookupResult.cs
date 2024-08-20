@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// Carrier information results for the specified telephone number.
     /// </summary>
     [DataContract(Name = "lookupResult")]
-    public partial class LookupResult : IEquatable<LookupResult>, IValidatableObject
+    public partial class LookupResult : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="LookupResult" /> class.
@@ -160,125 +160,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as LookupResult);
-        }
-
-        /// <summary>
-        /// Returns true if LookupResult instances are equal
-        /// </summary>
-        /// <param name="input">Instance of LookupResult to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(LookupResult input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.ResponseCode == input.ResponseCode ||
-                    this.ResponseCode.Equals(input.ResponseCode)
-                ) && 
-                (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
-                ) && 
-                (
-                    this.E164Format == input.E164Format ||
-                    (this.E164Format != null &&
-                    this.E164Format.Equals(input.E164Format))
-                ) && 
-                (
-                    this.Formatted == input.Formatted ||
-                    (this.Formatted != null &&
-                    this.Formatted.Equals(input.Formatted))
-                ) && 
-                (
-                    this.Country == input.Country ||
-                    (this.Country != null &&
-                    this.Country.Equals(input.Country))
-                ) && 
-                (
-                    this.LineType == input.LineType ||
-                    (this.LineType != null &&
-                    this.LineType.Equals(input.LineType))
-                ) && 
-                (
-                    this.LineProvider == input.LineProvider ||
-                    (this.LineProvider != null &&
-                    this.LineProvider.Equals(input.LineProvider))
-                ) && 
-                (
-                    this.MobileCountryCode == input.MobileCountryCode ||
-                    (this.MobileCountryCode != null &&
-                    this.MobileCountryCode.Equals(input.MobileCountryCode))
-                ) && 
-                (
-                    this.MobileNetworkCode == input.MobileNetworkCode ||
-                    (this.MobileNetworkCode != null &&
-                    this.MobileNetworkCode.Equals(input.MobileNetworkCode))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                hashCode = (hashCode * 59) + this.ResponseCode.GetHashCode();
-                if (this.Message != null)
-                {
-                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
-                }
-                if (this.E164Format != null)
-                {
-                    hashCode = (hashCode * 59) + this.E164Format.GetHashCode();
-                }
-                if (this.Formatted != null)
-                {
-                    hashCode = (hashCode * 59) + this.Formatted.GetHashCode();
-                }
-                if (this.Country != null)
-                {
-                    hashCode = (hashCode * 59) + this.Country.GetHashCode();
-                }
-                if (this.LineType != null)
-                {
-                    hashCode = (hashCode * 59) + this.LineType.GetHashCode();
-                }
-                if (this.LineProvider != null)
-                {
-                    hashCode = (hashCode * 59) + this.LineProvider.GetHashCode();
-                }
-                if (this.MobileCountryCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.MobileCountryCode.GetHashCode();
-                }
-                if (this.MobileNetworkCode != null)
-                {
-                    hashCode = (hashCode * 59) + this.MobileNetworkCode.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

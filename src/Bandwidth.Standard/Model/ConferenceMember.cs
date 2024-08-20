@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// ConferenceMember
     /// </summary>
     [DataContract(Name = "conferenceMember")]
-    public partial class ConferenceMember : IEquatable<ConferenceMember>, IValidatableObject
+    public partial class ConferenceMember : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConferenceMember" /> class.
@@ -127,95 +127,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as ConferenceMember);
-        }
-
-        /// <summary>
-        /// Returns true if ConferenceMember instances are equal
-        /// </summary>
-        /// <param name="input">Instance of ConferenceMember to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(ConferenceMember input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.CallId == input.CallId ||
-                    (this.CallId != null &&
-                    this.CallId.Equals(input.CallId))
-                ) && 
-                (
-                    this.ConferenceId == input.ConferenceId ||
-                    (this.ConferenceId != null &&
-                    this.ConferenceId.Equals(input.ConferenceId))
-                ) && 
-                (
-                    this.MemberUrl == input.MemberUrl ||
-                    (this.MemberUrl != null &&
-                    this.MemberUrl.Equals(input.MemberUrl))
-                ) && 
-                (
-                    this.Mute == input.Mute ||
-                    this.Mute.Equals(input.Mute)
-                ) && 
-                (
-                    this.Hold == input.Hold ||
-                    this.Hold.Equals(input.Hold)
-                ) && 
-                (
-                    this.CallIdsToCoach == input.CallIdsToCoach ||
-                    this.CallIdsToCoach != null &&
-                    input.CallIdsToCoach != null &&
-                    this.CallIdsToCoach.SequenceEqual(input.CallIdsToCoach)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.CallId != null)
-                {
-                    hashCode = (hashCode * 59) + this.CallId.GetHashCode();
-                }
-                if (this.ConferenceId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ConferenceId.GetHashCode();
-                }
-                if (this.MemberUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.MemberUrl.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Mute.GetHashCode();
-                hashCode = (hashCode * 59) + this.Hold.GetHashCode();
-                if (this.CallIdsToCoach != null)
-                {
-                    hashCode = (hashCode * 59) + this.CallIdsToCoach.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

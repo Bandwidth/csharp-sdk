@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// Transcription
     /// </summary>
     [DataContract(Name = "transcription")]
-    public partial class Transcription : IEquatable<Transcription>, IValidatableObject
+    public partial class Transcription : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Transcription" /> class.
@@ -83,62 +83,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as Transcription);
-        }
-
-        /// <summary>
-        /// Returns true if Transcription instances are equal
-        /// </summary>
-        /// <param name="input">Instance of Transcription to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Transcription input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.Text == input.Text ||
-                    (this.Text != null &&
-                    this.Text.Equals(input.Text))
-                ) && 
-                (
-                    this.Confidence == input.Confidence ||
-                    this.Confidence.Equals(input.Confidence)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Text != null)
-                {
-                    hashCode = (hashCode * 59) + this.Text.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Confidence.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

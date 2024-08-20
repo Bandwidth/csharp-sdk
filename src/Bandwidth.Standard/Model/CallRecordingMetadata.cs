@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// CallRecordingMetadata
     /// </summary>
     [DataContract(Name = "callRecordingMetadata")]
-    public partial class CallRecordingMetadata : IEquatable<CallRecordingMetadata>, IValidatableObject
+    public partial class CallRecordingMetadata : IValidatableObject
     {
 
         /// <summary>
@@ -65,7 +65,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="status">The current status of the process. For recording, current possible values are &#39;processing&#39;, &#39;partial&#39;, &#39;complete&#39;, &#39;deleted&#39;, and &#39;error&#39;. For transcriptions, current possible values are &#39;none&#39;, &#39;processing&#39;, &#39;available&#39;, &#39;error&#39;, &#39;timeout&#39;, &#39;file-size-too-big&#39;, and &#39;file-size-too-small&#39;. Additional states may be added in the future, so your application must be tolerant of unknown values..</param>
         /// <param name="mediaUrl">The URL that can be used to download the recording. Only present if the recording is finished and may be downloaded..</param>
         /// <param name="transcription">transcription.</param>
-        public CallRecordingMetadata(string applicationId = default(string), string accountId = default(string), string callId = default(string), string parentCallId = default(string), string recordingId = default(string), string to = default(string), string from = default(string), string transferCallerId = default(string), string transferTo = default(string), string duration = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), int channels = default(int), DateTime startTime = default(DateTime), DateTime endTime = default(DateTime), FileFormatEnum? fileFormat = default(FileFormatEnum?), string status = default(string), string mediaUrl = default(string), RecordingTranscriptionMetadata transcription = default(RecordingTranscriptionMetadata))
+        /// <param name="recordingName">A name to identify this recording..</param>
+        public CallRecordingMetadata(string applicationId = default(string), string accountId = default(string), string callId = default(string), string parentCallId = default(string), string recordingId = default(string), string to = default(string), string from = default(string), string transferCallerId = default(string), string transferTo = default(string), string duration = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), int channels = default(int), DateTime startTime = default(DateTime), DateTime endTime = default(DateTime), FileFormatEnum? fileFormat = default(FileFormatEnum?), string status = default(string), string mediaUrl = default(string), RecordingTranscriptionMetadata transcription = default(RecordingTranscriptionMetadata), string recordingName = default(string))
         {
             this.ApplicationId = applicationId;
             this.AccountId = accountId;
@@ -85,6 +86,7 @@ namespace Bandwidth.Standard.Model
             this.Status = status;
             this.MediaUrl = mediaUrl;
             this.Transcription = transcription;
+            this.RecordingName = recordingName;
         }
 
         /// <summary>
@@ -214,6 +216,14 @@ namespace Bandwidth.Standard.Model
         public RecordingTranscriptionMetadata Transcription { get; set; }
 
         /// <summary>
+        /// A name to identify this recording.
+        /// </summary>
+        /// <value>A name to identify this recording.</value>
+        /// <example>my-recording-name</example>
+        [DataMember(Name = "recordingName", EmitDefaultValue = false)]
+        public string RecordingName { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -239,6 +249,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  MediaUrl: ").Append(MediaUrl).Append("\n");
             sb.Append("  Transcription: ").Append(Transcription).Append("\n");
+            sb.Append("  RecordingName: ").Append(RecordingName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -253,198 +264,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as CallRecordingMetadata);
-        }
-
-        /// <summary>
-        /// Returns true if CallRecordingMetadata instances are equal
-        /// </summary>
-        /// <param name="input">Instance of CallRecordingMetadata to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CallRecordingMetadata input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.ApplicationId == input.ApplicationId ||
-                    (this.ApplicationId != null &&
-                    this.ApplicationId.Equals(input.ApplicationId))
-                ) && 
-                (
-                    this.AccountId == input.AccountId ||
-                    (this.AccountId != null &&
-                    this.AccountId.Equals(input.AccountId))
-                ) && 
-                (
-                    this.CallId == input.CallId ||
-                    (this.CallId != null &&
-                    this.CallId.Equals(input.CallId))
-                ) && 
-                (
-                    this.ParentCallId == input.ParentCallId ||
-                    (this.ParentCallId != null &&
-                    this.ParentCallId.Equals(input.ParentCallId))
-                ) && 
-                (
-                    this.RecordingId == input.RecordingId ||
-                    (this.RecordingId != null &&
-                    this.RecordingId.Equals(input.RecordingId))
-                ) && 
-                (
-                    this.To == input.To ||
-                    (this.To != null &&
-                    this.To.Equals(input.To))
-                ) && 
-                (
-                    this.From == input.From ||
-                    (this.From != null &&
-                    this.From.Equals(input.From))
-                ) && 
-                (
-                    this.TransferCallerId == input.TransferCallerId ||
-                    (this.TransferCallerId != null &&
-                    this.TransferCallerId.Equals(input.TransferCallerId))
-                ) && 
-                (
-                    this.TransferTo == input.TransferTo ||
-                    (this.TransferTo != null &&
-                    this.TransferTo.Equals(input.TransferTo))
-                ) && 
-                (
-                    this.Duration == input.Duration ||
-                    (this.Duration != null &&
-                    this.Duration.Equals(input.Duration))
-                ) && 
-                (
-                    this.Direction == input.Direction ||
-                    this.Direction.Equals(input.Direction)
-                ) && 
-                (
-                    this.Channels == input.Channels ||
-                    this.Channels.Equals(input.Channels)
-                ) && 
-                (
-                    this.StartTime == input.StartTime ||
-                    (this.StartTime != null &&
-                    this.StartTime.Equals(input.StartTime))
-                ) && 
-                (
-                    this.EndTime == input.EndTime ||
-                    (this.EndTime != null &&
-                    this.EndTime.Equals(input.EndTime))
-                ) && 
-                (
-                    this.FileFormat == input.FileFormat ||
-                    this.FileFormat.Equals(input.FileFormat)
-                ) && 
-                (
-                    this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
-                ) && 
-                (
-                    this.MediaUrl == input.MediaUrl ||
-                    (this.MediaUrl != null &&
-                    this.MediaUrl.Equals(input.MediaUrl))
-                ) && 
-                (
-                    this.Transcription == input.Transcription ||
-                    (this.Transcription != null &&
-                    this.Transcription.Equals(input.Transcription))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ApplicationId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApplicationId.GetHashCode();
-                }
-                if (this.AccountId != null)
-                {
-                    hashCode = (hashCode * 59) + this.AccountId.GetHashCode();
-                }
-                if (this.CallId != null)
-                {
-                    hashCode = (hashCode * 59) + this.CallId.GetHashCode();
-                }
-                if (this.ParentCallId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ParentCallId.GetHashCode();
-                }
-                if (this.RecordingId != null)
-                {
-                    hashCode = (hashCode * 59) + this.RecordingId.GetHashCode();
-                }
-                if (this.To != null)
-                {
-                    hashCode = (hashCode * 59) + this.To.GetHashCode();
-                }
-                if (this.From != null)
-                {
-                    hashCode = (hashCode * 59) + this.From.GetHashCode();
-                }
-                if (this.TransferCallerId != null)
-                {
-                    hashCode = (hashCode * 59) + this.TransferCallerId.GetHashCode();
-                }
-                if (this.TransferTo != null)
-                {
-                    hashCode = (hashCode * 59) + this.TransferTo.GetHashCode();
-                }
-                if (this.Duration != null)
-                {
-                    hashCode = (hashCode * 59) + this.Duration.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Direction.GetHashCode();
-                hashCode = (hashCode * 59) + this.Channels.GetHashCode();
-                if (this.StartTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.StartTime.GetHashCode();
-                }
-                if (this.EndTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.EndTime.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.FileFormat.GetHashCode();
-                if (this.Status != null)
-                {
-                    hashCode = (hashCode * 59) + this.Status.GetHashCode();
-                }
-                if (this.MediaUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.MediaUrl.GetHashCode();
-                }
-                if (this.Transcription != null)
-                {
-                    hashCode = (hashCode * 59) + this.Transcription.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

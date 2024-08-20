@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// MfaRequestError
     /// </summary>
     [DataContract(Name = "mfaRequestError")]
-    public partial class MfaRequestError : IEquatable<MfaRequestError>, IValidatableObject
+    public partial class MfaRequestError : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MfaRequestError" /> class.
@@ -83,66 +83,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as MfaRequestError);
-        }
-
-        /// <summary>
-        /// Returns true if MfaRequestError instances are equal
-        /// </summary>
-        /// <param name="input">Instance of MfaRequestError to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(MfaRequestError input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.Error == input.Error ||
-                    (this.Error != null &&
-                    this.Error.Equals(input.Error))
-                ) && 
-                (
-                    this.RequestId == input.RequestId ||
-                    (this.RequestId != null &&
-                    this.RequestId.Equals(input.RequestId))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Error != null)
-                {
-                    hashCode = (hashCode * 59) + this.Error.GetHashCode();
-                }
-                if (this.RequestId != null)
-                {
-                    hashCode = (hashCode * 59) + this.RequestId.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }

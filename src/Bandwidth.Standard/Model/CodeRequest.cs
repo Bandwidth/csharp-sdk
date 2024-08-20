@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// CodeRequest
     /// </summary>
     [DataContract(Name = "codeRequest")]
-    public partial class CodeRequest : IEquatable<CodeRequest>, IValidatableObject
+    public partial class CodeRequest : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CodeRequest" /> class.
@@ -152,98 +152,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as CodeRequest);
-        }
-
-        /// <summary>
-        /// Returns true if CodeRequest instances are equal
-        /// </summary>
-        /// <param name="input">Instance of CodeRequest to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CodeRequest input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.To == input.To ||
-                    (this.To != null &&
-                    this.To.Equals(input.To))
-                ) && 
-                (
-                    this.From == input.From ||
-                    (this.From != null &&
-                    this.From.Equals(input.From))
-                ) && 
-                (
-                    this.ApplicationId == input.ApplicationId ||
-                    (this.ApplicationId != null &&
-                    this.ApplicationId.Equals(input.ApplicationId))
-                ) && 
-                (
-                    this.Scope == input.Scope ||
-                    (this.Scope != null &&
-                    this.Scope.Equals(input.Scope))
-                ) && 
-                (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
-                ) && 
-                (
-                    this.Digits == input.Digits ||
-                    this.Digits.Equals(input.Digits)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.To != null)
-                {
-                    hashCode = (hashCode * 59) + this.To.GetHashCode();
-                }
-                if (this.From != null)
-                {
-                    hashCode = (hashCode * 59) + this.From.GetHashCode();
-                }
-                if (this.ApplicationId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApplicationId.GetHashCode();
-                }
-                if (this.Scope != null)
-                {
-                    hashCode = (hashCode * 59) + this.Scope.GetHashCode();
-                }
-                if (this.Message != null)
-                {
-                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Digits.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             if (this.To != null) {
                 // To (string) pattern
@@ -257,7 +170,7 @@ namespace Bandwidth.Standard.Model
             // From (string) maxLength
             if (this.From != null && this.From.Length > 32)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for From, length must be less than 32.", new [] { "From" });
+                yield return new ValidationResult("Invalid value for From, length must be less than 32.", new [] { "From" });
             }
 
             if (this.From != null) {
@@ -272,31 +185,31 @@ namespace Bandwidth.Standard.Model
             // ApplicationId (string) maxLength
             if (this.ApplicationId != null && this.ApplicationId.Length > 50)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ApplicationId, length must be less than 50.", new [] { "ApplicationId" });
+                yield return new ValidationResult("Invalid value for ApplicationId, length must be less than 50.", new [] { "ApplicationId" });
             }
 
             // Scope (string) maxLength
             if (this.Scope != null && this.Scope.Length > 25)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Scope, length must be less than 25.", new [] { "Scope" });
+                yield return new ValidationResult("Invalid value for Scope, length must be less than 25.", new [] { "Scope" });
             }
 
             // Message (string) maxLength
             if (this.Message != null && this.Message.Length > 2048)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Message, length must be less than 2048.", new [] { "Message" });
+                yield return new ValidationResult("Invalid value for Message, length must be less than 2048.", new [] { "Message" });
             }
 
             // Digits (int) maximum
             if (this.Digits > (int)8)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Digits, must be a value less than or equal to 8.", new [] { "Digits" });
+                yield return new ValidationResult("Invalid value for Digits, must be a value less than or equal to 8.", new [] { "Digits" });
             }
 
             // Digits (int) minimum
             if (this.Digits < (int)4)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Digits, must be a value greater than or equal to 4.", new [] { "Digits" });
+                yield return new ValidationResult("Invalid value for Digits, must be a value greater than or equal to 4.", new [] { "Digits" });
             }
 
             yield break;

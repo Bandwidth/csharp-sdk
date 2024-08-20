@@ -114,7 +114,7 @@ catch (ApiException e)
 
 <a id="listmessages"></a>
 # **ListMessages**
-> MessagesList ListMessages (string accountId, string messageId = null, string sourceTn = null, string destinationTn = null, MessageStatusEnum messageStatus = null, ListMessageDirectionEnum messageDirection = null, string carrierName = null, MessageTypeEnum messageType = null, int? errorCode = null, string fromDateTime = null, string toDateTime = null, string campaignId = null, string sort = null, string pageToken = null, int? limit = null, bool? limitTotalCount = null)
+> MessagesList ListMessages (string accountId, string messageId = null, string sourceTn = null, string destinationTn = null, MessageStatusEnum? messageStatus = null, ListMessageDirectionEnum? messageDirection = null, string carrierName = null, MessageTypeEnum? messageType = null, int? errorCode = null, string fromDateTime = null, string toDateTime = null, string campaignId = null, string sort = null, string pageToken = null, int? limit = null, bool? limitTotalCount = null)
 
 List Messages
 
@@ -145,10 +145,10 @@ namespace Example
             var messageId = 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6;  // string | The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional) 
             var sourceTn = %2B15554443333;  // string | The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919'). (optional) 
             var destinationTn = %2B15554443333;  // string | The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919'). (optional) 
-            var messageStatus = new MessageStatusEnum(); // MessageStatusEnum | The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. (optional) 
-            var messageDirection = new ListMessageDirectionEnum(); // ListMessageDirectionEnum | The direction of the message. One of INBOUND OUTBOUND. (optional) 
+            var messageStatus = (MessageStatusEnum) "RECEIVED";  // MessageStatusEnum? | The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. (optional) 
+            var messageDirection = (ListMessageDirectionEnum) "INBOUND";  // ListMessageDirectionEnum? | The direction of the message. One of INBOUND OUTBOUND. (optional) 
             var carrierName = Verizon;  // string | The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&T should be passed as AT%26T). (optional) 
-            var messageType = new MessageTypeEnum(); // MessageTypeEnum | The type of message. Either sms or mms. (optional) 
+            var messageType = (MessageTypeEnum) "sms";  // MessageTypeEnum? | The type of message. Either sms or mms. (optional) 
             var errorCode = 9902;  // int? | The error code of the message. (optional) 
             var fromDateTime = 2022-09-14T18:20:16.000Z;  // string | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional) 
             var toDateTime = 2022-09-14T18:20:16.000Z;  // string | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional) 
@@ -203,10 +203,10 @@ catch (ApiException e)
 | **messageId** | **string** | The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. | [optional]  |
 | **sourceTn** | **string** | The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). | [optional]  |
 | **destinationTn** | **string** | The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). | [optional]  |
-| **messageStatus** | [**MessageStatusEnum**](MessageStatusEnum.md) | The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. | [optional]  |
-| **messageDirection** | [**ListMessageDirectionEnum**](ListMessageDirectionEnum.md) | The direction of the message. One of INBOUND OUTBOUND. | [optional]  |
+| **messageStatus** | **MessageStatusEnum?** | The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. | [optional]  |
+| **messageDirection** | **ListMessageDirectionEnum?** | The direction of the message. One of INBOUND OUTBOUND. | [optional]  |
 | **carrierName** | **string** | The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&amp;T should be passed as AT%26T). | [optional]  |
-| **messageType** | [**MessageTypeEnum**](MessageTypeEnum.md) | The type of message. Either sms or mms. | [optional]  |
+| **messageType** | **MessageTypeEnum?** | The type of message. Either sms or mms. | [optional]  |
 | **errorCode** | **int?** | The error code of the message. | [optional]  |
 | **fromDateTime** | **string** | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. | [optional]  |
 | **toDateTime** | **string** | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. | [optional]  |

@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// CreateCallResponse
     /// </summary>
     [DataContract(Name = "createCallResponse")]
-    public partial class CreateCallResponse : IEquatable<CreateCallResponse>, IValidatableObject
+    public partial class CreateCallResponse : IValidatableObject
     {
 
         /// <summary>
@@ -326,240 +326,34 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as CreateCallResponse);
-        }
-
-        /// <summary>
-        /// Returns true if CreateCallResponse instances are equal
-        /// </summary>
-        /// <param name="input">Instance of CreateCallResponse to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(CreateCallResponse input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.ApplicationId == input.ApplicationId ||
-                    (this.ApplicationId != null &&
-                    this.ApplicationId.Equals(input.ApplicationId))
-                ) && 
-                (
-                    this.AccountId == input.AccountId ||
-                    (this.AccountId != null &&
-                    this.AccountId.Equals(input.AccountId))
-                ) && 
-                (
-                    this.CallId == input.CallId ||
-                    (this.CallId != null &&
-                    this.CallId.Equals(input.CallId))
-                ) && 
-                (
-                    this.To == input.To ||
-                    (this.To != null &&
-                    this.To.Equals(input.To))
-                ) && 
-                (
-                    this.From == input.From ||
-                    (this.From != null &&
-                    this.From.Equals(input.From))
-                ) && 
-                (
-                    this.EnqueuedTime == input.EnqueuedTime ||
-                    (this.EnqueuedTime != null &&
-                    this.EnqueuedTime.Equals(input.EnqueuedTime))
-                ) && 
-                (
-                    this.CallUrl == input.CallUrl ||
-                    (this.CallUrl != null &&
-                    this.CallUrl.Equals(input.CallUrl))
-                ) && 
-                (
-                    this.CallTimeout == input.CallTimeout ||
-                    this.CallTimeout.Equals(input.CallTimeout)
-                ) && 
-                (
-                    this.CallbackTimeout == input.CallbackTimeout ||
-                    this.CallbackTimeout.Equals(input.CallbackTimeout)
-                ) && 
-                (
-                    this.Tag == input.Tag ||
-                    (this.Tag != null &&
-                    this.Tag.Equals(input.Tag))
-                ) && 
-                (
-                    this.AnswerMethod == input.AnswerMethod ||
-                    this.AnswerMethod.Equals(input.AnswerMethod)
-                ) && 
-                (
-                    this.AnswerUrl == input.AnswerUrl ||
-                    (this.AnswerUrl != null &&
-                    this.AnswerUrl.Equals(input.AnswerUrl))
-                ) && 
-                (
-                    this.AnswerFallbackMethod == input.AnswerFallbackMethod ||
-                    this.AnswerFallbackMethod.Equals(input.AnswerFallbackMethod)
-                ) && 
-                (
-                    this.AnswerFallbackUrl == input.AnswerFallbackUrl ||
-                    (this.AnswerFallbackUrl != null &&
-                    this.AnswerFallbackUrl.Equals(input.AnswerFallbackUrl))
-                ) && 
-                (
-                    this.DisconnectMethod == input.DisconnectMethod ||
-                    this.DisconnectMethod.Equals(input.DisconnectMethod)
-                ) && 
-                (
-                    this.DisconnectUrl == input.DisconnectUrl ||
-                    (this.DisconnectUrl != null &&
-                    this.DisconnectUrl.Equals(input.DisconnectUrl))
-                ) && 
-                (
-                    this.Username == input.Username ||
-                    (this.Username != null &&
-                    this.Username.Equals(input.Username))
-                ) && 
-                (
-                    this.Password == input.Password ||
-                    (this.Password != null &&
-                    this.Password.Equals(input.Password))
-                ) && 
-                (
-                    this.FallbackUsername == input.FallbackUsername ||
-                    (this.FallbackUsername != null &&
-                    this.FallbackUsername.Equals(input.FallbackUsername))
-                ) && 
-                (
-                    this.FallbackPassword == input.FallbackPassword ||
-                    (this.FallbackPassword != null &&
-                    this.FallbackPassword.Equals(input.FallbackPassword))
-                ) && 
-                (
-                    this.Priority == input.Priority ||
-                    (this.Priority != null &&
-                    this.Priority.Equals(input.Priority))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ApplicationId != null)
-                {
-                    hashCode = (hashCode * 59) + this.ApplicationId.GetHashCode();
-                }
-                if (this.AccountId != null)
-                {
-                    hashCode = (hashCode * 59) + this.AccountId.GetHashCode();
-                }
-                if (this.CallId != null)
-                {
-                    hashCode = (hashCode * 59) + this.CallId.GetHashCode();
-                }
-                if (this.To != null)
-                {
-                    hashCode = (hashCode * 59) + this.To.GetHashCode();
-                }
-                if (this.From != null)
-                {
-                    hashCode = (hashCode * 59) + this.From.GetHashCode();
-                }
-                if (this.EnqueuedTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.EnqueuedTime.GetHashCode();
-                }
-                if (this.CallUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.CallUrl.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.CallTimeout.GetHashCode();
-                hashCode = (hashCode * 59) + this.CallbackTimeout.GetHashCode();
-                if (this.Tag != null)
-                {
-                    hashCode = (hashCode * 59) + this.Tag.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.AnswerMethod.GetHashCode();
-                if (this.AnswerUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.AnswerUrl.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.AnswerFallbackMethod.GetHashCode();
-                if (this.AnswerFallbackUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.AnswerFallbackUrl.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.DisconnectMethod.GetHashCode();
-                if (this.DisconnectUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.DisconnectUrl.GetHashCode();
-                }
-                if (this.Username != null)
-                {
-                    hashCode = (hashCode * 59) + this.Username.GetHashCode();
-                }
-                if (this.Password != null)
-                {
-                    hashCode = (hashCode * 59) + this.Password.GetHashCode();
-                }
-                if (this.FallbackUsername != null)
-                {
-                    hashCode = (hashCode * 59) + this.FallbackUsername.GetHashCode();
-                }
-                if (this.FallbackPassword != null)
-                {
-                    hashCode = (hashCode * 59) + this.FallbackPassword.GetHashCode();
-                }
-                if (this.Priority != null)
-                {
-                    hashCode = (hashCode * 59) + this.Priority.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             // Username (string) maxLength
             if (this.Username != null && this.Username.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Username, length must be less than 1024.", new [] { "Username" });
+                yield return new ValidationResult("Invalid value for Username, length must be less than 1024.", new [] { "Username" });
             }
 
             // Password (string) maxLength
             if (this.Password != null && this.Password.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Password, length must be less than 1024.", new [] { "Password" });
+                yield return new ValidationResult("Invalid value for Password, length must be less than 1024.", new [] { "Password" });
             }
 
             // FallbackUsername (string) maxLength
             if (this.FallbackUsername != null && this.FallbackUsername.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FallbackUsername, length must be less than 1024.", new [] { "FallbackUsername" });
+                yield return new ValidationResult("Invalid value for FallbackUsername, length must be less than 1024.", new [] { "FallbackUsername" });
             }
 
             // FallbackPassword (string) maxLength
             if (this.FallbackPassword != null && this.FallbackPassword.Length > 1024)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FallbackPassword, length must be less than 1024.", new [] { "FallbackPassword" });
+                yield return new ValidationResult("Invalid value for FallbackPassword, length must be less than 1024.", new [] { "FallbackPassword" });
             }
 
             yield break;

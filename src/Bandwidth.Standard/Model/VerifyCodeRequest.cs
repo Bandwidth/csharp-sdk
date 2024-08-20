@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// VerifyCodeRequest
     /// </summary>
     [DataContract(Name = "verifyCodeRequest")]
-    public partial class VerifyCodeRequest : IEquatable<VerifyCodeRequest>, IValidatableObject
+    public partial class VerifyCodeRequest : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="VerifyCodeRequest" /> class.
@@ -120,80 +120,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as VerifyCodeRequest);
-        }
-
-        /// <summary>
-        /// Returns true if VerifyCodeRequest instances are equal
-        /// </summary>
-        /// <param name="input">Instance of VerifyCodeRequest to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(VerifyCodeRequest input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.To == input.To ||
-                    (this.To != null &&
-                    this.To.Equals(input.To))
-                ) && 
-                (
-                    this.Scope == input.Scope ||
-                    (this.Scope != null &&
-                    this.Scope.Equals(input.Scope))
-                ) && 
-                (
-                    this.ExpirationTimeInMinutes == input.ExpirationTimeInMinutes ||
-                    this.ExpirationTimeInMinutes.Equals(input.ExpirationTimeInMinutes)
-                ) && 
-                (
-                    this.Code == input.Code ||
-                    (this.Code != null &&
-                    this.Code.Equals(input.Code))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.To != null)
-                {
-                    hashCode = (hashCode * 59) + this.To.GetHashCode();
-                }
-                if (this.Scope != null)
-                {
-                    hashCode = (hashCode * 59) + this.Scope.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.ExpirationTimeInMinutes.GetHashCode();
-                if (this.Code != null)
-                {
-                    hashCode = (hashCode * 59) + this.Code.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             if (this.To != null) {
                 // To (string) pattern
@@ -207,25 +138,25 @@ namespace Bandwidth.Standard.Model
             // ExpirationTimeInMinutes (decimal) maximum
             if (this.ExpirationTimeInMinutes > (decimal)15)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpirationTimeInMinutes, must be a value less than or equal to 15.", new [] { "ExpirationTimeInMinutes" });
+                yield return new ValidationResult("Invalid value for ExpirationTimeInMinutes, must be a value less than or equal to 15.", new [] { "ExpirationTimeInMinutes" });
             }
 
             // ExpirationTimeInMinutes (decimal) minimum
             if (this.ExpirationTimeInMinutes < (decimal)1)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ExpirationTimeInMinutes, must be a value greater than or equal to 1.", new [] { "ExpirationTimeInMinutes" });
+                yield return new ValidationResult("Invalid value for ExpirationTimeInMinutes, must be a value greater than or equal to 1.", new [] { "ExpirationTimeInMinutes" });
             }
 
             // Code (string) maxLength
             if (this.Code != null && this.Code.Length > 8)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be less than 8.", new [] { "Code" });
+                yield return new ValidationResult("Invalid value for Code, length must be less than 8.", new [] { "Code" });
             }
 
             // Code (string) minLength
             if (this.Code != null && this.Code.Length < 4)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, length must be greater than 4.", new [] { "Code" });
+                yield return new ValidationResult("Invalid value for Code, length must be greater than 4.", new [] { "Code" });
             }
 
             yield break;

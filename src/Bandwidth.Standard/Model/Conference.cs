@@ -30,7 +30,7 @@ namespace Bandwidth.Standard.Model
     /// Conference
     /// </summary>
     [DataContract(Name = "conference")]
-    public partial class Conference : IEquatable<Conference>, IValidatableObject
+    public partial class Conference : IValidatableObject
     {
 
         /// <summary>
@@ -146,117 +146,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as Conference);
-        }
-
-        /// <summary>
-        /// Returns true if Conference instances are equal
-        /// </summary>
-        /// <param name="input">Instance of Conference to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(Conference input)
-        {
-            if (input == null)
-            {
-                return false;
-            }
-            return 
-                (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
-                (
-                    this.CreatedTime == input.CreatedTime ||
-                    (this.CreatedTime != null &&
-                    this.CreatedTime.Equals(input.CreatedTime))
-                ) && 
-                (
-                    this.CompletedTime == input.CompletedTime ||
-                    (this.CompletedTime != null &&
-                    this.CompletedTime.Equals(input.CompletedTime))
-                ) && 
-                (
-                    this.ConferenceEventUrl == input.ConferenceEventUrl ||
-                    (this.ConferenceEventUrl != null &&
-                    this.ConferenceEventUrl.Equals(input.ConferenceEventUrl))
-                ) && 
-                (
-                    this.ConferenceEventMethod == input.ConferenceEventMethod ||
-                    this.ConferenceEventMethod.Equals(input.ConferenceEventMethod)
-                ) && 
-                (
-                    this.Tag == input.Tag ||
-                    (this.Tag != null &&
-                    this.Tag.Equals(input.Tag))
-                ) && 
-                (
-                    this.ActiveMembers == input.ActiveMembers ||
-                    this.ActiveMembers != null &&
-                    input.ActiveMembers != null &&
-                    this.ActiveMembers.SequenceEqual(input.ActiveMembers)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.Id != null)
-                {
-                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
-                }
-                if (this.Name != null)
-                {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
-                }
-                if (this.CreatedTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.CreatedTime.GetHashCode();
-                }
-                if (this.CompletedTime != null)
-                {
-                    hashCode = (hashCode * 59) + this.CompletedTime.GetHashCode();
-                }
-                if (this.ConferenceEventUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.ConferenceEventUrl.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.ConferenceEventMethod.GetHashCode();
-                if (this.Tag != null)
-                {
-                    hashCode = (hashCode * 59) + this.Tag.GetHashCode();
-                }
-                if (this.ActiveMembers != null)
-                {
-                    hashCode = (hashCode * 59) + this.ActiveMembers.GetHashCode();
-                }
-                return hashCode;
-            }
-        }
-
-        /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
         }
