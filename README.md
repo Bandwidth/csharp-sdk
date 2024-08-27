@@ -228,6 +228,7 @@ Class | Method | HTTP request | Description
  - [Model.RecordingTranscriptions](docs/RecordingTranscriptions.md)
  - [Model.RedirectCallback](docs/RedirectCallback.md)
  - [Model.RedirectMethodEnum](docs/RedirectMethodEnum.md)
+ - [Model.Region](docs/Region.md)
  - [Model.StirShaken](docs/StirShaken.md)
  - [Model.Tag](docs/Tag.md)
  - [Model.TnLookupRequestError](docs/TnLookupRequestError.md)

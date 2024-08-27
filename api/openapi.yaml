@@ -551,6 +551,14 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: The region to search in. One of US or EU.
+        explode: true
+        in: query
+        name: region
+        required: false
+        schema:
+          $ref: '#/components/schemas/region'
+        style: form
       responses:
         "200":
           content:
@@ -781,7 +789,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/callState'
                 type: array
-          description: Calls retrieved successfully
+          description: OK
         "400":
           content:
             application/json:
@@ -893,7 +901,7 @@ paths:
                   $ref: '#/components/examples/createCallResponseExample'
               schema:
                 $ref: '#/components/schemas/createCallResponse'
-          description: Call Successfully Created
+          description: Created
           headers:
             Location:
               description: The URL for further interactions with this call
@@ -1018,7 +1026,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/callState'
-          description: Call found
+          description: OK
         "400":
           content:
             application/json:
@@ -1128,7 +1136,7 @@ paths:
         $ref: '#/components/requestBodies/updateCallRequest'
       responses:
         "200":
-          description: Call was successfully modified.
+          description: OK
         "400":
           content:
             application/json:
@@ -1425,7 +1433,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/conference'
                 type: array
-          description: Conferences retrieved successfully
+          description: OK
         "400":
           content:
             application/json:
@@ -1540,7 +1548,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/conference'
-          description: Conferences retrieved successfully
+          description: OK
         "400":
           content:
             application/json:
@@ -1886,7 +1894,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/conferenceMember'
-          description: Conference member found
+          description: OK
         "400":
           content:
             application/json:
@@ -2122,7 +2130,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/conferenceRecordingMetadata'
                 type: array
-          description: Conference recordings retrieved successfully
+          description: OK
         "400":
           content:
             application/json:
@@ -2246,7 +2254,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/conferenceRecordingMetadata'
-          description: Conference recording found
+          description: OK
         "400":
           content:
             application/json:
@@ -2375,7 +2383,7 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Media found
+          description: OK
         "400":
           content:
             application/json:
@@ -2525,7 +2533,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/callRecordingMetadata'
                 type: array
-          description: Recordings retrieved successfully
+          description: OK
         "400":
           content:
             application/json:
@@ -2638,7 +2646,7 @@ paths:
         $ref: '#/components/requestBodies/updateCallRecordingRequest'
       responses:
         "200":
-          description: Recording state was successfully modified.
+          description: OK
         "400":
           content:
             application/json:
@@ -2757,7 +2765,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/callRecordingMetadata'
                 type: array
-          description: Recordings retrieved successfully
+          description: OK
         "400":
           content:
             application/json:
@@ -3000,7 +3008,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/callRecordingMetadata'
-          description: Recording found
+          description: OK
         "400":
           content:
             application/json:
@@ -3245,7 +3253,7 @@ paths:
               schema:
                 format: binary
                 type: string
-          description: Media found
+          description: OK
         "400":
           content:
             application/json:
@@ -3492,7 +3500,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/recordingTranscriptions'
-          description: Transcription found.
+          description: OK
         "400":
           content:
             application/json:
@@ -3719,7 +3727,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/accountStatistics'
-          description: Statistics Found
+          description: OK
         "400":
           content:
             application/json:
@@ -3834,7 +3842,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/callTranscriptionMetadataList'
-          description: Transcription found.
+          description: OK
         "400":
           content:
             application/json:
@@ -3957,7 +3965,7 @@ paths:
         style: simple
       responses:
         "200":
-          description: Transcription data was deleted.
+          description: No Content
         "400":
           content:
             application/json:
@@ -4078,7 +4086,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/callTranscriptionResponse'
-          description: Transcription found.
+          description: OK
         "400":
           content:
             application/json:
@@ -4962,6 +4970,15 @@ components:
       schema:
         type: boolean
       style: form
+    region:
+      description: The region to search in. One of US or EU.
+      explode: true
+      in: query
+      name: region
+      required: false
+      schema:
+        $ref: '#/components/schemas/region'
+      style: form
     callId:
       description: Programmable Voice API Call ID.
       example: c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
@@ -5552,7 +5569,7 @@ components:
               $ref: '#/components/examples/createCallResponseExample'
           schema:
             $ref: '#/components/schemas/createCallResponse'
-      description: Call Successfully Created
+      description: Created
       headers:
         Location:
           description: The URL for further interactions with this call
@@ -5565,7 +5582,9 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/callState'
-      description: Call found
+      description: OK
+    updateCallResponse:
+      description: OK
     listCallsResponse:
       content:
         application/json:
@@ -5573,13 +5592,15 @@ components:
             items:
               $ref: '#/components/schemas/callState'
             type: array
-      description: Calls retrieved successfully
+      description: OK
     getStatisticsResponse:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/accountStatistics'
-      description: Statistics Found
+      description: OK
+    updateRecordingResponse:
+      description: OK
     listCallRecordingsResponse:
       content:
         application/json:
@@ -5587,13 +5608,13 @@ components:
             items:
               $ref: '#/components/schemas/callRecordingMetadata'
             type: array
-      description: Recordings retrieved successfully
+      description: OK
     getCallRecordingResponse:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/callRecordingMetadata'
-      description: Recording found
+      description: OK
     downloadRecordingMediaResponse:
       content:
         audio/vnd.wave:
@@ -5604,27 +5625,27 @@ components:
           schema:
             format: binary
             type: string
-      description: Media found
+      description: OK
     getRecordingTranscriptionResponse:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/recordingTranscriptions'
-      description: Transcription found.
+      description: OK
     listTranscriptionsResponse:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/callTranscriptionMetadataList'
-      description: Transcription found.
+      description: OK
     getCallTranscriptionResponse:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/callTranscriptionResponse'
-      description: Transcription found.
+      description: OK
     deleteCallTranscriptionResponse:
-      description: Transcription data was deleted.
+      description: No Content
     listConferencesResponse:
       content:
         application/json:
@@ -5635,19 +5656,19 @@ components:
             items:
               $ref: '#/components/schemas/conference'
             type: array
-      description: Conferences retrieved successfully
+      description: OK
     getConferenceResponse:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/conference'
-      description: Conferences retrieved successfully
+      description: OK
     getConferenceMemberResponse:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/conferenceMember'
-      description: Conference member found
+      description: OK
     listConferenceRecordingsResponse:
       content:
         application/json:
@@ -5655,13 +5676,13 @@ components:
             items:
               $ref: '#/components/schemas/conferenceRecordingMetadata'
             type: array
-      description: Conference recordings retrieved successfully
+      description: OK
     getConferenceRecordingResponse:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/conferenceRecordingMetadata'
-      description: Conference recording found
+      description: OK
     voiceBadRequestError:
       content:
         application/json:
@@ -5874,6 +5895,8 @@ components:
           schema:
             $ref: '#/components/schemas/tnLookupRequestError'
       description: Unsupported Media Type
+    tnLookupNotFoundError:
+      description: Not Found
     tnLookupTooManyRequestsError:
       content:
         application/json:
@@ -5939,6 +5962,13 @@ components:
       - sms
       - mms
       example: sms
+      type: string
+    region:
+      default: US
+      enum:
+      - US
+      - EU
+      example: US
       type: string
     fieldError:
       example:
@@ -7589,6 +7619,7 @@ components:
             and [Modify Conference Member](/apis/voice/#operation/updateConferenceMember)
             endpoint.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/members/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         mute:
           description: |-
@@ -8073,6 +8104,7 @@ components:
         callUrl:
           description: The URL of the call associated with the event.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         enqueuedTime:
           description: "(optional) If call queueing is enabled and this is an outbound\
@@ -8151,6 +8183,7 @@ components:
         callUrl:
           description: The URL of the call associated with the event.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         enqueuedTime:
           description: "(optional) If call queueing is enabled and this is an outbound\
@@ -8244,6 +8277,7 @@ components:
         callUrl:
           description: The URL of the call associated with the event.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         enqueuedTime:
           description: "(optional) If call queueing is enabled and this is an outbound\
@@ -8628,6 +8662,7 @@ components:
         callUrl:
           description: The URL of the call associated with the event.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         enqueuedTime:
           description: "(optional) If call queueing is enabled and this is an outbound\
@@ -8728,6 +8763,7 @@ components:
         callUrl:
           description: The URL of the call associated with the event.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         enqueuedTime:
           description: "(optional) If call queueing is enabled and this is an outbound\
@@ -8823,6 +8859,7 @@ components:
         callUrl:
           description: The URL of the call associated with the event.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         enqueuedTime:
           description: "(optional) If call queueing is enabled and this is an outbound\
@@ -8919,6 +8956,7 @@ components:
         callUrl:
           description: The URL of the call associated with the event.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         startTime:
           description: "Time the call was started, in ISO 8601 format."
@@ -8979,6 +9017,7 @@ components:
         callUrl:
           description: The URL of the call associated with the event.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         enqueuedTime:
           description: "(optional) If call queueing is enabled and this is an outbound\
@@ -9056,6 +9095,7 @@ components:
         callUrl:
           description: The URL of the call associated with the event.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         parentCallId:
           description: "(optional) If the event is related to the B leg of a <Transfer>,\
@@ -9173,6 +9213,7 @@ components:
         callUrl:
           description: The URL of the call associated with the event.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         parentCallId:
           description: "(optional) If the event is related to the B leg of a <Transfer>,\
@@ -9293,6 +9334,7 @@ components:
         callUrl:
           description: The URL of the call associated with the event.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         parentCallId:
           description: "(optional) If the event is related to the B leg of a <Transfer>,\
@@ -9382,6 +9424,7 @@ components:
         callUrl:
           description: The URL of the call associated with the event.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         mediaUrl:
           description: The URL that can be used to download the recording. Only present
@@ -9494,6 +9537,7 @@ components:
         callUrl:
           description: The URL of the call associated with the event.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         enqueuedTime:
           description: "(optional) If call queueing is enabled and this is an outbound\
@@ -9580,6 +9624,7 @@ components:
         callUrl:
           description: The URL of the call associated with the event.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         enqueuedTime:
           description: "(optional) If call queueing is enabled and this is an outbound\
@@ -9685,6 +9730,7 @@ components:
         callUrl:
           description: The URL of the call associated with the event.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
           type: string
         parentCallId:
           description: "(optional) If the event is related to the B leg of a <Transfer>,\
@@ -9882,6 +9928,7 @@ components:
     callUrl:
       description: The URL of the call associated with the event.
       example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+      format: uri
       type: string
     parentCallId:
       description: "(optional) If the event is related to the B leg of a <Transfer>,\
