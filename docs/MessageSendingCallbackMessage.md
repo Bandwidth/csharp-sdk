@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **Text** | **string** |  | 
 **Tag** | **string** |  | [optional] 
 **Media** | **List&lt;string&gt;** |  | 
-**Priority** | **PriorityEnum** |  | 
+**Priority** | **PriorityEnum** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

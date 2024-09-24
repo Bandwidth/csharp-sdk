@@ -42,8 +42,8 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Gets or Sets Priority
         /// </summary>
-        [DataMember(Name = "priority", IsRequired = true, EmitDefaultValue = true)]
-        public PriorityEnum Priority { get; set; }
+        [DataMember(Name = "priority", EmitDefaultValue = false)]
+        public PriorityEnum? Priority { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageSendingCallbackMessage" /> class.
         /// </summary>
@@ -63,8 +63,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="text">text (required).</param>
         /// <param name="tag">tag.</param>
         /// <param name="media">media (required).</param>
-        /// <param name="priority">priority (required).</param>
-        public MessageSendingCallbackMessage(string id = default(string), string owner = default(string), string applicationId = default(string), DateTime time = default(DateTime), int segmentCount = default(int), MessageDirectionEnum direction = default(MessageDirectionEnum), List<string> to = default(List<string>), string from = default(string), string text = default(string), string tag = default(string), List<string> media = default(List<string>), PriorityEnum priority = default(PriorityEnum))
+        /// <param name="priority">priority.</param>
+        public MessageSendingCallbackMessage(string id = default(string), string owner = default(string), string applicationId = default(string), DateTime time = default(DateTime), int segmentCount = default(int), MessageDirectionEnum direction = default(MessageDirectionEnum), List<string> to = default(List<string>), string from = default(string), string text = default(string), string tag = default(string), List<string> media = default(List<string>), PriorityEnum? priority = default(PriorityEnum?))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -111,8 +111,8 @@ namespace Bandwidth.Standard.Model
                 throw new ArgumentNullException("media is a required property for MessageSendingCallbackMessage and cannot be null");
             }
             this.Media = media;
-            this.Priority = priority;
             this.Tag = tag;
+            this.Priority = priority;
         }
 
         /// <summary>
