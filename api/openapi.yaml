@@ -5364,8 +5364,27 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/updateCall'
-      description: JSON object containing information to redirect an existing call
-        to a new BXML document
+        application/xml:
+          examples:
+            speakSentence:
+              summary: Speak Sentence
+              value: |-
+                <?xml version=\"1.0\" encoding=\"UTF-8\"?>
+                <Bxml>
+                  <SpeakSentence>This is a test sentence.</SpeakSentence>
+                </Bxml>
+            redirectUrl:
+              summary: Redirect
+              value: |-
+                <?xml version=\"1.0\" encoding=\"UTF-8\"?>
+                <Bxml>
+                  <Redirect redirectUrl="https://test.example" redirectMethod="GET"/>
+                </Bxml>
+          schema:
+            description: A valid BXML document to replace the call's current BXML.
+            type: string
+      description: JSON or BXML object containing information to redirect an existing
+        call to a new BXML document
       required: true
     updateCallBxmlRequest:
       content:

@@ -123,7 +123,7 @@ namespace Bandwidth.Standard.Api
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
+        /// <param name="updateCall">JSON or BXML object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
         void UpdateCall(string accountId, string callId, UpdateCall updateCall, int operationIndex = 0);
@@ -137,7 +137,7 @@ namespace Bandwidth.Standard.Api
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
+        /// <param name="updateCall">JSON or BXML object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> UpdateCallWithHttpInfo(string accountId, string callId, UpdateCall updateCall, int operationIndex = 0);
@@ -279,7 +279,7 @@ namespace Bandwidth.Standard.Api
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
+        /// <param name="updateCall">JSON or BXML object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
@@ -294,7 +294,7 @@ namespace Bandwidth.Standard.Api
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
+        /// <param name="updateCall">JSON or BXML object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
@@ -1044,7 +1044,7 @@ namespace Bandwidth.Standard.Api
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
+        /// <param name="updateCall">JSON or BXML object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
         public void UpdateCall(string accountId, string callId, UpdateCall updateCall, int operationIndex = 0)
@@ -1058,7 +1058,7 @@ namespace Bandwidth.Standard.Api
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
+        /// <param name="updateCall">JSON or BXML object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         public Bandwidth.Standard.Client.ApiResponse<Object> UpdateCallWithHttpInfo(string accountId, string callId, UpdateCall updateCall, int operationIndex = 0)
@@ -1084,7 +1084,8 @@ namespace Bandwidth.Standard.Api
             Bandwidth.Standard.Client.RequestOptions localVarRequestOptions = new Bandwidth.Standard.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
-                "application/json"
+                "application/json",
+                "application/xml"
             };
 
             // to determine the Accept header
@@ -1138,7 +1139,7 @@ namespace Bandwidth.Standard.Api
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
+        /// <param name="updateCall">JSON or BXML object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
@@ -1153,7 +1154,7 @@ namespace Bandwidth.Standard.Api
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
         /// <param name="callId">Programmable Voice API Call ID.</param>
-        /// <param name="updateCall">JSON object containing information to redirect an existing call to a new BXML document</param>
+        /// <param name="updateCall">JSON or BXML object containing information to redirect an existing call to a new BXML document</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
@@ -1181,7 +1182,8 @@ namespace Bandwidth.Standard.Api
             Bandwidth.Standard.Client.RequestOptions localVarRequestOptions = new Bandwidth.Standard.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
-                "application/json"
+                "application/json", 
+                "application/xml"
             };
 
             // to determine the Accept header

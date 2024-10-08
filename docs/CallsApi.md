@@ -368,7 +368,7 @@ namespace Example
             var apiInstance = new CallsApi(config);
             var accountId = 9900000;  // string | Your Bandwidth Account ID.
             var callId = c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | Programmable Voice API Call ID.
-            var updateCall = new UpdateCall(); // UpdateCall | JSON object containing information to redirect an existing call to a new BXML document
+            var updateCall = new UpdateCall(); // UpdateCall | JSON or BXML object containing information to redirect an existing call to a new BXML document
 
             try
             {
@@ -409,7 +409,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **accountId** | **string** | Your Bandwidth Account ID. |  |
 | **callId** | **string** | Programmable Voice API Call ID. |  |
-| **updateCall** | [**UpdateCall**](UpdateCall.md) | JSON object containing information to redirect an existing call to a new BXML document |  |
+| **updateCall** | [**UpdateCall**](UpdateCall.md) | JSON or BXML object containing information to redirect an existing call to a new BXML document |  |
 
 ### Return type
 
@@ -421,7 +421,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/json, application/xml
  - **Accept**: application/json
 
 
