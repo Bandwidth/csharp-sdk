@@ -28,7 +28,7 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
             testContentType = "image/jpeg";
-            testMediaId = $"test-media-id-{Guid.NewGuid()}";
+            testMediaId = $"test-media-id-{Guid.NewGuid()}.jpg";
             
             // Authorized API Client
             fakeConfiguration = new Configuration();
