@@ -54,6 +54,13 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Build SDK
+        uses: Bandwidth/generate-sdk-action@v4.0.0
+        with:
+          openapi-generator-version: 7.7.0
+          language: csharp
+          additional-properties: --additional-properties=packageVersion=$RELEASE_VERSION
+
       - name: Run Unit Tests
         run: dotnet test src/Bandwidth.Standard.Test --filter DisplayName~Bandwidth.Standard.Test.Unit
         
@@ -101,6 +108,13 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
+
+      - name: Build SDK
+        uses: Bandwidth/generate-sdk-action@v4.0.0
+        with:
+          openapi-generator-version: 7.7.0
+          language: csharp
+          additional-properties: --additional-properties=packageVersion=$RELEASE_VERSION
 
       - name: Run Unit Tests
         run: dotnet test src/Bandwidth.Standard.Test --filter DisplayName~Bandwidth.Standard.Test.Unit
