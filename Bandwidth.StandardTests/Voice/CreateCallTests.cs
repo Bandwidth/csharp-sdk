@@ -47,6 +47,32 @@ namespace Bandwidth.StandardTests.Voice
         }
 
         [Fact]
+        public void CreatePrivateCallModel()
+        {
+            var accountId = TestConstants.AccountId;
+            var to = TestConstants.To;
+            var from = TestConstants.From;
+            var applicationId = TestConstants.VoiceApplicationId;
+            var answerUrl = string.Concat(TestConstants.BaseCallbackUrl, "/callbacks/answer");
+
+            var request = new CreateCallRequest()
+            {
+                ApplicationId = applicationId,
+                To = to,
+                From = from,
+                AnswerUrl = answerUrl
+            };
+
+            Assert.Null(request.Privacy);
+            Assert.Null(request.DisplayName);
+
+            request.Privacy = true;
+            request.DisplayName = DisplayNameEnum.Restricted;
+
+            Assert.Equal("Restricted", request.DisplayName.ToString());
+        }
+
+        [Fact]
         public async Task CreateCallWithMachineDetectionReturnsCreated()
         {
             var accountId = TestConstants.AccountId;
@@ -129,7 +155,7 @@ namespace Bandwidth.StandardTests.Voice
             };
 
             var ex = await Assert.ThrowsAsync<ApiErrorException>(() => _client.Voice.APIController.CreateCallAsync(accountId, request));
-            
+
             Assert.Equal("Something's not quite right... Your request is invalid. Please fix it before trying again.", ex.Message);
         }
 
@@ -151,7 +177,7 @@ namespace Bandwidth.StandardTests.Voice
             };
 
             var ex = await Assert.ThrowsAsync<ApiErrorException>(() => _client.Voice.APIController.CreateCallAsync(accountId, request));
-            
+
             Assert.Equal("Something's not quite right... Your request is invalid. Please fix it before trying again.", ex.Message);
         }
     }

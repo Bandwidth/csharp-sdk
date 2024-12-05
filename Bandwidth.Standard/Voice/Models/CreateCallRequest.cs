@@ -64,6 +64,8 @@ namespace Bandwidth.Standard.Voice.Models
         /// </summary>
         /// <param name="from">from.</param>
         /// <param name="to">to.</param>
+        /// <param name="privacy">privacy</param>
+        /// <param name="displayName">privacy</param>
         /// <param name="answerUrl">answerUrl.</param>
         /// <param name="applicationId">applicationId.</param>
         /// <param name="uui">uui.</param>
@@ -84,6 +86,8 @@ namespace Bandwidth.Standard.Voice.Models
         public CreateCallRequest(
             string from,
             string to,
+            bool? privacy,
+            Models.DisplayNameEnum? displayName,
             string answerUrl,
             string applicationId,
             string uui = null,
@@ -104,6 +108,17 @@ namespace Bandwidth.Standard.Voice.Models
         {
             this.From = from;
             this.To = to;
+
+            if (privacy != null)
+            {
+                this.Privacy = privacy;
+            }
+
+            if (displayName != null)
+            {
+                this.DisplayName = displayName;
+            }
+
             if (uui != null)
             {
                 this.Uui = uui;
@@ -172,7 +187,7 @@ namespace Bandwidth.Standard.Voice.Models
 
             this.ApplicationId = applicationId;
             this.MachineDetection = machineDetection;
-            
+
             if (priority != null)
             {
                 this.Priority = priority;
@@ -190,6 +205,12 @@ namespace Bandwidth.Standard.Voice.Models
         /// </summary>
         [JsonProperty("to")]
         public string To { get; set; }
+
+        [JsonProperty("privacy")]
+        public bool? Privacy { get; set; }
+
+        [JsonProperty("displayName")]
+        public Models.DisplayNameEnum? DisplayName { get; set; }
 
         /// <summary>
         /// A comma-separated list of 'User-To-User' headers to be sent in the INVITE when calling a SIP URI. Each value must end with an 'encoding' parameter as described in https://tools.ietf.org/html/rfc7433. Only 'jwt' and 'base64' encodings are allowed. The entire value cannot exceed 350 characters, including parameters and separators.
@@ -751,97 +772,97 @@ namespace Bandwidth.Standard.Voice.Models
 
             if (this.From != null)
             {
-               hashCode += this.From.GetHashCode();
+                hashCode += this.From.GetHashCode();
             }
 
             if (this.To != null)
             {
-               hashCode += this.To.GetHashCode();
+                hashCode += this.To.GetHashCode();
             }
 
             if (this.Uui != null)
             {
-               hashCode += this.Uui.GetHashCode();
+                hashCode += this.Uui.GetHashCode();
             }
 
             if (this.CallTimeout != null)
             {
-               hashCode += this.CallTimeout.GetHashCode();
+                hashCode += this.CallTimeout.GetHashCode();
             }
 
             if (this.CallbackTimeout != null)
             {
-               hashCode += this.CallbackTimeout.GetHashCode();
+                hashCode += this.CallbackTimeout.GetHashCode();
             }
 
             if (this.AnswerUrl != null)
             {
-               hashCode += this.AnswerUrl.GetHashCode();
+                hashCode += this.AnswerUrl.GetHashCode();
             }
 
             if (this.AnswerFallbackUrl != null)
             {
-               hashCode += this.AnswerFallbackUrl.GetHashCode();
+                hashCode += this.AnswerFallbackUrl.GetHashCode();
             }
 
             if (this.Username != null)
             {
-               hashCode += this.Username.GetHashCode();
+                hashCode += this.Username.GetHashCode();
             }
 
             if (this.Password != null)
             {
-               hashCode += this.Password.GetHashCode();
+                hashCode += this.Password.GetHashCode();
             }
 
             if (this.FallbackUsername != null)
             {
-               hashCode += this.FallbackUsername.GetHashCode();
+                hashCode += this.FallbackUsername.GetHashCode();
             }
 
             if (this.FallbackPassword != null)
             {
-               hashCode += this.FallbackPassword.GetHashCode();
+                hashCode += this.FallbackPassword.GetHashCode();
             }
 
             if (this.AnswerMethod != null)
             {
-               hashCode += this.AnswerMethod.GetHashCode();
+                hashCode += this.AnswerMethod.GetHashCode();
             }
 
             if (this.AnswerFallbackMethod != null)
             {
-               hashCode += this.AnswerFallbackMethod.GetHashCode();
+                hashCode += this.AnswerFallbackMethod.GetHashCode();
             }
 
             if (this.DisconnectUrl != null)
             {
-               hashCode += this.DisconnectUrl.GetHashCode();
+                hashCode += this.DisconnectUrl.GetHashCode();
             }
 
             if (this.DisconnectMethod != null)
             {
-               hashCode += this.DisconnectMethod.GetHashCode();
+                hashCode += this.DisconnectMethod.GetHashCode();
             }
 
             if (this.Tag != null)
             {
-               hashCode += this.Tag.GetHashCode();
+                hashCode += this.Tag.GetHashCode();
             }
 
             if (this.ApplicationId != null)
             {
-               hashCode += this.ApplicationId.GetHashCode();
+                hashCode += this.ApplicationId.GetHashCode();
             }
 
             if (this.MachineDetection != null)
             {
-               hashCode += this.MachineDetection.GetHashCode();
+                hashCode += this.MachineDetection.GetHashCode();
             }
 
             if (this.Priority != null)
             {
-               hashCode += this.Priority.GetHashCode();
+                hashCode += this.Priority.GetHashCode();
             }
 
             return hashCode;
