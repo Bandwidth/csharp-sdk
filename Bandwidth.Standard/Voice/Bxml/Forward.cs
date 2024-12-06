@@ -57,7 +57,6 @@ namespace Bandwidth.Standard.Voice.Bxml
             }
         }
 
-    public string DiversionTreatment { get; set; }
         /// <summary>
         /// The caller display name to use when the call is created if `privacy` is true
         /// </summary>
