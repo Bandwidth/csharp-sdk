@@ -1,3 +1,4 @@
+using System;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Voice.Bxml
@@ -11,15 +12,62 @@ namespace Bandwidth.Standard.Voice.Bxml
         /// <summary>
         /// Initialize the integer fields to Bandwidth's default value
         /// </summary>
-        public Transfer() {
+        public Transfer()
+        {
             CallTimeout = 30;
         }
 
         /// <summary>
-        ///  The phone number making the transfer call 
+        ///  The phone number making the transfer call
         /// </summary>
         [XmlAttribute("transferCallerId")]
         public string TransferCallerId { get; set; }
+
+        /// <summary>
+        /// Hide the calling number
+        /// </summary>
+        private bool? privacy;
+        [XmlIgnore]
+        public bool? Privacy
+        {
+            get => privacy;
+            set => privacy = value;
+        }
+
+        [XmlAttribute("privacy")]
+        public string PrivacyAsText
+        {
+            get => Privacy.HasValue ? Privacy.Value.ToString().ToLower() : null;
+            set
+            {
+                if (value != null)
+                {
+                    Privacy = bool.Parse(value);
+                }
+                else
+                {
+                    Privacy = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// The caller display name to use when the call is created if `privacy` is true
+        /// </summary>
+        private Models.DisplayNameEnum? transferCallerDisplayName;
+        [XmlIgnore]
+        public Models.DisplayNameEnum? TransferCallerDisplayName
+        {
+            get => transferCallerDisplayName;
+            set => transferCallerDisplayName = value;
+        }
+
+        [XmlAttribute("transferCallerDisplayName")]
+        public string TransferCallerDisplayNameAsText
+        {
+            get => TransferCallerDisplayName.HasValue ? TransferCallerDisplayName.ToString() : null;
+            set => TransferCallerDisplayName = value != null ? (Models.DisplayNameEnum)Enum.Parse(typeof(Models.DisplayNameEnum), value) : (Models.DisplayNameEnum?)null;
+        }
 
         /// <summary>
         /// Timeout for the transfer in seconds
@@ -92,6 +140,6 @@ namespace Bandwidth.Standard.Voice.Bxml
 
         [XmlAttribute("fallbackPassword")]
         public string FallbackPassword { get; set; }
-    
+
     }
 }

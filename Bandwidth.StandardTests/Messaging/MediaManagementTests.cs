@@ -24,8 +24,8 @@ namespace Bandwidth.StandardTests.Messaging
         public async Task UploadAndDownloadMedia()
         {
             var accountId = TestConstants.AccountId;
-            var mediaId = $"text-media-id-{Guid.NewGuid()}";
-            
+            var mediaId = $"text-media-id-{Guid.NewGuid()}.txt";
+
             var content = "Hello world";
             var contentType = "text/plain";
 
@@ -34,7 +34,7 @@ namespace Bandwidth.StandardTests.Messaging
 
             // Upload the media content.
             await _client.Messaging.APIController.UploadMediaAsync(accountId, mediaId, fileStreamInfo, contentType);
-        
+
             // Get the media content which we've just uploaded.
             var response = await _client.Messaging.APIController.GetMediaAsync(accountId, mediaId);
 
