@@ -68,12 +68,12 @@ namespace Bandwidth.StandardTests.Voice
                     Assert.IsType<DateTime>(getCallStateResponse.Data.StartTime);
                     Assert.Null(getCallStateResponse.Data.AnswerTime);
                     Assert.True(getCallStateResponse.Data.DisconnectCause == null || getCallStateResponse.Data.DisconnectCause == "busy");
-                    
+
                     const string errorMessage = "Callee is busy";
                     Assert.True(getCallStateResponse.Data.ErrorMessage == null || getCallStateResponse.Data.ErrorMessage == errorMessage);
                     // Assert if there's an error id and the error message is unrelated to a busy call.
                     Assert.True(getCallStateResponse.Data.ErrorId == null || getCallStateResponse.Data.ErrorMessage == errorMessage);
-                    
+
                     Assert.IsType<DateTime>(getCallStateResponse.Data.LastUpdate);
                 }
                 catch (ApiErrorException ex)
