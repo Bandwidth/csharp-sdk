@@ -6,7 +6,6 @@ on:
 jobs:
   publish:
     name: Publish
-    if: ${{ !github.event.release.prerelease && github.event.release.target_commitish == 'main' }}
     env:
       BW_PROJECT_NAME: Bandwidth.Standard
       BW_PROJECT_TEST_NAME: Bandwidth.StandardTests
