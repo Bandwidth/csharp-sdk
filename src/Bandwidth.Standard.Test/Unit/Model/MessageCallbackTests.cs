@@ -31,8 +31,7 @@ namespace Bandwidth.Standard.Test.Model
     /// </remarks>
     public class MessageCallbackTests : IDisposable
     {
-        // TODO uncomment below to declare an instance variable for MessageCallback
-        //private MessageCallback instance;
+        private MessageCallback instance;
 
         public MessageCallbackTests()
         {

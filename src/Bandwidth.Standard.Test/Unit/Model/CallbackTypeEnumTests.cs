@@ -31,8 +31,7 @@ namespace Bandwidth.Standard.Test.Model
     /// </remarks>
     public class CallbackTypeEnumTests : IDisposable
     {
-        // TODO uncomment below to declare an instance variable for CallbackTypeEnum
-        //private CallbackTypeEnum instance;
+        private CallbackTypeEnum instance;
 
         public CallbackTypeEnumTests()
         {
