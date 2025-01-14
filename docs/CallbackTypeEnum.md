@@ -1,5 +1,5 @@
-# Bandwidth.Standard.Model.MessageStatusEnum
-The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. 
+# Bandwidth.Standard.Model.CallbackTypeEnum
+Indicates the type of the callback: - `message-received` for inbound callbacks. - One of `message-sending`, `message-delivered`, `message-failed` for status callbacks. 
 
 ## Properties
 

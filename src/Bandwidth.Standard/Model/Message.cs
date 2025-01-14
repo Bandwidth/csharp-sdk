@@ -51,11 +51,11 @@ namespace Bandwidth.Standard.Model
         /// <param name="owner">The Bandwidth phone number associated with the message..</param>
         /// <param name="applicationId">The application ID associated with the message..</param>
         /// <param name="time">The datetime stamp of the message in ISO 8601.</param>
-        /// <param name="segmentCount">The number of segments the original message from the user is broken into before sending over to carrier networks..</param>
+        /// <param name="segmentCount">The number of segments the original message from the user is broken into before sending over to carrier networks. .</param>
         /// <param name="direction">direction.</param>
         /// <param name="to">The phone number recipients of the message..</param>
         /// <param name="from">The phone number the message was sent from..</param>
-        /// <param name="media">The list of media URLs sent in the message. Including a &#x60;filename&#x60; field in the &#x60;Content-Disposition&#x60; header of the media linked with a URL will set the displayed file name. This is a best practice to ensure that your media has a readable file name..</param>
+        /// <param name="media">The list of media URLs sent in the message. Including a &#x60;filename&#x60; field in the &#x60;Content-Disposition&#x60; header of the media linked with a URL will set the displayed file name. This is a best practice to ensure that your media has a readable file name. .</param>
         /// <param name="text">The contents of the message..</param>
         /// <param name="tag">The custom string set by the user..</param>
         /// <param name="priority">priority.</param>
@@ -105,14 +105,14 @@ namespace Bandwidth.Standard.Model
         /// The datetime stamp of the message in ISO 8601
         /// </summary>
         /// <value>The datetime stamp of the message in ISO 8601</value>
-        /// <example>2022-09-14T18:20:16Z</example>
+        /// <example>2024-12-02T20:15:57.278Z</example>
         [DataMember(Name = "time", EmitDefaultValue = false)]
         public DateTime Time { get; set; }
 
         /// <summary>
-        /// The number of segments the original message from the user is broken into before sending over to carrier networks.
+        /// The number of segments the original message from the user is broken into before sending over to carrier networks. 
         /// </summary>
-        /// <value>The number of segments the original message from the user is broken into before sending over to carrier networks.</value>
+        /// <value>The number of segments the original message from the user is broken into before sending over to carrier networks. </value>
         /// <example>2</example>
         [DataMember(Name = "segmentCount", EmitDefaultValue = false)]
         public int SegmentCount { get; set; }
@@ -134,9 +134,9 @@ namespace Bandwidth.Standard.Model
         public string From { get; set; }
 
         /// <summary>
-        /// The list of media URLs sent in the message. Including a &#x60;filename&#x60; field in the &#x60;Content-Disposition&#x60; header of the media linked with a URL will set the displayed file name. This is a best practice to ensure that your media has a readable file name.
+        /// The list of media URLs sent in the message. Including a &#x60;filename&#x60; field in the &#x60;Content-Disposition&#x60; header of the media linked with a URL will set the displayed file name. This is a best practice to ensure that your media has a readable file name. 
         /// </summary>
-        /// <value>The list of media URLs sent in the message. Including a &#x60;filename&#x60; field in the &#x60;Content-Disposition&#x60; header of the media linked with a URL will set the displayed file name. This is a best practice to ensure that your media has a readable file name.</value>
+        /// <value>The list of media URLs sent in the message. Including a &#x60;filename&#x60; field in the &#x60;Content-Disposition&#x60; header of the media linked with a URL will set the displayed file name. This is a best practice to ensure that your media has a readable file name. </value>
         /// <example>[&quot;https://dev.bandwidth.com/images/bandwidth-logo.png&quot;]</example>
         [DataMember(Name = "media", EmitDefaultValue = false)]
         public List<string> Media { get; set; }

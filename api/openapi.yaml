@@ -315,8 +315,8 @@ paths:
         schema:
           type: string
         style: simple
-      - description: General-header field is used to specify directives that MUST
-          be obeyed by all caching mechanisms along the request/response chain.
+      - description: |
+          General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.
         example: no-cache
         explode: false
         in: header
@@ -398,11 +398,8 @@ paths:
         schema:
           type: string
         style: simple
-      - description: "The ID of the message to search for. Special characters need\
-          \ to be encoded using URL encoding. Message IDs could come in different\
-          \ formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2\
-          \ are valid message ID formats. Note that you must include at least one\
-          \ query parameter."
+      - description: |
+          The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter.
         example: 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6
         explode: true
         in: query
@@ -411,10 +408,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: "The phone number that sent the message. Accepted values are:\
-          \ a single full phone number a comma separated list of full phone numbers\
-          \ (maximum of 10) or a single partial phone number (minimum of 5 characters\
-          \ e.g. '%2B1919')."
+      - description: |
+          The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919').
         example: '%2B15554443333'
         explode: true
         in: query
@@ -423,10 +418,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: "The phone number that received the message. Accepted values\
-          \ are: a single full phone number a comma separated list of full phone numbers\
-          \ (maximum of 10) or a single partial phone number (minimum of 5 characters\
-          \ e.g. '%2B1919')."
+      - description: |
+          The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919').
         example: '%2B15554443333'
         explode: true
         in: query
@@ -435,8 +428,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: The status of the message. One of RECEIVED QUEUED SENDING SENT
-          FAILED DELIVERED ACCEPTED UNDELIVERED.
+      - description: |
+          The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED.
         explode: true
         in: query
         name: messageStatus
@@ -452,9 +445,8 @@ paths:
         schema:
           $ref: '#/components/schemas/listMessageDirectionEnum'
         style: form
-      - description: The name of the carrier used for this message. Possible values
-          include but are not limited to Verizon and TMobile. Special characters need
-          to be encoded using URL encoding (i.e. AT&T should be passed as AT%26T).
+      - description: |
+          The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&T should be passed as AT%26T).
         example: Verizon
         explode: true
         in: query
@@ -480,8 +472,8 @@ paths:
         schema:
           type: integer
         style: form
-      - description: The start of the date range to search in ISO 8601 format. Uses
-          the message receive time. The date range to search in is currently 14 days.
+      - description: |
+          The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
         example: 2022-09-14T18:20:16.000Z
         explode: true
         in: query
@@ -490,8 +482,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: The end of the date range to search in ISO 8601 format. Uses
-          the message receive time. The date range to search in is currently 14 days.
+      - description: |
+          The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
         example: 2022-09-14T18:20:16.000Z
         explode: true
         in: query
@@ -528,8 +520,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: The maximum records requested in search result. Default 100.
-          The sum of limit and after cannot be more than 10000.
+      - description: |
+          The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
         example: 50
         explode: true
         in: query
@@ -605,8 +597,6 @@ paths:
       - Messages
     post:
       callbacks:
-        inboundCallback:
-          $ref: '#/components/callbacks/inboundCallback'
         statusCallback:
           $ref: '#/components/callbacks/statusCallback'
       description: Endpoint for sending text messages and picture messages using V2
@@ -4549,9 +4539,16 @@ components:
           requestBody:
             content:
               application/json:
+                examples:
+                  smsMessageReceivedCallback:
+                    $ref: '#/components/examples/smsMessageReceivedCallbackExample'
+                  mmsMessageReceivedCallback:
+                    $ref: '#/components/examples/mmsMessageReceivedCallbackExample'
                 schema:
-                  $ref: '#/components/schemas/inboundMessageCallback'
-            description: Inbound Message Callback Payload
+                  $ref: '#/components/schemas/messageCallback'
+            description: |
+              <p>This Inbound Message Webhook is an envelope containing a received (MO) message to your message-enabled Bandwidth telephone number. The payload type will always indicate "message-received".
+              </p><p>Please visit <a href='/docs/messaging/webhooks/'>Webhooks</a></p>
             required: true
           responses:
             "200":
@@ -4562,18 +4559,166 @@ components:
           requestBody:
             content:
               application/json:
+                examples:
+                  messageSendingCallback:
+                    $ref: '#/components/examples/messageSendingCallbackExample'
+                  smsMessageDeliveredCallback:
+                    $ref: '#/components/examples/smsMessageDeliveredCallbackExample'
+                  mmsMessageDeliveredCallback:
+                    $ref: '#/components/examples/mmsMessageDeliveredCallbackExample'
+                  groupMmsMessageDeliveredCallback:
+                    $ref: '#/components/examples/groupMmsMessageDeliveredCallbackExample'
+                  messageFailedCallback:
+                    $ref: '#/components/examples/messageFailedCallbackExample'
                 schema:
-                  oneOf:
-                  - $ref: '#/components/schemas/messageSendingCallback'
-                  - $ref: '#/components/schemas/messageDeliveredCallback'
-                  - $ref: '#/components/schemas/messageFailedCallback'
-                  type: object
-            description: Status Callback Payload
+                  $ref: '#/components/schemas/messageCallback'
+            description: |
+              <p>This Outbound Message Webhook is an envelope containing status information regarding a message sent (MT) from your message-enabled Bandwidth telephone number. The payload type will be one of "message-sending", "message-delivered", or "message-failed".
+              </p><p>Please visit <a href='/docs/messaging/webhooks/'>Webhooks</a></p>
             required: true
           responses:
             "200":
               description: OK
   examples:
+    smsMessageReceivedCallbackExample:
+      summary: An example of a sms message-received callback body.
+      value:
+        time: 2025-01-06T15:43:35.502180Z
+        type: message-received
+        to: "+12345678902"
+        description: Incoming message received
+        message:
+          id: 14762070468292kw2fuqty55yp2b2
+          owner: "+12345678902"
+          applicationId: 93de2206-9669-4e07-948d-329f4b722ee2
+          time: 2025-01-06T15:43:34.000000Z
+          segmentCount: 1
+          direction: in
+          to:
+          - "+12345678902"
+          from: "+12345678901"
+          text: "Hey, check out this SMS!"
+    mmsMessageReceivedCallbackExample:
+      summary: An example of a mms message-received callback body.
+      value:
+        time: 2024-09-14T18:20:45.160744Z
+        type: message-received
+        to: "+12345678902"
+        description: Incoming message received
+        message:
+          id: 14762070468292kw2fuqty55yp2b2
+          owner: "+12345678902"
+          applicationId: 93de2206-9669-4e07-948d-329f4b722ee2
+          time: 2024-09-14T18:20:45.160744Z
+          segmentCount: 1
+          direction: in
+          to:
+          - "+12345678902"
+          - "+12345678903"
+          from: "+12345678901"
+          text: "Hey, check out the MMS!"
+          media:
+          - https://messaging.bandwidth.com/api/v2/users/9900902/media/14762070468292kw2fuqty55yp2b2/0/bw.png
+    messageSendingCallbackExample:
+      summary: An example of a message-sending callback body.
+      value:
+        time: 2024-06-25T18:42:36.979456Z
+        type: message-sending
+        to: "+15554443333"
+        description: Message is sending to carrier.
+        message:
+          id: 1593110555875xo7watq5px6rbe5d
+          owner: "+15552221111"
+          applicationId: cfd4fb83-7531-4acc-b471-42d0bb76a65c
+          time: 2024-06-25T18:42:35.876906Z
+          segmentCount: 1
+          direction: out
+          to:
+          - "+15554443333"
+          from: "+15552221111"
+          text: ""
+          media:
+          - https://dev.bandwidth.com/images/bandwidth-logo.png
+          tag: your tag here
+    smsMessageDeliveredCallbackExample:
+      summary: An example of a sms message-delivered callback body.
+      value:
+        type: message-delivered
+        time: 2024-09-14T18:20:11.160744Z
+        description: Message delivered to carrier.
+        to: "+12345678902"
+        message:
+          id: 14762070468292kw2fuqty55yp2b2
+          time: 2024-09-14T18:20:11.160744Z
+          to:
+          - "+12345678902"
+          from: "+12345678901"
+          text: ""
+          applicationId: 93de2206-9669-4e07-948d-329f4b722ee2
+          owner: "+12345678902"
+          direction: out
+          segmentCount: 1
+    mmsMessageDeliveredCallbackExample:
+      summary: An example of a mms message-delivered callback body.
+      value:
+        type: message-delivered
+        time: 2024-09-14T18:20:24.160544Z
+        description: Message delivered to carrier.
+        to: "+12345678902"
+        message:
+          id: 14762070468292kw2fuqty55yp2b2
+          time: 2024-09-14T18:20:24.160544Z
+          to:
+          - "+12345678902"
+          from: "+12345678901"
+          text: ""
+          applicationId: 93de2206-9669-4e07-948d-329f4b722ee2
+          owner: "+12345678902"
+          direction: out
+          segmentCount: 1
+          media:
+          - https://dev.bandwidth.com/images/bandwidth-logo.png
+    groupMmsMessageDeliveredCallbackExample:
+      summary: An example of a group mms message-delivered callback body.
+      value:
+        type: message-delivered
+        time: 2024-09-14T18:20:17.160544Z
+        description: Message delivered to carrier.
+        to: "+12345678902"
+        message:
+          id: 14762070468292kw2fuqty55yp2b2
+          time: 2024-09-14T18:20:17.160544Z
+          to:
+          - "+12345678902"
+          - "+12345678903"
+          from: "+12345678901"
+          text: ""
+          applicationId: 93de2206-9669-4e07-948d-329f4b722ee2
+          owner: "+12345678902"
+          direction: out
+          segmentCount: 1
+    messageFailedCallbackExample:
+      summary: An example of a message-failed callback body.
+      value:
+        type: message-failed
+        time: 2024-12-18T16:51:27.704450Z
+        description: forbidden to country
+        to: "+52345678903"
+        errorCode: 4432
+        message:
+          id: 14762070468292kw2fuqty55yp2b2
+          time: 2024-12-18T16:51:27.704450Z
+          to:
+          - "+12345678902"
+          - "+52345678903"
+          from: "+12345678901"
+          text: ""
+          applicationId: 93de2206-9669-4e07-948d-329f4b722ee2
+          media:
+          - https://dev.bandwidth.com/images/bandwidth-logo.png
+          owner: "+12345678901"
+          direction: out
+          segmentCount: 1
     createCallResponseExample:
       summary: Example of a createCall Response
       value:
@@ -4775,8 +4920,8 @@ components:
         type: string
       style: simple
     cacheControl:
-      description: General-header field is used to specify directives that MUST be
-        obeyed by all caching mechanisms along the request/response chain.
+      description: |
+        General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.
       example: no-cache
       explode: false
       in: header
@@ -4796,11 +4941,8 @@ components:
         type: string
       style: simple
     messageId:
-      description: "The ID of the message to search for. Special characters need to\
-        \ be encoded using URL encoding. Message IDs could come in different formats,\
-        \ e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2\
-        \ are valid message ID formats. Note that you must include at least one query\
-        \ parameter."
+      description: |
+        The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter.
       example: 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6
       explode: true
       in: query
@@ -4810,9 +4952,8 @@ components:
         type: string
       style: form
     sourceTn:
-      description: "The phone number that sent the message. Accepted values are: a\
-        \ single full phone number a comma separated list of full phone numbers (maximum\
-        \ of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919')."
+      description: |
+        The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919').
       example: '%2B15554443333'
       explode: true
       in: query
@@ -4822,10 +4963,8 @@ components:
         type: string
       style: form
     destinationTn:
-      description: "The phone number that received the message. Accepted values are:\
-        \ a single full phone number a comma separated list of full phone numbers\
-        \ (maximum of 10) or a single partial phone number (minimum of 5 characters\
-        \ e.g. '%2B1919')."
+      description: |
+        The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919').
       example: '%2B15554443333'
       explode: true
       in: query
@@ -4835,8 +4974,8 @@ components:
         type: string
       style: form
     messageStatus:
-      description: The status of the message. One of RECEIVED QUEUED SENDING SENT
-        FAILED DELIVERED ACCEPTED UNDELIVERED.
+      description: |
+        The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED.
       explode: true
       in: query
       name: messageStatus
@@ -4854,9 +4993,8 @@ components:
         $ref: '#/components/schemas/listMessageDirectionEnum'
       style: form
     carrierName:
-      description: The name of the carrier used for this message. Possible values
-        include but are not limited to Verizon and TMobile. Special characters need
-        to be encoded using URL encoding (i.e. AT&T should be passed as AT%26T).
+      description: |
+        The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&T should be passed as AT%26T).
       example: Verizon
       explode: true
       in: query
@@ -4885,8 +5023,8 @@ components:
         type: integer
       style: form
     fromDateTime:
-      description: The start of the date range to search in ISO 8601 format. Uses
-        the message receive time. The date range to search in is currently 14 days.
+      description: |
+        The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
       example: 2022-09-14T18:20:16.000Z
       explode: true
       in: query
@@ -4896,8 +5034,8 @@ components:
         type: string
       style: form
     toDateTime:
-      description: The end of the date range to search in ISO 8601 format. Uses the
-        message receive time. The date range to search in is currently 14 days.
+      description: |
+        The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
       example: 2022-09-14T18:20:16.000Z
       explode: true
       in: query
@@ -4938,8 +5076,8 @@ components:
         type: string
       style: form
     limit:
-      description: The maximum records requested in search result. Default 100. The
-        sum of limit and after cannot be more than 10000.
+      description: |
+        The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
       example: 50
       explode: true
       in: query
@@ -5263,6 +5401,14 @@ components:
           schema:
             format: binary
             type: string
+        image/heic:
+          schema:
+            format: binary
+            type: string
+        image/heif:
+          schema:
+            format: binary
+            type: string
         image/jpeg:
           schema:
             format: binary
@@ -5300,6 +5446,10 @@ components:
             format: binary
             type: string
         text/calendar:
+          schema:
+            format: binary
+            type: string
+        text/html:
           schema:
             format: binary
             type: string
@@ -5348,6 +5498,10 @@ components:
             format: binary
             type: string
         video/x-ms-wmv:
+          schema:
+            format: binary
+            type: string
+        video/x-flv:
           schema:
             format: binary
             type: string
@@ -5903,6 +6057,18 @@ components:
             $ref: '#/components/schemas/tnLookupRequestError'
       description: Internal Server Error
   schemas:
+    callbackTypeEnum:
+      description: |
+        Indicates the type of the callback:
+        - `message-received` for inbound callbacks.
+        - One of `message-sending`, `message-delivered`, `message-failed` for status callbacks.
+      enum:
+      - message-received
+      - message-sending
+      - message-delivered
+      - message-failed
+      example: message-delivered
+      type: string
     priorityEnum:
       description: |-
         The priority specified by the user.
@@ -5914,8 +6080,8 @@ components:
       example: default
       type: string
     messageStatusEnum:
-      description: The status of the message. One of RECEIVED QUEUED SENDING SENT
-        FAILED DELIVERED ACCEPTED UNDELIVERED.
+      description: |
+        The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED.
       enum:
       - RECEIVED
       - QUEUED
@@ -6215,7 +6381,7 @@ components:
         from: "+15553332222"
         expiration: 2021-02-01T11:29:18-05:00
         id: 1589228074636lm4k2je7j7jklbn2
-        time: 2022-09-14T18:20:16Z
+        time: 2024-12-02T20:15:57.278Z
         to:
         - "+15552223333"
         text: Hello world
@@ -6237,12 +6403,12 @@ components:
           type: string
         time:
           description: The datetime stamp of the message in ISO 8601
-          example: 2022-09-14T18:20:16Z
+          example: 2024-12-02T20:15:57.278Z
           format: date-time
           type: string
         segmentCount:
-          description: The number of segments the original message from the user is
-            broken into before sending over to carrier networks.
+          description: |
+            The number of segments the original message from the user is broken into before sending over to carrier networks.
           example: 2
           type: integer
         direction:
@@ -6260,10 +6426,8 @@ components:
           example: "+15553332222"
           type: string
         media:
-          description: The list of media URLs sent in the message. Including a `filename`
-            field in the `Content-Disposition` header of the media linked with a URL
-            will set the displayed file name. This is a best practice to ensure that
-            your media has a readable file name.
+          description: |
+            The list of media URLs sent in the message. Including a `filename` field in the `Content-Disposition` header of the media linked with a URL will set the displayed file name. This is a best practice to ensure that your media has a readable file name.
           example:
           - https://dev.bandwidth.com/images/bandwidth-logo.png
           items:
@@ -6310,7 +6474,7 @@ components:
             \ Sender IDs can contain up to 11 characters, upper-case letters A-Z,\
             \ lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore\
             \ _ and ampersand &. Alphanumeric Sender IDs must contain at least one\
-            \ letter."
+            \ letter.\n"
           example: "+15551113333"
           type: string
         text:
@@ -6320,7 +6484,7 @@ components:
           maxLength: 2048
           type: string
         media:
-          description: |-
+          description: |
             A list of URLs to include as media attachments as part of the message.
             Each URL can be at most 4096 characters.
           example:
@@ -6339,7 +6503,7 @@ components:
         priority:
           $ref: '#/components/schemas/priorityEnum'
         expiration:
-          description: |-
+          description: |
             A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future.
             Not supported on MMS.
           example: 2021-02-01T11:29:18-05:00
@@ -6351,288 +6515,38 @@ components:
       - to
       title: MessageRequest
       type: object
-    inboundMessageCallback:
-      description: Inbound Message Callback
+    messageCallback:
+      description: Message Callback Schema
       properties:
         time:
-          example: 2016-09-14T18:20:16Z
+          example: 2024-12-02T20:15:57.278Z
           format: date-time
           type: string
         type:
-          example: message-received
-          type: string
+          $ref: '#/components/schemas/callbackTypeEnum'
         to:
           example: "+15552223333"
           type: string
         description:
-          example: Incoming message received
-          type: string
-        message:
-          $ref: '#/components/schemas/inboundMessageCallbackMessage'
-      required:
-      - description
-      - message
-      - time
-      - to
-      - type
-      type: object
-    inboundMessageCallbackMessage:
-      description: Inbound Message Callback Message Schema
-      properties:
-        id:
-          example: 1661365814859loidf7mcwd4qacn7
-          type: string
-        owner:
-          example: "+15553332222"
-          type: string
-        applicationId:
-          example: 93de2206-9669-4e07-948d-329f4b722ee2
-          type: string
-        time:
-          example: 2016-09-14T18:20:16Z
-          format: date-time
-          type: string
-        segmentCount:
-          example: 1
-          type: integer
-        direction:
-          $ref: '#/components/schemas/messageDirectionEnum'
-        to:
-          example:
-          - "+15552223333"
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        from:
-          example: "+15553332222"
-          type: string
-        text:
-          example: Hello world
-          type: string
-        tag:
-          example: custom string
-          type: string
-        media:
-          example:
-          - https://dev.bandwidth.com/images/bandwidth-logo.png
-          - https://dev.bandwidth.com/images/github_logo.png
-          items:
-            format: uri
-            type: string
-          type: array
-        priority:
-          $ref: '#/components/schemas/priorityEnum'
-      required:
-      - applicationId
-      - direction
-      - from
-      - id
-      - owner
-      - segmentCount
-      - text
-      - time
-      - to
-      type: object
-    messageSendingCallback:
-      description: Message Sending Callback
-      properties:
-        time:
-          example: 2016-09-14T18:20:16Z
-          format: date-time
-          type: string
-        type:
-          example: message-sending
-          type: string
-        to:
-          example: "+15552223333"
-          type: string
-        description:
-          example: Message is sending to carrier
-          type: string
-        message:
-          $ref: '#/components/schemas/messageSendingCallbackMessage'
-      required:
-      - description
-      - message
-      - time
-      - to
-      - type
-      type: object
-    messageSendingCallbackMessage:
-      description: Message Sending Callback Message Schema
-      properties:
-        id:
-          example: 1661365814859loidf7mcwd4qacn7
-          type: string
-        owner:
-          example: "+15553332222"
-          type: string
-        applicationId:
-          example: 93de2206-9669-4e07-948d-329f4b722ee2
-          type: string
-        time:
-          example: 2016-09-14T18:20:16Z
-          format: date-time
-          type: string
-        segmentCount:
-          example: 1
-          type: integer
-        direction:
-          $ref: '#/components/schemas/messageDirectionEnum'
-        to:
-          example:
-          - "+15552223333"
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        from:
-          example: "+15553332222"
-          type: string
-        text:
-          example: Hello world
-          type: string
-        tag:
-          example: custom string
-          type: string
-        media:
-          example:
-          - https://dev.bandwidth.com/images/bandwidth-logo.png
-          - https://dev.bandwidth.com/images/github_logo.png
-          items:
-            format: uri
-            type: string
-          type: array
-        priority:
-          $ref: '#/components/schemas/priorityEnum'
-      required:
-      - applicationId
-      - direction
-      - from
-      - id
-      - media
-      - owner
-      - segmentCount
-      - text
-      - time
-      - to
-      type: object
-    messageDeliveredCallback:
-      description: Message Delivered Callback
-      properties:
-        time:
-          example: 2016-09-14T18:20:16Z
-          format: date-time
-          type: string
-        type:
-          example: message-delivered
-          type: string
-        to:
-          example: "+15552223333"
-          type: string
-        description:
-          example: Message delivered to carrier.
-          type: string
-        message:
-          $ref: '#/components/schemas/messageDeliveredCallbackMessage'
-      required:
-      - description
-      - message
-      - time
-      - to
-      - type
-      type: object
-    messageDeliveredCallbackMessage:
-      description: Message Delivered Callback Message Schema
-      properties:
-        id:
-          example: 1661365814859loidf7mcwd4qacn7
-          type: string
-        owner:
-          example: "+15553332222"
-          type: string
-        applicationId:
-          example: 93de2206-9669-4e07-948d-329f4b722ee2
-          type: string
-        time:
-          example: 2016-09-14T18:20:16Z
-          format: date-time
-          type: string
-        segmentCount:
-          example: 1
-          type: integer
-        direction:
-          $ref: '#/components/schemas/messageDirectionEnum'
-        to:
-          example:
-          - "+15552223333"
-          items:
-            type: string
-          type: array
-          uniqueItems: true
-        from:
-          example: "+15553332222"
-          type: string
-        text:
-          example: Hello world
-          type: string
-        tag:
-          example: custom string
-          type: string
-        media:
-          example:
-          - https://dev.bandwidth.com/images/bandwidth-logo.png
-          - https://dev.bandwidth.com/images/github_logo.png
-          items:
-            format: uri
-            type: string
-          type: array
-        priority:
-          $ref: '#/components/schemas/priorityEnum'
-      required:
-      - applicationId
-      - direction
-      - from
-      - id
-      - owner
-      - segmentCount
-      - tag
-      - text
-      - time
-      - to
-      type: object
-    messageFailedCallback:
-      description: Message Failed Callback
-      properties:
-        time:
-          example: 2016-09-14T18:20:16Z
-          format: date-time
-          type: string
-        type:
-          example: message-failed
-          type: string
-        to:
-          example: "+15552223333"
-          type: string
-        description:
+          description: A detailed description of the event described by the callback.
           example: rejected-unallocated-from-number
           type: string
         message:
-          $ref: '#/components/schemas/messageFailedCallbackMessage'
+          $ref: '#/components/schemas/messageCallbackMessage'
         errorCode:
-          example: 9902
+          description: "Optional error code, applicable only when type is `message-failed`."
+          example: 4405
+          nullable: true
           type: integer
       required:
       - description
-      - errorCode
       - message
       - time
       - to
       - type
       type: object
-    messageFailedCallbackMessage:
-      description: Message Failed Callback Message Schema
+    messageCallbackMessage:
+      description: Message payload schema within a MessageCallback
       properties:
         id:
           example: 1661365814859loidf7mcwd4qacn7
@@ -6644,7 +6558,7 @@ components:
           example: 93de2206-9669-4e07-948d-329f4b722ee2
           type: string
         time:
-          example: 2016-09-14T18:20:16Z
+          example: 2024-12-02T20:15:57.666Z
           format: date-time
           type: string
         segmentCount:
@@ -6669,12 +6583,14 @@ components:
           example: custom string
           type: string
         media:
+          description: "Optional media, applicable only for mms"
           example:
           - https://dev.bandwidth.com/images/bandwidth-logo.png
           - https://dev.bandwidth.com/images/github_logo.png
           items:
             format: uri
             type: string
+          nullable: true
           type: array
         priority:
           $ref: '#/components/schemas/priorityEnum'
@@ -6685,7 +6601,6 @@ components:
       - id
       - owner
       - segmentCount
-      - tag
       - text
       - time
       - to
