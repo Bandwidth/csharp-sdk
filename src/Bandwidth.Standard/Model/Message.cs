@@ -105,7 +105,7 @@ namespace Bandwidth.Standard.Model
         /// The datetime stamp of the message in ISO 8601
         /// </summary>
         /// <value>The datetime stamp of the message in ISO 8601</value>
-        /// <example>2022-09-14T18:20:16Z</example>
+        /// <example>2024-12-02T20:15:57.278Z</example>
         [DataMember(Name = "time", EmitDefaultValue = false)]
         public DateTime Time { get; set; }
 

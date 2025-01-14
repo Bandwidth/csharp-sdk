@@ -16,6 +16,7 @@ docs/CallTranscriptionMetadata.md
 docs/CallTranscriptionResponse.md
 docs/CallTranscriptionTrackEnum.md
 docs/CallbackMethodEnum.md
+docs/CallbackTypeEnum.md
 docs/CallsApi.md
 docs/CodeRequest.md
 docs/Conference.md
@@ -40,8 +41,6 @@ docs/DtmfCallback.md
 docs/FieldError.md
 docs/FileFormatEnum.md
 docs/GatherCallback.md
-docs/InboundMessageCallback.md
-docs/InboundMessageCallbackMessage.md
 docs/InitiateCallback.md
 docs/ListMessageDirectionEnum.md
 docs/ListMessageItem.md
@@ -57,14 +56,10 @@ docs/MachineDetectionResult.md
 docs/Media.md
 docs/MediaApi.md
 docs/Message.md
-docs/MessageDeliveredCallback.md
-docs/MessageDeliveredCallbackMessage.md
+docs/MessageCallback.md
+docs/MessageCallbackMessage.md
 docs/MessageDirectionEnum.md
-docs/MessageFailedCallback.md
-docs/MessageFailedCallbackMessage.md
 docs/MessageRequest.md
-docs/MessageSendingCallback.md
-docs/MessageSendingCallbackMessage.md
 docs/MessageStatusEnum.md
 docs/MessageTypeEnum.md
 docs/MessagesApi.md
@@ -145,6 +140,7 @@ src/Bandwidth.Standard/Model/CallTranscriptionMetadata.cs
 src/Bandwidth.Standard/Model/CallTranscriptionResponse.cs
 src/Bandwidth.Standard/Model/CallTranscriptionTrackEnum.cs
 src/Bandwidth.Standard/Model/CallbackMethodEnum.cs
+src/Bandwidth.Standard/Model/CallbackTypeEnum.cs
 src/Bandwidth.Standard/Model/CodeRequest.cs
 src/Bandwidth.Standard/Model/Conference.cs
 src/Bandwidth.Standard/Model/ConferenceCompletedCallback.cs
@@ -167,8 +163,6 @@ src/Bandwidth.Standard/Model/DtmfCallback.cs
 src/Bandwidth.Standard/Model/FieldError.cs
 src/Bandwidth.Standard/Model/FileFormatEnum.cs
 src/Bandwidth.Standard/Model/GatherCallback.cs
-src/Bandwidth.Standard/Model/InboundMessageCallback.cs
-src/Bandwidth.Standard/Model/InboundMessageCallbackMessage.cs
 src/Bandwidth.Standard/Model/InitiateCallback.cs
 src/Bandwidth.Standard/Model/ListMessageDirectionEnum.cs
 src/Bandwidth.Standard/Model/ListMessageItem.cs
@@ -182,14 +176,10 @@ src/Bandwidth.Standard/Model/MachineDetectionModeEnum.cs
 src/Bandwidth.Standard/Model/MachineDetectionResult.cs
 src/Bandwidth.Standard/Model/Media.cs
 src/Bandwidth.Standard/Model/Message.cs
-src/Bandwidth.Standard/Model/MessageDeliveredCallback.cs
-src/Bandwidth.Standard/Model/MessageDeliveredCallbackMessage.cs
+src/Bandwidth.Standard/Model/MessageCallback.cs
+src/Bandwidth.Standard/Model/MessageCallbackMessage.cs
 src/Bandwidth.Standard/Model/MessageDirectionEnum.cs
-src/Bandwidth.Standard/Model/MessageFailedCallback.cs
-src/Bandwidth.Standard/Model/MessageFailedCallbackMessage.cs
 src/Bandwidth.Standard/Model/MessageRequest.cs
-src/Bandwidth.Standard/Model/MessageSendingCallback.cs
-src/Bandwidth.Standard/Model/MessageSendingCallbackMessage.cs
 src/Bandwidth.Standard/Model/MessageStatusEnum.cs
 src/Bandwidth.Standard/Model/MessageTypeEnum.cs
 src/Bandwidth.Standard/Model/MessagesList.cs

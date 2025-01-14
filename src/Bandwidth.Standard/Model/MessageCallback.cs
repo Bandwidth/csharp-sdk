@@ -27,66 +27,62 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// Message Sending Callback
+    /// Message Callback Schema
     /// </summary>
-    [DataContract(Name = "messageSendingCallback")]
-    public partial class MessageSendingCallback : IValidatableObject
+    [DataContract(Name = "messageCallback")]
+    public partial class MessageCallback : IValidatableObject
     {
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="MessageSendingCallback" /> class.
+        /// Gets or Sets Type
+        /// </summary>
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        public CallbackTypeEnum Type { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageCallback" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected MessageSendingCallback() { }
+        protected MessageCallback() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="MessageSendingCallback" /> class.
+        /// Initializes a new instance of the <see cref="MessageCallback" /> class.
         /// </summary>
         /// <param name="time">time (required).</param>
         /// <param name="type">type (required).</param>
         /// <param name="to">to (required).</param>
-        /// <param name="description">description (required).</param>
+        /// <param name="description">A detailed description of the event described by the callback. (required).</param>
         /// <param name="message">message (required).</param>
-        public MessageSendingCallback(DateTime time = default(DateTime), string type = default(string), string to = default(string), string description = default(string), MessageSendingCallbackMessage message = default(MessageSendingCallbackMessage))
+        /// <param name="errorCode">Optional error code, applicable only when type is &#x60;message-failed&#x60;..</param>
+        public MessageCallback(DateTime time = default(DateTime), CallbackTypeEnum type = default(CallbackTypeEnum), string to = default(string), string description = default(string), MessageCallbackMessage message = default(MessageCallbackMessage), int? errorCode = default(int?))
         {
             this.Time = time;
-            // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new ArgumentNullException("type is a required property for MessageSendingCallback and cannot be null");
-            }
             this.Type = type;
             // to ensure "to" is required (not null)
             if (to == null)
             {
-                throw new ArgumentNullException("to is a required property for MessageSendingCallback and cannot be null");
+                throw new ArgumentNullException("to is a required property for MessageCallback and cannot be null");
             }
             this.To = to;
             // to ensure "description" is required (not null)
             if (description == null)
             {
-                throw new ArgumentNullException("description is a required property for MessageSendingCallback and cannot be null");
+                throw new ArgumentNullException("description is a required property for MessageCallback and cannot be null");
             }
             this.Description = description;
             // to ensure "message" is required (not null)
             if (message == null)
             {
-                throw new ArgumentNullException("message is a required property for MessageSendingCallback and cannot be null");
+                throw new ArgumentNullException("message is a required property for MessageCallback and cannot be null");
             }
             this.Message = message;
+            this.ErrorCode = errorCode;
         }
 
         /// <summary>
         /// Gets or Sets Time
         /// </summary>
-        /// <example>2016-09-14T18:20:16Z</example>
+        /// <example>2024-12-02T20:15:57.278Z</example>
         [DataMember(Name = "time", IsRequired = true, EmitDefaultValue = true)]
         public DateTime Time { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Type
-        /// </summary>
-        /// <example>message-sending</example>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
-        public string Type { get; set; }
 
         /// <summary>
         /// Gets or Sets To
@@ -96,9 +92,10 @@ namespace Bandwidth.Standard.Model
         public string To { get; set; }
 
         /// <summary>
-        /// Gets or Sets Description
+        /// A detailed description of the event described by the callback.
         /// </summary>
-        /// <example>Message is sending to carrier</example>
+        /// <value>A detailed description of the event described by the callback.</value>
+        /// <example>rejected-unallocated-from-number</example>
         [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
         public string Description { get; set; }
 
@@ -106,7 +103,15 @@ namespace Bandwidth.Standard.Model
         /// Gets or Sets Message
         /// </summary>
         [DataMember(Name = "message", IsRequired = true, EmitDefaultValue = true)]
-        public MessageSendingCallbackMessage Message { get; set; }
+        public MessageCallbackMessage Message { get; set; }
+
+        /// <summary>
+        /// Optional error code, applicable only when type is &#x60;message-failed&#x60;.
+        /// </summary>
+        /// <value>Optional error code, applicable only when type is &#x60;message-failed&#x60;.</value>
+        /// <example>4405</example>
+        [DataMember(Name = "errorCode", EmitDefaultValue = true)]
+        public int? ErrorCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,12 +120,13 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class MessageSendingCallback {\n");
+            sb.Append("class MessageCallback {\n");
             sb.Append("  Time: ").Append(Time).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  To: ").Append(To).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  ErrorCode: ").Append(ErrorCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
