@@ -102,9 +102,8 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MessageTest()
         {
-            instance.Message = "test";
-            Assert.IsType<string>(instance.Message);
-            Assert.Equal("test", instance.Message);
+            instance.Message = new MessageCallbackMessage();
+            Assert.IsType<MessageCallbackMessage>(instance.Message);
         }
 
         /// <summary>
