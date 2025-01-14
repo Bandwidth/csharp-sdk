@@ -48,12 +48,12 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="applicationId">The ID of the Application your from number is associated with in the Bandwidth Phone Number Dashboard. (required).</param>
         /// <param name="to">The phone number(s) the message should be sent to in E164 format. (required).</param>
-        /// <param name="from">Either an alphanumeric sender ID or the sender&#39;s Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.  Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &amp;. Alphanumeric Sender IDs must contain at least one letter.  (required).</param>
+        /// <param name="from">Either an alphanumeric sender ID or the sender&#39;s Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.  Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &amp;. Alphanumeric Sender IDs must contain at least one letter. (required).</param>
         /// <param name="text">The contents of the text message. Must be 2048 characters or less..</param>
-        /// <param name="media">A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters. .</param>
+        /// <param name="media">A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters..</param>
         /// <param name="tag">A custom string that will be included in callback events of the message. Max 1024 characters..</param>
         /// <param name="priority">priority.</param>
-        /// <param name="expiration">A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS. .</param>
+        /// <param name="expiration">A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS..</param>
         public MessageRequest(string applicationId = default(string), List<string> to = default(List<string>), string from = default(string), string text = default(string), List<string> media = default(List<string>), string tag = default(string), PriorityEnum? priority = default(PriorityEnum?), DateTime expiration = default(DateTime))
         {
             // to ensure "applicationId" is required (not null)
@@ -98,9 +98,9 @@ namespace Bandwidth.Standard.Model
         public List<string> To { get; set; }
 
         /// <summary>
-        /// Either an alphanumeric sender ID or the sender&#39;s Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.  Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &amp;. Alphanumeric Sender IDs must contain at least one letter. 
+        /// Either an alphanumeric sender ID or the sender&#39;s Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.  Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &amp;. Alphanumeric Sender IDs must contain at least one letter.
         /// </summary>
-        /// <value>Either an alphanumeric sender ID or the sender&#39;s Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.  Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &amp;. Alphanumeric Sender IDs must contain at least one letter. </value>
+        /// <value>Either an alphanumeric sender ID or the sender&#39;s Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.  Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &amp;. Alphanumeric Sender IDs must contain at least one letter.</value>
         /// <example>+15551113333</example>
         [DataMember(Name = "from", IsRequired = true, EmitDefaultValue = true)]
         public string From { get; set; }
@@ -114,9 +114,9 @@ namespace Bandwidth.Standard.Model
         public string Text { get; set; }
 
         /// <summary>
-        /// A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters. 
+        /// A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters.
         /// </summary>
-        /// <value>A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters. </value>
+        /// <value>A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters.</value>
         /// <example>[&quot;https://dev.bandwidth.com/images/bandwidth-logo.png&quot;,&quot;https://dev.bandwidth.com/images/github_logo.png&quot;]</example>
         [DataMember(Name = "media", EmitDefaultValue = false)]
         public List<string> Media { get; set; }
@@ -130,9 +130,9 @@ namespace Bandwidth.Standard.Model
         public string Tag { get; set; }
 
         /// <summary>
-        /// A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS. 
+        /// A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS.
         /// </summary>
-        /// <value>A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS. </value>
+        /// <value>A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS.</value>
         /// <example>2021-02-01T11:29:18-05:00</example>
         [DataMember(Name = "expiration", EmitDefaultValue = false)]
         public DateTime Expiration { get; set; }

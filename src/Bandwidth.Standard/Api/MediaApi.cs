@@ -113,7 +113,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="mediaId">Media ID to retrieve.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
-        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.  (optional)</param>
+        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
         void UploadMedia(string accountId, string mediaId, System.IO.Stream body, string contentType = default(string), string cacheControl = default(string), int operationIndex = 0);
@@ -129,7 +129,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="mediaId">Media ID to retrieve.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
-        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.  (optional)</param>
+        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> UploadMediaWithHttpInfo(string accountId, string mediaId, System.IO.Stream body, string contentType = default(string), string cacheControl = default(string), int operationIndex = 0);
@@ -234,7 +234,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="mediaId">Media ID to retrieve.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
-        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.  (optional)</param>
+        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
@@ -251,7 +251,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="mediaId">Media ID to retrieve.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
-        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.  (optional)</param>
+        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
@@ -900,7 +900,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="mediaId">Media ID to retrieve.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
-        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.  (optional)</param>
+        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
         public void UploadMedia(string accountId, string mediaId, System.IO.Stream body, string contentType = default(string), string cacheControl = default(string), int operationIndex = 0)
@@ -916,7 +916,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="mediaId">Media ID to retrieve.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
-        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.  (optional)</param>
+        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         public Bandwidth.Standard.Client.ApiResponse<Object> UploadMediaWithHttpInfo(string accountId, string mediaId, System.IO.Stream body, string contentType = default(string), string cacheControl = default(string), int operationIndex = 0)
@@ -1053,7 +1053,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="mediaId">Media ID to retrieve.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
-        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.  (optional)</param>
+        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
@@ -1070,7 +1070,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="mediaId">Media ID to retrieve.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
-        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.  (optional)</param>
+        /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>

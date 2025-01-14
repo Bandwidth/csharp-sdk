@@ -315,8 +315,8 @@ paths:
         schema:
           type: string
         style: simple
-      - description: |
-          General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.
+      - description: General-header field is used to specify directives that MUST
+          be obeyed by all caching mechanisms along the request/response chain.
         example: no-cache
         explode: false
         in: header
@@ -398,8 +398,11 @@ paths:
         schema:
           type: string
         style: simple
-      - description: |
-          The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter.
+      - description: "The ID of the message to search for. Special characters need\
+          \ to be encoded using URL encoding. Message IDs could come in different\
+          \ formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2\
+          \ are valid message ID formats. Note that you must include at least one\
+          \ query parameter."
         example: 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6
         explode: true
         in: query
@@ -408,8 +411,10 @@ paths:
         schema:
           type: string
         style: form
-      - description: |
-          The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919').
+      - description: "The phone number that sent the message. Accepted values are:\
+          \ a single full phone number a comma separated list of full phone numbers\
+          \ (maximum of 10) or a single partial phone number (minimum of 5 characters\
+          \ e.g. '%2B1919')."
         example: '%2B15554443333'
         explode: true
         in: query
@@ -418,8 +423,10 @@ paths:
         schema:
           type: string
         style: form
-      - description: |
-          The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919').
+      - description: "The phone number that received the message. Accepted values\
+          \ are: a single full phone number a comma separated list of full phone numbers\
+          \ (maximum of 10) or a single partial phone number (minimum of 5 characters\
+          \ e.g. '%2B1919')."
         example: '%2B15554443333'
         explode: true
         in: query
@@ -428,8 +435,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: |
-          The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED.
+      - description: The status of the message. One of RECEIVED QUEUED SENDING SENT
+          FAILED DELIVERED ACCEPTED UNDELIVERED.
         explode: true
         in: query
         name: messageStatus
@@ -445,8 +452,9 @@ paths:
         schema:
           $ref: '#/components/schemas/listMessageDirectionEnum'
         style: form
-      - description: |
-          The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&T should be passed as AT%26T).
+      - description: The name of the carrier used for this message. Possible values
+          include but are not limited to Verizon and TMobile. Special characters need
+          to be encoded using URL encoding (i.e. AT&T should be passed as AT%26T).
         example: Verizon
         explode: true
         in: query
@@ -472,8 +480,8 @@ paths:
         schema:
           type: integer
         style: form
-      - description: |
-          The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
+      - description: The start of the date range to search in ISO 8601 format. Uses
+          the message receive time. The date range to search in is currently 14 days.
         example: 2022-09-14T18:20:16.000Z
         explode: true
         in: query
@@ -482,8 +490,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: |
-          The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
+      - description: The end of the date range to search in ISO 8601 format. Uses
+          the message receive time. The date range to search in is currently 14 days.
         example: 2022-09-14T18:20:16.000Z
         explode: true
         in: query
@@ -520,8 +528,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: |
-          The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
+      - description: The maximum records requested in search result. Default 100.
+          The sum of limit and after cannot be more than 10000.
         example: 50
         explode: true
         in: query
@@ -4920,8 +4928,8 @@ components:
         type: string
       style: simple
     cacheControl:
-      description: |
-        General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.
+      description: General-header field is used to specify directives that MUST be
+        obeyed by all caching mechanisms along the request/response chain.
       example: no-cache
       explode: false
       in: header
@@ -4941,8 +4949,11 @@ components:
         type: string
       style: simple
     messageId:
-      description: |
-        The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter.
+      description: "The ID of the message to search for. Special characters need to\
+        \ be encoded using URL encoding. Message IDs could come in different formats,\
+        \ e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2\
+        \ are valid message ID formats. Note that you must include at least one query\
+        \ parameter."
       example: 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6
       explode: true
       in: query
@@ -4952,8 +4963,9 @@ components:
         type: string
       style: form
     sourceTn:
-      description: |
-        The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919').
+      description: "The phone number that sent the message. Accepted values are: a\
+        \ single full phone number a comma separated list of full phone numbers (maximum\
+        \ of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919')."
       example: '%2B15554443333'
       explode: true
       in: query
@@ -4963,8 +4975,10 @@ components:
         type: string
       style: form
     destinationTn:
-      description: |
-        The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919').
+      description: "The phone number that received the message. Accepted values are:\
+        \ a single full phone number a comma separated list of full phone numbers\
+        \ (maximum of 10) or a single partial phone number (minimum of 5 characters\
+        \ e.g. '%2B1919')."
       example: '%2B15554443333'
       explode: true
       in: query
@@ -4974,8 +4988,8 @@ components:
         type: string
       style: form
     messageStatus:
-      description: |
-        The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED.
+      description: The status of the message. One of RECEIVED QUEUED SENDING SENT
+        FAILED DELIVERED ACCEPTED UNDELIVERED.
       explode: true
       in: query
       name: messageStatus
@@ -4993,8 +5007,9 @@ components:
         $ref: '#/components/schemas/listMessageDirectionEnum'
       style: form
     carrierName:
-      description: |
-        The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&T should be passed as AT%26T).
+      description: The name of the carrier used for this message. Possible values
+        include but are not limited to Verizon and TMobile. Special characters need
+        to be encoded using URL encoding (i.e. AT&T should be passed as AT%26T).
       example: Verizon
       explode: true
       in: query
@@ -5023,8 +5038,8 @@ components:
         type: integer
       style: form
     fromDateTime:
-      description: |
-        The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
+      description: The start of the date range to search in ISO 8601 format. Uses
+        the message receive time. The date range to search in is currently 14 days.
       example: 2022-09-14T18:20:16.000Z
       explode: true
       in: query
@@ -5034,8 +5049,8 @@ components:
         type: string
       style: form
     toDateTime:
-      description: |
-        The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.
+      description: The end of the date range to search in ISO 8601 format. Uses the
+        message receive time. The date range to search in is currently 14 days.
       example: 2022-09-14T18:20:16.000Z
       explode: true
       in: query
@@ -5076,8 +5091,8 @@ components:
         type: string
       style: form
     limit:
-      description: |
-        The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.
+      description: The maximum records requested in search result. Default 100. The
+        sum of limit and after cannot be more than 10000.
       example: 50
       explode: true
       in: query
@@ -6080,8 +6095,8 @@ components:
       example: default
       type: string
     messageStatusEnum:
-      description: |
-        The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED.
+      description: The status of the message. One of RECEIVED QUEUED SENDING SENT
+        FAILED DELIVERED ACCEPTED UNDELIVERED.
       enum:
       - RECEIVED
       - QUEUED
@@ -6407,8 +6422,8 @@ components:
           format: date-time
           type: string
         segmentCount:
-          description: |
-            The number of segments the original message from the user is broken into before sending over to carrier networks.
+          description: The number of segments the original message from the user is
+            broken into before sending over to carrier networks.
           example: 2
           type: integer
         direction:
@@ -6426,8 +6441,10 @@ components:
           example: "+15553332222"
           type: string
         media:
-          description: |
-            The list of media URLs sent in the message. Including a `filename` field in the `Content-Disposition` header of the media linked with a URL will set the displayed file name. This is a best practice to ensure that your media has a readable file name.
+          description: The list of media URLs sent in the message. Including a `filename`
+            field in the `Content-Disposition` header of the media linked with a URL
+            will set the displayed file name. This is a best practice to ensure that
+            your media has a readable file name.
           example:
           - https://dev.bandwidth.com/images/bandwidth-logo.png
           items:
@@ -6474,7 +6491,7 @@ components:
             \ Sender IDs can contain up to 11 characters, upper-case letters A-Z,\
             \ lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore\
             \ _ and ampersand &. Alphanumeric Sender IDs must contain at least one\
-            \ letter.\n"
+            \ letter."
           example: "+15551113333"
           type: string
         text:
@@ -6484,7 +6501,7 @@ components:
           maxLength: 2048
           type: string
         media:
-          description: |
+          description: |-
             A list of URLs to include as media attachments as part of the message.
             Each URL can be at most 4096 characters.
           example:
@@ -6503,7 +6520,7 @@ components:
         priority:
           $ref: '#/components/schemas/priorityEnum'
         expiration:
-          description: |
+          description: |-
             A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future.
             Not supported on MMS.
           example: 2021-02-01T11:29:18-05:00

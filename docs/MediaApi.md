@@ -353,7 +353,7 @@ namespace Example
             var mediaId = 14762070468292kw2fuqty55yp2b2/0/bw.png;  // string | Media ID to retrieve.
             var body = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream | 
             var contentType = audio/wav;  // string | The media type of the entity-body. (optional) 
-            var cacheControl = no-cache;  // string | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.  (optional) 
+            var cacheControl = no-cache;  // string | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional) 
 
             try
             {
@@ -396,7 +396,7 @@ catch (ApiException e)
 | **mediaId** | **string** | Media ID to retrieve. |  |
 | **body** | **System.IO.Stream****System.IO.Stream** |  |  |
 | **contentType** | **string** | The media type of the entity-body. | [optional]  |
-| **cacheControl** | **string** | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain.  | [optional]  |
+| **cacheControl** | **string** | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. | [optional]  |
 
 ### Return type
 

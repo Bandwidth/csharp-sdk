@@ -142,20 +142,20 @@ namespace Example
 
             var apiInstance = new MessagesApi(config);
             var accountId = 9900000;  // string | Your Bandwidth Account ID.
-            var messageId = 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6;  // string | The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter.  (optional) 
-            var sourceTn = %2B15554443333;  // string | The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919').  (optional) 
-            var destinationTn = %2B15554443333;  // string | The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919').  (optional) 
-            var messageStatus = (MessageStatusEnum) "RECEIVED";  // MessageStatusEnum? | The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED.  (optional) 
+            var messageId = 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6;  // string | The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional) 
+            var sourceTn = %2B15554443333;  // string | The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919'). (optional) 
+            var destinationTn = %2B15554443333;  // string | The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. '%2B1919'). (optional) 
+            var messageStatus = (MessageStatusEnum) "RECEIVED";  // MessageStatusEnum? | The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. (optional) 
             var messageDirection = (ListMessageDirectionEnum) "INBOUND";  // ListMessageDirectionEnum? | The direction of the message. One of INBOUND OUTBOUND. (optional) 
-            var carrierName = Verizon;  // string | The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&T should be passed as AT%26T).  (optional) 
+            var carrierName = Verizon;  // string | The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&T should be passed as AT%26T). (optional) 
             var messageType = (MessageTypeEnum) "sms";  // MessageTypeEnum? | The type of message. Either sms or mms. (optional) 
             var errorCode = 9902;  // int? | The error code of the message. (optional) 
-            var fromDateTime = 2022-09-14T18:20:16.000Z;  // string | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.  (optional) 
-            var toDateTime = 2022-09-14T18:20:16.000Z;  // string | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.  (optional) 
+            var fromDateTime = 2022-09-14T18:20:16.000Z;  // string | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional) 
+            var toDateTime = 2022-09-14T18:20:16.000Z;  // string | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional) 
             var campaignId = CJEUMDK;  // string | The campaign ID of the message. (optional) 
             var sort = sourceTn:desc;  // string | The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional) 
             var pageToken = gdEewhcJLQRB5;  // string | A base64 encoded value used for pagination of results. (optional) 
-            var limit = 50;  // int? | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.  (optional) 
+            var limit = 50;  // int? | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional) 
             var limitTotalCount = true;  // bool? | When set to true, the response's totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results. (optional) 
 
             try
@@ -200,20 +200,20 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | Your Bandwidth Account ID. |  |
-| **messageId** | **string** | The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter.  | [optional]  |
-| **sourceTn** | **string** | The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;).  | [optional]  |
-| **destinationTn** | **string** | The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;).  | [optional]  |
-| **messageStatus** | **MessageStatusEnum?** | The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED.  | [optional]  |
+| **messageId** | **string** | The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. | [optional]  |
+| **sourceTn** | **string** | The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). | [optional]  |
+| **destinationTn** | **string** | The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). | [optional]  |
+| **messageStatus** | **MessageStatusEnum?** | The status of the message. One of RECEIVED QUEUED SENDING SENT FAILED DELIVERED ACCEPTED UNDELIVERED. | [optional]  |
 | **messageDirection** | **ListMessageDirectionEnum?** | The direction of the message. One of INBOUND OUTBOUND. | [optional]  |
-| **carrierName** | **string** | The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&amp;T should be passed as AT%26T).  | [optional]  |
+| **carrierName** | **string** | The name of the carrier used for this message. Possible values include but are not limited to Verizon and TMobile. Special characters need to be encoded using URL encoding (i.e. AT&amp;T should be passed as AT%26T). | [optional]  |
 | **messageType** | **MessageTypeEnum?** | The type of message. Either sms or mms. | [optional]  |
 | **errorCode** | **int?** | The error code of the message. | [optional]  |
-| **fromDateTime** | **string** | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.  | [optional]  |
-| **toDateTime** | **string** | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days.  | [optional]  |
+| **fromDateTime** | **string** | The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. | [optional]  |
+| **toDateTime** | **string** | The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. | [optional]  |
 | **campaignId** | **string** | The campaign ID of the message. | [optional]  |
 | **sort** | **string** | The field and direction to sort by combined with a colon. Direction is either asc or desc. | [optional]  |
 | **pageToken** | **string** | A base64 encoded value used for pagination of results. | [optional]  |
-| **limit** | **int?** | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000.  | [optional]  |
+| **limit** | **int?** | The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. | [optional]  |
 | **limitTotalCount** | **bool?** | When set to true, the response&#39;s totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results. | [optional]  |
 
 ### Return type
