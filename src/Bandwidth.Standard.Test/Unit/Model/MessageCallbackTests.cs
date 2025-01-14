@@ -81,7 +81,7 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ToTest()
         {
-            instance.To = "+19195551234"
+            instance.To = "+19195551234";
             Assert.IsType<string>(instance.To);
             Assert.Equal("+19195551234", instance.To);
         }
