@@ -27,10 +27,10 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// Message Delivered Callback Message Schema
+    /// Message payload schema within a MessageCallback
     /// </summary>
-    [DataContract(Name = "messageDeliveredCallbackMessage")]
-    public partial class MessageDeliveredCallbackMessage : IValidatableObject
+    [DataContract(Name = "messageCallbackMessage")]
+    public partial class MessageCallbackMessage : IValidatableObject
     {
 
         /// <summary>
@@ -45,12 +45,12 @@ namespace Bandwidth.Standard.Model
         [DataMember(Name = "priority", EmitDefaultValue = false)]
         public PriorityEnum? Priority { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="MessageDeliveredCallbackMessage" /> class.
+        /// Initializes a new instance of the <see cref="MessageCallbackMessage" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected MessageDeliveredCallbackMessage() { }
+        protected MessageCallbackMessage() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="MessageDeliveredCallbackMessage" /> class.
+        /// Initializes a new instance of the <see cref="MessageCallbackMessage" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
         /// <param name="owner">owner (required).</param>
@@ -61,27 +61,27 @@ namespace Bandwidth.Standard.Model
         /// <param name="to">to (required).</param>
         /// <param name="from">from (required).</param>
         /// <param name="text">text (required).</param>
-        /// <param name="tag">tag (required).</param>
-        /// <param name="media">media.</param>
+        /// <param name="tag">tag.</param>
+        /// <param name="media">Optional media, applicable only for mms.</param>
         /// <param name="priority">priority.</param>
-        public MessageDeliveredCallbackMessage(string id = default(string), string owner = default(string), string applicationId = default(string), DateTime time = default(DateTime), int segmentCount = default(int), MessageDirectionEnum direction = default(MessageDirectionEnum), List<string> to = default(List<string>), string from = default(string), string text = default(string), string tag = default(string), List<string> media = default(List<string>), PriorityEnum? priority = default(PriorityEnum?))
+        public MessageCallbackMessage(string id = default(string), string owner = default(string), string applicationId = default(string), DateTime time = default(DateTime), int segmentCount = default(int), MessageDirectionEnum direction = default(MessageDirectionEnum), List<string> to = default(List<string>), string from = default(string), string text = default(string), string tag = default(string), List<string> media = default(List<string>), PriorityEnum? priority = default(PriorityEnum?))
         {
             // to ensure "id" is required (not null)
             if (id == null)
             {
-                throw new ArgumentNullException("id is a required property for MessageDeliveredCallbackMessage and cannot be null");
+                throw new ArgumentNullException("id is a required property for MessageCallbackMessage and cannot be null");
             }
             this.Id = id;
             // to ensure "owner" is required (not null)
             if (owner == null)
             {
-                throw new ArgumentNullException("owner is a required property for MessageDeliveredCallbackMessage and cannot be null");
+                throw new ArgumentNullException("owner is a required property for MessageCallbackMessage and cannot be null");
             }
             this.Owner = owner;
             // to ensure "applicationId" is required (not null)
             if (applicationId == null)
             {
-                throw new ArgumentNullException("applicationId is a required property for MessageDeliveredCallbackMessage and cannot be null");
+                throw new ArgumentNullException("applicationId is a required property for MessageCallbackMessage and cannot be null");
             }
             this.ApplicationId = applicationId;
             this.Time = time;
@@ -90,26 +90,21 @@ namespace Bandwidth.Standard.Model
             // to ensure "to" is required (not null)
             if (to == null)
             {
-                throw new ArgumentNullException("to is a required property for MessageDeliveredCallbackMessage and cannot be null");
+                throw new ArgumentNullException("to is a required property for MessageCallbackMessage and cannot be null");
             }
             this.To = to;
             // to ensure "from" is required (not null)
             if (from == null)
             {
-                throw new ArgumentNullException("from is a required property for MessageDeliveredCallbackMessage and cannot be null");
+                throw new ArgumentNullException("from is a required property for MessageCallbackMessage and cannot be null");
             }
             this.From = from;
             // to ensure "text" is required (not null)
             if (text == null)
             {
-                throw new ArgumentNullException("text is a required property for MessageDeliveredCallbackMessage and cannot be null");
+                throw new ArgumentNullException("text is a required property for MessageCallbackMessage and cannot be null");
             }
             this.Text = text;
-            // to ensure "tag" is required (not null)
-            if (tag == null)
-            {
-                throw new ArgumentNullException("tag is a required property for MessageDeliveredCallbackMessage and cannot be null");
-            }
             this.Tag = tag;
             this.Media = media;
             this.Priority = priority;
@@ -139,7 +134,7 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Gets or Sets Time
         /// </summary>
-        /// <example>2016-09-14T18:20:16Z</example>
+        /// <example>2024-12-02T20:15:57.666Z</example>
         [DataMember(Name = "time", IsRequired = true, EmitDefaultValue = true)]
         public DateTime Time { get; set; }
 
@@ -175,14 +170,15 @@ namespace Bandwidth.Standard.Model
         /// Gets or Sets Tag
         /// </summary>
         /// <example>custom string</example>
-        [DataMember(Name = "tag", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "tag", EmitDefaultValue = false)]
         public string Tag { get; set; }
 
         /// <summary>
-        /// Gets or Sets Media
+        /// Optional media, applicable only for mms
         /// </summary>
+        /// <value>Optional media, applicable only for mms</value>
         /// <example>[&quot;https://dev.bandwidth.com/images/bandwidth-logo.png&quot;,&quot;https://dev.bandwidth.com/images/github_logo.png&quot;]</example>
-        [DataMember(Name = "media", EmitDefaultValue = false)]
+        [DataMember(Name = "media", EmitDefaultValue = true)]
         public List<string> Media { get; set; }
 
         /// <summary>
@@ -192,7 +188,7 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class MessageDeliveredCallbackMessage {\n");
+            sb.Append("class MessageCallbackMessage {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Owner: ").Append(Owner).Append("\n");
             sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");

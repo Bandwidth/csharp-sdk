@@ -964,6 +964,8 @@ namespace Bandwidth.Standard.Api
                 "audio/3gpp",
                 "image/bmp",
                 "image/gif",
+                "image/heic",
+                "image/heif",
                 "image/jpeg",
                 "image/pjpeg",
                 "image/png",
@@ -974,6 +976,7 @@ namespace Bandwidth.Standard.Api
                 "text/css",
                 "text/csv",
                 "text/calendar",
+                "text/html",
                 "text/plain",
                 "text/javascript",
                 "text/vcard",
@@ -985,7 +988,8 @@ namespace Bandwidth.Standard.Api
                 "video/ogg",
                 "video/quicktime",
                 "video/webm",
-                "video/x-ms-wmv"
+                "video/x-ms-wmv",
+                "video/x-flv"
             };
 
             // to determine the Accept header
@@ -1116,6 +1120,8 @@ namespace Bandwidth.Standard.Api
                 "audio/3gpp", 
                 "image/bmp", 
                 "image/gif", 
+                "image/heic", 
+                "image/heif", 
                 "image/jpeg", 
                 "image/pjpeg", 
                 "image/png", 
@@ -1126,6 +1132,7 @@ namespace Bandwidth.Standard.Api
                 "text/css", 
                 "text/csv", 
                 "text/calendar", 
+                "text/html", 
                 "text/plain", 
                 "text/javascript", 
                 "text/vcard", 
@@ -1137,7 +1144,8 @@ namespace Bandwidth.Standard.Api
                 "video/ogg", 
                 "video/quicktime", 
                 "video/webm", 
-                "video/x-ms-wmv"
+                "video/x-ms-wmv", 
+                "video/x-flv"
             };
 
             // to determine the Accept header
