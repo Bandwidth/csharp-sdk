@@ -21,7 +21,7 @@ env:
   MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
   MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
   OPERATING_SYSTEM: ubuntu-latest
-  DOTNET_VERSION: 7.0.x
+  DOTNET_VERSION: 8.0.x
 
 jobs:
   deploy_pre_release:
