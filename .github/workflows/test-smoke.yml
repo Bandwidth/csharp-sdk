@@ -1,33 +1,38 @@
-name: Smoke Test
+name: Smoke Tests
+
 on:
   schedule:
     - cron: "0 4 * * *"
   pull_request:
-    branches:
-      - main
     paths:
       - "src/Bandwidth.Standard.Test/Smoke/*"
+      - ".github/workflows/test-smoke.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
 
 env:
-  BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
   BW_USERNAME: ${{ secrets.BW_USERNAME }}
   BW_PASSWORD: ${{ secrets.BW_PASSWORD }}
-  BW_USERNAME_FORBIDDEN: ${{ secrets.BW_USERNAME_FORBIDDEN}}
-  BW_PASSWORD_FORBIDDEN: ${{ secrets.BW_PASSWORD_FORBIDDEN}}
-  BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
-  BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
-  BW_NUMBER: ${{ secrets.BW_NUMBER }}
+  BW_USERNAME_FORBIDDEN: ${{ secrets.BW_USERNAME_FORBIDDEN }}
+  BW_PASSWORD_FORBIDDEN: ${{ secrets.BW_PASSWORD_FORBIDDEN }}
   USER_NUMBER: ${{ secrets.USER_NUMBER }}
   BASE_CALLBACK_URL: ${{ secrets.BASE_CALLBACK_URL }}
-  MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
-  MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
   MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
-  MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
 
 jobs:
   test:
     name: Smoke Test
     runs-on: ubuntu-latest
+    env:
+      BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
+      BW_VOICE_APPLICATION_ID: ${{ secrets.BW_VOICE_APPLICATION_ID }}
+      BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_MESSAGING_APPLICATION_ID }}
+      BW_NUMBER: ${{ secrets.BW_NUMBER }}
+      MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_ACTIVE_NUMBER }}
+      MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
+      MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,7 +42,34 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Run functional tests
+      - name: Run Tests
+        env:
+          OPERATING_SYSTEM: ubuntu-latest
+          DOTNET_VERSION: 8.0.x
+        run: |
+          dotnet test src/Bandwidth.Standard.Test --filter DisplayName~Bandwidth.Standard.Test.Smoke
+
+  test_up:
+    name: Smoke Test UP Account
+    runs-on: ubuntu-latest
+    env:
+      BW_ACCOUNT_ID: ${{ secrets.BW_UP_ACCOUNT_ID }}
+      BW_VOICE_APPLICATION_ID: ${{ secrets.BW_UP_VOICE_APPLICATION_ID }}
+      BW_MESSAGING_APPLICATION_ID: ${{ secrets.BW_UP_MESSAGING_APPLICATION_ID }}
+      BW_NUMBER: ${{ secrets.BW_UP_NUMBER }}
+      MANTECA_ACTIVE_NUMBER: ${{ secrets.MANTECA_UP_ACTIVE_NUMBER }}
+      MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_UP_IDLE_NUMBER }}
+      MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_UP_APPLICATION_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Run Tests
         env:
           OPERATING_SYSTEM: ubuntu-latest
           DOTNET_VERSION: 8.0.x

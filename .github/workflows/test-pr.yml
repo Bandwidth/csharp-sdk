@@ -1,9 +1,13 @@
 name: Test PR
+
 on:
   pull_request:
     branches:
       - main
-  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
 
 env:
   BW_ACCOUNT_ID: ${{ secrets.BW_ACCOUNT_ID }}
@@ -31,7 +35,7 @@ jobs:
         dotnet: [6.0.x, 7.0.x, 8.0.x]
       fail-fast: false
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup .NET
