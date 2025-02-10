@@ -50,10 +50,16 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Set OpenAPI Generator Version
+        run: |
+          OPENAPI_VERSION=$(jq .[\"generator-cli\"].version openapitools.json)
+          echo "OPENAPI_GENERATOR_VERSION=$OPENAPI_VERSION" >> $GITHUB_ENV
+        shell: bash
+
       - name: Generate SDK with Updated Version
         uses: Bandwidth/generate-sdk-action@v4.0.0
         with:
-          openapi-generator-version: 7.7.0
+          openapi-generator-version: ${{ env.OPENAPI_GENERATOR_VERSION }}
           language: csharp
           additional-properties: --additional-properties=packageVersion=$RELEASE_VERSION
 

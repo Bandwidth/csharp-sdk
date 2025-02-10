@@ -1,5 +1,4 @@
 apiName: Bandwidth
 packageName: Bandwidth.Standard
 packageTags: Bandwidth
-packageVersion: 1.0.0
 targetFramework: netstandard2.0
