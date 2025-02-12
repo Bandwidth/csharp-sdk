@@ -75,7 +75,7 @@ jobs:
           NUGET_SOURCE: https://api.nuget.org/v3/index.json
         run: dotnet nuget push $BW_PROJECT_NAME/bin/Release/*.nupkg -s $NUGET_SOURCE -k $NUGET_KEY
 
-      - uses: Bandwidth/build-notify-slack-action@v2.0.0
+      - uses: Bandwidth/build-notify-slack-action@v2
         if: always()
         with:
           job-status: ${{ job.status }}
