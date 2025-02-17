@@ -31,7 +31,11 @@ namespace Bandwidth.Standard.Test.Unit.Model
 
         public MessageRequestTests()
         {
-            instance = new MessageRequest("123-456-abcd", new List<string> { "+15557654321" }, "+15551113333");
+            instance = new MessageRequest(
+                applicationId: "123-456-abcd",
+                to: new List<string> { "+15557654321" },
+                from: "+15551113333"
+            );
         }
 
         public void Dispose()

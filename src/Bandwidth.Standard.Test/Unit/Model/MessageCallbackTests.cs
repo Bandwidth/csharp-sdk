@@ -20,7 +20,7 @@ using Bandwidth.Standard.Client;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace Bandwidth.Standard.Test.Model
+namespace Bandwidth.Standard.Test.Unit.Model
 {
     /// <summary>
     ///  Class for testing MessageCallback
@@ -32,10 +32,33 @@ namespace Bandwidth.Standard.Test.Model
     public class MessageCallbackTests : IDisposable
     {
         private MessageCallback instance;
+        private MessageCallbackMessage message;
 
         public MessageCallbackTests()
         {
-            instance = new MessageCallback();
+            message = new MessageCallbackMessage(
+                id: "test",
+                owner: "test",
+                applicationId: "test",
+                time: new DateTime(2020, 1, 1),
+                segmentCount: 1,
+                direction: MessageDirectionEnum.In,
+                to: new List<string> { "+15551234567" },
+                from: "+15557654321",
+                text: "Hello World",
+                tag: "test",
+                media: new List<string> { "https://test.url/" },
+                priority: PriorityEnum.Default
+            );
+
+            instance = new MessageCallback(
+                time: new DateTime(2020, 1, 1),
+                type: CallbackTypeEnum.Received,
+                to: "+19195551234",
+                description: "test",
+                message: message,
+                errorCode: 123
+            );
         }
 
         public void Dispose()
@@ -58,7 +81,6 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TimeTest()
         {
-            instance.Time = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.Time);
             Assert.Equal(new DateTime(2020, 1, 1), instance.Time);
         }
@@ -69,7 +91,6 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void TypeTest()
         {
-            instance.Type = CallbackTypeEnum.Received;
             Assert.IsType<CallbackTypeEnum>(instance.Type);
             Assert.Equal(CallbackTypeEnum.Received, instance.Type);
         }
@@ -80,7 +101,6 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ToTest()
         {
-            instance.To = "+19195551234";
             Assert.IsType<string>(instance.To);
             Assert.Equal("+19195551234", instance.To);
         }
@@ -91,7 +111,6 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void DescriptionTest()
         {
-            instance.Description = "test";
             Assert.IsType<string>(instance.Description);
             Assert.Equal("test", instance.Description);
         }
@@ -102,8 +121,8 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MessageTest()
         {
-            instance.Message = new MessageCallbackMessage();
             Assert.IsType<MessageCallbackMessage>(instance.Message);
+            Assert.Equal(message, instance.Message);
         }
 
         /// <summary>
@@ -112,7 +131,6 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ErrorCodeTest()
         {
-            instance.ErrorCode = 123;
             Assert.IsType<int>(instance.ErrorCode);
             Assert.Equal(123, instance.ErrorCode);
         }

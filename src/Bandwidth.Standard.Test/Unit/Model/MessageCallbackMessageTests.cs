@@ -20,7 +20,7 @@ using Bandwidth.Standard.Client;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace Bandwidth.Standard.Test.Model
+namespace Bandwidth.Standard.Test.Unit.Model
 {
     /// <summary>
     ///  Class for testing MessageCallbackMessage
@@ -35,7 +35,20 @@ namespace Bandwidth.Standard.Test.Model
 
         public MessageCallbackMessageTests()
         {
-            instance = new MessageCallbackMessage();
+            instance = new MessageCallbackMessage(
+                id: "test",
+                owner: "test",
+                applicationId: "test",
+                time: new DateTime(2020, 1, 1),
+                segmentCount: 1,
+                direction: MessageDirectionEnum.In,
+                to: new List<string> { "+15551234567" },
+                from: "+15557654321",
+                text: "Hello World",
+                tag: "test",
+                media: new List<string> { "https://test.url/" },
+                priority: PriorityEnum.Default
+            );
         }
 
         public void Dispose()

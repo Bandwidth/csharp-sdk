@@ -28,10 +28,22 @@ namespace Bandwidth.Standard.Test.Unit.Model
     public class CreateMessageRequestErrorTests : IDisposable
     {
         private CreateMessageRequestError instance;
+        private List<FieldError> fieldErrors;
 
         public CreateMessageRequestErrorTests()
         {
-            instance = new CreateMessageRequestError(type: "type", description: "description");
+            fieldErrors = new List<FieldError>() {
+                new FieldError(
+                    fieldName: "from", 
+                    description: "`invalid` must be replaced with a valid E164 formatted telephone number"
+                )
+            };
+
+            instance = new CreateMessageRequestError(
+                type: "type",
+                description: "description",
+                fieldErrors: fieldErrors
+            );
         }
 
         public void Dispose()
@@ -73,8 +85,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void FieldErrorsTest()
         {
-            var fieldErrors = new List<FieldError>() { new FieldError("from", "`invalid` must be replaced with a valid E164 formatted telephone number") };
-            instance.FieldErrors = fieldErrors;
             Assert.IsType<List<FieldError>>(instance.FieldErrors);
             Assert.Equal(fieldErrors, instance.FieldErrors);
         }

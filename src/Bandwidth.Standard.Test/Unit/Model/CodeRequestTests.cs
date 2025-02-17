@@ -31,7 +31,14 @@ namespace Bandwidth.Standard.Test.Unit.Model
 
         public CodeRequestTests()
         {
-            instance = new CodeRequest(to: "+19195551234", from: "+19195554321", applicationId: "66fd98ae-ac8d-a00f-7fcd-ba3280aeb9b1", message: "Your temporary {NAME} {SCOPE} code is {CODE}");
+            instance = new CodeRequest(
+                to: "+19195551234",
+                from: "+19195554321",
+                applicationId: "66fd98ae-ac8d-a00f-7fcd-ba3280aeb9b1",
+                scope: "2FA",
+                message: "Your temporary {NAME} {SCOPE} code is {CODE}",
+                digits: 6
+            );
         }
 
         public void Dispose()
@@ -73,7 +80,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void ApplicationIdTest()
         {
-            instance.ApplicationId = "66fd98ae-ac8d-a00f-7fcd-ba3280aeb9b1";
             Assert.IsType<string>(instance.ApplicationId);
             Assert.Equal("66fd98ae-ac8d-a00f-7fcd-ba3280aeb9b1", instance.ApplicationId);
         }
@@ -83,7 +89,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void ScopeTest()
         {
-            instance.Scope = "2FA";
             Assert.IsType<string>(instance.Scope);
             Assert.Equal("2FA", instance.Scope);
         }
@@ -93,7 +98,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void MessageTest()
         {
-            instance.Message = "Your temporary {NAME} {SCOPE} code is {CODE}";
             Assert.IsType<string>(instance.Message);
             Assert.Equal("Your temporary {NAME} {SCOPE} code is {CODE}", instance.Message);
         }
@@ -103,7 +107,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void DigitsTest()
         {
-            instance.Digits = 6;
             Assert.IsType<int>(instance.Digits);
             Assert.Equal(6, instance.Digits);
         }

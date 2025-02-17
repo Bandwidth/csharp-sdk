@@ -31,7 +31,29 @@ namespace Bandwidth.Standard.Test.Unit.Model
 
         public CreateCallResponseTests()
         {
-            instance = new CreateCallResponse(applicationId: "04e88489-df02-4e34-a0ee-27a91849555f", accountId: "04e88489-df02-4e34-a0ee-27a91849555f", callId: "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", to: "+19195551234", from: "+19195554321", callUrl: "https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", answerUrl: "https://myServer.example/bandwidth/webhooks/answer");
+            instance = new CreateCallResponse(
+                applicationId: "04e88489-df02-4e34-a0ee-27a91849555f",
+                accountId: "04e88489-df02-4e34-a0ee-27a91849555f",
+                callId: "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85",
+                to: "+19195551234",
+                from: "+19195554321",
+                callUrl: "https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85",
+                answerUrl: "https://myServer.example/bandwidth/webhooks/answer",
+                enqueuedTime: new DateTime(2020, 1, 1),
+                callTimeout: 30,
+                callbackTimeout: 15,
+                tag: "test",
+                answerMethod: CallbackMethodEnum.POST,
+                answerFallbackMethod: CallbackMethodEnum.POST,
+                answerFallbackUrl: "https://fallbackTest.url/",
+                disconnectMethod: CallbackMethodEnum.POST,
+                disconnectUrl: "https://disconnectTest.url/",
+                username: "username",
+                password: "password",
+                fallbackUsername: "fallbackUsername",
+                fallbackPassword: "fallbackPassword",
+                priority: 1
+            );
         }
 
         public void Dispose()
@@ -100,7 +122,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void EnqueuedTimeTest()
         {
-            instance.EnqueuedTime = new DateTime(2020, 1, 1);
             Assert.IsType<DateTime>(instance.EnqueuedTime);
             Assert.Equal(new DateTime(2020, 1, 1), instance.EnqueuedTime);
         }
@@ -119,7 +140,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void CallTimeoutTest()
         {
-            instance.CallTimeout = 30;
             Assert.IsType<double>(instance.CallTimeout);
             Assert.Equal(30, instance.CallTimeout);
         }
@@ -129,7 +149,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void CallbackTimeoutTest()
         {
-            instance.CallbackTimeout = 15;
             Assert.IsType<double>(instance.CallbackTimeout);
             Assert.Equal(15, instance.CallbackTimeout);
         }
@@ -139,7 +158,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void TagTest()
         {
-            instance.Tag = "test";
             Assert.IsType<string>(instance.Tag);
             Assert.Equal("test", instance.Tag);
         }
@@ -149,7 +167,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void AnswerMethodTest()
         {
-            instance.AnswerMethod = CallbackMethodEnum.POST;
             Assert.IsType<CallbackMethodEnum>(instance.AnswerMethod);
             Assert.Equal(CallbackMethodEnum.POST, instance.AnswerMethod);
         }
@@ -168,7 +185,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void AnswerFallbackMethodTest()
         {
-            instance.AnswerFallbackMethod = CallbackMethodEnum.POST;
             Assert.IsType<CallbackMethodEnum>(instance.AnswerFallbackMethod);
             Assert.Equal(CallbackMethodEnum.POST, instance.AnswerFallbackMethod);
         }
@@ -178,7 +194,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void AnswerFallbackUrlTest()
         {
-            instance.AnswerFallbackUrl = "https://fallbackTest.url/";
             Assert.IsType<string>(instance.AnswerFallbackUrl);
             Assert.Equal("https://fallbackTest.url/", instance.AnswerFallbackUrl);
         }
@@ -188,7 +203,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void DisconnectMethodTest()
         {
-            instance.DisconnectMethod = CallbackMethodEnum.POST;
             Assert.IsType<CallbackMethodEnum>(instance.DisconnectMethod);
             Assert.Equal(CallbackMethodEnum.POST, instance.DisconnectMethod);
         }
@@ -198,7 +212,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void DisconnectUrlTest()
         {
-            instance.DisconnectUrl = "https://disconnectTest.url/";
             Assert.IsType<string>(instance.DisconnectUrl);
             Assert.Equal("https://disconnectTest.url/", instance.DisconnectUrl);
         }
@@ -208,7 +221,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void UsernameTest()
         {
-            instance.Username = "username";
             Assert.IsType<string>(instance.Username);
             Assert.Equal("username", instance.Username);
         }
@@ -218,7 +230,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void PasswordTest()
         {
-            instance.Password = "password";
             Assert.IsType<string>(instance.Password);
             Assert.Equal("password", instance.Password);
         }
@@ -228,7 +239,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void FallbackUsernameTest()
         {
-            instance.FallbackUsername = "fallbackUsername";
             Assert.IsType<string>(instance.FallbackUsername);
             Assert.Equal("fallbackUsername", instance.FallbackUsername);
         }
@@ -238,7 +248,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void FallbackPasswordTest()
         {
-            instance.FallbackPassword = "fallbackPassword";
             Assert.IsType<string>(instance.FallbackPassword);
             Assert.Equal("fallbackPassword", instance.FallbackPassword);
         }
@@ -248,7 +257,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void PriorityTest()
         {
-            instance.Priority = 1;
             Assert.IsType<int>(instance.Priority);
             Assert.Equal(1, instance.Priority);
         }

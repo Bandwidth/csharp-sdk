@@ -31,7 +31,10 @@ namespace Bandwidth.Standard.Test.Unit.Model
 
         public MessagingRequestErrorTests()
         {
-            instance = new MessagingRequestError(type: "type", description: "description");
+            instance = new MessagingRequestError(
+                type: "type",
+                description: "description"
+            );
         }
 
         public void Dispose()
@@ -55,7 +58,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void TypeTest()
         {
-            instance.Type = "type";
             Assert.IsType<string>(instance.Type);
             Assert.Equal("type", instance.Type);
         }
@@ -65,7 +67,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void DescriptionTest()
         {
-            instance.Description = "description";
             Assert.IsType<string>(instance.Description);
             Assert.Equal("description", instance.Description);
         }

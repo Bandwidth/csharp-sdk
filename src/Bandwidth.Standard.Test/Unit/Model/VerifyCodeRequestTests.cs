@@ -31,7 +31,12 @@ namespace Bandwidth.Standard.Test.Unit.Model
 
         public VerifyCodeRequestTests()
         {
-            instance = new VerifyCodeRequest(to: "+19195551234", code: "123456");
+            instance = new VerifyCodeRequest(
+                to: "+19195551234",
+                code: "123456",
+                scope: "2FA",
+                expirationTimeInMinutes: 3
+            );
         }
 
         public void Dispose()
@@ -64,7 +69,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void ScopeTest()
         {
-            instance.Scope = "2FA";
             Assert.IsType<string>(instance.Scope);
             Assert.Equal("2FA", instance.Scope);
         }
@@ -74,7 +78,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void ExpirationTimeInMinutesTest()
         {
-            instance.ExpirationTimeInMinutes = 3;
             Assert.IsType<decimal>(instance.ExpirationTimeInMinutes);
             Assert.Equal(3, instance.ExpirationTimeInMinutes);
         }
