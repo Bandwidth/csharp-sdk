@@ -144,6 +144,14 @@ Class | Method | HTTP request | Description
 *RecordingsApi* | [**TranscribeCallRecording**](docs/RecordingsApi.md#transcribecallrecording) | **POST** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Create Transcription Request
 *RecordingsApi* | [**UpdateCallRecordingState**](docs/RecordingsApi.md#updatecallrecordingstate) | **PUT** /accounts/{accountId}/calls/{callId}/recording | Update Recording
 *StatisticsApi* | [**GetStatistics**](docs/StatisticsApi.md#getstatistics) | **GET** /accounts/{accountId}/statistics | Get Account Statistics
+*TollFreeVerificationApi* | [**CreateWebhookSubscription**](docs/TollFreeVerificationApi.md#createwebhooksubscription) | **POST** /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions | Create Webhook Subscription
+*TollFreeVerificationApi* | [**DeleteWebhookSubscription**](docs/TollFreeVerificationApi.md#deletewebhooksubscription) | **DELETE** /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions/{id} | Delete Webhook Subscription
+*TollFreeVerificationApi* | [**GetTollFreeVerificationStatus**](docs/TollFreeVerificationApi.md#gettollfreeverificationstatus) | **GET** /accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification | Get Toll-Free Verification Status
+*TollFreeVerificationApi* | [**ListTollFreeUseCases**](docs/TollFreeVerificationApi.md#listtollfreeusecases) | **GET** /tollFreeVerification/useCases | List Toll-Free Use Cases
+*TollFreeVerificationApi* | [**ListWebhookSubscriptions**](docs/TollFreeVerificationApi.md#listwebhooksubscriptions) | **GET** /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions | List Webhook Subscriptions
+*TollFreeVerificationApi* | [**RequestTollFreeVerification**](docs/TollFreeVerificationApi.md#requesttollfreeverification) | **POST** /accounts/{accountId}/tollFreeVerification | Request Toll-Free Verification
+*TollFreeVerificationApi* | [**UpdateTollFreeVerificationRequest**](docs/TollFreeVerificationApi.md#updatetollfreeverificationrequest) | **PUT** /accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification | Update Toll-Free Verification Request
+*TollFreeVerificationApi* | [**UpdateWebhookSubscription**](docs/TollFreeVerificationApi.md#updatewebhooksubscription) | **PUT** /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions/{id} | Update Webhook Subscription
 *TranscriptionsApi* | [**DeleteRealTimeTranscription**](docs/TranscriptionsApi.md#deleterealtimetranscription) | **DELETE** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Delete a specific transcription
 *TranscriptionsApi* | [**GetRealTimeTranscription**](docs/TranscriptionsApi.md#getrealtimetranscription) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Retrieve a specific transcription
 *TranscriptionsApi* | [**ListRealTimeTranscriptions**](docs/TranscriptionsApi.md#listrealtimetranscriptions) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions | Enumerate transcriptions made with StartTranscription
@@ -153,6 +161,8 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [Model.AccountStatistics](docs/AccountStatistics.md)
+ - [Model.AdditionalDenialReason](docs/AdditionalDenialReason.md)
+ - [Model.Address](docs/Address.md)
  - [Model.AnswerCallback](docs/AnswerCallback.md)
  - [Model.BridgeCompleteCallback](docs/BridgeCompleteCallback.md)
  - [Model.BridgeTargetCompleteCallback](docs/BridgeTargetCompleteCallback.md)
@@ -178,6 +188,7 @@ Class | Method | HTTP request | Description
  - [Model.ConferenceRecordingMetadata](docs/ConferenceRecordingMetadata.md)
  - [Model.ConferenceRedirectCallback](docs/ConferenceRedirectCallback.md)
  - [Model.ConferenceStateEnum](docs/ConferenceStateEnum.md)
+ - [Model.Contact](docs/Contact.md)
  - [Model.CreateCall](docs/CreateCall.md)
  - [Model.CreateCallResponse](docs/CreateCallResponse.md)
  - [Model.CreateLookupResponse](docs/CreateLookupResponse.md)
@@ -186,10 +197,13 @@ Class | Method | HTTP request | Description
  - [Model.DisconnectCallback](docs/DisconnectCallback.md)
  - [Model.Diversion](docs/Diversion.md)
  - [Model.DtmfCallback](docs/DtmfCallback.md)
+ - [Model.Error](docs/Error.md)
+ - [Model.FailureWebhook](docs/FailureWebhook.md)
  - [Model.FieldError](docs/FieldError.md)
  - [Model.FileFormatEnum](docs/FileFormatEnum.md)
  - [Model.GatherCallback](docs/GatherCallback.md)
  - [Model.InitiateCallback](docs/InitiateCallback.md)
+ - [Model.LinksObject](docs/LinksObject.md)
  - [Model.ListMessageDirectionEnum](docs/ListMessageDirectionEnum.md)
  - [Model.ListMessageItem](docs/ListMessageItem.md)
  - [Model.LookupRequest](docs/LookupRequest.md)
@@ -214,6 +228,7 @@ Class | Method | HTTP request | Description
  - [Model.MfaForbiddenRequestError](docs/MfaForbiddenRequestError.md)
  - [Model.MfaRequestError](docs/MfaRequestError.md)
  - [Model.MfaUnauthorizedRequestError](docs/MfaUnauthorizedRequestError.md)
+ - [Model.OptInWorkflow](docs/OptInWorkflow.md)
  - [Model.PageInfo](docs/PageInfo.md)
  - [Model.PriorityEnum](docs/PriorityEnum.md)
  - [Model.RecordingAvailableCallback](docs/RecordingAvailableCallback.md)
@@ -225,6 +240,14 @@ Class | Method | HTTP request | Description
  - [Model.RedirectMethodEnum](docs/RedirectMethodEnum.md)
  - [Model.StirShaken](docs/StirShaken.md)
  - [Model.Tag](docs/Tag.md)
+ - [Model.TelephoneNumber](docs/TelephoneNumber.md)
+ - [Model.TfvBasicAuthentication](docs/TfvBasicAuthentication.md)
+ - [Model.TfvCallbackStatusEnum](docs/TfvCallbackStatusEnum.md)
+ - [Model.TfvError](docs/TfvError.md)
+ - [Model.TfvStatus](docs/TfvStatus.md)
+ - [Model.TfvStatusEnum](docs/TfvStatusEnum.md)
+ - [Model.TfvSubmissionInfo](docs/TfvSubmissionInfo.md)
+ - [Model.TfvSubmissionWrapper](docs/TfvSubmissionWrapper.md)
  - [Model.TnLookupRequestError](docs/TnLookupRequestError.md)
  - [Model.TranscribeRecording](docs/TranscribeRecording.md)
  - [Model.Transcription](docs/Transcription.md)
@@ -236,10 +259,19 @@ Class | Method | HTTP request | Description
  - [Model.UpdateCallRecording](docs/UpdateCallRecording.md)
  - [Model.UpdateConference](docs/UpdateConference.md)
  - [Model.UpdateConferenceMember](docs/UpdateConferenceMember.md)
+ - [Model.VerificationDenialWebhook](docs/VerificationDenialWebhook.md)
+ - [Model.VerificationRequest](docs/VerificationRequest.md)
+ - [Model.VerificationUpdateRequest](docs/VerificationUpdateRequest.md)
+ - [Model.VerificationWebhook](docs/VerificationWebhook.md)
  - [Model.VerifyCodeRequest](docs/VerifyCodeRequest.md)
  - [Model.VerifyCodeResponse](docs/VerifyCodeResponse.md)
  - [Model.VoiceApiError](docs/VoiceApiError.md)
  - [Model.VoiceCodeResponse](docs/VoiceCodeResponse.md)
+ - [Model.WebhookSubscription](docs/WebhookSubscription.md)
+ - [Model.WebhookSubscriptionBasicAuthentication](docs/WebhookSubscriptionBasicAuthentication.md)
+ - [Model.WebhookSubscriptionRequestSchema](docs/WebhookSubscriptionRequestSchema.md)
+ - [Model.WebhookSubscriptionTypeEnum](docs/WebhookSubscriptionTypeEnum.md)
+ - [Model.WebhookSubscriptionsListBody](docs/WebhookSubscriptionsListBody.md)
 
 
 <a id="documentation-for-authorization"></a>

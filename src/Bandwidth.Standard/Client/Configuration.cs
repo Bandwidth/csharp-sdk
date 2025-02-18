@@ -562,6 +562,102 @@ namespace Bandwidth.Standard.Client
                     }
                 },
                 {
+                    "TollFreeVerificationApi.CreateWebhookSubscription", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/api/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "TollFreeVerificationApi.DeleteWebhookSubscription", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/api/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "TollFreeVerificationApi.GetTollFreeVerificationStatus", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/api/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "TollFreeVerificationApi.ListTollFreeUseCases", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/api/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "TollFreeVerificationApi.ListWebhookSubscriptions", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/api/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "TollFreeVerificationApi.RequestTollFreeVerification", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/api/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "TollFreeVerificationApi.UpdateTollFreeVerificationRequest", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/api/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "TollFreeVerificationApi.UpdateWebhookSubscription", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/api/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
                     "TranscriptionsApi.DeleteRealTimeTranscription", new List<IReadOnlyDictionary<string, object>>
                     {
                         {

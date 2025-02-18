@@ -21,6 +21,7 @@ tags:
 - name: Transcriptions
 - name: MFA
 - name: Phone Number Lookup
+- name: Toll-Free Verification
 paths:
   /users/{accountId}/media:
     get:
@@ -4539,6 +4540,809 @@ paths:
     servers:
     - description: Production
       url: https://numbers.bandwidth.com/api/v1
+  /accounts/{accountId}/tollFreeVerification:
+    post:
+      callbacks:
+        tfVerificationStatus:
+          $ref: '#/components/callbacks/tfVerificationStatus'
+      description: Submit a request for verification of a toll-free phone number.
+      operationId: requestTollFreeVerification
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/requestTollFreeVerificationRequest'
+      responses:
+        "202":
+          description: Accepted
+        "400":
+          content:
+            application/json:
+              example:
+                description: cannot process request.
+                errors:
+                  businessName: Business name is required.
+                  businessContactEmail: Business contact email is not a valid email
+                    address.
+                  optInWorkflowImageURLs: Entries must be a valid array of objects.
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              example:
+                description: Client is providing incorrect or invalid credentials.
+                type: unauthorized
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              example:
+                description: Client is not authorized for the action.
+                type: forbidden
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Forbidden
+        "405":
+          content:
+            application/json:
+              example:
+                description: Method is not allowed.
+                type: Method Not Allowed
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Method Not Allowed
+        "429":
+          content:
+            application/json:
+              example:
+                description: Throttling error. Too many requests.
+                type: Too Many Requests
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              example:
+                description: Internal Server Error.
+                type: Internal Server Error
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Internal Server Error
+        "503":
+          content:
+            application/json:
+              example:
+                description: Service Unavailable Error.
+                type: Service Unavailable
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Service Unavailable
+      summary: Request Toll-Free Verification
+      tags:
+      - Toll-Free Verification
+    servers:
+    - description: Production
+      url: https://api.bandwidth.com/api/v2
+  /accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification:
+    get:
+      description: |-
+        Gets the verification status for a phone number that is provisioned to your account.
+        Submission information will be appended to the response if it is available.
+      operationId: getTollFreeVerificationStatus
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Valid Toll-Free telephone number in E.164 format.
+        example: "+18885555555"
+        explode: false
+        in: path
+        name: phoneNumber
+        required: true
+        schema:
+          $ref: '#/components/schemas/tfPhoneNumber'
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tfvStatus'
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                description: Cannot process request.
+                type: bad request
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              example:
+                description: Client is providing incorrect or invalid credentials.
+                type: unauthorized
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              example:
+                description: Client is not authorized for the action.
+                type: forbidden
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              example:
+                description: Cannot find the requested resource.
+                type: Not Found
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Cannot find the requested resource.
+        "405":
+          content:
+            application/json:
+              example:
+                description: Method is not allowed.
+                type: Method Not Allowed
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Method Not Allowed
+        "429":
+          content:
+            application/json:
+              example:
+                description: Throttling error. Too many requests.
+                type: Too Many Requests
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              example:
+                description: Internal Server Error.
+                type: Internal Server Error
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Internal Server Error
+        "503":
+          content:
+            application/json:
+              example:
+                description: Service Unavailable Error.
+                type: Service Unavailable
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Service Unavailable
+      summary: Get Toll-Free Verification Status
+      tags:
+      - Toll-Free Verification
+    put:
+      callbacks:
+        tfVerificationStatus:
+          $ref: '#/components/callbacks/tfVerificationStatus'
+      description: |-
+        Updates a toll-free verification request.
+        Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true).
+      operationId: updateTollFreeVerificationRequest
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Valid Toll-Free telephone number in E.164 format.
+        example: "+18885555555"
+        explode: false
+        in: path
+        name: phoneNumber
+        required: true
+        schema:
+          $ref: '#/components/schemas/tfPhoneNumber'
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/updateTollFreeVerificationRequestRequest'
+      responses:
+        "202":
+          description: Accepted
+        "400":
+          content:
+            application/json:
+              example:
+                description: cannot process request.
+                errors:
+                  businessName: Business name is required.
+                  businessContactEmail: Business contact email is not a valid email
+                    address.
+                  optInWorkflowImageURLs: Entries must be a valid array of objects.
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              example:
+                description: Client is providing incorrect or invalid credentials.
+                type: unauthorized
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              example:
+                description: Client is not authorized for the action.
+                type: forbidden
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Forbidden
+        "405":
+          content:
+            application/json:
+              example:
+                description: Method is not allowed.
+                type: Method Not Allowed
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Method Not Allowed
+        "429":
+          content:
+            application/json:
+              example:
+                description: Throttling error. Too many requests.
+                type: Too Many Requests
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              example:
+                description: Internal Server Error.
+                type: Internal Server Error
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Internal Server Error
+        "503":
+          content:
+            application/json:
+              example:
+                description: Service Unavailable Error.
+                type: Service Unavailable
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Service Unavailable
+      summary: Update Toll-Free Verification Request
+      tags:
+      - Toll-Free Verification
+    servers:
+    - description: Production
+      url: https://api.bandwidth.com/api/v2
+  /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions:
+    get:
+      description: |-
+        Lists all webhook subscriptions that are registered to receive status updates for the toll-free verification requests submitted under this account (password will not be returned through this API
+        If `basicAuthentication` is defined, the `password` property of that object will be null).
+      operationId: listWebhookSubscriptions
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhookSubscriptionsListBody'
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                description: cannot process request.
+                errors:
+                  businessName: Business name is required.
+                  businessContactEmail: Business contact email is not a valid email
+                    address.
+                  optInWorkflowImageURLs: Entries must be a valid array of objects.
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              example:
+                description: Client is providing incorrect or invalid credentials.
+                type: unauthorized
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              example:
+                description: Client is not authorized for the action.
+                type: forbidden
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Forbidden
+        "405":
+          content:
+            application/json:
+              example:
+                description: Method is not allowed.
+                type: Method Not Allowed
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Method Not Allowed
+        "429":
+          content:
+            application/json:
+              example:
+                description: Throttling error. Too many requests.
+                type: Too Many Requests
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              example:
+                description: Internal Server Error.
+                type: Internal Server Error
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Internal Server Error
+        "503":
+          content:
+            application/json:
+              example:
+                description: Service Unavailable Error.
+                type: Service Unavailable
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Service Unavailable
+      summary: List Webhook Subscriptions
+      tags:
+      - Toll-Free Verification
+    post:
+      description: |-
+        Create a new webhook subscription (this webhook will be called for every update on every submission).
+        In addition to a `callbackUrl`, this subscription can provide optional HTTP basic authentication credentials (a username and a password).
+        The returned subscription object will contain an ID that can be used to modify or delete the subscription at a later time.
+      operationId: createWebhookSubscription
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/webhookSubscriptionRequest'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhookSubscription'
+          description: Created
+        "400":
+          content:
+            application/json:
+              example:
+                description: Cannot process request.
+                type: bad request
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              example:
+                description: Client is providing incorrect or invalid credentials.
+                type: unauthorized
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              example:
+                description: Client is not authorized for the action.
+                type: forbidden
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              example:
+                description: Cannot find the requested resource.
+                type: Not Found
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Cannot find the requested resource.
+        "405":
+          content:
+            application/json:
+              example:
+                description: Method is not allowed.
+                type: Method Not Allowed
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Method Not Allowed
+        "429":
+          content:
+            application/json:
+              example:
+                description: Throttling error. Too many requests.
+                type: Too Many Requests
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              example:
+                description: Internal Server Error.
+                type: Internal Server Error
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Internal Server Error
+        "503":
+          content:
+            application/json:
+              example:
+                description: Service Unavailable Error.
+                type: Service Unavailable
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Service Unavailable
+      summary: Create Webhook Subscription
+      tags:
+      - Toll-Free Verification
+    servers:
+    - description: Production
+      url: https://api.bandwidth.com/api/v2
+  /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions/{id}:
+    delete:
+      description: Delete a webhook subscription by ID.
+      operationId: deleteWebhookSubscription
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Webhook subscription ID
+        example: 7bt57JcsVYJrN9K1OcV1Nu
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              example:
+                description: Cannot process request.
+                type: bad request
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              example:
+                description: Client is providing incorrect or invalid credentials.
+                type: unauthorized
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              example:
+                description: Client is not authorized for the action.
+                type: forbidden
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              example:
+                description: Cannot find the requested resource.
+                type: Not Found
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Cannot find the requested resource.
+        "405":
+          content:
+            application/json:
+              example:
+                description: Method is not allowed.
+                type: Method Not Allowed
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Method Not Allowed
+        "429":
+          content:
+            application/json:
+              example:
+                description: Throttling error. Too many requests.
+                type: Too Many Requests
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              example:
+                description: Internal Server Error.
+                type: Internal Server Error
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Internal Server Error
+        "503":
+          content:
+            application/json:
+              example:
+                description: Service Unavailable Error.
+                type: Service Unavailable
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Service Unavailable
+      summary: Delete Webhook Subscription
+      tags:
+      - Toll-Free Verification
+    put:
+      description: Update an existing webhook subscription (`callbackUrl` and `basicAuthentication`
+        can be updated).
+      operationId: updateWebhookSubscription
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Webhook subscription ID
+        example: 7bt57JcsVYJrN9K1OcV1Nu
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/webhookSubscriptionRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhookSubscription'
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                description: Cannot process request.
+                type: bad request
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              example:
+                description: Client is providing incorrect or invalid credentials.
+                type: unauthorized
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              example:
+                description: Client is not authorized for the action.
+                type: forbidden
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              example:
+                description: Cannot find the requested resource.
+                type: Not Found
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Cannot find the requested resource.
+        "405":
+          content:
+            application/json:
+              example:
+                description: Method is not allowed.
+                type: Method Not Allowed
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Method Not Allowed
+        "429":
+          content:
+            application/json:
+              example:
+                description: Throttling error. Too many requests.
+                type: Too Many Requests
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              example:
+                description: Internal Server Error.
+                type: Internal Server Error
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Internal Server Error
+        "503":
+          content:
+            application/json:
+              example:
+                description: Service Unavailable Error.
+                type: Service Unavailable
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Service Unavailable
+      summary: Update Webhook Subscription
+      tags:
+      - Toll-Free Verification
+    servers:
+    - description: Production
+      url: https://api.bandwidth.com/api/v2
+  /tollFreeVerification/useCases:
+    get:
+      description: Lists valid toll-free use cases.
+      operationId: listTollFreeUseCases
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/useCases'
+          description: OK
+        "400":
+          content:
+            application/json:
+              example:
+                description: Cannot process request.
+                type: bad request
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              example:
+                description: Client is providing incorrect or invalid credentials.
+                type: unauthorized
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              example:
+                description: Client is not authorized for the action.
+                type: forbidden
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              example:
+                description: Cannot find the requested resource.
+                type: Not Found
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Cannot find the requested resource.
+        "405":
+          content:
+            application/json:
+              example:
+                description: Method is not allowed.
+                type: Method Not Allowed
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Method Not Allowed
+        "429":
+          content:
+            application/json:
+              example:
+                description: Throttling error. Too many requests.
+                type: Too Many Requests
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              example:
+                description: Internal Server Error.
+                type: Internal Server Error
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Internal Server Error
+        "503":
+          content:
+            application/json:
+              example:
+                description: Service Unavailable Error.
+                type: Service Unavailable
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Service Unavailable
+      summary: List Toll-Free Use Cases
+      tags:
+      - Toll-Free Verification
+    servers:
+    - description: Production
+      url: https://api.bandwidth.com/api/v2
 components:
   callbacks:
     inboundCallback:
@@ -4587,6 +5391,102 @@ components:
           responses:
             "200":
               description: OK
+    tfVerificationStatus:
+      your_url.com/webhookService:
+        post:
+          description: Unique webhook URL provided by customers to which Bandwidth
+            sends a POST request to notify customer regarding TFV status updates.
+          operationId: tfvRequest
+          parameters:
+          - description: "64-character lowercase hexidecimal HMAC calculated with\
+              \ a shared secret key, the canonicalized request body, and SHA256. It\
+              \ is only included when a shared secret key is set through webhook subscription."
+            example: ca7b9e9816c90d336f5dca529e733354b81535c7af027b81878ac98afb2dbaa2
+            explode: false
+            in: header
+            name: x-bandwidth-signature-hmac-sha256
+            required: false
+            schema:
+              type: string
+            style: simple
+          requestBody:
+            $ref: '#/components/requestBodies/verificationWebhookRequest'
+          responses:
+            "204":
+              description: No Content
+            "400":
+              content:
+                application/json:
+                  example:
+                    description: Cannot process request.
+                    type: bad request
+                  schema:
+                    $ref: '#/components/schemas/tfvError'
+              description: Bad Request
+            "401":
+              content:
+                application/json:
+                  example:
+                    description: Client is providing incorrect or invalid credentials.
+                    type: unauthorized
+                  schema:
+                    $ref: '#/components/schemas/tfvError'
+              description: Unauthorized
+            "403":
+              content:
+                application/json:
+                  example:
+                    description: Client is not authorized for the action.
+                    type: forbidden
+                  schema:
+                    $ref: '#/components/schemas/tfvError'
+              description: Forbidden
+            "404":
+              content:
+                application/json:
+                  example:
+                    description: Cannot find the requested resource.
+                    type: Not Found
+                  schema:
+                    $ref: '#/components/schemas/tfvError'
+              description: Cannot find the requested resource.
+            "405":
+              content:
+                application/json:
+                  example:
+                    description: Method is not allowed.
+                    type: Method Not Allowed
+                  schema:
+                    $ref: '#/components/schemas/tfvError'
+              description: Method Not Allowed
+            "429":
+              content:
+                application/json:
+                  example:
+                    description: Throttling error. Too many requests.
+                    type: Too Many Requests
+                  schema:
+                    $ref: '#/components/schemas/tfvError'
+              description: Too Many Requests
+            "500":
+              content:
+                application/json:
+                  example:
+                    description: Internal Server Error.
+                    type: Internal Server Error
+                  schema:
+                    $ref: '#/components/schemas/tfvError'
+              description: Internal Server Error
+            "503":
+              content:
+                application/json:
+                  example:
+                    description: Service Unavailable Error.
+                    type: Service Unavailable
+                  schema:
+                    $ref: '#/components/schemas/tfvError'
+              description: Service Unavailable
+          summary: TFV status updates sent to customer's webhook URL.
   examples:
     smsMessageReceivedCallbackExample:
       summary: An example of a sms message-received callback body.
@@ -5319,6 +6219,26 @@ components:
       schema:
         type: string
       style: simple
+    tfPhoneNumberPathParam:
+      description: Valid Toll-Free telephone number in E.164 format.
+      example: "+18885555555"
+      explode: false
+      in: path
+      name: phoneNumber
+      required: true
+      schema:
+        $ref: '#/components/schemas/tfPhoneNumber'
+      style: simple
+    webhookSubscriptionIdPathParam:
+      description: Webhook subscription ID
+      example: 7bt57JcsVYJrN9K1OcV1Nu
+      explode: false
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+      style: simple
   requestBodies:
     createMessageRequest:
       content:
@@ -5622,6 +6542,38 @@ components:
           schema:
             $ref: '#/components/schemas/lookupRequest'
       description: Phone number lookup request.
+      required: true
+    requestTollFreeVerificationRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/verificationRequest'
+      description: Request for verification of a toll-free phone number.
+      required: true
+    updateTollFreeVerificationRequestRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/tfvSubmissionWrapper'
+      description: Update a request for verification of a toll-free phone number.
+      required: true
+    verificationWebhookRequest:
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/verificationWebhook'
+            - $ref: '#/components/schemas/verificationDenialWebhook'
+            - $ref: '#/components/schemas/failureWebhook'
+      description: Verification callback status of a toll-free phone number.
+      required: true
+    webhookSubscriptionRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/webhookSubscriptionRequestSchema'
+      description: Information about a webhook that Bandwidth should send upon the
+        completion of event customer is trying to subscribe to.
       required: true
   responses:
     createMessageResponse:
@@ -6071,6 +7023,120 @@ components:
           schema:
             $ref: '#/components/schemas/tnLookupRequestError'
       description: Internal Server Error
+    getTollFreeVerificationStatusResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/tfvStatus'
+      description: OK
+    listWebhookSubscriptionsResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/webhookSubscriptionsListBody'
+      description: OK
+    createWebhookSubscriptionResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/webhookSubscription'
+      description: Created
+    updateWebhookSubscriptionResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/webhookSubscription'
+      description: OK
+    listTollFreeUseCasesResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/useCases'
+      description: OK
+    tfvBadRequestResponse:
+      content:
+        application/json:
+          example:
+            description: Cannot process request.
+            type: bad request
+          schema:
+            $ref: '#/components/schemas/tfvError'
+      description: Bad Request
+    tfvPostBadRequestResponse:
+      content:
+        application/json:
+          example:
+            description: cannot process request.
+            errors:
+              businessName: Business name is required.
+              businessContactEmail: Business contact email is not a valid email address.
+              optInWorkflowImageURLs: Entries must be a valid array of objects.
+          schema:
+            $ref: '#/components/schemas/tfvError'
+      description: Bad Request
+    tfvUnauthorizedResponse:
+      content:
+        application/json:
+          example:
+            description: Client is providing incorrect or invalid credentials.
+            type: unauthorized
+          schema:
+            $ref: '#/components/schemas/tfvError'
+      description: Unauthorized
+    tfvForbiddenResponse:
+      content:
+        application/json:
+          example:
+            description: Client is not authorized for the action.
+            type: forbidden
+          schema:
+            $ref: '#/components/schemas/tfvError'
+      description: Forbidden
+    tfvNotFoundResponse:
+      content:
+        application/json:
+          example:
+            description: Cannot find the requested resource.
+            type: Not Found
+          schema:
+            $ref: '#/components/schemas/tfvError'
+      description: Cannot find the requested resource.
+    tfvNotAllowedResponse:
+      content:
+        application/json:
+          example:
+            description: Method is not allowed.
+            type: Method Not Allowed
+          schema:
+            $ref: '#/components/schemas/tfvError'
+      description: Method Not Allowed
+    tfvTooManyRequestsResponse:
+      content:
+        application/json:
+          example:
+            description: Throttling error. Too many requests.
+            type: Too Many Requests
+          schema:
+            $ref: '#/components/schemas/tfvError'
+      description: Too Many Requests
+    tfvServerErrorResponse:
+      content:
+        application/json:
+          example:
+            description: Internal Server Error.
+            type: Internal Server Error
+          schema:
+            $ref: '#/components/schemas/tfvError'
+      description: Internal Server Error
+    tfvServiceUnavailableResponse:
+      content:
+        application/json:
+          example:
+            description: Service Unavailable Error.
+            type: Service Unavailable
+          schema:
+            $ref: '#/components/schemas/tfvError'
+      description: Service Unavailable
   schemas:
     callbackTypeEnum:
       description: |
@@ -10235,6 +11301,928 @@ components:
           description: A description of what validation error occurred.
           example: example error message
           type: string
+      type: object
+    accountId1:
+      description: User's account ID.
+      example: "1234567"
+      type: string
+    tfPhoneNumber:
+      description: Toll-free telephone number in E.164 format.
+      example: "+18005555555"
+      maxLength: 12
+      minLength: 12
+      nullable: false
+      pattern: "^\\+1(800|833|844|855|866|877|888)[2-9]\\d{6}$"
+      type: string
+    tfvWebhookErrors:
+      description: Details of the errors that were encountered when processing the
+        request.
+      items:
+        example: "optInWorkflowImageURLs: Entries must be a valid array of objects."
+        type: string
+      type: array
+    tfvCallbackStatusEnum:
+      enum:
+      - VERIFIED
+      - UNVERIFIED
+      example: VERIFIED
+      type: string
+    tfvUnverifiedStatus:
+      default: UNVERIFIED
+      example: UNVERIFIED
+      type: string
+    declineReasonDescription:
+      description: Explanation for why a verification request was declined.
+      example: Invalid Information - Can't Validate URL - Website is not accessible
+        / not available
+      nullable: false
+      type: string
+    denialStatusCode:
+      description: Reason code for denial.
+      example: 511
+      type: integer
+    resubmitAllowed:
+      description: Whether a Toll-Free Verification request qualifies for resubmission
+        via PUT.
+      example: true
+      type: boolean
+    additionalDenialReason:
+      properties:
+        statusCode:
+          description: Reason code for denial.
+          example: 511
+          type: integer
+        reason:
+          description: Explanation for why a verification request was declined.
+          example: Invalid Information - Can't Validate URL - Website is not accessible
+            / not available
+          nullable: false
+          type: string
+        resubmitAllowed:
+          description: Whether a Toll-Free Verification request qualifies for resubmission
+            via PUT.
+          example: true
+          type: boolean
+      required:
+      - reason
+      - resubmitAllowed
+      - statusCode
+      type: object
+    internalTicketNumber:
+      description: Unique identifier (UUID) generated by Bandwidth to assist in tracking
+        the verification status of a toll-free number - included in all webhook payloads.
+      example: acde070d-8c4c-4f0d-9d8a-162843c10333
+      format: uuid
+      type: string
+    internalTicketNumberForWebhook:
+      description: Unique identifier (UUID) generated by Bandwidth to assist in tracking
+        the verification status of a toll-free number.
+      example: acde070d-8c4c-4f0d-9d8a-162843c10333
+      format: uuid
+      type: string
+    businessContactPhoneNumber:
+      description: Contact telephone number
+      example: "+19192654500"
+      maxLength: 500
+      minLength: 1
+      nullable: false
+      type: string
+    verificationRequest:
+      properties:
+        businessAddress:
+          $ref: '#/components/schemas/address'
+        businessContact:
+          $ref: '#/components/schemas/contact'
+        messageVolume:
+          description: Estimated monthly volume of messages from the toll-free number.
+          example: 10000
+          maximum: 10000000
+          minimum: 10
+          type: integer
+        phoneNumbers:
+          items:
+            $ref: '#/components/schemas/tfPhoneNumber'
+          maxItems: 10
+          minItems: 1
+          type: array
+        useCase:
+          description: The category of the use case.
+          example: 2FA
+          maxLength: 500
+          minLength: 0
+          type: string
+        useCaseSummary:
+          description: A general idea of the use case and customer.
+          maxLength: 500
+          minLength: 1
+          nullable: false
+          type: string
+        productionMessageContent:
+          description: Example of message content.
+          maxLength: 500
+          minLength: 1
+          nullable: false
+          type: string
+        optInWorkflow:
+          $ref: '#/components/schemas/optInWorkflow'
+        additionalInformation:
+          description: Any additional information.
+          maxLength: 500
+          minLength: 0
+          nullable: true
+          type: string
+        isvReseller:
+          description: ISV name.
+          example: Test ISV
+          maxLength: 500
+          minLength: 0
+          nullable: true
+          type: string
+      required:
+      - businessAddress
+      - businessContact
+      - messageVolume
+      - optInWorkflow
+      - phoneNumbers
+      - productionMessageContent
+      - useCase
+      - useCaseSummary
+      type: object
+    verificationUpdateRequest:
+      properties:
+        businessAddress:
+          $ref: '#/components/schemas/address'
+        businessContact:
+          $ref: '#/components/schemas/contact'
+        messageVolume:
+          description: Estimated monthly volume of messages from the toll-free number.
+          example: 10000
+          maximum: 10000000
+          minimum: 10
+          type: integer
+        useCase:
+          description: The category of the use case.
+          example: 2FA
+          maxLength: 500
+          minLength: 0
+          type: string
+        useCaseSummary:
+          description: A general idea of the use case and customer.
+          maxLength: 500
+          minLength: 0
+          nullable: false
+          type: string
+        productionMessageContent:
+          description: Example of message content.
+          maxLength: 500
+          minLength: 0
+          nullable: false
+          type: string
+        optInWorkflow:
+          $ref: '#/components/schemas/optInWorkflow'
+        additionalInformation:
+          description: Any additional information.
+          maxLength: 500
+          minLength: 0
+          nullable: true
+          type: string
+        isvReseller:
+          description: ISV name.
+          example: Test ISV
+          maxLength: 500
+          minLength: 0
+          nullable: true
+          type: string
+      required:
+      - businessAddress
+      - businessContact
+      - messageVolume
+      - optInWorkflow
+      - productionMessageContent
+      - useCase
+      - useCaseSummary
+      type: object
+    tfvBasicAuthentication:
+      properties:
+        username:
+          maxLength: 100
+          type: string
+        password:
+          maxLength: 200
+          type: string
+      required:
+      - password
+      - username
+      type: object
+    webhookSubscriptionRequestSchema:
+      properties:
+        basicAuthentication:
+          $ref: '#/components/schemas/tfvBasicAuthentication'
+        callbackUrl:
+          description: "Callback URL to receive status updates from Bandwidth. When\
+            \ a webhook subscription is registered with Bandwidth under a given account\
+            \ ID, it will be used to send status updates for all requests submitted\
+            \ under that account ID."
+          example: https://www.example.com/path/to/resource
+          format: url
+          maxLength: 2000
+          minLength: 0
+          nullable: true
+          pattern: "^$|(https?:\\/\\/)?(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,253}\\.[a-z]{2,6}\\\
+            b([-a-zA-Z0-9@:%_\\+.~#()?&//=]*)"
+          type: string
+        sharedSecretKey:
+          description: An ASCII string submitted by the user as a shared secret key
+            for generating an HMAC header for callbacks.
+          example: This is my $3cret
+          maxLength: 64
+          minLength: 16
+          nullable: true
+          pattern: "^[ -~]{16,64}$"
+          type: string
+      required:
+      - callbackUrl
+      type: object
+    failureWebhook:
+      properties:
+        accountId:
+          description: User's account ID.
+          example: "1234567"
+          type: string
+        phoneNumber:
+          description: Toll-free telephone number in E.164 format.
+          example: "+18005555555"
+          maxLength: 12
+          minLength: 12
+          nullable: false
+          pattern: "^\\+1(800|833|844|855|866|877|888)[2-9]\\d{6}$"
+          type: string
+        errorCode:
+          description: An error code indicating what error was encountered. This code
+            can be interpreted as an HTTP status code in regards to the error that
+            was encountered.
+          example: "400"
+          type: string
+        errorDescription:
+          description: A description of the error that was encountered.
+          example: cannot process request.
+          type: string
+        errors:
+          description: Details of the errors that were encountered when processing
+            the request.
+          items:
+            example: "optInWorkflowImageURLs: Entries must be a valid array of objects."
+            type: string
+          type: array
+        internalTicketNumber:
+          description: Unique identifier (UUID) generated by Bandwidth to assist in
+            tracking the verification status of a toll-free number.
+          example: acde070d-8c4c-4f0d-9d8a-162843c10333
+          format: uuid
+          type: string
+      type: object
+    verificationDenialWebhook:
+      properties:
+        accountId:
+          description: User's account ID.
+          example: "1234567"
+          type: string
+        additionalDenialReasons:
+          description: An optional list of denial reasons in addition to declineReasonDescription
+            when multiple reasons apply.
+          example:
+          - statusCode: 512
+            reason: Reason A
+            resubmitAllowed: true
+          - statusCode: 513
+            reason: Reason B
+            resubmitAllowed: true
+          items:
+            $ref: '#/components/schemas/additionalDenialReason'
+          type: array
+        declineReasonDescription:
+          description: Explanation for why a verification request was declined.
+          example: Invalid Information - Can't Validate URL - Website is not accessible
+            / not available
+          nullable: false
+          type: string
+        denialStatusCode:
+          description: Reason code for denial.
+          example: 511
+          type: integer
+        internalTicketNumber:
+          description: Unique identifier (UUID) generated by Bandwidth to assist in
+            tracking the verification status of a toll-free number.
+          example: acde070d-8c4c-4f0d-9d8a-162843c10333
+          format: uuid
+          type: string
+        phoneNumber:
+          description: Toll-free telephone number in E.164 format.
+          example: "+18005555555"
+          maxLength: 12
+          minLength: 12
+          nullable: false
+          pattern: "^\\+1(800|833|844|855|866|877|888)[2-9]\\d{6}$"
+          type: string
+        resubmitAllowed:
+          description: Whether a Toll-Free Verification request qualifies for resubmission
+            via PUT.
+          example: true
+          type: boolean
+        status:
+          default: UNVERIFIED
+          example: UNVERIFIED
+          type: string
+      type: object
+    verificationWebhook:
+      properties:
+        accountId:
+          description: User's account ID.
+          example: "1234567"
+          type: string
+        phoneNumber:
+          description: Toll-free telephone number in E.164 format.
+          example: "+18005555555"
+          maxLength: 12
+          minLength: 12
+          nullable: false
+          pattern: "^\\+1(800|833|844|855|866|877|888)[2-9]\\d{6}$"
+          type: string
+        status:
+          $ref: '#/components/schemas/tfvCallbackStatusEnum'
+        internalTicketNumber:
+          description: Unique identifier (UUID) generated by Bandwidth to assist in
+            tracking the verification status of a toll-free number.
+          example: acde070d-8c4c-4f0d-9d8a-162843c10333
+          format: uuid
+          type: string
+      type: object
+    tfvSubmissionWrapper:
+      properties:
+        submission:
+          $ref: '#/components/schemas/verificationUpdateRequest'
+      type: object
+    address:
+      example:
+        zip: "27606"
+        addr2: addr2
+        addr1: 2230 Bandmate Way
+        city: Raleigh
+        name: Bandwidth Inc.
+        state: NC
+        url: https://www.example.com/path/to/resource
+      nullable: false
+      properties:
+        name:
+          description: The name of the business using the toll-free number.
+          example: Bandwidth Inc.
+          maxLength: 500
+          minLength: 1
+          nullable: false
+          type: string
+        addr1:
+          description: The address of the business using the toll-free number.
+          example: 2230 Bandmate Way
+          maxLength: 500
+          minLength: 1
+          nullable: false
+          type: string
+        addr2:
+          description: The address of the business using the toll-free number.
+          maxLength: 500
+          minLength: 0
+          nullable: true
+          type: string
+        city:
+          description: The city of the business using the toll-free number.
+          example: Raleigh
+          maxLength: 500
+          minLength: 1
+          nullable: false
+          type: string
+        state:
+          description: The state of the business using the toll-free number.
+          example: NC
+          maxLength: 500
+          minLength: 1
+          nullable: false
+          type: string
+        zip:
+          description: The zip of the business using the toll-free number.
+          example: "27606"
+          nullable: false
+          pattern: "[- A-Za-z0-9]{0,500}"
+          type: string
+        url:
+          description: The website of the business using the toll-free number.
+          example: https://www.example.com/path/to/resource
+          format: url
+          maxLength: 500
+          minLength: 1
+          nullable: false
+          type: string
+      required:
+      - addr1
+      - city
+      - name
+      - state
+      - url
+      - zip
+      type: object
+    optInWorkflow:
+      example:
+        imageUrls:
+        - https://www.example.com/path/to/resource
+        - https://www.example.com/path/to/resource
+        description: Opt In Flow
+      nullable: false
+      properties:
+        description:
+          example: Opt In Flow
+          maxLength: 500
+          minLength: 1
+          nullable: false
+          type: string
+        imageUrls:
+          items:
+            example: https://www.example.com/path/to/resource
+            maxLength: 500
+            minLength: 1
+            nullable: false
+            pattern: "^$|(https?:\\/\\/)?(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,253}\\\
+              .[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#()?&//=]*)"
+            type: string
+          type: array
+      required:
+      - description
+      - imageUrls
+      type: object
+    isvReseller:
+      description: ISV name.
+      example: Test ISV
+      maxLength: 500
+      minLength: 0
+      nullable: true
+      type: string
+    contact:
+      example:
+        firstName: John
+        lastName: Doe
+        phoneNumber: "+19192654500"
+        email: foo@bar.com
+      nullable: false
+      properties:
+        firstName:
+          description: The first name of the business contact using the toll-free
+            number.
+          example: John
+          maxLength: 500
+          minLength: 1
+          nullable: false
+          type: string
+        lastName:
+          description: The last name of the business contact using the toll-free number.
+          example: Doe
+          maxLength: 500
+          minLength: 1
+          nullable: false
+          type: string
+        email:
+          example: foo@bar.com
+          format: email
+          maxLength: 500
+          minLength: 0
+          nullable: false
+          pattern: "^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"\
+            (?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\\
+            [\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\\
+            .)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\\
+            .){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\\
+            x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\\
+            x0b\\x0c\\x0e-\\x7f])+)\\])$"
+          type: string
+        phoneNumber:
+          description: Contact telephone number
+          example: "+19192654500"
+          maxLength: 500
+          minLength: 1
+          nullable: false
+          type: string
+      required:
+      - email
+      - firstName
+      - lastName
+      - phoneNumber
+      type: object
+    email:
+      example: foo@bar.com
+      format: email
+      maxLength: 500
+      minLength: 0
+      nullable: false
+      pattern: "^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"\
+        (?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\\
+        x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\\
+        [(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\\
+        x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\\
+        x0c\\x0e-\\x7f])+)\\])$"
+      type: string
+    useCases:
+      example:
+      - 2FA
+      - App Notifications
+      - Appointments
+      - Auctions
+      - Auto Repair Services
+      - Bank Transfers
+      - Billing
+      - Booking Confirmations
+      - Business Updates
+      - COVID-19 Alerts
+      items:
+        type: string
+      type: array
+    useCase:
+      description: The category of the use case.
+      example: 2FA
+      maxLength: 500
+      minLength: 0
+      type: string
+    webhookSubscriptionsListBody:
+      description: A list of all webhook subscriptions registered for this account
+        ID for this particular feature (unpaginated).
+      example:
+        data:
+        - accountId: "1234567"
+          createdDate: 2023-05-15T13:56:39.965Z
+          modifiedDate: 2023-05-15T13:56:39.965Z
+          callbackUrl: https://www.example.com/path/to/resource
+          id: 7hICGStfAfeGxEq3N0lQwO
+          type: TOLLFREE_VERIFICATION_STATUS
+          basicAuthentication:
+            password: password
+            username: username
+        - accountId: "1234567"
+          createdDate: 2023-05-15T13:56:39.965Z
+          modifiedDate: 2023-05-15T13:56:39.965Z
+          callbackUrl: https://www.example.com/path/to/resource
+          id: 7hICGStfAfeGxEq3N0lQwO
+          type: TOLLFREE_VERIFICATION_STATUS
+          basicAuthentication:
+            password: password
+            username: username
+        links:
+          next: next
+          previous: previous
+          last: last
+          first: first
+        errors:
+        - code: 0
+          telephoneNumbers:
+          - telephoneNumber: telephoneNumber
+          - telephoneNumber: telephoneNumber
+          description: description
+        - code: 0
+          telephoneNumbers:
+          - telephoneNumber: telephoneNumber
+          - telephoneNumber: telephoneNumber
+          description: description
+      properties:
+        links:
+          $ref: '#/components/schemas/linksObject'
+        errors:
+          items:
+            $ref: '#/components/schemas/error'
+          type: array
+        data:
+          items:
+            $ref: '#/components/schemas/webhookSubscription'
+          type: array
+      required:
+      - data
+      type: object
+    linksObject:
+      example:
+        next: next
+        previous: previous
+        last: last
+        first: first
+      properties:
+        first:
+          description: The first (or only) page of results matching the query.
+          type: string
+        next:
+          description: "If more results exist than specified by 'size', this link\
+            \ returns the next page of 'size' results."
+          type: string
+        previous:
+          description: "If the results are more than one page, this link returns the\
+            \ previous page of 'size' results."
+          type: string
+        last:
+          description: "If more results exist than specified by 'size', this link\
+            \ return the last page of result."
+          type: string
+      type: object
+    error:
+      example:
+        code: 0
+        telephoneNumbers:
+        - telephoneNumber: telephoneNumber
+        - telephoneNumber: telephoneNumber
+        description: description
+      properties:
+        code:
+          type: integer
+        description:
+          type: string
+        telephoneNumbers:
+          items:
+            $ref: '#/components/schemas/telephoneNumber'
+          type: array
+      type: object
+    telephoneNumber:
+      example:
+        telephoneNumber: telephoneNumber
+      properties:
+        telephoneNumber:
+          description: Simple Telephone Number.
+          type: string
+      type: object
+    webhookSubscriptionTypeEnum:
+      enum:
+      - TOLLFREE_VERIFICATION_STATUS
+      - MESSAGING_PORTOUT_APPROVAL_STATUS
+      example: TOLLFREE_VERIFICATION_STATUS
+      type: string
+    webhookSubscription:
+      description: Information about a webhook that Bandwidth should send upon the
+        completion of event customer has subscribed to.
+      example:
+        accountId: "1234567"
+        createdDate: 2023-05-15T13:56:39.965Z
+        modifiedDate: 2023-05-15T13:56:39.965Z
+        callbackUrl: https://www.example.com/path/to/resource
+        id: 7hICGStfAfeGxEq3N0lQwO
+        type: TOLLFREE_VERIFICATION_STATUS
+        basicAuthentication:
+          password: password
+          username: username
+      properties:
+        id:
+          example: 7hICGStfAfeGxEq3N0lQwO
+          type: string
+        accountId:
+          example: "1234567"
+          type: string
+        callbackUrl:
+          description: "Callback URL to receive status updates from Bandwidth. When\
+            \ a webhook subscription is registered with Bandwidth under a given account\
+            \ ID, it will be used to send status updates for all requests submitted\
+            \ under that account ID."
+          example: https://www.example.com/path/to/resource
+          format: url
+          maxLength: 2000
+          minLength: 0
+          nullable: true
+          pattern: "^$|(https?:\\/\\/)?(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,253}\\.[a-z]{2,6}\\\
+            b([-a-zA-Z0-9@:%_\\+.~#()?&//=]*)"
+          type: string
+        type:
+          $ref: '#/components/schemas/webhookSubscriptionTypeEnum'
+        basicAuthentication:
+          $ref: '#/components/schemas/webhookSubscription_basicAuthentication'
+        createdDate:
+          example: 2023-05-15T13:56:39.965Z
+          format: date-time
+          type: string
+        modifiedDate:
+          example: 2023-05-15T13:56:39.965Z
+          format: date-time
+          type: string
+      required:
+      - callbackUrl
+      type: object
+    webhookUrl:
+      description: "Callback URL to receive status updates from Bandwidth. When a\
+        \ webhook subscription is registered with Bandwidth under a given account\
+        \ ID, it will be used to send status updates for all requests submitted under\
+        \ that account ID."
+      example: https://www.example.com/path/to/resource
+      format: url
+      maxLength: 2000
+      minLength: 0
+      nullable: true
+      pattern: "^$|(https?:\\/\\/)?(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,253}\\.[a-z]{2,6}\\\
+        b([-a-zA-Z0-9@:%_\\+.~#()?&//=]*)"
+      type: string
+    tfvError:
+      description: A generic error object.
+      example:
+        description: Error Message
+        type: Error Type
+        errors:
+          field: error message
+      properties:
+        type:
+          example: Error Type
+          type: string
+        description:
+          example: Error Message
+          type: string
+        errors:
+          description: "Each key of this errors object refers to a field of the submitted\
+            \ object (using dot notation for nested objects), with the field being\
+            \ a key to an array of one or more errors for that field."
+          example:
+            field: error message
+          type: object
+      type: object
+    tfvStatus:
+      example:
+        internalTicketNumber: acde070d-8c4c-4f0d-9d8a-162843c10333
+        phoneNumber: "+18005555555"
+        resubmitAllowed: true
+        createdDateTime: 2021-06-08T06:45:13Z
+        modifiedDateTime: 2021-06-08T06:45:13Z
+        submission:
+          additionalInformation: Any additional information
+          useCase: 2FA
+          isvReseller: Test ISV
+          businessContact:
+            firstName: John
+            lastName: Doe
+            phoneNumber: "+19192654500"
+            email: foo@bar.com
+          messageVolume: 10000
+          productionMessageContent: Production message content
+          businessAddress:
+            zip: "27606"
+            addr2: addr2
+            addr1: 2230 Bandmate Way
+            city: Raleigh
+            name: Bandwidth Inc.
+            state: NC
+            url: https://www.example.com/path/to/resource
+          useCaseSummary: Text summarizing the use case for the toll-free number
+          optInWorkflow:
+            imageUrls:
+            - https://www.example.com/path/to/resource
+            - https://www.example.com/path/to/resource
+            description: Opt In Flow
+        declineReasonDescription: Invalid Information - Can't Validate URL - Website
+          is not accessible / not available
+        status: VERIFIED
+      properties:
+        phoneNumber:
+          description: Toll-free telephone number in E.164 format.
+          example: "+18005555555"
+          maxLength: 12
+          minLength: 12
+          nullable: false
+          pattern: "^\\+1(800|833|844|855|866|877|888)[2-9]\\d{6}$"
+          type: string
+        status:
+          $ref: '#/components/schemas/tfvStatusEnum'
+        internalTicketNumber:
+          description: Unique identifier (UUID) generated by Bandwidth to assist in
+            tracking the verification status of a toll-free number - included in all
+            webhook payloads.
+          example: acde070d-8c4c-4f0d-9d8a-162843c10333
+          format: uuid
+          type: string
+        declineReasonDescription:
+          description: Explanation for why a verification request was declined.
+          example: Invalid Information - Can't Validate URL - Website is not accessible
+            / not available
+          nullable: false
+          type: string
+        resubmitAllowed:
+          description: Whether a Toll-Free Verification request qualifies for resubmission
+            via PUT.
+          example: true
+          type: boolean
+        createdDateTime:
+          description: Date and time the verification request was created.
+          example: 2021-06-08T06:45:13Z
+          format: date-time
+          type: string
+        modifiedDateTime:
+          description: Date and time the verification request was last modified.
+          example: 2021-06-08T06:45:13Z
+          format: date-time
+          type: string
+        submission:
+          $ref: '#/components/schemas/tfvSubmissionInfo'
+      type: object
+    tfvSubmissionInfo:
+      example:
+        additionalInformation: Any additional information
+        useCase: 2FA
+        isvReseller: Test ISV
+        businessContact:
+          firstName: John
+          lastName: Doe
+          phoneNumber: "+19192654500"
+          email: foo@bar.com
+        messageVolume: 10000
+        productionMessageContent: Production message content
+        businessAddress:
+          zip: "27606"
+          addr2: addr2
+          addr1: 2230 Bandmate Way
+          city: Raleigh
+          name: Bandwidth Inc.
+          state: NC
+          url: https://www.example.com/path/to/resource
+        useCaseSummary: Text summarizing the use case for the toll-free number
+        optInWorkflow:
+          imageUrls:
+          - https://www.example.com/path/to/resource
+          - https://www.example.com/path/to/resource
+          description: Opt In Flow
+      properties:
+        businessAddress:
+          $ref: '#/components/schemas/address'
+        businessContact:
+          $ref: '#/components/schemas/contact'
+        messageVolume:
+          description: Estimated monthly volume of messages from the toll-free number.
+          example: 10000
+          maximum: 10000000
+          minimum: 10
+          type: integer
+        useCase:
+          description: The category of the use case.
+          example: 2FA
+          maxLength: 500
+          minLength: 0
+          type: string
+        useCaseSummary:
+          description: A general idea of the use case and customer.
+          example: Text summarizing the use case for the toll-free number
+          maxLength: 500
+          minLength: 0
+          nullable: false
+          type: string
+        productionMessageContent:
+          description: Example of message content.
+          example: Production message content
+          maxLength: 500
+          minLength: 0
+          nullable: false
+          type: string
+        optInWorkflow:
+          $ref: '#/components/schemas/optInWorkflow'
+        additionalInformation:
+          description: Any additional information.
+          example: Any additional information
+          maxLength: 500
+          minLength: 0
+          nullable: true
+          type: string
+        isvReseller:
+          description: ISV name.
+          example: Test ISV
+          maxLength: 500
+          minLength: 0
+          nullable: true
+          type: string
+      type: object
+    tfvStatusEnum:
+      enum:
+      - VERIFIED
+      - UNVERIFIED
+      - PENDING
+      - PARTIALLY_VERIFIED
+      - INVALID_STATUS
+      example: VERIFIED
+      type: string
+    sharedSecretKey:
+      description: An ASCII string submitted by the user as a shared secret key for
+        generating an HMAC header for callbacks.
+      example: This is my $3cret
+      maxLength: 64
+      minLength: 16
+      nullable: true
+      pattern: "^[ -~]{16,64}$"
+      type: string
+    webhookSubscription_basicAuthentication:
+      description: "Basic authentication credentials are not required, but if present,\
+        \ both username and password must be provided."
+      example:
+        password: password
+        username: username
+      properties:
+        username:
+          maxLength: 100
+          type: string
+        password:
+          maxLength: 200
+          type: string
+      required:
+      - password
+      - username
       type: object
   securitySchemes:
     Basic:
