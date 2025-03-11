@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **StartTime** | **DateTime** | Time the call was started, in ISO 8601 format. | [optional] 
 **Diversion** | [**Diversion**](Diversion.md) |  | [optional] 
 **StirShaken** | [**StirShaken**](StirShaken.md) |  | [optional] 
+**Uui** | **string** | The value of the &#x60;User-To-User&#x60; header to send within the initial &#x60;INVITE&#x60;. Must include the encoding parameter as specified in RFC 7433. Only &#x60;base64&#x60;, &#x60;jwt&#x60; and &#x60;hex&#x60; encoding are currently allowed. This value, including the encoding specifier, may not exceed 256 characters. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
