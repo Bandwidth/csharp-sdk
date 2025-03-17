@@ -167,6 +167,16 @@ namespace Bandwidth.Standard.Test.Unit.Model
             instance.StirShaken = new StirShaken();
             Assert.IsType<StirShaken>(instance.StirShaken);
         }
+        /// <summary>
+        /// Test the property 'uui'
+        /// </summary>
+        [Fact]
+        public void uuiTest()
+        {
+            instance.Uui = "test";
+            Assert.IsType<string>(instance.Uui);
+            Assert.Equal("test", instance.Uui);
+        }
 
     }
 

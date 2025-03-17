@@ -53,7 +53,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="startTime">Time the call was started, in ISO 8601 format..</param>
         /// <param name="diversion">diversion.</param>
         /// <param name="stirShaken">stirShaken.</param>
-        public InitiateCallback(string eventType = default(string), DateTime eventTime = default(DateTime), string accountId = default(string), string applicationId = default(string), string from = default(string), string to = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), string callId = default(string), string callUrl = default(string), DateTime startTime = default(DateTime), Diversion diversion = default(Diversion), StirShaken stirShaken = default(StirShaken))
+        /// <param name="uui">The value of the &#x60;User-To-User&#x60; header to send within the initial &#x60;INVITE&#x60;. Must include the encoding parameter as specified in RFC 7433. Only &#x60;base64&#x60;, &#x60;jwt&#x60; and &#x60;hex&#x60; encoding are currently allowed. This value, including the encoding specifier, may not exceed 256 characters..</param>
+        public InitiateCallback(string eventType = default(string), DateTime eventTime = default(DateTime), string accountId = default(string), string applicationId = default(string), string from = default(string), string to = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), string callId = default(string), string callUrl = default(string), DateTime startTime = default(DateTime), Diversion diversion = default(Diversion), StirShaken stirShaken = default(StirShaken), string uui = default(string))
         {
             this.EventType = eventType;
             this.EventTime = eventTime;
@@ -67,6 +68,7 @@ namespace Bandwidth.Standard.Model
             this.StartTime = startTime;
             this.Diversion = diversion;
             this.StirShaken = stirShaken;
+            this.Uui = uui;
         }
 
         /// <summary>
@@ -154,6 +156,14 @@ namespace Bandwidth.Standard.Model
         public StirShaken StirShaken { get; set; }
 
         /// <summary>
+        /// The value of the &#x60;User-To-User&#x60; header to send within the initial &#x60;INVITE&#x60;. Must include the encoding parameter as specified in RFC 7433. Only &#x60;base64&#x60;, &#x60;jwt&#x60; and &#x60;hex&#x60; encoding are currently allowed. This value, including the encoding specifier, may not exceed 256 characters.
+        /// </summary>
+        /// <value>The value of the &#x60;User-To-User&#x60; header to send within the initial &#x60;INVITE&#x60;. Must include the encoding parameter as specified in RFC 7433. Only &#x60;base64&#x60;, &#x60;jwt&#x60; and &#x60;hex&#x60; encoding are currently allowed. This value, including the encoding specifier, may not exceed 256 characters.</value>
+        /// <example>bXktdXVp</example>
+        [DataMember(Name = "uui", EmitDefaultValue = false)]
+        public string Uui { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -173,6 +183,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  StartTime: ").Append(StartTime).Append("\n");
             sb.Append("  Diversion: ").Append(Diversion).Append("\n");
             sb.Append("  StirShaken: ").Append(StirShaken).Append("\n");
+            sb.Append("  Uui: ").Append(Uui).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -193,6 +204,12 @@ namespace Bandwidth.Standard.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Uui (string) maxLength
+            if (this.Uui != null && this.Uui.Length > 256)
+            {
+                yield return new ValidationResult("Invalid value for Uui, length must be less than 256.", new [] { "Uui" });
+            }
+
             yield break;
         }
     }
