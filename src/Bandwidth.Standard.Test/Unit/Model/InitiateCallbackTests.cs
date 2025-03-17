@@ -173,9 +173,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void uuiTest()
         {
-            instance.uui = "test";
-            Assert.IsType<string>(instance.uui);
-            Assert.Equal("test", instance.uui);
+            instance.Uui = "test";
+            Assert.IsType<string>(instance.Uui);
+            Assert.Equal("test", instance.Uui);
         }
 
     }
