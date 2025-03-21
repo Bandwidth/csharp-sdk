@@ -25,6 +25,12 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         public string Name { get; set; }
 
         /// <summary>
+        /// The mode to use for the stream. unidirectional or bidirectional. Default is unidirectional.
+        /// </summary>
+        [XmlAttribute("mode")]
+        public string Mode { get; set; }
+
+        /// <summary>
         /// The part of the call to send a stream from.
         /// </summary>
         [XmlAttribute("tracks")]
