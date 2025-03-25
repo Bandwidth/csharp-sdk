@@ -111,7 +111,6 @@ namespace Bandwidth.Standard.Model
         /// Any additional information.
         /// </summary>
         /// <value>Any additional information.</value>
-        /// <example>Any additional information</example>
         [DataMember(Name = "additionalInformation", EmitDefaultValue = true)]
         public string AdditionalInformation { get; set; }
 
