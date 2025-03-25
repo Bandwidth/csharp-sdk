@@ -61,12 +61,14 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Gets or Sets Username
         /// </summary>
+        /// <example>username</example>
         [DataMember(Name = "username", IsRequired = true, EmitDefaultValue = true)]
         public string Username { get; set; }
 
         /// <summary>
         /// Gets or Sets Password
         /// </summary>
+        /// <example>password</example>
         [DataMember(Name = "password", IsRequired = true, EmitDefaultValue = true)]
         public string Password { get; set; }
 

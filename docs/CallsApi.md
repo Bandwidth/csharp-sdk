@@ -256,7 +256,7 @@ namespace Example
             var maxStartTime = 2022-06-21T19:13:21Z;  // string | Filter results to calls which have a `startTime` before or including `maxStartTime` (in ISO8601 format). (optional) 
             var disconnectCause = hangup;  // string | Filter results to calls with specified call Disconnect Cause. (optional) 
             var pageSize = 500;  // int? | Specifies the max number of calls that will be returned. (optional)  (default to 1000)
-            var pageToken = "pageToken_example";  // string | Not intended for explicit use. To use pagination, follow the links in the `Link` header of the response, as indicated in the endpoint description. (optional) 
+            var pageToken = eyJwYWdlVG9rZW4iOiJ0b2tlbiJ9;  // string | Not intended for explicit use. To use pagination, follow the links in the `Link` header of the response, as indicated in the endpoint description. (optional) 
 
             try
             {
