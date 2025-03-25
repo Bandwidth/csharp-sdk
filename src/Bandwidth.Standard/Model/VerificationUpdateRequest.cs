@@ -124,6 +124,7 @@ namespace Bandwidth.Standard.Model
         /// A general idea of the use case and customer.
         /// </summary>
         /// <value>A general idea of the use case and customer.</value>
+        /// <example>Text summarizing the use case for the toll-free number</example>
         [DataMember(Name = "useCaseSummary", IsRequired = true, EmitDefaultValue = true)]
         public string UseCaseSummary { get; set; }
 
@@ -131,6 +132,7 @@ namespace Bandwidth.Standard.Model
         /// Example of message content.
         /// </summary>
         /// <value>Example of message content.</value>
+        /// <example>Production message content</example>
         [DataMember(Name = "productionMessageContent", IsRequired = true, EmitDefaultValue = true)]
         public string ProductionMessageContent { get; set; }
 
