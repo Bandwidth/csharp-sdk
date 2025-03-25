@@ -108,6 +108,7 @@ namespace Bandwidth.Standard.Model
         /// The address of the business using the toll-free number.
         /// </summary>
         /// <value>The address of the business using the toll-free number.</value>
+        /// <example>2230 Bandmate Way</example>
         [DataMember(Name = "addr2", EmitDefaultValue = true)]
         public string Addr2 { get; set; }
 

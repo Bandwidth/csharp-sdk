@@ -137,6 +137,7 @@ namespace Bandwidth.Standard.Model
         /// A general idea of the use case and customer.
         /// </summary>
         /// <value>A general idea of the use case and customer.</value>
+        /// <example>Text summarizing the use case for the toll-free number</example>
         [DataMember(Name = "useCaseSummary", IsRequired = true, EmitDefaultValue = true)]
         public string UseCaseSummary { get; set; }
 
@@ -144,6 +145,7 @@ namespace Bandwidth.Standard.Model
         /// Example of message content.
         /// </summary>
         /// <value>Example of message content.</value>
+        /// <example>Production message content</example>
         [DataMember(Name = "productionMessageContent", IsRequired = true, EmitDefaultValue = true)]
         public string ProductionMessageContent { get; set; }
 
@@ -157,6 +159,7 @@ namespace Bandwidth.Standard.Model
         /// Any additional information.
         /// </summary>
         /// <value>Any additional information.</value>
+        /// <example>Any additional information</example>
         [DataMember(Name = "additionalInformation", EmitDefaultValue = true)]
         public string AdditionalInformation { get; set; }
 
@@ -237,9 +240,9 @@ namespace Bandwidth.Standard.Model
             }
 
             // UseCaseSummary (string) minLength
-            if (this.UseCaseSummary != null && this.UseCaseSummary.Length < 1)
+            if (this.UseCaseSummary != null && this.UseCaseSummary.Length < 0)
             {
-                yield return new ValidationResult("Invalid value for UseCaseSummary, length must be greater than 1.", new [] { "UseCaseSummary" });
+                yield return new ValidationResult("Invalid value for UseCaseSummary, length must be greater than 0.", new [] { "UseCaseSummary" });
             }
 
             // ProductionMessageContent (string) maxLength
@@ -249,9 +252,9 @@ namespace Bandwidth.Standard.Model
             }
 
             // ProductionMessageContent (string) minLength
-            if (this.ProductionMessageContent != null && this.ProductionMessageContent.Length < 1)
+            if (this.ProductionMessageContent != null && this.ProductionMessageContent.Length < 0)
             {
-                yield return new ValidationResult("Invalid value for ProductionMessageContent, length must be greater than 1.", new [] { "ProductionMessageContent" });
+                yield return new ValidationResult("Invalid value for ProductionMessageContent, length must be greater than 0.", new [] { "ProductionMessageContent" });
             }
 
             // AdditionalInformation (string) maxLength
