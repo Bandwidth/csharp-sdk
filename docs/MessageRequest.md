@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Media** | **List&lt;string&gt;** | A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters. | [optional] 
 **Tag** | **string** | A custom string that will be included in callback events of the message. Max 1024 characters. | [optional] 
 **Priority** | **PriorityEnum** |  | [optional] 
-**Expiration** | **DateTime** | A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS. | [optional] 
+**Expiration** | **DateTime** | A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

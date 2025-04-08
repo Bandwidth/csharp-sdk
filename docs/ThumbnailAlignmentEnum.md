@@ -1,5 +1,5 @@
-# Bandwidth.Standard.Model.PriorityEnum
-The priority specified by the user.
+# Bandwidth.Standard.Model.ThumbnailAlignmentEnum
+The alignment of the thumbnail image in the card. Only applicable if the card using horizontal orientation.
 
 ## Properties
 

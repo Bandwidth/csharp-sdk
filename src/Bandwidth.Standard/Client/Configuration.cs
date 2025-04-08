@@ -406,6 +406,18 @@ namespace Bandwidth.Standard.Client
                     }
                 },
                 {
+                    "MultiChannelApi.CreateMultiChannelMessage", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://messaging.bandwidth.com/api/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
                     "PhoneNumberLookupApi.CreateLookup", new List<IReadOnlyDictionary<string, object>>
                     {
                         {

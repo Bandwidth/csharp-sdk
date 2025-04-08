@@ -27,23 +27,22 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The priority specified by the user.
+    /// Defines standaloneCardOrientationEnum
     /// </summary>
-    /// <value>The priority specified by the user.</value>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum PriorityEnum
+    public enum StandaloneCardOrientationEnum
     {
         /// <summary>
-        /// Enum Default for value: default
+        /// Enum HORIZONTAL for value: HORIZONTAL
         /// </summary>
-        [EnumMember(Value = "default")]
-        Default = 1,
+        [EnumMember(Value = "HORIZONTAL")]
+        HORIZONTAL = 1,
 
         /// <summary>
-        /// Enum High for value: high
+        /// Enum VERTICAL for value: VERTICAL
         /// </summary>
-        [EnumMember(Value = "high")]
-        High = 2
+        [EnumMember(Value = "VERTICAL")]
+        VERTICAL = 2
     }
 
 }
