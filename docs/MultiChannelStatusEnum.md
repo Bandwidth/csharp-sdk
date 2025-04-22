@@ -1,5 +1,4 @@
-# Bandwidth.Standard.Model.PriorityEnum
-The priority specified by the user.
+# Bandwidth.Standard.Model.MultiChannelStatusEnum
 
 ## Properties
 

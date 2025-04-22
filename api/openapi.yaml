@@ -14,6 +14,7 @@ security:
 tags:
 - name: Messages
 - name: Media
+- name: Multi-Channel
 - name: Calls
 - name: Conferences
 - name: Recordings
@@ -681,6 +682,89 @@ paths:
       summary: Create Message
       tags:
       - Messages
+    servers:
+    - description: Production
+      url: https://messaging.bandwidth.com/api/v2
+  /users/{accountId}/messages/multiChannel:
+    post:
+      callbacks:
+        multiChannelCallback:
+          $ref: '#/components/callbacks/multiChannelMessageCallback'
+      description: Endpoint for sending Multi-Channel messages.
+      operationId: createMultiChannelMessage
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/createMultiChannelMessageRequest'
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createMultiChannelMessageResponse'
+          description: Accepted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createMessageRequestError'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/messagingRequestError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/messagingRequestError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/messagingRequestError'
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/messagingRequestError'
+          description: Not Acceptable
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/messagingRequestError'
+          description: Unsupported Media Type
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/messagingRequestError'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/messagingRequestError'
+          description: Internal Server Error
+      summary: Create Multi-Channel Message
+      tags:
+      - Multi-Channel
+      x-badges:
+      - name: Beta
+        color: '#076EA8'
     servers:
     - description: Production
       url: https://messaging.bandwidth.com/api/v2
@@ -5393,6 +5477,19 @@ components:
           responses:
             "200":
               description: OK
+    multiChannelMessageCallback:
+      '{multiChannelMessageCallbackUrl}':
+        post:
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/multiChannelCallbackData'
+            description: Status Callback Payload
+            required: true
+          responses:
+            "204":
+              description: No Content
     tfVerificationStatus:
       your_url.com/webhookService:
         post:
@@ -6249,6 +6346,12 @@ components:
           schema:
             $ref: '#/components/schemas/messageRequest'
       required: true
+    createMultiChannelMessageRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/multiChannelMessageRequest'
+      required: true
     uploadMediaRequest:
       content:
         application/json:
@@ -6584,6 +6687,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/message'
+      description: Accepted
+    createMultiChannelMessageResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/createMultiChannelMessageResponse'
       description: Accepted
     listMessagesResponse:
       content:
@@ -7141,6 +7250,11 @@ components:
             $ref: '#/components/schemas/tfvError'
       description: Service Unavailable
   schemas:
+    applicationId:
+      description: The ID of the Application your from number or senderId is associated
+        with in the Bandwidth Phone Number Dashboard.
+      example: 93de2206-9669-4e07-948d-329f4b722ee2
+      type: string
     callbackTypeEnum:
       description: |
         Indicates the type of the callback:
@@ -7154,10 +7268,7 @@ components:
       example: message-delivered
       type: string
     priorityEnum:
-      description: |-
-        The priority specified by the user.
-
-        Not supported on MMS.
+      description: The priority specified by the user.
       enum:
       - default
       - high
@@ -7427,6 +7538,10 @@ components:
       - type
       title: CreateMessageRequestError
       type: object
+    messageId:
+      description: The ID of the message.
+      example: 1589228074636lm4k2je7j7jklbn2
+      type: string
     media:
       example:
         contentLength: 0
@@ -7442,13 +7557,11 @@ components:
       title: Media
       type: object
     tag:
-      properties:
-        key:
-          type: string
-        value:
-          type: string
+      description: A custom string that will be included in callback events of the
+        message. Max 1024 characters.
+      example: custom string
       title: Tag
-      type: object
+      type: string
     deferredResult:
       properties:
         result:
@@ -7457,6 +7570,13 @@ components:
           type: boolean
       title: DeferredResult
       type: object
+    expiration:
+      description: "A string with the date/time value that the message will automatically\
+        \ expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z\
+        \ or 2021-03-13T20:59:26-05:00. Must be a date-time in the future."
+      example: 2021-02-01T11:29:18-05:00
+      format: date-time
+      type: string
     message:
       example:
         owner: "+15554443333"
@@ -7533,7 +7653,9 @@ components:
         priority:
           $ref: '#/components/schemas/priorityEnum'
         expiration:
-          description: The expiration date-time set by the user.
+          description: "A string with the date/time value that the message will automatically\
+            \ expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z\
+            \ or 2021-03-13T20:59:26-05:00. Must be a date-time in the future."
           example: 2021-02-01T11:29:18-05:00
           format: date-time
           type: string
@@ -7587,13 +7709,14 @@ components:
           description: A custom string that will be included in callback events of
             the message. Max 1024 characters.
           example: custom string
+          title: Tag
           type: string
         priority:
           $ref: '#/components/schemas/priorityEnum'
         expiration:
-          description: |-
-            A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future.
-            Not supported on MMS.
+          description: "A string with the date/time value that the message will automatically\
+            \ expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z\
+            \ or 2021-03-13T20:59:26-05:00. Must be a date-time in the future."
           example: 2021-02-01T11:29:18-05:00
           format: date-time
           type: string
@@ -7602,6 +7725,593 @@ components:
       - from
       - to
       title: MessageRequest
+      type: object
+    messageText:
+      description: The contents of the text message. Must be 2048 characters or less.
+      example: Hello world
+      maxLength: 2048
+      type: string
+    messageMedia:
+      description: |-
+        A list of URLs to include as media attachments as part of the message.
+        Each URL can be at most 4096 characters.
+      example:
+      - https://dev.bandwidth.com/images/bandwidth-logo.png
+      - https://dev.bandwidth.com/images/github_logo.png
+      items:
+        format: uri
+        maxLength: 4096
+        type: string
+      type: array
+    createMultiChannelMessageResponse:
+      example:
+        data:
+          channel: RBM
+          messageId: 1589228074636lm4k2je7j7jklbn2
+          from: BandwidthRBM
+          time: 2025-01-01T18:20:16Z
+          to: "+15552223333"
+          tag: custom string
+          applicationId: 93de2206-9669-4e07-948d-329f4b722ee2
+          status: DELIVERED
+          direction: OUTBOUND
+        links:
+        - rel: rel
+          href: href
+        - rel: rel
+          href: href
+        errors:
+        - code: code
+          message: message
+        - code: code
+          message: message
+      properties:
+        links:
+          items:
+            $ref: '#/components/schemas/link'
+          type: array
+        data:
+          $ref: '#/components/schemas/multiChannelMessageData'
+        errors:
+          items:
+            $ref: '#/components/schemas/errorObject'
+          type: array
+      type: object
+    multiChannelMessageChannelEnum:
+      description: The channel of the multi-channel message.
+      enum:
+      - RBM
+      - SMS
+      - MMS
+      example: RBM
+      type: string
+    multiChannelMessageDirectionEnum:
+      enum:
+      - INBOUND
+      - OUTBOUND
+      example: OUTBOUND
+      type: string
+    multiChannelSenderId:
+      description: The sender ID of the message. This could be an alphanumeric sender
+        ID.
+      example: BandwidthRBM
+      type: string
+    multiChannelDestination:
+      description: The phone number the message should be sent to in E164 format.
+      example: "+15552223333"
+      type: string
+    rbmMessageContentText:
+      properties:
+        text:
+          description: The text associated with the message. Must be 3270 characters
+            or less
+          example: Hello world
+          maxLength: 3270
+          type: string
+        suggestions:
+          description: An array of suggested actions for the recipient.
+          items:
+            $ref: '#/components/schemas/multiChannelAction'
+          maxItems: 11
+          type: array
+      required:
+      - text
+      title: RBM Text
+      type: object
+    rbmMediaHeightEnum:
+      description: The height of the media.
+      enum:
+      - SHORT
+      - MEDIUM
+      - TALL
+      example: SHORT
+      type: string
+    rbmMessageContentFile:
+      properties:
+        fileUrl:
+          description: The URL of the media file. 100MB is the maximum file size.
+          example: https://dev.bandwidth.com/images/bandwidth-logo.png
+          format: uri
+          maxLength: 1000
+          type: string
+        thumbnailUrl:
+          description: The URL of the thumbnail image. Applies only to video file
+            media.
+          example: https://dev.bandwidth.com/images/bandwidth-logo.png
+          format: uri
+          maxLength: 1000
+          type: string
+      required:
+      - fileUrl
+      title: RBM Rich Media File
+      type: object
+    rbmMessageMedia:
+      properties:
+        media:
+          $ref: '#/components/schemas/rbmMessageContentFile'
+        suggestions:
+          description: An array of suggested actions for the recipient.
+          items:
+            $ref: '#/components/schemas/multiChannelAction'
+          maxItems: 11
+          type: array
+      required:
+      - media
+      title: RBM Media
+      type: object
+    rbmCardContent:
+      properties:
+        title:
+          description: The title of the card. Must be 200 characters or less.
+          example: Bandwidth
+          maxLength: 200
+          type: string
+        description:
+          description: The description of the card. Must be 2000 characters or less.
+          example: Bandwidth is a communications platform as a service (CPaaS) company.
+          maxLength: 2000
+          type: string
+        media:
+          $ref: '#/components/schemas/rbmCardContent_media'
+        suggestions:
+          description: An array of suggested actions for the recipient that will be
+            displayed on the rich card.
+          items:
+            $ref: '#/components/schemas/multiChannelAction'
+          maxItems: 4
+          type: array
+      type: object
+    rbmStandaloneCard:
+      properties:
+        orientation:
+          $ref: '#/components/schemas/standaloneCardOrientationEnum'
+        thumbnailImageAlignment:
+          $ref: '#/components/schemas/thumbnailAlignmentEnum'
+        cardContent:
+          $ref: '#/components/schemas/rbmCardContent'
+        suggestions:
+          description: An array of suggested actions for the recipient.
+          items:
+            $ref: '#/components/schemas/multiChannelAction'
+          maxItems: 11
+          type: array
+      required:
+      - cardContent
+      - orientation
+      - thumbnailImageAlignment
+      title: Standalone Card
+      type: object
+    standaloneCardOrientationEnum:
+      enum:
+      - HORIZONTAL
+      - VERTICAL
+      example: VERTICAL
+      type: string
+    thumbnailAlignmentEnum:
+      description: The alignment of the thumbnail image in the card. Only applicable
+        if the card using horizontal orientation.
+      enum:
+      - LEFT
+      - RIGHT
+      example: LEFT
+      type: string
+    rbmMessageCarouselCard:
+      properties:
+        cardWidth:
+          $ref: '#/components/schemas/cardWidthEnum'
+        cardContents:
+          items:
+            $ref: '#/components/schemas/rbmCardContent'
+          maxItems: 10
+          type: array
+        suggestions:
+          description: An array of suggested actions for the recipient.
+          items:
+            $ref: '#/components/schemas/multiChannelAction'
+          maxItems: 11
+          type: array
+      required:
+      - cardContents
+      - cardWidth
+      title: Carousel
+      type: object
+    cardWidthEnum:
+      enum:
+      - SMALL
+      - MEDIUM
+      example: SMALL
+      type: string
+    smsMessageContent:
+      properties:
+        text:
+          description: The contents of the text message. Must be 2048 characters or
+            less.
+          example: Hello world
+          maxLength: 2048
+          type: string
+      required:
+      - text
+      title: SMS Text
+      type: object
+    mmsMessageContent:
+      properties:
+        text:
+          description: The contents of the text message. Must be 2048 characters or
+            less.
+          example: Hello world
+          maxLength: 2048
+          type: string
+        media:
+          description: |-
+            A list of URLs to include as media attachments as part of the message.
+            Each URL can be at most 4096 characters.
+          example:
+          - https://dev.bandwidth.com/images/bandwidth-logo.png
+          - https://dev.bandwidth.com/images/github_logo.png
+          items:
+            format: uri
+            maxLength: 4096
+            type: string
+          type: array
+      title: MMS Message
+      type: object
+    rbmMessageContentRichCard:
+      oneOf:
+      - $ref: '#/components/schemas/rbmStandaloneCard'
+      - $ref: '#/components/schemas/rbmMessageCarouselCard'
+      title: RBM Rich Card
+    rbmActionTypeEnum:
+      enum:
+      - REPLY
+      - DIAL_PHONE
+      - SHOW_LOCATION
+      - CREATE_CALENDAR_EVENT
+      - OPEN_URL
+      - REQUEST_LOCATION
+      example: REPLY
+      type: string
+    rbmActionText:
+      description: Displayed text for user to click
+      example: Hello world
+      maxLength: 25
+      title: Text
+      type: string
+    rbmActionPostBackData:
+      description: Base64 payload the customer receives when the reply is clicked.
+      example: !!binary |-
+        U0dWc2JHOGdkMjl5YkdRPQ==
+      format: byte
+      maxLength: 2048
+      title: Post Back Data
+      type: string
+    rbmActionBase:
+      properties:
+        type:
+          $ref: '#/components/schemas/rbmActionTypeEnum'
+        text:
+          description: Displayed text for user to click
+          example: Hello world
+          maxLength: 25
+          title: Text
+          type: string
+        postBackData:
+          description: Base64 payload the customer receives when the reply is clicked.
+          example: !!binary |-
+            U0dWc2JHOGdkMjl5YkdRPQ==
+          format: byte
+          maxLength: 2048
+          title: Post Back Data
+          type: string
+      required:
+      - postBackData
+      - text
+      - type
+      type: object
+    rbmActionDial:
+      allOf:
+      - $ref: '#/components/schemas/rbmActionBase'
+      - properties:
+          phoneNumber:
+            description: The phone number to dial. Must be E164 format.
+            example: "+15552223333"
+            type: string
+        required:
+        - phoneNumber
+        title: Dial Phone
+        type: object
+    rbmActionViewLocation:
+      allOf:
+      - $ref: '#/components/schemas/rbmActionBase'
+      - properties:
+          latitude:
+            description: The latitude of the location.
+            example: "37.7749"
+            format: double
+            type: string
+          longitude:
+            description: The longitude of the location.
+            example: "-122.4194"
+            format: double
+            type: string
+          label:
+            description: The label of the location.
+            example: San Francisco
+            maxLength: 100
+            type: string
+        required:
+        - latitude
+        - longitude
+        title: Show Location
+        type: object
+    multiChannelActionCalendarEvent:
+      allOf:
+      - $ref: '#/components/schemas/rbmActionBase'
+      - properties:
+          title:
+            description: The title of the event.
+            example: Meeting with John
+            maxLength: 100
+            type: string
+          startTime:
+            description: The start time of the event.
+            example: 2022-09-14T18:20:16Z
+            format: date-time
+            type: string
+          endTime:
+            description: The end time of the event.
+            example: 2022-09-14T18:20:16Z
+            format: date-time
+            type: string
+          description:
+            description: The description of the event.
+            example: Discuss the new project
+            maxLength: 500
+            type: string
+        required:
+        - endTime
+        - startTime
+        - title
+        title: Calendar Event
+        type: object
+    rbmActionOpenUrl:
+      allOf:
+      - $ref: '#/components/schemas/rbmActionBase'
+      - properties:
+          url:
+            description: The URL to open in browser.
+            example: https://dev.bandwidth.com
+            format: uri
+            maxLength: 2048
+            type: string
+        required:
+        - url
+        title: Open URL
+        type: object
+    multiChannelFullActions:
+      description: An array of suggested actions for the recipient.
+      items:
+        $ref: '#/components/schemas/multiChannelAction'
+      maxItems: 11
+      type: array
+    multiChannelAction:
+      discriminator:
+        mapping:
+          REPLY: '#/components/schemas/rbmActionBase'
+          DIAL_PHONE: '#/components/schemas/rbmActionDial'
+          SHOW_LOCATION: '#/components/schemas/rbmActionViewLocation'
+          CREATE_CALENDAR_EVENT: '#/components/schemas/multiChannelActionCalendarEvent'
+          OPEN_URL: '#/components/schemas/rbmActionOpenUrl'
+          REQUEST_LOCATION: '#/components/schemas/rbmActionBase'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/rbmActionBase'
+      - $ref: '#/components/schemas/rbmActionDial'
+      - $ref: '#/components/schemas/rbmActionViewLocation'
+      - $ref: '#/components/schemas/multiChannelActionCalendarEvent'
+      - $ref: '#/components/schemas/rbmActionOpenUrl'
+    multiChannelStatusEnum:
+      enum:
+      - QUEUED
+      - SENDING
+      - DELIVERED
+      - FAILED
+      example: DELIVERED
+      type: string
+    multiChannelChannelListObject:
+      properties:
+        from:
+          description: The sender ID of the message. This could be an alphanumeric
+            sender ID.
+          example: BandwidthRBM
+          type: string
+        applicationId:
+          description: The ID of the Application your from number or senderId is associated
+            with in the Bandwidth Phone Number Dashboard.
+          example: 93de2206-9669-4e07-948d-329f4b722ee2
+          type: string
+        channel:
+          $ref: '#/components/schemas/multiChannelMessageChannelEnum'
+        content:
+          $ref: '#/components/schemas/multiChannelChannelListObject_content'
+      required:
+      - applicationId
+      - channel
+      - content
+      - from
+      type: object
+    multiChannelMessageRequest:
+      description: Multi-Channel Message Request
+      properties:
+        to:
+          description: The phone number the message should be sent to in E164 format.
+          example: "+15552223333"
+          type: string
+        channelList:
+          description: "A list of message bodies. The messages will be attempted in\
+            \ the order they are listed. Once a message sends successfully, the others\
+            \ will be ignored."
+          items:
+            $ref: '#/components/schemas/multiChannelChannelListObject'
+          maxItems: 4
+          type: array
+        tag:
+          description: A custom string that will be included in callback events of
+            the message. Max 1024 characters.
+          example: custom string
+          title: Tag
+          type: string
+        priority:
+          $ref: '#/components/schemas/priorityEnum'
+        expiration:
+          description: "A string with the date/time value that the message will automatically\
+            \ expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z\
+            \ or 2021-03-13T20:59:26-05:00. Must be a date-time in the future."
+          example: 2021-02-01T11:29:18-05:00
+          format: date-time
+          type: string
+      required:
+      - channelList
+      - to
+      type: object
+    multiChannelMessageCallbackData:
+      properties:
+        messageId:
+          description: The ID of the message.
+          example: 1589228074636lm4k2je7j7jklbn2
+          type: string
+        status:
+          $ref: '#/components/schemas/multiChannelStatusEnum'
+        direction:
+          $ref: '#/components/schemas/multiChannelMessageDirectionEnum'
+        from:
+          description: The sender ID of the message. This could be an alphanumeric
+            sender ID.
+          example: BandwidthRBM
+          type: string
+        to:
+          description: The phone number the message should be sent to in E164 format.
+          example: "+15552223333"
+          type: string
+        applicationId:
+          description: The ID of the Application your from number or senderId is associated
+            with in the Bandwidth Phone Number Dashboard.
+          example: 93de2206-9669-4e07-948d-329f4b722ee2
+          type: string
+        channel:
+          $ref: '#/components/schemas/multiChannelMessageChannelEnum'
+        tag:
+          description: A custom string that will be included in callback events of
+            the message. Max 1024 characters.
+          example: custom string
+          title: Tag
+          type: string
+      type: object
+    multiChannelMessageData:
+      example:
+        channel: RBM
+        messageId: 1589228074636lm4k2je7j7jklbn2
+        from: BandwidthRBM
+        time: 2025-01-01T18:20:16Z
+        to: "+15552223333"
+        tag: custom string
+        applicationId: 93de2206-9669-4e07-948d-329f4b722ee2
+        status: DELIVERED
+        direction: OUTBOUND
+      properties:
+        messageId:
+          description: The ID of the message.
+          example: 1589228074636lm4k2je7j7jklbn2
+          type: string
+        status:
+          $ref: '#/components/schemas/multiChannelStatusEnum'
+        time:
+          description: The time the message was received by the Bandwidth API.
+          example: 2025-01-01T18:20:16Z
+          format: date-time
+          type: string
+        direction:
+          $ref: '#/components/schemas/multiChannelMessageDirectionEnum'
+        from:
+          description: The sender ID of the message. This could be an alphanumeric
+            sender ID.
+          example: BandwidthRBM
+          type: string
+        to:
+          description: The phone number the message should be sent to in E164 format.
+          example: "+15552223333"
+          type: string
+        applicationId:
+          description: The ID of the Application your from number or senderId is associated
+            with in the Bandwidth Phone Number Dashboard.
+          example: 93de2206-9669-4e07-948d-329f4b722ee2
+          type: string
+        channel:
+          $ref: '#/components/schemas/multiChannelMessageChannelEnum'
+        tag:
+          description: A custom string that will be included in callback events of
+            the message. Max 1024 characters.
+          example: custom string
+          title: Tag
+          type: string
+      type: object
+    multiChannelCallbackData:
+      properties:
+        time:
+          description: The time of the callback event.
+          example: 2025-01-01T18:20:16Z
+          format: date-time
+          type: string
+        type:
+          $ref: '#/components/schemas/multiChannelStatusEnum'
+        to:
+          description: The phone number the message should be sent to in E164 format.
+          example: "+15552223333"
+          type: string
+        description:
+          example: Incoming message received
+          type: string
+        message:
+          $ref: '#/components/schemas/multiChannelMessageCallbackData'
+      type: object
+    link:
+      example:
+        rel: rel
+        href: href
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      type: object
+    errorObject:
+      example:
+        code: code
+        message: message
+      properties:
+        code:
+          type: string
+        message:
+          type: string
       type: object
     messageCallback:
       description: Message Callback Schema
@@ -10801,7 +11511,7 @@ components:
       description: The user account associated with the call.
       example: "9900000"
       type: string
-    applicationId:
+    applicationId1:
       description: The id of the application associated with the call.
       example: 04e88489-df02-4e34-a0ee-27a91849555f
       type: string
@@ -12255,6 +12965,23 @@ components:
       nullable: true
       pattern: "^[ -~]{16,64}$"
       type: string
+    rbmCardContent_media:
+      allOf:
+      - $ref: '#/components/schemas/rbmMessageContentFile'
+      - properties:
+          height:
+            $ref: '#/components/schemas/rbmMediaHeightEnum'
+        type: object
+      required:
+      - height
+    multiChannelChannelListObject_content:
+      description: The content of the message.
+      oneOf:
+      - $ref: '#/components/schemas/rbmMessageContentText'
+      - $ref: '#/components/schemas/rbmMessageMedia'
+      - $ref: '#/components/schemas/rbmMessageContentRichCard'
+      - $ref: '#/components/schemas/smsMessageContent'
+      - $ref: '#/components/schemas/mmsMessageContent'
     webhookSubscription_basicAuthentication:
       description: "Basic authentication credentials are not required, but if present,\
         \ both username and password must be provided."

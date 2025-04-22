@@ -59,7 +59,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="text">The contents of the message..</param>
         /// <param name="tag">The custom string set by the user..</param>
         /// <param name="priority">priority.</param>
-        /// <param name="expiration">The expiration date-time set by the user..</param>
+        /// <param name="expiration">A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future..</param>
         public Message(string id = default(string), string owner = default(string), string applicationId = default(string), DateTime time = default(DateTime), int segmentCount = default(int), MessageDirectionEnum? direction = default(MessageDirectionEnum?), List<string> to = default(List<string>), string from = default(string), List<string> media = default(List<string>), string text = default(string), string tag = default(string), PriorityEnum? priority = default(PriorityEnum?), DateTime expiration = default(DateTime))
         {
             this.Id = id;
@@ -158,9 +158,9 @@ namespace Bandwidth.Standard.Model
         public string Tag { get; set; }
 
         /// <summary>
-        /// The expiration date-time set by the user.
+        /// A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future.
         /// </summary>
-        /// <value>The expiration date-time set by the user.</value>
+        /// <value>A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future.</value>
         /// <example>2021-02-01T11:29:18-05:00</example>
         [DataMember(Name = "expiration", EmitDefaultValue = false)]
         public DateTime Expiration { get; set; }

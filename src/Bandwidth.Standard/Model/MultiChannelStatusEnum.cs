@@ -27,23 +27,34 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The priority specified by the user.
+    /// Defines multiChannelStatusEnum
     /// </summary>
-    /// <value>The priority specified by the user.</value>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum PriorityEnum
+    public enum MultiChannelStatusEnum
     {
         /// <summary>
-        /// Enum Default for value: default
+        /// Enum QUEUED for value: QUEUED
         /// </summary>
-        [EnumMember(Value = "default")]
-        Default = 1,
+        [EnumMember(Value = "QUEUED")]
+        QUEUED = 1,
 
         /// <summary>
-        /// Enum High for value: high
+        /// Enum SENDING for value: SENDING
         /// </summary>
-        [EnumMember(Value = "high")]
-        High = 2
+        [EnumMember(Value = "SENDING")]
+        SENDING = 2,
+
+        /// <summary>
+        /// Enum DELIVERED for value: DELIVERED
+        /// </summary>
+        [EnumMember(Value = "DELIVERED")]
+        DELIVERED = 3,
+
+        /// <summary>
+        /// Enum FAILED for value: FAILED
+        /// </summary>
+        [EnumMember(Value = "FAILED")]
+        FAILED = 4
     }
 
 }

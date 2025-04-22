@@ -27,23 +27,23 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The priority specified by the user.
+    /// The alignment of the thumbnail image in the card. Only applicable if the card using horizontal orientation.
     /// </summary>
-    /// <value>The priority specified by the user.</value>
+    /// <value>The alignment of the thumbnail image in the card. Only applicable if the card using horizontal orientation.</value>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum PriorityEnum
+    public enum ThumbnailAlignmentEnum
     {
         /// <summary>
-        /// Enum Default for value: default
+        /// Enum LEFT for value: LEFT
         /// </summary>
-        [EnumMember(Value = "default")]
-        Default = 1,
+        [EnumMember(Value = "LEFT")]
+        LEFT = 1,
 
         /// <summary>
-        /// Enum High for value: high
+        /// Enum RIGHT for value: RIGHT
         /// </summary>
-        [EnumMember(Value = "high")]
-        High = 2
+        [EnumMember(Value = "RIGHT")]
+        RIGHT = 2
     }
 
 }

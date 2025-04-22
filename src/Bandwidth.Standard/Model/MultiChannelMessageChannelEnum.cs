@@ -27,23 +27,29 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The priority specified by the user.
+    /// The channel of the multi-channel message.
     /// </summary>
-    /// <value>The priority specified by the user.</value>
+    /// <value>The channel of the multi-channel message.</value>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum PriorityEnum
+    public enum MultiChannelMessageChannelEnum
     {
         /// <summary>
-        /// Enum Default for value: default
+        /// Enum RBM for value: RBM
         /// </summary>
-        [EnumMember(Value = "default")]
-        Default = 1,
+        [EnumMember(Value = "RBM")]
+        RBM = 1,
 
         /// <summary>
-        /// Enum High for value: high
+        /// Enum SMS for value: SMS
         /// </summary>
-        [EnumMember(Value = "high")]
-        High = 2
+        [EnumMember(Value = "SMS")]
+        SMS = 2,
+
+        /// <summary>
+        /// Enum MMS for value: MMS
+        /// </summary>
+        [EnumMember(Value = "MMS")]
+        MMS = 3
     }
 
 }

@@ -1,5 +1,5 @@
-# Bandwidth.Standard.Model.PriorityEnum
-The priority specified by the user.
+# Bandwidth.Standard.Model.RbmMediaHeightEnum
+The height of the media.
 
 ## Properties
 
