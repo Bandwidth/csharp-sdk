@@ -1,5 +1,5 @@
 # Bandwidth.Standard.Model.PriorityEnum
-The priority specified by the user.  Not supported on MMS.
+The priority specified by the user.
 
 ## Properties
 

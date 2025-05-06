@@ -53,7 +53,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="media">A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters..</param>
         /// <param name="tag">A custom string that will be included in callback events of the message. Max 1024 characters..</param>
         /// <param name="priority">priority.</param>
-        /// <param name="expiration">A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS..</param>
+        /// <param name="expiration">A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future..</param>
         public MessageRequest(string applicationId = default(string), List<string> to = default(List<string>), string from = default(string), string text = default(string), List<string> media = default(List<string>), string tag = default(string), PriorityEnum? priority = default(PriorityEnum?), DateTime expiration = default(DateTime))
         {
             // to ensure "applicationId" is required (not null)
@@ -130,9 +130,9 @@ namespace Bandwidth.Standard.Model
         public string Tag { get; set; }
 
         /// <summary>
-        /// A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS.
+        /// A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future.
         /// </summary>
-        /// <value>A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. Not supported on MMS.</value>
+        /// <value>A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future.</value>
         /// <example>2021-02-01T11:29:18-05:00</example>
         [DataMember(Name = "expiration", EmitDefaultValue = false)]
         public DateTime Expiration { get; set; }
