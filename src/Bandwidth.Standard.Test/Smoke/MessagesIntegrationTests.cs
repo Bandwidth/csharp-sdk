@@ -1,11 +1,11 @@
 using System;
+using System.Net;
 using System.Collections.Generic;
 using Xunit;
 
 using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
-using System.Net;
 
 namespace Bandwidth.Standard.Test.Smoke
 {

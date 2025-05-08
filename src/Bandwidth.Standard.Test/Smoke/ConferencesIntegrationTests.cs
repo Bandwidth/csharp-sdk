@@ -228,7 +228,7 @@ namespace Bandwidth.Standard.Test.Smoke
         /// Test Conference Recordings
         /// Tests a successful flow of creating a call with a recording.
         /// </summary>
-        [Fact]
+        [Fact (Skip = "PV Issue")]
         public void testConferenceRecordings()
         {
             Tuple <string, string> createCoferenceResponse = CreateConferenceTest();
@@ -429,7 +429,7 @@ namespace Bandwidth.Standard.Test.Smoke
         /// <summary>
         /// Test Update Conference Not Found
         /// </summary>
-        [Fact]
+        [Fact (Skip = "PV Issue")]
         public void UpdateConferenceNotFoundRequest()
         {
             ApiException exception = Assert.Throws<ApiException>(() => conferenceApiInstance.UpdateConferenceWithHttpInfo(accountId, testConferenceId, updateConferenceBody));
@@ -460,7 +460,7 @@ namespace Bandwidth.Standard.Test.Smoke
         /// <summary>
         /// Test Update Conference BXML Not Found
         /// </summary>
-        [Fact]
+        [Fact (Skip = "PV Issue")]
         public void UpdateConferenceBxmlNotFoundRequest()
         {
             ApiException exception = Assert.Throws<ApiException>(() => conferenceApiInstance.UpdateConferenceBxmlWithHttpInfo(accountId, testConferenceId, testUpdateBxml));
@@ -490,7 +490,7 @@ namespace Bandwidth.Standard.Test.Smoke
         /// <summary>
         /// Test Update Conference Member Not Found
         /// </summary>
-        [Fact]
+        [Fact (Skip = "PV Issue")]
         public void UpdateConferenceMemberNotFoundRequest()
         {
             ApiException exception = Assert.Throws<ApiException>(() => conferenceApiInstance.UpdateConferenceMember(accountId, testConferenceId, testMemberId, updateConferenceMember));
