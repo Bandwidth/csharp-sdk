@@ -31,9 +31,8 @@ namespace Bandwidth.Standard.Test.Unit.Api
         private TollFreeVerificationApi instance;
         private Configuration configuration;
 
-        private string accountId = "9900000";
-        private string subscriptionId = "test-id-1234";
-        private string tfPhoneNumber = "18005551234";
+        // private string accountId = "9900000";
+        // private string tfPhoneNumber = "18005551234";
 
         private WebhookSubscriptionRequestSchema webhookSubscriptionRequestSchema;
         private Dictionary<string, dynamic> verification;
