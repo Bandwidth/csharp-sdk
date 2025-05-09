@@ -49,7 +49,9 @@ namespace Bandwidth.Standard.Model
         /// <param name="createdDateTime">Date and time the verification request was created..</param>
         /// <param name="modifiedDateTime">Date and time the verification request was last modified..</param>
         /// <param name="submission">submission.</param>
-        public TfvStatus(string phoneNumber = default(string), TfvStatusEnum? status = default(TfvStatusEnum?), Guid internalTicketNumber = default(Guid), string declineReasonDescription = default(string), bool resubmitAllowed = default(bool), DateTime createdDateTime = default(DateTime), DateTime modifiedDateTime = default(DateTime), TfvSubmissionInfo submission = default(TfvSubmissionInfo))
+        /// <param name="blocked">Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025).</param>
+        /// <param name="blockedReason">The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025).</param>
+        public TfvStatus(string phoneNumber = default(string), TfvStatusEnum? status = default(TfvStatusEnum?), Guid internalTicketNumber = default(Guid), string declineReasonDescription = default(string), bool resubmitAllowed = default(bool), DateTime createdDateTime = default(DateTime), DateTime modifiedDateTime = default(DateTime), TfvSubmissionInfo submission = default(TfvSubmissionInfo), bool blocked = default(bool), string blockedReason = default(string))
         {
             this.PhoneNumber = phoneNumber;
             this.Status = status;
@@ -59,6 +61,8 @@ namespace Bandwidth.Standard.Model
             this.CreatedDateTime = createdDateTime;
             this.ModifiedDateTime = modifiedDateTime;
             this.Submission = submission;
+            this.Blocked = blocked;
+            this.BlockedReason = blockedReason;
         }
 
         /// <summary>
@@ -116,6 +120,22 @@ namespace Bandwidth.Standard.Model
         public TfvSubmissionInfo Submission { get; set; }
 
         /// <summary>
+        /// Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)
+        /// </summary>
+        /// <value>Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)</value>
+        /// <example>true</example>
+        [DataMember(Name = "blocked", EmitDefaultValue = true)]
+        public bool Blocked { get; set; }
+
+        /// <summary>
+        /// The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)
+        /// </summary>
+        /// <value>The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)</value>
+        /// <example>Toll-free number was used to send spam messages</example>
+        [DataMember(Name = "blockedReason", EmitDefaultValue = false)]
+        public string BlockedReason { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -131,6 +151,8 @@ namespace Bandwidth.Standard.Model
             sb.Append("  CreatedDateTime: ").Append(CreatedDateTime).Append("\n");
             sb.Append("  ModifiedDateTime: ").Append(ModifiedDateTime).Append("\n");
             sb.Append("  Submission: ").Append(Submission).Append("\n");
+            sb.Append("  Blocked: ").Append(Blocked).Append("\n");
+            sb.Append("  BlockedReason: ").Append(BlockedReason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

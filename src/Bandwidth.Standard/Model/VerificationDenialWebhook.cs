@@ -43,7 +43,9 @@ namespace Bandwidth.Standard.Model
         /// <param name="phoneNumber">Toll-free telephone number in E.164 format..</param>
         /// <param name="resubmitAllowed">Whether a Toll-Free Verification request qualifies for resubmission via PUT..</param>
         /// <param name="status">status (default to &quot;UNVERIFIED&quot;).</param>
-        public VerificationDenialWebhook(string accountId = default(string), List<AdditionalDenialReason> additionalDenialReasons = default(List<AdditionalDenialReason>), string declineReasonDescription = default(string), int denialStatusCode = default(int), Guid internalTicketNumber = default(Guid), string phoneNumber = default(string), bool resubmitAllowed = default(bool), string status = @"UNVERIFIED")
+        /// <param name="blocked">Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025).</param>
+        /// <param name="blockedReason">The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025).</param>
+        public VerificationDenialWebhook(string accountId = default(string), List<AdditionalDenialReason> additionalDenialReasons = default(List<AdditionalDenialReason>), string declineReasonDescription = default(string), int denialStatusCode = default(int), Guid internalTicketNumber = default(Guid), string phoneNumber = default(string), bool resubmitAllowed = default(bool), string status = @"UNVERIFIED", bool blocked = default(bool), string blockedReason = default(string))
         {
             this.AccountId = accountId;
             this.AdditionalDenialReasons = additionalDenialReasons;
@@ -54,6 +56,8 @@ namespace Bandwidth.Standard.Model
             this.ResubmitAllowed = resubmitAllowed;
             // use default value if no "status" provided
             this.Status = status ?? @"UNVERIFIED";
+            this.Blocked = blocked;
+            this.BlockedReason = blockedReason;
         }
 
         /// <summary>
@@ -120,6 +124,22 @@ namespace Bandwidth.Standard.Model
         public string Status { get; set; }
 
         /// <summary>
+        /// Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)
+        /// </summary>
+        /// <value>Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)</value>
+        /// <example>true</example>
+        [DataMember(Name = "blocked", EmitDefaultValue = true)]
+        public bool Blocked { get; set; }
+
+        /// <summary>
+        /// The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)
+        /// </summary>
+        /// <value>The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)</value>
+        /// <example>Toll-free number was used to send spam messages</example>
+        [DataMember(Name = "blockedReason", EmitDefaultValue = false)]
+        public string BlockedReason { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -135,6 +155,8 @@ namespace Bandwidth.Standard.Model
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  ResubmitAllowed: ").Append(ResubmitAllowed).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Blocked: ").Append(Blocked).Append("\n");
+            sb.Append("  BlockedReason: ").Append(BlockedReason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
