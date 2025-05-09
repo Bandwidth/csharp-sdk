@@ -106,7 +106,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         public void ResubmitAllowedTest()
         {
             Assert.IsType<bool>(instance.ResubmitAllowed);
-            Assert.Equal(true, instance.ResubmitAllowed);
+            Assert.True(instance.ResubmitAllowed);
         }
 
         /// <summary>
