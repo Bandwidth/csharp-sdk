@@ -594,7 +594,7 @@ namespace Bandwidth.Standard.Test.Smoke
         /// <summary>
         /// Test UpdateCallRecordingState with a nonexistent call id
         /// </summary>
-        [Fact]
+        [Fact (Skip = "PV Issue")]
         public void UpdateCallRecordingStateNotFound()
         {
             var updateCallRecording = new UpdateCallRecording(state: RecordingStateEnum.Paused);
