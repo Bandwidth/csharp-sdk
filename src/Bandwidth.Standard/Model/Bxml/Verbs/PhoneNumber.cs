@@ -77,10 +77,15 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         public string FallbackPassword { get; set; }
 
         /// <summary>
-        /// Optional custom string to include in callbacks.
+        /// (optional) Custom string to include in callbacks.
         /// </summary>
         [XmlAttribute("tag")]
         public string Tag { get; set; }
 
+        /// <summary>
+        /// (optional) The value of the User-To-User header to send within the initial INVITE.
+        /// </summary>
+        [XmlAttribute("uui")]
+        public string UUI { get; set; }
     }
 }

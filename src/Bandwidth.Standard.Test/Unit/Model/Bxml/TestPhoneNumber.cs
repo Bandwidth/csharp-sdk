@@ -10,7 +10,7 @@ namespace Bandwidth.Standard.Test.Unit.Model.Bxml
 		[Fact]
 		public void PhoneNumberTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <PhoneNumber transferAnswerUrl=\"https://test.url/\" transferAnswerMethod=\"POST\" transferAnswerFallbackUrl=\"https://fallbackTest.url/\" transferAnswerFallbackMethod=\"POST\" transferDisconnectUrl=\"https://disconnectTest.url/\" transferDisconnectMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\">+15551234567</PhoneNumber></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <PhoneNumber transferAnswerUrl=\"https://test.url/\" transferAnswerMethod=\"POST\" transferAnswerFallbackUrl=\"https://fallbackTest.url/\" transferAnswerFallbackMethod=\"POST\" transferDisconnectUrl=\"https://disconnectTest.url/\" transferDisconnectMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\" uui=\"testUUI\">+15551234567</PhoneNumber></Response>";
 
 			var phoneNumber = new PhoneNumber();
 			phoneNumber.Number = "+15551234567";
@@ -25,6 +25,7 @@ namespace Bandwidth.Standard.Test.Unit.Model.Bxml
 			phoneNumber.FallbackUsername = "fallbackUsername";
 			phoneNumber.FallbackPassword = "fallbackPassword";
 			phoneNumber.Tag = "test";
+			phoneNumber.UUI = "testUUI";
 
 			var response = new Response(phoneNumber);
 			var actual = response.ToBXML();
