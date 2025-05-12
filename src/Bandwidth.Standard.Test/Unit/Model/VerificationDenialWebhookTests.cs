@@ -47,7 +47,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 internalTicketNumber: internalTicketNumber,
                 phoneNumber: "+18005551234",
                 resubmitAllowed: true,
-                status: "status"
+                status: "status",
+                blocked: false,
+                blockedReason: "blockedReason"
             );
         }
 
@@ -143,6 +145,26 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<string>(instance.Status);
             Assert.Equal("status", instance.Status);
+        }
+
+        /// <summary>
+        /// Test the property 'Blocked'
+        /// </summary>
+        [Fact]
+        public void BlockedTest()
+        {
+            Assert.IsType<bool>(instance.Blocked);
+            Assert.False(instance.Blocked);
+        }
+
+        /// <summary>
+        /// Test the property 'BlockedReason'
+        /// </summary>
+        [Fact]
+        public void BlockedReasonTest()
+        {
+            Assert.IsType<string>(instance.BlockedReason);
+            Assert.Equal("blockedReason", instance.BlockedReason);
         }
     }
 }

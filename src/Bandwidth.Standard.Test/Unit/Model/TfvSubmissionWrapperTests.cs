@@ -58,7 +58,10 @@ namespace Bandwidth.Standard.Test.Unit.Model
                     imageUrls: new List<string> { "imageUrls" }
                 ),
                 additionalInformation: "test",
-                isvReseller: "test"
+                isvReseller: "test",
+                privacyPolicyUrl: "test",
+                termsAndConditionsUrl: "test",
+                businessDBA: "test"
             );
 
             instance = new TfvSubmissionWrapper(

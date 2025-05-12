@@ -12077,6 +12077,30 @@ components:
         via PUT.
       example: true
       type: boolean
+    blocked:
+      description: Whether a Toll-Free Verification is blocked. This attribute will
+        only be defined when the number is blocked. (Not Available Until 5/28/2025)
+      example: true
+      type: boolean
+    blockedReason:
+      description: The reason why the Toll-Free Verification is blocked. This attribute
+        will only be defined when the number is blocked. (Not Available Until 5/28/2025)
+      example: Toll-free number was used to send spam messages
+      type: string
+    privacyPolicyUrl:
+      description: The Toll-Free Verification request privacy policy URL. (Not Available
+        Until 5/28/2025)
+      example: http://your-company.com/privacyPolicyUrl.pdf
+      type: string
+    termsAndConditionsUrl:
+      description: The Toll-Free Verification request terms and conditions policy
+        URL. (Not Available Until 5/28/2025)
+      example: http://your-company.com/termsAndConditionsUrl.pdf
+      type: string
+    businessDBA:
+      description: The company 'Doing Business As'. (Not Available Until 5/28/2025)
+      example: SecondCompany Name
+      type: string
     additionalDenialReason:
       properties:
         statusCode:
@@ -12172,6 +12196,20 @@ components:
           minLength: 0
           nullable: true
           type: string
+        privacyPolicyUrl:
+          description: The Toll-Free Verification request privacy policy URL. (Not
+            Available Until 5/28/2025)
+          example: http://your-company.com/privacyPolicyUrl.pdf
+          type: string
+        termsAndConditionsUrl:
+          description: The Toll-Free Verification request terms and conditions policy
+            URL. (Not Available Until 5/28/2025)
+          example: http://your-company.com/termsAndConditionsUrl.pdf
+          type: string
+        businessDBA:
+          description: The company 'Doing Business As'. (Not Available Until 5/28/2025)
+          example: SecondCompany Name
+          type: string
       required:
       - businessAddress
       - businessContact
@@ -12218,6 +12256,7 @@ components:
           $ref: '#/components/schemas/optInWorkflow'
         additionalInformation:
           description: Any additional information.
+          example: Any additional information
           maxLength: 500
           minLength: 0
           nullable: true
@@ -12228,6 +12267,20 @@ components:
           maxLength: 500
           minLength: 0
           nullable: true
+          type: string
+        privacyPolicyUrl:
+          description: The Toll-Free Verification request privacy policy URL. (Not
+            Available Until 5/28/2025)
+          example: http://your-company.com/privacyPolicyUrl.pdf
+          type: string
+        termsAndConditionsUrl:
+          description: The Toll-Free Verification request terms and conditions policy
+            URL. (Not Available Until 5/28/2025)
+          example: http://your-company.com/termsAndConditionsUrl.pdf
+          type: string
+        businessDBA:
+          description: The company 'Doing Business As'. (Not Available Until 5/28/2025)
+          example: SecondCompany Name
           type: string
       required:
       - businessAddress
@@ -12371,6 +12424,18 @@ components:
           default: UNVERIFIED
           example: UNVERIFIED
           type: string
+        blocked:
+          description: Whether a Toll-Free Verification is blocked. This attribute
+            will only be defined when the number is blocked. (Not Available Until
+            5/28/2025)
+          example: true
+          type: boolean
+        blockedReason:
+          description: The reason why the Toll-Free Verification is blocked. This
+            attribute will only be defined when the number is blocked. (Not Available
+            Until 5/28/2025)
+          example: Toll-free number was used to send spam messages
+          type: string
       type: object
     verificationWebhook:
       properties:
@@ -12470,6 +12535,7 @@ components:
       type: object
     additionalInformation:
       description: Any additional information.
+      example: Any additional information
       maxLength: 500
       minLength: 0
       nullable: true
@@ -12801,12 +12867,16 @@ components:
       example:
         internalTicketNumber: acde070d-8c4c-4f0d-9d8a-162843c10333
         phoneNumber: "+18005555555"
+        blocked: true
+        blockedReason: Toll-free number was used to send spam messages
         resubmitAllowed: true
         createdDateTime: 2021-06-08T06:45:13Z
         modifiedDateTime: 2021-06-08T06:45:13Z
         submission:
-          additionalInformation: additionalInformation
+          additionalInformation: Any additional information
           useCase: 2FA
+          termsAndConditionsUrl: http://your-company.com/termsAndConditionsUrl.pdf
+          businessDBA: SecondCompany Name
           isvReseller: Test ISV
           businessContact:
             firstName: John
@@ -12823,6 +12893,7 @@ components:
             name: Bandwidth Inc.
             state: NC
             url: https://www.example.com/path/to/resource
+          privacyPolicyUrl: http://your-company.com/privacyPolicyUrl.pdf
           useCaseSummary: Text summarizing the use case for the toll-free number
           optInWorkflow:
             imageUrls:
@@ -12873,11 +12944,25 @@ components:
           type: string
         submission:
           $ref: '#/components/schemas/tfvSubmissionInfo'
+        blocked:
+          description: Whether a Toll-Free Verification is blocked. This attribute
+            will only be defined when the number is blocked. (Not Available Until
+            5/28/2025)
+          example: true
+          type: boolean
+        blockedReason:
+          description: The reason why the Toll-Free Verification is blocked. This
+            attribute will only be defined when the number is blocked. (Not Available
+            Until 5/28/2025)
+          example: Toll-free number was used to send spam messages
+          type: string
       type: object
     tfvSubmissionInfo:
       example:
-        additionalInformation: additionalInformation
+        additionalInformation: Any additional information
         useCase: 2FA
+        termsAndConditionsUrl: http://your-company.com/termsAndConditionsUrl.pdf
+        businessDBA: SecondCompany Name
         isvReseller: Test ISV
         businessContact:
           firstName: John
@@ -12894,6 +12979,7 @@ components:
           name: Bandwidth Inc.
           state: NC
           url: https://www.example.com/path/to/resource
+        privacyPolicyUrl: http://your-company.com/privacyPolicyUrl.pdf
         useCaseSummary: Text summarizing the use case for the toll-free number
         optInWorkflow:
           imageUrls:
@@ -12935,6 +13021,7 @@ components:
           $ref: '#/components/schemas/optInWorkflow'
         additionalInformation:
           description: Any additional information.
+          example: Any additional information
           maxLength: 500
           minLength: 0
           nullable: true
@@ -12945,6 +13032,20 @@ components:
           maxLength: 500
           minLength: 0
           nullable: true
+          type: string
+        privacyPolicyUrl:
+          description: The Toll-Free Verification request privacy policy URL. (Not
+            Available Until 5/28/2025)
+          example: http://your-company.com/privacyPolicyUrl.pdf
+          type: string
+        termsAndConditionsUrl:
+          description: The Toll-Free Verification request terms and conditions policy
+            URL. (Not Available Until 5/28/2025)
+          example: http://your-company.com/termsAndConditionsUrl.pdf
+          type: string
+        businessDBA:
+          description: The company 'Doing Business As'. (Not Available Until 5/28/2025)
+          example: SecondCompany Name
           type: string
       type: object
     tfvStatusEnum:
