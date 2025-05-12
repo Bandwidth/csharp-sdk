@@ -41,7 +41,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 resubmitAllowed: true,
                 createdDateTime: DateTime.Parse("2023-10-01T00:00:00Z"),
                 modifiedDateTime: DateTime.Parse("2023-10-01T00:00:00Z"),
-                submission: submission
+                submission: submission,
+                blocked: false,
+                blockedReason: "blockedReason"
             );
         }
 
@@ -137,6 +139,26 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<TfvSubmissionInfo>(instance.Submission);
             Assert.Equal(submission, instance.Submission);
+        }
+
+        /// <summary>
+        /// Test the property 'Blocked'
+        /// </summary>
+        [Fact]
+        public void BlockedTest()
+        {
+            Assert.IsType<bool>(instance.Blocked);
+            Assert.False(instance.Blocked);
+        }
+
+        /// <summary>
+        /// Test the property 'BlockedReason'
+        /// </summary>
+        [Fact]
+        public void BlockedReasonTest()
+        {
+            Assert.IsType<string>(instance.BlockedReason);
+            Assert.Equal("blockedReason", instance.BlockedReason);
         }
     }
 }

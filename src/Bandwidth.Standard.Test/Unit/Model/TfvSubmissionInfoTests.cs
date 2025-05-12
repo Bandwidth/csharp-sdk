@@ -65,7 +65,10 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 productionMessageContent: "test",
                 optInWorkflow: optInWorkflow,
                 additionalInformation: "test",
-                isvReseller: "test"
+                isvReseller: "test",
+                privacyPolicyUrl: "test",
+                termsAndConditionsUrl: "test",
+                businessDBA: "test"
             );
         }
 
@@ -171,6 +174,36 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<string>(instance.IsvReseller);
             Assert.Equal("test", instance.IsvReseller);
+        }
+
+        /// <summary>
+        /// Test the property 'PrivacyPolicyUrl'
+        /// </summary>
+        [Fact]
+        public void PrivacyPolicyUrlTest()
+        {
+            Assert.IsType<string>(instance.PrivacyPolicyUrl);
+            Assert.Equal("test", instance.PrivacyPolicyUrl);
+        }
+
+        /// <summary>
+        /// Test the property 'TermsAndConditionsUrl'
+        /// </summary>
+        [Fact]
+        public void TermsAndConditionsUrlTest()
+        {
+            Assert.IsType<string>(instance.TermsAndConditionsUrl);
+            Assert.Equal("test", instance.TermsAndConditionsUrl);
+        }
+
+        /// <summary>
+        /// Test the property 'BusinessDBA'
+        /// </summary>
+        [Fact]
+        public void BusinessDBATest()
+        {
+            Assert.IsType<string>(instance.BusinessDBA);
+            Assert.Equal("test", instance.BusinessDBA);
         }
     }
 }
