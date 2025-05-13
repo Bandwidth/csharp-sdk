@@ -48,19 +48,7 @@ namespace Bandwidth.Standard.Model
         /// Enum PENDING for value: PENDING
         /// </summary>
         [EnumMember(Value = "PENDING")]
-        PENDING = 3,
-
-        /// <summary>
-        /// Enum PARTIALLYVERIFIED for value: PARTIALLY_VERIFIED
-        /// </summary>
-        [EnumMember(Value = "PARTIALLY_VERIFIED")]
-        PARTIALLYVERIFIED = 4,
-
-        /// <summary>
-        /// Enum INVALIDSTATUS for value: INVALID_STATUS
-        /// </summary>
-        [EnumMember(Value = "INVALID_STATUS")]
-        INVALIDSTATUS = 5
+        PENDING = 3
     }
 
 }
