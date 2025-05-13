@@ -78,7 +78,7 @@ namespace Bandwidth.Standard.Model
         /// Base64 payload the customer receives when the reply is clicked.
         /// </summary>
         /// <value>Base64 payload the customer receives when the reply is clicked.</value>
-        /// <example>[B@4544ab46</example>
+        /// <example>[B@6159fb3c</example>
         [DataMember(Name = "postBackData", IsRequired = true, EmitDefaultValue = true)]
         public byte[] PostBackData { get; set; }
 

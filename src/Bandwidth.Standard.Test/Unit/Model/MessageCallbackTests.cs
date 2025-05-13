@@ -57,7 +57,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 to: "+19195551234",
                 description: "test",
                 message: message,
-                errorCode: 123
+                errorCode: 123,
+                carrierName: "test"
             );
         }
 
@@ -133,6 +134,16 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<int>(instance.ErrorCode);
             Assert.Equal(123, instance.ErrorCode);
+        }
+
+        /// <summary>
+        /// Test the property 'CarrierName'
+        /// </summary>
+        [Fact]
+        public void CarrierNameTest()
+        {
+            Assert.IsType<string>(instance.CarrierName);
+            Assert.Equal("test", instance.CarrierName);
         }
     }
 }

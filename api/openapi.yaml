@@ -8336,6 +8336,13 @@ components:
           example: 4405
           nullable: true
           type: integer
+        carrierName:
+          description: "The name of the Authorized Message Provider (AMP) that handled\
+            \ this message. In the US, this is the carrier that the message was sent\
+            \ to."
+          example: AT&T
+          nullable: true
+          type: string
       required:
       - description
       - message
@@ -13053,8 +13060,6 @@ components:
       - VERIFIED
       - UNVERIFIED
       - PENDING
-      - PARTIALLY_VERIFIED
-      - INVALID_STATUS
       example: VERIFIED
       type: string
     sharedSecretKey:

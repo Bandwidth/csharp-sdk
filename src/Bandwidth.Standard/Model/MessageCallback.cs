@@ -52,7 +52,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="description">A detailed description of the event described by the callback. (required).</param>
         /// <param name="message">message (required).</param>
         /// <param name="errorCode">Optional error code, applicable only when type is &#x60;message-failed&#x60;..</param>
-        public MessageCallback(DateTime time = default(DateTime), CallbackTypeEnum type = default(CallbackTypeEnum), string to = default(string), string description = default(string), MessageCallbackMessage message = default(MessageCallbackMessage), int? errorCode = default(int?))
+        /// <param name="carrierName">The name of the Authorized Message Provider (AMP) that handled this message. In the US, this is the carrier that the message was sent to..</param>
+        public MessageCallback(DateTime time = default(DateTime), CallbackTypeEnum type = default(CallbackTypeEnum), string to = default(string), string description = default(string), MessageCallbackMessage message = default(MessageCallbackMessage), int? errorCode = default(int?), string carrierName = default(string))
         {
             this.Time = time;
             this.Type = type;
@@ -75,6 +76,7 @@ namespace Bandwidth.Standard.Model
             }
             this.Message = message;
             this.ErrorCode = errorCode;
+            this.CarrierName = carrierName;
         }
 
         /// <summary>
@@ -114,6 +116,14 @@ namespace Bandwidth.Standard.Model
         public int? ErrorCode { get; set; }
 
         /// <summary>
+        /// The name of the Authorized Message Provider (AMP) that handled this message. In the US, this is the carrier that the message was sent to.
+        /// </summary>
+        /// <value>The name of the Authorized Message Provider (AMP) that handled this message. In the US, this is the carrier that the message was sent to.</value>
+        /// <example>AT&amp;T</example>
+        [DataMember(Name = "carrierName", EmitDefaultValue = true)]
+        public string CarrierName { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -127,6 +137,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  ErrorCode: ").Append(ErrorCode).Append("\n");
+            sb.Append("  CarrierName: ").Append(CarrierName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
