@@ -58,7 +58,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 description: "test",
                 message: message,
                 errorCode: 123,
-                carrierName: "test",
+                carrierName: "test"
             );
         }
 
