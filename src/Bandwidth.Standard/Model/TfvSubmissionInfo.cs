@@ -46,8 +46,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="isvReseller">ISV name..</param>
         /// <param name="privacyPolicyUrl">The Toll-Free Verification request privacy policy URL. (Not Available Until 5/28/2025).</param>
         /// <param name="termsAndConditionsUrl">The Toll-Free Verification request terms and conditions policy URL. (Not Available Until 5/28/2025).</param>
-        /// <param name="businessDBA">The company &#39;Doing Business As&#39;. (Not Available Until 5/28/2025).</param>
-        public TfvSubmissionInfo(Address businessAddress = default(Address), Contact businessContact = default(Contact), int messageVolume = default(int), string useCase = default(string), string useCaseSummary = default(string), string productionMessageContent = default(string), OptInWorkflow optInWorkflow = default(OptInWorkflow), string additionalInformation = default(string), string isvReseller = default(string), string privacyPolicyUrl = default(string), string termsAndConditionsUrl = default(string), string businessDBA = default(string))
+        /// <param name="businessDba">The company &#39;Doing Business As&#39;. (Not Available Until 5/28/2025).</param>
+        public TfvSubmissionInfo(Address businessAddress = default(Address), Contact businessContact = default(Contact), int messageVolume = default(int), string useCase = default(string), string useCaseSummary = default(string), string productionMessageContent = default(string), OptInWorkflow optInWorkflow = default(OptInWorkflow), string additionalInformation = default(string), string isvReseller = default(string), string privacyPolicyUrl = default(string), string termsAndConditionsUrl = default(string), string businessDba = default(string))
         {
             this.BusinessAddress = businessAddress;
             this.BusinessContact = businessContact;
@@ -60,7 +60,7 @@ namespace Bandwidth.Standard.Model
             this.IsvReseller = isvReseller;
             this.PrivacyPolicyUrl = privacyPolicyUrl;
             this.TermsAndConditionsUrl = termsAndConditionsUrl;
-            this.BusinessDBA = businessDBA;
+            this.BusinessDba = businessDba;
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Bandwidth.Standard.Model
         /// The Toll-Free Verification request privacy policy URL. (Not Available Until 5/28/2025)
         /// </summary>
         /// <value>The Toll-Free Verification request privacy policy URL. (Not Available Until 5/28/2025)</value>
-        /// <example>http://your-company.com/privacyPolicyUrl.pdf</example>
+        /// <example>http://your-company.com/privacyPolicy</example>
         [DataMember(Name = "privacyPolicyUrl", EmitDefaultValue = false)]
         public string PrivacyPolicyUrl { get; set; }
 
@@ -141,7 +141,7 @@ namespace Bandwidth.Standard.Model
         /// The Toll-Free Verification request terms and conditions policy URL. (Not Available Until 5/28/2025)
         /// </summary>
         /// <value>The Toll-Free Verification request terms and conditions policy URL. (Not Available Until 5/28/2025)</value>
-        /// <example>http://your-company.com/termsAndConditionsUrl.pdf</example>
+        /// <example>http://your-company.com/termsAndConditions</example>
         [DataMember(Name = "termsAndConditionsUrl", EmitDefaultValue = false)]
         public string TermsAndConditionsUrl { get; set; }
 
@@ -149,9 +149,9 @@ namespace Bandwidth.Standard.Model
         /// The company &#39;Doing Business As&#39;. (Not Available Until 5/28/2025)
         /// </summary>
         /// <value>The company &#39;Doing Business As&#39;. (Not Available Until 5/28/2025)</value>
-        /// <example>SecondCompany Name</example>
-        [DataMember(Name = "businessDBA", EmitDefaultValue = false)]
-        public string BusinessDBA { get; set; }
+        /// <example>Another Company Name Inc.</example>
+        [DataMember(Name = "businessDba", EmitDefaultValue = false)]
+        public string BusinessDba { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -172,7 +172,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  IsvReseller: ").Append(IsvReseller).Append("\n");
             sb.Append("  PrivacyPolicyUrl: ").Append(PrivacyPolicyUrl).Append("\n");
             sb.Append("  TermsAndConditionsUrl: ").Append(TermsAndConditionsUrl).Append("\n");
-            sb.Append("  BusinessDBA: ").Append(BusinessDBA).Append("\n");
+            sb.Append("  BusinessDba: ").Append(BusinessDba).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
