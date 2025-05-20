@@ -165,6 +165,7 @@ Class | Method | HTTP request | Description
  - [Model.AdditionalDenialReason](docs/AdditionalDenialReason.md)
  - [Model.Address](docs/Address.md)
  - [Model.AnswerCallback](docs/AnswerCallback.md)
+ - [Model.BlockedWebhook](docs/BlockedWebhook.md)
  - [Model.BridgeCompleteCallback](docs/BridgeCompleteCallback.md)
  - [Model.BridgeTargetCompleteCallback](docs/BridgeTargetCompleteCallback.md)
  - [Model.CallDirectionEnum](docs/CallDirectionEnum.md)

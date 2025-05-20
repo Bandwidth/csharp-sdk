@@ -6,6 +6,7 @@ docs/AccountStatistics.md
 docs/AdditionalDenialReason.md
 docs/Address.md
 docs/AnswerCallback.md
+docs/BlockedWebhook.md
 docs/BridgeCompleteCallback.md
 docs/BridgeTargetCompleteCallback.md
 docs/CallDirectionEnum.md
@@ -190,6 +191,7 @@ src/Bandwidth.Standard/Model/AccountStatistics.cs
 src/Bandwidth.Standard/Model/AdditionalDenialReason.cs
 src/Bandwidth.Standard/Model/Address.cs
 src/Bandwidth.Standard/Model/AnswerCallback.cs
+src/Bandwidth.Standard/Model/BlockedWebhook.cs
 src/Bandwidth.Standard/Model/BridgeCompleteCallback.cs
 src/Bandwidth.Standard/Model/BridgeTargetCompleteCallback.cs
 src/Bandwidth.Standard/Model/CallDirectionEnum.cs
