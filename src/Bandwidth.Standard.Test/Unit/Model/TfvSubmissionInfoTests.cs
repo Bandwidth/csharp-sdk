@@ -68,7 +68,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 isvReseller: "test",
                 privacyPolicyUrl: "test",
                 termsAndConditionsUrl: "test",
-                businessDBA: "test"
+                businessDba: "test"
             );
         }
 
@@ -197,13 +197,13 @@ namespace Bandwidth.Standard.Test.Unit.Model
         }
 
         /// <summary>
-        /// Test the property 'BusinessDBA'
+        /// Test the property 'BusinessDba'
         /// </summary>
         [Fact]
-        public void BusinessDBATest()
+        public void BusinessDbaTest()
         {
-            Assert.IsType<string>(instance.BusinessDBA);
-            Assert.Equal("test", instance.BusinessDBA);
+            Assert.IsType<string>(instance.BusinessDba);
+            Assert.Equal("test", instance.BusinessDba);
         }
     }
 }
