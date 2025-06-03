@@ -43,8 +43,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="phoneNumber">Toll-free telephone number in E.164 format..</param>
         /// <param name="resubmitAllowed">Whether a Toll-Free Verification request qualifies for resubmission via PUT..</param>
         /// <param name="status">status (default to &quot;UNVERIFIED&quot;).</param>
-        /// <param name="blocked">Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025).</param>
-        /// <param name="blockedReason">The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025).</param>
+        /// <param name="blocked">Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked..</param>
+        /// <param name="blockedReason">The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked..</param>
         public VerificationDenialWebhook(string accountId = default(string), List<AdditionalDenialReason> additionalDenialReasons = default(List<AdditionalDenialReason>), string declineReasonDescription = default(string), int denialStatusCode = default(int), Guid internalTicketNumber = default(Guid), string phoneNumber = default(string), bool resubmitAllowed = default(bool), string status = @"UNVERIFIED", bool blocked = default(bool), string blockedReason = default(string))
         {
             this.AccountId = accountId;
@@ -124,17 +124,17 @@ namespace Bandwidth.Standard.Model
         public string Status { get; set; }
 
         /// <summary>
-        /// Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)
+        /// Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked.
         /// </summary>
-        /// <value>Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)</value>
+        /// <value>Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked.</value>
         /// <example>true</example>
         [DataMember(Name = "blocked", EmitDefaultValue = true)]
         public bool Blocked { get; set; }
 
         /// <summary>
-        /// The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)
+        /// The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked.
         /// </summary>
-        /// <value>The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025)</value>
+        /// <value>The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked.</value>
         /// <example>Toll-free number was used to send spam messages</example>
         [DataMember(Name = "blockedReason", EmitDefaultValue = false)]
         public string BlockedReason { get; set; }
