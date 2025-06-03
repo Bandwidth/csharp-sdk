@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **CreatedDateTime** | **DateTime** | Date and time the verification request was created. | [optional] 
 **ModifiedDateTime** | **DateTime** | Date and time the verification request was last modified. | [optional] 
 **Submission** | [**TfvSubmissionInfo**](TfvSubmissionInfo.md) |  | [optional] 
-**Blocked** | **bool** | Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025) | [optional] 
-**BlockedReason** | **string** | The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. (Not Available Until 5/28/2025) | [optional] 
+**Blocked** | **bool** | Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. | [optional] 
+**BlockedReason** | **string** | The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

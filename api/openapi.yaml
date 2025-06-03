@@ -12087,26 +12087,25 @@ components:
       type: boolean
     blocked:
       description: Whether a Toll-Free Verification is blocked. This attribute will
-        only be defined when the number is blocked. (Not Available Until 5/28/2025)
+        only be defined when the number is blocked.
       example: true
       type: boolean
     blockedReason:
       description: The reason why the Toll-Free Verification is blocked. This attribute
-        will only be defined when the number is blocked. (Not Available Until 5/28/2025)
+        will only be defined when the number is blocked.
       example: Toll-free number was used to send spam messages
       type: string
     privacyPolicyUrl:
-      description: The Toll-Free Verification request privacy policy URL. (Not Available
-        Until 5/28/2025)
+      description: The Toll-Free Verification request privacy policy URL.
       example: http://your-company.com/privacyPolicy
       type: string
     termsAndConditionsUrl:
       description: The Toll-Free Verification request terms and conditions policy
-        URL. (Not Available Until 5/28/2025)
+        URL.
       example: http://your-company.com/termsAndConditions
       type: string
     businessDba:
-      description: The company 'Doing Business As'. (Not Available Until 5/28/2025)
+      description: The company 'Doing Business As'.
       example: Another Company Name Inc.
       type: string
     additionalDenialReason:
@@ -12205,17 +12204,16 @@ components:
           nullable: true
           type: string
         privacyPolicyUrl:
-          description: The Toll-Free Verification request privacy policy URL. (Not
-            Available Until 5/28/2025)
+          description: The Toll-Free Verification request privacy policy URL.
           example: http://your-company.com/privacyPolicy
           type: string
         termsAndConditionsUrl:
           description: The Toll-Free Verification request terms and conditions policy
-            URL. (Not Available Until 5/28/2025)
+            URL.
           example: http://your-company.com/termsAndConditions
           type: string
         businessDba:
-          description: The company 'Doing Business As'. (Not Available Until 5/28/2025)
+          description: The company 'Doing Business As'.
           example: Another Company Name Inc.
           type: string
       required:
@@ -12277,17 +12275,16 @@ components:
           nullable: true
           type: string
         privacyPolicyUrl:
-          description: The Toll-Free Verification request privacy policy URL. (Not
-            Available Until 5/28/2025)
+          description: The Toll-Free Verification request privacy policy URL.
           example: http://your-company.com/privacyPolicy
           type: string
         termsAndConditionsUrl:
           description: The Toll-Free Verification request terms and conditions policy
-            URL. (Not Available Until 5/28/2025)
+            URL.
           example: http://your-company.com/termsAndConditions
           type: string
         businessDba:
-          description: The company 'Doing Business As'. (Not Available Until 5/28/2025)
+          description: The company 'Doing Business As'.
           example: Another Company Name Inc.
           type: string
       required:
@@ -12434,14 +12431,12 @@ components:
           type: string
         blocked:
           description: Whether a Toll-Free Verification is blocked. This attribute
-            will only be defined when the number is blocked. (Not Available Until
-            5/28/2025)
+            will only be defined when the number is blocked.
           example: true
           type: boolean
         blockedReason:
           description: The reason why the Toll-Free Verification is blocked. This
-            attribute will only be defined when the number is blocked. (Not Available
-            Until 5/28/2025)
+            attribute will only be defined when the number is blocked.
           example: Toll-free number was used to send spam messages
           type: string
       type: object
@@ -12492,14 +12487,12 @@ components:
           type: string
         blocked:
           description: Whether a Toll-Free Verification is blocked. This attribute
-            will only be defined when the number is blocked. (Not Available Until
-            5/28/2025)
+            will only be defined when the number is blocked.
           example: true
           type: boolean
         blockedReason:
           description: The reason why the Toll-Free Verification is blocked. This
-            attribute will only be defined when the number is blocked. (Not Available
-            Until 5/28/2025)
+            attribute will only be defined when the number is blocked.
           example: Toll-free number was used to send spam messages
           type: string
       type: object
@@ -12989,14 +12982,12 @@ components:
           $ref: '#/components/schemas/tfvSubmissionInfo'
         blocked:
           description: Whether a Toll-Free Verification is blocked. This attribute
-            will only be defined when the number is blocked. (Not Available Until
-            5/28/2025)
+            will only be defined when the number is blocked.
           example: true
           type: boolean
         blockedReason:
           description: The reason why the Toll-Free Verification is blocked. This
-            attribute will only be defined when the number is blocked. (Not Available
-            Until 5/28/2025)
+            attribute will only be defined when the number is blocked.
           example: Toll-free number was used to send spam messages
           type: string
       type: object
@@ -13077,17 +13068,16 @@ components:
           nullable: true
           type: string
         privacyPolicyUrl:
-          description: The Toll-Free Verification request privacy policy URL. (Not
-            Available Until 5/28/2025)
+          description: The Toll-Free Verification request privacy policy URL.
           example: http://your-company.com/privacyPolicy
           type: string
         termsAndConditionsUrl:
           description: The Toll-Free Verification request terms and conditions policy
-            URL. (Not Available Until 5/28/2025)
+            URL.
           example: http://your-company.com/termsAndConditions
           type: string
         businessDba:
-          description: The company 'Doing Business As'. (Not Available Until 5/28/2025)
+          description: The company 'Doing Business As'.
           example: Another Company Name Inc.
           type: string
       type: object

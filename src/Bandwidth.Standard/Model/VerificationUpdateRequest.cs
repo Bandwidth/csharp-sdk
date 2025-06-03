@@ -49,9 +49,9 @@ namespace Bandwidth.Standard.Model
         /// <param name="optInWorkflow">optInWorkflow (required).</param>
         /// <param name="additionalInformation">Any additional information..</param>
         /// <param name="isvReseller">ISV name..</param>
-        /// <param name="privacyPolicyUrl">The Toll-Free Verification request privacy policy URL. (Not Available Until 5/28/2025).</param>
-        /// <param name="termsAndConditionsUrl">The Toll-Free Verification request terms and conditions policy URL. (Not Available Until 5/28/2025).</param>
-        /// <param name="businessDba">The company &#39;Doing Business As&#39;. (Not Available Until 5/28/2025).</param>
+        /// <param name="privacyPolicyUrl">The Toll-Free Verification request privacy policy URL..</param>
+        /// <param name="termsAndConditionsUrl">The Toll-Free Verification request terms and conditions policy URL..</param>
+        /// <param name="businessDba">The company &#39;Doing Business As&#39;..</param>
         public VerificationUpdateRequest(Address businessAddress = default(Address), Contact businessContact = default(Contact), int messageVolume = default(int), string useCase = default(string), string useCaseSummary = default(string), string productionMessageContent = default(string), OptInWorkflow optInWorkflow = default(OptInWorkflow), string additionalInformation = default(string), string isvReseller = default(string), string privacyPolicyUrl = default(string), string termsAndConditionsUrl = default(string), string businessDba = default(string))
         {
             // to ensure "businessAddress" is required (not null)
@@ -165,25 +165,25 @@ namespace Bandwidth.Standard.Model
         public string IsvReseller { get; set; }
 
         /// <summary>
-        /// The Toll-Free Verification request privacy policy URL. (Not Available Until 5/28/2025)
+        /// The Toll-Free Verification request privacy policy URL.
         /// </summary>
-        /// <value>The Toll-Free Verification request privacy policy URL. (Not Available Until 5/28/2025)</value>
+        /// <value>The Toll-Free Verification request privacy policy URL.</value>
         /// <example>http://your-company.com/privacyPolicy</example>
         [DataMember(Name = "privacyPolicyUrl", EmitDefaultValue = false)]
         public string PrivacyPolicyUrl { get; set; }
 
         /// <summary>
-        /// The Toll-Free Verification request terms and conditions policy URL. (Not Available Until 5/28/2025)
+        /// The Toll-Free Verification request terms and conditions policy URL.
         /// </summary>
-        /// <value>The Toll-Free Verification request terms and conditions policy URL. (Not Available Until 5/28/2025)</value>
+        /// <value>The Toll-Free Verification request terms and conditions policy URL.</value>
         /// <example>http://your-company.com/termsAndConditions</example>
         [DataMember(Name = "termsAndConditionsUrl", EmitDefaultValue = false)]
         public string TermsAndConditionsUrl { get; set; }
 
         /// <summary>
-        /// The company &#39;Doing Business As&#39;. (Not Available Until 5/28/2025)
+        /// The company &#39;Doing Business As&#39;.
         /// </summary>
-        /// <value>The company &#39;Doing Business As&#39;. (Not Available Until 5/28/2025)</value>
+        /// <value>The company &#39;Doing Business As&#39;.</value>
         /// <example>Another Company Name Inc.</example>
         [DataMember(Name = "businessDba", EmitDefaultValue = false)]
         public string BusinessDba { get; set; }
