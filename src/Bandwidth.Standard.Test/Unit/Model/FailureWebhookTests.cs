@@ -87,13 +87,13 @@ namespace Bandwidth.Standard.Test.Unit.Model
         }
 
         /// <summary>
-        /// Test the property 'ErrorDescription'
+        /// Test the property 'ErrorMessage'
         /// </summary>
         [Fact]
-        public void ErrorDescriptionTest()
+        public void ErrorMessageTest()
         {
-            Assert.IsType<string>(instance.ErrorDescription);
-            Assert.Equal("errorMessage", instance.ErrorDescription);
+            Assert.IsType<string>(instance.ErrorMessage);
+            Assert.Equal("errorMessage", instance.ErrorMessage);
         }
 
         /// <summary>
