@@ -36,7 +36,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 accountId: "accountId",
                 phoneNumber: "phoneNumber",
                 errorCode: "errorCode",
-                errorDescription: "errorDescription",
+                errorMessage: "errorMessage",
                 errors: new List<string> { "error" },
                 internalTicketNumber: guid
             );
@@ -93,7 +93,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         public void ErrorDescriptionTest()
         {
             Assert.IsType<string>(instance.ErrorDescription);
-            Assert.Equal("errorDescription", instance.ErrorDescription);
+            Assert.Equal("errorMessage", instance.ErrorDescription);
         }
 
         /// <summary>
