@@ -12359,7 +12359,7 @@ components:
             was encountered.
           example: "400"
           type: string
-        errorDescription:
+        errorMessage:
           description: A description of the error that was encountered.
           example: cannot process request.
           type: string
