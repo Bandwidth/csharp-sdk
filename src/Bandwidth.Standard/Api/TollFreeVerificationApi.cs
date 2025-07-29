@@ -53,6 +53,31 @@ namespace Bandwidth.Standard.Api
         /// <returns>ApiResponse of WebhookSubscription</returns>
         ApiResponse<WebhookSubscription> CreateWebhookSubscriptionWithHttpInfo(string accountId, WebhookSubscriptionRequestSchema webhookSubscriptionRequestSchema, int operationIndex = 0);
         /// <summary>
+        /// Delete a Toll-Free Verification Submission
+        /// </summary>
+        /// <remarks>
+        /// Delete a toll-free verification submission for a toll-free number.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="phoneNumber">Valid Toll-Free telephone number in E.164 format.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns></returns>
+        void DeleteVerificationRequest(string accountId, string phoneNumber, int operationIndex = 0);
+
+        /// <summary>
+        /// Delete a Toll-Free Verification Submission
+        /// </summary>
+        /// <remarks>
+        /// Delete a toll-free verification submission for a toll-free number.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="phoneNumber">Valid Toll-Free telephone number in E.164 format.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeleteVerificationRequestWithHttpInfo(string accountId, string phoneNumber, int operationIndex = 0);
+        /// <summary>
         /// Delete Webhook Subscription
         /// </summary>
         /// <remarks>
@@ -261,6 +286,33 @@ namespace Bandwidth.Standard.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (WebhookSubscription)</returns>
         System.Threading.Tasks.Task<ApiResponse<WebhookSubscription>> CreateWebhookSubscriptionWithHttpInfoAsync(string accountId, WebhookSubscriptionRequestSchema webhookSubscriptionRequestSchema, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Delete a Toll-Free Verification Submission
+        /// </summary>
+        /// <remarks>
+        /// Delete a toll-free verification submission for a toll-free number.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="phoneNumber">Valid Toll-Free telephone number in E.164 format.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeleteVerificationRequestAsync(string accountId, string phoneNumber, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Delete a Toll-Free Verification Submission
+        /// </summary>
+        /// <remarks>
+        /// Delete a toll-free verification submission for a toll-free number.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="phoneNumber">Valid Toll-Free telephone number in E.164 format.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteVerificationRequestWithHttpInfoAsync(string accountId, string phoneNumber, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Delete Webhook Subscription
         /// </summary>
@@ -735,6 +787,178 @@ namespace Bandwidth.Standard.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateWebhookSubscription", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a Toll-Free Verification Submission Delete a toll-free verification submission for a toll-free number.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="phoneNumber">Valid Toll-Free telephone number in E.164 format.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns></returns>
+        public void DeleteVerificationRequest(string accountId, string phoneNumber, int operationIndex = 0)
+        {
+            DeleteVerificationRequestWithHttpInfo(accountId, phoneNumber);
+        }
+
+        /// <summary>
+        /// Delete a Toll-Free Verification Submission Delete a toll-free verification submission for a toll-free number.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="phoneNumber">Valid Toll-Free telephone number in E.164 format.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Bandwidth.Standard.Client.ApiResponse<Object> DeleteVerificationRequestWithHttpInfo(string accountId, string phoneNumber, int operationIndex = 0)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+            {
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling TollFreeVerificationApi->DeleteVerificationRequest");
+            }
+
+            // verify the required parameter 'phoneNumber' is set
+            if (phoneNumber == null)
+            {
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'phoneNumber' when calling TollFreeVerificationApi->DeleteVerificationRequest");
+            }
+
+            Bandwidth.Standard.Client.RequestOptions localVarRequestOptions = new Bandwidth.Standard.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Bandwidth.Standard.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Bandwidth.Standard.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("accountId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("phoneNumber", Bandwidth.Standard.Client.ClientUtils.ParameterToString(phoneNumber)); // path parameter
+
+            localVarRequestOptions.Operation = "TollFreeVerificationApi.DeleteVerificationRequest";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<Object>("/accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteVerificationRequest", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a Toll-Free Verification Submission Delete a toll-free verification submission for a toll-free number.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="phoneNumber">Valid Toll-Free telephone number in E.164 format.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeleteVerificationRequestAsync(string accountId, string phoneNumber, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            await DeleteVerificationRequestWithHttpInfoAsync(accountId, phoneNumber, operationIndex, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Delete a Toll-Free Verification Submission Delete a toll-free verification submission for a toll-free number.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="phoneNumber">Valid Toll-Free telephone number in E.164 format.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<Object>> DeleteVerificationRequestWithHttpInfoAsync(string accountId, string phoneNumber, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+            {
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling TollFreeVerificationApi->DeleteVerificationRequest");
+            }
+
+            // verify the required parameter 'phoneNumber' is set
+            if (phoneNumber == null)
+            {
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'phoneNumber' when calling TollFreeVerificationApi->DeleteVerificationRequest");
+            }
+
+
+            Bandwidth.Standard.Client.RequestOptions localVarRequestOptions = new Bandwidth.Standard.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Bandwidth.Standard.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Bandwidth.Standard.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("accountId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("phoneNumber", Bandwidth.Standard.Client.ClientUtils.ParameterToString(phoneNumber)); // path parameter
+
+            localVarRequestOptions.Operation = "TollFreeVerificationApi.DeleteVerificationRequest";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteVerificationRequest", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;

@@ -36,8 +36,8 @@ namespace Bandwidth.Standard.Model
         /// Initializes a new instance of the <see cref="MmsMessageContent" /> class.
         /// </summary>
         /// <param name="text">The contents of the text message. Must be 2048 characters or less..</param>
-        /// <param name="media">A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters..</param>
-        public MmsMessageContent(string text = default(string), List<string> media = default(List<string>))
+        /// <param name="media">media.</param>
+        public MmsMessageContent(string text = default(string), List<MmsMessageContentFile> media = default(List<MmsMessageContentFile>))
         {
             this.Text = text;
             this.Media = media;
@@ -52,12 +52,10 @@ namespace Bandwidth.Standard.Model
         public string Text { get; set; }
 
         /// <summary>
-        /// A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters.
+        /// Gets or Sets Media
         /// </summary>
-        /// <value>A list of URLs to include as media attachments as part of the message. Each URL can be at most 4096 characters.</value>
-        /// <example>[&quot;https://dev.bandwidth.com/images/bandwidth-logo.png&quot;,&quot;https://dev.bandwidth.com/images/github_logo.png&quot;]</example>
         [DataMember(Name = "media", EmitDefaultValue = false)]
-        public List<string> Media { get; set; }
+        public List<MmsMessageContentFile> Media { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

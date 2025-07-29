@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **MessageStatus** | **MessageStatusEnum** |  | [optional] 
 **MessageDirection** | **ListMessageDirectionEnum** |  | [optional] 
 **MessageType** | **MessageTypeEnum** |  | [optional] 
-**SegmentCount** | **int** | The number of segments the message was sent as. | [optional] 
+**SegmentCount** | **int** | The number of segments the user&#39;s message is broken into before sending over carrier networks. | [optional] 
 **ErrorCode** | **int** | The numeric error code of the message. | [optional] 
 **ReceiveTime** | **DateTime** | The ISO 8601 datetime of the message. | [optional] 
 **CarrierName** | **string** | The name of the carrier. Not currently supported for MMS coming soon. | [optional] 

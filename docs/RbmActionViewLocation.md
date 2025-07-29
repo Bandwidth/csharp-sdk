@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **RbmActionTypeEnum** |  | 
 **Text** | **string** | Displayed text for user to click | 
-**PostBackData** | **byte[]** | Base64 payload the customer receives when the reply is clicked. | 
+**PostbackData** | **byte[]** | Base64 payload the customer receives when the reply is clicked. | 
 **Latitude** | **double** | The latitude of the location. | 
 **Longitude** | **double** | The longitude of the location. | 
 **Label** | **string** | The label of the location. | [optional] 

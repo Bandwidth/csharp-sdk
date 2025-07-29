@@ -48,8 +48,8 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="type">type (required).</param>
         /// <param name="text">Displayed text for user to click (required).</param>
-        /// <param name="postBackData">Base64 payload the customer receives when the reply is clicked. (required).</param>
-        public RbmActionBase(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postBackData = default(byte[]))
+        /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked. (required).</param>
+        public RbmActionBase(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postbackData = default(byte[]))
         {
             this.Type = type;
             // to ensure "text" is required (not null)
@@ -58,12 +58,12 @@ namespace Bandwidth.Standard.Model
                 throw new ArgumentNullException("text is a required property for RbmActionBase and cannot be null");
             }
             this.Text = text;
-            // to ensure "postBackData" is required (not null)
-            if (postBackData == null)
+            // to ensure "postbackData" is required (not null)
+            if (postbackData == null)
             {
-                throw new ArgumentNullException("postBackData is a required property for RbmActionBase and cannot be null");
+                throw new ArgumentNullException("postbackData is a required property for RbmActionBase and cannot be null");
             }
-            this.PostBackData = postBackData;
+            this.PostbackData = postbackData;
         }
 
         /// <summary>
@@ -78,9 +78,9 @@ namespace Bandwidth.Standard.Model
         /// Base64 payload the customer receives when the reply is clicked.
         /// </summary>
         /// <value>Base64 payload the customer receives when the reply is clicked.</value>
-        /// <example>[B@3f6906f4</example>
-        [DataMember(Name = "postBackData", IsRequired = true, EmitDefaultValue = true)]
-        public byte[] PostBackData { get; set; }
+        /// <example>[B@2a504ea7</example>
+        [DataMember(Name = "postbackData", IsRequired = true, EmitDefaultValue = true)]
+        public byte[] PostbackData { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -92,7 +92,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("class RbmActionBase {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
-            sb.Append("  PostBackData: ").Append(PostBackData).Append("\n");
+            sb.Append("  PostbackData: ").Append(PostbackData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -119,10 +119,10 @@ namespace Bandwidth.Standard.Model
                 yield return new ValidationResult("Invalid value for Text, length must be less than 25.", new [] { "Text" });
             }
 
-            // PostBackData (byte[]) maxLength
-            if (this.PostBackData != null && this.PostBackData.Length > 2048)
+            // PostbackData (byte[]) maxLength
+            if (this.PostbackData != null && this.PostbackData.Length > 2048)
             {
-                yield return new ValidationResult("Invalid value for PostBackData, length must be less than 2048.", new [] { "PostBackData" });
+                yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new [] { "PostbackData" });
             }
 
             yield break;
