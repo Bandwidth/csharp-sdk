@@ -48,11 +48,11 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="type">type (required).</param>
         /// <param name="text">Displayed text for user to click (required).</param>
-        /// <param name="postBackData">Base64 payload the customer receives when the reply is clicked. (required).</param>
+        /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked. (required).</param>
         /// <param name="latitude">The latitude of the location. (required).</param>
         /// <param name="longitude">The longitude of the location. (required).</param>
         /// <param name="label">The label of the location..</param>
-        public RbmActionViewLocation(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postBackData = default(byte[]), double latitude = default(double), double longitude = default(double), string label = default(string))
+        public RbmActionViewLocation(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postbackData = default(byte[]), double latitude = default(double), double longitude = default(double), string label = default(string))
         {
             this.Type = type;
             // to ensure "text" is required (not null)
@@ -61,12 +61,12 @@ namespace Bandwidth.Standard.Model
                 throw new ArgumentNullException("text is a required property for RbmActionViewLocation and cannot be null");
             }
             this.Text = text;
-            // to ensure "postBackData" is required (not null)
-            if (postBackData == null)
+            // to ensure "postbackData" is required (not null)
+            if (postbackData == null)
             {
-                throw new ArgumentNullException("postBackData is a required property for RbmActionViewLocation and cannot be null");
+                throw new ArgumentNullException("postbackData is a required property for RbmActionViewLocation and cannot be null");
             }
-            this.PostBackData = postBackData;
+            this.PostbackData = postbackData;
             this.Latitude = latitude;
             this.Longitude = longitude;
             this.Label = label;
@@ -85,8 +85,8 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <value>Base64 payload the customer receives when the reply is clicked.</value>
         /// <example>U0dWc2JHOGdkMjl5YkdRPQ&#x3D;&#x3D;</example>
-        [DataMember(Name = "postBackData", IsRequired = true, EmitDefaultValue = true)]
-        public byte[] PostBackData { get; set; }
+        [DataMember(Name = "postbackData", IsRequired = true, EmitDefaultValue = true)]
+        public byte[] PostbackData { get; set; }
 
         /// <summary>
         /// The latitude of the location.
@@ -122,7 +122,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("class RbmActionViewLocation {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
-            sb.Append("  PostBackData: ").Append(PostBackData).Append("\n");
+            sb.Append("  PostbackData: ").Append(PostbackData).Append("\n");
             sb.Append("  Latitude: ").Append(Latitude).Append("\n");
             sb.Append("  Longitude: ").Append(Longitude).Append("\n");
             sb.Append("  Label: ").Append(Label).Append("\n");
@@ -152,10 +152,10 @@ namespace Bandwidth.Standard.Model
                 yield return new ValidationResult("Invalid value for Text, length must be less than 25.", new [] { "Text" });
             }
 
-            // PostBackData (byte[]) maxLength
-            if (this.PostBackData != null && this.PostBackData.Length > 2048)
+            // PostbackData (byte[]) maxLength
+            if (this.PostbackData != null && this.PostbackData.Length > 2048)
             {
-                yield return new ValidationResult("Invalid value for PostBackData, length must be less than 2048.", new [] { "PostBackData" });
+                yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new [] { "PostbackData" });
             }
 
             // Label (string) maxLength

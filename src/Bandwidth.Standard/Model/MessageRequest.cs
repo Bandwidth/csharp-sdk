@@ -46,7 +46,7 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageRequest" /> class.
         /// </summary>
-        /// <param name="applicationId">The ID of the Application your from number is associated with in the Bandwidth Phone Number Dashboard. (required).</param>
+        /// <param name="applicationId">The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard. (required).</param>
         /// <param name="to">The phone number(s) the message should be sent to in E164 format. (required).</param>
         /// <param name="from">Either an alphanumeric sender ID or the sender&#39;s Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.  Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &amp;. Alphanumeric Sender IDs must contain at least one letter. (required).</param>
         /// <param name="text">The contents of the text message. Must be 2048 characters or less..</param>
@@ -82,9 +82,9 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// The ID of the Application your from number is associated with in the Bandwidth Phone Number Dashboard.
+        /// The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.
         /// </summary>
-        /// <value>The ID of the Application your from number is associated with in the Bandwidth Phone Number Dashboard.</value>
+        /// <value>The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.</value>
         /// <example>93de2206-9669-4e07-948d-329f4b722ee2</example>
         [DataMember(Name = "applicationId", IsRequired = true, EmitDefaultValue = true)]
         public string ApplicationId { get; set; }

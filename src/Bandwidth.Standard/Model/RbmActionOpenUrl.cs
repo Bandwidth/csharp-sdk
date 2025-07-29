@@ -48,9 +48,9 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="type">type (required).</param>
         /// <param name="text">Displayed text for user to click (required).</param>
-        /// <param name="postBackData">Base64 payload the customer receives when the reply is clicked. (required).</param>
+        /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked. (required).</param>
         /// <param name="url">The URL to open in browser. (required).</param>
-        public RbmActionOpenUrl(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postBackData = default(byte[]), string url = default(string))
+        public RbmActionOpenUrl(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postbackData = default(byte[]), string url = default(string))
         {
             this.Type = type;
             // to ensure "text" is required (not null)
@@ -59,12 +59,12 @@ namespace Bandwidth.Standard.Model
                 throw new ArgumentNullException("text is a required property for RbmActionOpenUrl and cannot be null");
             }
             this.Text = text;
-            // to ensure "postBackData" is required (not null)
-            if (postBackData == null)
+            // to ensure "postbackData" is required (not null)
+            if (postbackData == null)
             {
-                throw new ArgumentNullException("postBackData is a required property for RbmActionOpenUrl and cannot be null");
+                throw new ArgumentNullException("postbackData is a required property for RbmActionOpenUrl and cannot be null");
             }
-            this.PostBackData = postBackData;
+            this.PostbackData = postbackData;
             // to ensure "url" is required (not null)
             if (url == null)
             {
@@ -86,8 +86,8 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <value>Base64 payload the customer receives when the reply is clicked.</value>
         /// <example>U0dWc2JHOGdkMjl5YkdRPQ&#x3D;&#x3D;</example>
-        [DataMember(Name = "postBackData", IsRequired = true, EmitDefaultValue = true)]
-        public byte[] PostBackData { get; set; }
+        [DataMember(Name = "postbackData", IsRequired = true, EmitDefaultValue = true)]
+        public byte[] PostbackData { get; set; }
 
         /// <summary>
         /// The URL to open in browser.
@@ -107,7 +107,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("class RbmActionOpenUrl {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
-            sb.Append("  PostBackData: ").Append(PostBackData).Append("\n");
+            sb.Append("  PostbackData: ").Append(PostbackData).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -135,10 +135,10 @@ namespace Bandwidth.Standard.Model
                 yield return new ValidationResult("Invalid value for Text, length must be less than 25.", new [] { "Text" });
             }
 
-            // PostBackData (byte[]) maxLength
-            if (this.PostBackData != null && this.PostBackData.Length > 2048)
+            // PostbackData (byte[]) maxLength
+            if (this.PostbackData != null && this.PostbackData.Length > 2048)
             {
-                yield return new ValidationResult("Invalid value for PostBackData, length must be less than 2048.", new [] { "PostBackData" });
+                yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new [] { "PostbackData" });
             }
 
             // Url (string) maxLength

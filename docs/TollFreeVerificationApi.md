@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**CreateWebhookSubscription**](TollFreeVerificationApi.md#createwebhooksubscription) | **POST** /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions | Create Webhook Subscription |
+| [**DeleteVerificationRequest**](TollFreeVerificationApi.md#deleteverificationrequest) | **DELETE** /accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification | Delete a Toll-Free Verification Submission |
 | [**DeleteWebhookSubscription**](TollFreeVerificationApi.md#deletewebhooksubscription) | **DELETE** /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions/{id} | Delete Webhook Subscription |
 | [**GetTollFreeVerificationStatus**](TollFreeVerificationApi.md#gettollfreeverificationstatus) | **GET** /accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification | Get Toll-Free Verification Status |
 | [**ListTollFreeUseCases**](TollFreeVerificationApi.md#listtollfreeusecases) | **GET** /tollFreeVerification/useCases | List Toll-Free Use Cases |
@@ -107,6 +108,107 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Created |  -  |
+| **400** | Bad Request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Cannot find the requested resource. |  -  |
+| **405** | Method Not Allowed |  -  |
+| **429** | Too Many Requests |  -  |
+| **500** | Internal Server Error |  -  |
+| **503** | Service Unavailable |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deleteverificationrequest"></a>
+# **DeleteVerificationRequest**
+> void DeleteVerificationRequest (string accountId, string phoneNumber)
+
+Delete a Toll-Free Verification Submission
+
+Delete a toll-free verification submission for a toll-free number.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Bandwidth.Standard.Api;
+using Bandwidth.Standard.Client;
+using Bandwidth.Standard.Model;
+
+namespace Example
+{
+    public class DeleteVerificationRequestExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
+            // Configure HTTP basic authorization: Basic
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
+
+            var apiInstance = new TollFreeVerificationApi(config);
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var phoneNumber = +18885555555;  // string | Valid Toll-Free telephone number in E.164 format.
+
+            try
+            {
+                // Delete a Toll-Free Verification Submission
+                apiInstance.DeleteVerificationRequest(accountId, phoneNumber);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TollFreeVerificationApi.DeleteVerificationRequest: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteVerificationRequestWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a Toll-Free Verification Submission
+    apiInstance.DeleteVerificationRequestWithHttpInfo(accountId, phoneNumber);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TollFreeVerificationApi.DeleteVerificationRequestWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **phoneNumber** | **string** | Valid Toll-Free telephone number in E.164 format. |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Basic](../README.md#Basic)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | No Content |  -  |
 | **400** | Bad Request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |

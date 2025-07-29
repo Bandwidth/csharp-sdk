@@ -38,7 +38,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="links">links.</param>
         /// <param name="data">data.</param>
         /// <param name="errors">errors.</param>
-        public CreateMultiChannelMessageResponse(List<Link> links = default(List<Link>), MultiChannelMessageData data = default(MultiChannelMessageData), List<ErrorObject> errors = default(List<ErrorObject>))
+        public CreateMultiChannelMessageResponse(List<Link> links = default(List<Link>), MultiChannelMessageResponseData data = default(MultiChannelMessageResponseData), List<ErrorObject> errors = default(List<ErrorObject>))
         {
             this.Links = links;
             this.Data = data;
@@ -48,6 +48,7 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Gets or Sets Links
         /// </summary>
+        /// <example>[]</example>
         [DataMember(Name = "links", EmitDefaultValue = false)]
         public List<Link> Links { get; set; }
 
@@ -55,11 +56,12 @@ namespace Bandwidth.Standard.Model
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name = "data", EmitDefaultValue = false)]
-        public MultiChannelMessageData Data { get; set; }
+        public MultiChannelMessageResponseData Data { get; set; }
 
         /// <summary>
         /// Gets or Sets Errors
         /// </summary>
+        /// <example>[]</example>
         [DataMember(Name = "errors", EmitDefaultValue = false)]
         public List<ErrorObject> Errors { get; set; }
 

@@ -48,12 +48,12 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="type">type (required).</param>
         /// <param name="text">Displayed text for user to click (required).</param>
-        /// <param name="postBackData">Base64 payload the customer receives when the reply is clicked. (required).</param>
+        /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked. (required).</param>
         /// <param name="title">The title of the event. (required).</param>
         /// <param name="startTime">The start time of the event. (required).</param>
         /// <param name="endTime">The end time of the event. (required).</param>
         /// <param name="description">The description of the event..</param>
-        public MultiChannelActionCalendarEvent(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postBackData = default(byte[]), string title = default(string), DateTime startTime = default(DateTime), DateTime endTime = default(DateTime), string description = default(string))
+        public MultiChannelActionCalendarEvent(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postbackData = default(byte[]), string title = default(string), DateTime startTime = default(DateTime), DateTime endTime = default(DateTime), string description = default(string))
         {
             this.Type = type;
             // to ensure "text" is required (not null)
@@ -62,12 +62,12 @@ namespace Bandwidth.Standard.Model
                 throw new ArgumentNullException("text is a required property for MultiChannelActionCalendarEvent and cannot be null");
             }
             this.Text = text;
-            // to ensure "postBackData" is required (not null)
-            if (postBackData == null)
+            // to ensure "postbackData" is required (not null)
+            if (postbackData == null)
             {
-                throw new ArgumentNullException("postBackData is a required property for MultiChannelActionCalendarEvent and cannot be null");
+                throw new ArgumentNullException("postbackData is a required property for MultiChannelActionCalendarEvent and cannot be null");
             }
-            this.PostBackData = postBackData;
+            this.PostbackData = postbackData;
             // to ensure "title" is required (not null)
             if (title == null)
             {
@@ -92,8 +92,8 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <value>Base64 payload the customer receives when the reply is clicked.</value>
         /// <example>U0dWc2JHOGdkMjl5YkdRPQ&#x3D;&#x3D;</example>
-        [DataMember(Name = "postBackData", IsRequired = true, EmitDefaultValue = true)]
-        public byte[] PostBackData { get; set; }
+        [DataMember(Name = "postbackData", IsRequired = true, EmitDefaultValue = true)]
+        public byte[] PostbackData { get; set; }
 
         /// <summary>
         /// The title of the event.
@@ -137,7 +137,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("class MultiChannelActionCalendarEvent {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
-            sb.Append("  PostBackData: ").Append(PostBackData).Append("\n");
+            sb.Append("  PostbackData: ").Append(PostbackData).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  StartTime: ").Append(StartTime).Append("\n");
             sb.Append("  EndTime: ").Append(EndTime).Append("\n");
@@ -168,10 +168,10 @@ namespace Bandwidth.Standard.Model
                 yield return new ValidationResult("Invalid value for Text, length must be less than 25.", new [] { "Text" });
             }
 
-            // PostBackData (byte[]) maxLength
-            if (this.PostBackData != null && this.PostBackData.Length > 2048)
+            // PostbackData (byte[]) maxLength
+            if (this.PostbackData != null && this.PostbackData.Length > 2048)
             {
-                yield return new ValidationResult("Invalid value for PostBackData, length must be less than 2048.", new [] { "PostBackData" });
+                yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new [] { "PostbackData" });
             }
 
             // Title (string) maxLength

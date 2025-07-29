@@ -60,7 +60,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="messageStatus">messageStatus.</param>
         /// <param name="messageDirection">messageDirection.</param>
         /// <param name="messageType">messageType.</param>
-        /// <param name="segmentCount">The number of segments the message was sent as..</param>
+        /// <param name="segmentCount">The number of segments the user&#39;s message is broken into before sending over carrier networks..</param>
         /// <param name="errorCode">The numeric error code of the message..</param>
         /// <param name="receiveTime">The ISO 8601 datetime of the message..</param>
         /// <param name="carrierName">The name of the carrier. Not currently supported for MMS coming soon..</param>
@@ -124,9 +124,9 @@ namespace Bandwidth.Standard.Model
         public string DestinationTn { get; set; }
 
         /// <summary>
-        /// The number of segments the message was sent as.
+        /// The number of segments the user&#39;s message is broken into before sending over carrier networks.
         /// </summary>
-        /// <value>The number of segments the message was sent as.</value>
+        /// <value>The number of segments the user&#39;s message is broken into before sending over carrier networks.</value>
         /// <example>1</example>
         [DataMember(Name = "segmentCount", EmitDefaultValue = false)]
         public int SegmentCount { get; set; }
