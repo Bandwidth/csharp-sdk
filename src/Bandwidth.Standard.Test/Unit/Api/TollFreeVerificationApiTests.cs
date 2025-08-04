@@ -109,6 +109,18 @@ namespace Bandwidth.Standard.Test.Unit.Api
         }
 
         /// <summary>
+        /// Test DeleteVerificationRequest
+        /// </summary>
+        [Fact]
+        public void DeleteVerificationRequestTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string phoneNumber = null;
+            //instance.DeleteVerificationRequest(accountId, phoneNumber);
+        }
+
+        /// <summary>
         /// Test DeleteWebhookSubscription
         /// </summary>
         [Fact]
