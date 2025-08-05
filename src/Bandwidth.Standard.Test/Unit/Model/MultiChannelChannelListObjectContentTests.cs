@@ -47,7 +47,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
                     postbackData: new byte[] { 1, 2, 3 }
                 ))
             };
-            
+
             instanceRbmMessageContentText = new MultiChannelChannelListObjectContent(new RbmMessageContentText(
                 text: "Test message",
                 suggestions: suggestions

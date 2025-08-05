@@ -36,17 +36,17 @@ namespace Bandwidth.Standard.Test.Model
         public StatusCallbackMessageTests()
         {
             instance = new StatusCallbackMessage(
-                id: "1661365814859loidf7mcwd4qacn7", 
-                owner: "+15553332222", 
-                applicationId: "93de2206-9669-4e07-948d-329f4b722ee2", 
+                id: "1661365814859loidf7mcwd4qacn7",
+                owner: "+15553332222",
+                applicationId: "93de2206-9669-4e07-948d-329f4b722ee2",
                 time: DateTime.Now,
-                segmentCount: 1, 
+                segmentCount: 1,
                 direction:  MessageDirectionEnum.In,
                 to: new List<string> { "+15552223333" },
-                from: "+15553332222", 
-                text: "Hello world", 
-                tag: "custom string", 
-                media: ["https://dev.bandwidth.com/images/bandwidth-logo.png"], 
+                from: "+15553332222",
+                text: "Hello world",
+                tag: "custom string",
+                media: new List<string> { "https://dev.bandwidth.com/images/bandwidth-logo.png" },
                 priority: PriorityEnum.Default,
                 channel: MultiChannelMessageChannelEnum.SMS
             );

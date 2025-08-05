@@ -47,7 +47,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<CallbackMethodEnum>(instance);
         }
-        
+
     }
 
 }

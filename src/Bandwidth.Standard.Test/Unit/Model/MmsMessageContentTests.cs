@@ -69,7 +69,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void MediaTest()
         {
-            var mediaList = new List<MmsMessageContentFile> { 
+            var mediaList = new List<MmsMessageContentFile> {
                 new MmsMessageContentFile(fileUrl: "https://test.url/1"),
                 new MmsMessageContentFile(fileUrl: "https://test.url/2")
             };
