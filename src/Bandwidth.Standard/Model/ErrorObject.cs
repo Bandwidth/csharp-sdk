@@ -35,25 +35,55 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorObject" /> class.
         /// </summary>
-        /// <param name="code">code.</param>
-        /// <param name="message">message.</param>
-        public ErrorObject(string code = default(string), string message = default(string))
+        [JsonConstructorAttribute]
+        protected ErrorObject() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorObject" /> class.
+        /// </summary>
+        /// <param name="type">A concise summary of the error used for categorization. (required).</param>
+        /// <param name="description">A detailed explanation of the error. (required).</param>
+        /// <param name="source">source (required).</param>
+        public ErrorObject(string type = default(string), string description = default(string), ErrorSource source = default(ErrorSource))
         {
-            this.Code = code;
-            this.Message = message;
+            // to ensure "type" is required (not null)
+            if (type == null)
+            {
+                throw new ArgumentNullException("type is a required property for ErrorObject and cannot be null");
+            }
+            this.Type = type;
+            // to ensure "description" is required (not null)
+            if (description == null)
+            {
+                throw new ArgumentNullException("description is a required property for ErrorObject and cannot be null");
+            }
+            this.Description = description;
+            // to ensure "source" is required (not null)
+            if (source == null)
+            {
+                throw new ArgumentNullException("source is a required property for ErrorObject and cannot be null");
+            }
+            this.Source = source;
         }
 
         /// <summary>
-        /// Gets or Sets Code
+        /// A concise summary of the error used for categorization.
         /// </summary>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
-        public string Code { get; set; }
+        /// <value>A concise summary of the error used for categorization.</value>
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        public string Type { get; set; }
 
         /// <summary>
-        /// Gets or Sets Message
+        /// A detailed explanation of the error.
         /// </summary>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
-        public string Message { get; set; }
+        /// <value>A detailed explanation of the error.</value>
+        [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Source
+        /// </summary>
+        [DataMember(Name = "source", IsRequired = true, EmitDefaultValue = true)]
+        public ErrorSource Source { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,8 +93,9 @@ namespace Bandwidth.Standard.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class ErrorObject {\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Source: ").Append(Source).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

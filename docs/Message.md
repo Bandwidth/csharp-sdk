@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | The id of the message. | [optional] 
 **Owner** | **string** | The Bandwidth phone number associated with the message. | [optional] 
-**ApplicationId** | **string** | The application ID associated with the message. | [optional] 
+**ApplicationId** | **string** | The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard. | [optional] 
 **Time** | **DateTime** | The datetime stamp of the message in ISO 8601 | [optional] 
-**SegmentCount** | **int** | The number of segments the original message from the user is broken into before sending over to carrier networks. | [optional] 
+**SegmentCount** | **int** | The number of segments the user&#39;s message is broken into before sending over carrier networks. | [optional] 
 **Direction** | **MessageDirectionEnum** |  | [optional] 
 **To** | **List&lt;string&gt;** | The phone number recipients of the message. | [optional] 
 **From** | **string** | The phone number the message was sent from. | [optional] 
 **Media** | **List&lt;string&gt;** | The list of media URLs sent in the message. Including a &#x60;filename&#x60; field in the &#x60;Content-Disposition&#x60; header of the media linked with a URL will set the displayed file name. This is a best practice to ensure that your media has a readable file name. | [optional] 
 **Text** | **string** | The contents of the message. | [optional] 
-**Tag** | **string** | The custom string set by the user. | [optional] 
+**Tag** | **string** | A custom string that will be included in callback events of the message. Max 1024 characters. | [optional] 
 **Priority** | **PriorityEnum** |  | [optional] 
 **Expiration** | **DateTime** | A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future. | [optional] 
 

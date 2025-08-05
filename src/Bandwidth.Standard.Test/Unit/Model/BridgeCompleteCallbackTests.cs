@@ -127,7 +127,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             instance.CallId = "c-1234";
             Assert.IsType<string>(instance.CallId);
-            Assert.Equal("c-1234", instance.CallId); 
+            Assert.Equal("c-1234", instance.CallId);
         }
         /// <summary>
         /// Test the property 'CallUrl'

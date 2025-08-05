@@ -109,7 +109,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<string>(instance.DisplayName);
             Assert.Equal("John Doe", instance.DisplayName);
-        } 
+        }
         /// <summary>
         /// Test the property 'Uui'
         /// </summary>

@@ -586,6 +586,18 @@ namespace Bandwidth.Standard.Client
                     }
                 },
                 {
+                    "TollFreeVerificationApi.DeleteVerificationRequest", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/api/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
                     "TollFreeVerificationApi.DeleteWebhookSubscription", new List<IReadOnlyDictionary<string, object>>
                     {
                         {

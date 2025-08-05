@@ -44,10 +44,10 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 new MultiChannelAction(new RbmActionBase(
                     type: RbmActionTypeEnum.REPLY,
                     text: "Test",
-                    postBackData: new byte[] { 1, 2, 3 }
+                    postbackData: new byte[] { 1, 2, 3 }
                 ))
             };
-            
+
             instanceRbmMessageContentText = new MultiChannelChannelListObjectContent(new RbmMessageContentText(
                 text: "Test message",
                 suggestions: suggestions
@@ -81,8 +81,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
             ));
             instanceMmsMessageContent = new MultiChannelChannelListObjectContent(new MmsMessageContent(
                 text: "Test message",
-                media: new List<string>(){
-                    "https://test.url/"
+                media: new List<MmsMessageContentFile>(){
+                    new MmsMessageContentFile(fileUrl: "https://test.url/")
                 }
             ));
         }

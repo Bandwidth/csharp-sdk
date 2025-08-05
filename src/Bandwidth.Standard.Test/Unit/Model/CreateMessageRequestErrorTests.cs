@@ -34,7 +34,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             fieldErrors = new List<FieldError>() {
                 new FieldError(
-                    fieldName: "from", 
+                    fieldName: "from",
                     description: "`invalid` must be replaced with a valid E164 formatted telephone number"
                 )
             };

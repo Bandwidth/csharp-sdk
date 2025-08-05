@@ -69,9 +69,12 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void MediaTest()
         {
-            var mediaList = new List<string> { "https://example.com/image1.jpg", "https://example.com/image2.jpg" };
+            var mediaList = new List<MmsMessageContentFile> {
+                new MmsMessageContentFile(fileUrl: "https://test.url/1"),
+                new MmsMessageContentFile(fileUrl: "https://test.url/2")
+            };
             instance.Media = mediaList;
-            Assert.IsType<List<string>>(instance.Media);
+            Assert.IsType<List<MmsMessageContentFile>>(instance.Media);
             Assert.Equal(mediaList, instance.Media);
         }
     }

@@ -35,7 +35,16 @@ namespace Bandwidth.Standard.Test.Unit.Model
 
         public ErrorObjectTests()
         {
-            instance = new ErrorObject();
+            instance = new ErrorObject(
+                type: "TestType",
+                description: "TestDescription",
+                source: new ErrorSource(
+                    varParameter: "TestParameter",
+                    field: "TestField",
+                    header: "TestHeader",
+                    reference: "TestReference"
+                )
+            );
         }
 
         public void Dispose()
@@ -53,25 +62,32 @@ namespace Bandwidth.Standard.Test.Unit.Model
         }
 
         /// <summary>
-        /// Test the property 'Code'
+        /// Test the property 'Type'
         /// </summary>
         [Fact]
-        public void CodeTest()
+        public void TypeTest()
         {
-            instance.Code = "TestCode";
-            Assert.IsType<string>(instance.Code);
-            Assert.Equal("TestCode", instance.Code);
+            Assert.IsType<string>(instance.Type);
+            Assert.Equal("TestType", instance.Type);
         }
 
         /// <summary>
-        /// Test the property 'Message'
+        /// Test the property 'Description'
         /// </summary>
         [Fact]
-        public void MessageTest()
+        public void DescriptionTest()
         {
-            instance.Message = "TestMessage";
-            Assert.IsType<string>(instance.Message);
-            Assert.Equal("TestMessage", instance.Message);
+            Assert.IsType<string>(instance.Description);
+            Assert.Equal("TestDescription", instance.Description);
+        }
+
+        /// <summary>
+        /// Test the property 'Source'
+        /// </summary>
+        [Fact]
+        public void SourceTest()
+        {
+            Assert.IsType<ErrorSource>(instance.Source);
         }
     }
 }

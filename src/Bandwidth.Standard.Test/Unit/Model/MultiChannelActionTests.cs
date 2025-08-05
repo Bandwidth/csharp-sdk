@@ -42,18 +42,18 @@ namespace Bandwidth.Standard.Test.Unit.Model
             instanceRbmActionBase = new MultiChannelAction(new RbmActionBase(
                 type: RbmActionTypeEnum.REPLY,
                 text: "TestText",
-                postBackData: new byte[] { 1, 2, 3 }
+                postbackData: new byte[] { 1, 2, 3 }
             ));
             instanceRbmActionDial = new MultiChannelAction(new RbmActionDial(
                 type: RbmActionTypeEnum.REPLY,
                 text: "TestText",
-                postBackData: new byte[] { 1, 2, 3 },
+                postbackData: new byte[] { 1, 2, 3 },
                 phoneNumber: "TestPhoneNumber"
             ));
             instanceRbmActionViewLocation = new MultiChannelAction(new RbmActionViewLocation(
                 type: RbmActionTypeEnum.REPLY,
                 text: "TestText",
-                postBackData: new byte[] { 1, 2, 3 },
+                postbackData: new byte[] { 1, 2, 3 },
                 latitude: 37.7749,
                 longitude: -122.4194,
                 label: "TestLabel"
@@ -61,7 +61,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
             instanceMultiChannelActionCalendarEvent = new MultiChannelAction(new MultiChannelActionCalendarEvent(
                 type: RbmActionTypeEnum.REPLY,
                 text: "TestText",
-                postBackData: new byte[] { 1, 2, 3 },
+                postbackData: new byte[] { 1, 2, 3 },
                 title: "TestTitle",
                 startTime: new DateTime(2020, 1, 1),
                 endTime: new DateTime(2020, 1, 1),
@@ -70,7 +70,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
             instanceRbmActionOpenUrl = new MultiChannelAction(new RbmActionOpenUrl(
                 type: RbmActionTypeEnum.REPLY,
                 text: "TestText",
-                postBackData: new byte[] { 1, 2, 3 },
+                postbackData: new byte[] { 1, 2, 3 },
                 url: "https://test.url/"
             ));
         }

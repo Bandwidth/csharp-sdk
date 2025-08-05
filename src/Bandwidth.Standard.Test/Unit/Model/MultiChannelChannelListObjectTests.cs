@@ -48,7 +48,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
                         new MultiChannelAction(new RbmActionBase(
                             type: RbmActionTypeEnum.REPLY,
                             text: "Test",
-                            postBackData: new byte[] { 1, 2, 3 }
+                            postbackData: new byte[] { 1, 2, 3 }
                         ))
                     }
                 ))

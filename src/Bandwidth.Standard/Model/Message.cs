@@ -49,15 +49,15 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="id">The id of the message..</param>
         /// <param name="owner">The Bandwidth phone number associated with the message..</param>
-        /// <param name="applicationId">The application ID associated with the message..</param>
+        /// <param name="applicationId">The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard..</param>
         /// <param name="time">The datetime stamp of the message in ISO 8601.</param>
-        /// <param name="segmentCount">The number of segments the original message from the user is broken into before sending over to carrier networks..</param>
+        /// <param name="segmentCount">The number of segments the user&#39;s message is broken into before sending over carrier networks..</param>
         /// <param name="direction">direction.</param>
         /// <param name="to">The phone number recipients of the message..</param>
         /// <param name="from">The phone number the message was sent from..</param>
         /// <param name="media">The list of media URLs sent in the message. Including a &#x60;filename&#x60; field in the &#x60;Content-Disposition&#x60; header of the media linked with a URL will set the displayed file name. This is a best practice to ensure that your media has a readable file name..</param>
         /// <param name="text">The contents of the message..</param>
-        /// <param name="tag">The custom string set by the user..</param>
+        /// <param name="tag">A custom string that will be included in callback events of the message. Max 1024 characters..</param>
         /// <param name="priority">priority.</param>
         /// <param name="expiration">A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future..</param>
         public Message(string id = default(string), string owner = default(string), string applicationId = default(string), DateTime time = default(DateTime), int segmentCount = default(int), MessageDirectionEnum? direction = default(MessageDirectionEnum?), List<string> to = default(List<string>), string from = default(string), List<string> media = default(List<string>), string text = default(string), string tag = default(string), PriorityEnum? priority = default(PriorityEnum?), DateTime expiration = default(DateTime))
@@ -94,9 +94,9 @@ namespace Bandwidth.Standard.Model
         public string Owner { get; set; }
 
         /// <summary>
-        /// The application ID associated with the message.
+        /// The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.
         /// </summary>
-        /// <value>The application ID associated with the message.</value>
+        /// <value>The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.</value>
         /// <example>93de2206-9669-4e07-948d-329f4b722ee2</example>
         [DataMember(Name = "applicationId", EmitDefaultValue = false)]
         public string ApplicationId { get; set; }
@@ -110,10 +110,10 @@ namespace Bandwidth.Standard.Model
         public DateTime Time { get; set; }
 
         /// <summary>
-        /// The number of segments the original message from the user is broken into before sending over to carrier networks.
+        /// The number of segments the user&#39;s message is broken into before sending over carrier networks.
         /// </summary>
-        /// <value>The number of segments the original message from the user is broken into before sending over to carrier networks.</value>
-        /// <example>2</example>
+        /// <value>The number of segments the user&#39;s message is broken into before sending over carrier networks.</value>
+        /// <example>1</example>
         [DataMember(Name = "segmentCount", EmitDefaultValue = false)]
         public int SegmentCount { get; set; }
 
@@ -150,10 +150,10 @@ namespace Bandwidth.Standard.Model
         public string Text { get; set; }
 
         /// <summary>
-        /// The custom string set by the user.
+        /// A custom string that will be included in callback events of the message. Max 1024 characters.
         /// </summary>
-        /// <value>The custom string set by the user.</value>
-        /// <example>custom tag</example>
+        /// <value>A custom string that will be included in callback events of the message. Max 1024 characters.</value>
+        /// <example>custom string</example>
         [DataMember(Name = "tag", EmitDefaultValue = false)]
         public string Tag { get; set; }
 

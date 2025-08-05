@@ -163,7 +163,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
             Assert.IsType<string>(instance.IsvReseller);
             Assert.Equal("test", instance.IsvReseller);
         }
-        
+
         /// <summary>
         /// Test the property 'PrivacyPolicyUrl'
         /// </summary>
