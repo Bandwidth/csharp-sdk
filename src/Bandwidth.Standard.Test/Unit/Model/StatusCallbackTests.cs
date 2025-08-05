@@ -48,7 +48,7 @@ namespace Bandwidth.Standard.Test.Model
                     time: DateTime.Now,
                     segmentCount: 1, 
                     direction:  MessageDirectionEnum.In,
-                    to: ["+15552223333"], 
+                    to: new List<string> { "+15552223333" },
                     from: "+15553332222", 
                     text: "Hello world", 
                     tag: "custom string", 
