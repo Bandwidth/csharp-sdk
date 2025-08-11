@@ -11,7 +11,7 @@ namespace Bandwidth.Standard.Test.Unit.Model.Bxml
 		[Fact]
 		public void StartStreamTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StartStream name=\"test\" mode=\"unidirectional\" tracks=\"inbound\" destination=\"wss://test.url/\" streamEventUrl=\"https://test.url/\" streamEventMethod=\"POST\" username=\"username\" password=\"password\">    <StreamParam name=\"testName\" value=\"testValue\" />  </StartStream></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StartStream name=\"test\" mode=\"unidirectional\" tracks=\"inbound\" destination=\"wss://test.url/\" destinationUsername=\"destinationUsername\" destinationPassword=\"destinationPassword\" streamEventUrl=\"https://test.url/\" streamEventMethod=\"POST\" username=\"username\" password=\"password\">    <StreamParam name=\"testName\" value=\"testValue\" />  </StartStream></Response>";
 
 			var streamParam = new StreamParam();
 			streamParam.Name = "testName";
@@ -22,6 +22,8 @@ namespace Bandwidth.Standard.Test.Unit.Model.Bxml
 			startStream.Mode = "unidirectional";
 			startStream.Tracks = "inbound";
 			startStream.Destination = "wss://test.url/";
+			startStream.DestinationUsername = "destinationUsername";
+			startStream.DestinationPassword = "destinationPassword";
 			startStream.StreamEventUrl = "https://test.url/";
 			startStream.StreamEventMethod = "POST";
 			startStream.Username = "username";
