@@ -37,10 +37,22 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         public string Tracks { get; set; }
 
         /// <summary>
-        ///   A websocket URI to send the stream to.
+        /// A websocket URI to send the stream to.
         /// </summary>
         [XmlAttribute("destination")]
         public string Destination { get; set; }
+
+        /// <summary>
+        /// The username to send in the `Authorization` header of the initial websocket connection to the `destination` URL.
+        /// </summary>
+        [XmlAttribute("destinationUsername")]
+        public string DestinationUsername { get; set; }
+
+        /// <summary>
+        /// The password to send in the `Authorization` header of the initial websocket connection to the `destination` URL.
+        /// </summary>
+        [XmlAttribute("destinationPassword")]
+        public string DestinationPassword { get; set; }
 
         /// <summary>
         /// URL to send the associated Webhook events to during this stream's lifetime.
