@@ -71,13 +71,23 @@ namespace Bandwidth.Standard.Api
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="campaignId">The campaign ID of the message. (optional)</param>
+        /// <param name="fromBwLatency">The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. (optional)</param>
+        /// <param name="bwQueued">A boolean value indicating whether the message is queued in the Bandwidth network. (optional)</param>
+        /// <param name="product">Messaging product associated with the message. (optional)</param>
+        /// <param name="location">Location Id associated with the message. (optional)</param>
+        /// <param name="callingNumberCountryA3">Calling number country in A3 format. (optional)</param>
+        /// <param name="calledNumberCountryA3">Called number country in A3 format. (optional)</param>
+        /// <param name="fromSegmentCount">Segment count (start range). (optional)</param>
+        /// <param name="toSegmentCount">Segment count (end range). (optional)</param>
+        /// <param name="fromMessageSize">Message size (start range). (optional)</param>
+        /// <param name="toMessageSize">Message size (end range). (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
         /// <param name="limitTotalCount">When set to true, the response&#39;s totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>MessagesList</returns>
-        MessagesList ListMessages(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0);
+        MessagesList ListMessages(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), int? fromBwLatency = default(int?), bool? bwQueued = default(bool?), ProductTypeEnum? product = default(ProductTypeEnum?), string location = default(string), string callingNumberCountryA3 = default(string), string calledNumberCountryA3 = default(string), int? fromSegmentCount = default(int?), int? toSegmentCount = default(int?), int? fromMessageSize = default(int?), int? toMessageSize = default(int?), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0);
 
         /// <summary>
         /// List Messages
@@ -98,13 +108,23 @@ namespace Bandwidth.Standard.Api
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="campaignId">The campaign ID of the message. (optional)</param>
+        /// <param name="fromBwLatency">The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. (optional)</param>
+        /// <param name="bwQueued">A boolean value indicating whether the message is queued in the Bandwidth network. (optional)</param>
+        /// <param name="product">Messaging product associated with the message. (optional)</param>
+        /// <param name="location">Location Id associated with the message. (optional)</param>
+        /// <param name="callingNumberCountryA3">Calling number country in A3 format. (optional)</param>
+        /// <param name="calledNumberCountryA3">Called number country in A3 format. (optional)</param>
+        /// <param name="fromSegmentCount">Segment count (start range). (optional)</param>
+        /// <param name="toSegmentCount">Segment count (end range). (optional)</param>
+        /// <param name="fromMessageSize">Message size (start range). (optional)</param>
+        /// <param name="toMessageSize">Message size (end range). (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
         /// <param name="limitTotalCount">When set to true, the response&#39;s totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of MessagesList</returns>
-        ApiResponse<MessagesList> ListMessagesWithHttpInfo(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0);
+        ApiResponse<MessagesList> ListMessagesWithHttpInfo(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), int? fromBwLatency = default(int?), bool? bwQueued = default(bool?), ProductTypeEnum? product = default(ProductTypeEnum?), string location = default(string), string callingNumberCountryA3 = default(string), string calledNumberCountryA3 = default(string), int? fromSegmentCount = default(int?), int? toSegmentCount = default(int?), int? fromMessageSize = default(int?), int? toMessageSize = default(int?), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -160,6 +180,16 @@ namespace Bandwidth.Standard.Api
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="campaignId">The campaign ID of the message. (optional)</param>
+        /// <param name="fromBwLatency">The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. (optional)</param>
+        /// <param name="bwQueued">A boolean value indicating whether the message is queued in the Bandwidth network. (optional)</param>
+        /// <param name="product">Messaging product associated with the message. (optional)</param>
+        /// <param name="location">Location Id associated with the message. (optional)</param>
+        /// <param name="callingNumberCountryA3">Calling number country in A3 format. (optional)</param>
+        /// <param name="calledNumberCountryA3">Called number country in A3 format. (optional)</param>
+        /// <param name="fromSegmentCount">Segment count (start range). (optional)</param>
+        /// <param name="toSegmentCount">Segment count (end range). (optional)</param>
+        /// <param name="fromMessageSize">Message size (start range). (optional)</param>
+        /// <param name="toMessageSize">Message size (end range). (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
@@ -167,7 +197,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of MessagesList</returns>
-        System.Threading.Tasks.Task<MessagesList> ListMessagesAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<MessagesList> ListMessagesAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), int? fromBwLatency = default(int?), bool? bwQueued = default(bool?), ProductTypeEnum? product = default(ProductTypeEnum?), string location = default(string), string callingNumberCountryA3 = default(string), string calledNumberCountryA3 = default(string), int? fromSegmentCount = default(int?), int? toSegmentCount = default(int?), int? fromMessageSize = default(int?), int? toMessageSize = default(int?), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List Messages
@@ -188,6 +218,16 @@ namespace Bandwidth.Standard.Api
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="campaignId">The campaign ID of the message. (optional)</param>
+        /// <param name="fromBwLatency">The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. (optional)</param>
+        /// <param name="bwQueued">A boolean value indicating whether the message is queued in the Bandwidth network. (optional)</param>
+        /// <param name="product">Messaging product associated with the message. (optional)</param>
+        /// <param name="location">Location Id associated with the message. (optional)</param>
+        /// <param name="callingNumberCountryA3">Calling number country in A3 format. (optional)</param>
+        /// <param name="calledNumberCountryA3">Called number country in A3 format. (optional)</param>
+        /// <param name="fromSegmentCount">Segment count (start range). (optional)</param>
+        /// <param name="toSegmentCount">Segment count (end range). (optional)</param>
+        /// <param name="fromMessageSize">Message size (start range). (optional)</param>
+        /// <param name="toMessageSize">Message size (end range). (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
@@ -195,7 +235,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (MessagesList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<MessagesList>> ListMessagesWithHttpInfoAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<MessagesList>> ListMessagesWithHttpInfoAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), int? fromBwLatency = default(int?), bool? bwQueued = default(bool?), ProductTypeEnum? product = default(ProductTypeEnum?), string location = default(string), string callingNumberCountryA3 = default(string), string calledNumberCountryA3 = default(string), int? fromSegmentCount = default(int?), int? toSegmentCount = default(int?), int? fromMessageSize = default(int?), int? toMessageSize = default(int?), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -508,15 +548,25 @@ namespace Bandwidth.Standard.Api
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="campaignId">The campaign ID of the message. (optional)</param>
+        /// <param name="fromBwLatency">The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. (optional)</param>
+        /// <param name="bwQueued">A boolean value indicating whether the message is queued in the Bandwidth network. (optional)</param>
+        /// <param name="product">Messaging product associated with the message. (optional)</param>
+        /// <param name="location">Location Id associated with the message. (optional)</param>
+        /// <param name="callingNumberCountryA3">Calling number country in A3 format. (optional)</param>
+        /// <param name="calledNumberCountryA3">Called number country in A3 format. (optional)</param>
+        /// <param name="fromSegmentCount">Segment count (start range). (optional)</param>
+        /// <param name="toSegmentCount">Segment count (end range). (optional)</param>
+        /// <param name="fromMessageSize">Message size (start range). (optional)</param>
+        /// <param name="toMessageSize">Message size (end range). (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
         /// <param name="limitTotalCount">When set to true, the response&#39;s totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>MessagesList</returns>
-        public MessagesList ListMessages(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0)
+        public MessagesList ListMessages(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), int? fromBwLatency = default(int?), bool? bwQueued = default(bool?), ProductTypeEnum? product = default(ProductTypeEnum?), string location = default(string), string callingNumberCountryA3 = default(string), string calledNumberCountryA3 = default(string), int? fromSegmentCount = default(int?), int? toSegmentCount = default(int?), int? fromMessageSize = default(int?), int? toMessageSize = default(int?), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0)
         {
-            Bandwidth.Standard.Client.ApiResponse<MessagesList> localVarResponse = ListMessagesWithHttpInfo(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, sort, pageToken, limit, limitTotalCount);
+            Bandwidth.Standard.Client.ApiResponse<MessagesList> localVarResponse = ListMessagesWithHttpInfo(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, fromBwLatency, bwQueued, product, location, callingNumberCountryA3, calledNumberCountryA3, fromSegmentCount, toSegmentCount, fromMessageSize, toMessageSize, sort, pageToken, limit, limitTotalCount);
             return localVarResponse.Data;
         }
 
@@ -536,13 +586,23 @@ namespace Bandwidth.Standard.Api
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="campaignId">The campaign ID of the message. (optional)</param>
+        /// <param name="fromBwLatency">The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. (optional)</param>
+        /// <param name="bwQueued">A boolean value indicating whether the message is queued in the Bandwidth network. (optional)</param>
+        /// <param name="product">Messaging product associated with the message. (optional)</param>
+        /// <param name="location">Location Id associated with the message. (optional)</param>
+        /// <param name="callingNumberCountryA3">Calling number country in A3 format. (optional)</param>
+        /// <param name="calledNumberCountryA3">Called number country in A3 format. (optional)</param>
+        /// <param name="fromSegmentCount">Segment count (start range). (optional)</param>
+        /// <param name="toSegmentCount">Segment count (end range). (optional)</param>
+        /// <param name="fromMessageSize">Message size (start range). (optional)</param>
+        /// <param name="toMessageSize">Message size (end range). (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
         /// <param name="limitTotalCount">When set to true, the response&#39;s totalCount field will have a maximum value of 10,000. When set to false, or excluded, this will give an accurate totalCount of all messages that match the provided filters. If you are experiencing latency, try using this parameter to limit your results. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of MessagesList</returns>
-        public Bandwidth.Standard.Client.ApiResponse<MessagesList> ListMessagesWithHttpInfo(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0)
+        public Bandwidth.Standard.Client.ApiResponse<MessagesList> ListMessagesWithHttpInfo(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), int? fromBwLatency = default(int?), bool? bwQueued = default(bool?), ProductTypeEnum? product = default(ProductTypeEnum?), string location = default(string), string callingNumberCountryA3 = default(string), string calledNumberCountryA3 = default(string), int? fromSegmentCount = default(int?), int? toSegmentCount = default(int?), int? fromMessageSize = default(int?), int? toMessageSize = default(int?), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -616,6 +676,46 @@ namespace Bandwidth.Standard.Api
             if (campaignId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
+            }
+            if (fromBwLatency != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "fromBwLatency", fromBwLatency));
+            }
+            if (bwQueued != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "bwQueued", bwQueued));
+            }
+            if (product != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "product", product));
+            }
+            if (location != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "location", location));
+            }
+            if (callingNumberCountryA3 != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "callingNumberCountryA3", callingNumberCountryA3));
+            }
+            if (calledNumberCountryA3 != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "calledNumberCountryA3", calledNumberCountryA3));
+            }
+            if (fromSegmentCount != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "fromSegmentCount", fromSegmentCount));
+            }
+            if (toSegmentCount != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "toSegmentCount", toSegmentCount));
+            }
+            if (fromMessageSize != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "fromMessageSize", fromMessageSize));
+            }
+            if (toMessageSize != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "toMessageSize", toMessageSize));
             }
             if (sort != null)
             {
@@ -674,6 +774,16 @@ namespace Bandwidth.Standard.Api
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="campaignId">The campaign ID of the message. (optional)</param>
+        /// <param name="fromBwLatency">The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. (optional)</param>
+        /// <param name="bwQueued">A boolean value indicating whether the message is queued in the Bandwidth network. (optional)</param>
+        /// <param name="product">Messaging product associated with the message. (optional)</param>
+        /// <param name="location">Location Id associated with the message. (optional)</param>
+        /// <param name="callingNumberCountryA3">Calling number country in A3 format. (optional)</param>
+        /// <param name="calledNumberCountryA3">Called number country in A3 format. (optional)</param>
+        /// <param name="fromSegmentCount">Segment count (start range). (optional)</param>
+        /// <param name="toSegmentCount">Segment count (end range). (optional)</param>
+        /// <param name="fromMessageSize">Message size (start range). (optional)</param>
+        /// <param name="toMessageSize">Message size (end range). (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
@@ -681,9 +791,9 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of MessagesList</returns>
-        public async System.Threading.Tasks.Task<MessagesList> ListMessagesAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<MessagesList> ListMessagesAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), int? fromBwLatency = default(int?), bool? bwQueued = default(bool?), ProductTypeEnum? product = default(ProductTypeEnum?), string location = default(string), string callingNumberCountryA3 = default(string), string calledNumberCountryA3 = default(string), int? fromSegmentCount = default(int?), int? toSegmentCount = default(int?), int? fromMessageSize = default(int?), int? toMessageSize = default(int?), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Bandwidth.Standard.Client.ApiResponse<MessagesList> localVarResponse = await ListMessagesWithHttpInfoAsync(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, sort, pageToken, limit, limitTotalCount, operationIndex, cancellationToken).ConfigureAwait(false);
+            Bandwidth.Standard.Client.ApiResponse<MessagesList> localVarResponse = await ListMessagesWithHttpInfoAsync(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, fromBwLatency, bwQueued, product, location, callingNumberCountryA3, calledNumberCountryA3, fromSegmentCount, toSegmentCount, fromMessageSize, toMessageSize, sort, pageToken, limit, limitTotalCount, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -703,6 +813,16 @@ namespace Bandwidth.Standard.Api
         /// <param name="fromDateTime">The start of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="toDateTime">The end of the date range to search in ISO 8601 format. Uses the message receive time. The date range to search in is currently 14 days. (optional)</param>
         /// <param name="campaignId">The campaign ID of the message. (optional)</param>
+        /// <param name="fromBwLatency">The minimum Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. (optional)</param>
+        /// <param name="bwQueued">A boolean value indicating whether the message is queued in the Bandwidth network. (optional)</param>
+        /// <param name="product">Messaging product associated with the message. (optional)</param>
+        /// <param name="location">Location Id associated with the message. (optional)</param>
+        /// <param name="callingNumberCountryA3">Calling number country in A3 format. (optional)</param>
+        /// <param name="calledNumberCountryA3">Called number country in A3 format. (optional)</param>
+        /// <param name="fromSegmentCount">Segment count (start range). (optional)</param>
+        /// <param name="toSegmentCount">Segment count (end range). (optional)</param>
+        /// <param name="fromMessageSize">Message size (start range). (optional)</param>
+        /// <param name="toMessageSize">Message size (end range). (optional)</param>
         /// <param name="sort">The field and direction to sort by combined with a colon. Direction is either asc or desc. (optional)</param>
         /// <param name="pageToken">A base64 encoded value used for pagination of results. (optional)</param>
         /// <param name="limit">The maximum records requested in search result. Default 100. The sum of limit and after cannot be more than 10000. (optional)</param>
@@ -710,7 +830,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (MessagesList)</returns>
-        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<MessagesList>> ListMessagesWithHttpInfoAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<MessagesList>> ListMessagesWithHttpInfoAsync(string accountId, string messageId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), string carrierName = default(string), MessageTypeEnum? messageType = default(MessageTypeEnum?), int? errorCode = default(int?), string fromDateTime = default(string), string toDateTime = default(string), string campaignId = default(string), int? fromBwLatency = default(int?), bool? bwQueued = default(bool?), ProductTypeEnum? product = default(ProductTypeEnum?), string location = default(string), string callingNumberCountryA3 = default(string), string calledNumberCountryA3 = default(string), int? fromSegmentCount = default(int?), int? toSegmentCount = default(int?), int? fromMessageSize = default(int?), int? toMessageSize = default(int?), string sort = default(string), string pageToken = default(string), int? limit = default(int?), bool? limitTotalCount = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -785,6 +905,46 @@ namespace Bandwidth.Standard.Api
             if (campaignId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
+            }
+            if (fromBwLatency != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "fromBwLatency", fromBwLatency));
+            }
+            if (bwQueued != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "bwQueued", bwQueued));
+            }
+            if (product != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "product", product));
+            }
+            if (location != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "location", location));
+            }
+            if (callingNumberCountryA3 != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "callingNumberCountryA3", callingNumberCountryA3));
+            }
+            if (calledNumberCountryA3 != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "calledNumberCountryA3", calledNumberCountryA3));
+            }
+            if (fromSegmentCount != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "fromSegmentCount", fromSegmentCount));
+            }
+            if (toSegmentCount != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "toSegmentCount", toSegmentCount));
+            }
+            if (fromMessageSize != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "fromMessageSize", fromMessageSize));
+            }
+            if (toMessageSize != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Bandwidth.Standard.Client.ClientUtils.ParameterToMultiMap("", "toMessageSize", toMessageSize));
             }
             if (sort != null)
             {
