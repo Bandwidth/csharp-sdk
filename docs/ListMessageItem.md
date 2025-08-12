@@ -21,6 +21,11 @@ Name | Type | Description | Notes
 **RecipientCount** | **int?** | The number of recipients the message has. | [optional] 
 **CampaignClass** | **string** | The campaign class of the message if it has one. | [optional] 
 **CampaignId** | **string** | The campaign ID of the message if it has one. | [optional] 
+**BwLatency** | **int?** | The Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled. | [optional] 
+**CallingNumberCountryA3** | **string** | The A3 country code of the calling number. | [optional] 
+**CalledNumberCountryA3** | **string** | The A3 country code of the called number. | [optional] 
+**Product** | **string** | The messaging product associated with the message. | [optional] 
+**Location** | **string** | The location ID associated with this message. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

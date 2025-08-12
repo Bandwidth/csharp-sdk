@@ -43,7 +43,13 @@ namespace Bandwidth.Standard.Model
         /// Enum Mms for value: mms
         /// </summary>
         [EnumMember(Value = "mms")]
-        Mms = 2
+        Mms = 2,
+
+        /// <summary>
+        /// Enum Rcs for value: rcs
+        /// </summary>
+        [EnumMember(Value = "rcs")]
+        Rcs = 3
     }
 
 }

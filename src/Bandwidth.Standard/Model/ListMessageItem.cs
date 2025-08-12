@@ -70,7 +70,12 @@ namespace Bandwidth.Standard.Model
         /// <param name="recipientCount">The number of recipients the message has..</param>
         /// <param name="campaignClass">The campaign class of the message if it has one..</param>
         /// <param name="campaignId">The campaign ID of the message if it has one..</param>
-        public ListMessageItem(string messageId = default(string), string accountId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), MessageTypeEnum? messageType = default(MessageTypeEnum?), int segmentCount = default(int), int errorCode = default(int), DateTime receiveTime = default(DateTime), string carrierName = default(string), int? messageSize = default(int?), int messageLength = default(int), int? attachmentCount = default(int?), int? recipientCount = default(int?), string campaignClass = default(string), string campaignId = default(string))
+        /// <param name="bwLatency">The Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled..</param>
+        /// <param name="callingNumberCountryA3">The A3 country code of the calling number..</param>
+        /// <param name="calledNumberCountryA3">The A3 country code of the called number..</param>
+        /// <param name="product">The messaging product associated with the message..</param>
+        /// <param name="location">The location ID associated with this message..</param>
+        public ListMessageItem(string messageId = default(string), string accountId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), MessageTypeEnum? messageType = default(MessageTypeEnum?), int segmentCount = default(int), int errorCode = default(int), DateTime receiveTime = default(DateTime), string carrierName = default(string), int? messageSize = default(int?), int messageLength = default(int), int? attachmentCount = default(int?), int? recipientCount = default(int?), string campaignClass = default(string), string campaignId = default(string), int? bwLatency = default(int?), string callingNumberCountryA3 = default(string), string calledNumberCountryA3 = default(string), string product = default(string), string location = default(string))
         {
             this.MessageId = messageId;
             this.AccountId = accountId;
@@ -89,6 +94,11 @@ namespace Bandwidth.Standard.Model
             this.RecipientCount = recipientCount;
             this.CampaignClass = campaignClass;
             this.CampaignId = campaignId;
+            this.BwLatency = bwLatency;
+            this.CallingNumberCountryA3 = callingNumberCountryA3;
+            this.CalledNumberCountryA3 = calledNumberCountryA3;
+            this.Product = product;
+            this.Location = location;
         }
 
         /// <summary>
@@ -204,6 +214,46 @@ namespace Bandwidth.Standard.Model
         public string CampaignId { get; set; }
 
         /// <summary>
+        /// The Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled.
+        /// </summary>
+        /// <value>The Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled.</value>
+        /// <example>20</example>
+        [DataMember(Name = "bwLatency", EmitDefaultValue = true)]
+        public int? BwLatency { get; set; }
+
+        /// <summary>
+        /// The A3 country code of the calling number.
+        /// </summary>
+        /// <value>The A3 country code of the calling number.</value>
+        /// <example>USA</example>
+        [DataMember(Name = "callingNumberCountryA3", EmitDefaultValue = true)]
+        public string CallingNumberCountryA3 { get; set; }
+
+        /// <summary>
+        /// The A3 country code of the called number.
+        /// </summary>
+        /// <value>The A3 country code of the called number.</value>
+        /// <example>USA</example>
+        [DataMember(Name = "calledNumberCountryA3", EmitDefaultValue = true)]
+        public string CalledNumberCountryA3 { get; set; }
+
+        /// <summary>
+        /// The messaging product associated with the message.
+        /// </summary>
+        /// <value>The messaging product associated with the message.</value>
+        /// <example>P2P</example>
+        [DataMember(Name = "product", EmitDefaultValue = true)]
+        public string Product { get; set; }
+
+        /// <summary>
+        /// The location ID associated with this message.
+        /// </summary>
+        /// <value>The location ID associated with this message.</value>
+        /// <example>123ID</example>
+        [DataMember(Name = "location", EmitDefaultValue = true)]
+        public string Location { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -228,6 +278,11 @@ namespace Bandwidth.Standard.Model
             sb.Append("  RecipientCount: ").Append(RecipientCount).Append("\n");
             sb.Append("  CampaignClass: ").Append(CampaignClass).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
+            sb.Append("  BwLatency: ").Append(BwLatency).Append("\n");
+            sb.Append("  CallingNumberCountryA3: ").Append(CallingNumberCountryA3).Append("\n");
+            sb.Append("  CalledNumberCountryA3: ").Append(CalledNumberCountryA3).Append("\n");
+            sb.Append("  Product: ").Append(Product).Append("\n");
+            sb.Append("  Location: ").Append(Location).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
