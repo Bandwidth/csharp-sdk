@@ -27,29 +27,23 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The type of message. Either SMS or MMS.
+    /// The type of business registration number. Optional until early 2026; required if &#x60;businessRegistrationNumber&#x60; is provided. Available starting October 1st, 2025.
     /// </summary>
-    /// <value>The type of message. Either SMS or MMS.</value>
+    /// <value>The type of business registration number. Optional until early 2026; required if &#x60;businessRegistrationNumber&#x60; is provided. Available starting October 1st, 2025.</value>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum MessageTypeEnum
+    public enum BusinessRegistrationTypeEnum
     {
         /// <summary>
-        /// Enum Sms for value: sms
+        /// Enum EIN for value: EIN
         /// </summary>
-        [EnumMember(Value = "sms")]
-        Sms = 1,
+        [EnumMember(Value = "EIN")]
+        EIN = 1,
 
         /// <summary>
-        /// Enum Mms for value: mms
+        /// Enum CBN for value: CBN
         /// </summary>
-        [EnumMember(Value = "mms")]
-        Mms = 2,
-
-        /// <summary>
-        /// Enum Rcs for value: rcs
-        /// </summary>
-        [EnumMember(Value = "rcs")]
-        Rcs = 3
+        [EnumMember(Value = "CBN")]
+        CBN = 2
     }
 
 }

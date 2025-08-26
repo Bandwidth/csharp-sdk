@@ -511,6 +511,120 @@ paths:
         schema:
           type: string
         style: form
+      - description: The minimum Bandwidth latency of the message in seconds. Only
+          available for accounts with the Advanced Quality Metrics feature enabled.
+        example: 5
+        explode: true
+        in: query
+        name: fromBwLatency
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: A boolean value indicating whether the message is queued in the
+          Bandwidth network.
+        example: true
+        explode: true
+        in: query
+        name: bwQueued
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Messaging product associated with the message.
+        example: P2P
+        explode: true
+        in: query
+        name: product
+        required: false
+        schema:
+          $ref: '#/components/schemas/productTypeEnum'
+        style: form
+      - description: Location Id associated with the message.
+        example: 123ABC
+        explode: true
+        in: query
+        name: location
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A boolean value indicating whether the message is queued in the
+          carrier network. Only available for OUTBOUND messages from accounts with
+          the Advanced Quality Metrics feature enabled.
+        example: true
+        explode: true
+        in: query
+        name: carrierQueued
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: The minimum carrier latency of the message in seconds. Only available
+          for OUTBOUND messages from accounts with the Advanced Quality Metrics feature
+          enabled.
+        example: 50
+        explode: true
+        in: query
+        name: fromCarrierLatency
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Calling number country in A3 format.
+        example: USA
+        explode: true
+        in: query
+        name: callingNumberCountryA3
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Called number country in A3 format.
+        example: USA
+        explode: true
+        in: query
+        name: calledNumberCountryA3
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Segment count (start range).
+        example: 1
+        explode: true
+        in: query
+        name: fromSegmentCount
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Segment count (end range).
+        example: 3
+        explode: true
+        in: query
+        name: toSegmentCount
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Message size (start range).
+        example: 100
+        explode: true
+        in: query
+        name: fromMessageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Message size (end range).
+        example: 120
+        explode: true
+        in: query
+        name: toMessageSize
+        required: false
+        schema:
+          type: integer
+        style: form
       - description: The field and direction to sort by combined with a colon. Direction
           is either asc or desc.
         example: sourceTn:desc
@@ -6237,6 +6351,132 @@ components:
       schema:
         type: string
       style: form
+    fromBwLatency:
+      description: The minimum Bandwidth latency of the message in seconds. Only available
+        for accounts with the Advanced Quality Metrics feature enabled.
+      example: 5
+      explode: true
+      in: query
+      name: fromBwLatency
+      required: false
+      schema:
+        type: integer
+      style: form
+    bwQueued:
+      description: A boolean value indicating whether the message is queued in the
+        Bandwidth network.
+      example: true
+      explode: true
+      in: query
+      name: bwQueued
+      required: false
+      schema:
+        type: boolean
+      style: form
+    product:
+      description: Messaging product associated with the message.
+      example: P2P
+      explode: true
+      in: query
+      name: product
+      required: false
+      schema:
+        $ref: '#/components/schemas/productTypeEnum'
+      style: form
+    location:
+      description: Location Id associated with the message.
+      example: 123ABC
+      explode: true
+      in: query
+      name: location
+      required: false
+      schema:
+        type: string
+      style: form
+    carrierQueued:
+      description: A boolean value indicating whether the message is queued in the
+        carrier network. Only available for OUTBOUND messages from accounts with the
+        Advanced Quality Metrics feature enabled.
+      example: true
+      explode: true
+      in: query
+      name: carrierQueued
+      required: false
+      schema:
+        type: boolean
+      style: form
+    fromCarrierLatency:
+      description: The minimum carrier latency of the message in seconds. Only available
+        for OUTBOUND messages from accounts with the Advanced Quality Metrics feature
+        enabled.
+      example: 50
+      explode: true
+      in: query
+      name: fromCarrierLatency
+      required: false
+      schema:
+        type: integer
+      style: form
+    callingNumberCountryA3:
+      description: Calling number country in A3 format.
+      example: USA
+      explode: true
+      in: query
+      name: callingNumberCountryA3
+      required: false
+      schema:
+        type: string
+      style: form
+    calledNumberCountryA3:
+      description: Called number country in A3 format.
+      example: USA
+      explode: true
+      in: query
+      name: calledNumberCountryA3
+      required: false
+      schema:
+        type: string
+      style: form
+    fromSegmentCount:
+      description: Segment count (start range).
+      example: 1
+      explode: true
+      in: query
+      name: fromSegmentCount
+      required: false
+      schema:
+        type: integer
+      style: form
+    toSegmentCount:
+      description: Segment count (end range).
+      example: 3
+      explode: true
+      in: query
+      name: toSegmentCount
+      required: false
+      schema:
+        type: integer
+      style: form
+    fromMessageSize:
+      description: Message size (start range).
+      example: 100
+      explode: true
+      in: query
+      name: fromMessageSize
+      required: false
+      schema:
+        type: integer
+      style: form
+    toMessageSize:
+      description: Message size (end range).
+      example: 120
+      explode: true
+      in: query
+      name: toMessageSize
+      required: false
+      schema:
+        type: integer
+      style: form
     sort:
       description: The field and direction to sort by combined with a colon. Direction
         is either asc or desc.
@@ -7586,7 +7826,22 @@ components:
       enum:
       - sms
       - mms
+      - rcs
       example: sms
+      type: string
+    productTypeEnum:
+      description: The type of product associated with the message.
+      enum:
+      - LOCAL_A2P
+      - P2P
+      - SHORT_CODE_REACH
+      - TOLL_FREE
+      - HOSTED_SHORT_CODE
+      - ALPHA_NUMERIC
+      - RBM_MEDIA
+      - RBM_RICH
+      - RBM_CONVERSATIONAL
+      example: P2P
       type: string
     fieldError:
       example:
@@ -7612,39 +7867,51 @@ components:
           nextPageToken: GL83PD3C
           prevPage: https://messaging.bandwidth.com/api/v2/users/accountId/messages?messageStatus=DLR_EXPIRED&nextPage=DLAPE902
         messages:
-        - sourceTn: "+15554443333"
+        - callingNumberCountryA3: USA
+          product: P2P
+          sourceTn: "+15554443333"
           messageLength: 18
           campaignId: CJEUMDK
           messageId: 1589228074636lm4k2je7j7jklbn2
           errorCode: 9902
+          calledNumberCountryA3: USA
           destinationTn: "+15554442222"
           segmentCount: 1
           messageStatus: RECEIVED
           receiveTime: 2020-04-07T14:03:07Z
           accountId: "9900000"
           messageDirection: INBOUND
+          carrierLatency: 20
           messageType: sms
           carrierName: other
           recipientCount: 1
           campaignClass: T
+          bwLatency: 20
           attachmentCount: 1
+          location: 123ID
           messageSize: 27
-        - sourceTn: "+15554443333"
+        - callingNumberCountryA3: USA
+          product: P2P
+          sourceTn: "+15554443333"
           messageLength: 18
           campaignId: CJEUMDK
           messageId: 1589228074636lm4k2je7j7jklbn2
           errorCode: 9902
+          calledNumberCountryA3: USA
           destinationTn: "+15554442222"
           segmentCount: 1
           messageStatus: RECEIVED
           receiveTime: 2020-04-07T14:03:07Z
           accountId: "9900000"
           messageDirection: INBOUND
+          carrierLatency: 20
           messageType: sms
           carrierName: other
           recipientCount: 1
           campaignClass: T
+          bwLatency: 20
           attachmentCount: 1
+          location: 123ID
           messageSize: 27
         totalCount: 100
       properties:
@@ -7663,22 +7930,28 @@ components:
       type: object
     listMessageItem:
       example:
+        callingNumberCountryA3: USA
+        product: P2P
         sourceTn: "+15554443333"
         messageLength: 18
         campaignId: CJEUMDK
         messageId: 1589228074636lm4k2je7j7jklbn2
         errorCode: 9902
+        calledNumberCountryA3: USA
         destinationTn: "+15554442222"
         segmentCount: 1
         messageStatus: RECEIVED
         receiveTime: 2020-04-07T14:03:07Z
         accountId: "9900000"
         messageDirection: INBOUND
+        carrierLatency: 20
         messageType: sms
         carrierName: other
         recipientCount: 1
         campaignClass: T
+        bwLatency: 20
         attachmentCount: 1
+        location: 123ID
         messageSize: 27
       properties:
         messageId:
@@ -7750,6 +8023,39 @@ components:
         campaignId:
           description: The campaign ID of the message if it has one.
           example: CJEUMDK
+          nullable: true
+          type: string
+        bwLatency:
+          description: The Bandwidth latency of the message in seconds. Only available
+            for accounts with the Advanced Quality Metrics feature enabled.
+          example: 20
+          nullable: true
+          type: integer
+        carrierLatency:
+          description: The carrier latency of the message in seconds. Only available
+            for OUTBOUND messages from accounts with the Advanced Quality Metrics
+            feature enabled.
+          example: 20
+          nullable: true
+          type: integer
+        callingNumberCountryA3:
+          description: The A3 country code of the calling number.
+          example: USA
+          nullable: true
+          type: string
+        calledNumberCountryA3:
+          description: The A3 country code of the called number.
+          example: USA
+          nullable: true
+          type: string
+        product:
+          description: The messaging product associated with the message.
+          example: P2P
+          nullable: true
+          type: string
+        location:
+          description: The location ID associated with this message.
+          example: 123ID
           nullable: true
           type: string
       title: listMessageItem
@@ -12820,6 +13126,47 @@ components:
       description: The company 'Doing Business As'.
       example: Another Company Name Inc.
       type: string
+    businessRegistrationNumber:
+      description: "US Federal Tax ID Number (EIN) or Canada Business Number (CBN).\
+        \ Optional until early 2026. If a value is provided for this field, a value\
+        \ must be provided for `businessRegistrationType` and `businessEntityType`.\
+        \ Available starting October 1st, 2025."
+      example: 12-3456789
+      maxLength: 500
+      nullable: true
+      type: string
+    businessRegistrationTypeEnum:
+      description: "The type of business registration number. Optional until early\
+        \ 2026; required if `businessRegistrationNumber` is provided. Available starting\
+        \ October 1st, 2025."
+      enum:
+      - EIN
+      - CBN
+      nullable: true
+      type: string
+    businessEntityTypeEnum:
+      description: "The type of registered business. If no option is applicable, please\
+        \ provide \"SOLE_PROPRIETOR\" as a value. Optional until early 2026; required\
+        \ if `businessRegistrationNumber` is provided. Available starting October\
+        \ 1st, 2025."
+      enum:
+      - SOLE_PROPRIETOR
+      - PRIVATE_PROFIT
+      - PUBLIC_PROFIT
+      - NON_PROFIT
+      - GOVERNMENT
+      nullable: true
+      type: string
+    helpMessageResponse:
+      description: A message that gets sent to users requesting help.
+      example: Please contact support for assistance.
+      maxLength: 500
+      nullable: true
+      type: string
+    ageGatedContent:
+      description: Indicates whether the content is age-gated.
+      example: false
+      type: boolean
     additionalDenialReason:
       properties:
         statusCode:
@@ -12928,6 +13275,29 @@ components:
           description: The company 'Doing Business As'.
           example: Another Company Name Inc.
           type: string
+        businessRegistrationNumber:
+          description: "US Federal Tax ID Number (EIN) or Canada Business Number (CBN).\
+            \ Optional until early 2026. If a value is provided for this field, a\
+            \ value must be provided for `businessRegistrationType` and `businessEntityType`.\
+            \ Available starting October 1st, 2025."
+          example: 12-3456789
+          maxLength: 500
+          nullable: true
+          type: string
+        businessRegistrationType:
+          $ref: '#/components/schemas/businessRegistrationTypeEnum'
+        businessEntityType:
+          $ref: '#/components/schemas/businessEntityTypeEnum'
+        helpMessageResponse:
+          description: A message that gets sent to users requesting help.
+          example: Please contact support for assistance.
+          maxLength: 500
+          nullable: true
+          type: string
+        ageGatedContent:
+          description: Indicates whether the content is age-gated.
+          example: false
+          type: boolean
       required:
       - businessAddress
       - businessContact
@@ -12999,6 +13369,29 @@ components:
           description: The company 'Doing Business As'.
           example: Another Company Name Inc.
           type: string
+        businessRegistrationNumber:
+          description: "US Federal Tax ID Number (EIN) or Canada Business Number (CBN).\
+            \ Optional until early 2026. If a value is provided for this field, a\
+            \ value must be provided for `businessRegistrationType` and `businessEntityType`.\
+            \ Available starting October 1st, 2025."
+          example: 12-3456789
+          maxLength: 500
+          nullable: true
+          type: string
+        businessRegistrationType:
+          $ref: '#/components/schemas/businessRegistrationTypeEnum'
+        businessEntityType:
+          $ref: '#/components/schemas/businessEntityTypeEnum'
+        helpMessageResponse:
+          description: A message that gets sent to users requesting help.
+          example: Please contact support for assistance.
+          maxLength: 500
+          nullable: true
+          type: string
+        ageGatedContent:
+          description: Indicates whether the content is age-gated.
+          example: false
+          type: boolean
       required:
       - businessAddress
       - businessContact
@@ -13293,6 +13686,7 @@ components:
         imageUrls:
         - https://www.example.com/path/to/resource
         - https://www.example.com/path/to/resource
+        confirmationResponse: Thank you for opting in!
         description: Opt In Flow
       nullable: false
       properties:
@@ -13312,6 +13706,12 @@ components:
               .[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#()?&//=]*)"
             type: string
           type: array
+        confirmationResponse:
+          example: Thank you for opting in!
+          maxLength: 500
+          minLength: 0
+          nullable: true
+          type: string
       required:
       - description
       - imageUrls
@@ -13622,16 +14022,26 @@ components:
         modifiedDateTime: 2021-06-08T06:45:13Z
         submission:
           additionalInformation: Any additional information
-          useCase: 2FA
           termsAndConditionsUrl: http://your-company.com/termsAndConditions
           businessDba: Another Company Name Inc.
-          isvReseller: Test ISV
           businessContact:
             firstName: John
             lastName: Doe
             phoneNumber: "+19192654500"
             email: foo@bar.com
           messageVolume: 10000
+          businessEntityType: SOLE_PROPRIETOR
+          businessRegistrationType: EIN
+          privacyPolicyUrl: http://your-company.com/privacyPolicy
+          optInWorkflow:
+            imageUrls:
+            - https://www.example.com/path/to/resource
+            - https://www.example.com/path/to/resource
+            confirmationResponse: Thank you for opting in!
+            description: Opt In Flow
+          useCase: 2FA
+          isvReseller: Test ISV
+          businessRegistrationNumber: 12-3456789
           productionMessageContent: Production message content
           businessAddress:
             zip: "27606"
@@ -13641,13 +14051,7 @@ components:
             name: Bandwidth Inc.
             state: NC
             url: https://www.example.com/path/to/resource
-          privacyPolicyUrl: http://your-company.com/privacyPolicy
           useCaseSummary: Text summarizing the use case for the toll-free number
-          optInWorkflow:
-            imageUrls:
-            - https://www.example.com/path/to/resource
-            - https://www.example.com/path/to/resource
-            description: Opt In Flow
         declineReasonDescription: Invalid Information - Can't Validate URL - Website
           is not accessible / not available
         status: VERIFIED
@@ -13706,16 +14110,26 @@ components:
     tfvSubmissionInfo:
       example:
         additionalInformation: Any additional information
-        useCase: 2FA
         termsAndConditionsUrl: http://your-company.com/termsAndConditions
         businessDba: Another Company Name Inc.
-        isvReseller: Test ISV
         businessContact:
           firstName: John
           lastName: Doe
           phoneNumber: "+19192654500"
           email: foo@bar.com
         messageVolume: 10000
+        businessEntityType: SOLE_PROPRIETOR
+        businessRegistrationType: EIN
+        privacyPolicyUrl: http://your-company.com/privacyPolicy
+        optInWorkflow:
+          imageUrls:
+          - https://www.example.com/path/to/resource
+          - https://www.example.com/path/to/resource
+          confirmationResponse: Thank you for opting in!
+          description: Opt In Flow
+        useCase: 2FA
+        isvReseller: Test ISV
+        businessRegistrationNumber: 12-3456789
         productionMessageContent: Production message content
         businessAddress:
           zip: "27606"
@@ -13725,13 +14139,7 @@ components:
           name: Bandwidth Inc.
           state: NC
           url: https://www.example.com/path/to/resource
-        privacyPolicyUrl: http://your-company.com/privacyPolicy
         useCaseSummary: Text summarizing the use case for the toll-free number
-        optInWorkflow:
-          imageUrls:
-          - https://www.example.com/path/to/resource
-          - https://www.example.com/path/to/resource
-          description: Opt In Flow
       properties:
         businessAddress:
           $ref: '#/components/schemas/address'
@@ -13792,6 +14200,19 @@ components:
           description: The company 'Doing Business As'.
           example: Another Company Name Inc.
           type: string
+        businessRegistrationNumber:
+          description: "US Federal Tax ID Number (EIN) or Canada Business Number (CBN).\
+            \ Optional until early 2026. If a value is provided for this field, a\
+            \ value must be provided for `businessRegistrationType` and `businessEntityType`.\
+            \ Available starting October 1st, 2025."
+          example: 12-3456789
+          maxLength: 500
+          nullable: true
+          type: string
+        businessRegistrationType:
+          $ref: '#/components/schemas/businessRegistrationTypeEnum'
+        businessEntityType:
+          $ref: '#/components/schemas/businessEntityTypeEnum'
       type: object
     tfvStatusEnum:
       enum:

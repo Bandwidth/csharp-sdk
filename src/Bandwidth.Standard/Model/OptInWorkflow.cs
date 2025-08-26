@@ -42,7 +42,8 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="description">description (required).</param>
         /// <param name="imageUrls">imageUrls (required).</param>
-        public OptInWorkflow(string description = default(string), List<string> imageUrls = default(List<string>))
+        /// <param name="confirmationResponse">confirmationResponse.</param>
+        public OptInWorkflow(string description = default(string), List<string> imageUrls = default(List<string>), string confirmationResponse = default(string))
         {
             // to ensure "description" is required (not null)
             if (description == null)
@@ -56,6 +57,7 @@ namespace Bandwidth.Standard.Model
                 throw new ArgumentNullException("imageUrls is a required property for OptInWorkflow and cannot be null");
             }
             this.ImageUrls = imageUrls;
+            this.ConfirmationResponse = confirmationResponse;
         }
 
         /// <summary>
@@ -72,6 +74,13 @@ namespace Bandwidth.Standard.Model
         public List<string> ImageUrls { get; set; }
 
         /// <summary>
+        /// Gets or Sets ConfirmationResponse
+        /// </summary>
+        /// <example>Thank you for opting in!</example>
+        [DataMember(Name = "confirmationResponse", EmitDefaultValue = true)]
+        public string ConfirmationResponse { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -81,6 +90,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("class OptInWorkflow {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  ImageUrls: ").Append(ImageUrls).Append("\n");
+            sb.Append("  ConfirmationResponse: ").Append(ConfirmationResponse).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -111,6 +121,18 @@ namespace Bandwidth.Standard.Model
             if (this.Description != null && this.Description.Length < 1)
             {
                 yield return new ValidationResult("Invalid value for Description, length must be greater than 1.", new [] { "Description" });
+            }
+
+            // ConfirmationResponse (string) maxLength
+            if (this.ConfirmationResponse != null && this.ConfirmationResponse.Length > 500)
+            {
+                yield return new ValidationResult("Invalid value for ConfirmationResponse, length must be less than 500.", new [] { "ConfirmationResponse" });
+            }
+
+            // ConfirmationResponse (string) minLength
+            if (this.ConfirmationResponse != null && this.ConfirmationResponse.Length < 0)
+            {
+                yield return new ValidationResult("Invalid value for ConfirmationResponse, length must be greater than 0.", new [] { "ConfirmationResponse" });
             }
 
             yield break;
