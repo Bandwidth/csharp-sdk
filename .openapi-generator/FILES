@@ -9,6 +9,8 @@ docs/AnswerCallback.md
 docs/BlockedWebhook.md
 docs/BridgeCompleteCallback.md
 docs/BridgeTargetCompleteCallback.md
+docs/BusinessEntityTypeEnum.md
+docs/BusinessRegistrationTypeEnum.md
 docs/CallDirectionEnum.md
 docs/CallRecordingMetadata.md
 docs/CallState.md
@@ -98,6 +100,7 @@ docs/OptInWorkflow.md
 docs/PageInfo.md
 docs/PhoneNumberLookupApi.md
 docs/PriorityEnum.md
+docs/ProductTypeEnum.md
 docs/RbmActionBase.md
 docs/RbmActionDial.md
 docs/RbmActionOpenUrl.md
@@ -200,6 +203,8 @@ src/Bandwidth.Standard/Model/AnswerCallback.cs
 src/Bandwidth.Standard/Model/BlockedWebhook.cs
 src/Bandwidth.Standard/Model/BridgeCompleteCallback.cs
 src/Bandwidth.Standard/Model/BridgeTargetCompleteCallback.cs
+src/Bandwidth.Standard/Model/BusinessEntityTypeEnum.cs
+src/Bandwidth.Standard/Model/BusinessRegistrationTypeEnum.cs
 src/Bandwidth.Standard/Model/CallDirectionEnum.cs
 src/Bandwidth.Standard/Model/CallRecordingMetadata.cs
 src/Bandwidth.Standard/Model/CallState.cs
@@ -282,6 +287,7 @@ src/Bandwidth.Standard/Model/MultiChannelMessageResponseDataChannelListInner.cs
 src/Bandwidth.Standard/Model/OptInWorkflow.cs
 src/Bandwidth.Standard/Model/PageInfo.cs
 src/Bandwidth.Standard/Model/PriorityEnum.cs
+src/Bandwidth.Standard/Model/ProductTypeEnum.cs
 src/Bandwidth.Standard/Model/RbmActionBase.cs
 src/Bandwidth.Standard/Model/RbmActionDial.cs
 src/Bandwidth.Standard/Model/RbmActionOpenUrl.cs

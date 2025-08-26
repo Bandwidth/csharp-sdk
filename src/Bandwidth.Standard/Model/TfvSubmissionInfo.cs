@@ -32,6 +32,18 @@ namespace Bandwidth.Standard.Model
     [DataContract(Name = "tfvSubmissionInfo")]
     public partial class TfvSubmissionInfo : IValidatableObject
     {
+
+        /// <summary>
+        /// Gets or Sets BusinessRegistrationType
+        /// </summary>
+        [DataMember(Name = "businessRegistrationType", EmitDefaultValue = true)]
+        public BusinessRegistrationTypeEnum? BusinessRegistrationType { get; set; }
+
+        /// <summary>
+        /// Gets or Sets BusinessEntityType
+        /// </summary>
+        [DataMember(Name = "businessEntityType", EmitDefaultValue = true)]
+        public BusinessEntityTypeEnum? BusinessEntityType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TfvSubmissionInfo" /> class.
         /// </summary>
@@ -47,7 +59,10 @@ namespace Bandwidth.Standard.Model
         /// <param name="privacyPolicyUrl">The Toll-Free Verification request privacy policy URL..</param>
         /// <param name="termsAndConditionsUrl">The Toll-Free Verification request terms and conditions policy URL..</param>
         /// <param name="businessDba">The company &#39;Doing Business As&#39;..</param>
-        public TfvSubmissionInfo(Address businessAddress = default(Address), Contact businessContact = default(Contact), int messageVolume = default(int), string useCase = default(string), string useCaseSummary = default(string), string productionMessageContent = default(string), OptInWorkflow optInWorkflow = default(OptInWorkflow), string additionalInformation = default(string), string isvReseller = default(string), string privacyPolicyUrl = default(string), string termsAndConditionsUrl = default(string), string businessDba = default(string))
+        /// <param name="businessRegistrationNumber">US Federal Tax ID Number (EIN) or Canada Business Number (CBN). Optional until early 2026. If a value is provided for this field, a value must be provided for &#x60;businessRegistrationType&#x60; and &#x60;businessEntityType&#x60;. Available starting October 1st, 2025..</param>
+        /// <param name="businessRegistrationType">businessRegistrationType.</param>
+        /// <param name="businessEntityType">businessEntityType.</param>
+        public TfvSubmissionInfo(Address businessAddress = default(Address), Contact businessContact = default(Contact), int messageVolume = default(int), string useCase = default(string), string useCaseSummary = default(string), string productionMessageContent = default(string), OptInWorkflow optInWorkflow = default(OptInWorkflow), string additionalInformation = default(string), string isvReseller = default(string), string privacyPolicyUrl = default(string), string termsAndConditionsUrl = default(string), string businessDba = default(string), string businessRegistrationNumber = default(string), BusinessRegistrationTypeEnum? businessRegistrationType = default(BusinessRegistrationTypeEnum?), BusinessEntityTypeEnum? businessEntityType = default(BusinessEntityTypeEnum?))
         {
             this.BusinessAddress = businessAddress;
             this.BusinessContact = businessContact;
@@ -61,6 +76,9 @@ namespace Bandwidth.Standard.Model
             this.PrivacyPolicyUrl = privacyPolicyUrl;
             this.TermsAndConditionsUrl = termsAndConditionsUrl;
             this.BusinessDba = businessDba;
+            this.BusinessRegistrationNumber = businessRegistrationNumber;
+            this.BusinessRegistrationType = businessRegistrationType;
+            this.BusinessEntityType = businessEntityType;
         }
 
         /// <summary>
@@ -154,6 +172,14 @@ namespace Bandwidth.Standard.Model
         public string BusinessDba { get; set; }
 
         /// <summary>
+        /// US Federal Tax ID Number (EIN) or Canada Business Number (CBN). Optional until early 2026. If a value is provided for this field, a value must be provided for &#x60;businessRegistrationType&#x60; and &#x60;businessEntityType&#x60;. Available starting October 1st, 2025.
+        /// </summary>
+        /// <value>US Federal Tax ID Number (EIN) or Canada Business Number (CBN). Optional until early 2026. If a value is provided for this field, a value must be provided for &#x60;businessRegistrationType&#x60; and &#x60;businessEntityType&#x60;. Available starting October 1st, 2025.</value>
+        /// <example>12-3456789</example>
+        [DataMember(Name = "businessRegistrationNumber", EmitDefaultValue = true)]
+        public string BusinessRegistrationNumber { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -173,6 +199,9 @@ namespace Bandwidth.Standard.Model
             sb.Append("  PrivacyPolicyUrl: ").Append(PrivacyPolicyUrl).Append("\n");
             sb.Append("  TermsAndConditionsUrl: ").Append(TermsAndConditionsUrl).Append("\n");
             sb.Append("  BusinessDba: ").Append(BusinessDba).Append("\n");
+            sb.Append("  BusinessRegistrationNumber: ").Append(BusinessRegistrationNumber).Append("\n");
+            sb.Append("  BusinessRegistrationType: ").Append(BusinessRegistrationType).Append("\n");
+            sb.Append("  BusinessEntityType: ").Append(BusinessEntityType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -263,6 +292,12 @@ namespace Bandwidth.Standard.Model
             if (this.IsvReseller != null && this.IsvReseller.Length < 0)
             {
                 yield return new ValidationResult("Invalid value for IsvReseller, length must be greater than 0.", new [] { "IsvReseller" });
+            }
+
+            // BusinessRegistrationNumber (string) maxLength
+            if (this.BusinessRegistrationNumber != null && this.BusinessRegistrationNumber.Length > 500)
+            {
+                yield return new ValidationResult("Invalid value for BusinessRegistrationNumber, length must be less than 500.", new [] { "BusinessRegistrationNumber" });
             }
 
             yield break;
