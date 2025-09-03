@@ -55,7 +55,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 productionMessageContent: "test",
                 optInWorkflow: new OptInWorkflow(
                     description: "description",
-                    imageUrls: new List<string> { "imageUrls" }
+                    imageUrls: new List<string> { "imageUrls" },
+                    confirmationResponse: "confirmationResponse"
                 ),
                 additionalInformation: "test",
                 isvReseller: "test",

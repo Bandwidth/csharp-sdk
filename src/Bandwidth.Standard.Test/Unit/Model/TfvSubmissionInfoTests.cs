@@ -53,7 +53,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
 
             optInWorkflow = new OptInWorkflow(
                 description: "description",
-                imageUrls: new List<string> { "imageUrls" }
+                imageUrls: new List<string> { "imageUrls" },
+                confirmationResponse: "confirmationResponse"
             );
 
             instance = new TfvSubmissionInfo(
@@ -68,7 +69,10 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 isvReseller: "test",
                 privacyPolicyUrl: "test",
                 termsAndConditionsUrl: "test",
-                businessDba: "test"
+                businessDba: "test",
+                businessRegistrationNumber: "test",
+                businessRegistrationType: BusinessRegistrationTypeEnum.EIN,
+                businessEntityType: BusinessEntityTypeEnum.SOLEPROPRIETOR
             );
         }
 
@@ -204,6 +208,36 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<string>(instance.BusinessDba);
             Assert.Equal("test", instance.BusinessDba);
+        }
+
+        /// <summary>
+        /// Test the property 'BusinessRegistrationNumber'
+        /// </summary>
+        [Fact]
+        public void BusinessRegistrationNumberTest()
+        {
+            Assert.IsType<string>(instance.BusinessRegistrationNumber);
+            Assert.Equal("test", instance.BusinessRegistrationNumber);
+        }
+
+        /// <summary>
+        /// Test the property 'BusinessRegistrationType'
+        /// </summary>
+        [Fact]
+        public void BusinessRegistrationTypeTest()
+        {
+            Assert.IsType<BusinessRegistrationTypeEnum>(instance.BusinessRegistrationType);
+            Assert.Equal(BusinessRegistrationTypeEnum.EIN, instance.BusinessRegistrationType);
+        }
+
+        /// <summary>
+        /// Test the property 'BusinessEntityType'
+        /// </summary>
+        [Fact]
+        public void BusinessEntityTypeTest()
+        {
+            Assert.IsType<BusinessEntityTypeEnum>(instance.BusinessEntityType);
+            Assert.Equal(BusinessEntityTypeEnum.SOLEPROPRIETOR, instance.BusinessEntityType);
         }
     }
 }

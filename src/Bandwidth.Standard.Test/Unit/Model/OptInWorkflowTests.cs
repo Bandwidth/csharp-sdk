@@ -33,7 +33,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             instance = new OptInWorkflow(
                 description: "description",
-                imageUrls: new List<string> { "imageUrls" }
+                imageUrls: new List<string> { "imageUrls" },
+                confirmationResponse: "confirmationResponse"
             );
         }
 
@@ -69,6 +70,16 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<List<string>>(instance.ImageUrls);
             Assert.Equal(new List<string> { "imageUrls" }, instance.ImageUrls);
+        }
+
+        /// <summary>
+        /// Test the property 'ConfirmationResponse'
+        /// </summary>
+        [Fact]
+        public void ConfirmationResponseTest()
+        {
+            Assert.IsType<string>(instance.ConfirmationResponse);
+            Assert.Equal("confirmationResponse", instance.ConfirmationResponse);
         }
     }
 }
