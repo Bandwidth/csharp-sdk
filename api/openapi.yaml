@@ -7827,7 +7827,22 @@ components:
       - sms
       - mms
       - rcs
+      - rcs
       example: sms
+      type: string
+    productTypeEnum:
+      description: The type of product associated with the message.
+      enum:
+      - LOCAL_A2P
+      - P2P
+      - SHORT_CODE_REACH
+      - TOLL_FREE
+      - HOSTED_SHORT_CODE
+      - ALPHA_NUMERIC
+      - RBM_MEDIA
+      - RBM_RICH
+      - RBM_CONVERSATIONAL
+      example: P2P
       type: string
     productTypeEnum:
       description: The type of product associated with the message.
@@ -7870,26 +7885,6 @@ components:
         - callingNumberCountryA3: USA
           product: P2P
           sourceTn: "+15554443333"
-          messageLength: 18
-          campaignId: CJEUMDK
-          messageId: 1589228074636lm4k2je7j7jklbn2
-          errorCode: 9902
-          calledNumberCountryA3: USA
-          destinationTn: "+15554442222"
-          segmentCount: 1
-          messageStatus: RECEIVED
-          receiveTime: 2020-04-07T14:03:07Z
-          accountId: "9900000"
-          messageDirection: INBOUND
-          carrierLatency: 20
-          messageType: sms
-          carrierName: other
-          recipientCount: 1
-          campaignClass: T
-          bwLatency: 20
-          attachmentCount: 1
-          location: 123ID
-          messageSize: 27
         - callingNumberCountryA3: USA
           product: P2P
           sourceTn: "+15554443333"
@@ -7898,6 +7893,7 @@ components:
           messageId: 1589228074636lm4k2je7j7jklbn2
           errorCode: 9902
           calledNumberCountryA3: USA
+          calledNumberCountryA3: USA
           destinationTn: "+15554442222"
           segmentCount: 1
           messageStatus: RECEIVED
@@ -7910,7 +7906,38 @@ components:
           recipientCount: 1
           campaignClass: T
           bwLatency: 20
+          bwLatency: 20
           attachmentCount: 1
+          location: 123ID
+          location: 123ID
+          messageSize: 27
+        - callingNumberCountryA3: USA
+          product: P2P
+          sourceTn: "+15554443333"
+        - callingNumberCountryA3: USA
+          product: P2P
+          sourceTn: "+15554443333"
+          messageLength: 18
+          campaignId: CJEUMDK
+          messageId: 1589228074636lm4k2je7j7jklbn2
+          errorCode: 9902
+          calledNumberCountryA3: USA
+          calledNumberCountryA3: USA
+          destinationTn: "+15554442222"
+          segmentCount: 1
+          messageStatus: RECEIVED
+          receiveTime: 2020-04-07T14:03:07Z
+          accountId: "9900000"
+          messageDirection: INBOUND
+          carrierLatency: 20
+          messageType: sms
+          carrierName: other
+          recipientCount: 1
+          campaignClass: T
+          bwLatency: 20
+          bwLatency: 20
+          attachmentCount: 1
+          location: 123ID
           location: 123ID
           messageSize: 27
         totalCount: 100
@@ -7932,11 +7959,14 @@ components:
       example:
         callingNumberCountryA3: USA
         product: P2P
+        callingNumberCountryA3: USA
+        product: P2P
         sourceTn: "+15554443333"
         messageLength: 18
         campaignId: CJEUMDK
         messageId: 1589228074636lm4k2je7j7jklbn2
         errorCode: 9902
+        calledNumberCountryA3: USA
         calledNumberCountryA3: USA
         destinationTn: "+15554442222"
         segmentCount: 1
@@ -7950,7 +7980,9 @@ components:
         recipientCount: 1
         campaignClass: T
         bwLatency: 20
+        bwLatency: 20
         attachmentCount: 1
+        location: 123ID
         location: 123ID
         messageSize: 27
       properties:
