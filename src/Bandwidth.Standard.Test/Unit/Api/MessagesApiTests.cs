@@ -182,7 +182,12 @@ namespace Bandwidth.Standard.Test.Unit.Api
                     attachmentCount: 0,
                     recipientCount: 1,
                     campaignClass: "T",
-                    campaignId: "CJEUMDK"
+                    campaignId: "CJEUMDK",
+                    bwLatency: 10,
+                    callingNumberCountryA3: "callingNumberCountryA3",
+                    calledNumberCountryA3: "calledNumberCountryA3",
+                    product: "product",
+                    location: "location" 
                 )}
             );
 
@@ -201,6 +206,18 @@ namespace Bandwidth.Standard.Test.Unit.Api
                 fromDateTime: "2022-09-14T18:20:16.000Z",
                 toDateTime: "2022-09-14T18:20:16.000Z",
                 campaignId: "CJEUMDK",
+                fromBwLatency: 10,
+                bwQueued: true,
+                product: ProductTypeEnum.LOCALA2P,
+                location: "location",
+                // carrierQueued: true,
+                // fromCarrierLatency: 10,
+                callingNumberCountryA3: "callingNumberCountryA3",
+                calledNumberCountryA3: "calledNumberCountryA3",
+                fromSegmentCount: 1,
+                toSegmentCount: 1,
+                fromMessageSize: 1,
+                toMessageSize: 1,
                 sort: "receiveTime",
                 pageToken: "gdEewhcJLQRB5",
                 limit: 10,

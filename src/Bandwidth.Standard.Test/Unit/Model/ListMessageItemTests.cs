@@ -219,7 +219,56 @@ namespace Bandwidth.Standard.Test.Unit.Model
             Assert.IsType<string>(instance.CampaignId);
             Assert.Equal("CJEUMDK", instance.CampaignId);
         }
-
+        /// <summary>
+        /// Test the property 'BwLatency'
+        /// </summary>
+        [Fact]
+        public void BwLatencyTest()
+        {
+            instance.BwLatency = 10;
+            Assert.IsType<int>(instance.BwLatency);
+            Assert.Equal(10, instance.BwLatency);
+        }
+        /// <summary>
+        /// Test the property 'CallingNumberCountryA3'
+        /// </summary>
+        [Fact]
+        public void CallingNumberCountryA3Test()
+        {
+            instance.CallingNumberCountryA3 = "callingNumberCountryA3";
+            Assert.IsType<string>(instance.CallingNumberCountryA3);
+            Assert.Equal("callingNumberCountryA3", instance.CallingNumberCountryA3);
+        }
+        /// <summary>
+        /// Test the property 'CalledNumberCountryA3'
+        /// </summary>
+        [Fact]
+        public void CalledNumberCountryA3Test()
+        {
+            instance.CalledNumberCountryA3 = "calledNumberCountryA3";
+            Assert.IsType<string>(instance.CalledNumberCountryA3);
+            Assert.Equal("calledNumberCountryA3", instance.CalledNumberCountryA3);
+        }
+        /// <summary>
+        /// Test the property 'Product'
+        /// </summary>
+        [Fact]
+        public void ProductTest()
+        {
+            instance.Product = "product";
+            Assert.IsType<string>(instance.Product);
+            Assert.Equal("product", instance.Product);
+        }
+        /// <summary>
+        /// Test the property 'Location'
+        /// </summary>
+        [Fact]
+        public void LocationTest()
+        {
+            instance.Location = "location";
+            Assert.IsType<string>(instance.Location);
+            Assert.Equal("location", instance.Location);
+        }
     }
 
 }

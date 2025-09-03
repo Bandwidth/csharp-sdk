@@ -98,6 +98,7 @@ docs/OptInWorkflow.md
 docs/PageInfo.md
 docs/PhoneNumberLookupApi.md
 docs/PriorityEnum.md
+docs/ProductTypeEnum.md
 docs/RbmActionBase.md
 docs/RbmActionDial.md
 docs/RbmActionOpenUrl.md
@@ -282,6 +283,7 @@ src/Bandwidth.Standard/Model/MultiChannelMessageResponseDataChannelListInner.cs
 src/Bandwidth.Standard/Model/OptInWorkflow.cs
 src/Bandwidth.Standard/Model/PageInfo.cs
 src/Bandwidth.Standard/Model/PriorityEnum.cs
+src/Bandwidth.Standard/Model/ProductTypeEnum.cs
 src/Bandwidth.Standard/Model/RbmActionBase.cs
 src/Bandwidth.Standard/Model/RbmActionDial.cs
 src/Bandwidth.Standard/Model/RbmActionOpenUrl.cs
