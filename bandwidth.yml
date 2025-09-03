@@ -1729,22 +1729,7 @@ components:
         - sms
         - mms
         - rcs
-        - rcs
       example: sms
-    productTypeEnum:
-      type: string
-      description: The type of product associated with the message.
-      enum:
-        - LOCAL_A2P
-        - P2P
-        - SHORT_CODE_REACH
-        - TOLL_FREE
-        - HOSTED_SHORT_CODE
-        - ALPHA_NUMERIC
-        - RBM_MEDIA
-        - RBM_RICH
-        - RBM_CONVERSATIONAL
-      example: P2P
     productTypeEnum:
       type: string
       description: The type of product associated with the message.
