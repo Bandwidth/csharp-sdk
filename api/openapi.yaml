@@ -549,6 +549,28 @@ paths:
         schema:
           type: string
         style: form
+      - description: A boolean value indicating whether the message is queued in the
+          carrier network. Only available for OUTBOUND messages from accounts with
+          the Advanced Quality Metrics feature enabled.
+        example: true
+        explode: true
+        in: query
+        name: carrierQueued
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: The minimum carrier latency of the message in seconds. Only available
+          for OUTBOUND messages from accounts with the Advanced Quality Metrics feature
+          enabled.
+        example: 50
+        explode: true
+        in: query
+        name: fromCarrierLatency
+        required: false
+        schema:
+          type: integer
+        style: form
       - description: Calling number country in A3 format.
         example: USA
         explode: true
@@ -6371,6 +6393,30 @@ components:
       schema:
         type: string
       style: form
+    carrierQueued:
+      description: A boolean value indicating whether the message is queued in the
+        carrier network. Only available for OUTBOUND messages from accounts with the
+        Advanced Quality Metrics feature enabled.
+      example: true
+      explode: true
+      in: query
+      name: carrierQueued
+      required: false
+      schema:
+        type: boolean
+      style: form
+    fromCarrierLatency:
+      description: The minimum carrier latency of the message in seconds. Only available
+        for OUTBOUND messages from accounts with the Advanced Quality Metrics feature
+        enabled.
+      example: 50
+      explode: true
+      in: query
+      name: fromCarrierLatency
+      required: false
+      schema:
+        type: integer
+      style: form
     callingNumberCountryA3:
       description: Calling number country in A3 format.
       example: USA
@@ -7835,6 +7881,7 @@ components:
           receiveTime: 2020-04-07T14:03:07Z
           accountId: "9900000"
           messageDirection: INBOUND
+          carrierLatency: 20
           messageType: sms
           carrierName: other
           recipientCount: 1
@@ -7857,6 +7904,7 @@ components:
           receiveTime: 2020-04-07T14:03:07Z
           accountId: "9900000"
           messageDirection: INBOUND
+          carrierLatency: 20
           messageType: sms
           carrierName: other
           recipientCount: 1
@@ -7896,6 +7944,7 @@ components:
         receiveTime: 2020-04-07T14:03:07Z
         accountId: "9900000"
         messageDirection: INBOUND
+        carrierLatency: 20
         messageType: sms
         carrierName: other
         recipientCount: 1
@@ -7979,6 +8028,13 @@ components:
         bwLatency:
           description: The Bandwidth latency of the message in seconds. Only available
             for accounts with the Advanced Quality Metrics feature enabled.
+          example: 20
+          nullable: true
+          type: integer
+        carrierLatency:
+          description: The carrier latency of the message in seconds. Only available
+            for OUTBOUND messages from accounts with the Advanced Quality Metrics
+            feature enabled.
           example: 20
           nullable: true
           type: integer
@@ -13070,6 +13126,47 @@ components:
       description: The company 'Doing Business As'.
       example: Another Company Name Inc.
       type: string
+    businessRegistrationNumber:
+      description: "US Federal Tax ID Number (EIN) or Canada Business Number (CBN).\
+        \ Optional until early 2026. If a value is provided for this field, a value\
+        \ must be provided for `businessRegistrationType` and `businessEntityType`.\
+        \ Available starting October 1st, 2025."
+      example: 12-3456789
+      maxLength: 500
+      nullable: true
+      type: string
+    businessRegistrationTypeEnum:
+      description: "The type of business registration number. Optional until early\
+        \ 2026; required if `businessRegistrationNumber` is provided. Available starting\
+        \ October 1st, 2025."
+      enum:
+      - EIN
+      - CBN
+      nullable: true
+      type: string
+    businessEntityTypeEnum:
+      description: "The type of registered business. If no option is applicable, please\
+        \ provide \"SOLE_PROPRIETOR\" as a value. Optional until early 2026; required\
+        \ if `businessRegistrationNumber` is provided. Available starting October\
+        \ 1st, 2025."
+      enum:
+      - SOLE_PROPRIETOR
+      - PRIVATE_PROFIT
+      - PUBLIC_PROFIT
+      - NON_PROFIT
+      - GOVERNMENT
+      nullable: true
+      type: string
+    helpMessageResponse:
+      description: A message that gets sent to users requesting help.
+      example: Please contact support for assistance.
+      maxLength: 500
+      nullable: true
+      type: string
+    ageGatedContent:
+      description: Indicates whether the content is age-gated.
+      example: false
+      type: boolean
     additionalDenialReason:
       properties:
         statusCode:
@@ -13178,6 +13275,29 @@ components:
           description: The company 'Doing Business As'.
           example: Another Company Name Inc.
           type: string
+        businessRegistrationNumber:
+          description: "US Federal Tax ID Number (EIN) or Canada Business Number (CBN).\
+            \ Optional until early 2026. If a value is provided for this field, a\
+            \ value must be provided for `businessRegistrationType` and `businessEntityType`.\
+            \ Available starting October 1st, 2025."
+          example: 12-3456789
+          maxLength: 500
+          nullable: true
+          type: string
+        businessRegistrationType:
+          $ref: '#/components/schemas/businessRegistrationTypeEnum'
+        businessEntityType:
+          $ref: '#/components/schemas/businessEntityTypeEnum'
+        helpMessageResponse:
+          description: A message that gets sent to users requesting help.
+          example: Please contact support for assistance.
+          maxLength: 500
+          nullable: true
+          type: string
+        ageGatedContent:
+          description: Indicates whether the content is age-gated.
+          example: false
+          type: boolean
       required:
       - businessAddress
       - businessContact
@@ -13249,6 +13369,29 @@ components:
           description: The company 'Doing Business As'.
           example: Another Company Name Inc.
           type: string
+        businessRegistrationNumber:
+          description: "US Federal Tax ID Number (EIN) or Canada Business Number (CBN).\
+            \ Optional until early 2026. If a value is provided for this field, a\
+            \ value must be provided for `businessRegistrationType` and `businessEntityType`.\
+            \ Available starting October 1st, 2025."
+          example: 12-3456789
+          maxLength: 500
+          nullable: true
+          type: string
+        businessRegistrationType:
+          $ref: '#/components/schemas/businessRegistrationTypeEnum'
+        businessEntityType:
+          $ref: '#/components/schemas/businessEntityTypeEnum'
+        helpMessageResponse:
+          description: A message that gets sent to users requesting help.
+          example: Please contact support for assistance.
+          maxLength: 500
+          nullable: true
+          type: string
+        ageGatedContent:
+          description: Indicates whether the content is age-gated.
+          example: false
+          type: boolean
       required:
       - businessAddress
       - businessContact
@@ -13543,6 +13686,7 @@ components:
         imageUrls:
         - https://www.example.com/path/to/resource
         - https://www.example.com/path/to/resource
+        confirmationResponse: Thank you for opting in!
         description: Opt In Flow
       nullable: false
       properties:
@@ -13562,6 +13706,12 @@ components:
               .[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#()?&//=]*)"
             type: string
           type: array
+        confirmationResponse:
+          example: Thank you for opting in!
+          maxLength: 500
+          minLength: 0
+          nullable: true
+          type: string
       required:
       - description
       - imageUrls
@@ -13872,16 +14022,26 @@ components:
         modifiedDateTime: 2021-06-08T06:45:13Z
         submission:
           additionalInformation: Any additional information
-          useCase: 2FA
           termsAndConditionsUrl: http://your-company.com/termsAndConditions
           businessDba: Another Company Name Inc.
-          isvReseller: Test ISV
           businessContact:
             firstName: John
             lastName: Doe
             phoneNumber: "+19192654500"
             email: foo@bar.com
           messageVolume: 10000
+          businessEntityType: SOLE_PROPRIETOR
+          businessRegistrationType: EIN
+          privacyPolicyUrl: http://your-company.com/privacyPolicy
+          optInWorkflow:
+            imageUrls:
+            - https://www.example.com/path/to/resource
+            - https://www.example.com/path/to/resource
+            confirmationResponse: Thank you for opting in!
+            description: Opt In Flow
+          useCase: 2FA
+          isvReseller: Test ISV
+          businessRegistrationNumber: 12-3456789
           productionMessageContent: Production message content
           businessAddress:
             zip: "27606"
@@ -13891,13 +14051,7 @@ components:
             name: Bandwidth Inc.
             state: NC
             url: https://www.example.com/path/to/resource
-          privacyPolicyUrl: http://your-company.com/privacyPolicy
           useCaseSummary: Text summarizing the use case for the toll-free number
-          optInWorkflow:
-            imageUrls:
-            - https://www.example.com/path/to/resource
-            - https://www.example.com/path/to/resource
-            description: Opt In Flow
         declineReasonDescription: Invalid Information - Can't Validate URL - Website
           is not accessible / not available
         status: VERIFIED
@@ -13956,16 +14110,26 @@ components:
     tfvSubmissionInfo:
       example:
         additionalInformation: Any additional information
-        useCase: 2FA
         termsAndConditionsUrl: http://your-company.com/termsAndConditions
         businessDba: Another Company Name Inc.
-        isvReseller: Test ISV
         businessContact:
           firstName: John
           lastName: Doe
           phoneNumber: "+19192654500"
           email: foo@bar.com
         messageVolume: 10000
+        businessEntityType: SOLE_PROPRIETOR
+        businessRegistrationType: EIN
+        privacyPolicyUrl: http://your-company.com/privacyPolicy
+        optInWorkflow:
+          imageUrls:
+          - https://www.example.com/path/to/resource
+          - https://www.example.com/path/to/resource
+          confirmationResponse: Thank you for opting in!
+          description: Opt In Flow
+        useCase: 2FA
+        isvReseller: Test ISV
+        businessRegistrationNumber: 12-3456789
         productionMessageContent: Production message content
         businessAddress:
           zip: "27606"
@@ -13975,13 +14139,7 @@ components:
           name: Bandwidth Inc.
           state: NC
           url: https://www.example.com/path/to/resource
-        privacyPolicyUrl: http://your-company.com/privacyPolicy
         useCaseSummary: Text summarizing the use case for the toll-free number
-        optInWorkflow:
-          imageUrls:
-          - https://www.example.com/path/to/resource
-          - https://www.example.com/path/to/resource
-          description: Opt In Flow
       properties:
         businessAddress:
           $ref: '#/components/schemas/address'
@@ -14042,6 +14200,19 @@ components:
           description: The company 'Doing Business As'.
           example: Another Company Name Inc.
           type: string
+        businessRegistrationNumber:
+          description: "US Federal Tax ID Number (EIN) or Canada Business Number (CBN).\
+            \ Optional until early 2026. If a value is provided for this field, a\
+            \ value must be provided for `businessRegistrationType` and `businessEntityType`.\
+            \ Available starting October 1st, 2025."
+          example: 12-3456789
+          maxLength: 500
+          nullable: true
+          type: string
+        businessRegistrationType:
+          $ref: '#/components/schemas/businessRegistrationTypeEnum'
+        businessEntityType:
+          $ref: '#/components/schemas/businessEntityTypeEnum'
       type: object
     tfvStatusEnum:
       enum:

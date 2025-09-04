@@ -169,6 +169,8 @@ Class | Method | HTTP request | Description
  - [Model.BlockedWebhook](docs/BlockedWebhook.md)
  - [Model.BridgeCompleteCallback](docs/BridgeCompleteCallback.md)
  - [Model.BridgeTargetCompleteCallback](docs/BridgeTargetCompleteCallback.md)
+ - [Model.BusinessEntityTypeEnum](docs/BusinessEntityTypeEnum.md)
+ - [Model.BusinessRegistrationTypeEnum](docs/BusinessRegistrationTypeEnum.md)
  - [Model.CallDirectionEnum](docs/CallDirectionEnum.md)
  - [Model.CallRecordingMetadata](docs/CallRecordingMetadata.md)
  - [Model.CallState](docs/CallState.md)

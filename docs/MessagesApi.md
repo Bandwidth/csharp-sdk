@@ -115,7 +115,7 @@ catch (ApiException e)
 
 <a id="listmessages"></a>
 # **ListMessages**
-> MessagesList ListMessages (string accountId, string messageId = null, string sourceTn = null, string destinationTn = null, MessageStatusEnum? messageStatus = null, ListMessageDirectionEnum? messageDirection = null, string carrierName = null, MessageTypeEnum? messageType = null, int? errorCode = null, string fromDateTime = null, string toDateTime = null, string campaignId = null, int? fromBwLatency = null, bool? bwQueued = null, ProductTypeEnum? product = null, string location = null, string callingNumberCountryA3 = null, string calledNumberCountryA3 = null, int? fromSegmentCount = null, int? toSegmentCount = null, int? fromMessageSize = null, int? toMessageSize = null, string sort = null, string pageToken = null, int? limit = null, bool? limitTotalCount = null)
+> MessagesList ListMessages (string accountId, string messageId = null, string sourceTn = null, string destinationTn = null, MessageStatusEnum? messageStatus = null, ListMessageDirectionEnum? messageDirection = null, string carrierName = null, MessageTypeEnum? messageType = null, int? errorCode = null, string fromDateTime = null, string toDateTime = null, string campaignId = null, int? fromBwLatency = null, bool? bwQueued = null, ProductTypeEnum? product = null, string location = null, bool? carrierQueued = null, int? fromCarrierLatency = null, string callingNumberCountryA3 = null, string calledNumberCountryA3 = null, int? fromSegmentCount = null, int? toSegmentCount = null, int? fromMessageSize = null, int? toMessageSize = null, string sort = null, string pageToken = null, int? limit = null, bool? limitTotalCount = null)
 
 List Messages
 
@@ -158,6 +158,8 @@ namespace Example
             var bwQueued = true;  // bool? | A boolean value indicating whether the message is queued in the Bandwidth network. (optional) 
             var product = P2P;  // ProductTypeEnum? | Messaging product associated with the message. (optional) 
             var location = 123ABC;  // string | Location Id associated with the message. (optional) 
+            var carrierQueued = true;  // bool? | A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional) 
+            var fromCarrierLatency = 50;  // int? | The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. (optional) 
             var callingNumberCountryA3 = USA;  // string | Calling number country in A3 format. (optional) 
             var calledNumberCountryA3 = USA;  // string | Called number country in A3 format. (optional) 
             var fromSegmentCount = 1;  // int? | Segment count (start range). (optional) 
@@ -172,7 +174,7 @@ namespace Example
             try
             {
                 // List Messages
-                MessagesList result = apiInstance.ListMessages(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, fromBwLatency, bwQueued, product, location, callingNumberCountryA3, calledNumberCountryA3, fromSegmentCount, toSegmentCount, fromMessageSize, toMessageSize, sort, pageToken, limit, limitTotalCount);
+                MessagesList result = apiInstance.ListMessages(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, fromBwLatency, bwQueued, product, location, carrierQueued, fromCarrierLatency, callingNumberCountryA3, calledNumberCountryA3, fromSegmentCount, toSegmentCount, fromMessageSize, toMessageSize, sort, pageToken, limit, limitTotalCount);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -193,7 +195,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List Messages
-    ApiResponse<MessagesList> response = apiInstance.ListMessagesWithHttpInfo(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, fromBwLatency, bwQueued, product, location, callingNumberCountryA3, calledNumberCountryA3, fromSegmentCount, toSegmentCount, fromMessageSize, toMessageSize, sort, pageToken, limit, limitTotalCount);
+    ApiResponse<MessagesList> response = apiInstance.ListMessagesWithHttpInfo(accountId, messageId, sourceTn, destinationTn, messageStatus, messageDirection, carrierName, messageType, errorCode, fromDateTime, toDateTime, campaignId, fromBwLatency, bwQueued, product, location, carrierQueued, fromCarrierLatency, callingNumberCountryA3, calledNumberCountryA3, fromSegmentCount, toSegmentCount, fromMessageSize, toMessageSize, sort, pageToken, limit, limitTotalCount);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -226,6 +228,8 @@ catch (ApiException e)
 | **bwQueued** | **bool?** | A boolean value indicating whether the message is queued in the Bandwidth network. | [optional]  |
 | **product** | **ProductTypeEnum?** | Messaging product associated with the message. | [optional]  |
 | **location** | **string** | Location Id associated with the message. | [optional]  |
+| **carrierQueued** | **bool?** | A boolean value indicating whether the message is queued in the carrier network. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. | [optional]  |
+| **fromCarrierLatency** | **int?** | The minimum carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled. | [optional]  |
 | **callingNumberCountryA3** | **string** | Calling number country in A3 format. | [optional]  |
 | **calledNumberCountryA3** | **string** | Called number country in A3 format. | [optional]  |
 | **fromSegmentCount** | **int?** | Segment count (start range). | [optional]  |

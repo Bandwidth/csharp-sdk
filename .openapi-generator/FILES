@@ -9,6 +9,8 @@ docs/AnswerCallback.md
 docs/BlockedWebhook.md
 docs/BridgeCompleteCallback.md
 docs/BridgeTargetCompleteCallback.md
+docs/BusinessEntityTypeEnum.md
+docs/BusinessRegistrationTypeEnum.md
 docs/CallDirectionEnum.md
 docs/CallRecordingMetadata.md
 docs/CallState.md
@@ -201,6 +203,8 @@ src/Bandwidth.Standard/Model/AnswerCallback.cs
 src/Bandwidth.Standard/Model/BlockedWebhook.cs
 src/Bandwidth.Standard/Model/BridgeCompleteCallback.cs
 src/Bandwidth.Standard/Model/BridgeTargetCompleteCallback.cs
+src/Bandwidth.Standard/Model/BusinessEntityTypeEnum.cs
+src/Bandwidth.Standard/Model/BusinessRegistrationTypeEnum.cs
 src/Bandwidth.Standard/Model/CallDirectionEnum.cs
 src/Bandwidth.Standard/Model/CallRecordingMetadata.cs
 src/Bandwidth.Standard/Model/CallState.cs

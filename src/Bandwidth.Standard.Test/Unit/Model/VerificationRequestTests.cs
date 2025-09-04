@@ -54,13 +54,19 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 productionMessageContent: "test",
                 optInWorkflow: new OptInWorkflow(
                     description: "description",
-                    imageUrls: new List<string> { "imageUrls" }
+                    imageUrls: new List<string> { "imageUrls" },
+                    confirmationResponse: "confirmationResponse"
                 ),
                 additionalInformation: "test",
                 isvReseller: "test",
                 privacyPolicyUrl: "test",
                 termsAndConditionsUrl: "test",
-                businessDba: "test"
+                businessDba: "test",
+                businessRegistrationNumber: "test",
+                businessRegistrationType: BusinessRegistrationTypeEnum.EIN,
+                businessEntityType: BusinessEntityTypeEnum.SOLEPROPRIETOR,
+                helpMessageResponse: "test",
+                ageGatedContent: false
             );
         }
 
@@ -203,6 +209,56 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<string>(instance.BusinessDba);
             Assert.Equal("test", instance.BusinessDba);
+        }
+
+        /// <summary>
+        /// Test the property 'BusinessRegistrationNumber'
+        /// </summary>
+        [Fact]
+        public void BusinessRegistrationNumberTest()
+        {
+            Assert.IsType<string>(instance.BusinessRegistrationNumber);
+            Assert.Equal("test", instance.BusinessRegistrationNumber);
+        }
+
+        /// <summary>
+        /// Test the property 'BusinessRegistrationType'
+        /// </summary>
+        [Fact]
+        public void BusinessRegistrationTypeTest()
+        {
+            Assert.IsType<BusinessRegistrationTypeEnum>(instance.BusinessRegistrationType);
+            Assert.Equal(BusinessRegistrationTypeEnum.EIN, instance.BusinessRegistrationType);
+        }
+
+        /// <summary>
+        /// Test the property 'BusinessEntityType'
+        /// </summary>
+        [Fact]
+        public void BusinessEntityTypeTest()
+        {
+            Assert.IsType<BusinessEntityTypeEnum>(instance.BusinessEntityType);
+            Assert.Equal(BusinessEntityTypeEnum.SOLEPROPRIETOR, instance.BusinessEntityType);
+        }
+
+        /// <summary>
+        /// Test the property 'HelpMessageResponse'
+        /// </summary>
+        [Fact]
+        public void HelpMessageResponseTest()
+        {
+            Assert.IsType<string>(instance.HelpMessageResponse);
+            Assert.Equal("test", instance.HelpMessageResponse);
+        }
+
+        /// <summary>
+        /// Test the property 'AgeGatedContent'
+        /// </summary>
+        [Fact]
+        public void AgeGatedContentTest()
+        {
+            Assert.IsType<bool>(instance.AgeGatedContent);
+            Assert.Equal(false, instance.AgeGatedContent);
         }
     }
 }

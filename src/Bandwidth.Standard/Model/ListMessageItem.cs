@@ -71,11 +71,12 @@ namespace Bandwidth.Standard.Model
         /// <param name="campaignClass">The campaign class of the message if it has one..</param>
         /// <param name="campaignId">The campaign ID of the message if it has one..</param>
         /// <param name="bwLatency">The Bandwidth latency of the message in seconds. Only available for accounts with the Advanced Quality Metrics feature enabled..</param>
+        /// <param name="carrierLatency">The carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled..</param>
         /// <param name="callingNumberCountryA3">The A3 country code of the calling number..</param>
         /// <param name="calledNumberCountryA3">The A3 country code of the called number..</param>
         /// <param name="product">The messaging product associated with the message..</param>
         /// <param name="location">The location ID associated with this message..</param>
-        public ListMessageItem(string messageId = default(string), string accountId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), MessageTypeEnum? messageType = default(MessageTypeEnum?), int segmentCount = default(int), int errorCode = default(int), DateTime receiveTime = default(DateTime), string carrierName = default(string), int? messageSize = default(int?), int messageLength = default(int), int? attachmentCount = default(int?), int? recipientCount = default(int?), string campaignClass = default(string), string campaignId = default(string), int? bwLatency = default(int?), string callingNumberCountryA3 = default(string), string calledNumberCountryA3 = default(string), string product = default(string), string location = default(string))
+        public ListMessageItem(string messageId = default(string), string accountId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), MessageTypeEnum? messageType = default(MessageTypeEnum?), int segmentCount = default(int), int errorCode = default(int), DateTime receiveTime = default(DateTime), string carrierName = default(string), int? messageSize = default(int?), int messageLength = default(int), int? attachmentCount = default(int?), int? recipientCount = default(int?), string campaignClass = default(string), string campaignId = default(string), int? bwLatency = default(int?), int? carrierLatency = default(int?), string callingNumberCountryA3 = default(string), string calledNumberCountryA3 = default(string), string product = default(string), string location = default(string))
         {
             this.MessageId = messageId;
             this.AccountId = accountId;
@@ -95,6 +96,7 @@ namespace Bandwidth.Standard.Model
             this.CampaignClass = campaignClass;
             this.CampaignId = campaignId;
             this.BwLatency = bwLatency;
+            this.CarrierLatency = carrierLatency;
             this.CallingNumberCountryA3 = callingNumberCountryA3;
             this.CalledNumberCountryA3 = calledNumberCountryA3;
             this.Product = product;
@@ -222,6 +224,14 @@ namespace Bandwidth.Standard.Model
         public int? BwLatency { get; set; }
 
         /// <summary>
+        /// The carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.
+        /// </summary>
+        /// <value>The carrier latency of the message in seconds. Only available for OUTBOUND messages from accounts with the Advanced Quality Metrics feature enabled.</value>
+        /// <example>20</example>
+        [DataMember(Name = "carrierLatency", EmitDefaultValue = true)]
+        public int? CarrierLatency { get; set; }
+
+        /// <summary>
         /// The A3 country code of the calling number.
         /// </summary>
         /// <value>The A3 country code of the calling number.</value>
@@ -279,6 +289,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  CampaignClass: ").Append(CampaignClass).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("  BwLatency: ").Append(BwLatency).Append("\n");
+            sb.Append("  CarrierLatency: ").Append(CarrierLatency).Append("\n");
             sb.Append("  CallingNumberCountryA3: ").Append(CallingNumberCountryA3).Append("\n");
             sb.Append("  CalledNumberCountryA3: ").Append(CalledNumberCountryA3).Append("\n");
             sb.Append("  Product: ").Append(Product).Append("\n");

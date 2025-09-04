@@ -230,6 +230,16 @@ namespace Bandwidth.Standard.Test.Unit.Model
             Assert.Equal(10, instance.BwLatency);
         }
         /// <summary>
+        /// Test the property 'CarrierLatency'
+        /// </summary>
+        [Fact]
+        public void CarrierLatencyTest()
+        {
+            instance.CarrierLatency = 10;
+            Assert.IsType<int>(instance.CarrierLatency);
+            Assert.Equal(10, instance.CarrierLatency);
+        }
+        /// <summary>
         /// Test the property 'CallingNumberCountryA3'
         /// </summary>
         [Fact]
