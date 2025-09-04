@@ -14,5 +14,11 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// </summary>
         [XmlAttribute("name")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// If true, the BXML interpreter will wait for the stream to stop before processing the next verb.
+        /// </summary>
+        [XmlAttribute("wait")]
+        public bool Wait { get; set; }
     }
 }
