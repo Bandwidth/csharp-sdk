@@ -4075,7 +4075,7 @@ paths:
       url: https://voice.bandwidth.com/api/v2
   /accounts/{accountId}/calls/{callId}/transcriptions:
     get:
-      description: "Enumerates the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription)."
+      description: "List the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription)."
       operationId: listRealTimeTranscriptions
       parameters:
       - description: Your Bandwidth Account ID.
@@ -4182,7 +4182,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/voiceApiError'
           description: Internal Server Error
-      summary: Enumerate transcriptions made with StartTranscription
+      summary: List Real-time Transcriptions
       tags:
       - Transcriptions
     servers:
@@ -4305,7 +4305,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/voiceApiError'
           description: Internal Server Error
-      summary: Delete a specific transcription
+      summary: Delete Real-time Transcription
       tags:
       - Transcriptions
     get:
@@ -4426,7 +4426,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/voiceApiError'
           description: Internal Server Error
-      summary: Retrieve a specific transcription
+      summary: Get Real-time Transcription
       tags:
       - Transcriptions
     servers:
@@ -8124,7 +8124,7 @@ components:
       - type
       title: CreateMessageRequestError
       type: object
-    messageId:
+    id:
       description: The ID of the message.
       example: 1589228074636lm4k2je7j7jklbn2
       type: string
@@ -8447,8 +8447,8 @@ components:
                 text: Hello world
                 type: REPLY
               text: Hello world
-          messageId: 1589228074636lm4k2je7j7jklbn2
           expiration: 2021-02-01T11:29:18-05:00
+          id: 1589228074636lm4k2je7j7jklbn2
           time: 2025-01-01T18:20:16Z
           to:
           - "+15554443333"
@@ -9114,8 +9114,8 @@ components:
               text: Hello world
               type: REPLY
             text: Hello world
-        messageId: 1589228074636lm4k2je7j7jklbn2
         expiration: 2021-02-01T11:29:18-05:00
+        id: 1589228074636lm4k2je7j7jklbn2
         time: 2025-01-01T18:20:16Z
         to:
         - "+15554443333"
@@ -9123,7 +9123,7 @@ components:
         priority: default
         direction: in
       properties:
-        messageId:
+        id:
           description: The ID of the message.
           example: 1589228074636lm4k2je7j7jklbn2
           type: string
@@ -9168,7 +9168,7 @@ components:
       required:
       - channelList
       - direction
-      - messageId
+      - id
       - time
       - to
       type: object
@@ -10328,8 +10328,8 @@ components:
           description: |-
             A URL that may be used to retrieve information about or update
             the state of this conference member. This is the URL of this member's
-            [Get Conference Member](/apis/voice/#operation/getConferenceMember) endpoint
-            and [Modify Conference Member](/apis/voice/#operation/updateConferenceMember)
+            [Get Conference Member](/apis/voice-apis/voice/#tag/Conferences/operation/getConferenceMember) endpoint
+            and [Modify Conference Member](/apis/voice-apis/voice/#tag/Conferences/operation/updateConferenceMember)
             endpoint.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/members/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
           format: uri
@@ -10667,7 +10667,7 @@ components:
         transcriptionUrl:
           description: |-
             A URL that may be used to retrieve the transcription itself. This points to the
-            [Get Call Transcription](/apis/voice/#operation/getCallTranscription) endpoint.
+            [Get Call Transcription](/apis/voice-apis/voice/#tag/Transcriptions/operation/getRealTimeTranscription) endpoint.
           example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-fef240ff-5cfc9091-8069-4863-a8c0-a4dcbbf1f1a4/transcriptions/t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b
           type: string
       type: object

@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**DeleteRealTimeTranscription**](TranscriptionsApi.md#deleterealtimetranscription) | **DELETE** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Delete a specific transcription |
-| [**GetRealTimeTranscription**](TranscriptionsApi.md#getrealtimetranscription) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Retrieve a specific transcription |
-| [**ListRealTimeTranscriptions**](TranscriptionsApi.md#listrealtimetranscriptions) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions | Enumerate transcriptions made with StartTranscription |
+| [**DeleteRealTimeTranscription**](TranscriptionsApi.md#deleterealtimetranscription) | **DELETE** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Delete Real-time Transcription |
+| [**GetRealTimeTranscription**](TranscriptionsApi.md#getrealtimetranscription) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Get Real-time Transcription |
+| [**ListRealTimeTranscriptions**](TranscriptionsApi.md#listrealtimetranscriptions) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions | List Real-time Transcriptions |
 
 <a id="deleterealtimetranscription"></a>
 # **DeleteRealTimeTranscription**
 > void DeleteRealTimeTranscription (string accountId, string callId, string transcriptionId)
 
-Delete a specific transcription
+Delete Real-time Transcription
 
 Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a `200` is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
 
@@ -43,7 +43,7 @@ namespace Example
 
             try
             {
-                // Delete a specific transcription
+                // Delete Real-time Transcription
                 apiInstance.DeleteRealTimeTranscription(accountId, callId, transcriptionId);
             }
             catch (ApiException  e)
@@ -63,7 +63,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Delete a specific transcription
+    // Delete Real-time Transcription
     apiInstance.DeleteRealTimeTranscriptionWithHttpInfo(accountId, callId, transcriptionId);
 }
 catch (ApiException e)
@@ -115,7 +115,7 @@ void (empty response body)
 # **GetRealTimeTranscription**
 > CallTranscriptionResponse GetRealTimeTranscription (string accountId, string callId, string transcriptionId)
 
-Retrieve a specific transcription
+Get Real-time Transcription
 
 Retrieve the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
 
@@ -146,7 +146,7 @@ namespace Example
 
             try
             {
-                // Retrieve a specific transcription
+                // Get Real-time Transcription
                 CallTranscriptionResponse result = apiInstance.GetRealTimeTranscription(accountId, callId, transcriptionId);
                 Debug.WriteLine(result);
             }
@@ -167,7 +167,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Retrieve a specific transcription
+    // Get Real-time Transcription
     ApiResponse<CallTranscriptionResponse> response = apiInstance.GetRealTimeTranscriptionWithHttpInfo(accountId, callId, transcriptionId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -222,9 +222,9 @@ catch (ApiException e)
 # **ListRealTimeTranscriptions**
 > List&lt;CallTranscriptionMetadata&gt; ListRealTimeTranscriptions (string accountId, string callId)
 
-Enumerate transcriptions made with StartTranscription
+List Real-time Transcriptions
 
-Enumerates the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
+List the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
 
 ### Example
 ```csharp
@@ -252,7 +252,7 @@ namespace Example
 
             try
             {
-                // Enumerate transcriptions made with StartTranscription
+                // List Real-time Transcriptions
                 List<CallTranscriptionMetadata> result = apiInstance.ListRealTimeTranscriptions(accountId, callId);
                 Debug.WriteLine(result);
             }
@@ -273,7 +273,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Enumerate transcriptions made with StartTranscription
+    // List Real-time Transcriptions
     ApiResponse<List<CallTranscriptionMetadata>> response = apiInstance.ListRealTimeTranscriptionsWithHttpInfo(accountId, callId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

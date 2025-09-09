@@ -28,7 +28,7 @@ namespace Bandwidth.Standard.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Delete a specific transcription
+        /// Delete Real-time Transcription
         /// </summary>
         /// <remarks>
         /// Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a &#x60;200&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
@@ -42,7 +42,7 @@ namespace Bandwidth.Standard.Api
         void DeleteRealTimeTranscription(string accountId, string callId, string transcriptionId, int operationIndex = 0);
 
         /// <summary>
-        /// Delete a specific transcription
+        /// Delete Real-time Transcription
         /// </summary>
         /// <remarks>
         /// Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a &#x60;200&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
@@ -55,7 +55,7 @@ namespace Bandwidth.Standard.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteRealTimeTranscriptionWithHttpInfo(string accountId, string callId, string transcriptionId, int operationIndex = 0);
         /// <summary>
-        /// Retrieve a specific transcription
+        /// Get Real-time Transcription
         /// </summary>
         /// <remarks>
         /// Retrieve the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
@@ -69,7 +69,7 @@ namespace Bandwidth.Standard.Api
         CallTranscriptionResponse GetRealTimeTranscription(string accountId, string callId, string transcriptionId, int operationIndex = 0);
 
         /// <summary>
-        /// Retrieve a specific transcription
+        /// Get Real-time Transcription
         /// </summary>
         /// <remarks>
         /// Retrieve the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
@@ -82,10 +82,10 @@ namespace Bandwidth.Standard.Api
         /// <returns>ApiResponse of CallTranscriptionResponse</returns>
         ApiResponse<CallTranscriptionResponse> GetRealTimeTranscriptionWithHttpInfo(string accountId, string callId, string transcriptionId, int operationIndex = 0);
         /// <summary>
-        /// Enumerate transcriptions made with StartTranscription
+        /// List Real-time Transcriptions
         /// </summary>
         /// <remarks>
-        /// Enumerates the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
+        /// List the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -95,10 +95,10 @@ namespace Bandwidth.Standard.Api
         List<CallTranscriptionMetadata> ListRealTimeTranscriptions(string accountId, string callId, int operationIndex = 0);
 
         /// <summary>
-        /// Enumerate transcriptions made with StartTranscription
+        /// List Real-time Transcriptions
         /// </summary>
         /// <remarks>
-        /// Enumerates the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
+        /// List the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -116,7 +116,7 @@ namespace Bandwidth.Standard.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Delete a specific transcription
+        /// Delete Real-time Transcription
         /// </summary>
         /// <remarks>
         /// Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a &#x60;200&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
@@ -131,7 +131,7 @@ namespace Bandwidth.Standard.Api
         System.Threading.Tasks.Task DeleteRealTimeTranscriptionAsync(string accountId, string callId, string transcriptionId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete a specific transcription
+        /// Delete Real-time Transcription
         /// </summary>
         /// <remarks>
         /// Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a &#x60;200&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
@@ -145,7 +145,7 @@ namespace Bandwidth.Standard.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DeleteRealTimeTranscriptionWithHttpInfoAsync(string accountId, string callId, string transcriptionId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Retrieve a specific transcription
+        /// Get Real-time Transcription
         /// </summary>
         /// <remarks>
         /// Retrieve the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
@@ -160,7 +160,7 @@ namespace Bandwidth.Standard.Api
         System.Threading.Tasks.Task<CallTranscriptionResponse> GetRealTimeTranscriptionAsync(string accountId, string callId, string transcriptionId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Retrieve a specific transcription
+        /// Get Real-time Transcription
         /// </summary>
         /// <remarks>
         /// Retrieve the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
@@ -174,10 +174,10 @@ namespace Bandwidth.Standard.Api
         /// <returns>Task of ApiResponse (CallTranscriptionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<CallTranscriptionResponse>> GetRealTimeTranscriptionWithHttpInfoAsync(string accountId, string callId, string transcriptionId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Enumerate transcriptions made with StartTranscription
+        /// List Real-time Transcriptions
         /// </summary>
         /// <remarks>
-        /// Enumerates the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
+        /// List the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -188,10 +188,10 @@ namespace Bandwidth.Standard.Api
         System.Threading.Tasks.Task<List<CallTranscriptionMetadata>> ListRealTimeTranscriptionsAsync(string accountId, string callId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Enumerate transcriptions made with StartTranscription
+        /// List Real-time Transcriptions
         /// </summary>
         /// <remarks>
-        /// Enumerates the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
+        /// List the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -321,7 +321,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Delete a specific transcription Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a &#x60;200&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+        /// Delete Real-time Transcription Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a &#x60;200&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -335,7 +335,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Delete a specific transcription Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a &#x60;200&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+        /// Delete Real-time Transcription Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a &#x60;200&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -414,7 +414,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Delete a specific transcription Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a &#x60;200&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+        /// Delete Real-time Transcription Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a &#x60;200&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -429,7 +429,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Delete a specific transcription Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a &#x60;200&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
+        /// Delete Real-time Transcription Delete the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).  Note: After the deletion is requested and a &#x60;200&#x60; is returned, the transcription will not be accessible anymore. However, it is not deleted immediately. This deletion process, while transparent and irreversible, can take an additional 24 to 48 hours.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -511,7 +511,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Retrieve a specific transcription Retrieve the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
+        /// Get Real-time Transcription Retrieve the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -526,7 +526,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Retrieve a specific transcription Retrieve the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
+        /// Get Real-time Transcription Retrieve the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -605,7 +605,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Retrieve a specific transcription Retrieve the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
+        /// Get Real-time Transcription Retrieve the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -621,7 +621,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Retrieve a specific transcription Retrieve the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
+        /// Get Real-time Transcription Retrieve the specified transcription that was created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -703,7 +703,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Enumerate transcriptions made with StartTranscription Enumerates the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
+        /// List Real-time Transcriptions List the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -717,7 +717,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Enumerate transcriptions made with StartTranscription Enumerates the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
+        /// List Real-time Transcriptions List the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -788,7 +788,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Enumerate transcriptions made with StartTranscription Enumerates the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
+        /// List Real-time Transcriptions List the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -803,7 +803,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Enumerate transcriptions made with StartTranscription Enumerates the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
+        /// List Real-time Transcriptions List the transcriptions created on this call via [startTranscription](/docs/voice/bxml/startTranscription).
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
