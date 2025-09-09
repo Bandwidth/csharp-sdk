@@ -37,7 +37,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="transcriptionId">The programmable voice API transcription ID..</param>
         /// <param name="transcriptionName">The programmable voice API transcription name. This name could be provided by the user when creating the transcription..</param>
-        /// <param name="transcriptionUrl">A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice/#operation/getCallTranscription) endpoint..</param>
+        /// <param name="transcriptionUrl">A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice-apis/voice/#tag/Transcriptions/operation/getRealTimeTranscription) endpoint..</param>
         public CallTranscriptionMetadata(string transcriptionId = default(string), string transcriptionName = default(string), string transcriptionUrl = default(string))
         {
             this.TranscriptionId = transcriptionId;
@@ -62,9 +62,9 @@ namespace Bandwidth.Standard.Model
         public string TranscriptionName { get; set; }
 
         /// <summary>
-        /// A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice/#operation/getCallTranscription) endpoint.
+        /// A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice-apis/voice/#tag/Transcriptions/operation/getRealTimeTranscription) endpoint.
         /// </summary>
-        /// <value>A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice/#operation/getCallTranscription) endpoint.</value>
+        /// <value>A URL that may be used to retrieve the transcription itself. This points to the [Get Call Transcription](/apis/voice-apis/voice/#tag/Transcriptions/operation/getRealTimeTranscription) endpoint.</value>
         /// <example>https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-fef240ff-5cfc9091-8069-4863-a8c0-a4dcbbf1f1a4/transcriptions/t-3f758f24-c7a2fc78-7c91-401a-8b2e-e542f9c40d6b</example>
         [DataMember(Name = "transcriptionUrl", EmitDefaultValue = false)]
         public string TranscriptionUrl { get; set; }

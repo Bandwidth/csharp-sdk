@@ -52,7 +52,7 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MultiChannelMessageResponseData" /> class.
         /// </summary>
-        /// <param name="messageId">The ID of the message. (required).</param>
+        /// <param name="id">The ID of the message. (required).</param>
         /// <param name="time">The time the message was received by the Bandwidth API. (required).</param>
         /// <param name="direction">direction (required).</param>
         /// <param name="to">The destination phone number(s) of the message, in E164 format. (required).</param>
@@ -60,14 +60,14 @@ namespace Bandwidth.Standard.Model
         /// <param name="tag">A custom string that will be included in callback events of the message. Max 1024 characters..</param>
         /// <param name="priority">priority.</param>
         /// <param name="expiration">A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future..</param>
-        public MultiChannelMessageResponseData(string messageId = default(string), DateTime time = default(DateTime), MessageDirectionEnum direction = default(MessageDirectionEnum), List<string> to = default(List<string>), List<MultiChannelMessageResponseDataChannelListInner> channelList = default(List<MultiChannelMessageResponseDataChannelListInner>), string tag = default(string), PriorityEnum? priority = default(PriorityEnum?), DateTime expiration = default(DateTime))
+        public MultiChannelMessageResponseData(string id = default(string), DateTime time = default(DateTime), MessageDirectionEnum direction = default(MessageDirectionEnum), List<string> to = default(List<string>), List<MultiChannelMessageResponseDataChannelListInner> channelList = default(List<MultiChannelMessageResponseDataChannelListInner>), string tag = default(string), PriorityEnum? priority = default(PriorityEnum?), DateTime expiration = default(DateTime))
         {
-            // to ensure "messageId" is required (not null)
-            if (messageId == null)
+            // to ensure "id" is required (not null)
+            if (id == null)
             {
-                throw new ArgumentNullException("messageId is a required property for MultiChannelMessageResponseData and cannot be null");
+                throw new ArgumentNullException("id is a required property for MultiChannelMessageResponseData and cannot be null");
             }
-            this.MessageId = messageId;
+            this.Id = id;
             this.Time = time;
             this.Direction = direction;
             // to ensure "to" is required (not null)
@@ -92,8 +92,8 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <value>The ID of the message.</value>
         /// <example>1589228074636lm4k2je7j7jklbn2</example>
-        [DataMember(Name = "messageId", IsRequired = true, EmitDefaultValue = true)]
-        public string MessageId { get; set; }
+        [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+        public string Id { get; set; }
 
         /// <summary>
         /// The time the message was received by the Bandwidth API.
@@ -142,7 +142,7 @@ namespace Bandwidth.Standard.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class MultiChannelMessageResponseData {\n");
-            sb.Append("  MessageId: ").Append(MessageId).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Time: ").Append(Time).Append("\n");
             sb.Append("  Direction: ").Append(Direction).Append("\n");
             sb.Append("  To: ").Append(To).Append("\n");

@@ -36,7 +36,7 @@ namespace Bandwidth.Standard.Test.Model
         public MultiChannelMessageResponseDataTests()
         {
             instance = new MultiChannelMessageResponseData(
-                messageId: "msg-1234567890",
+                id: "msg-1234567890",
                 time: DateTime.Now,
                 direction: MessageDirectionEnum.In,
                 to: new List<string> { "+15551234567" },
@@ -62,13 +62,13 @@ namespace Bandwidth.Standard.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'MessageId'
+        /// Test the property 'Id'
         /// </summary>
         [Fact]
-        public void MessageIdTest()
+        public void IdTest()
         {
-            Assert.IsType<string>(instance.MessageId);
-            Assert.Equal("msg-1234567890", instance.MessageId);
+            Assert.IsType<string>(instance.Id);
+            Assert.Equal("msg-1234567890", instance.Id);
         }
 
         /// <summary>

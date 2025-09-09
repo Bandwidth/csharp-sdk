@@ -154,9 +154,9 @@ Class | Method | HTTP request | Description
 *TollFreeVerificationApi* | [**RequestTollFreeVerification**](docs/TollFreeVerificationApi.md#requesttollfreeverification) | **POST** /accounts/{accountId}/tollFreeVerification | Request Toll-Free Verification
 *TollFreeVerificationApi* | [**UpdateTollFreeVerificationRequest**](docs/TollFreeVerificationApi.md#updatetollfreeverificationrequest) | **PUT** /accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification | Update Toll-Free Verification Request
 *TollFreeVerificationApi* | [**UpdateWebhookSubscription**](docs/TollFreeVerificationApi.md#updatewebhooksubscription) | **PUT** /accounts/{accountId}/tollFreeVerification/webhooks/subscriptions/{id} | Update Webhook Subscription
-*TranscriptionsApi* | [**DeleteRealTimeTranscription**](docs/TranscriptionsApi.md#deleterealtimetranscription) | **DELETE** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Delete a specific transcription
-*TranscriptionsApi* | [**GetRealTimeTranscription**](docs/TranscriptionsApi.md#getrealtimetranscription) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Retrieve a specific transcription
-*TranscriptionsApi* | [**ListRealTimeTranscriptions**](docs/TranscriptionsApi.md#listrealtimetranscriptions) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions | Enumerate transcriptions made with StartTranscription
+*TranscriptionsApi* | [**DeleteRealTimeTranscription**](docs/TranscriptionsApi.md#deleterealtimetranscription) | **DELETE** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Delete Real-time Transcription
+*TranscriptionsApi* | [**GetRealTimeTranscription**](docs/TranscriptionsApi.md#getrealtimetranscription) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId} | Get Real-time Transcription
+*TranscriptionsApi* | [**ListRealTimeTranscriptions**](docs/TranscriptionsApi.md#listrealtimetranscriptions) | **GET** /accounts/{accountId}/calls/{callId}/transcriptions | List Real-time Transcriptions
 
 
 <a id="documentation-for-models"></a>
