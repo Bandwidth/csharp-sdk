@@ -35,7 +35,7 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="StirShaken" /> class.
         /// </summary>
-        /// <param name="verstat">(optional) The verification status indicating whether the verification was successful or not. Possible values are TN-Verification-Passed and TN-Verification-Failed..</param>
+        /// <param name="verstat">(optional) The verification status indicating whether the verification was successful or not. Possible values are TN-Validation-Passed and TN-Validation-Failed..</param>
         /// <param name="attestationIndicator">(optional) The attestation level verified by Bandwidth. Possible values are A (full), B (partial) or C (gateway)..</param>
         /// <param name="originatingId">(optional) A unique origination identifier..</param>
         public StirShaken(string verstat = default(string), string attestationIndicator = default(string), string originatingId = default(string))
@@ -46,10 +46,10 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// (optional) The verification status indicating whether the verification was successful or not. Possible values are TN-Verification-Passed and TN-Verification-Failed.
+        /// (optional) The verification status indicating whether the verification was successful or not. Possible values are TN-Validation-Passed and TN-Validation-Failed.
         /// </summary>
-        /// <value>(optional) The verification status indicating whether the verification was successful or not. Possible values are TN-Verification-Passed and TN-Verification-Failed.</value>
-        /// <example>Tn-Verification-Passed</example>
+        /// <value>(optional) The verification status indicating whether the verification was successful or not. Possible values are TN-Validation-Passed and TN-Validation-Failed.</value>
+        /// <example>Tn-Validation-Passed</example>
         [DataMember(Name = "verstat", EmitDefaultValue = false)]
         public string Verstat { get; set; }
 
