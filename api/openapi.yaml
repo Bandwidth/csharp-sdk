@@ -9837,7 +9837,7 @@ components:
         enqueuedTime: 2022-06-16T13:15:07.16Z
         lastUpdate: 2022-06-16T13:15:18.314Z
         stirShaken:
-          verstat: TN-Verification-Passed
+          verstat: TN-Validation-Passed
           attestationIndicator: A
           originatingId: abc123
         from: "+19195554321"
@@ -9896,7 +9896,7 @@ components:
 
             | Property          | Description |
             |:------------------|:------------|
-            | verstat | (optional) The verification status indicating whether the verification was successful or not. Possible values are `TN-Verification-Passed` or `TN-Verification-Failed`. |
+            | verstat | (optional) The verification status indicating whether the verification was successful or not. Possible values are `TN-Validation-Passed` or `TN-Validation-Failed`. |
             | attestationIndicator | (optional) The attestation level verified by Bandwidth. Possible values are `A` (full), `B` (partial) or `C` (gateway). |
             | originatingId | (optional) A unique origination identifier. |
 
@@ -9904,7 +9904,7 @@ components:
 
             More information: [Understanding STIR/SHAKEN](https://www.bandwidth.com/regulations/stir-shaken).
           example:
-            verstat: TN-Verification-Passed
+            verstat: TN-Validation-Passed
             attestationIndicator: A
             originatingId: abc123
           nullable: true
@@ -12753,9 +12753,8 @@ components:
       properties:
         verstat:
           description: (optional) The verification status indicating whether the verification
-            was successful or not. Possible values are TN-Verification-Passed and
-            TN-Verification-Failed.
-          example: Tn-Verification-Passed
+            was successful or not. Possible values are TN-Validation-Passed and TN-Validation-Failed.
+          example: Tn-Validation-Passed
           type: string
         attestationIndicator:
           description: "(optional) The attestation level verified by Bandwidth. Possible\
