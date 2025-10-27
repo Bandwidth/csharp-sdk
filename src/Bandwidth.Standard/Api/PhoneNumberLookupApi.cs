@@ -38,6 +38,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="lookupRequest">Phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CreateLookupResponse</returns>
+        [Obsolete]
         CreateLookupResponse CreateLookup(string accountId, LookupRequest lookupRequest, int operationIndex = 0);
 
         /// <summary>
@@ -51,6 +52,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="lookupRequest">Phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CreateLookupResponse</returns>
+        [Obsolete]
         ApiResponse<CreateLookupResponse> CreateLookupWithHttpInfo(string accountId, LookupRequest lookupRequest, int operationIndex = 0);
         /// <summary>
         /// Get Lookup Request Status
@@ -63,6 +65,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="requestId">The phone number lookup request ID from Bandwidth.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LookupStatus</returns>
+        [Obsolete]
         LookupStatus GetLookupStatus(string accountId, string requestId, int operationIndex = 0);
 
         /// <summary>
@@ -76,6 +79,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="requestId">The phone number lookup request ID from Bandwidth.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LookupStatus</returns>
+        [Obsolete]
         ApiResponse<LookupStatus> GetLookupStatusWithHttpInfo(string accountId, string requestId, int operationIndex = 0);
         #endregion Synchronous Operations
     }
@@ -98,6 +102,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateLookupResponse</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<CreateLookupResponse> CreateLookupAsync(string accountId, LookupRequest lookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
@@ -112,6 +117,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateLookupResponse)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<CreateLookupResponse>> CreateLookupWithHttpInfoAsync(string accountId, LookupRequest lookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get Lookup Request Status
@@ -125,6 +131,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LookupStatus</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<LookupStatus> GetLookupStatusAsync(string accountId, string requestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
@@ -139,6 +146,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LookupStatus)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<LookupStatus>> GetLookupStatusWithHttpInfoAsync(string accountId, string requestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
@@ -268,6 +276,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="lookupRequest">Phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CreateLookupResponse</returns>
+        [Obsolete]
         public CreateLookupResponse CreateLookup(string accountId, LookupRequest lookupRequest, int operationIndex = 0)
         {
             Bandwidth.Standard.Client.ApiResponse<CreateLookupResponse> localVarResponse = CreateLookupWithHttpInfo(accountId, lookupRequest);
@@ -282,6 +291,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="lookupRequest">Phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CreateLookupResponse</returns>
+        [Obsolete]
         public Bandwidth.Standard.Client.ApiResponse<CreateLookupResponse> CreateLookupWithHttpInfo(string accountId, LookupRequest lookupRequest, int operationIndex = 0)
         {
             // verify the required parameter 'accountId' is set
@@ -355,6 +365,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateLookupResponse</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<CreateLookupResponse> CreateLookupAsync(string accountId, LookupRequest lookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Bandwidth.Standard.Client.ApiResponse<CreateLookupResponse> localVarResponse = await CreateLookupWithHttpInfoAsync(accountId, lookupRequest, operationIndex, cancellationToken).ConfigureAwait(false);
@@ -370,6 +381,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateLookupResponse)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<CreateLookupResponse>> CreateLookupWithHttpInfoAsync(string accountId, LookupRequest lookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'accountId' is set
@@ -444,6 +456,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="requestId">The phone number lookup request ID from Bandwidth.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>LookupStatus</returns>
+        [Obsolete]
         public LookupStatus GetLookupStatus(string accountId, string requestId, int operationIndex = 0)
         {
             Bandwidth.Standard.Client.ApiResponse<LookupStatus> localVarResponse = GetLookupStatusWithHttpInfo(accountId, requestId);
@@ -458,6 +471,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="requestId">The phone number lookup request ID from Bandwidth.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of LookupStatus</returns>
+        [Obsolete]
         public Bandwidth.Standard.Client.ApiResponse<LookupStatus> GetLookupStatusWithHttpInfo(string accountId, string requestId, int operationIndex = 0)
         {
             // verify the required parameter 'accountId' is set
@@ -530,6 +544,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of LookupStatus</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<LookupStatus> GetLookupStatusAsync(string accountId, string requestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Bandwidth.Standard.Client.ApiResponse<LookupStatus> localVarResponse = await GetLookupStatusWithHttpInfoAsync(accountId, requestId, operationIndex, cancellationToken).ConfigureAwait(false);
@@ -545,6 +560,7 @@ namespace Bandwidth.Standard.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LookupStatus)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<LookupStatus>> GetLookupStatusWithHttpInfoAsync(string accountId, string requestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'accountId' is set

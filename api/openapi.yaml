@@ -4599,6 +4599,7 @@ paths:
       url: https://mfa.bandwidth.com/api/v1
   /accounts/{accountId}/tnlookup:
     post:
+      deprecated: true
       description: Create a Phone Number Lookup Request.
       operationId: createLookup
       parameters:
@@ -4701,6 +4702,7 @@ paths:
       url: https://numbers.bandwidth.com/api/v1
   /accounts/{accountId}/tnlookup/{requestId}:
     get:
+      deprecated: true
       description: Get an existing Phone Number Lookup Request.
       operationId: getLookupStatus
       parameters:
