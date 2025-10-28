@@ -27,35 +27,17 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The status of the request (IN_PROGRESS, COMPLETE, PARTIAL_COMPLETE, or FAILED).
+    /// [DNI-Only](#section/DNI-Only). &#x60;DEACTIVATED&#x60; if the carrier reported a deactivation event for this phone number. 
     /// </summary>
-    /// <value>The status of the request (IN_PROGRESS, COMPLETE, PARTIAL_COMPLETE, or FAILED).</value>
+    /// <value>[DNI-Only](#section/DNI-Only). &#x60;DEACTIVATED&#x60; if the carrier reported a deactivation event for this phone number. </value>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum LookupStatusEnum
+    public enum DeactivationEventEnum
     {
         /// <summary>
-        /// Enum INPROGRESS for value: IN_PROGRESS
+        /// Enum DEACTIVATED for value: DEACTIVATED
         /// </summary>
-        [EnumMember(Value = "IN_PROGRESS")]
-        INPROGRESS = 1,
-
-        /// <summary>
-        /// Enum COMPLETE for value: COMPLETE
-        /// </summary>
-        [EnumMember(Value = "COMPLETE")]
-        COMPLETE = 2,
-
-        /// <summary>
-        /// Enum PARTIALCOMPLETE for value: PARTIAL_COMPLETE
-        /// </summary>
-        [EnumMember(Value = "PARTIAL_COMPLETE")]
-        PARTIALCOMPLETE = 3,
-
-        /// <summary>
-        /// Enum FAILED for value: FAILED
-        /// </summary>
-        [EnumMember(Value = "FAILED")]
-        FAILED = 4
+        [EnumMember(Value = "DEACTIVATED")]
+        DEACTIVATED = 1
     }
 
 }

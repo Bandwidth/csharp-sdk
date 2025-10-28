@@ -20,6 +20,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Net.Http;
 using System.Net.Security;
+using Bandwidth.Standard.Client.Auth;
 
 namespace Bandwidth.Standard.Client
 {
@@ -418,24 +419,36 @@ namespace Bandwidth.Standard.Client
                     }
                 },
                 {
-                    "PhoneNumberLookupApi.CreateLookup", new List<IReadOnlyDictionary<string, object>>
+                    "PhoneNumberLookupApi.CreateAsyncBulkLookup", new List<IReadOnlyDictionary<string, object>>
                     {
                         {
                             new Dictionary<string, object>
                             {
-                                {"url", "https://numbers.bandwidth.com/api/v1"},
+                                {"url", "https://api.bandwidth.com/v2"},
                                 {"description", "Production"}
                             }
                         },
                     }
                 },
                 {
-                    "PhoneNumberLookupApi.GetLookupStatus", new List<IReadOnlyDictionary<string, object>>
+                    "PhoneNumberLookupApi.CreateSyncLookup", new List<IReadOnlyDictionary<string, object>>
                     {
                         {
                             new Dictionary<string, object>
                             {
-                                {"url", "https://numbers.bandwidth.com/api/v1"},
+                                {"url", "https://api.bandwidth.com/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "PhoneNumberLookupApi.GetAsyncBulkLookup", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/v2"},
                                 {"description", "Production"}
                             }
                         },
@@ -865,6 +878,30 @@ namespace Bandwidth.Standard.Client
         public virtual string AccessToken { get; set; }
 
         /// <summary>
+        /// Gets or sets the token URL for OAuth2 authentication.
+        /// </summary>
+        /// <value>The OAuth Token URL.</value>
+        public virtual string OAuthTokenUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the client ID for OAuth2 authentication.
+        /// </summary>
+        /// <value>The OAuth Client ID.</value>
+        public virtual string OAuthClientId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the client secret for OAuth2 authentication.
+        /// </summary>
+        /// <value>The OAuth Client Secret.</value>
+        public virtual string OAuthClientSecret { get; set; }
+
+        /// <summary>
+        /// Gets or sets the flow for OAuth2 authentication.
+        /// </summary>
+        /// <value>The OAuth Flow.</value>
+        public virtual OAuthFlow? OAuthFlow { get; set; }
+
+        /// <summary>
         /// Gets or sets the temporary folder path to store the files downloaded from the server.
         /// </summary>
         /// <value>Folder path.</value>
@@ -1183,6 +1220,10 @@ namespace Bandwidth.Standard.Client
                 Username = second.Username ?? first.Username,
                 Password = second.Password ?? first.Password,
                 AccessToken = second.AccessToken ?? first.AccessToken,
+                OAuthTokenUrl = second.OAuthTokenUrl ?? first.OAuthTokenUrl,
+                OAuthClientId = second.OAuthClientId ?? first.OAuthClientId,
+                OAuthClientSecret = second.OAuthClientSecret ?? first.OAuthClientSecret,
+                OAuthFlow = second.OAuthFlow ?? first.OAuthFlow,
                 TempFolderPath = second.TempFolderPath ?? first.TempFolderPath,
                 DateTimeFormat = second.DateTimeFormat ?? first.DateTimeFormat,
                 ClientCertificates = second.ClientCertificates ?? first.ClientCertificates,

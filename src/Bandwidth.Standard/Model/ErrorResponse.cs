@@ -27,34 +27,43 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The request has been accepted for processing but not yet finished and in a terminal state (COMPLETE, PARTIAL_COMPLETE, or FAILED).
+    /// ErrorResponse
     /// </summary>
-    [DataContract(Name = "createLookupResponse")]
-    public partial class CreateLookupResponse : IValidatableObject
+    [DataContract(Name = "errorResponse")]
+    public partial class ErrorResponse : IValidatableObject
     {
-
         /// <summary>
-        /// Gets or Sets Status
+        /// Initializes a new instance of the <see cref="ErrorResponse" /> class.
         /// </summary>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public LookupStatusEnum? Status { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateLookupResponse" /> class.
-        /// </summary>
-        /// <param name="requestId">The phone number lookup request ID from Bandwidth..</param>
-        /// <param name="status">status.</param>
-        public CreateLookupResponse(string requestId = default(string), LookupStatusEnum? status = default(LookupStatusEnum?))
+        /// <param name="links">links.</param>
+        /// <param name="data">The phone number lookup response data.</param>
+        /// <param name="errors">errors.</param>
+        public ErrorResponse(List<LinkSchema> links = default(List<LinkSchema>), Object data = default(Object), List<LookupErrorSchema> errors = default(List<LookupErrorSchema>))
         {
-            this.RequestId = requestId;
-            this.Status = status;
+            this.Links = links;
+            this.Data = data;
+            this.Errors = errors;
         }
 
         /// <summary>
-        /// The phone number lookup request ID from Bandwidth.
+        /// Gets or Sets Links
         /// </summary>
-        /// <value>The phone number lookup request ID from Bandwidth.</value>
-        [DataMember(Name = "requestId", EmitDefaultValue = false)]
-        public string RequestId { get; set; }
+        /// <example>[]</example>
+        [DataMember(Name = "links", EmitDefaultValue = false)]
+        public List<LinkSchema> Links { get; set; }
+
+        /// <summary>
+        /// The phone number lookup response data
+        /// </summary>
+        /// <value>The phone number lookup response data</value>
+        [DataMember(Name = "data", EmitDefaultValue = false)]
+        public Object Data { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Errors
+        /// </summary>
+        [DataMember(Name = "errors", EmitDefaultValue = false)]
+        public List<LookupErrorSchema> Errors { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +72,10 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreateLookupResponse {\n");
-            sb.Append("  RequestId: ").Append(RequestId).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("class ErrorResponse {\n");
+            sb.Append("  Links: ").Append(Links).Append("\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  Errors: ").Append(Errors).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

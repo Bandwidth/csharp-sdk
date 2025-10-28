@@ -27,27 +27,46 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// TnLookupRequestError
+    /// LookupErrorSchemaMeta
     /// </summary>
-    [DataContract(Name = "tnLookupRequestError")]
-    public partial class TnLookupRequestError : IValidatableObject
+    [DataContract(Name = "lookupErrorSchema_meta")]
+    public partial class LookupErrorSchemaMeta : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TnLookupRequestError" /> class.
+        /// Initializes a new instance of the <see cref="LookupErrorSchemaMeta" /> class.
         /// </summary>
-        /// <param name="message">A description of what validation error occurred..</param>
-        public TnLookupRequestError(string message = default(string))
+        /// <param name="phoneNumbers">phoneNumbers.</param>
+        /// <param name="message">Message describing the error.</param>
+        /// <param name="code">Error code associated with the message.</param>
+        public LookupErrorSchemaMeta(List<string> phoneNumbers = default(List<string>), string message = default(string), int code = default(int))
         {
+            this.PhoneNumbers = phoneNumbers;
             this.Message = message;
+            this.Code = code;
         }
 
         /// <summary>
-        /// A description of what validation error occurred.
+        /// Gets or Sets PhoneNumbers
         /// </summary>
-        /// <value>A description of what validation error occurred.</value>
-        /// <example>example error message</example>
+        /// <example>[&quot;+13992077164&quot;,&quot;+19196104424&quot;]</example>
+        [DataMember(Name = "phoneNumbers", EmitDefaultValue = false)]
+        public List<string> PhoneNumbers { get; set; }
+
+        /// <summary>
+        /// Message describing the error
+        /// </summary>
+        /// <value>Message describing the error</value>
+        /// <example>Invalid TNs</example>
         [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
+
+        /// <summary>
+        /// Error code associated with the message
+        /// </summary>
+        /// <value>Error code associated with the message</value>
+        /// <example>1001</example>
+        [DataMember(Name = "code", EmitDefaultValue = false)]
+        public int Code { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -56,8 +75,10 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TnLookupRequestError {\n");
+            sb.Append("class LookupErrorSchemaMeta {\n");
+            sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

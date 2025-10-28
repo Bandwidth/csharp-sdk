@@ -27,35 +27,36 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// Create phone number lookup request.
+    /// SyncLookupRequest
     /// </summary>
-    [DataContract(Name = "lookupRequest")]
-    public partial class LookupRequest : IValidatableObject
+    [DataContract(Name = "syncLookupRequest")]
+    public partial class SyncLookupRequest : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LookupRequest" /> class.
+        /// Initializes a new instance of the <see cref="SyncLookupRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected LookupRequest() { }
+        protected SyncLookupRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="LookupRequest" /> class.
+        /// Initializes a new instance of the <see cref="SyncLookupRequest" /> class.
         /// </summary>
-        /// <param name="tns">tns (required).</param>
-        public LookupRequest(List<string> tns = default(List<string>))
+        /// <param name="phoneNumbers">Telephone numbers in E.164 format. (required).</param>
+        public SyncLookupRequest(List<string> phoneNumbers = default(List<string>))
         {
-            // to ensure "tns" is required (not null)
-            if (tns == null)
+            // to ensure "phoneNumbers" is required (not null)
+            if (phoneNumbers == null)
             {
-                throw new ArgumentNullException("tns is a required property for LookupRequest and cannot be null");
+                throw new ArgumentNullException("phoneNumbers is a required property for SyncLookupRequest and cannot be null");
             }
-            this.Tns = tns;
+            this.PhoneNumbers = phoneNumbers;
         }
 
         /// <summary>
-        /// Gets or Sets Tns
+        /// Telephone numbers in E.164 format.
         /// </summary>
-        [DataMember(Name = "tns", IsRequired = true, EmitDefaultValue = true)]
-        public List<string> Tns { get; set; }
+        /// <value>Telephone numbers in E.164 format.</value>
+        [DataMember(Name = "phoneNumbers", IsRequired = true, EmitDefaultValue = true)]
+        public List<string> PhoneNumbers { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -64,8 +65,8 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class LookupRequest {\n");
-            sb.Append("  Tns: ").Append(Tns).Append("\n");
+            sb.Append("class SyncLookupRequest {\n");
+            sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

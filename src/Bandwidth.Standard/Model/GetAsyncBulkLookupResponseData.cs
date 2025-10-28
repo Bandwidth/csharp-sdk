@@ -27,54 +27,44 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// If requestId exists, the result for that request is returned. See the Examples for details on the various responses that you can receive. Generally, if you see a Response Code of 0 in a result for a TN, information will be available for it.  Any other Response Code will indicate no information was available for the TN.
+    /// The phone number lookup response data
     /// </summary>
-    [DataContract(Name = "lookupStatus")]
-    public partial class LookupStatus : IValidatableObject
+    [DataContract(Name = "getAsyncBulkLookupResponse_data")]
+    public partial class GetAsyncBulkLookupResponseData : IValidatableObject
     {
 
         /// <summary>
         /// Gets or Sets Status
         /// </summary>
         [DataMember(Name = "status", EmitDefaultValue = false)]
-        public LookupStatusEnum? Status { get; set; }
+        public InProgressLookupStatusEnum? Status { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="LookupStatus" /> class.
+        /// Initializes a new instance of the <see cref="GetAsyncBulkLookupResponseData" /> class.
         /// </summary>
-        /// <param name="requestId">The requestId..</param>
+        /// <param name="requestId">The phone number lookup request ID from Bandwidth..</param>
         /// <param name="status">status.</param>
-        /// <param name="result">The carrier information results for the specified telephone number..</param>
-        /// <param name="failedTelephoneNumbers">The telephone numbers whose lookup failed..</param>
-        public LookupStatus(string requestId = default(string), LookupStatusEnum? status = default(LookupStatusEnum?), List<LookupResult> result = default(List<LookupResult>), List<string> failedTelephoneNumbers = default(List<string>))
+        /// <param name="results">The carrier information results for the specified telephone number..</param>
+        public GetAsyncBulkLookupResponseData(Guid requestId = default(Guid), InProgressLookupStatusEnum? status = default(InProgressLookupStatusEnum?), List<LookupResult> results = default(List<LookupResult>))
         {
             this.RequestId = requestId;
             this.Status = status;
-            this.Result = result;
-            this.FailedTelephoneNumbers = failedTelephoneNumbers;
+            this.Results = results;
         }
 
         /// <summary>
-        /// The requestId.
+        /// The phone number lookup request ID from Bandwidth.
         /// </summary>
-        /// <value>The requestId.</value>
+        /// <value>The phone number lookup request ID from Bandwidth.</value>
         /// <example>004223a0-8b17-41b1-bf81-20732adf5590</example>
         [DataMember(Name = "requestId", EmitDefaultValue = false)]
-        public string RequestId { get; set; }
+        public Guid RequestId { get; set; }
 
         /// <summary>
         /// The carrier information results for the specified telephone number.
         /// </summary>
         /// <value>The carrier information results for the specified telephone number.</value>
-        [DataMember(Name = "result", EmitDefaultValue = false)]
-        public List<LookupResult> Result { get; set; }
-
-        /// <summary>
-        /// The telephone numbers whose lookup failed.
-        /// </summary>
-        /// <value>The telephone numbers whose lookup failed.</value>
-        /// <example>[&quot;+191955512345&quot;]</example>
-        [DataMember(Name = "failedTelephoneNumbers", EmitDefaultValue = false)]
-        public List<string> FailedTelephoneNumbers { get; set; }
+        [DataMember(Name = "results", EmitDefaultValue = false)]
+        public List<LookupResult> Results { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -83,11 +73,10 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class LookupStatus {\n");
+            sb.Append("class GetAsyncBulkLookupResponseData {\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Result: ").Append(Result).Append("\n");
-            sb.Append("  FailedTelephoneNumbers: ").Append(FailedTelephoneNumbers).Append("\n");
+            sb.Append("  Results: ").Append(Results).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
