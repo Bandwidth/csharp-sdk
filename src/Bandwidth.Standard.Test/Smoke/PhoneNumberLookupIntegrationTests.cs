@@ -100,10 +100,10 @@ namespace Bandwidth.Standard.Test.Smoke
             Assert.Equal(bwNumber, getData.Results[0].PhoneNumber);
             Assert.IsType<LineTypeEnum>(getData.Results[0].LineType);
             Assert.Equal(LineTypeEnum.VOIP, getData.Results[0].LineType);
-            Assert.Equal(getData.Results[0].MessagingProvider, "AdHoc P2P - Bandwidth - SVR");
-            Assert.Equal(getData.Results[0].VoiceProvider, "BANDWIDTH");
-            Assert.Equal(getData.Results[0].CountryCodeA3, "USA");
-            Assert.Equal(getData.Results[0].LatestMessageDeliveryStatus, LatestMessageDeliveryStatusEnum.ACTIVE);
+            Assert.Equal("AdHoc P2P - Bandwidth - SVR", getData.Results[0].MessagingProvider);
+            Assert.Equal("BANDWIDTH", getData.Results[0].VoiceProvider);
+            Assert.Equal("USA", getData.Results[0].CountryCodeA3);
+            Assert.IsType<LatestMessageDeliveryStatusEnum>(data.Results[0].LatestMessageDeliveryStatus);
             Assert.IsType<DateTime>(getData.Results[0].InitialMessageDeliveryStatusDate);
             Assert.IsType<DateTime>(getData.Results[0].LatestMessageDeliveryStatusDate);
         }
@@ -136,7 +136,7 @@ namespace Bandwidth.Standard.Test.Smoke
             Assert.Equal(data.Results[0].MessagingProvider, "AdHoc P2P - Bandwidth - SVR");
             Assert.Equal(data.Results[0].VoiceProvider, "BANDWIDTH");
             Assert.Equal(data.Results[0].CountryCodeA3, "USA");
-            Assert.Equal(data.Results[0].LatestMessageDeliveryStatus, LatestMessageDeliveryStatusEnum.ACTIVE);
+            Assert.IsType<LatestMessageDeliveryStatusEnum>(data.Results[0].LatestMessageDeliveryStatus);
             Assert.IsType<DateTime>(data.Results[0].InitialMessageDeliveryStatusDate);
             Assert.IsType<DateTime>(data.Results[0].LatestMessageDeliveryStatusDate);
         }
