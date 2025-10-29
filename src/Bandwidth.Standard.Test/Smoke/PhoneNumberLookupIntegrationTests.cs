@@ -103,7 +103,7 @@ namespace Bandwidth.Standard.Test.Smoke
             Assert.Equal("AdHoc P2P - Bandwidth - SVR", getData.Results[0].MessagingProvider);
             Assert.Equal("BANDWIDTH", getData.Results[0].VoiceProvider);
             Assert.Equal("USA", getData.Results[0].CountryCodeA3);
-            Assert.IsType<LatestMessageDeliveryStatusEnum>(data.Results[0].LatestMessageDeliveryStatus);
+            Assert.IsType<LatestMessageDeliveryStatusEnum>(getData.Results[0].LatestMessageDeliveryStatus);
             Assert.IsType<DateTime>(getData.Results[0].InitialMessageDeliveryStatusDate);
             Assert.IsType<DateTime>(getData.Results[0].LatestMessageDeliveryStatusDate);
         }
