@@ -27,18 +27,18 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// ErrorResponse
+    /// LookupErrorResponse
     /// </summary>
-    [DataContract(Name = "errorResponse")]
-    public partial class ErrorResponse : IValidatableObject
+    [DataContract(Name = "lookupErrorResponse")]
+    public partial class LookupErrorResponse : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ErrorResponse" /> class.
+        /// Initializes a new instance of the <see cref="LookupErrorResponse" /> class.
         /// </summary>
         /// <param name="links">links.</param>
         /// <param name="data">The phone number lookup response data.</param>
         /// <param name="errors">errors.</param>
-        public ErrorResponse(List<LinkSchema> links = default(List<LinkSchema>), Object data = default(Object), List<LookupErrorSchema> errors = default(List<LookupErrorSchema>))
+        public LookupErrorResponse(List<LinkSchema> links = default(List<LinkSchema>), Object data = default(Object), List<LookupErrorSchema> errors = default(List<LookupErrorSchema>))
         {
             this.Links = links;
             this.Data = data;
@@ -72,7 +72,7 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ErrorResponse {\n");
+            sb.Append("class LookupErrorResponse {\n");
             sb.Append("  Links: ").Append(Links).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Errors: ").Append(Errors).Append("\n");

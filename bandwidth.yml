@@ -5578,7 +5578,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/lookupErrorSchema'
-    errorResponse:
+    lookupErrorResponse:
       type: object
       properties:
         links:
@@ -6950,7 +6950,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/lookupErrorResponse'
           examples:
             badRequest:
               $ref: '#/components/examples/badRequestExample'

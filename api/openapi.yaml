@@ -4650,7 +4650,7 @@ paths:
                 internalServer:
                   $ref: '#/components/examples/internalServerErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/lookupErrorResponse'
           description: Bad Request
       summary: Create Synchronous Number Lookup
       tags:
@@ -4706,7 +4706,7 @@ paths:
                 internalServer:
                   $ref: '#/components/examples/internalServerErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/lookupErrorResponse'
           description: Bad Request
       summary: Create Asynchronous Bulk Number Lookup
       tags:
@@ -4776,7 +4776,7 @@ paths:
                 internalServer:
                   $ref: '#/components/examples/internalServerErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/lookupErrorResponse'
           description: Bad Request
       summary: Get Asynchronous Bulk Number Lookup
       tags:
@@ -7727,7 +7727,7 @@ components:
             internalServer:
               $ref: '#/components/examples/internalServerErrorExample'
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/lookupErrorResponse'
       description: Bad Request
     getTollFreeVerificationStatusResponse:
       content:
@@ -13267,7 +13267,7 @@ components:
             $ref: '#/components/schemas/lookupErrorSchema'
           type: array
       type: object
-    errorResponse:
+    lookupErrorResponse:
       example:
         data: "{}"
         links: []
