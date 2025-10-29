@@ -22,7 +22,7 @@ using Bandwidth.Standard.Api;
 // uncomment below to import models
 //using Bandwidth.Standard.Model;
 
-namespace Bandwidth.Standard.Test.Api
+namespace Bandwidth.Standard.Test.Unit.Api
 {
     /// <summary>
     ///  Class for testing PhoneNumberLookupApi
