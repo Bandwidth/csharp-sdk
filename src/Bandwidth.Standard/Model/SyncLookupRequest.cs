@@ -27,34 +27,36 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The request has been accepted for processing but not yet finished and in a terminal state (COMPLETE, PARTIAL_COMPLETE, or FAILED).
+    /// SyncLookupRequest
     /// </summary>
-    [DataContract(Name = "createLookupResponse")]
-    public partial class CreateLookupResponse : IValidatableObject
+    [DataContract(Name = "syncLookupRequest")]
+    public partial class SyncLookupRequest : IValidatableObject
     {
-
         /// <summary>
-        /// Gets or Sets Status
+        /// Initializes a new instance of the <see cref="SyncLookupRequest" /> class.
         /// </summary>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public LookupStatusEnum? Status { get; set; }
+        [JsonConstructorAttribute]
+        protected SyncLookupRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateLookupResponse" /> class.
+        /// Initializes a new instance of the <see cref="SyncLookupRequest" /> class.
         /// </summary>
-        /// <param name="requestId">The phone number lookup request ID from Bandwidth..</param>
-        /// <param name="status">status.</param>
-        public CreateLookupResponse(string requestId = default(string), LookupStatusEnum? status = default(LookupStatusEnum?))
+        /// <param name="phoneNumbers">Telephone numbers in E.164 format. (required).</param>
+        public SyncLookupRequest(List<string> phoneNumbers = default(List<string>))
         {
-            this.RequestId = requestId;
-            this.Status = status;
+            // to ensure "phoneNumbers" is required (not null)
+            if (phoneNumbers == null)
+            {
+                throw new ArgumentNullException("phoneNumbers is a required property for SyncLookupRequest and cannot be null");
+            }
+            this.PhoneNumbers = phoneNumbers;
         }
 
         /// <summary>
-        /// The phone number lookup request ID from Bandwidth.
+        /// Telephone numbers in E.164 format.
         /// </summary>
-        /// <value>The phone number lookup request ID from Bandwidth.</value>
-        [DataMember(Name = "requestId", EmitDefaultValue = false)]
-        public string RequestId { get; set; }
+        /// <value>Telephone numbers in E.164 format.</value>
+        [DataMember(Name = "phoneNumbers", IsRequired = true, EmitDefaultValue = true)]
+        public List<string> PhoneNumbers { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +65,8 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreateLookupResponse {\n");
-            sb.Append("  RequestId: ").Append(RequestId).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("class SyncLookupRequest {\n");
+            sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -1,5 +1,5 @@
-# Bandwidth.Standard.Model.LookupStatusEnum
-The status of the request (IN_PROGRESS, COMPLETE, PARTIAL_COMPLETE, or FAILED).
+# Bandwidth.Standard.Model.DeactivationEventEnum
+[DNI-Only](#section/DNI-Only). `DEACTIVATED` if the carrier reported a deactivation event for this phone number. 
 
 ## Properties
 

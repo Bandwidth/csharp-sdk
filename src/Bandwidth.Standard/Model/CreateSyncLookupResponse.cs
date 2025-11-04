@@ -27,37 +27,42 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// RbmSuggestionResponse
+    /// CreateSyncLookupResponse
     /// </summary>
-    [DataContract(Name = "rbmSuggestionResponse")]
-    public partial class RbmSuggestionResponse : IValidatableObject
+    [DataContract(Name = "createSyncLookupResponse")]
+    public partial class CreateSyncLookupResponse : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RbmSuggestionResponse" /> class.
+        /// Initializes a new instance of the <see cref="CreateSyncLookupResponse" /> class.
         /// </summary>
-        /// <param name="text">The text associated with the suggestion response..</param>
-        /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked..</param>
-        public RbmSuggestionResponse(string text = default(string), byte[] postbackData = default(byte[]))
+        /// <param name="links">links.</param>
+        /// <param name="data">data.</param>
+        /// <param name="errors">errors.</param>
+        public CreateSyncLookupResponse(List<LinkSchema> links = default(List<LinkSchema>), CreateSyncLookupResponseData data = default(CreateSyncLookupResponseData), List<LookupErrorSchema> errors = default(List<LookupErrorSchema>))
         {
-            this.Text = text;
-            this.PostbackData = postbackData;
+            this.Links = links;
+            this.Data = data;
+            this.Errors = errors;
         }
 
         /// <summary>
-        /// The text associated with the suggestion response.
+        /// Gets or Sets Links
         /// </summary>
-        /// <value>The text associated with the suggestion response.</value>
-        /// <example>Yes, I would like to proceed</example>
-        [DataMember(Name = "text", EmitDefaultValue = false)]
-        public string Text { get; set; }
+        /// <example>[]</example>
+        [DataMember(Name = "links", EmitDefaultValue = false)]
+        public List<LinkSchema> Links { get; set; }
 
         /// <summary>
-        /// Base64 payload the customer receives when the reply is clicked.
+        /// Gets or Sets Data
         /// </summary>
-        /// <value>Base64 payload the customer receives when the reply is clicked.</value>
-        /// <example>[B@4c3fcbe7</example>
-        [DataMember(Name = "postbackData", EmitDefaultValue = false)]
-        public byte[] PostbackData { get; set; }
+        [DataMember(Name = "data", EmitDefaultValue = false)]
+        public CreateSyncLookupResponseData Data { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Errors
+        /// </summary>
+        [DataMember(Name = "errors", EmitDefaultValue = false)]
+        public List<LookupErrorSchema> Errors { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,9 +71,10 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RbmSuggestionResponse {\n");
-            sb.Append("  Text: ").Append(Text).Append("\n");
-            sb.Append("  PostbackData: ").Append(PostbackData).Append("\n");
+            sb.Append("class CreateSyncLookupResponse {\n");
+            sb.Append("  Links: ").Append(Links).Append("\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  Errors: ").Append(Errors).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -89,12 +95,6 @@ namespace Bandwidth.Standard.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // PostbackData (byte[]) maxLength
-            if (this.PostbackData != null && this.PostbackData.Length > 2048)
-            {
-                yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new [] { "PostbackData" });
-            }
-
             yield break;
         }
     }

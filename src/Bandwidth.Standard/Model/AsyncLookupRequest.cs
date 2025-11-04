@@ -27,37 +27,36 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// RbmSuggestionResponse
+    /// AsyncLookupRequest
     /// </summary>
-    [DataContract(Name = "rbmSuggestionResponse")]
-    public partial class RbmSuggestionResponse : IValidatableObject
+    [DataContract(Name = "asyncLookupRequest")]
+    public partial class AsyncLookupRequest : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RbmSuggestionResponse" /> class.
+        /// Initializes a new instance of the <see cref="AsyncLookupRequest" /> class.
         /// </summary>
-        /// <param name="text">The text associated with the suggestion response..</param>
-        /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked..</param>
-        public RbmSuggestionResponse(string text = default(string), byte[] postbackData = default(byte[]))
+        [JsonConstructorAttribute]
+        protected AsyncLookupRequest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AsyncLookupRequest" /> class.
+        /// </summary>
+        /// <param name="phoneNumbers">Telephone numbers in E.164 format. (required).</param>
+        public AsyncLookupRequest(List<string> phoneNumbers = default(List<string>))
         {
-            this.Text = text;
-            this.PostbackData = postbackData;
+            // to ensure "phoneNumbers" is required (not null)
+            if (phoneNumbers == null)
+            {
+                throw new ArgumentNullException("phoneNumbers is a required property for AsyncLookupRequest and cannot be null");
+            }
+            this.PhoneNumbers = phoneNumbers;
         }
 
         /// <summary>
-        /// The text associated with the suggestion response.
+        /// Telephone numbers in E.164 format.
         /// </summary>
-        /// <value>The text associated with the suggestion response.</value>
-        /// <example>Yes, I would like to proceed</example>
-        [DataMember(Name = "text", EmitDefaultValue = false)]
-        public string Text { get; set; }
-
-        /// <summary>
-        /// Base64 payload the customer receives when the reply is clicked.
-        /// </summary>
-        /// <value>Base64 payload the customer receives when the reply is clicked.</value>
-        /// <example>[B@4c3fcbe7</example>
-        [DataMember(Name = "postbackData", EmitDefaultValue = false)]
-        public byte[] PostbackData { get; set; }
+        /// <value>Telephone numbers in E.164 format.</value>
+        [DataMember(Name = "phoneNumbers", IsRequired = true, EmitDefaultValue = true)]
+        public List<string> PhoneNumbers { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,9 +65,8 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RbmSuggestionResponse {\n");
-            sb.Append("  Text: ").Append(Text).Append("\n");
-            sb.Append("  PostbackData: ").Append(PostbackData).Append("\n");
+            sb.Append("class AsyncLookupRequest {\n");
+            sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -89,12 +87,6 @@ namespace Bandwidth.Standard.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // PostbackData (byte[]) maxLength
-            if (this.PostbackData != null && this.PostbackData.Length > 2048)
-            {
-                yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new [] { "PostbackData" });
-            }
-
             yield break;
         }
     }

@@ -27,37 +27,44 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// RbmSuggestionResponse
+    /// The phone number lookup response data
     /// </summary>
-    [DataContract(Name = "rbmSuggestionResponse")]
-    public partial class RbmSuggestionResponse : IValidatableObject
+    [DataContract(Name = "createSyncLookupResponse_data")]
+    public partial class CreateSyncLookupResponseData : IValidatableObject
     {
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="RbmSuggestionResponse" /> class.
+        /// Gets or Sets Status
         /// </summary>
-        /// <param name="text">The text associated with the suggestion response..</param>
-        /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked..</param>
-        public RbmSuggestionResponse(string text = default(string), byte[] postbackData = default(byte[]))
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public CompletedLookupStatusEnum? Status { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateSyncLookupResponseData" /> class.
+        /// </summary>
+        /// <param name="requestId">The phone number lookup request ID from Bandwidth..</param>
+        /// <param name="status">status.</param>
+        /// <param name="results">The carrier information results for the specified telephone numbers..</param>
+        public CreateSyncLookupResponseData(Guid requestId = default(Guid), CompletedLookupStatusEnum? status = default(CompletedLookupStatusEnum?), List<LookupResult> results = default(List<LookupResult>))
         {
-            this.Text = text;
-            this.PostbackData = postbackData;
+            this.RequestId = requestId;
+            this.Status = status;
+            this.Results = results;
         }
 
         /// <summary>
-        /// The text associated with the suggestion response.
+        /// The phone number lookup request ID from Bandwidth.
         /// </summary>
-        /// <value>The text associated with the suggestion response.</value>
-        /// <example>Yes, I would like to proceed</example>
-        [DataMember(Name = "text", EmitDefaultValue = false)]
-        public string Text { get; set; }
+        /// <value>The phone number lookup request ID from Bandwidth.</value>
+        /// <example>004223a0-8b17-41b1-bf81-20732adf5590</example>
+        [DataMember(Name = "requestId", EmitDefaultValue = false)]
+        public Guid RequestId { get; set; }
 
         /// <summary>
-        /// Base64 payload the customer receives when the reply is clicked.
+        /// The carrier information results for the specified telephone numbers.
         /// </summary>
-        /// <value>Base64 payload the customer receives when the reply is clicked.</value>
-        /// <example>[B@4c3fcbe7</example>
-        [DataMember(Name = "postbackData", EmitDefaultValue = false)]
-        public byte[] PostbackData { get; set; }
+        /// <value>The carrier information results for the specified telephone numbers.</value>
+        [DataMember(Name = "results", EmitDefaultValue = false)]
+        public List<LookupResult> Results { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,9 +73,10 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RbmSuggestionResponse {\n");
-            sb.Append("  Text: ").Append(Text).Append("\n");
-            sb.Append("  PostbackData: ").Append(PostbackData).Append("\n");
+            sb.Append("class CreateSyncLookupResponseData {\n");
+            sb.Append("  RequestId: ").Append(RequestId).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Results: ").Append(Results).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -89,12 +97,6 @@ namespace Bandwidth.Standard.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // PostbackData (byte[]) maxLength
-            if (this.PostbackData != null && this.PostbackData.Length > 2048)
-            {
-                yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new [] { "PostbackData" });
-            }
-
             yield break;
         }
     }

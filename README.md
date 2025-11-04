@@ -132,8 +132,9 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**CreateMessage**](docs/MessagesApi.md#createmessage) | **POST** /users/{accountId}/messages | Create Message
 *MessagesApi* | [**ListMessages**](docs/MessagesApi.md#listmessages) | **GET** /users/{accountId}/messages | List Messages
 *MultiChannelApi* | [**CreateMultiChannelMessage**](docs/MultiChannelApi.md#createmultichannelmessage) | **POST** /users/{accountId}/messages/multiChannel | Create Multi-Channel Message
-*PhoneNumberLookupApi* | [**CreateLookup**](docs/PhoneNumberLookupApi.md#createlookup) | **POST** /accounts/{accountId}/tnlookup | Create Lookup
-*PhoneNumberLookupApi* | [**GetLookupStatus**](docs/PhoneNumberLookupApi.md#getlookupstatus) | **GET** /accounts/{accountId}/tnlookup/{requestId} | Get Lookup Request Status
+*PhoneNumberLookupApi* | [**CreateAsyncBulkLookup**](docs/PhoneNumberLookupApi.md#createasyncbulklookup) | **POST** /accounts/{accountId}/phoneNumberLookup/bulk | Create Asynchronous Bulk Number Lookup
+*PhoneNumberLookupApi* | [**CreateSyncLookup**](docs/PhoneNumberLookupApi.md#createsynclookup) | **POST** /accounts/{accountId}/phoneNumberLookup | Create Synchronous Number Lookup
+*PhoneNumberLookupApi* | [**GetAsyncBulkLookup**](docs/PhoneNumberLookupApi.md#getasyncbulklookup) | **GET** /accounts/{accountId}/phoneNumberLookup/bulk/{requestId} | Get Asynchronous Bulk Number Lookup
 *RecordingsApi* | [**DeleteRecording**](docs/RecordingsApi.md#deleterecording) | **DELETE** /accounts/{accountId}/calls/{callId}/recordings/{recordingId} | Delete Recording
 *RecordingsApi* | [**DeleteRecordingMedia**](docs/RecordingsApi.md#deleterecordingmedia) | **DELETE** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/media | Delete Recording Media
 *RecordingsApi* | [**DeleteRecordingTranscription**](docs/RecordingsApi.md#deleterecordingtranscription) | **DELETE** /accounts/{accountId}/calls/{callId}/recordings/{recordingId}/transcription | Delete Transcription
@@ -166,6 +167,7 @@ Class | Method | HTTP request | Description
  - [Model.AdditionalDenialReason](docs/AdditionalDenialReason.md)
  - [Model.Address](docs/Address.md)
  - [Model.AnswerCallback](docs/AnswerCallback.md)
+ - [Model.AsyncLookupRequest](docs/AsyncLookupRequest.md)
  - [Model.BlockedWebhook](docs/BlockedWebhook.md)
  - [Model.BridgeCompleteCallback](docs/BridgeCompleteCallback.md)
  - [Model.BridgeTargetCompleteCallback](docs/BridgeTargetCompleteCallback.md)
@@ -184,6 +186,7 @@ Class | Method | HTTP request | Description
  - [Model.CallbackMethodEnum](docs/CallbackMethodEnum.md)
  - [Model.CardWidthEnum](docs/CardWidthEnum.md)
  - [Model.CodeRequest](docs/CodeRequest.md)
+ - [Model.CompletedLookupStatusEnum](docs/CompletedLookupStatusEnum.md)
  - [Model.Conference](docs/Conference.md)
  - [Model.ConferenceCompletedCallback](docs/ConferenceCompletedCallback.md)
  - [Model.ConferenceCreatedCallback](docs/ConferenceCreatedCallback.md)
@@ -195,11 +198,15 @@ Class | Method | HTTP request | Description
  - [Model.ConferenceRedirectCallback](docs/ConferenceRedirectCallback.md)
  - [Model.ConferenceStateEnum](docs/ConferenceStateEnum.md)
  - [Model.Contact](docs/Contact.md)
+ - [Model.CreateAsyncBulkLookupResponse](docs/CreateAsyncBulkLookupResponse.md)
+ - [Model.CreateAsyncBulkLookupResponseData](docs/CreateAsyncBulkLookupResponseData.md)
  - [Model.CreateCall](docs/CreateCall.md)
  - [Model.CreateCallResponse](docs/CreateCallResponse.md)
- - [Model.CreateLookupResponse](docs/CreateLookupResponse.md)
  - [Model.CreateMessageRequestError](docs/CreateMessageRequestError.md)
  - [Model.CreateMultiChannelMessageResponse](docs/CreateMultiChannelMessageResponse.md)
+ - [Model.CreateSyncLookupResponse](docs/CreateSyncLookupResponse.md)
+ - [Model.CreateSyncLookupResponseData](docs/CreateSyncLookupResponseData.md)
+ - [Model.DeactivationEventEnum](docs/DeactivationEventEnum.md)
  - [Model.DisconnectCallback](docs/DisconnectCallback.md)
  - [Model.Diversion](docs/Diversion.md)
  - [Model.DtmfCallback](docs/DtmfCallback.md)
@@ -210,18 +217,24 @@ Class | Method | HTTP request | Description
  - [Model.FieldError](docs/FieldError.md)
  - [Model.FileFormatEnum](docs/FileFormatEnum.md)
  - [Model.GatherCallback](docs/GatherCallback.md)
+ - [Model.GetAsyncBulkLookupResponse](docs/GetAsyncBulkLookupResponse.md)
+ - [Model.GetAsyncBulkLookupResponseData](docs/GetAsyncBulkLookupResponseData.md)
+ - [Model.InProgressLookupStatusEnum](docs/InProgressLookupStatusEnum.md)
  - [Model.InboundCallback](docs/InboundCallback.md)
  - [Model.InboundCallbackMessage](docs/InboundCallbackMessage.md)
  - [Model.InboundCallbackTypeEnum](docs/InboundCallbackTypeEnum.md)
  - [Model.InitiateCallback](docs/InitiateCallback.md)
+ - [Model.LatestMessageDeliveryStatusEnum](docs/LatestMessageDeliveryStatusEnum.md)
+ - [Model.LineTypeEnum](docs/LineTypeEnum.md)
  - [Model.Link](docs/Link.md)
+ - [Model.LinkSchema](docs/LinkSchema.md)
  - [Model.LinksObject](docs/LinksObject.md)
  - [Model.ListMessageDirectionEnum](docs/ListMessageDirectionEnum.md)
  - [Model.ListMessageItem](docs/ListMessageItem.md)
- - [Model.LookupRequest](docs/LookupRequest.md)
+ - [Model.LookupErrorResponse](docs/LookupErrorResponse.md)
+ - [Model.LookupErrorSchema](docs/LookupErrorSchema.md)
+ - [Model.LookupErrorSchemaMeta](docs/LookupErrorSchemaMeta.md)
  - [Model.LookupResult](docs/LookupResult.md)
- - [Model.LookupStatus](docs/LookupStatus.md)
- - [Model.LookupStatusEnum](docs/LookupStatusEnum.md)
  - [Model.MachineDetectionCompleteCallback](docs/MachineDetectionCompleteCallback.md)
  - [Model.MachineDetectionConfiguration](docs/MachineDetectionConfiguration.md)
  - [Model.MachineDetectionModeEnum](docs/MachineDetectionModeEnum.md)
@@ -283,6 +296,7 @@ Class | Method | HTTP request | Description
  - [Model.StatusCallbackMessage](docs/StatusCallbackMessage.md)
  - [Model.StatusCallbackTypeEnum](docs/StatusCallbackTypeEnum.md)
  - [Model.StirShaken](docs/StirShaken.md)
+ - [Model.SyncLookupRequest](docs/SyncLookupRequest.md)
  - [Model.TelephoneNumber](docs/TelephoneNumber.md)
  - [Model.TfvBasicAuthentication](docs/TfvBasicAuthentication.md)
  - [Model.TfvCallbackStatusEnum](docs/TfvCallbackStatusEnum.md)
@@ -292,7 +306,6 @@ Class | Method | HTTP request | Description
  - [Model.TfvSubmissionInfo](docs/TfvSubmissionInfo.md)
  - [Model.TfvSubmissionWrapper](docs/TfvSubmissionWrapper.md)
  - [Model.ThumbnailAlignmentEnum](docs/ThumbnailAlignmentEnum.md)
- - [Model.TnLookupRequestError](docs/TnLookupRequestError.md)
  - [Model.TranscribeRecording](docs/TranscribeRecording.md)
  - [Model.Transcription](docs/Transcription.md)
  - [Model.TranscriptionAvailableCallback](docs/TranscriptionAvailableCallback.md)

@@ -27,37 +27,47 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// RbmSuggestionResponse
+    /// LinkSchema
     /// </summary>
-    [DataContract(Name = "rbmSuggestionResponse")]
-    public partial class RbmSuggestionResponse : IValidatableObject
+    [DataContract(Name = "linkSchema")]
+    public partial class LinkSchema : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RbmSuggestionResponse" /> class.
+        /// Initializes a new instance of the <see cref="LinkSchema" /> class.
         /// </summary>
-        /// <param name="text">The text associated with the suggestion response..</param>
-        /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked..</param>
-        public RbmSuggestionResponse(string text = default(string), byte[] postbackData = default(byte[]))
+        /// <param name="href">URI of the link..</param>
+        /// <param name="rel">Specifies the relationship between this link and the resource..</param>
+        /// <param name="method">HTTP method to be used..</param>
+        public LinkSchema(string href = default(string), string rel = default(string), string method = default(string))
         {
-            this.Text = text;
-            this.PostbackData = postbackData;
+            this.Href = href;
+            this.Rel = rel;
+            this.Method = method;
         }
 
         /// <summary>
-        /// The text associated with the suggestion response.
+        /// URI of the link.
         /// </summary>
-        /// <value>The text associated with the suggestion response.</value>
-        /// <example>Yes, I would like to proceed</example>
-        [DataMember(Name = "text", EmitDefaultValue = false)]
-        public string Text { get; set; }
+        /// <value>URI of the link.</value>
+        /// <example>/relative/uri</example>
+        [DataMember(Name = "href", EmitDefaultValue = false)]
+        public string Href { get; set; }
 
         /// <summary>
-        /// Base64 payload the customer receives when the reply is clicked.
+        /// Specifies the relationship between this link and the resource.
         /// </summary>
-        /// <value>Base64 payload the customer receives when the reply is clicked.</value>
-        /// <example>[B@4c3fcbe7</example>
-        [DataMember(Name = "postbackData", EmitDefaultValue = false)]
-        public byte[] PostbackData { get; set; }
+        /// <value>Specifies the relationship between this link and the resource.</value>
+        /// <example>aRelatedResource</example>
+        [DataMember(Name = "rel", EmitDefaultValue = false)]
+        public string Rel { get; set; }
+
+        /// <summary>
+        /// HTTP method to be used.
+        /// </summary>
+        /// <value>HTTP method to be used.</value>
+        /// <example>GET</example>
+        [DataMember(Name = "method", EmitDefaultValue = false)]
+        public string Method { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,9 +76,10 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RbmSuggestionResponse {\n");
-            sb.Append("  Text: ").Append(Text).Append("\n");
-            sb.Append("  PostbackData: ").Append(PostbackData).Append("\n");
+            sb.Append("class LinkSchema {\n");
+            sb.Append("  Href: ").Append(Href).Append("\n");
+            sb.Append("  Rel: ").Append(Rel).Append("\n");
+            sb.Append("  Method: ").Append(Method).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -89,12 +100,6 @@ namespace Bandwidth.Standard.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // PostbackData (byte[]) maxLength
-            if (this.PostbackData != null && this.PostbackData.Length > 2048)
-            {
-                yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new [] { "PostbackData" });
-            }
-
             yield break;
         }
     }

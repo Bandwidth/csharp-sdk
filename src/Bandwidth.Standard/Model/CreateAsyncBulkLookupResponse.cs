@@ -27,35 +27,42 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// Create phone number lookup request.
+    /// CreateAsyncBulkLookupResponse
     /// </summary>
-    [DataContract(Name = "lookupRequest")]
-    public partial class LookupRequest : IValidatableObject
+    [DataContract(Name = "createAsyncBulkLookupResponse")]
+    public partial class CreateAsyncBulkLookupResponse : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LookupRequest" /> class.
+        /// Initializes a new instance of the <see cref="CreateAsyncBulkLookupResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected LookupRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LookupRequest" /> class.
-        /// </summary>
-        /// <param name="tns">tns (required).</param>
-        public LookupRequest(List<string> tns = default(List<string>))
+        /// <param name="links">Links for pagination (if applicable).</param>
+        /// <param name="data">data.</param>
+        /// <param name="errors">errors.</param>
+        public CreateAsyncBulkLookupResponse(List<LinkSchema> links = default(List<LinkSchema>), CreateAsyncBulkLookupResponseData data = default(CreateAsyncBulkLookupResponseData), List<LookupErrorSchema> errors = default(List<LookupErrorSchema>))
         {
-            // to ensure "tns" is required (not null)
-            if (tns == null)
-            {
-                throw new ArgumentNullException("tns is a required property for LookupRequest and cannot be null");
-            }
-            this.Tns = tns;
+            this.Links = links;
+            this.Data = data;
+            this.Errors = errors;
         }
 
         /// <summary>
-        /// Gets or Sets Tns
+        /// Links for pagination (if applicable)
         /// </summary>
-        [DataMember(Name = "tns", IsRequired = true, EmitDefaultValue = true)]
-        public List<string> Tns { get; set; }
+        /// <value>Links for pagination (if applicable)</value>
+        [DataMember(Name = "links", EmitDefaultValue = false)]
+        public List<LinkSchema> Links { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Data
+        /// </summary>
+        [DataMember(Name = "data", EmitDefaultValue = false)]
+        public CreateAsyncBulkLookupResponseData Data { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Errors
+        /// </summary>
+        [DataMember(Name = "errors", EmitDefaultValue = false)]
+        public List<LookupErrorSchema> Errors { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -64,8 +71,10 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class LookupRequest {\n");
-            sb.Append("  Tns: ").Append(Tns).Append("\n");
+            sb.Append("class CreateAsyncBulkLookupResponse {\n");
+            sb.Append("  Links: ").Append(Links).Append("\n");
+            sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  Errors: ").Append(Errors).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

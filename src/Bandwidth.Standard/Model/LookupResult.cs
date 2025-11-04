@@ -32,102 +32,117 @@ namespace Bandwidth.Standard.Model
     [DataContract(Name = "lookupResult")]
     public partial class LookupResult : IValidatableObject
     {
+
+        /// <summary>
+        /// Gets or Sets LineType
+        /// </summary>
+        [DataMember(Name = "lineType", EmitDefaultValue = false)]
+        public LineTypeEnum? LineType { get; set; }
+
+        /// <summary>
+        /// Gets or Sets DeactivationEvent
+        /// </summary>
+        [DataMember(Name = "deactivationEvent", EmitDefaultValue = false)]
+        public DeactivationEventEnum? DeactivationEvent { get; set; }
+
+        /// <summary>
+        /// Gets or Sets LatestMessageDeliveryStatus
+        /// </summary>
+        [DataMember(Name = "latestMessageDeliveryStatus", EmitDefaultValue = false)]
+        public LatestMessageDeliveryStatusEnum? LatestMessageDeliveryStatus { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="LookupResult" /> class.
         /// </summary>
-        /// <param name="responseCode">Our vendor&#39;s response code..</param>
-        /// <param name="message">Message associated with the response code..</param>
-        /// <param name="e164Format">The telephone number in E.164 format..</param>
-        /// <param name="formatted">The formatted version of the telephone number..</param>
-        /// <param name="country">The country of the telephone number..</param>
-        /// <param name="lineType">The line type of the telephone number..</param>
-        /// <param name="lineProvider">The messaging service provider of the telephone number..</param>
-        /// <param name="mobileCountryCode">The first half of the Home Network Identity (HNI)..</param>
-        /// <param name="mobileNetworkCode">The second half of the HNI..</param>
-        public LookupResult(int responseCode = default(int), string message = default(string), string e164Format = default(string), string formatted = default(string), string country = default(string), string lineType = default(string), string lineProvider = default(string), string mobileCountryCode = default(string), string mobileNetworkCode = default(string))
+        /// <param name="phoneNumber">The telephone number in E.164 format..</param>
+        /// <param name="lineType">lineType.</param>
+        /// <param name="messagingProvider">The messaging service provider of the telephone number..</param>
+        /// <param name="voiceProvider">The voice service provider of the telephone number..</param>
+        /// <param name="countryCodeA3">The country code of the telephone number in ISO 3166-1 alpha-3 format..</param>
+        /// <param name="deactivationReporter">[DNI-Only](#section/DNI-Only). The carrier that reported a deactivation event for this phone number. .</param>
+        /// <param name="deactivationDate">[DNI-Only](#section/DNI-Only). The datetime the carrier reported a deactivation event..</param>
+        /// <param name="deactivationEvent">deactivationEvent.</param>
+        /// <param name="latestMessageDeliveryStatus">latestMessageDeliveryStatus.</param>
+        /// <param name="initialMessageDeliveryStatusDate">[DNI-Only](#section/DNI-Only). The date the phone number entered the status described in &#x60;latestMessageDeliveryStatus&#x60;.  Think of this as the \&quot;start time\&quot; for that status. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes..</param>
+        /// <param name="latestMessageDeliveryStatusDate">[DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number.  Use this field to understand how up-to-date the &#x60;latestMessageDeliveryStatus&#x60; is. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes..</param>
+        public LookupResult(string phoneNumber = default(string), LineTypeEnum? lineType = default(LineTypeEnum?), string messagingProvider = default(string), string voiceProvider = default(string), string countryCodeA3 = default(string), string deactivationReporter = default(string), string deactivationDate = default(string), DeactivationEventEnum? deactivationEvent = default(DeactivationEventEnum?), LatestMessageDeliveryStatusEnum? latestMessageDeliveryStatus = default(LatestMessageDeliveryStatusEnum?), DateTime initialMessageDeliveryStatusDate = default(DateTime), DateTime latestMessageDeliveryStatusDate = default(DateTime))
         {
-            this.ResponseCode = responseCode;
-            this.Message = message;
-            this.E164Format = e164Format;
-            this.Formatted = formatted;
-            this.Country = country;
+            this.PhoneNumber = phoneNumber;
             this.LineType = lineType;
-            this.LineProvider = lineProvider;
-            this.MobileCountryCode = mobileCountryCode;
-            this.MobileNetworkCode = mobileNetworkCode;
+            this.MessagingProvider = messagingProvider;
+            this.VoiceProvider = voiceProvider;
+            this.CountryCodeA3 = countryCodeA3;
+            this.DeactivationReporter = deactivationReporter;
+            this.DeactivationDate = deactivationDate;
+            this.DeactivationEvent = deactivationEvent;
+            this.LatestMessageDeliveryStatus = latestMessageDeliveryStatus;
+            this.InitialMessageDeliveryStatusDate = initialMessageDeliveryStatusDate;
+            this.LatestMessageDeliveryStatusDate = latestMessageDeliveryStatusDate;
         }
-
-        /// <summary>
-        /// Our vendor&#39;s response code.
-        /// </summary>
-        /// <value>Our vendor&#39;s response code.</value>
-        /// <example>0</example>
-        [DataMember(Name = "Response Code", EmitDefaultValue = false)]
-        public int ResponseCode { get; set; }
-
-        /// <summary>
-        /// Message associated with the response code.
-        /// </summary>
-        /// <value>Message associated with the response code.</value>
-        /// <example>NOERROR</example>
-        [DataMember(Name = "Message", EmitDefaultValue = false)]
-        public string Message { get; set; }
 
         /// <summary>
         /// The telephone number in E.164 format.
         /// </summary>
         /// <value>The telephone number in E.164 format.</value>
-        /// <example>+19195551234</example>
-        [DataMember(Name = "E.164 Format", EmitDefaultValue = false)]
-        public string E164Format { get; set; }
-
-        /// <summary>
-        /// The formatted version of the telephone number.
-        /// </summary>
-        /// <value>The formatted version of the telephone number.</value>
-        /// <example>(919) 555-1234</example>
-        [DataMember(Name = "Formatted", EmitDefaultValue = false)]
-        public string Formatted { get; set; }
-
-        /// <summary>
-        /// The country of the telephone number.
-        /// </summary>
-        /// <value>The country of the telephone number.</value>
-        /// <example>US</example>
-        [DataMember(Name = "Country", EmitDefaultValue = false)]
-        public string Country { get; set; }
-
-        /// <summary>
-        /// The line type of the telephone number.
-        /// </summary>
-        /// <value>The line type of the telephone number.</value>
-        /// <example>Mobile</example>
-        [DataMember(Name = "Line Type", EmitDefaultValue = false)]
-        public string LineType { get; set; }
+        /// <example>+10072904498</example>
+        [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
+        public string PhoneNumber { get; set; }
 
         /// <summary>
         /// The messaging service provider of the telephone number.
         /// </summary>
         /// <value>The messaging service provider of the telephone number.</value>
         /// <example>Verizon Wireless</example>
-        [DataMember(Name = "Line Provider", EmitDefaultValue = false)]
-        public string LineProvider { get; set; }
+        [DataMember(Name = "messagingProvider", EmitDefaultValue = false)]
+        public string MessagingProvider { get; set; }
 
         /// <summary>
-        /// The first half of the Home Network Identity (HNI).
+        /// The voice service provider of the telephone number.
         /// </summary>
-        /// <value>The first half of the Home Network Identity (HNI).</value>
-        /// <example>310</example>
-        [DataMember(Name = "Mobile Country Code", EmitDefaultValue = false)]
-        public string MobileCountryCode { get; set; }
+        /// <value>The voice service provider of the telephone number.</value>
+        /// <example>Verizon Wireless</example>
+        [DataMember(Name = "voiceProvider", EmitDefaultValue = false)]
+        public string VoiceProvider { get; set; }
 
         /// <summary>
-        /// The second half of the HNI.
+        /// The country code of the telephone number in ISO 3166-1 alpha-3 format.
         /// </summary>
-        /// <value>The second half of the HNI.</value>
-        /// <example>010</example>
-        [DataMember(Name = "Mobile Network Code", EmitDefaultValue = false)]
-        public string MobileNetworkCode { get; set; }
+        /// <value>The country code of the telephone number in ISO 3166-1 alpha-3 format.</value>
+        /// <example>USA</example>
+        [DataMember(Name = "countryCodeA3", EmitDefaultValue = false)]
+        public string CountryCodeA3 { get; set; }
+
+        /// <summary>
+        /// [DNI-Only](#section/DNI-Only). The carrier that reported a deactivation event for this phone number. 
+        /// </summary>
+        /// <value>[DNI-Only](#section/DNI-Only). The carrier that reported a deactivation event for this phone number. </value>
+        [DataMember(Name = "deactivationReporter", EmitDefaultValue = false)]
+        public string DeactivationReporter { get; set; }
+
+        /// <summary>
+        /// [DNI-Only](#section/DNI-Only). The datetime the carrier reported a deactivation event.
+        /// </summary>
+        /// <value>[DNI-Only](#section/DNI-Only). The datetime the carrier reported a deactivation event.</value>
+        /// <example>2025-06-20 18:35</example>
+        [DataMember(Name = "deactivationDate", EmitDefaultValue = false)]
+        public string DeactivationDate { get; set; }
+
+        /// <summary>
+        /// [DNI-Only](#section/DNI-Only). The date the phone number entered the status described in &#x60;latestMessageDeliveryStatus&#x60;.  Think of this as the \&quot;start time\&quot; for that status. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.
+        /// </summary>
+        /// <value>[DNI-Only](#section/DNI-Only). The date the phone number entered the status described in &#x60;latestMessageDeliveryStatus&#x60;.  Think of this as the \&quot;start time\&quot; for that status. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.</value>
+        /// <example>Thu Jun 19 20:00:00 EDT 2025</example>
+        [DataMember(Name = "initialMessageDeliveryStatusDate", EmitDefaultValue = false)]
+        [JsonConverter(typeof(OpenAPIDateConverter))]
+        public DateTime InitialMessageDeliveryStatusDate { get; set; }
+
+        /// <summary>
+        /// [DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number.  Use this field to understand how up-to-date the &#x60;latestMessageDeliveryStatus&#x60; is. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.
+        /// </summary>
+        /// <value>[DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number.  Use this field to understand how up-to-date the &#x60;latestMessageDeliveryStatus&#x60; is. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.</value>
+        /// <example>Fri Jun 20 20:00:00 EDT 2025</example>
+        [DataMember(Name = "latestMessageDeliveryStatusDate", EmitDefaultValue = false)]
+        [JsonConverter(typeof(OpenAPIDateConverter))]
+        public DateTime LatestMessageDeliveryStatusDate { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -137,15 +152,17 @@ namespace Bandwidth.Standard.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class LookupResult {\n");
-            sb.Append("  ResponseCode: ").Append(ResponseCode).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  E164Format: ").Append(E164Format).Append("\n");
-            sb.Append("  Formatted: ").Append(Formatted).Append("\n");
-            sb.Append("  Country: ").Append(Country).Append("\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  LineType: ").Append(LineType).Append("\n");
-            sb.Append("  LineProvider: ").Append(LineProvider).Append("\n");
-            sb.Append("  MobileCountryCode: ").Append(MobileCountryCode).Append("\n");
-            sb.Append("  MobileNetworkCode: ").Append(MobileNetworkCode).Append("\n");
+            sb.Append("  MessagingProvider: ").Append(MessagingProvider).Append("\n");
+            sb.Append("  VoiceProvider: ").Append(VoiceProvider).Append("\n");
+            sb.Append("  CountryCodeA3: ").Append(CountryCodeA3).Append("\n");
+            sb.Append("  DeactivationReporter: ").Append(DeactivationReporter).Append("\n");
+            sb.Append("  DeactivationDate: ").Append(DeactivationDate).Append("\n");
+            sb.Append("  DeactivationEvent: ").Append(DeactivationEvent).Append("\n");
+            sb.Append("  LatestMessageDeliveryStatus: ").Append(LatestMessageDeliveryStatus).Append("\n");
+            sb.Append("  InitialMessageDeliveryStatusDate: ").Append(InitialMessageDeliveryStatusDate).Append("\n");
+            sb.Append("  LatestMessageDeliveryStatusDate: ").Append(LatestMessageDeliveryStatusDate).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
