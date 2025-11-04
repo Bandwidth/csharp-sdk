@@ -31,7 +31,6 @@ using RestSharp.Serializers;
 using RestSharpMethod = RestSharp.Method;
 using FileIO = System.IO.File;
 using Polly;
-using Bandwidth.Standard.Client.Auth;
 using Bandwidth.Standard.Model;
 
 namespace Bandwidth.Standard.Client
@@ -466,20 +465,6 @@ namespace Bandwidth.Standard.Client
             };
             setOptions(clientOptions);
             
-            if (!string.IsNullOrEmpty(configuration.OAuthTokenUrl) &&
-                !string.IsNullOrEmpty(configuration.OAuthClientId) &&
-                !string.IsNullOrEmpty(configuration.OAuthClientSecret) &&
-                configuration.OAuthFlow != null)
-            {
-                clientOptions.Authenticator = new OAuthAuthenticator(
-                    configuration.OAuthTokenUrl,
-                    configuration.OAuthClientId,
-                    configuration.OAuthClientSecret,
-                    configuration.OAuthFlow,
-                    SerializerSettings,
-                    configuration);
-            }
-
             using (RestClient client = new RestClient(clientOptions,
                 configureSerialization: serializerConfig => serializerConfig.UseSerializer(() => new CustomJsonCodec(SerializerSettings, configuration))))
             {

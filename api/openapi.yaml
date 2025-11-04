@@ -11,7 +11,6 @@ servers:
 - url: /
 security:
 - Basic: []
-- OAuth2: []
 tags:
 - name: Messages
 - name: Media
@@ -14747,10 +14746,4 @@ components:
         - Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
       scheme: basic
       type: http
-    OAuth2:
-      flows:
-        clientCredentials:
-          scopes: {}
-          tokenUrl: https://api.bandwidth.com/api/v1/oauth2/token
-      type: oauth2
 

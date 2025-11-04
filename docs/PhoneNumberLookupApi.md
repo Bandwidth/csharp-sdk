@@ -35,8 +35,6 @@ namespace Example
             // Configure HTTP basic authorization: Basic
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
-            // Configure OAuth2 access token for authorization: OAuth2
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PhoneNumberLookupApi(config);
             var accountId = 9900000;  // string | 
@@ -92,7 +90,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2)
+[Basic](../README.md#Basic)
 
 ### HTTP request headers
 
@@ -135,8 +133,6 @@ namespace Example
             // Configure HTTP basic authorization: Basic
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
-            // Configure OAuth2 access token for authorization: OAuth2
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PhoneNumberLookupApi(config);
             var accountId = 9900000;  // string | 
@@ -192,7 +188,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2)
+[Basic](../README.md#Basic)
 
 ### HTTP request headers
 
@@ -235,8 +231,6 @@ namespace Example
             // Configure HTTP basic authorization: Basic
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
-            // Configure OAuth2 access token for authorization: OAuth2
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PhoneNumberLookupApi(config);
             var accountId = 9900000;  // string | 
@@ -292,7 +286,7 @@ catch (ApiException e)
 
 ### Authorization
 
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2)
+[Basic](../README.md#Basic)
 
 ### HTTP request headers
 
