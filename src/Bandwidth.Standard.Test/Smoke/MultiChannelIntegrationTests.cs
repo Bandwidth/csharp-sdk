@@ -21,10 +21,14 @@ namespace Bandwidth.Standard.Test.Smoke
         private MultiChannelApi instance;
         private string accountId;
         private Configuration configuration;
+        private string bwNumber;
+        private string messagingApplicationId;
 
         public MultiChannelSmokeTests()
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+            bwNumber =  Environment.GetEnvironmentVariable("BW_NUMBER");
+            messagingApplicationId = Environment.GetEnvironmentVariable("BW_MESSAGING_APPLICATION_ID");
 
             // Authorized API Client
             configuration = new Configuration();
@@ -48,16 +52,18 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test CreateMultiChannelMessage
+        /// Test CreateMultiChannelSMSMessage
         /// </summary>
         [Fact]
-        public void CreateMultiChannelMessageTest()
+        public void CreateMultiChannelSMSMessageTest()
         {
-            MultiChannelChannelListObject channelListObject = new MultiChannelChannelListObject(
-                from: Environment.GetEnvironmentVariable("BW_NUMBER"),
-                applicationId: Environment.GetEnvironmentVariable("BW_MESSAGING_APPLICATION_ID"),
-                channel: MultiChannelMessageChannelEnum.RBM,
-                content: new MultiChannelChannelListObjectContent(new RbmMessageContentText(text: "Hello World!"))
+            MultiChannelChannelListRequestObject channelListObject = new MultiChannelChannelListRequestObject(
+                new MultiChannelChannelListSMSObject(
+                    from: bwNumber,
+                    applicationId: messagingApplicationId,
+                    channel: MultiChannelMessageChannelEnum.SMS,
+                    content: new SmsMessageContent(text: "Hello World!")
+                )
             );
 
             MultiChannelMessageRequest multiChannelMessageRequest = new MultiChannelMessageRequest(
@@ -65,12 +71,138 @@ namespace Bandwidth.Standard.Test.Smoke
                 tag: "tag",
                 priority: PriorityEnum.High,
                 expiration: DateTime.UtcNow.AddMinutes(1),
-                channelList: new List<MultiChannelChannelListObject> { channelListObject }
+                channelList: new List<MultiChannelChannelListRequestObject> { channelListObject }
             );
 
             var response = instance.CreateMultiChannelMessageWithHttpInfo(accountId, multiChannelMessageRequest);
             Assert.IsType<ApiResponse<CreateMultiChannelMessageResponse>>(response);
             Assert.Equal(HttpStatusCode.Accepted, response.StatusCode);
+            Assert.NotNull(response.Data);
+            Assert.IsType<CreateMultiChannelMessageResponse>(response.Data);
+            Assert.IsType<List<Link>>(response.Data.Links);
+            Assert.IsType<MultiChannelMessageResponseData>(response.Data.Data);
+            Assert.IsType<String>(response.Data.Data.Id);
+            Assert.IsType<DateTime>(response.Data.Data.Time);
+            Assert.IsType<MessageDirectionEnum>(response.Data.Data.Direction);
+            Assert.Equal(response.Data.Data.Direction, MessageDirectionEnum.Out);
+            Assert.IsType<List<String>>(response.Data.Data.To);
+            Assert.IsType<String>(response.Data.Data.Tag);
+            Assert.IsType<PriorityEnum>(response.Data.Data.Priority);
+            Assert.Equal(response.Data.Data.Priority, PriorityEnum.High);
+            Assert.IsType<DateTime>(response.Data.Data.Expiration);
+            Assert.IsType<List<MultiChannelChannelListResponseObject>>(response.Data.Data.ChannelList);
+
+            // Add more assertions when C# generator supports discriminator mapping
+            // Assert.IsType<MultiChannelChannelListSMSResponseObject>(response.Data.Data.ChannelList[0].ActualInstance);
+        }
+
+        /// <summary>
+        /// Test CreateMultiChannelMMSMessage
+        /// </summary>
+        [Fact]
+        public void CreateMultiChannelMMSMessageTest()
+        {
+            MultiChannelChannelListRequestObject channelListObject = new MultiChannelChannelListRequestObject(
+                new MultiChannelChannelListMMSObject(
+                    from: bwNumber,
+                    applicationId: messagingApplicationId,
+                    channel: MultiChannelMessageChannelEnum.MMS,
+                    content: new MmsMessageContent(
+                        text: "Hello World!", 
+                        media: new List<MmsMessageContentFile> { 
+                            new MmsMessageContentFile(
+                                fileUrl: "https://www.example.com/image.jpg"
+                            )
+                        }
+                    )
+                )
+            );
+
+            MultiChannelMessageRequest multiChannelMessageRequest = new MultiChannelMessageRequest(
+                to: Environment.GetEnvironmentVariable("USER_NUMBER"),
+                tag: "tag",
+                priority: PriorityEnum.High,
+                expiration: DateTime.UtcNow.AddMinutes(1),
+                channelList: new List<MultiChannelChannelListRequestObject> { channelListObject }
+            );
+
+            var response = instance.CreateMultiChannelMessageWithHttpInfo(accountId, multiChannelMessageRequest);
+            Assert.IsType<ApiResponse<CreateMultiChannelMessageResponse>>(response);
+            Assert.Equal(HttpStatusCode.Accepted, response.StatusCode);
+            Assert.NotNull(response.Data);
+            Assert.IsType<CreateMultiChannelMessageResponse>(response.Data);
+            Assert.IsType<List<Link>>(response.Data.Links);
+            Assert.IsType<MultiChannelMessageResponseData>(response.Data.Data);
+            Assert.IsType<String>(response.Data.Data.Id);
+            Assert.IsType<DateTime>(response.Data.Data.Time);
+            Assert.IsType<MessageDirectionEnum>(response.Data.Data.Direction);
+            Assert.Equal(response.Data.Data.Direction, MessageDirectionEnum.Out);
+            Assert.IsType<List<String>>(response.Data.Data.To);
+            Assert.IsType<String>(response.Data.Data.Tag);
+            Assert.IsType<PriorityEnum>(response.Data.Data.Priority);
+            Assert.Equal(response.Data.Data.Priority, PriorityEnum.High);
+            Assert.IsType<DateTime>(response.Data.Data.Expiration);
+            Assert.IsType<List<MultiChannelChannelListResponseObject>>(response.Data.Data.ChannelList);
+
+            // Add more assertions when C# generator supports discriminator mapping
+            // Assert.IsType<MultiChannelChannelListMMSResponseObject>(response.Data.Data.ChannelList[0].ActualInstance);
+        }
+
+        /// <summary>
+        /// Test CreateMultiChannelRBMMessage
+        /// </summary>
+        [Fact]
+        public void CreateMultiChannelRBMMessageTest()
+        {
+            MultiChannelChannelListRequestObject channelListObject = new MultiChannelChannelListRequestObject(
+                new MultiChannelChannelListRBMObject(
+                    from: bwNumber,
+                    applicationId: messagingApplicationId,
+                    channel: MultiChannelMessageChannelEnum.RBM,
+                    content: new MultiChannelChannelListRBMObjectAllOfContent(
+                        new RbmMessageContentText(
+                            text: "Hello World!",
+                            suggestions: new List<MultiChannelAction> {
+                                new MultiChannelAction(new RbmActionDial(
+                                    type: RbmActionTypeEnum.DIALPHONE,
+                                    text: "Call Us",
+                                    postbackData: new byte[]{1, 2, 3},
+                                    phoneNumber: bwNumber
+                                ))
+                            }
+                        )
+                    )
+                )
+            );
+
+            MultiChannelMessageRequest multiChannelMessageRequest = new MultiChannelMessageRequest(
+                to: Environment.GetEnvironmentVariable("USER_NUMBER"),
+                tag: "tag",
+                priority: PriorityEnum.High,
+                expiration: DateTime.UtcNow.AddMinutes(1),
+                channelList: new List<MultiChannelChannelListRequestObject> { channelListObject }
+            );
+
+            var response = instance.CreateMultiChannelMessageWithHttpInfo(accountId, multiChannelMessageRequest);
+            Assert.IsType<ApiResponse<CreateMultiChannelMessageResponse>>(response);
+            Assert.Equal(HttpStatusCode.Accepted, response.StatusCode);
+            Assert.NotNull(response.Data);
+            Assert.IsType<CreateMultiChannelMessageResponse>(response.Data);
+            Assert.IsType<List<Link>>(response.Data.Links);
+            Assert.IsType<MultiChannelMessageResponseData>(response.Data.Data);
+            Assert.IsType<String>(response.Data.Data.Id);
+            Assert.IsType<DateTime>(response.Data.Data.Time);
+            Assert.IsType<MessageDirectionEnum>(response.Data.Data.Direction);
+            Assert.Equal(response.Data.Data.Direction, MessageDirectionEnum.Out);
+            Assert.IsType<List<String>>(response.Data.Data.To);
+            Assert.IsType<String>(response.Data.Data.Tag);
+            Assert.IsType<PriorityEnum>(response.Data.Data.Priority);
+            Assert.Equal(response.Data.Data.Priority, PriorityEnum.High);
+            Assert.IsType<DateTime>(response.Data.Data.Expiration);
+            Assert.IsType<List<MultiChannelChannelListResponseObject>>(response.Data.Data.ChannelList);
+
+            // Add more assertions when C# generator supports discriminator mapping
+            // Assert.IsType<MultiChannelChannelListSMSResponseObject>(response.Data.Data.ChannelList[0].ActualInstance);
         }
     }
 }
