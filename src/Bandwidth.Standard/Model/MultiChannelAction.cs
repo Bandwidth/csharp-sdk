@@ -42,9 +42,9 @@ namespace Bandwidth.Standard.Model
         /// <param name="actualInstance">An instance of RbmActionBase.</param>
         public MultiChannelAction(RbmActionBase actualInstance)
         {
-            this.IsNullable = false;
-            this.SchemaType= "oneOf";
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+            IsNullable = false;
+            SchemaType= "anyOf";
+            ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
@@ -54,9 +54,9 @@ namespace Bandwidth.Standard.Model
         /// <param name="actualInstance">An instance of RbmActionDial.</param>
         public MultiChannelAction(RbmActionDial actualInstance)
         {
-            this.IsNullable = false;
-            this.SchemaType= "oneOf";
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+            IsNullable = false;
+            SchemaType= "anyOf";
+            ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
@@ -66,9 +66,9 @@ namespace Bandwidth.Standard.Model
         /// <param name="actualInstance">An instance of RbmActionViewLocation.</param>
         public MultiChannelAction(RbmActionViewLocation actualInstance)
         {
-            this.IsNullable = false;
-            this.SchemaType= "oneOf";
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+            IsNullable = false;
+            SchemaType= "anyOf";
+            ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
@@ -78,9 +78,9 @@ namespace Bandwidth.Standard.Model
         /// <param name="actualInstance">An instance of MultiChannelActionCalendarEvent.</param>
         public MultiChannelAction(MultiChannelActionCalendarEvent actualInstance)
         {
-            this.IsNullable = false;
-            this.SchemaType= "oneOf";
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+            IsNullable = false;
+            SchemaType= "anyOf";
+            ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
@@ -90,9 +90,9 @@ namespace Bandwidth.Standard.Model
         /// <param name="actualInstance">An instance of RbmActionOpenUrl.</param>
         public MultiChannelAction(RbmActionOpenUrl actualInstance)
         {
-            this.IsNullable = false;
-            this.SchemaType= "oneOf";
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+            IsNullable = false;
+            SchemaType= "anyOf";
+            ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
 
@@ -109,25 +109,25 @@ namespace Bandwidth.Standard.Model
             }
             set
             {
-                if (value.GetType() == typeof(MultiChannelActionCalendarEvent) || value is MultiChannelActionCalendarEvent)
+                if (value.GetType() == typeof(MultiChannelActionCalendarEvent))
                 {
-                    this._actualInstance = value;
+                    _actualInstance = value;
                 }
-                else if (value.GetType() == typeof(RbmActionBase) || value is RbmActionBase)
+                else if (value.GetType() == typeof(RbmActionBase))
                 {
-                    this._actualInstance = value;
+                    _actualInstance = value;
                 }
-                else if (value.GetType() == typeof(RbmActionDial) || value is RbmActionDial)
+                else if (value.GetType() == typeof(RbmActionDial))
                 {
-                    this._actualInstance = value;
+                    _actualInstance = value;
                 }
-                else if (value.GetType() == typeof(RbmActionOpenUrl) || value is RbmActionOpenUrl)
+                else if (value.GetType() == typeof(RbmActionOpenUrl))
                 {
-                    this._actualInstance = value;
+                    _actualInstance = value;
                 }
-                else if (value.GetType() == typeof(RbmActionViewLocation) || value is RbmActionViewLocation)
+                else if (value.GetType() == typeof(RbmActionViewLocation))
                 {
-                    this._actualInstance = value;
+                    _actualInstance = value;
                 }
                 else
                 {
@@ -143,7 +143,7 @@ namespace Bandwidth.Standard.Model
         /// <returns>An instance of RbmActionBase</returns>
         public RbmActionBase GetRbmActionBase()
         {
-            return (RbmActionBase)this.ActualInstance;
+            return (RbmActionBase)ActualInstance;
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Bandwidth.Standard.Model
         /// <returns>An instance of RbmActionDial</returns>
         public RbmActionDial GetRbmActionDial()
         {
-            return (RbmActionDial)this.ActualInstance;
+            return (RbmActionDial)ActualInstance;
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace Bandwidth.Standard.Model
         /// <returns>An instance of RbmActionViewLocation</returns>
         public RbmActionViewLocation GetRbmActionViewLocation()
         {
-            return (RbmActionViewLocation)this.ActualInstance;
+            return (RbmActionViewLocation)ActualInstance;
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace Bandwidth.Standard.Model
         /// <returns>An instance of MultiChannelActionCalendarEvent</returns>
         public MultiChannelActionCalendarEvent GetMultiChannelActionCalendarEvent()
         {
-            return (MultiChannelActionCalendarEvent)this.ActualInstance;
+            return (MultiChannelActionCalendarEvent)ActualInstance;
         }
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace Bandwidth.Standard.Model
         /// <returns>An instance of RbmActionOpenUrl</returns>
         public RbmActionOpenUrl GetRbmActionOpenUrl()
         {
-            return (RbmActionOpenUrl)this.ActualInstance;
+            return (RbmActionOpenUrl)ActualInstance;
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace Bandwidth.Standard.Model
         {
             var sb = new StringBuilder();
             sb.Append("class MultiChannelAction {\n");
-            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
+            sb.Append("  ActualInstance: ").Append(ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -205,7 +205,7 @@ namespace Bandwidth.Standard.Model
         /// <returns>JSON string presentation of the object</returns>
         public override string ToJson()
         {
-            return JsonConvert.SerializeObject(this.ActualInstance, MultiChannelAction.SerializerSettings);
+            return JsonConvert.SerializeObject(ActualInstance, MultiChannelAction.SerializerSettings);
         }
 
         /// <summary>
@@ -221,22 +221,12 @@ namespace Bandwidth.Standard.Model
             {
                 return newMultiChannelAction;
             }
-            int match = 0;
-            List<string> matchedTypes = new List<string>();
 
             try
             {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(MultiChannelActionCalendarEvent).GetProperty("AdditionalProperties") == null)
-                {
-                    newMultiChannelAction = new MultiChannelAction(JsonConvert.DeserializeObject<MultiChannelActionCalendarEvent>(jsonString, MultiChannelAction.SerializerSettings));
-                }
-                else
-                {
-                    newMultiChannelAction = new MultiChannelAction(JsonConvert.DeserializeObject<MultiChannelActionCalendarEvent>(jsonString, MultiChannelAction.AdditionalPropertiesSerializerSettings));
-                }
-                matchedTypes.Add("MultiChannelActionCalendarEvent");
-                match++;
+                newMultiChannelAction = new MultiChannelAction(JsonConvert.DeserializeObject<MultiChannelActionCalendarEvent>(jsonString, MultiChannelAction.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newMultiChannelAction;
             }
             catch (Exception exception)
             {
@@ -246,17 +236,9 @@ namespace Bandwidth.Standard.Model
 
             try
             {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(RbmActionBase).GetProperty("AdditionalProperties") == null)
-                {
-                    newMultiChannelAction = new MultiChannelAction(JsonConvert.DeserializeObject<RbmActionBase>(jsonString, MultiChannelAction.SerializerSettings));
-                }
-                else
-                {
-                    newMultiChannelAction = new MultiChannelAction(JsonConvert.DeserializeObject<RbmActionBase>(jsonString, MultiChannelAction.AdditionalPropertiesSerializerSettings));
-                }
-                matchedTypes.Add("RbmActionBase");
-                match++;
+                newMultiChannelAction = new MultiChannelAction(JsonConvert.DeserializeObject<RbmActionBase>(jsonString, MultiChannelAction.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newMultiChannelAction;
             }
             catch (Exception exception)
             {
@@ -266,17 +248,9 @@ namespace Bandwidth.Standard.Model
 
             try
             {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(RbmActionDial).GetProperty("AdditionalProperties") == null)
-                {
-                    newMultiChannelAction = new MultiChannelAction(JsonConvert.DeserializeObject<RbmActionDial>(jsonString, MultiChannelAction.SerializerSettings));
-                }
-                else
-                {
-                    newMultiChannelAction = new MultiChannelAction(JsonConvert.DeserializeObject<RbmActionDial>(jsonString, MultiChannelAction.AdditionalPropertiesSerializerSettings));
-                }
-                matchedTypes.Add("RbmActionDial");
-                match++;
+                newMultiChannelAction = new MultiChannelAction(JsonConvert.DeserializeObject<RbmActionDial>(jsonString, MultiChannelAction.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newMultiChannelAction;
             }
             catch (Exception exception)
             {
@@ -286,17 +260,9 @@ namespace Bandwidth.Standard.Model
 
             try
             {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(RbmActionOpenUrl).GetProperty("AdditionalProperties") == null)
-                {
-                    newMultiChannelAction = new MultiChannelAction(JsonConvert.DeserializeObject<RbmActionOpenUrl>(jsonString, MultiChannelAction.SerializerSettings));
-                }
-                else
-                {
-                    newMultiChannelAction = new MultiChannelAction(JsonConvert.DeserializeObject<RbmActionOpenUrl>(jsonString, MultiChannelAction.AdditionalPropertiesSerializerSettings));
-                }
-                matchedTypes.Add("RbmActionOpenUrl");
-                match++;
+                newMultiChannelAction = new MultiChannelAction(JsonConvert.DeserializeObject<RbmActionOpenUrl>(jsonString, MultiChannelAction.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newMultiChannelAction;
             }
             catch (Exception exception)
             {
@@ -306,17 +272,9 @@ namespace Bandwidth.Standard.Model
 
             try
             {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(RbmActionViewLocation).GetProperty("AdditionalProperties") == null)
-                {
-                    newMultiChannelAction = new MultiChannelAction(JsonConvert.DeserializeObject<RbmActionViewLocation>(jsonString, MultiChannelAction.SerializerSettings));
-                }
-                else
-                {
-                    newMultiChannelAction = new MultiChannelAction(JsonConvert.DeserializeObject<RbmActionViewLocation>(jsonString, MultiChannelAction.AdditionalPropertiesSerializerSettings));
-                }
-                matchedTypes.Add("RbmActionViewLocation");
-                match++;
+                newMultiChannelAction = new MultiChannelAction(JsonConvert.DeserializeObject<RbmActionViewLocation>(jsonString, MultiChannelAction.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return newMultiChannelAction;
             }
             catch (Exception exception)
             {
@@ -324,19 +282,9 @@ namespace Bandwidth.Standard.Model
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into RbmActionViewLocation: {1}", jsonString, exception.ToString()));
             }
 
-            if (match == 0)
-            {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
-            }
-            else if (match > 1)
-            {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + String.Join(",", matchedTypes));
-            }
-
-            // deserialization is considered successful at this point if no exception has been thrown.
-            return newMultiChannelAction;
+            // no match found, throw an exception
+            throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
         }
-
 
         /// <summary>
         /// To validate all properties of the instance

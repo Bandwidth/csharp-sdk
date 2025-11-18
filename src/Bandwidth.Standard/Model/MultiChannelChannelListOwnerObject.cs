@@ -27,37 +27,36 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// RbmSuggestionResponse
+    /// MultiChannelChannelListOwnerObject
     /// </summary>
-    [DataContract(Name = "rbmSuggestionResponse")]
-    public partial class RbmSuggestionResponse : IValidatableObject
+    [DataContract(Name = "multiChannelChannelListOwnerObject")]
+    public partial class MultiChannelChannelListOwnerObject : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RbmSuggestionResponse" /> class.
+        /// Initializes a new instance of the <see cref="MultiChannelChannelListOwnerObject" /> class.
         /// </summary>
-        /// <param name="text">The text associated with the suggestion response..</param>
-        /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked..</param>
-        public RbmSuggestionResponse(string text = default(string), byte[] postbackData = default(byte[]))
+        [JsonConstructorAttribute]
+        protected MultiChannelChannelListOwnerObject() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiChannelChannelListOwnerObject" /> class.
+        /// </summary>
+        /// <param name="owner">The Bandwidth senderId associated with the message. Identical to &#39;from&#39;. (required).</param>
+        public MultiChannelChannelListOwnerObject(string owner = default(string))
         {
-            this.Text = text;
-            this.PostbackData = postbackData;
+            // to ensure "owner" is required (not null)
+            if (owner == null)
+            {
+                throw new ArgumentNullException("owner is a required property for MultiChannelChannelListOwnerObject and cannot be null");
+            }
+            this.Owner = owner;
         }
 
         /// <summary>
-        /// The text associated with the suggestion response.
+        /// The Bandwidth senderId associated with the message. Identical to &#39;from&#39;.
         /// </summary>
-        /// <value>The text associated with the suggestion response.</value>
-        /// <example>Yes, I would like to proceed</example>
-        [DataMember(Name = "text", EmitDefaultValue = false)]
-        public string Text { get; set; }
-
-        /// <summary>
-        /// Base64 payload the customer receives when the reply is clicked.
-        /// </summary>
-        /// <value>Base64 payload the customer receives when the reply is clicked.</value>
-        /// <example>[B@1942a36e</example>
-        [DataMember(Name = "postbackData", EmitDefaultValue = false)]
-        public byte[] PostbackData { get; set; }
+        /// <value>The Bandwidth senderId associated with the message. Identical to &#39;from&#39;.</value>
+        [DataMember(Name = "owner", IsRequired = true, EmitDefaultValue = true)]
+        public string Owner { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,9 +65,8 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RbmSuggestionResponse {\n");
-            sb.Append("  Text: ").Append(Text).Append("\n");
-            sb.Append("  PostbackData: ").Append(PostbackData).Append("\n");
+            sb.Append("class MultiChannelChannelListOwnerObject {\n");
+            sb.Append("  Owner: ").Append(Owner).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -89,12 +87,6 @@ namespace Bandwidth.Standard.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // PostbackData (byte[]) maxLength
-            if (this.PostbackData != null && this.PostbackData.Length > 2048)
-            {
-                yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new [] { "PostbackData" });
-            }
-
             yield break;
         }
     }
