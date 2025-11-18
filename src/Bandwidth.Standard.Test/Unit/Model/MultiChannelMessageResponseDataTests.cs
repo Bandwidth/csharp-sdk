@@ -20,7 +20,7 @@ using Bandwidth.Standard.Client;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace Bandwidth.Standard.Test.Model
+namespace Bandwidth.Standard.Test.Unit.Model
 {
     /// <summary>
     ///  Class for testing MultiChannelMessageResponseData
@@ -40,7 +40,7 @@ namespace Bandwidth.Standard.Test.Model
                 time: DateTime.Now,
                 direction: MessageDirectionEnum.In,
                 to: new List<string> { "+15551234567" },
-                channelList: new List<MultiChannelMessageResponseDataChannelListInner>{},
+                channelList: new List<MultiChannelChannelListResponseObject>{},
                 tag: "test-tag",
                 priority: PriorityEnum.Default,
                 expiration: DateTime.UtcNow.AddHours(1)
@@ -107,7 +107,7 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void ChannelListTest()
         {
-            Assert.IsType<List<MultiChannelMessageResponseDataChannelListInner>>(instance.ChannelList);
+            Assert.IsType<List<MultiChannelChannelListResponseObject>>(instance.ChannelList);
         }
 
         /// <summary>

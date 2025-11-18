@@ -87,7 +87,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void StatusTest()
         {
-            Assert.IsType<InProgressLookupStatusEnum>(instance.Status);
+            Assert.IsType<CompletedLookupStatusEnum>(instance.Status);
             Assert.Equal(CompletedLookupStatusEnum.COMPLETE, instance.Status);
         }
 
