@@ -20,7 +20,7 @@ using Bandwidth.Standard.Client;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace Bandwidth.Standard.Test.Model
+namespace Bandwidth.Standard.Test.Unit.Model
 {
     /// <summary>
     ///  Class for testing CreateSyncLookupResponseData
@@ -87,7 +87,7 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void StatusTest()
         {
-            Assert.IsType<InProgressLookupStatusEnum>(instance.Status);
+            Assert.IsType<CompletedLookupStatusEnum>(instance.Status);
             Assert.Equal(CompletedLookupStatusEnum.COMPLETE, instance.Status);
         }
 

@@ -27,10 +27,10 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// MultiChannelChannelListObject
+    /// MultiChannelChannelListMMSObject
     /// </summary>
-    [DataContract(Name = "multiChannelChannelListObject")]
-    public partial class MultiChannelChannelListObject : IValidatableObject
+    [DataContract(Name = "multiChannelChannelListMMSObject")]
+    public partial class MultiChannelChannelListMMSObject : IValidatableObject
     {
 
         /// <summary>
@@ -39,36 +39,36 @@ namespace Bandwidth.Standard.Model
         [DataMember(Name = "channel", IsRequired = true, EmitDefaultValue = true)]
         public MultiChannelMessageChannelEnum Channel { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="MultiChannelChannelListObject" /> class.
+        /// Initializes a new instance of the <see cref="MultiChannelChannelListMMSObject" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected MultiChannelChannelListObject() { }
+        protected MultiChannelChannelListMMSObject() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="MultiChannelChannelListObject" /> class.
+        /// Initializes a new instance of the <see cref="MultiChannelChannelListMMSObject" /> class.
         /// </summary>
         /// <param name="from">The sender ID of the message. This could be an alphanumeric sender ID. (required).</param>
         /// <param name="applicationId">The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard. (required).</param>
         /// <param name="channel">channel (required).</param>
         /// <param name="content">content (required).</param>
-        public MultiChannelChannelListObject(string from = default(string), string applicationId = default(string), MultiChannelMessageChannelEnum channel = default(MultiChannelMessageChannelEnum), MultiChannelChannelListObjectContent content = default(MultiChannelChannelListObjectContent))
+        public MultiChannelChannelListMMSObject(string from = default(string), string applicationId = default(string), MultiChannelMessageChannelEnum channel = default(MultiChannelMessageChannelEnum), MmsMessageContent content = default(MmsMessageContent))
         {
             // to ensure "from" is required (not null)
             if (from == null)
             {
-                throw new ArgumentNullException("from is a required property for MultiChannelChannelListObject and cannot be null");
+                throw new ArgumentNullException("from is a required property for MultiChannelChannelListMMSObject and cannot be null");
             }
             this.From = from;
             // to ensure "applicationId" is required (not null)
             if (applicationId == null)
             {
-                throw new ArgumentNullException("applicationId is a required property for MultiChannelChannelListObject and cannot be null");
+                throw new ArgumentNullException("applicationId is a required property for MultiChannelChannelListMMSObject and cannot be null");
             }
             this.ApplicationId = applicationId;
             this.Channel = channel;
             // to ensure "content" is required (not null)
             if (content == null)
             {
-                throw new ArgumentNullException("content is a required property for MultiChannelChannelListObject and cannot be null");
+                throw new ArgumentNullException("content is a required property for MultiChannelChannelListMMSObject and cannot be null");
             }
             this.Content = content;
         }
@@ -93,7 +93,7 @@ namespace Bandwidth.Standard.Model
         /// Gets or Sets Content
         /// </summary>
         [DataMember(Name = "content", IsRequired = true, EmitDefaultValue = true)]
-        public MultiChannelChannelListObjectContent Content { get; set; }
+        public MmsMessageContent Content { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -102,7 +102,7 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class MultiChannelChannelListObject {\n");
+            sb.Append("class MultiChannelChannelListMMSObject {\n");
             sb.Append("  From: ").Append(From).Append("\n");
             sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
             sb.Append("  Channel: ").Append(Channel).Append("\n");

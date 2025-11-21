@@ -20,7 +20,7 @@ using Bandwidth.Standard.Client;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace Bandwidth.Standard.Test.Model
+namespace Bandwidth.Standard.Test.Unit.Model
 {
     /// <summary>
     ///  Class for testing MultiChannelMessageContent
@@ -73,7 +73,7 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void MediaTest()
         {
-            Assert.IsType<MmsMessageContentFile>(instance.Media);
+            Assert.IsType<RbmMessageContentFile>(instance.Media);
             Assert.Equal("https://example.com/file.jpg", instance.Media.FileUrl);
         }
     }

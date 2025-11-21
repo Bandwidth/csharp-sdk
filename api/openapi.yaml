@@ -8997,6 +8997,12 @@ components:
       maxItems: 11
       type: array
     multiChannelAction:
+      anyOf:
+      - $ref: '#/components/schemas/rbmActionBase'
+      - $ref: '#/components/schemas/rbmActionDial'
+      - $ref: '#/components/schemas/rbmActionViewLocation'
+      - $ref: '#/components/schemas/multiChannelActionCalendarEvent'
+      - $ref: '#/components/schemas/rbmActionOpenUrl'
       discriminator:
         mapping:
           REPLY: '#/components/schemas/rbmActionBase'
@@ -9006,13 +9012,7 @@ components:
           OPEN_URL: '#/components/schemas/rbmActionOpenUrl'
           REQUEST_LOCATION: '#/components/schemas/rbmActionBase'
         propertyName: type
-      oneOf:
-      - $ref: '#/components/schemas/rbmActionBase'
-      - $ref: '#/components/schemas/rbmActionDial'
-      - $ref: '#/components/schemas/rbmActionViewLocation'
-      - $ref: '#/components/schemas/multiChannelActionCalendarEvent'
-      - $ref: '#/components/schemas/rbmActionOpenUrl'
-    multiChannelChannelListObject:
+    multiChannelChannelListObjectBase:
       properties:
         from:
           description: The sender ID of the message. This could be an alphanumeric
@@ -9026,14 +9026,109 @@ components:
           type: string
         channel:
           $ref: '#/components/schemas/multiChannelMessageChannelEnum'
-        content:
-          $ref: '#/components/schemas/multiChannelChannelListObject_content'
       required:
       - applicationId
       - channel
-      - content
       - from
       type: object
+    multiChannelChannelListRBMObject:
+      allOf:
+      - $ref: '#/components/schemas/multiChannelChannelListObjectBase'
+      - properties:
+          content:
+            $ref: '#/components/schemas/multiChannelChannelListRBMObject_allOf_content'
+        type: object
+      required:
+      - content
+    multiChannelChannelListSMSObject:
+      allOf:
+      - $ref: '#/components/schemas/multiChannelChannelListObjectBase'
+      - properties:
+          content:
+            $ref: '#/components/schemas/smsMessageContent'
+        type: object
+      required:
+      - content
+    multiChannelChannelListMMSObject:
+      allOf:
+      - $ref: '#/components/schemas/multiChannelChannelListObjectBase'
+      - properties:
+          content:
+            $ref: '#/components/schemas/mmsMessageContent'
+        type: object
+      required:
+      - content
+    multiChannelChannelListRBMResponseObject:
+      allOf:
+      - $ref: '#/components/schemas/multiChannelChannelListRBMObject'
+      - $ref: '#/components/schemas/multiChannelChannelListOwnerObject'
+      example:
+        owner: owner
+        channel: RBM
+        from: BandwidthRBM
+        applicationId: 93de2206-9669-4e07-948d-329f4b722ee2
+        content:
+          suggestions:
+          - postbackData: !!binary |-
+              U0dWc2JHOGdkMjl5YkdRPQ==
+            text: Hello world
+            type: REPLY
+          - postbackData: !!binary |-
+              U0dWc2JHOGdkMjl5YkdRPQ==
+            text: Hello world
+            type: REPLY
+          - postbackData: !!binary |-
+              U0dWc2JHOGdkMjl5YkdRPQ==
+            text: Hello world
+            type: REPLY
+          - postbackData: !!binary |-
+              U0dWc2JHOGdkMjl5YkdRPQ==
+            text: Hello world
+            type: REPLY
+          - postbackData: !!binary |-
+              U0dWc2JHOGdkMjl5YkdRPQ==
+            text: Hello world
+            type: REPLY
+          text: Hello world
+    multiChannelChannelListSMSResponseObject:
+      allOf:
+      - $ref: '#/components/schemas/multiChannelChannelListSMSObject'
+      - $ref: '#/components/schemas/multiChannelChannelListOwnerObject'
+    multiChannelChannelListMMSResponseObject:
+      allOf:
+      - $ref: '#/components/schemas/multiChannelChannelListMMSObject'
+      - $ref: '#/components/schemas/multiChannelChannelListOwnerObject'
+    multiChannelChannelListRequestObject:
+      anyOf:
+      - $ref: '#/components/schemas/multiChannelChannelListRBMObject'
+      - $ref: '#/components/schemas/multiChannelChannelListSMSObject'
+      - $ref: '#/components/schemas/multiChannelChannelListMMSObject'
+      discriminator:
+        mapping:
+          RBM: '#/components/schemas/multiChannelChannelListRBMObject'
+          SMS: '#/components/schemas/multiChannelChannelListSMSObject'
+          MMS: '#/components/schemas/multiChannelChannelListMMSObject'
+        propertyName: channel
+    multiChannelChannelListOwnerObject:
+      properties:
+        owner:
+          description: The Bandwidth senderId associated with the message. Identical
+            to 'from'.
+          type: string
+      required:
+      - owner
+      type: object
+    multiChannelChannelListResponseObject:
+      anyOf:
+      - $ref: '#/components/schemas/multiChannelChannelListRBMResponseObject'
+      - $ref: '#/components/schemas/multiChannelChannelListSMSResponseObject'
+      - $ref: '#/components/schemas/multiChannelChannelListMMSResponseObject'
+      discriminator:
+        mapping:
+          RBM: '#/components/schemas/multiChannelChannelListRBMResponseObject'
+          SMS: '#/components/schemas/multiChannelChannelListSMSResponseObject'
+          MMS: '#/components/schemas/multiChannelChannelListMMSResponseObject'
+        propertyName: channel
     multiChannelMessageRequest:
       description: Multi-Channel Message Request
       properties:
@@ -9046,7 +9141,7 @@ components:
             \ the order they are listed. Once a message sends successfully, the others\
             \ will be ignored."
           items:
-            $ref: '#/components/schemas/multiChannelChannelListObject'
+            $ref: '#/components/schemas/multiChannelChannelListRequestObject'
           maxItems: 4
           type: array
         tag:
@@ -9213,7 +9308,7 @@ components:
             \ the order they are listed. Once a message sends successfully, the others\
             \ will be ignored."
           items:
-            $ref: '#/components/schemas/multiChannelMessageResponseData_channelList_inner'
+            $ref: '#/components/schemas/multiChannelChannelListResponseObject'
           maxItems: 4
           type: array
         tag:
@@ -14549,53 +14644,12 @@ components:
         type: object
       required:
       - height
-    multiChannelChannelListObject_content:
+    multiChannelChannelListRBMObject_allOf_content:
       description: The content of the message.
       oneOf:
       - $ref: '#/components/schemas/rbmMessageContentText'
       - $ref: '#/components/schemas/rbmMessageMedia'
       - $ref: '#/components/schemas/rbmMessageContentRichCard'
-      - $ref: '#/components/schemas/smsMessageContent'
-      - $ref: '#/components/schemas/mmsMessageContent'
-    multiChannelMessageResponseData_channelList_inner:
-      allOf:
-      - $ref: '#/components/schemas/multiChannelChannelListObject'
-      - properties:
-          owner:
-            description: The Bandwidth senderId associated with the message. Identical
-              to 'from'.
-            type: string
-        required:
-        - owner
-        type: object
-      example:
-        owner: owner
-        channel: RBM
-        from: BandwidthRBM
-        applicationId: 93de2206-9669-4e07-948d-329f4b722ee2
-        content:
-          suggestions:
-          - postbackData: !!binary |-
-              U0dWc2JHOGdkMjl5YkdRPQ==
-            text: Hello world
-            type: REPLY
-          - postbackData: !!binary |-
-              U0dWc2JHOGdkMjl5YkdRPQ==
-            text: Hello world
-            type: REPLY
-          - postbackData: !!binary |-
-              U0dWc2JHOGdkMjl5YkdRPQ==
-            text: Hello world
-            type: REPLY
-          - postbackData: !!binary |-
-              U0dWc2JHOGdkMjl5YkdRPQ==
-            text: Hello world
-            type: REPLY
-          - postbackData: !!binary |-
-              U0dWc2JHOGdkMjl5YkdRPQ==
-            text: Hello world
-            type: REPLY
-          text: Hello world
     lookupErrorSchema_meta:
       example:
         code: 1001

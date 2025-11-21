@@ -20,7 +20,7 @@ using Bandwidth.Standard.Client;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace Bandwidth.Standard.Test.Model
+namespace Bandwidth.Standard.Test.Unit.Model
 {
     /// <summary>
     ///  Class for testing GetAsyncBulkLookupResponse
@@ -63,7 +63,11 @@ namespace Bandwidth.Standard.Test.Model
             errors = new List<LookupErrorSchema> {
                 new LookupErrorSchema(code: "1234", description: "Bad Request")
             };
-            instance = new GetAsyncBulkLookupResponse();
+            instance = new GetAsyncBulkLookupResponse(
+                links: links,
+                data: data,
+                errors: errors
+            );
         }
 
         public void Dispose()
@@ -96,7 +100,7 @@ namespace Bandwidth.Standard.Test.Model
         [Fact]
         public void DataTest()
         {
-            Assert.IsType<CreateSyncLookupResponseData>(instance.Data);
+            Assert.IsType<GetAsyncBulkLookupResponseData>(instance.Data);
             Assert.Equal(data, instance.Data);
         }
 

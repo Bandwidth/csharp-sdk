@@ -30,16 +30,16 @@ namespace Bandwidth.Standard.Model
     /// <summary>
     /// The content of the message.
     /// </summary>
-    [JsonConverter(typeof(MultiChannelChannelListObjectContentJsonConverter))]
-    [DataContract(Name = "multiChannelChannelListObject_content")]
-    public partial class MultiChannelChannelListObjectContent : AbstractOpenAPISchema, IValidatableObject
+    [JsonConverter(typeof(MultiChannelChannelListRBMObjectAllOfContentJsonConverter))]
+    [DataContract(Name = "multiChannelChannelListRBMObject_allOf_content")]
+    public partial class MultiChannelChannelListRBMObjectAllOfContent : AbstractOpenAPISchema, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MultiChannelChannelListObjectContent" /> class
+        /// Initializes a new instance of the <see cref="MultiChannelChannelListRBMObjectAllOfContent" /> class
         /// with the <see cref="RbmMessageContentText" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of RbmMessageContentText.</param>
-        public MultiChannelChannelListObjectContent(RbmMessageContentText actualInstance)
+        public MultiChannelChannelListRBMObjectAllOfContent(RbmMessageContentText actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -47,11 +47,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MultiChannelChannelListObjectContent" /> class
+        /// Initializes a new instance of the <see cref="MultiChannelChannelListRBMObjectAllOfContent" /> class
         /// with the <see cref="RbmMessageMedia" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of RbmMessageMedia.</param>
-        public MultiChannelChannelListObjectContent(RbmMessageMedia actualInstance)
+        public MultiChannelChannelListRBMObjectAllOfContent(RbmMessageMedia actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -59,35 +59,11 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MultiChannelChannelListObjectContent" /> class
+        /// Initializes a new instance of the <see cref="MultiChannelChannelListRBMObjectAllOfContent" /> class
         /// with the <see cref="RbmMessageContentRichCard" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of RbmMessageContentRichCard.</param>
-        public MultiChannelChannelListObjectContent(RbmMessageContentRichCard actualInstance)
-        {
-            this.IsNullable = false;
-            this.SchemaType= "oneOf";
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MultiChannelChannelListObjectContent" /> class
-        /// with the <see cref="SmsMessageContent" /> class
-        /// </summary>
-        /// <param name="actualInstance">An instance of SmsMessageContent.</param>
-        public MultiChannelChannelListObjectContent(SmsMessageContent actualInstance)
-        {
-            this.IsNullable = false;
-            this.SchemaType= "oneOf";
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MultiChannelChannelListObjectContent" /> class
-        /// with the <see cref="MmsMessageContent" /> class
-        /// </summary>
-        /// <param name="actualInstance">An instance of MmsMessageContent.</param>
-        public MultiChannelChannelListObjectContent(MmsMessageContent actualInstance)
+        public MultiChannelChannelListRBMObjectAllOfContent(RbmMessageContentRichCard actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -108,11 +84,7 @@ namespace Bandwidth.Standard.Model
             }
             set
             {
-                if (value.GetType() == typeof(MmsMessageContent) || value is MmsMessageContent)
-                {
-                    this._actualInstance = value;
-                }
-                else if (value.GetType() == typeof(RbmMessageContentRichCard) || value is RbmMessageContentRichCard)
+                if (value.GetType() == typeof(RbmMessageContentRichCard) || value is RbmMessageContentRichCard)
                 {
                     this._actualInstance = value;
                 }
@@ -124,13 +96,9 @@ namespace Bandwidth.Standard.Model
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(SmsMessageContent) || value is SmsMessageContent)
-                {
-                    this._actualInstance = value;
-                }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: MmsMessageContent, RbmMessageContentRichCard, RbmMessageContentText, RbmMessageMedia, SmsMessageContent");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: RbmMessageContentRichCard, RbmMessageContentText, RbmMessageMedia");
                 }
             }
         }
@@ -166,33 +134,13 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// Get the actual instance of `SmsMessageContent`. If the actual instance is not `SmsMessageContent`,
-        /// the InvalidClassException will be thrown
-        /// </summary>
-        /// <returns>An instance of SmsMessageContent</returns>
-        public SmsMessageContent GetSmsMessageContent()
-        {
-            return (SmsMessageContent)this.ActualInstance;
-        }
-
-        /// <summary>
-        /// Get the actual instance of `MmsMessageContent`. If the actual instance is not `MmsMessageContent`,
-        /// the InvalidClassException will be thrown
-        /// </summary>
-        /// <returns>An instance of MmsMessageContent</returns>
-        public MmsMessageContent GetMmsMessageContent()
-        {
-            return (MmsMessageContent)this.ActualInstance;
-        }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class MultiChannelChannelListObjectContent {\n");
+            sb.Append("class MultiChannelChannelListRBMObjectAllOfContent {\n");
             sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -204,21 +152,21 @@ namespace Bandwidth.Standard.Model
         /// <returns>JSON string presentation of the object</returns>
         public override string ToJson()
         {
-            return JsonConvert.SerializeObject(this.ActualInstance, MultiChannelChannelListObjectContent.SerializerSettings);
+            return JsonConvert.SerializeObject(this.ActualInstance, MultiChannelChannelListRBMObjectAllOfContent.SerializerSettings);
         }
 
         /// <summary>
-        /// Converts the JSON string into an instance of MultiChannelChannelListObjectContent
+        /// Converts the JSON string into an instance of MultiChannelChannelListRBMObjectAllOfContent
         /// </summary>
         /// <param name="jsonString">JSON string</param>
-        /// <returns>An instance of MultiChannelChannelListObjectContent</returns>
-        public static MultiChannelChannelListObjectContent FromJson(string jsonString)
+        /// <returns>An instance of MultiChannelChannelListRBMObjectAllOfContent</returns>
+        public static MultiChannelChannelListRBMObjectAllOfContent FromJson(string jsonString)
         {
-            MultiChannelChannelListObjectContent newMultiChannelChannelListObjectContent = null;
+            MultiChannelChannelListRBMObjectAllOfContent newMultiChannelChannelListRBMObjectAllOfContent = null;
 
             if (string.IsNullOrEmpty(jsonString))
             {
-                return newMultiChannelChannelListObjectContent;
+                return newMultiChannelChannelListRBMObjectAllOfContent;
             }
             int match = 0;
             List<string> matchedTypes = new List<string>();
@@ -226,33 +174,13 @@ namespace Bandwidth.Standard.Model
             try
             {
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(MmsMessageContent).GetProperty("AdditionalProperties") == null)
-                {
-                    newMultiChannelChannelListObjectContent = new MultiChannelChannelListObjectContent(JsonConvert.DeserializeObject<MmsMessageContent>(jsonString, MultiChannelChannelListObjectContent.SerializerSettings));
-                }
-                else
-                {
-                    newMultiChannelChannelListObjectContent = new MultiChannelChannelListObjectContent(JsonConvert.DeserializeObject<MmsMessageContent>(jsonString, MultiChannelChannelListObjectContent.AdditionalPropertiesSerializerSettings));
-                }
-                matchedTypes.Add("MmsMessageContent");
-                match++;
-            }
-            catch (Exception exception)
-            {
-                // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into MmsMessageContent: {1}", jsonString, exception.ToString()));
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(RbmMessageContentRichCard).GetProperty("AdditionalProperties") == null)
                 {
-                    newMultiChannelChannelListObjectContent = new MultiChannelChannelListObjectContent(JsonConvert.DeserializeObject<RbmMessageContentRichCard>(jsonString, MultiChannelChannelListObjectContent.SerializerSettings));
+                    newMultiChannelChannelListRBMObjectAllOfContent = new MultiChannelChannelListRBMObjectAllOfContent(JsonConvert.DeserializeObject<RbmMessageContentRichCard>(jsonString, MultiChannelChannelListRBMObjectAllOfContent.SerializerSettings));
                 }
                 else
                 {
-                    newMultiChannelChannelListObjectContent = new MultiChannelChannelListObjectContent(JsonConvert.DeserializeObject<RbmMessageContentRichCard>(jsonString, MultiChannelChannelListObjectContent.AdditionalPropertiesSerializerSettings));
+                    newMultiChannelChannelListRBMObjectAllOfContent = new MultiChannelChannelListRBMObjectAllOfContent(JsonConvert.DeserializeObject<RbmMessageContentRichCard>(jsonString, MultiChannelChannelListRBMObjectAllOfContent.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("RbmMessageContentRichCard");
                 match++;
@@ -268,11 +196,11 @@ namespace Bandwidth.Standard.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(RbmMessageContentText).GetProperty("AdditionalProperties") == null)
                 {
-                    newMultiChannelChannelListObjectContent = new MultiChannelChannelListObjectContent(JsonConvert.DeserializeObject<RbmMessageContentText>(jsonString, MultiChannelChannelListObjectContent.SerializerSettings));
+                    newMultiChannelChannelListRBMObjectAllOfContent = new MultiChannelChannelListRBMObjectAllOfContent(JsonConvert.DeserializeObject<RbmMessageContentText>(jsonString, MultiChannelChannelListRBMObjectAllOfContent.SerializerSettings));
                 }
                 else
                 {
-                    newMultiChannelChannelListObjectContent = new MultiChannelChannelListObjectContent(JsonConvert.DeserializeObject<RbmMessageContentText>(jsonString, MultiChannelChannelListObjectContent.AdditionalPropertiesSerializerSettings));
+                    newMultiChannelChannelListRBMObjectAllOfContent = new MultiChannelChannelListRBMObjectAllOfContent(JsonConvert.DeserializeObject<RbmMessageContentText>(jsonString, MultiChannelChannelListRBMObjectAllOfContent.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("RbmMessageContentText");
                 match++;
@@ -288,11 +216,11 @@ namespace Bandwidth.Standard.Model
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(RbmMessageMedia).GetProperty("AdditionalProperties") == null)
                 {
-                    newMultiChannelChannelListObjectContent = new MultiChannelChannelListObjectContent(JsonConvert.DeserializeObject<RbmMessageMedia>(jsonString, MultiChannelChannelListObjectContent.SerializerSettings));
+                    newMultiChannelChannelListRBMObjectAllOfContent = new MultiChannelChannelListRBMObjectAllOfContent(JsonConvert.DeserializeObject<RbmMessageMedia>(jsonString, MultiChannelChannelListRBMObjectAllOfContent.SerializerSettings));
                 }
                 else
                 {
-                    newMultiChannelChannelListObjectContent = new MultiChannelChannelListObjectContent(JsonConvert.DeserializeObject<RbmMessageMedia>(jsonString, MultiChannelChannelListObjectContent.AdditionalPropertiesSerializerSettings));
+                    newMultiChannelChannelListRBMObjectAllOfContent = new MultiChannelChannelListRBMObjectAllOfContent(JsonConvert.DeserializeObject<RbmMessageMedia>(jsonString, MultiChannelChannelListRBMObjectAllOfContent.AdditionalPropertiesSerializerSettings));
                 }
                 matchedTypes.Add("RbmMessageMedia");
                 match++;
@@ -301,26 +229,6 @@ namespace Bandwidth.Standard.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into RbmMessageMedia: {1}", jsonString, exception.ToString()));
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(SmsMessageContent).GetProperty("AdditionalProperties") == null)
-                {
-                    newMultiChannelChannelListObjectContent = new MultiChannelChannelListObjectContent(JsonConvert.DeserializeObject<SmsMessageContent>(jsonString, MultiChannelChannelListObjectContent.SerializerSettings));
-                }
-                else
-                {
-                    newMultiChannelChannelListObjectContent = new MultiChannelChannelListObjectContent(JsonConvert.DeserializeObject<SmsMessageContent>(jsonString, MultiChannelChannelListObjectContent.AdditionalPropertiesSerializerSettings));
-                }
-                matchedTypes.Add("SmsMessageContent");
-                match++;
-            }
-            catch (Exception exception)
-            {
-                // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into SmsMessageContent: {1}", jsonString, exception.ToString()));
             }
 
             if (match == 0)
@@ -333,7 +241,7 @@ namespace Bandwidth.Standard.Model
             }
 
             // deserialization is considered successful at this point if no exception has been thrown.
-            return newMultiChannelChannelListObjectContent;
+            return newMultiChannelChannelListRBMObjectAllOfContent;
         }
 
 
@@ -349,9 +257,9 @@ namespace Bandwidth.Standard.Model
     }
 
     /// <summary>
-    /// Custom JSON converter for MultiChannelChannelListObjectContent
+    /// Custom JSON converter for MultiChannelChannelListRBMObjectAllOfContent
     /// </summary>
-    public class MultiChannelChannelListObjectContentJsonConverter : JsonConverter
+    public class MultiChannelChannelListRBMObjectAllOfContentJsonConverter : JsonConverter
     {
         /// <summary>
         /// To write the JSON string
@@ -361,7 +269,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="serializer">JSON Serializer</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteRawValue((string)(typeof(MultiChannelChannelListObjectContent).GetMethod("ToJson").Invoke(value, null)));
+            writer.WriteRawValue((string)(typeof(MultiChannelChannelListRBMObjectAllOfContent).GetMethod("ToJson").Invoke(value, null)));
         }
 
         /// <summary>
@@ -377,9 +285,9 @@ namespace Bandwidth.Standard.Model
             switch(reader.TokenType) 
             {
                 case JsonToken.StartObject:
-                    return MultiChannelChannelListObjectContent.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                    return MultiChannelChannelListRBMObjectAllOfContent.FromJson(JObject.Load(reader).ToString(Formatting.None));
                 case JsonToken.StartArray:
-                    return MultiChannelChannelListObjectContent.FromJson(JArray.Load(reader).ToString(Formatting.None));
+                    return MultiChannelChannelListRBMObjectAllOfContent.FromJson(JArray.Load(reader).ToString(Formatting.None));
                 default:
                     return null;
             }
