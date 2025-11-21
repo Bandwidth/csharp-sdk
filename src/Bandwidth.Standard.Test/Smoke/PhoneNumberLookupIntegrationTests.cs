@@ -82,7 +82,7 @@ namespace Bandwidth.Standard.Test.Smoke
             Assert.IsType<InProgressLookupStatusEnum>(createData.Status);
             requestId = createData.RequestId;
 
-            Thread.Sleep(10000);
+            Thread.Sleep(30000);
 
             var getResponse = instance.GetAsyncBulkLookupWithHttpInfo(accountId, requestId);
             Assert.IsType<ApiResponse<GetAsyncBulkLookupResponse>>(getResponse);
