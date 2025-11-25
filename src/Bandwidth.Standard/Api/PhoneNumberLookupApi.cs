@@ -29,59 +29,80 @@ namespace Bandwidth.Standard.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Create Lookup
+        /// Create Asynchronous Bulk Number Lookup
         /// </summary>
         /// <remarks>
-        /// Create a Phone Number Lookup Request.
+        /// Creates an asynchronous bulk phone number lookup request. Maximum of 15,000 telephone numbers per request. Use the [Get Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/getAsyncBulkLookup) endpoint to check the status of the request and view the results.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="lookupRequest">Phone number lookup request.</param>
+        /// <param name="accountId"></param>
+        /// <param name="asyncLookupRequest">Asynchronous bulk phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>CreateLookupResponse</returns>
-        [Obsolete]
-        CreateLookupResponse CreateLookup(string accountId, LookupRequest lookupRequest, int operationIndex = 0);
+        /// <returns>CreateAsyncBulkLookupResponse</returns>
+        CreateAsyncBulkLookupResponse CreateAsyncBulkLookup(string accountId, AsyncLookupRequest asyncLookupRequest, int operationIndex = 0);
 
         /// <summary>
-        /// Create Lookup
+        /// Create Asynchronous Bulk Number Lookup
         /// </summary>
         /// <remarks>
-        /// Create a Phone Number Lookup Request.
+        /// Creates an asynchronous bulk phone number lookup request. Maximum of 15,000 telephone numbers per request. Use the [Get Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/getAsyncBulkLookup) endpoint to check the status of the request and view the results.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="lookupRequest">Phone number lookup request.</param>
+        /// <param name="accountId"></param>
+        /// <param name="asyncLookupRequest">Asynchronous bulk phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of CreateLookupResponse</returns>
-        [Obsolete]
-        ApiResponse<CreateLookupResponse> CreateLookupWithHttpInfo(string accountId, LookupRequest lookupRequest, int operationIndex = 0);
+        /// <returns>ApiResponse of CreateAsyncBulkLookupResponse</returns>
+        ApiResponse<CreateAsyncBulkLookupResponse> CreateAsyncBulkLookupWithHttpInfo(string accountId, AsyncLookupRequest asyncLookupRequest, int operationIndex = 0);
         /// <summary>
-        /// Get Lookup Request Status
+        /// Create Synchronous Number Lookup
         /// </summary>
         /// <remarks>
-        /// Get an existing Phone Number Lookup Request.
+        /// Creates a synchronous phone number lookup request. Maximum of 100 telephone numbers per request.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="requestId">The phone number lookup request ID from Bandwidth.</param>
+        /// <param name="accountId"></param>
+        /// <param name="syncLookupRequest">Synchronous phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>LookupStatus</returns>
-        [Obsolete]
-        LookupStatus GetLookupStatus(string accountId, string requestId, int operationIndex = 0);
+        /// <returns>CreateSyncLookupResponse</returns>
+        CreateSyncLookupResponse CreateSyncLookup(string accountId, SyncLookupRequest syncLookupRequest, int operationIndex = 0);
 
         /// <summary>
-        /// Get Lookup Request Status
+        /// Create Synchronous Number Lookup
         /// </summary>
         /// <remarks>
-        /// Get an existing Phone Number Lookup Request.
+        /// Creates a synchronous phone number lookup request. Maximum of 100 telephone numbers per request.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="requestId">The phone number lookup request ID from Bandwidth.</param>
+        /// <param name="accountId"></param>
+        /// <param name="syncLookupRequest">Synchronous phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of LookupStatus</returns>
-        [Obsolete]
-        ApiResponse<LookupStatus> GetLookupStatusWithHttpInfo(string accountId, string requestId, int operationIndex = 0);
+        /// <returns>ApiResponse of CreateSyncLookupResponse</returns>
+        ApiResponse<CreateSyncLookupResponse> CreateSyncLookupWithHttpInfo(string accountId, SyncLookupRequest syncLookupRequest, int operationIndex = 0);
+        /// <summary>
+        /// Get Asynchronous Bulk Number Lookup
+        /// </summary>
+        /// <remarks>
+        /// Get an existing [Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/createAsyncBulkLookup). Use this endpoint to check the status of the request and view the results.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="requestId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>GetAsyncBulkLookupResponse</returns>
+        GetAsyncBulkLookupResponse GetAsyncBulkLookup(string accountId, Guid requestId, int operationIndex = 0);
+
+        /// <summary>
+        /// Get Asynchronous Bulk Number Lookup
+        /// </summary>
+        /// <remarks>
+        /// Get an existing [Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/createAsyncBulkLookup). Use this endpoint to check the status of the request and view the results.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="requestId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of GetAsyncBulkLookupResponse</returns>
+        ApiResponse<GetAsyncBulkLookupResponse> GetAsyncBulkLookupWithHttpInfo(string accountId, Guid requestId, int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -92,63 +113,86 @@ namespace Bandwidth.Standard.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Create Lookup
+        /// Create Asynchronous Bulk Number Lookup
         /// </summary>
         /// <remarks>
-        /// Create a Phone Number Lookup Request.
+        /// Creates an asynchronous bulk phone number lookup request. Maximum of 15,000 telephone numbers per request. Use the [Get Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/getAsyncBulkLookup) endpoint to check the status of the request and view the results.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="lookupRequest">Phone number lookup request.</param>
+        /// <param name="accountId"></param>
+        /// <param name="asyncLookupRequest">Asynchronous bulk phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CreateLookupResponse</returns>
-        [Obsolete]
-        System.Threading.Tasks.Task<CreateLookupResponse> CreateLookupAsync(string accountId, LookupRequest lookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of CreateAsyncBulkLookupResponse</returns>
+        System.Threading.Tasks.Task<CreateAsyncBulkLookupResponse> CreateAsyncBulkLookupAsync(string accountId, AsyncLookupRequest asyncLookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Create Lookup
+        /// Create Asynchronous Bulk Number Lookup
         /// </summary>
         /// <remarks>
-        /// Create a Phone Number Lookup Request.
+        /// Creates an asynchronous bulk phone number lookup request. Maximum of 15,000 telephone numbers per request. Use the [Get Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/getAsyncBulkLookup) endpoint to check the status of the request and view the results.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="lookupRequest">Phone number lookup request.</param>
+        /// <param name="accountId"></param>
+        /// <param name="asyncLookupRequest">Asynchronous bulk phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CreateLookupResponse)</returns>
-        [Obsolete]
-        System.Threading.Tasks.Task<ApiResponse<CreateLookupResponse>> CreateLookupWithHttpInfoAsync(string accountId, LookupRequest lookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (CreateAsyncBulkLookupResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateAsyncBulkLookupResponse>> CreateAsyncBulkLookupWithHttpInfoAsync(string accountId, AsyncLookupRequest asyncLookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get Lookup Request Status
+        /// Create Synchronous Number Lookup
         /// </summary>
         /// <remarks>
-        /// Get an existing Phone Number Lookup Request.
+        /// Creates a synchronous phone number lookup request. Maximum of 100 telephone numbers per request.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="requestId">The phone number lookup request ID from Bandwidth.</param>
+        /// <param name="accountId"></param>
+        /// <param name="syncLookupRequest">Synchronous phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of LookupStatus</returns>
-        [Obsolete]
-        System.Threading.Tasks.Task<LookupStatus> GetLookupStatusAsync(string accountId, string requestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of CreateSyncLookupResponse</returns>
+        System.Threading.Tasks.Task<CreateSyncLookupResponse> CreateSyncLookupAsync(string accountId, SyncLookupRequest syncLookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get Lookup Request Status
+        /// Create Synchronous Number Lookup
         /// </summary>
         /// <remarks>
-        /// Get an existing Phone Number Lookup Request.
+        /// Creates a synchronous phone number lookup request. Maximum of 100 telephone numbers per request.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="requestId">The phone number lookup request ID from Bandwidth.</param>
+        /// <param name="accountId"></param>
+        /// <param name="syncLookupRequest">Synchronous phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (LookupStatus)</returns>
-        [Obsolete]
-        System.Threading.Tasks.Task<ApiResponse<LookupStatus>> GetLookupStatusWithHttpInfoAsync(string accountId, string requestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (CreateSyncLookupResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateSyncLookupResponse>> CreateSyncLookupWithHttpInfoAsync(string accountId, SyncLookupRequest syncLookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Get Asynchronous Bulk Number Lookup
+        /// </summary>
+        /// <remarks>
+        /// Get an existing [Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/createAsyncBulkLookup). Use this endpoint to check the status of the request and view the results.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="requestId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAsyncBulkLookupResponse</returns>
+        System.Threading.Tasks.Task<GetAsyncBulkLookupResponse> GetAsyncBulkLookupAsync(string accountId, Guid requestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Get Asynchronous Bulk Number Lookup
+        /// </summary>
+        /// <remarks>
+        /// Get an existing [Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/createAsyncBulkLookup). Use this endpoint to check the status of the request and view the results.
+        /// </remarks>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="requestId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAsyncBulkLookupResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAsyncBulkLookupResponse>> GetAsyncBulkLookupWithHttpInfoAsync(string accountId, Guid requestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -270,41 +314,39 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Create Lookup Create a Phone Number Lookup Request.
+        /// Create Asynchronous Bulk Number Lookup Creates an asynchronous bulk phone number lookup request. Maximum of 15,000 telephone numbers per request. Use the [Get Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/getAsyncBulkLookup) endpoint to check the status of the request and view the results.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="lookupRequest">Phone number lookup request.</param>
+        /// <param name="accountId"></param>
+        /// <param name="asyncLookupRequest">Asynchronous bulk phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>CreateLookupResponse</returns>
-        [Obsolete]
-        public CreateLookupResponse CreateLookup(string accountId, LookupRequest lookupRequest, int operationIndex = 0)
+        /// <returns>CreateAsyncBulkLookupResponse</returns>
+        public CreateAsyncBulkLookupResponse CreateAsyncBulkLookup(string accountId, AsyncLookupRequest asyncLookupRequest, int operationIndex = 0)
         {
-            Bandwidth.Standard.Client.ApiResponse<CreateLookupResponse> localVarResponse = CreateLookupWithHttpInfo(accountId, lookupRequest);
+            Bandwidth.Standard.Client.ApiResponse<CreateAsyncBulkLookupResponse> localVarResponse = CreateAsyncBulkLookupWithHttpInfo(accountId, asyncLookupRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Create Lookup Create a Phone Number Lookup Request.
+        /// Create Asynchronous Bulk Number Lookup Creates an asynchronous bulk phone number lookup request. Maximum of 15,000 telephone numbers per request. Use the [Get Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/getAsyncBulkLookup) endpoint to check the status of the request and view the results.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="lookupRequest">Phone number lookup request.</param>
+        /// <param name="accountId"></param>
+        /// <param name="asyncLookupRequest">Asynchronous bulk phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of CreateLookupResponse</returns>
-        [Obsolete]
-        public Bandwidth.Standard.Client.ApiResponse<CreateLookupResponse> CreateLookupWithHttpInfo(string accountId, LookupRequest lookupRequest, int operationIndex = 0)
+        /// <returns>ApiResponse of CreateAsyncBulkLookupResponse</returns>
+        public Bandwidth.Standard.Client.ApiResponse<CreateAsyncBulkLookupResponse> CreateAsyncBulkLookupWithHttpInfo(string accountId, AsyncLookupRequest asyncLookupRequest, int operationIndex = 0)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
             {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling PhoneNumberLookupApi->CreateLookup");
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling PhoneNumberLookupApi->CreateAsyncBulkLookup");
             }
 
-            // verify the required parameter 'lookupRequest' is set
-            if (lookupRequest == null)
+            // verify the required parameter 'asyncLookupRequest' is set
+            if (asyncLookupRequest == null)
             {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'lookupRequest' when calling PhoneNumberLookupApi->CreateLookup");
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'asyncLookupRequest' when calling PhoneNumberLookupApi->CreateAsyncBulkLookup");
             }
 
             Bandwidth.Standard.Client.RequestOptions localVarRequestOptions = new Bandwidth.Standard.Client.RequestOptions();
@@ -331,9 +373,9 @@ namespace Bandwidth.Standard.Api
             }
 
             localVarRequestOptions.PathParameters.Add("accountId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(accountId)); // path parameter
-            localVarRequestOptions.Data = lookupRequest;
+            localVarRequestOptions.Data = asyncLookupRequest;
 
-            localVarRequestOptions.Operation = "PhoneNumberLookupApi.CreateLookup";
+            localVarRequestOptions.Operation = "PhoneNumberLookupApi.CreateAsyncBulkLookup";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
@@ -360,10 +402,10 @@ namespace Bandwidth.Standard.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<CreateLookupResponse>("/accounts/{accountId}/tnlookup", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<CreateAsyncBulkLookupResponse>("/accounts/{accountId}/phoneNumberLookup/bulk", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("CreateLookup", localVarResponse);
+                Exception _exception = this.ExceptionFactory("CreateAsyncBulkLookup", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -374,43 +416,41 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Create Lookup Create a Phone Number Lookup Request.
+        /// Create Asynchronous Bulk Number Lookup Creates an asynchronous bulk phone number lookup request. Maximum of 15,000 telephone numbers per request. Use the [Get Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/getAsyncBulkLookup) endpoint to check the status of the request and view the results.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="lookupRequest">Phone number lookup request.</param>
+        /// <param name="accountId"></param>
+        /// <param name="asyncLookupRequest">Asynchronous bulk phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CreateLookupResponse</returns>
-        [Obsolete]
-        public async System.Threading.Tasks.Task<CreateLookupResponse> CreateLookupAsync(string accountId, LookupRequest lookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of CreateAsyncBulkLookupResponse</returns>
+        public async System.Threading.Tasks.Task<CreateAsyncBulkLookupResponse> CreateAsyncBulkLookupAsync(string accountId, AsyncLookupRequest asyncLookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Bandwidth.Standard.Client.ApiResponse<CreateLookupResponse> localVarResponse = await CreateLookupWithHttpInfoAsync(accountId, lookupRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            Bandwidth.Standard.Client.ApiResponse<CreateAsyncBulkLookupResponse> localVarResponse = await CreateAsyncBulkLookupWithHttpInfoAsync(accountId, asyncLookupRequest, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Create Lookup Create a Phone Number Lookup Request.
+        /// Create Asynchronous Bulk Number Lookup Creates an asynchronous bulk phone number lookup request. Maximum of 15,000 telephone numbers per request. Use the [Get Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/getAsyncBulkLookup) endpoint to check the status of the request and view the results.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="lookupRequest">Phone number lookup request.</param>
+        /// <param name="accountId"></param>
+        /// <param name="asyncLookupRequest">Asynchronous bulk phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CreateLookupResponse)</returns>
-        [Obsolete]
-        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<CreateLookupResponse>> CreateLookupWithHttpInfoAsync(string accountId, LookupRequest lookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (CreateAsyncBulkLookupResponse)</returns>
+        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<CreateAsyncBulkLookupResponse>> CreateAsyncBulkLookupWithHttpInfoAsync(string accountId, AsyncLookupRequest asyncLookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
             {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling PhoneNumberLookupApi->CreateLookup");
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling PhoneNumberLookupApi->CreateAsyncBulkLookup");
             }
 
-            // verify the required parameter 'lookupRequest' is set
-            if (lookupRequest == null)
+            // verify the required parameter 'asyncLookupRequest' is set
+            if (asyncLookupRequest == null)
             {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'lookupRequest' when calling PhoneNumberLookupApi->CreateLookup");
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'asyncLookupRequest' when calling PhoneNumberLookupApi->CreateAsyncBulkLookup");
             }
 
 
@@ -438,9 +478,9 @@ namespace Bandwidth.Standard.Api
             }
 
             localVarRequestOptions.PathParameters.Add("accountId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(accountId)); // path parameter
-            localVarRequestOptions.Data = lookupRequest;
+            localVarRequestOptions.Data = asyncLookupRequest;
 
-            localVarRequestOptions.Operation = "PhoneNumberLookupApi.CreateLookup";
+            localVarRequestOptions.Operation = "PhoneNumberLookupApi.CreateAsyncBulkLookup";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
@@ -467,11 +507,11 @@ namespace Bandwidth.Standard.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateLookupResponse>("/accounts/{accountId}/tnlookup", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateAsyncBulkLookupResponse>("/accounts/{accountId}/phoneNumberLookup/bulk", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("CreateLookup", localVarResponse);
+                Exception _exception = this.ExceptionFactory("CreateAsyncBulkLookup", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -482,41 +522,209 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Get Lookup Request Status Get an existing Phone Number Lookup Request.
+        /// Create Synchronous Number Lookup Creates a synchronous phone number lookup request. Maximum of 100 telephone numbers per request.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="requestId">The phone number lookup request ID from Bandwidth.</param>
+        /// <param name="accountId"></param>
+        /// <param name="syncLookupRequest">Synchronous phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>LookupStatus</returns>
-        [Obsolete]
-        public LookupStatus GetLookupStatus(string accountId, string requestId, int operationIndex = 0)
+        /// <returns>CreateSyncLookupResponse</returns>
+        public CreateSyncLookupResponse CreateSyncLookup(string accountId, SyncLookupRequest syncLookupRequest, int operationIndex = 0)
         {
-            Bandwidth.Standard.Client.ApiResponse<LookupStatus> localVarResponse = GetLookupStatusWithHttpInfo(accountId, requestId);
+            Bandwidth.Standard.Client.ApiResponse<CreateSyncLookupResponse> localVarResponse = CreateSyncLookupWithHttpInfo(accountId, syncLookupRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get Lookup Request Status Get an existing Phone Number Lookup Request.
+        /// Create Synchronous Number Lookup Creates a synchronous phone number lookup request. Maximum of 100 telephone numbers per request.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="requestId">The phone number lookup request ID from Bandwidth.</param>
+        /// <param name="accountId"></param>
+        /// <param name="syncLookupRequest">Synchronous phone number lookup request.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of LookupStatus</returns>
-        [Obsolete]
-        public Bandwidth.Standard.Client.ApiResponse<LookupStatus> GetLookupStatusWithHttpInfo(string accountId, string requestId, int operationIndex = 0)
+        /// <returns>ApiResponse of CreateSyncLookupResponse</returns>
+        public Bandwidth.Standard.Client.ApiResponse<CreateSyncLookupResponse> CreateSyncLookupWithHttpInfo(string accountId, SyncLookupRequest syncLookupRequest, int operationIndex = 0)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
             {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling PhoneNumberLookupApi->GetLookupStatus");
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling PhoneNumberLookupApi->CreateSyncLookup");
             }
 
-            // verify the required parameter 'requestId' is set
-            if (requestId == null)
+            // verify the required parameter 'syncLookupRequest' is set
+            if (syncLookupRequest == null)
             {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'requestId' when calling PhoneNumberLookupApi->GetLookupStatus");
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'syncLookupRequest' when calling PhoneNumberLookupApi->CreateSyncLookup");
+            }
+
+            Bandwidth.Standard.Client.RequestOptions localVarRequestOptions = new Bandwidth.Standard.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Bandwidth.Standard.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Bandwidth.Standard.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("accountId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = syncLookupRequest;
+
+            localVarRequestOptions.Operation = "PhoneNumberLookupApi.CreateSyncLookup";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateSyncLookupResponse>("/accounts/{accountId}/phoneNumberLookup", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateSyncLookup", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create Synchronous Number Lookup Creates a synchronous phone number lookup request. Maximum of 100 telephone numbers per request.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="syncLookupRequest">Synchronous phone number lookup request.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateSyncLookupResponse</returns>
+        public async System.Threading.Tasks.Task<CreateSyncLookupResponse> CreateSyncLookupAsync(string accountId, SyncLookupRequest syncLookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Bandwidth.Standard.Client.ApiResponse<CreateSyncLookupResponse> localVarResponse = await CreateSyncLookupWithHttpInfoAsync(accountId, syncLookupRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create Synchronous Number Lookup Creates a synchronous phone number lookup request. Maximum of 100 telephone numbers per request.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="syncLookupRequest">Synchronous phone number lookup request.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateSyncLookupResponse)</returns>
+        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<CreateSyncLookupResponse>> CreateSyncLookupWithHttpInfoAsync(string accountId, SyncLookupRequest syncLookupRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+            {
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling PhoneNumberLookupApi->CreateSyncLookup");
+            }
+
+            // verify the required parameter 'syncLookupRequest' is set
+            if (syncLookupRequest == null)
+            {
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'syncLookupRequest' when calling PhoneNumberLookupApi->CreateSyncLookup");
+            }
+
+
+            Bandwidth.Standard.Client.RequestOptions localVarRequestOptions = new Bandwidth.Standard.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Bandwidth.Standard.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Bandwidth.Standard.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("accountId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = syncLookupRequest;
+
+            localVarRequestOptions.Operation = "PhoneNumberLookupApi.CreateSyncLookup";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (Basic) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateSyncLookupResponse>("/accounts/{accountId}/phoneNumberLookup", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateSyncLookup", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Asynchronous Bulk Number Lookup Get an existing [Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/createAsyncBulkLookup). Use this endpoint to check the status of the request and view the results.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="requestId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>GetAsyncBulkLookupResponse</returns>
+        public GetAsyncBulkLookupResponse GetAsyncBulkLookup(string accountId, Guid requestId, int operationIndex = 0)
+        {
+            Bandwidth.Standard.Client.ApiResponse<GetAsyncBulkLookupResponse> localVarResponse = GetAsyncBulkLookupWithHttpInfo(accountId, requestId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Asynchronous Bulk Number Lookup Get an existing [Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/createAsyncBulkLookup). Use this endpoint to check the status of the request and view the results.
+        /// </summary>
+        /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="requestId"></param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of GetAsyncBulkLookupResponse</returns>
+        public Bandwidth.Standard.Client.ApiResponse<GetAsyncBulkLookupResponse> GetAsyncBulkLookupWithHttpInfo(string accountId, Guid requestId, int operationIndex = 0)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+            {
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling PhoneNumberLookupApi->GetAsyncBulkLookup");
             }
 
             Bandwidth.Standard.Client.RequestOptions localVarRequestOptions = new Bandwidth.Standard.Client.RequestOptions();
@@ -544,7 +752,7 @@ namespace Bandwidth.Standard.Api
             localVarRequestOptions.PathParameters.Add("accountId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(accountId)); // path parameter
             localVarRequestOptions.PathParameters.Add("requestId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(requestId)); // path parameter
 
-            localVarRequestOptions.Operation = "PhoneNumberLookupApi.GetLookupStatus";
+            localVarRequestOptions.Operation = "PhoneNumberLookupApi.GetAsyncBulkLookup";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
@@ -571,10 +779,10 @@ namespace Bandwidth.Standard.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<LookupStatus>("/accounts/{accountId}/tnlookup/{requestId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<GetAsyncBulkLookupResponse>("/accounts/{accountId}/phoneNumberLookup/bulk/{requestId}", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("GetLookupStatus", localVarResponse);
+                Exception _exception = this.ExceptionFactory("GetAsyncBulkLookup", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -585,43 +793,35 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Get Lookup Request Status Get an existing Phone Number Lookup Request.
+        /// Get Asynchronous Bulk Number Lookup Get an existing [Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/createAsyncBulkLookup). Use this endpoint to check the status of the request and view the results.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="requestId">The phone number lookup request ID from Bandwidth.</param>
+        /// <param name="accountId"></param>
+        /// <param name="requestId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of LookupStatus</returns>
-        [Obsolete]
-        public async System.Threading.Tasks.Task<LookupStatus> GetLookupStatusAsync(string accountId, string requestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of GetAsyncBulkLookupResponse</returns>
+        public async System.Threading.Tasks.Task<GetAsyncBulkLookupResponse> GetAsyncBulkLookupAsync(string accountId, Guid requestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Bandwidth.Standard.Client.ApiResponse<LookupStatus> localVarResponse = await GetLookupStatusWithHttpInfoAsync(accountId, requestId, operationIndex, cancellationToken).ConfigureAwait(false);
+            Bandwidth.Standard.Client.ApiResponse<GetAsyncBulkLookupResponse> localVarResponse = await GetAsyncBulkLookupWithHttpInfoAsync(accountId, requestId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get Lookup Request Status Get an existing Phone Number Lookup Request.
+        /// Get Asynchronous Bulk Number Lookup Get an existing [Asynchronous Bulk Number Lookup](#tag/Phone-Number-Lookup/operation/createAsyncBulkLookup). Use this endpoint to check the status of the request and view the results.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
-        /// <param name="requestId">The phone number lookup request ID from Bandwidth.</param>
+        /// <param name="accountId"></param>
+        /// <param name="requestId"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (LookupStatus)</returns>
-        [Obsolete]
-        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<LookupStatus>> GetLookupStatusWithHttpInfoAsync(string accountId, string requestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (GetAsyncBulkLookupResponse)</returns>
+        public async System.Threading.Tasks.Task<Bandwidth.Standard.Client.ApiResponse<GetAsyncBulkLookupResponse>> GetAsyncBulkLookupWithHttpInfoAsync(string accountId, Guid requestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
             {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling PhoneNumberLookupApi->GetLookupStatus");
-            }
-
-            // verify the required parameter 'requestId' is set
-            if (requestId == null)
-            {
-                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'requestId' when calling PhoneNumberLookupApi->GetLookupStatus");
+                throw new Bandwidth.Standard.Client.ApiException(400, "Missing required parameter 'accountId' when calling PhoneNumberLookupApi->GetAsyncBulkLookup");
             }
 
 
@@ -650,7 +850,7 @@ namespace Bandwidth.Standard.Api
             localVarRequestOptions.PathParameters.Add("accountId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(accountId)); // path parameter
             localVarRequestOptions.PathParameters.Add("requestId", Bandwidth.Standard.Client.ClientUtils.ParameterToString(requestId)); // path parameter
 
-            localVarRequestOptions.Operation = "PhoneNumberLookupApi.GetLookupStatus";
+            localVarRequestOptions.Operation = "PhoneNumberLookupApi.GetAsyncBulkLookup";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (Basic) required
@@ -677,11 +877,11 @@ namespace Bandwidth.Standard.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<LookupStatus>("/accounts/{accountId}/tnlookup/{requestId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAsyncBulkLookupResponse>("/accounts/{accountId}/phoneNumberLookup/bulk/{requestId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("GetLookupStatus", localVarResponse);
+                Exception _exception = this.ExceptionFactory("GetAsyncBulkLookup", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;

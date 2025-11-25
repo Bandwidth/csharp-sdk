@@ -419,24 +419,36 @@ namespace Bandwidth.Standard.Client
                     }
                 },
                 {
-                    "PhoneNumberLookupApi.CreateLookup", new List<IReadOnlyDictionary<string, object>>
+                    "PhoneNumberLookupApi.CreateAsyncBulkLookup", new List<IReadOnlyDictionary<string, object>>
                     {
                         {
                             new Dictionary<string, object>
                             {
-                                {"url", "https://numbers.bandwidth.com/api/v1"},
+                                {"url", "https://api.bandwidth.com/v2"},
                                 {"description", "Production"}
                             }
                         },
                     }
                 },
                 {
-                    "PhoneNumberLookupApi.GetLookupStatus", new List<IReadOnlyDictionary<string, object>>
+                    "PhoneNumberLookupApi.CreateSyncLookup", new List<IReadOnlyDictionary<string, object>>
                     {
                         {
                             new Dictionary<string, object>
                             {
-                                {"url", "https://numbers.bandwidth.com/api/v1"},
+                                {"url", "https://api.bandwidth.com/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "PhoneNumberLookupApi.GetAsyncBulkLookup", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/v2"},
                                 {"description", "Production"}
                             }
                         },

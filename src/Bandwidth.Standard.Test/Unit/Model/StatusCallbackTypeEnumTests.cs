@@ -20,7 +20,7 @@ using Bandwidth.Standard.Client;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace Bandwidth.Standard.Test.Model
+namespace Bandwidth.Standard.Test.Unit.Model
 {
     /// <summary>
     ///  Class for testing StatusCallbackTypeEnum

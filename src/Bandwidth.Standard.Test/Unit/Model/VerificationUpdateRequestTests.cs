@@ -247,7 +247,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         public void AgeGatedContentTest()
         {
             Assert.IsType<bool>(instance.AgeGatedContent);
-            Assert.Equal(false, instance.AgeGatedContent);
+            Assert.False(instance.AgeGatedContent);
         }
     }
 }

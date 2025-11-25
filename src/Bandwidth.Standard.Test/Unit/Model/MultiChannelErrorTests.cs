@@ -20,7 +20,7 @@ using Bandwidth.Standard.Client;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace Bandwidth.Standard.Test.Model
+namespace Bandwidth.Standard.Test.Unit.Model
 {
     /// <summary>
     ///  Class for testing MultiChannelError
@@ -36,10 +36,20 @@ namespace Bandwidth.Standard.Test.Model
         public MultiChannelErrorTests()
         {
             instance = new MultiChannelError(
-                links: new List<Link>(),
+                links: new List<Link> { new Link() },
                 data: new Dictionary<string, object>(),
-                errors: new List<ErrorObject>()
-            );
+                errors: new List<ErrorObject> {
+                new ErrorObject(
+                    type: "TestType",
+                    description: "TestDescription",
+                    source: new ErrorSource(
+                        varParameter: "TestParameter",
+                        field: "TestField",
+                        header: "TestHeader",
+                        reference: "TestReference"
+                    )
+                )
+            });
         }
 
         public void Dispose()

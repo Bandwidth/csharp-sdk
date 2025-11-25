@@ -32,10 +32,41 @@ namespace Bandwidth.Standard.Test.Unit.Model
     public class CreateMultiChannelMessageResponseTests : IDisposable
     {
         private CreateMultiChannelMessageResponse instance;
+        private List<Link> links;
+        private MultiChannelMessageResponseData data;
+        private List<ErrorObject> errors;
+
 
         public CreateMultiChannelMessageResponseTests()
         {
-            instance = new CreateMultiChannelMessageResponse();
+            links = new List<Link> { new Link() };
+            data = new MultiChannelMessageResponseData(
+                id: "msg-1234567890",
+                time: DateTime.Now,
+                direction: MessageDirectionEnum.In,
+                to: new List<string> { "+15551234567" },
+                channelList: new List<MultiChannelChannelListResponseObject>{},
+                tag: "test-tag",
+                priority: PriorityEnum.Default,
+                expiration: DateTime.UtcNow.AddHours(1)
+            );
+            errors = new List<ErrorObject> {
+                new ErrorObject(
+                    type: "TestType",
+                    description: "TestDescription",
+                    source: new ErrorSource(
+                        varParameter: "TestParameter",
+                        field: "TestField",
+                        header: "TestHeader",
+                        reference: "TestReference"
+                    )
+                )
+            };
+            instance = new CreateMultiChannelMessageResponse(
+                links: links,
+                data: data,
+                errors: errors
+            );
         }
 
         public void Dispose()
@@ -58,7 +89,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void LinksTest()
         {
-            // TODO unit test for the property 'Links'
+            Assert.IsType<List<Link>>(instance.Links);
+            Assert.Equal(links, instance.Links);
         }
 
         /// <summary>
@@ -67,7 +99,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void DataTest()
         {
-            // TODO unit test for the property 'Data'
+            Assert.IsType<MultiChannelMessageResponseData>(instance.Data);
+            Assert.Equal(data, instance.Data);
         }
 
         /// <summary>
@@ -76,7 +109,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void ErrorsTest()
         {
-            // TODO unit test for the property 'Errors'
+            Assert.IsType<List<ErrorObject>>(instance.Errors);
+            Assert.Equal(errors, instance.Errors);
         }
     }
 }

@@ -60,7 +60,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="tag">A custom string that will be included in callback events of the message. Max 1024 characters..</param>
         /// <param name="priority">priority.</param>
         /// <param name="expiration">A string with the date/time value that the message will automatically expire by. This must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. Must be a date-time in the future..</param>
-        public MultiChannelMessageResponseData(string id = default(string), DateTime time = default(DateTime), MessageDirectionEnum direction = default(MessageDirectionEnum), List<string> to = default(List<string>), List<MultiChannelMessageResponseDataChannelListInner> channelList = default(List<MultiChannelMessageResponseDataChannelListInner>), string tag = default(string), PriorityEnum? priority = default(PriorityEnum?), DateTime expiration = default(DateTime))
+        public MultiChannelMessageResponseData(string id = default(string), DateTime time = default(DateTime), MessageDirectionEnum direction = default(MessageDirectionEnum), List<string> to = default(List<string>), List<MultiChannelChannelListResponseObject> channelList = default(List<MultiChannelChannelListResponseObject>), string tag = default(string), PriorityEnum? priority = default(PriorityEnum?), DateTime expiration = default(DateTime))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -116,7 +116,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <value>A list of message bodies. The messages will be attempted in the order they are listed. Once a message sends successfully, the others will be ignored.</value>
         [DataMember(Name = "channelList", IsRequired = true, EmitDefaultValue = true)]
-        public List<MultiChannelMessageResponseDataChannelListInner> ChannelList { get; set; }
+        public List<MultiChannelChannelListResponseObject> ChannelList { get; set; }
 
         /// <summary>
         /// A custom string that will be included in callback events of the message. Max 1024 characters.

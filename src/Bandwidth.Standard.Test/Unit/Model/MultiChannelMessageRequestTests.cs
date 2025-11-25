@@ -37,7 +37,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             instance = new MultiChannelMessageRequest(
                 to: "TestTo",
-                channelList: new List<MultiChannelChannelListObject>(),
+                channelList: new List<MultiChannelChannelListRequestObject>(),
                 tag: "TestTag",
                 priority: PriorityEnum.Default,
                 expiration: new DateTime(2020, 1, 1)
@@ -74,7 +74,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void ChannelListTest()
         {
-            Assert.IsType<List<MultiChannelChannelListObject>>(instance.ChannelList);
+            Assert.IsType<List<MultiChannelChannelListRequestObject>>(instance.ChannelList);
         }
 
         /// <summary>
