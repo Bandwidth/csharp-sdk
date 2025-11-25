@@ -202,6 +202,9 @@ src/Bandwidth.Standard/Api/TranscriptionsApi.cs
 src/Bandwidth.Standard/Client/ApiClient.cs
 src/Bandwidth.Standard/Client/ApiException.cs
 src/Bandwidth.Standard/Client/ApiResponse.cs
+src/Bandwidth.Standard/Client/Auth/OAuthAuthenticator.cs
+src/Bandwidth.Standard/Client/Auth/OAuthFlow.cs
+src/Bandwidth.Standard/Client/Auth/TokenResponse.cs
 src/Bandwidth.Standard/Client/ClientUtils.cs
 src/Bandwidth.Standard/Client/Configuration.cs
 src/Bandwidth.Standard/Client/ExceptionFactory.cs
