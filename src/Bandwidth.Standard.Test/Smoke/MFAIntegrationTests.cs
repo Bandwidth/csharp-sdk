@@ -18,7 +18,7 @@ namespace Bandwidth.Standard.Test.Smoke
         private string accountId;
         private CodeRequest badCodeRequest;
         private string BW_NUMBER;
-        private Configuration fakeConfiguration;
+        private Configuration configuration;
         private MFAApi forbiddenInstance;
         private MFAApi instance;
         private CodeRequest messagingCodeRequest;
@@ -34,19 +34,19 @@ namespace Bandwidth.Standard.Test.Smoke
             USER_NUMBER = Environment.GetEnvironmentVariable("USER_NUMBER");
 
             // Authorized API Client
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://mfa.bandwidth.com/api/v1";
-            fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
-            fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
-            instance = new MFAApi(fakeConfiguration);
+            configuration = new Configuration();
+            configuration.BasePath = "https://mfa.bandwidth.com/api/v1";
+            configuration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
+            configuration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
+            instance = new MFAApi(configuration);
 
             // Unauthorized API Client
             unauthorizedInstance = new MFAApi();
 
             // Forbidden API Client
-            fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            fakeConfiguration.Password = "badPassword";
-            forbiddenInstance = new MFAApi(fakeConfiguration);
+            configuration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
+            configuration.Password = "badPassword";
+            forbiddenInstance = new MFAApi(configuration);
 
             // Code Request for generating a messaging code
             messagingCodeRequest = new CodeRequest(
@@ -129,7 +129,7 @@ namespace Bandwidth.Standard.Test.Smoke
         public void GenerateMessagingCodeUnauthorizedRequest()
         {
             ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.GenerateMessagingCode(accountId, messagingCodeRequest));
-            Assert.Equal(401, Exception.ErrorCode); 
+            Assert.Equal(401, Exception.ErrorCode);
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace Bandwidth.Standard.Test.Smoke
         public void GenerateVoiceCodeUnauthorizedRequest()
         {
             ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.GenerateVoiceCode(accountId, voiceCodeRequest));
-            Assert.Equal(401, Exception.ErrorCode); 
+            Assert.Equal(401, Exception.ErrorCode);
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace Bandwidth.Standard.Test.Smoke
         [Fact]
         public void VerifyCodeTest()
         {
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 verifyCodeRequest.To = verifyCodeRequest.To + new Random().Next(10).ToString();
             }
@@ -229,7 +229,7 @@ namespace Bandwidth.Standard.Test.Smoke
         [Fact]
         public void VerifyCodeRateLimiting()
         {
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 verifyCodeRequest.To = verifyCodeRequest.To + new Random().Next(10).ToString();
             }

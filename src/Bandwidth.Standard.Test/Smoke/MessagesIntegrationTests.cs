@@ -15,7 +15,7 @@ namespace Bandwidth.Standard.Test.Smoke
     public class MessagesSmokeTests : IDisposable
     {
         private string accountId;
-        private Configuration fakeConfiguration;
+        private Configuration configuration;
         private MessagesApi forbiddenInstance;
         private MessagesApi instance;
         private MessageRequest messageRequest;
@@ -26,30 +26,30 @@ namespace Bandwidth.Standard.Test.Smoke
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
 
             // Authorized API Client
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://messaging.bandwidth.com/api/v2";
-            fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
-            fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
-            instance = new MessagesApi(fakeConfiguration);
+            configuration = new Configuration();
+            configuration.BasePath = "https://messaging.bandwidth.com/api/v2";
+            configuration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
+            configuration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
+            instance = new MessagesApi(configuration);
 
             // Unauthorized API Client
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://messaging.bandwidth.com/api/v2";
-            fakeConfiguration.Username = "badUsername";
-            fakeConfiguration.Password = "badPassword";
-            unauthorizedInstance = new MessagesApi(fakeConfiguration);
+            configuration = new Configuration();
+            configuration.BasePath = "https://messaging.bandwidth.com/api/v2";
+            configuration.Username = "badUsername";
+            configuration.Password = "badPassword";
+            unauthorizedInstance = new MessagesApi(configuration);
 
             // Forbidden API Client
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://messaging.bandwidth.com/api/v2";
-            fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
-            forbiddenInstance = new MessagesApi(fakeConfiguration);
+            configuration = new Configuration();
+            configuration.BasePath = "https://messaging.bandwidth.com/api/v2";
+            configuration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
+            configuration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
+            forbiddenInstance = new MessagesApi(configuration);
 
             // Message Request
             messageRequest = new MessageRequest(
                 applicationId: Environment.GetEnvironmentVariable("BW_MESSAGING_APPLICATION_ID"),
-                to: new List<string> {Environment.GetEnvironmentVariable("USER_NUMBER") },
+                to: new List<string> { Environment.GetEnvironmentVariable("USER_NUMBER") },
                 from: Environment.GetEnvironmentVariable("BW_NUMBER"),
                 text: "c# Smoke test",
                 media: new List<string> { "https://cdn2.thecatapi.com/images/MTY3ODIyMQ.jpg" },
@@ -99,7 +99,7 @@ namespace Bandwidth.Standard.Test.Smoke
         [Fact]
         public void CreateMessageBadRequest()
         {
-            messageRequest.ApplicationId = null; 
+            messageRequest.ApplicationId = null;
             ApiException Exception = Assert.Throws<ApiException>(() => instance.CreateMessage(accountId, messageRequest));
             Assert.Equal(400, Exception.ErrorCode);
         }
@@ -110,7 +110,7 @@ namespace Bandwidth.Standard.Test.Smoke
         [Fact]
         public void CreateMessageInvalidMedia()
         {
-            messageRequest.Media = new List<string> { "not media" }; 
+            messageRequest.Media = new List<string> { "not media" };
             ApiException Exception = Assert.Throws<ApiException>(() => instance.CreateMessageWithHttpInfo(accountId, messageRequest));
             Assert.Equal(400, Exception.ErrorCode);
         }
@@ -129,7 +129,7 @@ namespace Bandwidth.Standard.Test.Smoke
         /// Test create message with a forbidden client
         /// API does not throw an error
         /// </summary>
-        [Fact (Skip = "API does not throw an error")]
+        [Fact(Skip = "API does not throw an error")]
         public void CreateMessageForbiddenRequest()
         {
             ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.CreateMessage(accountId, messageRequest));
@@ -190,7 +190,7 @@ namespace Bandwidth.Standard.Test.Smoke
         /// Test ListMessages with a forbidden client
         /// API throws a 400 rather than a 401
         /// </summary>
-        [Fact (Skip = "API throws a 400 rather than a 401")]
+        [Fact(Skip = "API throws a 400 rather than a 401")]
         public void ListMessagesForbiddenRequest()
         {
             ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.ListMessages(accountId));

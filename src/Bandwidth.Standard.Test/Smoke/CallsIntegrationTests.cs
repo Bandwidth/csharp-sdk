@@ -16,7 +16,7 @@ namespace Bandwidth.Standard.Test.Smoke
     {
         private string accountId;
         private CreateCall createCallBody;
-        private Configuration fakeConfiguration;
+        private Configuration configuration;
         private UpdateCall fakeUpdateCall;
         private CallsApi forbiddenInstance;
         private CallsApi instance;
@@ -31,21 +31,21 @@ namespace Bandwidth.Standard.Test.Smoke
             testCallId = "testCallId";
 
             // Authorized API Client
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
-            fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
-            fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
-            instance = new CallsApi(fakeConfiguration);
+            configuration = new Configuration();
+            configuration.BasePath = "https://voice.bandwidth.com/api/v2";
+            configuration.OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID");
+            configuration.OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET");
+            instance = new CallsApi(configuration);
 
             // Unauthorized API Client
-            fakeConfiguration.Username = "badUsername";
-            fakeConfiguration.Password = "badPassword";
-            unauthorizedInstance = new CallsApi(fakeConfiguration);
+            configuration.Username = "badUsername";
+            configuration.Password = "badPassword";
+            unauthorizedInstance = new CallsApi(configuration);
 
             // Forbidden API Client
-            fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
-            forbiddenInstance = new CallsApi(fakeConfiguration);
+            configuration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
+            configuration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
+            forbiddenInstance = new CallsApi(configuration);
 
             createCallBody = new CreateCall(
                 to: Environment.GetEnvironmentVariable("USER_NUMBER"),
@@ -114,9 +114,9 @@ namespace Bandwidth.Standard.Test.Smoke
         /// <summary>
         /// Test successful CreateCall request
         /// </summary>
-        [Fact] 
+        [Fact]
         public void CreateCallTest()
-        {            
+        {
             ApiResponse<CreateCallResponse> response = instance.CreateCallWithHttpInfo(accountId, createCallBody);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Assert.IsType<string>(response.Data.CallId);
@@ -227,7 +227,7 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.ListCallsWithHttpInfo(accountId));
             Assert.Equal(401, Exception.ErrorCode);
-        } 
+        }
 
         /// <summary>
         /// Test ListCalls with a forbidden client
@@ -262,12 +262,12 @@ namespace Bandwidth.Standard.Test.Smoke
             );
 
             System.Threading.Thread.Sleep(testSleep);
-            
+
             ApiResponse<Object> response = instance.UpdateCallWithHttpInfo(accountId, callId, updateCallBody);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
             System.Threading.Thread.Sleep(testSleep);
-            
+
             //Hanging up the call
             updateCallBody.State = CallStateEnum.Completed;
             response = instance.UpdateCallWithHttpInfo(accountId, callId, updateCallBody);
@@ -284,7 +284,7 @@ namespace Bandwidth.Standard.Test.Smoke
             string callId = createCallResponse.CallId;
 
             System.Threading.Thread.Sleep(testSleep);
-            
+
             fakeUpdateCall.State = null;
             ApiException Exception = Assert.Throws<ApiException>(() => instance.UpdateCall(accountId, callId, fakeUpdateCall));
             Assert.Equal(400, Exception.ErrorCode);
@@ -314,9 +314,9 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             CreateCallResponse createCallResponse = instance.CreateCall(accountId, mantecaCallBody);
             string callId = createCallResponse.CallId;
-            
+
             System.Threading.Thread.Sleep(testSleep);
-            
+
             fakeUpdateCall.State = CallStateEnum.Completed;
             ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateCall(accountId, callId, fakeUpdateCall));
             Assert.Equal(403, Exception.ErrorCode);
@@ -346,7 +346,7 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             CreateCallResponse createCallResponse = instance.CreateCall(accountId, mantecaCallBody);
             string callId = createCallResponse.CallId;
-            
+
             System.Threading.Thread.Sleep(testSleep);
 
             ApiResponse<Object> updateCallBxmlResponse = instance.UpdateCallBxmlWithHttpInfo(accountId, callId, "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml>  <SpeakSentence>This is a test sentence.</SpeakSentence></Bxml>");
@@ -368,7 +368,7 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             ApiResponse<CreateCallResponse> createCallResponse = instance.CreateCallWithHttpInfo(accountId, mantecaCallBody);
             string callId = createCallResponse.Data.CallId;
-            
+
             System.Threading.Thread.Sleep(testSleep);
 
             ApiException Exception = Assert.Throws<ApiException>(() => instance.UpdateCallBxmlWithHttpInfo(accountId, callId, "invalid BXML"));
@@ -400,7 +400,7 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             CreateCallResponse createCallResponse = instance.CreateCall(accountId, mantecaCallBody);
             string callId = createCallResponse.CallId;
-            
+
             System.Threading.Thread.Sleep(testSleep);
 
             ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateCallBxmlWithHttpInfo(accountId, callId, "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml>  <SpeakSentence>This is a test sentence.</SpeakSentence></Bxml>"));

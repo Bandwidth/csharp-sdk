@@ -21,7 +21,7 @@ namespace Bandwidth.Standard.Test.Smoke
 
         private TranscriptionsApi unauthorizedInstance;
         private TranscriptionsApi forbiddenInstance;
-        private Configuration fakeConfiguration;
+        private Configuration configuration;
         private ApiClient restClient;
         private CreateCall mantecaCallBody;
         private string accountId;
@@ -39,8 +39,6 @@ namespace Bandwidth.Standard.Test.Smoke
         public TranscriptionsSmokeTests()
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
-            BW_USERNAME = Environment.GetEnvironmentVariable("BW_USERNAME");
-            BW_PASSWORD = Environment.GetEnvironmentVariable("BW_PASSWORD");
             MANTECA_ACTIVE_NUMBER = Environment.GetEnvironmentVariable("MANTECA_ACTIVE_NUMBER");
             MANTECA_IDLE_NUMBER = Environment.GetEnvironmentVariable("MANTECA_IDLE_NUMBER");
             MANTECA_APPLICATION_ID = Environment.GetEnvironmentVariable("MANTECA_APPLICATION_ID");
@@ -49,22 +47,22 @@ namespace Bandwidth.Standard.Test.Smoke
             BW_FORBIDDEN_PASSWORD = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
 
             //API Client
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
-            fakeConfiguration.Username = BW_USERNAME;
-            fakeConfiguration.Password = BW_PASSWORD;
-            transcriptionsApiInstance = new TranscriptionsApi(fakeConfiguration);
-            callsApiInstance = new CallsApi(fakeConfiguration);
+            configuration = new Configuration();
+            configuration.BasePath = "https://voice.bandwidth.com/api/v2";
+            configuration.OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID");
+            configuration.OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET");
+            transcriptionsApiInstance = new TranscriptionsApi(configuration);
+            callsApiInstance = new CallsApi(configuration);
 
             // Unauthorized API Client
-            fakeConfiguration.Username = "badUsername";
-            fakeConfiguration.Password = "badPassword";
-            unauthorizedInstance = new TranscriptionsApi(fakeConfiguration);
+            configuration.Username = "badUsername";
+            configuration.Password = "badPassword";
+            unauthorizedInstance = new TranscriptionsApi(configuration);
 
             // Forbidden API Client
-            fakeConfiguration.Username = BW_FORBIDDEN_USERNAME;
-            fakeConfiguration.Password = BW_FORBIDDEN_PASSWORD;
-            forbiddenInstance = new TranscriptionsApi(fakeConfiguration);
+            configuration.Username = BW_FORBIDDEN_USERNAME;
+            configuration.Password = BW_FORBIDDEN_PASSWORD;
+            forbiddenInstance = new TranscriptionsApi(configuration);
 
             restClient = new ApiClient(basePath: "https://voice.bandwidth.com/api/v2");
 
@@ -167,7 +165,7 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         // Need these to run in a specific order
-        [Fact (Skip = "PV Issue")]
+        [Fact(Skip = "PV Issue")]
         public void TestTranscriptionsSuccess()
         {
             CreateCallTranscription();

@@ -20,7 +20,7 @@ namespace Bandwidth.Standard.Test.Smoke
         private CallsApi callsApiInstance;
         private RecordingsApi unauthorizedInstance;
         private RecordingsApi forbiddenInstance;
-        private Configuration fakeConfiguration;
+        private Configuration configuration;
         private ApiClient restClient;
         private CreateCall mantecaCallBody;
         private TranscribeRecording testTranscribeRecording;
@@ -41,8 +41,8 @@ namespace Bandwidth.Standard.Test.Smoke
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
             testCallId = "callId";
             testRecordingId = "recordingId";
-            BW_USERNAME = Environment.GetEnvironmentVariable("BW_USERNAME");
-            BW_PASSWORD = Environment.GetEnvironmentVariable("BW_PASSWORD");
+            configuration.OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID");
+            configuration.OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET");
             MANTECA_ACTIVE_NUMBER = Environment.GetEnvironmentVariable("MANTECA_ACTIVE_NUMBER");
             MANTECA_IDLE_NUMBER = Environment.GetEnvironmentVariable("MANTECA_IDLE_NUMBER");
             MANTECA_APPLICATION_ID = Environment.GetEnvironmentVariable("MANTECA_APPLICATION_ID");
@@ -51,22 +51,22 @@ namespace Bandwidth.Standard.Test.Smoke
             BW_FORBIDDEN_PASSWORD = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
 
             //API Client
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
-            fakeConfiguration.Username = BW_USERNAME;
-            fakeConfiguration.Password = BW_PASSWORD;
-            recordingApiInstance = new RecordingsApi(fakeConfiguration);
-            callsApiInstance = new CallsApi(fakeConfiguration);
+            configuration = new Configuration();
+            configuration.BasePath = "https://voice.bandwidth.com/api/v2";
+            configuration.Username = BW_USERNAME;
+            configuration.Password = BW_PASSWORD;
+            recordingApiInstance = new RecordingsApi(configuration);
+            callsApiInstance = new CallsApi(configuration);
 
             // Unauthorized API Client
-            fakeConfiguration.Username = "badUsername";
-            fakeConfiguration.Password = "badPassword";
-            unauthorizedInstance = new RecordingsApi(fakeConfiguration);
+            configuration.Username = "badUsername";
+            configuration.Password = "badPassword";
+            unauthorizedInstance = new RecordingsApi(configuration);
 
             // Forbidden API Client
-            fakeConfiguration.Username = BW_FORBIDDEN_USERNAME;
-            fakeConfiguration.Password = BW_FORBIDDEN_PASSWORD;
-            forbiddenInstance = new RecordingsApi(fakeConfiguration);
+            configuration.Username = BW_FORBIDDEN_USERNAME;
+            configuration.Password = BW_FORBIDDEN_PASSWORD;
+            forbiddenInstance = new RecordingsApi(configuration);
 
             restClient = new ApiClient(basePath: "https://voice.bandwidth.com/api/v2");
 
@@ -594,7 +594,7 @@ namespace Bandwidth.Standard.Test.Smoke
         /// <summary>
         /// Test UpdateCallRecordingState with a nonexistent call id
         /// </summary>
-        [Fact (Skip = "PV Issue")]
+        [Fact(Skip = "PV Issue")]
         public void UpdateCallRecordingStateNotFound()
         {
             var updateCallRecording = new UpdateCallRecording(state: RecordingStateEnum.Paused);
