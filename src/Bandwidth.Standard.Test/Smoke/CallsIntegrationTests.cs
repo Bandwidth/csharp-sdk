@@ -17,6 +17,8 @@ namespace Bandwidth.Standard.Test.Smoke
         private string accountId;
         private CreateCall createCallBody;
         private Configuration configuration;
+        private Configuration unauthorizedConfiguration;
+        private Configuration forbiddenConfiguration;
         private UpdateCall fakeUpdateCall;
         private CallsApi forbiddenInstance;
         private CallsApi instance;
@@ -38,14 +40,16 @@ namespace Bandwidth.Standard.Test.Smoke
             instance = new CallsApi(configuration);
 
             // Unauthorized API Client
-            configuration.Username = "badUsername";
-            configuration.Password = "badPassword";
-            unauthorizedInstance = new CallsApi(configuration);
+            unauthorizedConfiguration = new Configuration();
+            unauthorizedConfiguration.Username = "badUsername";
+            unauthorizedConfiguration.Password = "badPassword";
+            unauthorizedInstance = new CallsApi(unauthorizedConfiguration);
 
             // Forbidden API Client
-            configuration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            configuration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
-            forbiddenInstance = new CallsApi(configuration);
+            forbiddenConfiguration = new Configuration();
+            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
+            forbiddenConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
+            forbiddenInstance = new CallsApi(forbiddenConfiguration);
 
             createCallBody = new CreateCall(
                 to: Environment.GetEnvironmentVariable("USER_NUMBER"),

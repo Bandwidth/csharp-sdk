@@ -19,6 +19,8 @@ namespace Bandwidth.Standard.Test.Smoke
         private CodeRequest badCodeRequest;
         private string BW_NUMBER;
         private Configuration configuration;
+        private Configuration unauthorizedConfiguration;
+        private Configuration forbiddenConfiguration;
         private MFAApi forbiddenInstance;
         private MFAApi instance;
         private CodeRequest messagingCodeRequest;
@@ -44,9 +46,10 @@ namespace Bandwidth.Standard.Test.Smoke
             unauthorizedInstance = new MFAApi();
 
             // Forbidden API Client
-            configuration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            configuration.Password = "badPassword";
-            forbiddenInstance = new MFAApi(configuration);
+            forbiddenConfiguration = new Configuration();
+            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
+            forbiddenConfiguration.Password = "badPassword";
+            forbiddenInstance = new MFAApi(forbiddenConfiguration);
 
             // Code Request for generating a messaging code
             messagingCodeRequest = new CodeRequest(

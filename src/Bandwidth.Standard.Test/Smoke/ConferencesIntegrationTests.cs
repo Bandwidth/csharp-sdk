@@ -22,6 +22,8 @@ namespace Bandwidth.Standard.Test.Smoke
         private UpdateConference updateConferenceBody;
         private CallsApi callsApiInstance;
         private Configuration configuration;
+        private Configuration unauthorizedConfiguration;
+        private Configuration forbiddenConfiguration;
         private CreateCall mantecaCallBody;
         private UpdateConferenceMember updateConferenceMember;
         private string accountId;
@@ -47,14 +49,16 @@ namespace Bandwidth.Standard.Test.Smoke
             callsApiInstance = new CallsApi(configuration);
 
             // Unauthorized API Client
-            configuration.Username = "badUsername";
-            configuration.Password = "badPassword";
-            unauthorizedInstance = new ConferencesApi(configuration);
+            unauthorizedConfiguration = new Configuration();
+            unauthorizedConfiguration.Username = "badUsername";
+            unauthorizedConfiguration.Password = "badPassword";
+            unauthorizedInstance = new ConferencesApi(unauthorizedConfiguration);
 
             // Forbidden API Client
-            configuration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            configuration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
-            forbiddenInstance = new ConferencesApi(configuration);
+            forbiddenConfiguration = new Configuration();
+            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
+            forbiddenConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
+            forbiddenInstance = new ConferencesApi(forbiddenConfiguration);
 
             restClient = new ApiClient(basePath: "https://voice.bandwidth.com/api/v2");
 

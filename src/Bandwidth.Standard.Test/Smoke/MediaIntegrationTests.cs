@@ -17,6 +17,8 @@ namespace Bandwidth.Standard.Test.Smoke
     {
         private string accountId;
         private Configuration configuration;
+        private Configuration unauthorizedConfiguration;
+        private Configuration forbiddenConfiguration;
         private MediaApi instance;
         private string testMediaId;
         private string testContentType;
@@ -32,17 +34,15 @@ namespace Bandwidth.Standard.Test.Smoke
 
             // Authorized API Client
             configuration = new Configuration();
-            configuration.BasePath = "https://voice.bandwidth.com/api/v2";
             configuration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
             configuration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
             instance = new MediaApi(configuration);
 
             // Unauthorized API Client
-            configuration = new Configuration();
-            configuration.BasePath = "https://messaging.bandwidth.com/api/v2";
-            configuration.Username = "badUsername";
-            configuration.Password = "badPassword";
-            unauthorizedInstance = new MediaApi(configuration);
+            unauthorizedConfiguration = new Configuration();
+            unauthorizedConfiguration.Username = "badUsername";
+            unauthorizedConfiguration.Password = "badPassword";
+            unauthorizedInstance = new MediaApi(unauthorizedConfiguration);
 
             // Create a media file to use for testing
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;

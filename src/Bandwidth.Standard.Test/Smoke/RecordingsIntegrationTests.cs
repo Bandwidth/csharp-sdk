@@ -21,6 +21,8 @@ namespace Bandwidth.Standard.Test.Smoke
         private RecordingsApi unauthorizedInstance;
         private RecordingsApi forbiddenInstance;
         private Configuration configuration;
+        private Configuration unauthorizedConfiguration;
+        private Configuration forbiddenConfiguration;
         private ApiClient restClient;
         private CreateCall mantecaCallBody;
         private TranscribeRecording testTranscribeRecording;
@@ -41,8 +43,6 @@ namespace Bandwidth.Standard.Test.Smoke
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
             testCallId = "callId";
             testRecordingId = "recordingId";
-            configuration.OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID");
-            configuration.OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET");
             MANTECA_ACTIVE_NUMBER = Environment.GetEnvironmentVariable("MANTECA_ACTIVE_NUMBER");
             MANTECA_IDLE_NUMBER = Environment.GetEnvironmentVariable("MANTECA_IDLE_NUMBER");
             MANTECA_APPLICATION_ID = Environment.GetEnvironmentVariable("MANTECA_APPLICATION_ID");
@@ -53,20 +53,22 @@ namespace Bandwidth.Standard.Test.Smoke
             //API Client
             configuration = new Configuration();
             configuration.BasePath = "https://voice.bandwidth.com/api/v2";
-            configuration.Username = BW_USERNAME;
-            configuration.Password = BW_PASSWORD;
+            configuration.OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID");
+            configuration.OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET");
             recordingApiInstance = new RecordingsApi(configuration);
             callsApiInstance = new CallsApi(configuration);
 
             // Unauthorized API Client
-            configuration.Username = "badUsername";
-            configuration.Password = "badPassword";
-            unauthorizedInstance = new RecordingsApi(configuration);
+            unauthorizedConfiguration = new Configuration();
+            unauthorizedConfiguration.Username = "badUsername";
+            unauthorizedConfiguration.Password = "badPassword";
+            unauthorizedInstance = new RecordingsApi(unauthorizedConfiguration);
 
             // Forbidden API Client
-            configuration.Username = BW_FORBIDDEN_USERNAME;
-            configuration.Password = BW_FORBIDDEN_PASSWORD;
-            forbiddenInstance = new RecordingsApi(configuration);
+            forbiddenConfiguration = new Configuration();
+            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
+            forbiddenConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
+            forbiddenInstance = new RecordingsApi(forbiddenConfiguration);
 
             restClient = new ApiClient(basePath: "https://voice.bandwidth.com/api/v2");
 

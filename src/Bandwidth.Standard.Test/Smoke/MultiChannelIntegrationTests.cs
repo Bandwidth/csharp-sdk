@@ -27,7 +27,7 @@ namespace Bandwidth.Standard.Test.Smoke
         public MultiChannelSmokeTests()
         {
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
-            bwNumber =  Environment.GetEnvironmentVariable("BW_NUMBER");
+            bwNumber = Environment.GetEnvironmentVariable("BW_NUMBER");
             messagingApplicationId = Environment.GetEnvironmentVariable("BW_MESSAGING_APPLICATION_ID");
 
             // Authorized API Client
@@ -108,8 +108,8 @@ namespace Bandwidth.Standard.Test.Smoke
                     applicationId: messagingApplicationId,
                     channel: MultiChannelMessageChannelEnum.MMS,
                     content: new MmsMessageContent(
-                        text: "Hello World!", 
-                        media: new List<MmsMessageContentFile> { 
+                        text: "Hello World!",
+                        media: new List<MmsMessageContentFile> {
                             new MmsMessageContentFile(
                                 fileUrl: "https://www.example.com/image.jpg"
                             )

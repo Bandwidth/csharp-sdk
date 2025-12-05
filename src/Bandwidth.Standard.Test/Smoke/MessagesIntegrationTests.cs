@@ -16,6 +16,8 @@ namespace Bandwidth.Standard.Test.Smoke
     {
         private string accountId;
         private Configuration configuration;
+        private Configuration unauthorizedConfiguration;
+        private Configuration forbiddenConfiguration;
         private MessagesApi forbiddenInstance;
         private MessagesApi instance;
         private MessageRequest messageRequest;
@@ -33,18 +35,16 @@ namespace Bandwidth.Standard.Test.Smoke
             instance = new MessagesApi(configuration);
 
             // Unauthorized API Client
-            configuration = new Configuration();
-            configuration.BasePath = "https://messaging.bandwidth.com/api/v2";
-            configuration.Username = "badUsername";
-            configuration.Password = "badPassword";
-            unauthorizedInstance = new MessagesApi(configuration);
+            unauthorizedConfiguration = new Configuration();
+            unauthorizedConfiguration.Username = "badUsername";
+            unauthorizedConfiguration.Password = "badPassword";
+            unauthorizedInstance = new MessagesApi(unauthorizedConfiguration);
 
             // Forbidden API Client
-            configuration = new Configuration();
-            configuration.BasePath = "https://messaging.bandwidth.com/api/v2";
-            configuration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            configuration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
-            forbiddenInstance = new MessagesApi(configuration);
+            forbiddenConfiguration = new Configuration();
+            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
+            forbiddenConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
+            forbiddenInstance = new MessagesApi(forbiddenConfiguration);
 
             // Message Request
             messageRequest = new MessageRequest(

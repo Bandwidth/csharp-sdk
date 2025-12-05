@@ -25,8 +25,10 @@ namespace Bandwidth.Standard.Test.Smoke
     {
         private string accountId;
         private Configuration configuration;
-        private StatisticsApi forbiddenInstance;
+        private Configuration unauthorizedConfiguration;
+        private Configuration forbiddenConfiguration;
         private StatisticsApi instance;
+        private StatisticsApi forbiddenInstance;
         private StatisticsApi unauthorizedInstance;
 
         public StatisticsSmokeTests()
@@ -41,14 +43,16 @@ namespace Bandwidth.Standard.Test.Smoke
             instance = new StatisticsApi(configuration);
 
             // Unauthorized API Client
-            configuration.Username = "badUsername";
-            configuration.Password = "badPassword";
-            unauthorizedInstance = new StatisticsApi(configuration);
+            unauthorizedConfiguration = new Configuration();
+            unauthorizedConfiguration.Username = "badUsername";
+            unauthorizedConfiguration.Password = "badPassword";
+            unauthorizedInstance = new StatisticsApi(unauthorizedConfiguration);
 
             // Forbidden API Client
-            configuration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            configuration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
-            forbiddenInstance = new StatisticsApi(configuration);
+            forbiddenConfiguration = new Configuration();
+            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
+            forbiddenConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
+            forbiddenInstance = new StatisticsApi(forbiddenConfiguration);
         }
 
         public void Dispose()
