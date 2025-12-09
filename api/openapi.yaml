@@ -8879,7 +8879,7 @@ components:
       - WEBVIEW
       example: WEBVIEW
       type: string
-    rbmVebViewEnum:
+    rbmWebViewEnum:
       description: "Defines the layout of the WebView on a mobile device. It must\
         \ be defined when application is set to `WEBVIEW`\n- `FULL` WebView takes\
         \ the full screen. \n- `HALF` WebView takes half of the screen.\n- `TALL`\
@@ -9010,7 +9010,7 @@ components:
           application:
             $ref: '#/components/schemas/rbmOpenUrlEnum'
           webviewViewMode:
-            $ref: '#/components/schemas/rbmVebViewEnum'
+            $ref: '#/components/schemas/rbmWebViewEnum'
         required:
         - url
         title: Open URL

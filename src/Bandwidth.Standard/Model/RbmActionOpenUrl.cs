@@ -49,7 +49,7 @@ namespace Bandwidth.Standard.Model
         /// Gets or Sets WebviewViewMode
         /// </summary>
         [DataMember(Name = "webviewViewMode", EmitDefaultValue = false)]
-        public RbmVebViewEnum? WebviewViewMode { get; set; }
+        public RbmWebViewEnum? WebviewViewMode { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RbmActionOpenUrl" /> class.
         /// </summary>
@@ -64,7 +64,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="url">The URL to open in browser. (required).</param>
         /// <param name="application">application.</param>
         /// <param name="webviewViewMode">webviewViewMode.</param>
-        public RbmActionOpenUrl(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postbackData = default(byte[]), string url = default(string), RbmOpenUrlEnum? application = default(RbmOpenUrlEnum?), RbmVebViewEnum? webviewViewMode = default(RbmVebViewEnum?))
+        public RbmActionOpenUrl(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postbackData = default(byte[]), string url = default(string), RbmOpenUrlEnum? application = default(RbmOpenUrlEnum?), RbmWebViewEnum? webviewViewMode = default(RbmWebViewEnum?))
         {
             this.Type = type;
             // to ensure "text" is required (not null)

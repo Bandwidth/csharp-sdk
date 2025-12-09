@@ -90,7 +90,7 @@ namespace Bandwidth.Standard.Client.Auth
                 .AddHeader("Authorization", $"Basic {credentials}")
                 .AddParameter("grant_type", _grantType, ParameterType.GetOrPost);
             var response = await client.PostAsync<TokenResponse>(request).ConfigureAwait(false);
-
+            
             // RFC6749 - token_type is case insensitive.
             // RFC6750 - In Authorization header Bearer should be capitalized.
             // Fix the capitalization irrespective of token_type casing.

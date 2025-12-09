@@ -297,7 +297,7 @@ Class | Method | HTTP request | Description
  - [Model.RbmOpenUrlEnum](docs/RbmOpenUrlEnum.md)
  - [Model.RbmStandaloneCard](docs/RbmStandaloneCard.md)
  - [Model.RbmSuggestionResponse](docs/RbmSuggestionResponse.md)
- - [Model.RbmVebViewEnum](docs/RbmVebViewEnum.md)
+ - [Model.RbmWebViewEnum](docs/RbmWebViewEnum.md)
  - [Model.RecordingAvailableCallback](docs/RecordingAvailableCallback.md)
  - [Model.RecordingCompleteCallback](docs/RecordingCompleteCallback.md)
  - [Model.RecordingStateEnum](docs/RecordingStateEnum.md)

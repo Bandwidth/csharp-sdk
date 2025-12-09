@@ -41,7 +41,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 postbackData: new byte[] { 1, 2, 3 },
                 url: "https://test.url/",
                 application: RbmOpenUrlEnum.BROWSER,
-                webviewViewMode: RbmVebViewEnum.FULL
+                webviewViewMode: RbmWebViewEnum.FULL
             );
         }
 
@@ -115,8 +115,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void WebviewViewModeTest()
         {
-            Assert.IsType<RbmVebViewEnum>(instance.WebviewViewMode);
-            Assert.Equal(RbmVebViewEnum.FULL, instance.WebviewViewMode);
+            Assert.IsType<RbmWebViewEnum>(instance.WebviewViewMode);
+            Assert.Equal(RbmWebViewEnum.FULL, instance.WebviewViewMode);
         }
     }
 }
