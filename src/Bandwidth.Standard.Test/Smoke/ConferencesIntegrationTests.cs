@@ -21,7 +21,9 @@ namespace Bandwidth.Standard.Test.Smoke
         private ApiClient restClient;
         private UpdateConference updateConferenceBody;
         private CallsApi callsApiInstance;
-        private Configuration fakeConfiguration;
+        private Configuration configuration;
+        private Configuration unauthorizedConfiguration;
+        private Configuration forbiddenConfiguration;
         private CreateCall mantecaCallBody;
         private UpdateConferenceMember updateConferenceMember;
         private string accountId;
@@ -39,24 +41,26 @@ namespace Bandwidth.Standard.Test.Smoke
             testUpdateBxml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml><SpeakSentence locale=\"en_US\" gender=\"female\" voice=\"susan\">This is test BXML.</SpeakSentence></Bxml>";
 
             // Authorized API Client
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
-            fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
-            fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
-            conferenceApiInstance = new ConferencesApi(fakeConfiguration);
-            callsApiInstance = new CallsApi(fakeConfiguration);
+            configuration = new Configuration();
+            configuration.BasePath = "https://voice.bandwidth.com/api/v2";
+            configuration.OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID");
+            configuration.OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET");
+            conferenceApiInstance = new ConferencesApi(configuration);
+            callsApiInstance = new CallsApi(configuration);
 
             // Unauthorized API Client
-            fakeConfiguration.Username = "badUsername";
-            fakeConfiguration.Password = "badPassword";
-            unauthorizedInstance = new ConferencesApi(fakeConfiguration);
+            unauthorizedConfiguration = new Configuration();
+            unauthorizedConfiguration.Username = "badUsername";
+            unauthorizedConfiguration.Password = "badPassword";
+            unauthorizedInstance = new ConferencesApi(unauthorizedConfiguration);
 
             // Forbidden API Client
-            fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
-            forbiddenInstance = new ConferencesApi(fakeConfiguration);
+            forbiddenConfiguration = new Configuration();
+            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
+            forbiddenConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
+            forbiddenInstance = new ConferencesApi(forbiddenConfiguration);
 
-            restClient =  new ApiClient(basePath: "https://voice.bandwidth.com/api/v2");
+            restClient = new ApiClient(basePath: "https://voice.bandwidth.com/api/v2");
 
             updateConferenceBody = new UpdateConference(
                 status: ConferenceStateEnum.Active,
@@ -159,7 +163,7 @@ namespace Bandwidth.Standard.Test.Smoke
         /// <returns>
         /// A string containing the status of the test requested.
         /// </returns>
-        
+
         public string GetTestStatus(string testId)
         {
             var options = new RequestOptions
@@ -175,7 +179,7 @@ namespace Bandwidth.Standard.Test.Smoke
                 path: Environment.GetEnvironmentVariable("MANTECA_BASE_URL") + "/tests/" + testId,
                 options: options
             );
-            
+
             return response.Content.ToString();
         }
 
@@ -185,7 +189,7 @@ namespace Bandwidth.Standard.Test.Smoke
         [Fact]
         public void testConferenceAndMembers()
         {
-            Tuple <string, string> createCoferenceResponse = CreateConferenceTest();
+            Tuple<string, string> createCoferenceResponse = CreateConferenceTest();
             var testId = createCoferenceResponse.Item1;
             var conferenceId = createCoferenceResponse.Item2;
 
@@ -198,7 +202,7 @@ namespace Bandwidth.Standard.Test.Smoke
             Assert.Equal(HttpStatusCode.OK, getConferenceResponse.StatusCode);
             Assert.Equal(conferenceId, getConferenceResponse.Data.Id);
             Assert.IsType<string>(getConferenceResponse.Data.Name);
-            
+
             var callId = getConferenceResponse.Data.ActiveMembers[0].CallId;
 
             var GetConferenceMemberResponse = conferenceApiInstance.GetConferenceMemberWithHttpInfo(accountId, conferenceId, callId);
@@ -222,16 +226,16 @@ namespace Bandwidth.Standard.Test.Smoke
             );
             // hang up call
             callsApiInstance.UpdateCall(accountId, callId, updateCall);
-        }   
+        }
 
         /// <summary>
         /// Test Conference Recordings
         /// Tests a successful flow of creating a call with a recording.
         /// </summary>
-        [Fact (Skip = "PV Issue")]
+        [Fact(Skip = "PV Issue")]
         public void testConferenceRecordings()
         {
-            Tuple <string, string> createCoferenceResponse = CreateConferenceTest();
+            Tuple<string, string> createCoferenceResponse = CreateConferenceTest();
             var testId = createCoferenceResponse.Item1;
             var conferenceId = createCoferenceResponse.Item2;
             var listConferencesResponse = conferenceApiInstance.ListConferencesWithHttpInfo(accountId);
@@ -274,7 +278,7 @@ namespace Bandwidth.Standard.Test.Smoke
 
             var recordingMediaResponse = conferenceApiInstance.DownloadConferenceRecordingWithHttpInfo(accountId, conferenceId, firstRecordingId);
             Assert.Equal(HttpStatusCode.OK, recordingMediaResponse.StatusCode);
-        } 
+        }
 
         /// <summary>
         /// Test List Conferences Unauthorized
@@ -403,7 +407,7 @@ namespace Bandwidth.Standard.Test.Smoke
         public void GetConferenceRecordingNotFound()
         {
             ApiException exception = Assert.Throws<ApiException>(() => conferenceApiInstance.GetConferenceRecordingWithHttpInfo(accountId, testConferenceId, testRecordingId));
-            Assert.Equal(404, exception.ErrorCode); 
+            Assert.Equal(404, exception.ErrorCode);
         }
 
         /// <summary>
@@ -429,7 +433,7 @@ namespace Bandwidth.Standard.Test.Smoke
         /// <summary>
         /// Test Update Conference Not Found
         /// </summary>
-        [Fact (Skip = "PV Issue")]
+        [Fact(Skip = "PV Issue")]
         public void UpdateConferenceNotFoundRequest()
         {
             ApiException exception = Assert.Throws<ApiException>(() => conferenceApiInstance.UpdateConferenceWithHttpInfo(accountId, testConferenceId, updateConferenceBody));
@@ -460,7 +464,7 @@ namespace Bandwidth.Standard.Test.Smoke
         /// <summary>
         /// Test Update Conference BXML Not Found
         /// </summary>
-        [Fact (Skip = "PV Issue")]
+        [Fact(Skip = "PV Issue")]
         public void UpdateConferenceBxmlNotFoundRequest()
         {
             ApiException exception = Assert.Throws<ApiException>(() => conferenceApiInstance.UpdateConferenceBxmlWithHttpInfo(accountId, testConferenceId, testUpdateBxml));
@@ -490,7 +494,7 @@ namespace Bandwidth.Standard.Test.Smoke
         /// <summary>
         /// Test Update Conference Member Not Found
         /// </summary>
-        [Fact (Skip = "PV Issue")]
+        [Fact(Skip = "PV Issue")]
         public void UpdateConferenceMemberNotFoundRequest()
         {
             ApiException exception = Assert.Throws<ApiException>(() => conferenceApiInstance.UpdateConferenceMember(accountId, testConferenceId, testMemberId, updateConferenceMember));

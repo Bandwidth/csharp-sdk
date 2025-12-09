@@ -16,7 +16,9 @@ namespace Bandwidth.Standard.Test.Smoke
     public class MediaSmokeTests : IDisposable
     {
         private string accountId;
-        private Configuration fakeConfiguration;
+        private Configuration configuration;
+        private Configuration unauthorizedConfiguration;
+        private Configuration forbiddenConfiguration;
         private MediaApi instance;
         private string testMediaId;
         private string testContentType;
@@ -29,20 +31,18 @@ namespace Bandwidth.Standard.Test.Smoke
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
             testContentType = "image/jpeg";
             testMediaId = $"test-media-id-{Guid.NewGuid()}.jpg";
-            
+
             // Authorized API Client
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
-            fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
-            fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
-            instance = new MediaApi(fakeConfiguration);
+            configuration = new Configuration();
+            configuration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
+            configuration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
+            instance = new MediaApi(configuration);
 
             // Unauthorized API Client
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://messaging.bandwidth.com/api/v2";
-            fakeConfiguration.Username = "badUsername";
-            fakeConfiguration.Password = "badPassword";
-            unauthorizedInstance = new MediaApi(fakeConfiguration);
+            unauthorizedConfiguration = new Configuration();
+            unauthorizedConfiguration.Username = "badUsername";
+            unauthorizedConfiguration.Password = "badPassword";
+            unauthorizedInstance = new MediaApi(unauthorizedConfiguration);
 
             // Create a media file to use for testing
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -140,7 +140,7 @@ namespace Bandwidth.Standard.Test.Smoke
         /// </summary>
         [Fact]
         public void GetMediaTest()
-        {  
+        {
             var testMediaBody = new System.IO.FileStream(filePath, FileMode.Open);
             var uploadResponse = instance.UploadMediaWithHttpInfo(accountId, testMediaId, testMediaBody, testContentType);
 
@@ -220,7 +220,7 @@ namespace Bandwidth.Standard.Test.Smoke
         /// Test DeleteMedia with a fake media id
         /// API does not throw an exception
         /// </summary>
-        [Fact (Skip = "API does not throw an exception")]
+        [Fact(Skip = "API does not throw an exception")]
         public void DeleteMediaNotFound()
         {
             ApiException exception = Assert.Throws<ApiException>(() => instance.DeleteMediaWithHttpInfo(accountId, "not-a-media-id.jpg"));

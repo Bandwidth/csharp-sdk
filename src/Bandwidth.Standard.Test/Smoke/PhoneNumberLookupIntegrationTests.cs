@@ -42,8 +42,8 @@ namespace Bandwidth.Standard.Test.Smoke
 
             // Authorized API Client
             configuration = new Configuration();
-            configuration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
-            configuration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
+            configuration.OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID");
+            configuration.OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET");
             instance = new PhoneNumberLookupApi(configuration);
         }
 

@@ -24,9 +24,11 @@ namespace Bandwidth.Standard.Test.Smoke
     public class StatisticsSmokeTests : IDisposable
     {
         private string accountId;
-        private Configuration fakeConfiguration;
-        private StatisticsApi forbiddenInstance;
+        private Configuration configuration;
+        private Configuration unauthorizedConfiguration;
+        private Configuration forbiddenConfiguration;
         private StatisticsApi instance;
+        private StatisticsApi forbiddenInstance;
         private StatisticsApi unauthorizedInstance;
 
         public StatisticsSmokeTests()
@@ -34,21 +36,23 @@ namespace Bandwidth.Standard.Test.Smoke
             accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
 
             // Authorized API Client
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
-            fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
-            fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
-            instance = new StatisticsApi(fakeConfiguration);
+            configuration = new Configuration();
+            configuration.BasePath = "https://voice.bandwidth.com/api/v2";
+            configuration.OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID");
+            configuration.OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET");
+            instance = new StatisticsApi(configuration);
 
             // Unauthorized API Client
-            fakeConfiguration.Username = "badUsername";
-            fakeConfiguration.Password = "badPassword";
-            unauthorizedInstance = new StatisticsApi(fakeConfiguration);
+            unauthorizedConfiguration = new Configuration();
+            unauthorizedConfiguration.Username = "badUsername";
+            unauthorizedConfiguration.Password = "badPassword";
+            unauthorizedInstance = new StatisticsApi(unauthorizedConfiguration);
 
             // Forbidden API Client
-            fakeConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            fakeConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
-            forbiddenInstance = new StatisticsApi(fakeConfiguration);
+            forbiddenConfiguration = new Configuration();
+            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
+            forbiddenConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
+            forbiddenInstance = new StatisticsApi(forbiddenConfiguration);
         }
 
         public void Dispose()
@@ -94,6 +98,6 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetStatisticsWithHttpInfo(accountId));
             Assert.Equal(403, exception.ErrorCode);
-        }  
+        }
     }
 }

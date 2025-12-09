@@ -116,6 +116,8 @@ namespace Bandwidth.Standard.Client
             Proxy = null;
             UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/1.0.0/csharp");
             BasePath = "http://localhost";
+            OAuthFlow = Auth.OAuthFlow.APPLICATION;
+            OAuthTokenUrl = "https://api.bandwidth.com/api/v1/oauth2/token";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
             ApiKeyPrefix = new ConcurrentDictionary<string, string>();
