@@ -11,6 +11,7 @@ servers:
 - url: /
 security:
 - Basic: []
+- OAuth2: []
 tags:
 - name: Messages
 - name: Media
@@ -8868,6 +8869,26 @@ components:
       - REQUEST_LOCATION
       example: REPLY
       type: string
+    rbmOpenUrlEnum:
+      description: "Specifies how the URL should be opened on a mobile device.\n-\
+        \ `BROWSER` Opens the URL in the device's default browser. If application\
+        \ is not set or the device doesn’t support WebView, this option is used by\
+        \ default. \n- `WEBVIEW` Opens the URL in an in-app WebView."
+      enum:
+      - BROWSER
+      - WEBVIEW
+      example: WEBVIEW
+      type: string
+    rbmVebViewEnum:
+      description: "Defines the layout of the WebView on a mobile device. It must\
+        \ be defined when application is set to `WEBVIEW`\n- `FULL` WebView takes\
+        \ the full screen. \n- `HALF` WebView takes half of the screen.\n- `TALL`\
+        \ WebView takes three-quarters of the screen."
+      enum:
+      - FULL
+      - HALF
+      - TALL
+      type: string
     rbmActionText:
       description: Displayed text for user to click
       example: Hello world
@@ -8986,6 +9007,10 @@ components:
             format: uri
             maxLength: 2048
             type: string
+          application:
+            $ref: '#/components/schemas/rbmOpenUrlEnum'
+          webviewViewMode:
+            $ref: '#/components/schemas/rbmVebViewEnum'
         required:
         - url
         title: Open URL
@@ -14800,4 +14825,10 @@ components:
         - Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
       scheme: basic
       type: http
+    OAuth2:
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: https://api.bandwidth.com/api/v1/oauth2/token
+      type: oauth2
 

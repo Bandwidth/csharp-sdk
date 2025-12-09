@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **EndTime** | **DateTime** | The end time of the event. | 
 **Description** | **string** | The description of the event. | [optional] 
 **Url** | **string** | The URL to open in browser. | 
+**Application** | **RbmOpenUrlEnum** |  | [optional] 
+**WebviewViewMode** | **RbmVebViewEnum** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

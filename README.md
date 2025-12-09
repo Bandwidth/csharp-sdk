@@ -78,6 +78,8 @@ namespace Example
             // Configure HTTP basic authorization: Basic
             config.Username = "YOUR_USERNAME";
             config.Password = "YOUR_PASSWORD";
+            // Configure OAuth2 access token for authorization: OAuth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new CallsApi(config);
             var accountId = 9900000;  // string | Your Bandwidth Account ID.
@@ -289,8 +291,10 @@ Class | Method | HTTP request | Description
  - [Model.RbmMessageContentRichCard](docs/RbmMessageContentRichCard.md)
  - [Model.RbmMessageContentText](docs/RbmMessageContentText.md)
  - [Model.RbmMessageMedia](docs/RbmMessageMedia.md)
+ - [Model.RbmOpenUrlEnum](docs/RbmOpenUrlEnum.md)
  - [Model.RbmStandaloneCard](docs/RbmStandaloneCard.md)
  - [Model.RbmSuggestionResponse](docs/RbmSuggestionResponse.md)
+ - [Model.RbmVebViewEnum](docs/RbmVebViewEnum.md)
  - [Model.RecordingAvailableCallback](docs/RecordingAvailableCallback.md)
  - [Model.RecordingCompleteCallback](docs/RecordingCompleteCallback.md)
  - [Model.RecordingStateEnum](docs/RecordingStateEnum.md)
@@ -348,4 +352,12 @@ Authentication schemes defined for the API:
 ### Basic
 
 - **Type**: HTTP basic authentication
+
+<a id="OAuth2"></a>
+### OAuth2
+
+- **Type**: OAuth
+- **Flow**: application
+- **Authorization URL**: 
+- **Scopes**: N/A
 

@@ -38,6 +38,18 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public RbmActionTypeEnum Type { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Application
+        /// </summary>
+        [DataMember(Name = "application", EmitDefaultValue = false)]
+        public RbmOpenUrlEnum? Application { get; set; }
+
+        /// <summary>
+        /// Gets or Sets WebviewViewMode
+        /// </summary>
+        [DataMember(Name = "webviewViewMode", EmitDefaultValue = false)]
+        public RbmVebViewEnum? WebviewViewMode { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RbmActionOpenUrl" /> class.
         /// </summary>
@@ -50,7 +62,9 @@ namespace Bandwidth.Standard.Model
         /// <param name="text">Displayed text for user to click (required).</param>
         /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked. (required).</param>
         /// <param name="url">The URL to open in browser. (required).</param>
-        public RbmActionOpenUrl(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postbackData = default(byte[]), string url = default(string))
+        /// <param name="application">application.</param>
+        /// <param name="webviewViewMode">webviewViewMode.</param>
+        public RbmActionOpenUrl(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postbackData = default(byte[]), string url = default(string), RbmOpenUrlEnum? application = default(RbmOpenUrlEnum?), RbmVebViewEnum? webviewViewMode = default(RbmVebViewEnum?))
         {
             this.Type = type;
             // to ensure "text" is required (not null)
@@ -71,6 +85,8 @@ namespace Bandwidth.Standard.Model
                 throw new ArgumentNullException("url is a required property for RbmActionOpenUrl and cannot be null");
             }
             this.Url = url;
+            this.Application = application;
+            this.WebviewViewMode = webviewViewMode;
         }
 
         /// <summary>
@@ -109,6 +125,8 @@ namespace Bandwidth.Standard.Model
             sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("  PostbackData: ").Append(PostbackData).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
+            sb.Append("  Application: ").Append(Application).Append("\n");
+            sb.Append("  WebviewViewMode: ").Append(WebviewViewMode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
