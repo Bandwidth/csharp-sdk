@@ -2,3 +2,4 @@ apiName: Bandwidth
 packageName: Bandwidth.Standard
 packageTags: Bandwidth
 targetFramework: netstandard2.0
+templateDir: custom_templates
