@@ -135,8 +135,10 @@ docs/RbmMessageContentFile.md
 docs/RbmMessageContentRichCard.md
 docs/RbmMessageContentText.md
 docs/RbmMessageMedia.md
+docs/RbmOpenUrlEnum.md
 docs/RbmStandaloneCard.md
 docs/RbmSuggestionResponse.md
+docs/RbmWebViewEnum.md
 docs/RecordingAvailableCallback.md
 docs/RecordingCompleteCallback.md
 docs/RecordingStateEnum.md
@@ -345,8 +347,10 @@ src/Bandwidth.Standard/Model/RbmMessageContentFile.cs
 src/Bandwidth.Standard/Model/RbmMessageContentRichCard.cs
 src/Bandwidth.Standard/Model/RbmMessageContentText.cs
 src/Bandwidth.Standard/Model/RbmMessageMedia.cs
+src/Bandwidth.Standard/Model/RbmOpenUrlEnum.cs
 src/Bandwidth.Standard/Model/RbmStandaloneCard.cs
 src/Bandwidth.Standard/Model/RbmSuggestionResponse.cs
+src/Bandwidth.Standard/Model/RbmWebViewEnum.cs
 src/Bandwidth.Standard/Model/RecordingAvailableCallback.cs
 src/Bandwidth.Standard/Model/RecordingCompleteCallback.cs
 src/Bandwidth.Standard/Model/RecordingStateEnum.cs

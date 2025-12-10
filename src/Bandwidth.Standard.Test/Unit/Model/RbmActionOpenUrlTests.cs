@@ -39,7 +39,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 type: RbmActionTypeEnum.OPENURL,
                 text: "TestText",
                 postbackData: new byte[] { 1, 2, 3 },
-                url: "https://test.url/"
+                url: "https://test.url/",
+                application: RbmOpenUrlEnum.BROWSER,
+                webviewViewMode: RbmWebViewEnum.FULL
             );
         }
 
@@ -95,6 +97,26 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<string>(instance.Url);
             Assert.Equal("https://test.url/", instance.Url);
+        }
+
+        /// <summary>
+        /// Test the property 'Application'
+        /// </summary>
+        [Fact]
+        public void ApplicationTest()
+        {
+            Assert.IsType<RbmOpenUrlEnum>(instance.Application);
+            Assert.Equal(RbmOpenUrlEnum.BROWSER, instance.Application);
+        }
+
+        /// <summary>
+        /// Test the property 'WebviewViewMode'
+        /// </summary>
+        [Fact]
+        public void WebviewViewModeTest()
+        {
+            Assert.IsType<RbmWebViewEnum>(instance.WebviewViewMode);
+            Assert.Equal(RbmWebViewEnum.FULL, instance.WebviewViewMode);
         }
     }
 }
