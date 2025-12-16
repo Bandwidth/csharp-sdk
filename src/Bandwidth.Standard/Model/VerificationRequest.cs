@@ -70,7 +70,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="businessEntityType">businessEntityType.</param>
         /// <param name="helpMessageResponse">A message that gets sent to users requesting help..</param>
         /// <param name="ageGatedContent">Indicates whether the content is age-gated..</param>
-        public VerificationRequest(Address businessAddress = default(Address), Contact businessContact = default(Contact), int messageVolume = default(int), List<string> phoneNumbers = default(List<string>), string useCase = default(string), string useCaseSummary = default(string), string productionMessageContent = default(string), OptInWorkflow optInWorkflow = default(OptInWorkflow), string additionalInformation = default(string), string isvReseller = default(string), string privacyPolicyUrl = default(string), string termsAndConditionsUrl = default(string), string businessDba = default(string), string businessRegistrationNumber = default(string), BusinessRegistrationTypeEnum? businessRegistrationType = default(BusinessRegistrationTypeEnum?), BusinessEntityTypeEnum? businessEntityType = default(BusinessEntityTypeEnum?), string helpMessageResponse = default(string), bool ageGatedContent = default(bool))
+        /// <param name="cvToken">The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. If you pass an empty string, it will be passed along and potentially rejected..</param>
+        public VerificationRequest(Address businessAddress = default(Address), Contact businessContact = default(Contact), int messageVolume = default(int), List<string> phoneNumbers = default(List<string>), string useCase = default(string), string useCaseSummary = default(string), string productionMessageContent = default(string), OptInWorkflow optInWorkflow = default(OptInWorkflow), string additionalInformation = default(string), string isvReseller = default(string), string privacyPolicyUrl = default(string), string termsAndConditionsUrl = default(string), string businessDba = default(string), string businessRegistrationNumber = default(string), BusinessRegistrationTypeEnum? businessRegistrationType = default(BusinessRegistrationTypeEnum?), BusinessEntityTypeEnum? businessEntityType = default(BusinessEntityTypeEnum?), string helpMessageResponse = default(string), bool ageGatedContent = default(bool), string cvToken = default(string))
         {
             // to ensure "businessAddress" is required (not null)
             if (businessAddress == null)
@@ -125,6 +126,7 @@ namespace Bandwidth.Standard.Model
             this.BusinessEntityType = businessEntityType;
             this.HelpMessageResponse = helpMessageResponse;
             this.AgeGatedContent = ageGatedContent;
+            this.CvToken = cvToken;
         }
 
         /// <summary>
@@ -248,6 +250,14 @@ namespace Bandwidth.Standard.Model
         public bool AgeGatedContent { get; set; }
 
         /// <summary>
+        /// The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. If you pass an empty string, it will be passed along and potentially rejected.
+        /// </summary>
+        /// <value>The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. If you pass an empty string, it will be passed along and potentially rejected.</value>
+        /// <example>cv.user123|sess456|mno|tfree|read_write|X7yZ9aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVw</example>
+        [DataMember(Name = "cvToken", EmitDefaultValue = true)]
+        public string CvToken { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -273,6 +283,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  BusinessEntityType: ").Append(BusinessEntityType).Append("\n");
             sb.Append("  HelpMessageResponse: ").Append(HelpMessageResponse).Append("\n");
             sb.Append("  AgeGatedContent: ").Append(AgeGatedContent).Append("\n");
+            sb.Append("  CvToken: ").Append(CvToken).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -375,6 +386,18 @@ namespace Bandwidth.Standard.Model
             if (this.HelpMessageResponse != null && this.HelpMessageResponse.Length > 500)
             {
                 yield return new ValidationResult("Invalid value for HelpMessageResponse, length must be less than 500.", new [] { "HelpMessageResponse" });
+            }
+
+            // CvToken (string) maxLength
+            if (this.CvToken != null && this.CvToken.Length > 500)
+            {
+                yield return new ValidationResult("Invalid value for CvToken, length must be less than 500.", new [] { "CvToken" });
+            }
+
+            // CvToken (string) minLength
+            if (this.CvToken != null && this.CvToken.Length < 0)
+            {
+                yield return new ValidationResult("Invalid value for CvToken, length must be greater than 0.", new [] { "CvToken" });
             }
 
             yield break;
