@@ -211,6 +211,7 @@ Class | Method | HTTP request | Description
  - [Model.CreateMultiChannelMessageResponse](docs/CreateMultiChannelMessageResponse.md)
  - [Model.CreateSyncLookupResponse](docs/CreateSyncLookupResponse.md)
  - [Model.CreateSyncLookupResponseData](docs/CreateSyncLookupResponseData.md)
+ - [Model.CustomTooManyRequestsError](docs/CustomTooManyRequestsError.md)
  - [Model.DeactivationEventEnum](docs/DeactivationEventEnum.md)
  - [Model.DisconnectCallback](docs/DisconnectCallback.md)
  - [Model.Diversion](docs/Diversion.md)

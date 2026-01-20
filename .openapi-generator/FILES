@@ -47,6 +47,7 @@ docs/CreateMessageRequestError.md
 docs/CreateMultiChannelMessageResponse.md
 docs/CreateSyncLookupResponse.md
 docs/CreateSyncLookupResponseData.md
+docs/CustomTooManyRequestsError.md
 docs/DeactivationEventEnum.md
 docs/DisconnectCallback.md
 docs/Diversion.md
@@ -264,6 +265,7 @@ src/Bandwidth.Standard/Model/CreateMessageRequestError.cs
 src/Bandwidth.Standard/Model/CreateMultiChannelMessageResponse.cs
 src/Bandwidth.Standard/Model/CreateSyncLookupResponse.cs
 src/Bandwidth.Standard/Model/CreateSyncLookupResponseData.cs
+src/Bandwidth.Standard/Model/CustomTooManyRequestsError.cs
 src/Bandwidth.Standard/Model/DeactivationEventEnum.cs
 src/Bandwidth.Standard/Model/DisconnectCallback.cs
 src/Bandwidth.Standard/Model/Diversion.cs

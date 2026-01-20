@@ -1,11 +1,11 @@
-# Bandwidth.Standard.Model.RbmMessageMedia
+# Bandwidth.Standard.Model.CustomTooManyRequestsError
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Media** | [**List&lt;RbmMessageContentFile&gt;**](RbmMessageContentFile.md) |  | 
-**Suggestions** | [**List&lt;MultiChannelAction&gt;**](MultiChannelAction.md) | An array of suggested actions for the recipient. | [optional] 
+**Type** | **string** |  | 
+**Description** | **string** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

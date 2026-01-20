@@ -27,44 +27,50 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// RbmMessageMedia
+    /// CustomTooManyRequestsError
     /// </summary>
-    [DataContract(Name = "rbmMessageMedia")]
-    public partial class RbmMessageMedia : IValidatableObject
+    [DataContract(Name = "customTooManyRequestsError")]
+    public partial class CustomTooManyRequestsError : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RbmMessageMedia" /> class.
+        /// Initializes a new instance of the <see cref="CustomTooManyRequestsError" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected RbmMessageMedia() { }
+        protected CustomTooManyRequestsError() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="RbmMessageMedia" /> class.
+        /// Initializes a new instance of the <see cref="CustomTooManyRequestsError" /> class.
         /// </summary>
-        /// <param name="media">media (required).</param>
-        /// <param name="suggestions">An array of suggested actions for the recipient..</param>
-        public RbmMessageMedia(List<RbmMessageContentFile> media = default(List<RbmMessageContentFile>), List<MultiChannelAction> suggestions = default(List<MultiChannelAction>))
+        /// <param name="type">type (required).</param>
+        /// <param name="description">description (required).</param>
+        public CustomTooManyRequestsError(string type = default(string), string description = default(string))
         {
-            // to ensure "media" is required (not null)
-            if (media == null)
+            // to ensure "type" is required (not null)
+            if (type == null)
             {
-                throw new ArgumentNullException("media is a required property for RbmMessageMedia and cannot be null");
+                throw new ArgumentNullException("type is a required property for CustomTooManyRequestsError and cannot be null");
             }
-            this.Media = media;
-            this.Suggestions = suggestions;
+            this.Type = type;
+            // to ensure "description" is required (not null)
+            if (description == null)
+            {
+                throw new ArgumentNullException("description is a required property for CustomTooManyRequestsError and cannot be null");
+            }
+            this.Description = description;
         }
 
         /// <summary>
-        /// Gets or Sets Media
+        /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "media", IsRequired = true, EmitDefaultValue = true)]
-        public List<RbmMessageContentFile> Media { get; set; }
+        /// <example>rate_limit_exceeded</example>
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        public string Type { get; set; }
 
         /// <summary>
-        /// An array of suggested actions for the recipient.
+        /// Gets or Sets Description
         /// </summary>
-        /// <value>An array of suggested actions for the recipient.</value>
-        [DataMember(Name = "suggestions", EmitDefaultValue = false)]
-        public List<MultiChannelAction> Suggestions { get; set; }
+        /// <example>Rate limit exceeded. Wait for Retry-After time before sending another request.</example>
+        [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
+        public string Description { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -73,9 +79,9 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RbmMessageMedia {\n");
-            sb.Append("  Media: ").Append(Media).Append("\n");
-            sb.Append("  Suggestions: ").Append(Suggestions).Append("\n");
+            sb.Append("class CustomTooManyRequestsError {\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
