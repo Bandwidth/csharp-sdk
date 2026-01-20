@@ -26,3 +26,66 @@
 src/Bandwidth.Standard.Test/Bandwidth.Standard.Test.csproj
 src/Bandwidth.Standard.Test/
 src/Bandwidth.Standard/Bandwidth.Standard.csproj
+
+# Ignore ALL existing files - only allow endpoint-related files to be generated
+# API files
+src/Bandwidth.Standard/Api/CallsApi.cs
+src/Bandwidth.Standard/Api/ConferencesApi.cs
+src/Bandwidth.Standard/Api/MediaApi.cs
+src/Bandwidth.Standard/Api/MessagesApi.cs
+src/Bandwidth.Standard/Api/MFAApi.cs
+src/Bandwidth.Standard/Api/MultiChannelApi.cs
+src/Bandwidth.Standard/Api/PhoneNumberLookupApi.cs
+src/Bandwidth.Standard/Api/RecordingsApi.cs
+src/Bandwidth.Standard/Api/StatisticsApi.cs
+src/Bandwidth.Standard/Api/TollFreeVerificationApi.cs
+src/Bandwidth.Standard/Api/TranscriptionsApi.cs
+
+# Model files - ignore everything except Endpoint-related
+src/Bandwidth.Standard/Model/[A-C]*.cs
+src/Bandwidth.Standard/Model/D[a-m]*.cs
+src/Bandwidth.Standard/Model/D[o-z]*.cs
+src/Bandwidth.Standard/Model/E[a-m]*.cs
+src/Bandwidth.Standard/Model/E[o-q]*.cs
+src/Bandwidth.Standard/Model/E[s-z]*.cs
+src/Bandwidth.Standard/Model/[F-O]*.cs
+src/Bandwidth.Standard/Model/Q*.cs
+src/Bandwidth.Standard/Model/R*.cs
+src/Bandwidth.Standard/Model/T*.cs
+src/Bandwidth.Standard/Model/U*.cs
+src/Bandwidth.Standard/Model/V*.cs
+src/Bandwidth.Standard/Model/[W-Z]*.cs
+src/Bandwidth.Standard/Model/Bxml/
+
+# Docs - ignore everything except Endpoint-related
+# Ignore subdirectories that generator creates
+docs/apis/
+docs/models/
+
+# Ignore all existing API docs (flat structure)
+docs/CallsApi.md
+docs/ConferencesApi.md
+docs/MediaApi.md
+docs/MessagesApi.md
+docs/MFAApi.md
+docs/MultiChannelApi.md
+docs/PhoneNumberLookupApi.md
+docs/RecordingsApi.md
+docs/StatisticsApi.md
+docs/TollFreeVerificationApi.md
+docs/TranscriptionsApi.md
+
+# Ignore all existing model docs
+docs/[A-C]*.md
+docs/D[a-m]*.md
+docs/D[o-z]*.md
+docs/E[a-m]*.md
+docs/E[o-q]*.md
+docs/E[s-z]*.md
+docs/[F-O]*.md
+docs/Q*.md
+docs/R*.md
+docs/T*.md
+docs/U*.md
+docs/V*.md
+docs/[W-Z]*.md
