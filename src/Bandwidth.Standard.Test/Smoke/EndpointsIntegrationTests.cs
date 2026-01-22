@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Net;
 using Xunit;
 using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
@@ -56,15 +56,16 @@ namespace Bandwidth.Standard.Test.Smoke
         public void TestCreateEndpoint_AllParams()
         {
             System.Threading.Thread.Sleep(TestSleep);
-            var createRequest = new CreateWebRtcConnectionRequest(
+            var webRtcRequest = new CreateWebRtcConnectionRequest(
                 type: EndpointTypeEnum.WEBRTC,
                 direction: EndpointDirectionEnum.BIDIRECTIONAL,
                 eventCallbackUrl: Environment.GetEnvironmentVariable("BASE_CALLBACK_URL") + "/endpoint/callback",
                 eventFallbackUrl: Environment.GetEnvironmentVariable("BASE_CALLBACK_URL") + "/endpoint/fallback",
                 tag: "csharp-sdk-test-endpoint"
             );
+            var createRequest = new CreateEndpointRequest(webRtcRequest);
             var response = _api.CreateEndpointWithHttpInfo(_accountId, createRequest);
-            Assert.Equal(201, response.StatusCode);
+            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
             Assert.NotNull(response.Data);
             Assert.NotNull(response.Data.Data.EndpointId);
             Assert.Equal(EndpointTypeEnum.WEBRTC, response.Data.Data.Type);
@@ -76,10 +77,11 @@ namespace Bandwidth.Standard.Test.Smoke
         public void TestCreateEndpoint_Minimal()
         {
             System.Threading.Thread.Sleep(TestSleep);
-            var createRequest = new CreateWebRtcConnectionRequest(
+            var webRtcRequest = new CreateWebRtcConnectionRequest(
                 type: EndpointTypeEnum.WEBRTC,
                 direction: EndpointDirectionEnum.OUTBOUND
             );
+            var createRequest = new CreateEndpointRequest(webRtcRequest);
             var response = _api.CreateEndpoint(_accountId, createRequest);
             Assert.NotNull(response.Data.EndpointId);
             Assert.Equal(EndpointTypeEnum.WEBRTC, response.Data.Type);
@@ -91,17 +93,18 @@ namespace Bandwidth.Standard.Test.Smoke
         public void TestGetEndpoint()
         {
             System.Threading.Thread.Sleep(TestSleep);
-            var createRequest = new CreateWebRtcConnectionRequest(
+            var webRtcRequest = new CreateWebRtcConnectionRequest(
                 type: EndpointTypeEnum.WEBRTC,
                 direction: EndpointDirectionEnum.INBOUND,
                 tag: "test-get-endpoint"
             );
+            var createRequest = new CreateEndpointRequest(webRtcRequest);
             var createResponse = _api.CreateEndpoint(_accountId, createRequest);
             var endpointId = createResponse.Data.EndpointId;
             _endpointIds.Add(endpointId);
             System.Threading.Thread.Sleep(TestSleep);
             var response = _api.GetEndpointWithHttpInfo(_accountId, endpointId);
-            Assert.Equal(200, response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.NotNull(response.Data);
             Assert.Equal(endpointId, response.Data.Data.EndpointId);
             Assert.Equal(EndpointTypeEnum.WEBRTC, response.Data.Data.Type);
@@ -124,18 +127,19 @@ namespace Bandwidth.Standard.Test.Smoke
             System.Threading.Thread.Sleep(TestSleep);
             for (int i = 0; i < 2; i++)
             {
-                var createRequest = new CreateWebRtcConnectionRequest(
+                var webRtcRequest = new CreateWebRtcConnectionRequest(
                     type: EndpointTypeEnum.WEBRTC,
                     direction: EndpointDirectionEnum.BIDIRECTIONAL,
                     tag: $"test-list-endpoint-{i}"
                 );
+                var createRequest = new CreateEndpointRequest(webRtcRequest);
                 var createResponse = _api.CreateEndpoint(_accountId, createRequest);
                 _endpointIds.Add(createResponse.Data.EndpointId);
                 System.Threading.Thread.Sleep(1000);
             }
             System.Threading.Thread.Sleep(TestSleep);
             var response = _api.ListEndpointsWithHttpInfo(_accountId, limit: 10);
-            Assert.Equal(200, response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.NotNull(response.Data);
             Assert.IsType<ListEndpointsResponse>(response.Data);
             Assert.IsType<List<EndpointResponse>>(response.Data.Data);
@@ -157,16 +161,17 @@ namespace Bandwidth.Standard.Test.Smoke
         public void TestDeleteEndpoint()
         {
             System.Threading.Thread.Sleep(TestSleep);
-            var createRequest = new CreateWebRtcConnectionRequest(
+            var webRtcRequest = new CreateWebRtcConnectionRequest(
                 type: EndpointTypeEnum.WEBRTC,
                 direction: EndpointDirectionEnum.BIDIRECTIONAL,
                 tag: "test-delete-endpoint"
             );
+            var createRequest = new CreateEndpointRequest(webRtcRequest);
             var createResponse = _api.CreateEndpoint(_accountId, createRequest);
             var endpointId = createResponse.Data.EndpointId;
             System.Threading.Thread.Sleep(TestSleep);
             var response = _api.DeleteEndpointWithHttpInfo(_accountId, endpointId);
-            Assert.Equal(204, response.StatusCode);
+            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
             System.Threading.Thread.Sleep(TestSleep);
             ApiException ex = Assert.Throws<ApiException>(() =>
                 _api.GetEndpoint(_accountId, endpointId)
@@ -189,10 +194,11 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             System.Threading.Thread.Sleep(TestSleep);
             var unauthorizedApi = new EndpointsApi(_unauthorizedConfiguration);
-            var createRequest = new CreateWebRtcConnectionRequest(
+            var webRtcRequest = new CreateWebRtcConnectionRequest(
                 type: EndpointTypeEnum.WEBRTC,
                 direction: EndpointDirectionEnum.BIDIRECTIONAL
             );
+            var createRequest = new CreateEndpointRequest(webRtcRequest);
             ApiException ex = Assert.Throws<ApiException>(() =>
                 unauthorizedApi.CreateEndpoint(_accountId, createRequest)
             );
