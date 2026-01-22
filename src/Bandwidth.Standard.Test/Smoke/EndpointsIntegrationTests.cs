@@ -2,46 +2,48 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
-using Bandwidth.Standard;
+using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
-using Bandwidth.Standard.Exceptions;
 
 namespace Bandwidth.Standard.Test.Smoke
 {
-    public class EndpointsIntegrationTests : IAsyncLifetime
+    public class EndpointsSmokeTests : IDisposable
     {
         private readonly EndpointsApi _api;
+        private readonly Configuration _configuration;
+        private readonly Configuration _unauthorizedConfiguration;
         private readonly string _accountId;
         private readonly List<string> _endpointIds = new();
         private const int TestSleep = 2000;
 
-        public EndpointsIntegrationTests()
+        public EndpointsSmokeTests()
         {
-            // These should be set from environment variables or test config
             _accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
             var clientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID");
             var clientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET");
-            var config = new Configuration(clientId, clientSecret);
-            var client = new ApiClient(config);
-            _api = new EndpointsApi(client);
+
+            // Authorized API Client
+            _configuration = new Configuration();
+            _configuration.OAuthClientId = clientId;
+            _configuration.OAuthClientSecret = clientSecret;
+            _api = new EndpointsApi(_configuration);
+
+            // Unauthorized API Client
+            _unauthorizedConfiguration = new Configuration();
+            _unauthorizedConfiguration.Username = "badUsername";
+            _unauthorizedConfiguration.Password = "badPassword";
         }
 
-        public async Task InitializeAsync()
-        {
-            // No setup needed
-            await Task.CompletedTask;
-        }
-
-        public async Task DisposeAsync()
+        public void Dispose()
         {
             // Cleanup endpoints created during tests
             foreach (var endpointId in _endpointIds)
             {
                 try
                 {
-                    await _api.DeleteEndpointAsync(_accountId, endpointId);
-                    await Task.Delay(1000);
+                    _api.DeleteEndpoint(_accountId, endpointId);
+                    System.Threading.Thread.Sleep(1000);
                 }
                 catch (Exception e)
                 {
@@ -51,9 +53,9 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         [Fact(DisplayName = "Create Endpoint (all params)")]
-        public async Task TestCreateEndpoint_AllParams()
+        public void TestCreateEndpoint_AllParams()
         {
-            await Task.Delay(TestSleep);
+            System.Threading.Thread.Sleep(TestSleep);
             var createRequest = new CreateWebRtcConnectionRequest(
                 type: EndpointTypeEnum.WEBRTC,
                 direction: EndpointDirectionEnum.BIDIRECTIONAL,
@@ -61,7 +63,7 @@ namespace Bandwidth.Standard.Test.Smoke
                 eventFallbackUrl: Environment.GetEnvironmentVariable("BASE_CALLBACK_URL") + "/endpoint/fallback",
                 tag: "csharp-sdk-test-endpoint"
             );
-            var response = await _api.CreateEndpointWithHttpInfoAsync(_accountId, createRequest);
+            var response = _api.CreateEndpointWithHttpInfo(_accountId, createRequest);
             Assert.Equal(201, response.StatusCode);
             Assert.NotNull(response.Data);
             Assert.NotNull(response.Data.Data.EndpointId);
@@ -71,14 +73,14 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         [Fact(DisplayName = "Create Endpoint (minimal)")]
-        public async Task TestCreateEndpoint_Minimal()
+        public void TestCreateEndpoint_Minimal()
         {
-            await Task.Delay(TestSleep);
+            System.Threading.Thread.Sleep(TestSleep);
             var createRequest = new CreateWebRtcConnectionRequest(
                 type: EndpointTypeEnum.WEBRTC,
                 direction: EndpointDirectionEnum.OUTBOUND
             );
-            var response = await _api.CreateEndpointAsync(_accountId, createRequest);
+            var response = _api.CreateEndpoint(_accountId, createRequest);
             Assert.NotNull(response.Data.EndpointId);
             Assert.Equal(EndpointTypeEnum.WEBRTC, response.Data.Type);
             Assert.NotNull(response.Data.Token);
@@ -86,19 +88,19 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         [Fact(DisplayName = "Get Endpoint")]
-        public async Task TestGetEndpoint()
+        public void TestGetEndpoint()
         {
-            await Task.Delay(TestSleep);
+            System.Threading.Thread.Sleep(TestSleep);
             var createRequest = new CreateWebRtcConnectionRequest(
                 type: EndpointTypeEnum.WEBRTC,
                 direction: EndpointDirectionEnum.INBOUND,
                 tag: "test-get-endpoint"
             );
-            var createResponse = await _api.CreateEndpointAsync(_accountId, createRequest);
+            var createResponse = _api.CreateEndpoint(_accountId, createRequest);
             var endpointId = createResponse.Data.EndpointId;
             _endpointIds.Add(endpointId);
-            await Task.Delay(TestSleep);
-            var response = await _api.GetEndpointWithHttpInfoAsync(_accountId, endpointId);
+            System.Threading.Thread.Sleep(TestSleep);
+            var response = _api.GetEndpointWithHttpInfo(_accountId, endpointId);
             Assert.Equal(200, response.StatusCode);
             Assert.NotNull(response.Data);
             Assert.Equal(endpointId, response.Data.Data.EndpointId);
@@ -107,19 +109,19 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         [Fact(DisplayName = "Get Endpoint Not Found")]
-        public async Task TestGetEndpoint_NotFound()
+        public void TestGetEndpoint_NotFound()
         {
-            await Task.Delay(TestSleep);
-            var ex = await Assert.ThrowsAsync<ApiException>(async () =>
-                await _api.GetEndpointAsync(_accountId, "non-existent-endpoint-id")
+            System.Threading.Thread.Sleep(TestSleep);
+            ApiException ex = Assert.Throws<ApiException>(() =>
+                _api.GetEndpoint(_accountId, "non-existent-endpoint-id")
             );
-            Assert.Equal(404, ex.Status);
+            Assert.Equal(404, ex.ErrorCode);
         }
 
         [Fact(DisplayName = "List Endpoints")]
-        public async Task TestListEndpoints()
+        public void TestListEndpoints()
         {
-            await Task.Delay(TestSleep);
+            System.Threading.Thread.Sleep(TestSleep);
             for (int i = 0; i < 2; i++)
             {
                 var createRequest = new CreateWebRtcConnectionRequest(
@@ -127,12 +129,12 @@ namespace Bandwidth.Standard.Test.Smoke
                     direction: EndpointDirectionEnum.BIDIRECTIONAL,
                     tag: $"test-list-endpoint-{i}"
                 );
-                var createResponse = await _api.CreateEndpointAsync(_accountId, createRequest);
+                var createResponse = _api.CreateEndpoint(_accountId, createRequest);
                 _endpointIds.Add(createResponse.Data.EndpointId);
-                await Task.Delay(1000);
+                System.Threading.Thread.Sleep(1000);
             }
-            await Task.Delay(TestSleep);
-            var response = await _api.ListEndpointsWithHttpInfoAsync(_accountId, limit: 10);
+            System.Threading.Thread.Sleep(TestSleep);
+            var response = _api.ListEndpointsWithHttpInfo(_accountId, limit: 10);
             Assert.Equal(200, response.StatusCode);
             Assert.NotNull(response.Data);
             Assert.IsType<ListEndpointsResponse>(response.Data);
@@ -140,10 +142,10 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         [Fact(DisplayName = "List Endpoints With Filter")]
-        public async Task TestListEndpoints_WithFilter()
+        public void TestListEndpoints_WithFilter()
         {
-            await Task.Delay(TestSleep);
-            var response = await _api.ListEndpointsAsync(_accountId, type: EndpointTypeEnum.WEBRTC, limit: 5);
+            System.Threading.Thread.Sleep(TestSleep);
+            var response = _api.ListEndpoints(_accountId, type: EndpointTypeEnum.WEBRTC, limit: 5);
             Assert.NotNull(response.Data);
             foreach (var endpoint in response.Data)
             {
@@ -152,51 +154,49 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         [Fact(DisplayName = "Delete Endpoint")]
-        public async Task TestDeleteEndpoint()
+        public void TestDeleteEndpoint()
         {
-            await Task.Delay(TestSleep);
+            System.Threading.Thread.Sleep(TestSleep);
             var createRequest = new CreateWebRtcConnectionRequest(
                 type: EndpointTypeEnum.WEBRTC,
                 direction: EndpointDirectionEnum.BIDIRECTIONAL,
                 tag: "test-delete-endpoint"
             );
-            var createResponse = await _api.CreateEndpointAsync(_accountId, createRequest);
+            var createResponse = _api.CreateEndpoint(_accountId, createRequest);
             var endpointId = createResponse.Data.EndpointId;
-            await Task.Delay(TestSleep);
-            var response = await _api.DeleteEndpointWithHttpInfoAsync(_accountId, endpointId);
+            System.Threading.Thread.Sleep(TestSleep);
+            var response = _api.DeleteEndpointWithHttpInfo(_accountId, endpointId);
             Assert.Equal(204, response.StatusCode);
-            await Task.Delay(TestSleep);
-            var ex = await Assert.ThrowsAsync<ApiException>(async () =>
-                await _api.GetEndpointAsync(_accountId, endpointId)
+            System.Threading.Thread.Sleep(TestSleep);
+            ApiException ex = Assert.Throws<ApiException>(() =>
+                _api.GetEndpoint(_accountId, endpointId)
             );
-            Assert.Equal(404, ex.Status);
+            Assert.Equal(404, ex.ErrorCode);
         }
 
         [Fact(DisplayName = "Delete Endpoint Not Found")]
-        public async Task TestDeleteEndpoint_NotFound()
+        public void TestDeleteEndpoint_NotFound()
         {
-            await Task.Delay(TestSleep);
-            var ex = await Assert.ThrowsAsync<ApiException>(async () =>
-                await _api.DeleteEndpointAsync(_accountId, "non-existent-endpoint-id")
+            System.Threading.Thread.Sleep(TestSleep);
+            ApiException ex = Assert.Throws<ApiException>(() =>
+                _api.DeleteEndpoint(_accountId, "non-existent-endpoint-id")
             );
-            Assert.Equal(404, ex.Status);
+            Assert.Equal(404, ex.ErrorCode);
         }
 
         [Fact(DisplayName = "Create Endpoint Unauthorized")]
-        public async Task TestCreateEndpoint_Unauthorized()
+        public void TestCreateEndpoint_Unauthorized()
         {
-            await Task.Delay(TestSleep);
-            var config = new Configuration(); // No credentials
-            var client = new ApiClient(config);
-            var unauthorizedApi = new EndpointsApi(client);
+            System.Threading.Thread.Sleep(TestSleep);
+            var unauthorizedApi = new EndpointsApi(_unauthorizedConfiguration);
             var createRequest = new CreateWebRtcConnectionRequest(
                 type: EndpointTypeEnum.WEBRTC,
                 direction: EndpointDirectionEnum.BIDIRECTIONAL
             );
-            var ex = await Assert.ThrowsAsync<ApiException>(async () =>
-                await unauthorizedApi.CreateEndpointAsync(_accountId, createRequest)
+            ApiException ex = Assert.Throws<ApiException>(() =>
+                unauthorizedApi.CreateEndpoint(_accountId, createRequest)
             );
-            Assert.Equal(401, ex.Status);
+            Assert.Equal(401, ex.ErrorCode);
         }
     }
 }
