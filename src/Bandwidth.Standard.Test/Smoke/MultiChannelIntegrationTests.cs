@@ -166,7 +166,7 @@ namespace Bandwidth.Standard.Test.Smoke
                                 new MultiChannelAction(new RbmActionDial(
                                     type: RbmActionTypeEnum.DIALPHONE,
                                     text: "Call Us",
-                                    postbackData: [1, 2, 3],
+                                    postbackData: new byte[] {1, 2, 3},
                                     phoneNumber: bwNumber
                                 ))
                             }
@@ -242,7 +242,7 @@ namespace Bandwidth.Standard.Test.Smoke
                                 new MultiChannelAction(new RbmActionDial(
                                     type: RbmActionTypeEnum.DIALPHONE,
                                     text: "Call Us",
-                                    postbackData: [1, 2, 3],
+                                    postbackData: new byte[] {1, 2, 3},
                                     phoneNumber: bwNumber
                                 ))
                             }
@@ -326,7 +326,7 @@ namespace Bandwidth.Standard.Test.Smoke
                                         new MultiChannelAction(new RbmActionDial(
                                             type: RbmActionTypeEnum.DIALPHONE,
                                             text: "Call Us",
-                                            postbackData: [1, 2, 3],
+                                            postbackData: new byte[] {1, 2, 3},
                                             phoneNumber: bwNumber
                                         ))
                                     }
@@ -421,7 +421,7 @@ namespace Bandwidth.Standard.Test.Smoke
                                             new MultiChannelAction(new RbmActionDial(
                                                 type: RbmActionTypeEnum.DIALPHONE,
                                                 text: "Call Us",
-                                                postbackData: [1, 2, 3],
+                                                postbackData: new byte[] {1, 2, 3},
                                                 phoneNumber: bwNumber
                                             ))
                                         }
