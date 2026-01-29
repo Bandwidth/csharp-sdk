@@ -116,13 +116,13 @@ namespace Bandwidth.Standard.Model
             // Text (string) maxLength
             if (this.Text != null && this.Text.Length > 25)
             {
-                yield return new ValidationResult("Invalid value for Text, length must be less than 25.", new [] { "Text" });
+                yield return new ValidationResult("Invalid value for Text, length must be less than 25.", new[] { "Text" });
             }
 
             // PostbackData (byte[]) maxLength
             if (this.PostbackData != null && this.PostbackData.Length > 2048)
             {
-                yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new [] { "PostbackData" });
+                yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new[] { "PostbackData" });
             }
 
             yield break;

@@ -43,7 +43,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 modifiedDateTime: DateTime.Parse("2023-10-01T00:00:00Z"),
                 submission: submission,
                 blocked: false,
-                blockedReason: "blockedReason"
+                blockedReason: "blockedReason",
+                cvToken: "cvToken"
             );
         }
 
@@ -159,6 +160,16 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<string>(instance.BlockedReason);
             Assert.Equal("blockedReason", instance.BlockedReason);
+        }
+
+        /// <summary>
+        /// Test the property 'CvToken'
+        /// </summary>
+        [Fact]
+        public void CvTokenTest()
+        {
+            Assert.IsType<string>(instance.CvToken);
+            Assert.Equal("cvToken", instance.CvToken);
         }
     }
 }
