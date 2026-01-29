@@ -29,7 +29,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
     {
         private VerificationDenialWebhook instance;
         private AdditionalDenialReason additionalDenialReason;
-        private Guid internalTicketNumber = Guid.NewGuid();
 
         public VerificationDenialWebhookTests()
         {
@@ -44,7 +43,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 additionalDenialReasons: new List<AdditionalDenialReason> { additionalDenialReason },
                 declineReasonDescription: "declineReasonDescription",
                 denialStatusCode: 511,
-                internalTicketNumber: internalTicketNumber,
+                internalTicketNumber: "internalTicketNumber",
                 phoneNumber: "+18005551234",
                 resubmitAllowed: true,
                 status: "status",
@@ -113,8 +112,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void InternalTicketNumberTest()
         {
-            Assert.IsType<Guid>(instance.InternalTicketNumber);
-            Assert.Equal(internalTicketNumber, instance.InternalTicketNumber);
+            Assert.IsType<string>(instance.InternalTicketNumber);
+            Assert.Equal("internalTicketNumber", instance.InternalTicketNumber);
         }
 
         /// <summary>
