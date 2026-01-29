@@ -717,8 +717,12 @@ paths:
         "429":
           content:
             application/json:
+              example:
+                type: rate_limit_exceeded
+                description: Rate limit exceeded. Wait for Retry-After time before
+                  sending another request.
               schema:
-                $ref: '#/components/schemas/customTooManyRequestsError'
+                $ref: '#/components/schemas/messagingRequestError'
           description: Too Many Requests
           headers:
             Retry-After:
@@ -7426,11 +7430,15 @@ components:
           schema:
             $ref: '#/components/schemas/multiChannelError'
       description: Internal Server Error
-    customTooManyRequestsError:
+    listMessagesTooManyRequestsError:
       content:
         application/json:
+          example:
+            type: rate_limit_exceeded
+            description: Rate limit exceeded. Wait for Retry-After time before sending
+              another request.
           schema:
-            $ref: '#/components/schemas/customTooManyRequestsError'
+            $ref: '#/components/schemas/messagingRequestError'
       description: Too Many Requests
       headers:
         Retry-After:
@@ -9648,24 +9656,6 @@ components:
       - segmentCount
       - time
       - to
-    customTooManyRequestsError:
-      example:
-        description: Rate limit exceeded. Wait for Retry-After time before sending
-          another request.
-        type: rate_limit_exceeded
-      properties:
-        type:
-          example: rate_limit_exceeded
-          type: string
-        description:
-          example: Rate limit exceeded. Wait for Retry-After time before sending another
-            request.
-          type: string
-      required:
-      - description
-      - type
-      title: CustomTooManyRequestsError
-      type: object
     callbackMethodEnum:
       default: POST
       description: The HTTP method to use to deliver the callback. GET or POST. Default

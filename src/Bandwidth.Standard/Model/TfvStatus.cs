@@ -187,35 +187,34 @@ namespace Bandwidth.Standard.Model
             // PhoneNumber (string) maxLength
             if (this.PhoneNumber != null && this.PhoneNumber.Length > 12)
             {
-                yield return new ValidationResult("Invalid value for PhoneNumber, length must be less than 12.", new[] { "PhoneNumber" });
+                yield return new ValidationResult("Invalid value for PhoneNumber, length must be less than 12.", new [] { "PhoneNumber" });
             }
 
             // PhoneNumber (string) minLength
             if (this.PhoneNumber != null && this.PhoneNumber.Length < 12)
             {
-                yield return new ValidationResult("Invalid value for PhoneNumber, length must be greater than 12.", new[] { "PhoneNumber" });
+                yield return new ValidationResult("Invalid value for PhoneNumber, length must be greater than 12.", new [] { "PhoneNumber" });
             }
 
-            if (this.PhoneNumber != null)
-            {
+            if (this.PhoneNumber != null) {
                 // PhoneNumber (string) pattern
                 Regex regexPhoneNumber = new Regex(@"^\+1(800|833|844|855|866|877|888)[2-9]\d{6}$", RegexOptions.CultureInvariant);
                 if (!regexPhoneNumber.Match(this.PhoneNumber).Success)
                 {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PhoneNumber, must match a pattern of " + regexPhoneNumber, new[] { "PhoneNumber" });
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PhoneNumber, must match a pattern of " + regexPhoneNumber, new [] { "PhoneNumber" });
                 }
             }
 
             // CvToken (string) maxLength
             if (this.CvToken != null && this.CvToken.Length > 500)
             {
-                yield return new ValidationResult("Invalid value for CvToken, length must be less than 500.", new[] { "CvToken" });
+                yield return new ValidationResult("Invalid value for CvToken, length must be less than 500.", new [] { "CvToken" });
             }
 
             // CvToken (string) minLength
             if (this.CvToken != null && this.CvToken.Length < 0)
             {
-                yield return new ValidationResult("Invalid value for CvToken, length must be greater than 0.", new[] { "CvToken" });
+                yield return new ValidationResult("Invalid value for CvToken, length must be greater than 0.", new [] { "CvToken" });
             }
 
             yield break;

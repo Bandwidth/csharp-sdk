@@ -55,7 +55,7 @@ namespace Bandwidth.Standard.Model
         /// Base64 payload the customer receives when the reply is clicked.
         /// </summary>
         /// <value>Base64 payload the customer receives when the reply is clicked.</value>
-        /// <example>[B@f98cff</example>
+        /// <example>[B@126d0868</example>
         [DataMember(Name = "postbackData", EmitDefaultValue = false)]
         public byte[] PostbackData { get; set; }
 
@@ -92,7 +92,7 @@ namespace Bandwidth.Standard.Model
             // PostbackData (byte[]) maxLength
             if (this.PostbackData != null && this.PostbackData.Length > 2048)
             {
-                yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new[] { "PostbackData" });
+                yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new [] { "PostbackData" });
             }
 
             yield break;
