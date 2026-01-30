@@ -65,7 +65,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 businessRegistrationType: BusinessRegistrationTypeEnum.EIN,
                 businessEntityType: BusinessEntityTypeEnum.SOLEPROPRIETOR,
                 helpMessageResponse: "test",
-                ageGatedContent: false
+                ageGatedContent: false,
+                cvToken: "cvToken"
             );
         }
 
@@ -248,6 +249,16 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<bool>(instance.AgeGatedContent);
             Assert.False(instance.AgeGatedContent);
+        }
+
+        /// <summary>
+        /// Test the property 'CvToken'
+        /// </summary>
+        [Fact]
+        public void CvTokenTest()
+        {
+            Assert.IsType<string>(instance.CvToken);
+            Assert.Equal("cvToken", instance.CvToken);
         }
     }
 }
