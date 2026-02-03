@@ -57,7 +57,7 @@ namespace Bandwidth.Standard.Api
         /// List Messages
         /// </summary>
         /// <remarks>
-        /// Returns a list of messages based on query parameters.
+        /// Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -96,7 +96,7 @@ namespace Bandwidth.Standard.Api
         /// List Messages
         /// </summary>
         /// <remarks>
-        /// Returns a list of messages based on query parameters.
+        /// Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -170,7 +170,7 @@ namespace Bandwidth.Standard.Api
         /// List Messages
         /// </summary>
         /// <remarks>
-        /// Returns a list of messages based on query parameters.
+        /// Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -210,7 +210,7 @@ namespace Bandwidth.Standard.Api
         /// List Messages
         /// </summary>
         /// <remarks>
-        /// Returns a list of messages based on query parameters.
+        /// Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -574,7 +574,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// List Messages Returns a list of messages based on query parameters.
+        /// List Messages Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -614,7 +614,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// List Messages Returns a list of messages based on query parameters.
+        /// List Messages Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -828,7 +828,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// List Messages Returns a list of messages based on query parameters.
+        /// List Messages Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -869,7 +869,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// List Messages Returns a list of messages based on query parameters.
+        /// List Messages Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
