@@ -36,10 +36,13 @@ namespace Bandwidth.Standard.Test.Unit.Model
         public RbmMessageMediaTests()
         {
             instance = new RbmMessageMedia(
-                media: new RbmMessageContentFile(
-                    fileUrl: "https://test.url/",
-                    thumbnailUrl: "https://test.url/"
-                ),
+                media: new List<RbmMessageContentFile>
+                {
+                    new RbmMessageContentFile(
+                        fileUrl: "https://test.url/",
+                        thumbnailUrl: "https://test.url/"
+                    )
+                },
                 suggestions: new List<MultiChannelAction>
                 {
                     new MultiChannelAction(new RbmActionBase(
@@ -71,7 +74,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void MediaTest()
         {
-            Assert.IsType<RbmMessageContentFile>(instance.Media);
+            Assert.IsType<List<RbmMessageContentFile>>(instance.Media);
         }
 
         /// <summary>
