@@ -34,7 +34,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         private MultiChannelChannelListRBMObjectAllOfContent instanceText;
         private MultiChannelChannelListRBMObjectAllOfContent instanceMedia;
         private MultiChannelChannelListRBMObjectAllOfContent instanceRich;
-         private RbmCardContent cardContent;
+        private RbmCardContent cardContent;
         private List<MultiChannelAction> suggestions;
 
         public MultiChannelChannelListRBMObjectAllOfContentTests()
@@ -58,10 +58,12 @@ namespace Bandwidth.Standard.Test.Unit.Model
             ));
 
             instanceMedia = new MultiChannelChannelListRBMObjectAllOfContent(new RbmMessageMedia(
-                media: new RbmMessageContentFile(
-                    fileUrl: "https://test.url/",
-                    thumbnailUrl: "https://test.url/"
-                ),
+                media: new List<RbmMessageContentFile> {
+                    new RbmMessageContentFile(
+                        fileUrl: "https://test.url/",
+                        thumbnailUrl: "https://test.url/"
+                    )
+                },
                 suggestions: suggestions
             ));
 

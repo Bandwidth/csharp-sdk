@@ -32,7 +32,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
     public class BlockedWebhookTests : IDisposable
     {
         private BlockedWebhook instance;
-        private Guid guid = Guid.NewGuid();
 
         public BlockedWebhookTests()
         {
@@ -40,7 +39,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 accountId: "accountId",
                 phoneNumber: "phoneNumber",
                 status: TfvCallbackStatusEnum.VERIFIED,
-                internalTicketNumber: guid,
+                internalTicketNumber: "internalTicketNumber",
                 blocked: true,
                 blockedReason: "blockedReason"
             );
@@ -96,8 +95,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void InternalTicketNumberTest()
         {
-            Assert.IsType<Guid>(instance.InternalTicketNumber);
-            Assert.Equal(guid, instance.InternalTicketNumber);
+            Assert.IsType<string>(instance.InternalTicketNumber);
+            Assert.Equal("internalTicketNumber", instance.InternalTicketNumber);
         }
 
         /// <summary>

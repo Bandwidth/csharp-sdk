@@ -28,7 +28,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
     public class FailureWebhookTests : IDisposable
     {
         private FailureWebhook instance;
-        private Guid guid = Guid.NewGuid();
 
         public FailureWebhookTests()
         {
@@ -38,7 +37,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 errorCode: "errorCode",
                 errorMessage: "errorMessage",
                 errors: new List<string> { "error" },
-                internalTicketNumber: guid
+                internalTicketNumber: "internalTicketNumber"
             );
         }
 
@@ -112,8 +111,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void InternalTicketNumberTest()
         {
-            Assert.IsType<Guid>(instance.InternalTicketNumber);
-            Assert.Equal(guid, instance.InternalTicketNumber);
+            Assert.IsType<string>(instance.InternalTicketNumber);
+            Assert.Equal("internalTicketNumber", instance.InternalTicketNumber);
         }
     }
 }

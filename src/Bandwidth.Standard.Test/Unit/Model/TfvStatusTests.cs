@@ -28,7 +28,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
     public class TfvStatusTests : IDisposable
     {
         private TfvStatus instance;
-        private Guid internalTicketNumber = Guid.NewGuid();
         private TfvSubmissionInfo submission = new TfvSubmissionInfo();
 
         public TfvStatusTests()
@@ -36,7 +35,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
             instance = new TfvStatus(
                 phoneNumber: "phoneNumber",
                 status: TfvStatusEnum.PENDING,
-                internalTicketNumber: internalTicketNumber,
+                internalTicketNumber: "internalTicketNumber",
                 declineReasonDescription: "declineReasonDescription",
                 resubmitAllowed: true,
                 createdDateTime: DateTime.Parse("2023-10-01T00:00:00Z"),
@@ -88,8 +87,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void InternalTicketNumberTest()
         {
-            Assert.IsType<Guid>(instance.InternalTicketNumber);
-            Assert.Equal(internalTicketNumber, instance.InternalTicketNumber);
+            Assert.IsType<string>(instance.InternalTicketNumber);
+            Assert.Equal("internalTicketNumber", instance.InternalTicketNumber);
         }
 
         /// <summary>
