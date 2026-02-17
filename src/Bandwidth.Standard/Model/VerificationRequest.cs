@@ -70,7 +70,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="businessEntityType">businessEntityType.</param>
         /// <param name="helpMessageResponse">A message that gets sent to users requesting help..</param>
         /// <param name="ageGatedContent">Indicates whether the content is age-gated..</param>
-        /// <param name="cvToken">The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. If you pass an empty string, it will be passed along and potentially rejected..</param>
+        /// <param name="cvToken">The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. Supplying an empty string will likely result in rejection..</param>
         public VerificationRequest(Address businessAddress = default(Address), Contact businessContact = default(Contact), int messageVolume = default(int), List<string> phoneNumbers = default(List<string>), string useCase = default(string), string useCaseSummary = default(string), string productionMessageContent = default(string), OptInWorkflow optInWorkflow = default(OptInWorkflow), string additionalInformation = default(string), string isvReseller = default(string), string privacyPolicyUrl = default(string), string termsAndConditionsUrl = default(string), string businessDba = default(string), string businessRegistrationNumber = default(string), BusinessRegistrationTypeEnum? businessRegistrationType = default(BusinessRegistrationTypeEnum?), BusinessEntityTypeEnum? businessEntityType = default(BusinessEntityTypeEnum?), string helpMessageResponse = default(string), bool ageGatedContent = default(bool), string cvToken = default(string))
         {
             // to ensure "businessAddress" is required (not null)
@@ -250,9 +250,9 @@ namespace Bandwidth.Standard.Model
         public bool AgeGatedContent { get; set; }
 
         /// <summary>
-        /// The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. If you pass an empty string, it will be passed along and potentially rejected.
+        /// The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. Supplying an empty string will likely result in rejection.
         /// </summary>
-        /// <value>The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. If you pass an empty string, it will be passed along and potentially rejected.</value>
+        /// <value>The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. Supplying an empty string will likely result in rejection.</value>
         /// <example>cv.user123|sess456|mno|tfree|read_write|X7yZ9aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVw</example>
         [DataMember(Name = "cvToken", EmitDefaultValue = true)]
         public string CvToken { get; set; }

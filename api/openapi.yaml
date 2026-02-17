@@ -7884,6 +7884,8 @@ components:
           schema:
             $ref: '#/components/schemas/tfvError'
       description: Service Unavailable
+    verifyPutResponse:
+      description: Accepted
   schemas:
     applicationId:
       description: The ID of the Application your from number or senderId is associated
@@ -13770,8 +13772,8 @@ components:
         cvToken:
           description: "The token provided by Campaign Verify to validate your political\
             \ use case. Only required for 527 political organizations. If you are\
-            \ not a 527 political organization, this field should be omitted. If you\
-            \ pass an empty string, it will be passed along and potentially rejected."
+            \ not a 527 political organization, this field should be omitted. Supplying\
+            \ an empty string will likely result in rejection."
           example: cv.user123|sess456|mno|tfree|read_write|X7yZ9aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVw
           maxLength: 500
           minLength: 0
@@ -13874,8 +13876,8 @@ components:
         cvToken:
           description: "The token provided by Campaign Verify to validate your political\
             \ use case. Only required for 527 political organizations. If you are\
-            \ not a 527 political organization, this field should be omitted. If you\
-            \ pass an empty string, it will be passed along and potentially rejected."
+            \ not a 527 political organization, this field should be omitted. Supplying\
+            \ an empty string will likely result in rejection."
           example: cv.user123|sess456|mno|tfree|read_write|X7yZ9aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVw
           maxLength: 500
           minLength: 0
@@ -14594,8 +14596,8 @@ components:
         cvToken:
           description: "The token provided by Campaign Verify to validate your political\
             \ use case. Only required for 527 political organizations. If you are\
-            \ not a 527 political organization, this field should be omitted. If you\
-            \ pass an empty string, it will be passed along and potentially rejected."
+            \ not a 527 political organization, this field should be omitted. Supplying\
+            \ an empty string will likely result in rejection."
           example: cv.user123|sess456|mno|tfree|read_write|X7yZ9aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVw
           maxLength: 500
           minLength: 0
@@ -14725,11 +14727,11 @@ components:
       nullable: true
       pattern: "^[ -~]{16,64}$"
       type: string
-    cvToken:
+    cvTokenNullable:
       description: "The token provided by Campaign Verify to validate your political\
         \ use case. Only required for 527 political organizations. If you are not\
-        \ a 527 political organization, this field should be omitted. If you pass\
-        \ an empty string, it will be passed along and potentially rejected."
+        \ a 527 political organization, this field should be omitted. Supplying an\
+        \ empty string will likely result in rejection."
       example: cv.user123|sess456|mno|tfree|read_write|X7yZ9aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVw
       maxLength: 500
       minLength: 0

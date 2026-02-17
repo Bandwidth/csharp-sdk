@@ -51,7 +51,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="submission">submission.</param>
         /// <param name="blocked">Whether a Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked..</param>
         /// <param name="blockedReason">The reason why the Toll-Free Verification is blocked. This attribute will only be defined when the number is blocked..</param>
-        /// <param name="cvToken">The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. If you pass an empty string, it will be passed along and potentially rejected..</param>
+        /// <param name="cvToken">The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. Supplying an empty string will likely result in rejection..</param>
         public TfvStatus(string phoneNumber = default(string), TfvStatusEnum? status = default(TfvStatusEnum?), string internalTicketNumber = default(string), string declineReasonDescription = default(string), bool resubmitAllowed = default(bool), DateTime createdDateTime = default(DateTime), DateTime modifiedDateTime = default(DateTime), TfvSubmissionInfo submission = default(TfvSubmissionInfo), bool blocked = default(bool), string blockedReason = default(string), string cvToken = default(string))
         {
             this.PhoneNumber = phoneNumber;
@@ -138,9 +138,9 @@ namespace Bandwidth.Standard.Model
         public string BlockedReason { get; set; }
 
         /// <summary>
-        /// The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. If you pass an empty string, it will be passed along and potentially rejected.
+        /// The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. Supplying an empty string will likely result in rejection.
         /// </summary>
-        /// <value>The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. If you pass an empty string, it will be passed along and potentially rejected.</value>
+        /// <value>The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. Supplying an empty string will likely result in rejection.</value>
         /// <example>cv.user123|sess456|mno|tfree|read_write|X7yZ9aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789aBcDeFgHiJkLmNoPqRsTuVw</example>
         [DataMember(Name = "cvToken", EmitDefaultValue = true)]
         public string CvToken { get; set; }
