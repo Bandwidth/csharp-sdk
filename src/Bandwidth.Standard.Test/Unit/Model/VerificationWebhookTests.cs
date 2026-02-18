@@ -28,7 +28,6 @@ namespace Bandwidth.Standard.Test.Unit.Model
     public class VerificationWebhookTests : IDisposable
     {
         private VerificationWebhook instance;
-        private Guid internalTicketNumber = Guid.NewGuid();
 
         public VerificationWebhookTests()
         {
@@ -36,7 +35,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 accountId: "accountId",
                 phoneNumber: "+1919551234",
                 status: TfvCallbackStatusEnum.VERIFIED,
-                internalTicketNumber: internalTicketNumber
+                internalTicketNumber: "internalTicketNumber"
             );
         }
 
@@ -90,8 +89,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void InternalTicketNumberTest()
         {
-            Assert.IsType<Guid>(instance.InternalTicketNumber);
-            Assert.Equal(internalTicketNumber, instance.InternalTicketNumber);
+            Assert.IsType<string>(instance.InternalTicketNumber);
+            Assert.Equal("internalTicketNumber", instance.InternalTicketNumber);
         }
     }
 }

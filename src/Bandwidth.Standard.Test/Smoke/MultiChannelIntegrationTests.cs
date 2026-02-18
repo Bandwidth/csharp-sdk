@@ -81,14 +81,14 @@ namespace Bandwidth.Standard.Test.Smoke
             Assert.IsType<CreateMultiChannelMessageResponse>(response.Data);
             Assert.IsType<List<Link>>(response.Data.Links);
             Assert.IsType<MultiChannelMessageResponseData>(response.Data.Data);
-            Assert.IsType<String>(response.Data.Data.Id);
+            Assert.IsType<string>(response.Data.Data.Id);
             Assert.IsType<DateTime>(response.Data.Data.Time);
             Assert.IsType<MessageDirectionEnum>(response.Data.Data.Direction);
-            Assert.Equal(response.Data.Data.Direction, MessageDirectionEnum.Out);
-            Assert.IsType<List<String>>(response.Data.Data.To);
-            Assert.IsType<String>(response.Data.Data.Tag);
+            Assert.Equal(MessageDirectionEnum.Out, response.Data.Data.Direction);
+            Assert.IsType<List<string>>(response.Data.Data.To);
+            Assert.IsType<string>(response.Data.Data.Tag);
             Assert.IsType<PriorityEnum>(response.Data.Data.Priority);
-            Assert.Equal(response.Data.Data.Priority, PriorityEnum.High);
+            Assert.Equal(PriorityEnum.High, response.Data.Data.Priority);
             Assert.IsType<DateTime>(response.Data.Data.Expiration);
             Assert.IsType<List<MultiChannelChannelListResponseObject>>(response.Data.Data.ChannelList);
 
@@ -133,14 +133,14 @@ namespace Bandwidth.Standard.Test.Smoke
             Assert.IsType<CreateMultiChannelMessageResponse>(response.Data);
             Assert.IsType<List<Link>>(response.Data.Links);
             Assert.IsType<MultiChannelMessageResponseData>(response.Data.Data);
-            Assert.IsType<String>(response.Data.Data.Id);
+            Assert.IsType<string>(response.Data.Data.Id);
             Assert.IsType<DateTime>(response.Data.Data.Time);
             Assert.IsType<MessageDirectionEnum>(response.Data.Data.Direction);
-            Assert.Equal(response.Data.Data.Direction, MessageDirectionEnum.Out);
-            Assert.IsType<List<String>>(response.Data.Data.To);
-            Assert.IsType<String>(response.Data.Data.Tag);
+            Assert.Equal(MessageDirectionEnum.Out, response.Data.Data.Direction);
+            Assert.IsType<List<string>>(response.Data.Data.To);
+            Assert.IsType<string>(response.Data.Data.Tag);
             Assert.IsType<PriorityEnum>(response.Data.Data.Priority);
-            Assert.Equal(response.Data.Data.Priority, PriorityEnum.High);
+            Assert.Equal(PriorityEnum.High, response.Data.Data.Priority);
             Assert.IsType<DateTime>(response.Data.Data.Expiration);
             Assert.IsType<List<MultiChannelChannelListResponseObject>>(response.Data.Data.ChannelList);
 
@@ -149,12 +149,12 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test CreateMultiChannelRBMMessage
+        /// Test CreateMultiChannelRBMTextMessage
         /// </summary>
         [Fact]
-        public void CreateMultiChannelRBMMessageTest()
+        public void CreateMultiChannelRBMTextMessageTest()
         {
-            MultiChannelChannelListRequestObject channelListObject = new MultiChannelChannelListRequestObject(
+            MultiChannelChannelListRequestObject channelListRBMObject = new MultiChannelChannelListRequestObject(
                 new MultiChannelChannelListRBMObject(
                     from: bwNumber,
                     applicationId: messagingApplicationId,
@@ -166,7 +166,7 @@ namespace Bandwidth.Standard.Test.Smoke
                                 new MultiChannelAction(new RbmActionDial(
                                     type: RbmActionTypeEnum.DIALPHONE,
                                     text: "Call Us",
-                                    postbackData: new byte[]{1, 2, 3},
+                                    postbackData: new byte[] {1, 2, 3},
                                     phoneNumber: bwNumber
                                 ))
                             }
@@ -180,7 +180,7 @@ namespace Bandwidth.Standard.Test.Smoke
                 tag: "tag",
                 priority: PriorityEnum.High,
                 expiration: DateTime.UtcNow.AddMinutes(1),
-                channelList: new List<MultiChannelChannelListRequestObject> { channelListObject }
+                channelList: new List<MultiChannelChannelListRequestObject> { channelListRBMObject }
             );
 
             var response = instance.CreateMultiChannelMessageWithHttpInfo(accountId, multiChannelMessageRequest);
@@ -190,19 +190,307 @@ namespace Bandwidth.Standard.Test.Smoke
             Assert.IsType<CreateMultiChannelMessageResponse>(response.Data);
             Assert.IsType<List<Link>>(response.Data.Links);
             Assert.IsType<MultiChannelMessageResponseData>(response.Data.Data);
-            Assert.IsType<String>(response.Data.Data.Id);
+            Assert.IsType<string>(response.Data.Data.Id);
             Assert.IsType<DateTime>(response.Data.Data.Time);
             Assert.IsType<MessageDirectionEnum>(response.Data.Data.Direction);
-            Assert.Equal(response.Data.Data.Direction, MessageDirectionEnum.Out);
-            Assert.IsType<List<String>>(response.Data.Data.To);
-            Assert.IsType<String>(response.Data.Data.Tag);
+            Assert.Equal(MessageDirectionEnum.Out, response.Data.Data.Direction);
+            Assert.IsType<List<string>>(response.Data.Data.To);
+            Assert.IsType<string>(response.Data.Data.Tag);
             Assert.IsType<PriorityEnum>(response.Data.Data.Priority);
-            Assert.Equal(response.Data.Data.Priority, PriorityEnum.High);
+            Assert.Equal(PriorityEnum.High, response.Data.Data.Priority);
             Assert.IsType<DateTime>(response.Data.Data.Expiration);
             Assert.IsType<List<MultiChannelChannelListResponseObject>>(response.Data.Data.ChannelList);
+            Assert.IsType<MultiChannelChannelListRBMResponseObject>(response.Data.Data.ChannelList[0].ActualInstance);
+            var channelListObject = (MultiChannelChannelListRBMResponseObject)response.Data.Data.ChannelList[0].ActualInstance;
+            Assert.Equal(bwNumber, channelListObject.From);
+            Assert.Equal(messagingApplicationId, channelListObject.ApplicationId);
+            Assert.Equal(MultiChannelMessageChannelEnum.RBM, channelListObject.Channel);
+            Assert.Equal(bwNumber, channelListObject.Owner);
+            Assert.IsType<RbmMessageContentText>(channelListObject.Content.ActualInstance);
+            var rbmContent = (RbmMessageContentText)channelListObject.Content.ActualInstance;
+            Assert.IsType<string>(rbmContent.Text);
+            Assert.IsType<List<MultiChannelAction>>(rbmContent.Suggestions);
+            Assert.IsType<MultiChannelAction>(rbmContent.Suggestions[0]);
+            Assert.IsType<RbmActionDial>(rbmContent.Suggestions[0].ActualInstance);
+            var rbmActionDial = (RbmActionDial)rbmContent.Suggestions[0].ActualInstance;
+            Assert.Equal(RbmActionTypeEnum.DIALPHONE, rbmActionDial.Type);
+            Assert.IsType<string>(rbmActionDial.Text);
+            Assert.IsType<byte[]>(rbmActionDial.PostbackData);
+            Assert.IsType<string>(rbmActionDial.PhoneNumber);
+        }
 
-            // Add more assertions when C# generator supports discriminator mapping
-            // Assert.IsType<MultiChannelChannelListSMSResponseObject>(response.Data.Data.ChannelList[0].ActualInstance);
+        /// <summary>
+        /// Test CreateMultiChannelRBMMediaMessage
+        /// </summary>
+        [Fact]
+        public void CreateMultiChannelRBMMediaMessageTest()
+        {
+            MultiChannelChannelListRequestObject channelListRBMObject = new MultiChannelChannelListRequestObject(
+                new MultiChannelChannelListRBMObject(
+                    from: bwNumber,
+                    applicationId: messagingApplicationId,
+                    channel: MultiChannelMessageChannelEnum.RBM,
+                    content: new MultiChannelChannelListRBMObjectAllOfContent(
+                        new RbmMessageMedia(
+                            media: new List<RbmMessageContentFile> {
+                                new RbmMessageContentFile(
+                                    fileUrl: "https://test.url/",
+                                    thumbnailUrl: "https://test.url/"
+                                )
+                            },
+                            suggestions: new List<MultiChannelAction> {
+                                new MultiChannelAction(new RbmActionDial(
+                                    type: RbmActionTypeEnum.DIALPHONE,
+                                    text: "Call Us",
+                                    postbackData: new byte[] {1, 2, 3},
+                                    phoneNumber: bwNumber
+                                ))
+                            }
+                        )
+                    )
+                )
+            );
+
+            MultiChannelMessageRequest multiChannelMessageRequest = new MultiChannelMessageRequest(
+                to: Environment.GetEnvironmentVariable("USER_NUMBER"),
+                tag: "tag",
+                priority: PriorityEnum.High,
+                expiration: DateTime.UtcNow.AddMinutes(1),
+                channelList: new List<MultiChannelChannelListRequestObject> { channelListRBMObject }
+            );
+
+            var response = instance.CreateMultiChannelMessageWithHttpInfo(accountId, multiChannelMessageRequest);
+            Assert.IsType<ApiResponse<CreateMultiChannelMessageResponse>>(response);
+            Assert.Equal(HttpStatusCode.Accepted, response.StatusCode);
+            Assert.NotNull(response.Data);
+            Assert.IsType<CreateMultiChannelMessageResponse>(response.Data);
+            Assert.IsType<List<Link>>(response.Data.Links);
+            Assert.IsType<MultiChannelMessageResponseData>(response.Data.Data);
+            Assert.IsType<string>(response.Data.Data.Id);
+            Assert.IsType<DateTime>(response.Data.Data.Time);
+            Assert.IsType<MessageDirectionEnum>(response.Data.Data.Direction);
+            Assert.Equal(MessageDirectionEnum.Out, response.Data.Data.Direction);
+            Assert.IsType<List<string>>(response.Data.Data.To);
+            Assert.IsType<string>(response.Data.Data.Tag);
+            Assert.IsType<PriorityEnum>(response.Data.Data.Priority);
+            Assert.Equal(PriorityEnum.High, response.Data.Data.Priority);
+            Assert.IsType<DateTime>(response.Data.Data.Expiration);
+            Assert.IsType<List<MultiChannelChannelListResponseObject>>(response.Data.Data.ChannelList);
+            Assert.IsType<MultiChannelChannelListRBMResponseObject>(response.Data.Data.ChannelList[0].ActualInstance);
+            var channelListObject = (MultiChannelChannelListRBMResponseObject)response.Data.Data.ChannelList[0].ActualInstance;
+            Assert.Equal(bwNumber, channelListObject.From);
+            Assert.Equal(messagingApplicationId, channelListObject.ApplicationId);
+            Assert.Equal(MultiChannelMessageChannelEnum.RBM, channelListObject.Channel);
+            Assert.Equal(bwNumber, channelListObject.Owner);
+            Assert.IsType<RbmMessageMedia>(channelListObject.Content.ActualInstance);
+            var rbmContent = (RbmMessageMedia)channelListObject.Content.ActualInstance;
+            Assert.IsType<List<RbmMessageContentFile>>(rbmContent.Media);
+            Assert.IsType<RbmMessageContentFile>(rbmContent.Media[0]);
+            Assert.IsType<string>(rbmContent.Media[0].FileUrl);
+            Assert.IsType<string>(rbmContent.Media[0].ThumbnailUrl);
+            Assert.IsType<List<MultiChannelAction>>(rbmContent.Suggestions);
+            Assert.IsType<MultiChannelAction>(rbmContent.Suggestions[0]);
+            Assert.IsType<RbmActionDial>(rbmContent.Suggestions[0].ActualInstance);
+            var rbmActionDial = (RbmActionDial)rbmContent.Suggestions[0].ActualInstance;
+            Assert.Equal(RbmActionTypeEnum.DIALPHONE, rbmActionDial.Type);
+            Assert.IsType<string>(rbmActionDial.Text);
+            Assert.IsType<byte[]>(rbmActionDial.PostbackData);
+            Assert.IsType<string>(rbmActionDial.PhoneNumber);
+        }
+
+        /// <summary>
+        /// Test CreateMultiChannelRBMRichStandaloneMessageTest
+        /// </summary>
+        [Fact]
+        public void CreateMultiChannelRBMRichStandaloneMessageTest()
+        {
+            MultiChannelChannelListRequestObject channelListRBMObject = new MultiChannelChannelListRequestObject(
+                new MultiChannelChannelListRBMObject(
+                    from: bwNumber,
+                    applicationId: messagingApplicationId,
+                    channel: MultiChannelMessageChannelEnum.RBM,
+                    content: new MultiChannelChannelListRBMObjectAllOfContent(
+                        new RbmMessageContentRichCard(
+                            new RbmStandaloneCard(
+                                orientation: StandaloneCardOrientationEnum.VERTICAL,
+                                thumbnailImageAlignment: ThumbnailAlignmentEnum.LEFT,
+                                cardContent: new RbmCardContent(
+                                    title: "TestTitle",
+                                    description: "TestDescription",
+                                    media: new RbmCardContentMedia(
+                                        fileUrl: "https://test.url/",
+                                        thumbnailUrl: "https://test.url/",
+                                        height: RbmMediaHeightEnum.MEDIUM
+                                    ),
+                                    suggestions: new List<MultiChannelAction> {
+                                        new MultiChannelAction(new RbmActionDial(
+                                            type: RbmActionTypeEnum.DIALPHONE,
+                                            text: "Call Us",
+                                            postbackData: new byte[] {1, 2, 3},
+                                            phoneNumber: bwNumber
+                                        ))
+                                    }
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+
+            MultiChannelMessageRequest multiChannelMessageRequest = new MultiChannelMessageRequest(
+                to: Environment.GetEnvironmentVariable("USER_NUMBER"),
+                tag: "tag",
+                priority: PriorityEnum.High,
+                expiration: DateTime.UtcNow.AddMinutes(1),
+                channelList: new List<MultiChannelChannelListRequestObject> { channelListRBMObject }
+            );
+
+            var response = instance.CreateMultiChannelMessageWithHttpInfo(accountId, multiChannelMessageRequest);
+            Assert.IsType<ApiResponse<CreateMultiChannelMessageResponse>>(response);
+            Assert.Equal(HttpStatusCode.Accepted, response.StatusCode);
+            Assert.NotNull(response.Data);
+            Assert.IsType<CreateMultiChannelMessageResponse>(response.Data);
+            Assert.IsType<List<Link>>(response.Data.Links);
+            Assert.IsType<MultiChannelMessageResponseData>(response.Data.Data);
+            Assert.IsType<string>(response.Data.Data.Id);
+            Assert.IsType<DateTime>(response.Data.Data.Time);
+            Assert.IsType<MessageDirectionEnum>(response.Data.Data.Direction);
+            Assert.Equal(MessageDirectionEnum.Out, response.Data.Data.Direction);
+            Assert.IsType<List<string>>(response.Data.Data.To);
+            Assert.IsType<string>(response.Data.Data.Tag);
+            Assert.IsType<PriorityEnum>(response.Data.Data.Priority);
+            Assert.Equal(PriorityEnum.High, response.Data.Data.Priority);
+            Assert.IsType<DateTime>(response.Data.Data.Expiration);
+            Assert.IsType<List<MultiChannelChannelListResponseObject>>(response.Data.Data.ChannelList);
+            Assert.IsType<MultiChannelChannelListRBMResponseObject>(response.Data.Data.ChannelList[0].ActualInstance);
+            var channelListObject = (MultiChannelChannelListRBMResponseObject)response.Data.Data.ChannelList[0].ActualInstance;
+            Assert.Equal(bwNumber, channelListObject.From);
+            Assert.Equal(messagingApplicationId, channelListObject.ApplicationId);
+            Assert.Equal(MultiChannelMessageChannelEnum.RBM, channelListObject.Channel);
+            Assert.Equal(bwNumber, channelListObject.Owner);
+            Assert.IsType<RbmMessageContentRichCard>(channelListObject.Content.ActualInstance);
+            var rbmContentRichCard = (RbmMessageContentRichCard)channelListObject.Content.ActualInstance;
+            Assert.IsType<RbmStandaloneCard>(rbmContentRichCard.ActualInstance);
+            var rbmContent = (RbmStandaloneCard)rbmContentRichCard.ActualInstance;
+            Assert.Equal(StandaloneCardOrientationEnum.VERTICAL, rbmContent.Orientation);
+            Assert.Equal(ThumbnailAlignmentEnum.LEFT, rbmContent.ThumbnailImageAlignment);
+            Assert.IsType<RbmCardContent>(rbmContent.CardContent);
+            var cardContent = rbmContent.CardContent;
+            Assert.IsType<string>(cardContent.Title);
+            Assert.IsType<string>(cardContent.Description);
+            Assert.IsType<RbmCardContentMedia>(cardContent.Media);
+            var cardMedia = cardContent.Media;
+            Assert.IsType<string>(cardMedia.FileUrl);
+            Assert.IsType<string>(cardMedia.ThumbnailUrl);
+            Assert.Equal(RbmMediaHeightEnum.MEDIUM, cardMedia.Height);
+            Assert.IsType<List<MultiChannelAction>>(cardContent.Suggestions);
+            Assert.IsType<MultiChannelAction>(cardContent.Suggestions[0]);
+            Assert.IsType<RbmActionDial>(cardContent.Suggestions[0].ActualInstance);
+            var rbmActionDial = (RbmActionDial)cardContent.Suggestions[0].ActualInstance;
+            Assert.Equal(RbmActionTypeEnum.DIALPHONE, rbmActionDial.Type);
+            Assert.IsType<string>(rbmActionDial.Text);
+            Assert.IsType<byte[]>(rbmActionDial.PostbackData);
+            Assert.IsType<string>(rbmActionDial.PhoneNumber);
+        }
+
+        /// <summary>
+        /// Test CreateMultiChannelRBMRichCarouselMessageTest
+        /// </summary>
+        [Fact]
+        public void CreateMultiChannelRBMRichCarouselMessageTest()
+        {
+            MultiChannelChannelListRequestObject channelListRBMObject = new MultiChannelChannelListRequestObject(
+                new MultiChannelChannelListRBMObject(
+                    from: bwNumber,
+                    applicationId: messagingApplicationId,
+                    channel: MultiChannelMessageChannelEnum.RBM,
+                    content: new MultiChannelChannelListRBMObjectAllOfContent(
+                        new RbmMessageContentRichCard(
+                            new RbmMessageCarouselCard(
+                                cardWidth: CardWidthEnum.MEDIUM,
+                                cardContents: new List<RbmCardContent> {
+                                    new RbmCardContent(
+                                        title: "TestTitle",
+                                        description: "TestDescription",
+                                        media: new RbmCardContentMedia(
+                                            fileUrl: "https://test.url/",
+                                            thumbnailUrl: "https://test.url/",
+                                            height: RbmMediaHeightEnum.MEDIUM
+                                        ),
+                                        suggestions: new List<MultiChannelAction> {
+                                            new MultiChannelAction(new RbmActionDial(
+                                                type: RbmActionTypeEnum.DIALPHONE,
+                                                text: "Call Us",
+                                                postbackData: new byte[] {1, 2, 3},
+                                                phoneNumber: bwNumber
+                                            ))
+                                        }
+                                    ),
+                                    new RbmCardContent(
+                                        title: "TestTitle2"
+                                    )
+                                }
+                            )
+                        )
+                    )
+                )
+            );
+
+            MultiChannelMessageRequest multiChannelMessageRequest = new MultiChannelMessageRequest(
+                to: Environment.GetEnvironmentVariable("USER_NUMBER"),
+                tag: "tag",
+                priority: PriorityEnum.High,
+                expiration: DateTime.UtcNow.AddMinutes(1),
+                channelList: new List<MultiChannelChannelListRequestObject> { channelListRBMObject }
+            );
+
+            var response = instance.CreateMultiChannelMessageWithHttpInfo(accountId, multiChannelMessageRequest);
+            Assert.IsType<ApiResponse<CreateMultiChannelMessageResponse>>(response);
+            Assert.Equal(HttpStatusCode.Accepted, response.StatusCode);
+            Assert.NotNull(response.Data);
+            Assert.IsType<CreateMultiChannelMessageResponse>(response.Data);
+            Assert.IsType<List<Link>>(response.Data.Links);
+            Assert.IsType<MultiChannelMessageResponseData>(response.Data.Data);
+            Assert.IsType<string>(response.Data.Data.Id);
+            Assert.IsType<DateTime>(response.Data.Data.Time);
+            Assert.IsType<MessageDirectionEnum>(response.Data.Data.Direction);
+            Assert.Equal(MessageDirectionEnum.Out, response.Data.Data.Direction);
+            Assert.IsType<List<string>>(response.Data.Data.To);
+            Assert.IsType<string>(response.Data.Data.Tag);
+            Assert.IsType<PriorityEnum>(response.Data.Data.Priority);
+            Assert.Equal(PriorityEnum.High, response.Data.Data.Priority);
+            Assert.IsType<DateTime>(response.Data.Data.Expiration);
+            Assert.IsType<List<MultiChannelChannelListResponseObject>>(response.Data.Data.ChannelList);
+            Assert.IsType<MultiChannelChannelListRBMResponseObject>(response.Data.Data.ChannelList[0].ActualInstance);
+            var channelListObject = (MultiChannelChannelListRBMResponseObject)response.Data.Data.ChannelList[0].ActualInstance;
+            Assert.Equal(bwNumber, channelListObject.From);
+            Assert.Equal(messagingApplicationId, channelListObject.ApplicationId);
+            Assert.Equal(MultiChannelMessageChannelEnum.RBM, channelListObject.Channel);
+            Assert.Equal(bwNumber, channelListObject.Owner);
+            Assert.IsType<RbmMessageContentRichCard>(channelListObject.Content.ActualInstance);
+            var rbmContentRichCard = (RbmMessageContentRichCard)channelListObject.Content.ActualInstance;
+            Assert.IsType<RbmMessageCarouselCard>(rbmContentRichCard.ActualInstance);
+            var rbmContent = (RbmMessageCarouselCard)rbmContentRichCard.ActualInstance;
+            Assert.Equal(CardWidthEnum.MEDIUM, rbmContent.CardWidth);
+            Assert.IsType<List<RbmCardContent>>(rbmContent.CardContents);
+            Assert.IsType<RbmCardContent>(rbmContent.CardContents[0]);
+            Assert.IsType<string>(rbmContent.CardContents[0].Title);
+            Assert.IsType<string>(rbmContent.CardContents[0].Description);
+            Assert.IsType<RbmCardContentMedia>(rbmContent.CardContents[0].Media);
+            var cardMedia = rbmContent.CardContents[0].Media;
+            Assert.IsType<string>(cardMedia.FileUrl);
+            Assert.IsType<string>(cardMedia.ThumbnailUrl);
+            Assert.Equal(RbmMediaHeightEnum.MEDIUM, cardMedia.Height);
+            Assert.IsType<List<MultiChannelAction>>(rbmContent.CardContents[0].Suggestions);
+            Assert.IsType<MultiChannelAction>(rbmContent.CardContents[0].Suggestions[0]);
+            Assert.IsType<RbmActionDial>(rbmContent.CardContents[0].Suggestions[0].ActualInstance);
+            var rbmActionDial = (RbmActionDial)rbmContent.CardContents[0].Suggestions[0].ActualInstance;
+            Assert.Equal(RbmActionTypeEnum.DIALPHONE, rbmActionDial.Type);
+            Assert.IsType<string>(rbmActionDial.Text);
+            Assert.IsType<byte[]>(rbmActionDial.PostbackData);
+            Assert.IsType<string>(rbmActionDial.PhoneNumber);
+            Assert.IsType<RbmCardContent>(rbmContent.CardContents[1]);
+            Assert.IsType<string>(rbmContent.CardContents[1].Title);
         }
     }
 }

@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **BusinessEntityType** | **BusinessEntityTypeEnum** |  | [optional] 
 **HelpMessageResponse** | **string** | A message that gets sent to users requesting help. | [optional] 
 **AgeGatedContent** | **bool** | Indicates whether the content is age-gated. | [optional] 
-**CvToken** | **string** | The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. If you pass an empty string, it will be passed along and potentially rejected. | [optional] 
+**CvToken** | **string** | The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. Supplying an empty string will likely result in rejection. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

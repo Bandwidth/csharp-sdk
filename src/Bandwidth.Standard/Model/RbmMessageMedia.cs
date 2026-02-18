@@ -42,7 +42,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="media">media (required).</param>
         /// <param name="suggestions">An array of suggested actions for the recipient..</param>
-        public RbmMessageMedia(RbmMessageContentFile media = default(RbmMessageContentFile), List<MultiChannelAction> suggestions = default(List<MultiChannelAction>))
+        public RbmMessageMedia(List<RbmMessageContentFile> media = default(List<RbmMessageContentFile>), List<MultiChannelAction> suggestions = default(List<MultiChannelAction>))
         {
             // to ensure "media" is required (not null)
             if (media == null)
@@ -57,7 +57,7 @@ namespace Bandwidth.Standard.Model
         /// Gets or Sets Media
         /// </summary>
         [DataMember(Name = "media", IsRequired = true, EmitDefaultValue = true)]
-        public RbmMessageContentFile Media { get; set; }
+        public List<RbmMessageContentFile> Media { get; set; }
 
         /// <summary>
         /// An array of suggested actions for the recipient.
