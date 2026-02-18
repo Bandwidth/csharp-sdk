@@ -301,6 +301,66 @@ namespace Bandwidth.Standard.Client
                     }
                 },
                 {
+                    "EndpointsApi.CreateEndpoint", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "EndpointsApi.DeleteEndpoint", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "EndpointsApi.GetEndpoint", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "EndpointsApi.ListEndpoints", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
+                    "EndpointsApi.UpdateEndpointBxml", new List<IReadOnlyDictionary<string, object>>
+                    {
+                        {
+                            new Dictionary<string, object>
+                            {
+                                {"url", "https://api.bandwidth.com/v2"},
+                                {"description", "Production"}
+                            }
+                        },
+                    }
+                },
+                {
                     "MFAApi.GenerateMessagingCode", new List<IReadOnlyDictionary<string, object>>
                     {
                         {

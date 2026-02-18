@@ -53,7 +53,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="description">A detailed description of the event described by the callback. (required).</param>
         /// <param name="message">message (required).</param>
         /// <param name="errorCode">Optional error code, applicable only when type is &#x60;message-failed&#x60;..</param>
-        /// <param name="carrierName">The name of the Authorized Message Provider (AMP) that handled this message.  In the US, this is the carrier that the message was sent to. This field is present only when this account feature has been enabled..</param>
+        /// <param name="carrierName">The name of the Authorized Message Provider (AMP) that handled this message. In the US, this is the carrier that the message was sent to. This field is present only when this account feature has been enabled..</param>
         public StatusCallback(DateTime time = default(DateTime), DateTime eventTime = default(DateTime), StatusCallbackTypeEnum type = default(StatusCallbackTypeEnum), string to = default(string), string description = default(string), StatusCallbackMessage message = default(StatusCallbackMessage), int errorCode = default(int), string carrierName = default(string))
         {
             this.Time = time;
@@ -127,9 +127,9 @@ namespace Bandwidth.Standard.Model
         public int ErrorCode { get; set; }
 
         /// <summary>
-        /// The name of the Authorized Message Provider (AMP) that handled this message.  In the US, this is the carrier that the message was sent to. This field is present only when this account feature has been enabled.
+        /// The name of the Authorized Message Provider (AMP) that handled this message. In the US, this is the carrier that the message was sent to. This field is present only when this account feature has been enabled.
         /// </summary>
-        /// <value>The name of the Authorized Message Provider (AMP) that handled this message.  In the US, this is the carrier that the message was sent to. This field is present only when this account feature has been enabled.</value>
+        /// <value>The name of the Authorized Message Provider (AMP) that handled this message. In the US, this is the carrier that the message was sent to. This field is present only when this account feature has been enabled.</value>
         /// <example>AT&amp;T</example>
         [DataMember(Name = "carrierName", EmitDefaultValue = false)]
         public string CarrierName { get; set; }

@@ -24,6 +24,7 @@ tags:
 - name: MFA
 - name: Phone Number Lookup
 - name: Toll-Free Verification
+- name: Endpoints
 paths:
   /users/{accountId}/media:
     get:
@@ -5708,6 +5709,582 @@ paths:
     servers:
     - description: Production
       url: https://api.bandwidth.com/api/v2
+  /accounts/{accountId}/endpoints:
+    get:
+      description: Returns a list of endpoints associated with the specified account.
+      operationId: listEndpoints
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The type of endpoint.
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          $ref: '#/components/schemas/endpointTypeEnum'
+        style: form
+      - description: The status of the endpoint.
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          $ref: '#/components/schemas/endpointStatusEnum'
+        style: form
+      - description: The cursor to use for pagination. This is the value of the `next`
+          link in the previous response.
+        explode: true
+        in: query
+        name: afterCursor
+        required: false
+        schema:
+          example: TWF5IHRoZSBmb3JjZSBiZSB3aXRoIHlvdQ==
+          type: string
+        style: form
+      - description: The maximum number of endpoints to return in the response.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 100
+          example: 2
+          maximum: 1000
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                listEndpointsResponseExample:
+                  $ref: '#/components/examples/listEndpointsResponseExample'
+              schema:
+                $ref: '#/components/schemas/listEndpointsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestErrorExample:
+                  $ref: '#/components/examples/badRequestErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedErrorExample:
+                  $ref: '#/components/examples/unauthorizedErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenErrorExample:
+                  $ref: '#/components/examples/forbiddenErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundErrorExample:
+                  $ref: '#/components/examples/notFoundErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                methodNotAllowedErrorExample:
+                  $ref: '#/components/examples/methodNotAllowedErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Method Not Allowed
+        "415":
+          content:
+            application/json:
+              examples:
+                unsuppotedMediaTypeErrorExample:
+                  $ref: '#/components/examples/unsupportedMediaTypeErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Unsupported Media Type
+        "429":
+          content:
+            application/json:
+              examples:
+                tooManyRequestsErrorExample:
+                  $ref: '#/components/examples/tooManyRequestsErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              examples:
+                serviceUnavailableErrorExample:
+                  $ref: '#/components/examples/serviceUnavailableErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Service Unavailable
+      summary: List Endpoints
+      tags:
+      - Endpoints
+      x-badges:
+      - name: Beta
+        color: '#076EA8'
+    post:
+      callbacks:
+        endpointEventCallback:
+          $ref: '#/components/callbacks/endpointEvent'
+      description: Creates a new Endpoint for the specified account.
+      operationId: createEndpoint
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/createEndpointRequest'
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                createEndpointResponseExample:
+                  $ref: '#/components/examples/createEndpointResponseExample'
+              schema:
+                $ref: '#/components/schemas/createEndpointResponse'
+          description: Created
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestErrorExample:
+                  $ref: '#/components/examples/badRequestErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedErrorExample:
+                  $ref: '#/components/examples/unauthorizedErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenErrorExample:
+                  $ref: '#/components/examples/forbiddenErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundErrorExample:
+                  $ref: '#/components/examples/notFoundErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                methodNotAllowedErrorExample:
+                  $ref: '#/components/examples/methodNotAllowedErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Method Not Allowed
+        "415":
+          content:
+            application/json:
+              examples:
+                unsuppotedMediaTypeErrorExample:
+                  $ref: '#/components/examples/unsupportedMediaTypeErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Unsupported Media Type
+        "429":
+          content:
+            application/json:
+              examples:
+                tooManyRequestsErrorExample:
+                  $ref: '#/components/examples/tooManyRequestsErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              examples:
+                serviceUnavailableErrorExample:
+                  $ref: '#/components/examples/serviceUnavailableErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Service Unavailable
+      summary: Create Endpoint
+      tags:
+      - Endpoints
+      x-badges:
+      - name: Beta
+        color: '#076EA8'
+    servers:
+    - description: Production
+      url: https://api.bandwidth.com/v2
+  /accounts/{accountId}/endpoints/{endpointId}:
+    delete:
+      description: "Deletes the specified endpoint. If the endpoint is actively streaming\
+        \ media, the media stream will be terminated."
+      operationId: deleteEndpoint
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: BRTC Endpoint ID.
+        explode: false
+        in: path
+        name: endpointId
+        required: true
+        schema:
+          example: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestErrorExample:
+                  $ref: '#/components/examples/badRequestErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedErrorExample:
+                  $ref: '#/components/examples/unauthorizedErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenErrorExample:
+                  $ref: '#/components/examples/forbiddenErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundErrorExample:
+                  $ref: '#/components/examples/notFoundErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                methodNotAllowedErrorExample:
+                  $ref: '#/components/examples/methodNotAllowedErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Method Not Allowed
+        "415":
+          content:
+            application/json:
+              examples:
+                unsuppotedMediaTypeErrorExample:
+                  $ref: '#/components/examples/unsupportedMediaTypeErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Unsupported Media Type
+        "429":
+          content:
+            application/json:
+              examples:
+                tooManyRequestsErrorExample:
+                  $ref: '#/components/examples/tooManyRequestsErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              examples:
+                serviceUnavailableErrorExample:
+                  $ref: '#/components/examples/serviceUnavailableErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Service Unavailable
+      summary: Delete Endpoint
+      tags:
+      - Endpoints
+      x-badges:
+      - name: Beta
+        color: '#076EA8'
+    get:
+      description: Returns information about the specified endpoint.
+      operationId: getEndpoint
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: BRTC Endpoint ID.
+        explode: false
+        in: path
+        name: endpointId
+        required: true
+        schema:
+          example: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                getEndpointResponseExample:
+                  $ref: '#/components/examples/getEndpointResponseExample'
+              schema:
+                $ref: '#/components/schemas/endpointResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestErrorExample:
+                  $ref: '#/components/examples/badRequestErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedErrorExample:
+                  $ref: '#/components/examples/unauthorizedErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenErrorExample:
+                  $ref: '#/components/examples/forbiddenErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundErrorExample:
+                  $ref: '#/components/examples/notFoundErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                methodNotAllowedErrorExample:
+                  $ref: '#/components/examples/methodNotAllowedErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Method Not Allowed
+        "415":
+          content:
+            application/json:
+              examples:
+                unsuppotedMediaTypeErrorExample:
+                  $ref: '#/components/examples/unsupportedMediaTypeErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Unsupported Media Type
+        "429":
+          content:
+            application/json:
+              examples:
+                tooManyRequestsErrorExample:
+                  $ref: '#/components/examples/tooManyRequestsErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              examples:
+                serviceUnavailableErrorExample:
+                  $ref: '#/components/examples/serviceUnavailableErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Service Unavailable
+      summary: Get Endpoint
+      tags:
+      - Endpoints
+      x-badges:
+      - name: Beta
+        color: '#076EA8'
+    servers:
+    - description: Production
+      url: https://api.bandwidth.com/v2
+  /accounts/{accountId}/endpoints/{endpointId}/bxml:
+    put:
+      description: Updates the BXML for the specified endpoint.
+      operationId: updateEndpointBxml
+      parameters:
+      - description: Your Bandwidth Account ID.
+        example: "9900000"
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: BRTC Endpoint ID.
+        explode: false
+        in: path
+        name: endpointId
+        required: true
+        schema:
+          example: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          type: string
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/updateEndpointBxmlRequest'
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestErrorExample:
+                  $ref: '#/components/examples/badRequestErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedErrorExample:
+                  $ref: '#/components/examples/unauthorizedErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenErrorExample:
+                  $ref: '#/components/examples/forbiddenErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundErrorExample:
+                  $ref: '#/components/examples/notFoundErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                methodNotAllowedErrorExample:
+                  $ref: '#/components/examples/methodNotAllowedErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Method Not Allowed
+        "415":
+          content:
+            application/json:
+              examples:
+                unsuppotedMediaTypeErrorExample:
+                  $ref: '#/components/examples/unsupportedMediaTypeErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Unsupported Media Type
+        "429":
+          content:
+            application/json:
+              examples:
+                tooManyRequestsErrorExample:
+                  $ref: '#/components/examples/tooManyRequestsErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              examples:
+                serviceUnavailableErrorExample:
+                  $ref: '#/components/examples/serviceUnavailableErrorExample'
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: Service Unavailable
+      summary: Update Endpoint BXML
+      tags:
+      - Endpoints
+      x-badges:
+      - name: Beta
+        color: '#076EA8'
+    servers:
+    - description: Production
+      url: https://api.bandwidth.com/v2
 components:
   callbacks:
     inboundCallback:
@@ -5723,15 +6300,13 @@ components:
                     $ref: '#/components/examples/mmsMessageReceivedCallbackExample'
                 schema:
                   $ref: '#/components/schemas/inboundCallback'
-            description: "<p>This Inbound Message Webhook is an envelope containing\
-              \ either a received (MO) message to your \nmessage-enabled Bandwidth\
-              \ telephone number or a multichannel client's response to a suggestion\
-              \ response \nor location request. \n<p>The payload type will be one\
-              \ of <code>message-received</code>, <code>suggestion-response</code>,\
-              \ or <code>location-request-response</code>.\n<p>Note that <code>suggestion-response</code>\
-              \ and <code>location-request-response</code> callback types are pertinent\
-              \ only for RBM messages sent from the <code>/messages/multiChannel</code>\
-              \ endpoint.\n</p><p>Please visit <a href='/docs/messaging/webhooks/'>Webhooks</a></p>"
+            description: |-
+              <p>This Inbound Message Webhook is an envelope containing either a received (MO) message to your
+              message-enabled Bandwidth telephone number or a multichannel client's response to a suggestion response
+              or location request.
+              <p>The payload type will be one of <code>message-received</code>, <code>suggestion-response</code>, or <code>location-request-response</code>.
+              <p>Note that <code>suggestion-response</code> and <code>location-request-response</code> callback types are pertinent only for RBM messages sent from the <code>/messages/multiChannel</code> endpoint.
+              </p><p>Please visit <a href='/docs/messaging/webhooks/'>Webhooks</a></p>
             required: true
           responses:
             "200":
@@ -5865,6 +6440,20 @@ components:
                     $ref: '#/components/schemas/tfvError'
               description: Service Unavailable
           summary: TFV status updates sent to customer's webhook URL.
+    endpointEvent:
+      '{request.body#/eventCallbackUrl}':
+        post:
+          requestBody:
+            content:
+              application/json:
+                examples:
+                  endpointDisconnectedEventExample:
+                    $ref: '#/components/examples/endpointDisconnectedEventExample'
+                schema:
+                  $ref: '#/components/schemas/endpointEvent'
+          responses:
+            "204":
+              description: Event was successfully received.
   examples:
     smsMessageReceivedCallbackExample:
       summary: An example of a sms message-received callback body.
@@ -6283,6 +6872,200 @@ components:
           type: unexpected-error
           description: Unexpected error. Please contact Bandwidth Support if your
             requests are receiving this status code for an extended period of time.
+    listEndpointsResponseExample:
+      summary: List Endpoints Paginated Response
+      value:
+        links:
+        - href: https://api.bandwidth.com/v2/accounts/5500123/endpoints?type=SIP&status=CONNECTED&limit=2
+          rel: self
+          method: GET
+        - href: https://api.bandwidth.com/v2/accounts/5500123/endpoints?type=SIP&status=CONNECTED&limit=2&afterCursor=TWF5IHRoZSBmb3JjZSBiZSB3aXRoIHlvdQ==
+          rel: next
+          method: GET
+        page:
+          pageSize: 2
+          totalElements: 10
+          totalPages: 5
+          pageNumber: 0
+        data:
+        - endpointId: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          type: WEBRTC
+          status: CONNECTED
+          creationTimestamp: 2021-01-01T00:00:00Z
+          expirationTimestamp: 2021-01-02T00:00:00Z
+          tag: my-tag
+        - endpointId: e-2cb0-4a07-b215-b22865662d85-15ac29a2-1331029c
+          type: WEBRTC
+          status: CONNECTED
+          creationTimestamp: 2021-01-01T00:00:00Z
+          expirationTimestamp: 2021-01-02T00:00:00Z
+          tag: my-tag
+        errors: []
+    createEndpointResponseExample:
+      summary: Create Endpoint Response
+      value:
+        links:
+        - href: https://api.bandwidth.com/v2/accounts/5500123/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          rel: endpoint
+          method: GET
+        data:
+          endpointId: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          token: xxxxx.yyyyy.zzzzz
+          type: WEBRTC
+          status: CONNECTED
+          creationTimestamp: 2021-01-01T00:00:00Z
+          expirationTimestamp: 2021-01-02T00:00:00Z
+          devices: []
+          tag: my-tag
+        errors: []
+    getEndpointResponseExample:
+      summary: Get Endpoint Response
+      value:
+        links:
+        - href: https://api.bandwidth.com/v2/accounts/5500123/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          rel: self
+          method: GET
+        data:
+          endpointId: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          type: WEBRTC
+          status: CONNECTED
+          creationTimestamp: 2021-01-01T00:00:00Z
+          expirationTimestamp: 2021-01-02T00:00:00Z
+          devices: []
+          tag: my-tag
+        errors: []
+    createSipEndpointRequestExample:
+      summary: SIP Endpoint Example
+      value:
+        type: SIP
+        connectionMetadata:
+          ipAddress: 0.0.0.0
+          port: 3000
+          credentials:
+            username: username
+            password: '********'
+          uuiHeader: 123456;encoding=jwt
+        direction: INBOUND
+        eventCallbackUrl: https://myEventCallbackUrl.com/callbacks/bandwidth
+        eventFallbackUrl: https://fallback.myEventCallbackUrl.com/callbacks/bandwidth
+        tag: "{\"myTag\": \"myTagValue\"}"
+    createWeRtcEndpointExample:
+      summary: WebRTC Endpoint Example
+      value:
+        type: WEBRTC
+        direction: BIDIRECTIONAL
+        eventCallbackUrl: https://myEventCallbackUrl.com/callbacks/bandwidth
+        eventFallbackUrl: https://fallback.myEventCallbackUrl.com/callbacks/bandwidth
+        tag: "{\"myTag\": \"myTagValue\"}"
+    updateEndpointBxmlRequestExample:
+      summary: Update Endpoint BXML Request Example
+      value: <Bxml><StartRecording /></Bxml>
+    endpointDisconnectedEventExample:
+      summary: Endpoint Disconnected Event
+      value:
+        endpointId: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        type: WEBRTC
+        status: DISCONNECTED
+        creationTimestamp: 2021-01-01T00:00:00Z
+        expirationTimestamp: 2021-01-02T00:00:00Z
+        eventTime: 2021-01-01T00:00:00Z
+        eventType: DEVICE_DISCONNECTED
+        tag: my-tag
+    badRequestErrorExample:
+      summary: Bad Request Error Example
+      value:
+        links: []
+        data: null
+        errors:
+        - id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          type: invalid_parameter
+          description: accountId must not contain any characters other than numbers.
+          code: "400"
+          source:
+            parameter: accountId
+    unauthorizedErrorExample:
+      summary: Unauthorized Error Example
+      value:
+        links: []
+        data: null
+        errors:
+        - id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          type: unauthorized
+          description: The provided credentials are not authorized to access this
+            resource.
+          code: "401"
+          source:
+            header: Authorization
+    forbiddenErrorExample:
+      summary: Forbidden Error Example
+      value:
+        links: []
+        data: null
+        errors:
+        - id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          type: forbidden
+          description: The provided credentials are not authorized to access this
+            resource.
+          code: "403"
+          source:
+            header: Authorization
+    notFoundErrorExample:
+      summary: Not Found Error Example
+      value:
+        links: []
+        data: null
+        errors:
+        - id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          type: resource_not_found
+          description: The requested resource was not found.
+          code: "404"
+          source:
+            reference: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+    methodNotAllowedErrorExample:
+      summary: Method Not Allowed Error Example
+      value:
+        links: []
+        data: null
+        errors:
+        - id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          type: method_not_allowed
+          description: The requested method is not allowed on this resource.
+          code: "405"
+          source:
+            parameter: accountId
+    unsupportedMediaTypeErrorExample:
+      summary: Unsupported Media Type Error Example
+      value:
+        links: []
+        data: null
+        errors:
+        - id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          type: unsupported_media_type
+          description: The provided media type is not supported.
+          code: "415"
+          source:
+            header: Content-Type
+    tooManyRequestsErrorExample:
+      summary: Too Many Requests Error Example
+      value:
+        links: []
+        data: null
+        errors:
+        - id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          type: too_many_requests
+          description: The client has sent too many requests in a given amount of
+            time.
+          code: "429"
+    serviceUnavailableErrorExample:
+      summary: Service Unavailable Error Example
+      value:
+        links: []
+        data: null
+        errors:
+        - id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          type: service_unavailable
+          description: The service is currently unavailable.
+          code: "500"
   parameters:
     accountId:
       description: Your Bandwidth Account ID.
@@ -6864,6 +7647,58 @@ components:
       schema:
         type: string
       style: simple
+    endpointId:
+      description: BRTC Endpoint ID.
+      explode: false
+      in: path
+      name: endpointId
+      required: true
+      schema:
+        example: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        type: string
+      style: simple
+    endpointType:
+      description: The type of endpoint.
+      explode: true
+      in: query
+      name: type
+      required: false
+      schema:
+        $ref: '#/components/schemas/endpointTypeEnum'
+      style: form
+    endpointStatus:
+      description: The status of the endpoint.
+      explode: true
+      in: query
+      name: status
+      required: false
+      schema:
+        $ref: '#/components/schemas/endpointStatusEnum'
+      style: form
+    afterCursor:
+      description: The cursor to use for pagination. This is the value of the `next`
+        link in the previous response.
+      explode: true
+      in: query
+      name: afterCursor
+      required: false
+      schema:
+        example: TWF5IHRoZSBmb3JjZSBiZSB3aXRoIHlvdQ==
+        type: string
+      style: form
+    limit1:
+      description: The maximum number of endpoints to return in the response.
+      explode: true
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        example: 2
+        maximum: 1000
+        minimum: 1
+        type: integer
+      style: form
   requestBodies:
     createMessageRequest:
       content:
@@ -7216,6 +8051,27 @@ components:
             $ref: '#/components/schemas/webhookSubscriptionRequestSchema'
       description: Information about a webhook that Bandwidth should send upon the
         completion of event customer is trying to subscribe to.
+      required: true
+    createEndpointRequest:
+      content:
+        application/json:
+          examples:
+            createWebRtcEndpointRequestExample:
+              $ref: '#/components/examples/createWeRtcEndpointExample'
+          schema:
+            $ref: '#/components/schemas/createEndpointRequest'
+      required: true
+    updateEndpointBxmlRequest:
+      content:
+        application/xml:
+          examples:
+            updateEndpointBxmlRequestExample:
+              $ref: '#/components/examples/updateEndpointBxmlRequestExample'
+          schema:
+            description: |-
+              The BXML document to update the endpoint with. This BXML document will be executed against the endpoint when it is updated.
+              For more information, please refer to our [BXML documentation](/docs/voice/bxml/).
+            type: string
       required: true
   responses:
     createMessageResponse:
@@ -7886,6 +8742,105 @@ components:
       description: Service Unavailable
     verifyPutResponse:
       description: Accepted
+    listEndpointsResponse:
+      content:
+        application/json:
+          examples:
+            listEndpointsResponseExample:
+              $ref: '#/components/examples/listEndpointsResponseExample'
+          schema:
+            $ref: '#/components/schemas/listEndpointsResponse'
+      description: OK
+    createEndpointResponse:
+      content:
+        application/json:
+          examples:
+            createEndpointResponseExample:
+              $ref: '#/components/examples/createEndpointResponseExample'
+          schema:
+            $ref: '#/components/schemas/createEndpointResponse'
+      description: Created
+    getEndpointResponse:
+      content:
+        application/json:
+          examples:
+            getEndpointResponseExample:
+              $ref: '#/components/examples/getEndpointResponseExample'
+          schema:
+            $ref: '#/components/schemas/endpointResponse'
+      description: OK
+    badRequestErrorResponse:
+      content:
+        application/json:
+          examples:
+            badRequestErrorExample:
+              $ref: '#/components/examples/badRequestErrorExample'
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+      description: Bad Request
+    unauthorizedErrorResponse:
+      content:
+        application/json:
+          examples:
+            unauthorizedErrorExample:
+              $ref: '#/components/examples/unauthorizedErrorExample'
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+      description: Unauthorized
+    forbiddenErrorResponse:
+      content:
+        application/json:
+          examples:
+            forbiddenErrorExample:
+              $ref: '#/components/examples/forbiddenErrorExample'
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+      description: Forbidden
+    notFoundErrorResponse:
+      content:
+        application/json:
+          examples:
+            notFoundErrorExample:
+              $ref: '#/components/examples/notFoundErrorExample'
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+      description: Not Found
+    methodNotAllowedErrorResponse:
+      content:
+        application/json:
+          examples:
+            methodNotAllowedErrorExample:
+              $ref: '#/components/examples/methodNotAllowedErrorExample'
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+      description: Method Not Allowed
+    unsupportedMediaTypeErrorResponse:
+      content:
+        application/json:
+          examples:
+            unsuppotedMediaTypeErrorExample:
+              $ref: '#/components/examples/unsupportedMediaTypeErrorExample'
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+      description: Unsupported Media Type
+    tooManyRequestsErrorResponse:
+      content:
+        application/json:
+          examples:
+            tooManyRequestsErrorExample:
+              $ref: '#/components/examples/tooManyRequestsErrorExample'
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+      description: Too Many Requests
+    serviceUnavailableErrorResponse:
+      content:
+        application/json:
+          examples:
+            serviceUnavailableErrorExample:
+              $ref: '#/components/examples/serviceUnavailableErrorExample'
+          schema:
+            $ref: '#/components/schemas/errorResponse'
+      description: Service Unavailable
   schemas:
     applicationId:
       description: The ID of the Application your from number or senderId is associated
@@ -8269,9 +9224,10 @@ components:
       format: date-time
       type: string
     carrierName:
-      description: "The name of the Authorized Message Provider (AMP) that handled\
-        \ this message. \nIn the US, this is the carrier that the message was sent\
-        \ to.\nThis field is present only when this account feature has been enabled."
+      description: |-
+        The name of the Authorized Message Provider (AMP) that handled this message.
+        In the US, this is the carrier that the message was sent to.
+        This field is present only when this account feature has been enabled.
       example: AT&T
       type: string
     message:
@@ -8378,13 +9334,9 @@ components:
           type: array
           uniqueItems: true
         from:
-          description: "Either an alphanumeric sender ID or the sender's Bandwidth\
-            \ phone number in E.164 format, which must be hosted within Bandwidth\
-            \ and linked to the account that is generating the message. \nAlphanumeric\
-            \ Sender IDs can contain up to 11 characters, upper-case letters A-Z,\
-            \ lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore\
-            \ _ and ampersand &. Alphanumeric Sender IDs must contain at least one\
-            \ letter."
+          description: |-
+            Either an alphanumeric sender ID or the sender's Bandwidth phone number in E.164 format, which must be hosted within Bandwidth and linked to the account that is generating the message.
+            Alphanumeric Sender IDs can contain up to 11 characters, upper-case letters A-Z, lower-case letters a-z, numbers 0-9, space, hyphen -, plus +, underscore _ and ampersand &. Alphanumeric Sender IDs must contain at least one letter.
           example: "+15551113333"
           type: string
         text:
@@ -8614,6 +9566,9 @@ components:
           type: array
       type: object
     link:
+      example:
+        rel: rel
+        href: href
       properties:
         rel:
           type: string
@@ -8913,20 +9868,21 @@ components:
       example: REPLY
       type: string
     rbmOpenUrlEnum:
-      description: "Specifies how the URL should be opened on a mobile device.\n-\
-        \ `BROWSER` Opens the URL in the device's default browser. If application\
-        \ is not set or the device doesn’t support WebView, this option is used by\
-        \ default. \n- `WEBVIEW` Opens the URL in an in-app WebView."
+      description: |-
+        Specifies how the URL should be opened on a mobile device.
+        - `BROWSER` Opens the URL in the device's default browser. If application is not set or the device doesn’t support WebView, this option is used by default.
+        - `WEBVIEW` Opens the URL in an in-app WebView.
       enum:
       - BROWSER
       - WEBVIEW
       example: WEBVIEW
       type: string
     rbmWebViewEnum:
-      description: "Defines the layout of the WebView on a mobile device. It must\
-        \ be defined when application is set to `WEBVIEW`\n- `FULL` WebView takes\
-        \ the full screen. \n- `HALF` WebView takes half of the screen.\n- `TALL`\
-        \ WebView takes three-quarters of the screen."
+      description: |-
+        Defines the layout of the WebView on a mobile device. It must be defined when application is set to `WEBVIEW`
+        - `FULL` WebView takes the full screen.
+        - `HALF` WebView takes half of the screen.
+        - `TALL` WebView takes three-quarters of the screen.
       enum:
       - FULL
       - HALF
@@ -9489,10 +10445,10 @@ components:
           example: 4405
           type: integer
         carrierName:
-          description: "The name of the Authorized Message Provider (AMP) that handled\
-            \ this message. \nIn the US, this is the carrier that the message was\
-            \ sent to.\nThis field is present only when this account feature has been\
-            \ enabled."
+          description: |-
+            The name of the Authorized Message Provider (AMP) that handled this message.
+            In the US, this is the carrier that the message was sent to.
+            This field is present only when this account feature has been enabled.
           example: AT&T
           type: string
       required:
@@ -9512,9 +10468,9 @@ components:
         type:
           $ref: '#/components/schemas/inboundCallbackTypeEnum'
         to:
-          description: "The destination phone number the message was sent to. \nFor\
-            \ inbound callbacks, this is the Bandwidth number or alphanumeric identifier\
-            \ that received the message.\n"
+          description: |
+            The destination phone number the message was sent to.
+            For inbound callbacks, this is the Bandwidth number or alphanumeric identifier that received the message.
           example: "+15552223333"
           type: string
         description:
@@ -9524,10 +10480,10 @@ components:
         message:
           $ref: '#/components/schemas/inboundCallbackMessage'
         carrierName:
-          description: "The name of the Authorized Message Provider (AMP) that handled\
-            \ this message. \nIn the US, this is the carrier that the message was\
-            \ sent to.\nThis field is present only when this account feature has been\
-            \ enabled."
+          description: |-
+            The name of the Authorized Message Provider (AMP) that handled this message.
+            In the US, this is the carrier that the message was sent to.
+            This field is present only when this account feature has been enabled.
           example: AT&T
           type: string
       required:
@@ -9552,13 +10508,11 @@ components:
       example: message-delivered
       type: string
     inboundCallbackTypeEnum:
-      description: "The possible inbound callback types originating from MO messages\
-        \ or multichannel message client responses:\n- `message-received` indicates\
-        \ an MO message from a Bandwidth user's client to a Bandwidth number.\n- `request-location-response`\
-        \ indicates a response to a location request sent by the Bandwidth user's\
-        \ client after receiving an RBM message. \n- `suggestion-response` indicates\
-        \ a response to a suggestion sent by the Bandwidth user's client after receiving\
-        \ an RBM message."
+      description: |-
+        The possible inbound callback types originating from MO messages or multichannel message client responses:
+        - `message-received` indicates an MO message from a Bandwidth user's client to a Bandwidth number.
+        - `request-location-response` indicates a response to a location request sent by the Bandwidth user's client after receiving an RBM message.
+        - `suggestion-response` indicates a response to a suggestion sent by the Bandwidth user's client after receiving an RBM message.
       enum:
       - message-received
       - request-location-response
@@ -9776,10 +10730,10 @@ components:
           nullable: true
           type: boolean
         displayName:
-          description: "The caller display name to use when the call is created. \n\
-            May not exceed 256 characters nor contain control characters such as new\
-            \ lines.\nIf `privacy` is true, only the following values are valid: `Restricted`,\
-            \ `Anonymous`, `Private`, or `Unavailable`."
+          description: |-
+            The caller display name to use when the call is created.
+            May not exceed 256 characters nor contain control characters such as new lines.
+            If `privacy` is true, only the following values are valid: `Restricted`, `Anonymous`, `Private`, or `Unavailable`.
           example: John Doe
           maxLength: 256
           nullable: true
@@ -10744,9 +11698,9 @@ components:
           nullable: true
           type: number
         machineSpeechEndThreshold:
-          description: "When an answering machine is detected, the amount of silence\
-            \ (in seconds) before assuming the message has finished playing. \nIf\
-            \ not provided it will default to the speechEndThreshold value."
+          description: |-
+            When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing.
+            If not provided it will default to the speechEndThreshold value.
           example: 5
           format: double
           nullable: true
@@ -13516,18 +14470,18 @@ components:
         latestMessageDeliveryStatus:
           $ref: '#/components/schemas/latestMessageDeliveryStatusEnum'
         initialMessageDeliveryStatusDate:
-          description: "[DNI-Only](#section/DNI-Only). The date the phone number entered\
-            \ the status described in `latestMessageDeliveryStatus`. \nThink of this\
-            \ as the \"start time\" for that status.\nValue resets every time the\
-            \ `latestMessageDeliveryStatus` changes."
+          description: |-
+            [DNI-Only](#section/DNI-Only). The date the phone number entered the status described in `latestMessageDeliveryStatus`.
+            Think of this as the "start time" for that status.
+            Value resets every time the `latestMessageDeliveryStatus` changes.
           example: 2025-06-20
           format: date
           type: string
         latestMessageDeliveryStatusDate:
-          description: "[DNI-Only](#section/DNI-Only). The date bandwidth last received\
-            \ delivery status information for this phone number. \nUse this field\
-            \ to understand how up-to-date the `latestMessageDeliveryStatus` is.\n\
-            Value resets every time the `latestMessageDeliveryStatus` changes."
+          description: |-
+            [DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number.
+            Use this field to understand how up-to-date the `latestMessageDeliveryStatus` is.
+            Value resets every time the `latestMessageDeliveryStatus` changes.
           example: 2025-06-21
           format: date
           type: string
@@ -14737,6 +15691,479 @@ components:
       minLength: 0
       nullable: true
       type: string
+    endpointId:
+      description: The unique ID of the endpoint.
+      example: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+      type: string
+    endpointStatusEnum:
+      enum:
+      - CONNECTED
+      - DISCONNECTED
+      type: string
+    deviceStatusEnum:
+      enum:
+      - CONNECTED
+      - DISCONNECTED
+      type: string
+    endpointTypeEnum:
+      enum:
+      - WEBRTC
+      type: string
+    endpointDirectionEnum:
+      enum:
+      - INBOUND
+      - OUTBOUND
+      - BIDIRECTIONAL
+      type: string
+    sipCredentials:
+      properties:
+        username:
+          description: The username for the SIP connection.
+          example: username
+          type: string
+        password:
+          description: The password for the SIP connection.
+          example: password
+          type: string
+      type: object
+    sipConnectionMetadata:
+      properties:
+        ipAddress:
+          description: The IP address of the SIP connection.
+          example: 192.168.0.0
+          format: ipv4
+          type: string
+        port:
+          description: The port of the SIP connection.
+          example: 5060
+          type: integer
+        credentials:
+          $ref: '#/components/schemas/sipCredentials'
+        uuiHeader:
+          description: The User-to-User Information header for the SIP connection.
+          example: my-uui-header
+          type: string
+      title: SIP Connection
+      type: object
+    webRtcConnectionMetadata:
+      title: WebRTC Connection
+      type: object
+    endpointToken:
+      description: The json web token specific to the endpoint. Used to authenticate
+        the client with the media gateway.
+      example: xxxxx.yyyyy.zzzzz
+      type: string
+    endpointTag:
+      description: A tag for the endpoint.
+      example: my-tag
+      maximum: 1024
+      type: string
+    device:
+      example:
+        creationTimestamp: 2021-01-01T00:00:00Z
+        deviceId: d-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        deviceName: David's iPhone
+        status: CONNECTED
+      properties:
+        deviceId:
+          description: The unique ID of the device.
+          example: d-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          type: string
+        deviceName:
+          description: The name of the device.
+          example: David's iPhone
+          maximum: 1024
+          type: string
+        status:
+          $ref: '#/components/schemas/deviceStatusEnum'
+        creationTimestamp:
+          description: The time the device was created. In ISO-8601 format.
+          example: 2021-01-01T00:00:00Z
+          format: date-time
+          type: string
+      required:
+      - creationTimestamp
+      - deviceId
+      - status
+      type: object
+    endpoints:
+      example:
+        endpointId: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        creationTimestamp: 2021-01-01T00:00:00Z
+        expirationTimestamp: 2021-01-02T00:00:00Z
+        tag: my-tag
+        type: WEBRTC
+        status: CONNECTED
+      properties:
+        endpointId:
+          description: The unique ID of the endpoint.
+          example: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          type: string
+        type:
+          $ref: '#/components/schemas/endpointTypeEnum'
+        status:
+          $ref: '#/components/schemas/endpointStatusEnum'
+        creationTimestamp:
+          description: The time the endpoint was created. In ISO-8601 format.
+          example: 2021-01-01T00:00:00Z
+          format: date-time
+          type: string
+        expirationTimestamp:
+          description: The time the endpoint token will expire. In ISO-8601 format.
+            Tokens last 24 hours.
+          example: 2021-01-02T00:00:00Z
+          format: date-time
+          type: string
+        tag:
+          description: A tag for the endpoint.
+          example: my-tag
+          maximum: 1024
+          type: string
+      required:
+      - creationTimestamp
+      - endpointId
+      - expirationTimestamp
+      - status
+      - type
+      type: object
+    endpoint:
+      allOf:
+      - $ref: '#/components/schemas/endpoints'
+      - properties:
+          devices:
+            items:
+              $ref: '#/components/schemas/device'
+            type: array
+        type: object
+      example:
+        devices:
+        - creationTimestamp: 2021-01-01T00:00:00Z
+          deviceId: d-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          deviceName: David's iPhone
+          status: CONNECTED
+        - creationTimestamp: 2021-01-01T00:00:00Z
+          deviceId: d-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          deviceName: David's iPhone
+          status: CONNECTED
+        endpointId: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        creationTimestamp: 2021-01-01T00:00:00Z
+        expirationTimestamp: 2021-01-02T00:00:00Z
+        tag: my-tag
+        type: WEBRTC
+        status: CONNECTED
+      type: object
+    createWebRtcConnectionRequest:
+      allOf:
+      - $ref: '#/components/schemas/createEndpointRequestBase'
+      - properties:
+          connectionMetadata:
+            $ref: '#/components/schemas/webRtcConnectionMetadata'
+        type: object
+    createEndpointRequestBase:
+      properties:
+        type:
+          $ref: '#/components/schemas/endpointTypeEnum'
+        direction:
+          $ref: '#/components/schemas/endpointDirectionEnum'
+        eventCallbackUrl:
+          description: The URL to send event callbacks to.
+          example: https://myapp.com/callback
+          format: uri
+          type: string
+        eventFallbackUrl:
+          description: The URL to send event fallbacks to.
+          example: https://fallback.myapp.com/callback
+          format: uri
+          type: string
+        tag:
+          description: A tag for the endpoint.
+          example: my-tag
+          maximum: 1024
+          type: string
+      required:
+      - direction
+      - type
+      type: object
+    createEndpointRequest:
+      discriminator:
+        mapping:
+          WEBRTC: '#/components/schemas/createWebRtcConnectionRequest'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/createWebRtcConnectionRequest'
+    createEndpointResponseData:
+      allOf:
+      - $ref: '#/components/schemas/endpoint'
+      - properties:
+          token:
+            $ref: '#/components/schemas/endpointToken'
+        required:
+        - token
+        type: object
+      example:
+        devices:
+        - creationTimestamp: 2021-01-01T00:00:00Z
+          deviceId: d-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          deviceName: David's iPhone
+          status: CONNECTED
+        - creationTimestamp: 2021-01-01T00:00:00Z
+          deviceId: d-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          deviceName: David's iPhone
+          status: CONNECTED
+        endpointId: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        creationTimestamp: 2021-01-01T00:00:00Z
+        expirationTimestamp: 2021-01-02T00:00:00Z
+        tag: my-tag
+        type: WEBRTC
+        status: CONNECTED
+        token: xxxxx.yyyyy.zzzzz
+    endpointEventTypeEnum:
+      enum:
+      - DEVICE_CONNECTED
+      - DEVICE_DISCONNECTED
+      type: string
+    endpointEvent:
+      allOf:
+      - $ref: '#/components/schemas/endpoints'
+      - properties:
+          eventTime:
+            description: The time the event occurred. In ISO-8601 format.
+            example: 2021-01-01T00:00:00Z
+            format: date-time
+            type: string
+          eventType:
+            $ref: '#/components/schemas/endpointEventTypeEnum'
+          device:
+            $ref: '#/components/schemas/device'
+        required:
+        - eventTime
+        - eventType
+        type: object
+      description: An event that occurred on an endpoint.
+    page:
+      example:
+        pageNumber: 0
+        totalPages: 10
+        pageSize: 10
+        totalElements: 100
+      properties:
+        pageSize:
+          description: The number of items per page.
+          example: 10
+          minimum: 0
+          type: integer
+        totalElements:
+          description: The total number of items.
+          example: 100
+          minimum: 0
+          type: integer
+        totalPages:
+          description: The total number of pages.
+          example: 10
+          minimum: 0
+          type: integer
+        pageNumber:
+          description: The current page number.
+          example: 0
+          minimum: 0
+          type: integer
+      required:
+      - pageSize
+      type: object
+    listEndpointsResponse:
+      example:
+        data:
+        - endpointId: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          creationTimestamp: 2021-01-01T00:00:00Z
+          expirationTimestamp: 2021-01-02T00:00:00Z
+          tag: my-tag
+          type: WEBRTC
+          status: CONNECTED
+        - endpointId: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          creationTimestamp: 2021-01-01T00:00:00Z
+          expirationTimestamp: 2021-01-02T00:00:00Z
+          tag: my-tag
+          type: WEBRTC
+          status: CONNECTED
+        links:
+        - rel: rel
+          href: href
+        - rel: rel
+          href: href
+        page:
+          pageNumber: 0
+          totalPages: 10
+          pageSize: 10
+          totalElements: 100
+        errors:
+        - code: 0
+          telephoneNumbers:
+          - telephoneNumber: telephoneNumber
+          - telephoneNumber: telephoneNumber
+          description: description
+        - code: 0
+          telephoneNumbers:
+          - telephoneNumber: telephoneNumber
+          - telephoneNumber: telephoneNumber
+          description: description
+      properties:
+        links:
+          items:
+            $ref: '#/components/schemas/link'
+          type: array
+        page:
+          $ref: '#/components/schemas/page'
+        data:
+          items:
+            $ref: '#/components/schemas/endpoints'
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/error'
+          type: array
+      required:
+      - data
+      - errors
+      - links
+      type: object
+    endpointResponse:
+      example:
+        data:
+          devices:
+          - creationTimestamp: 2021-01-01T00:00:00Z
+            deviceId: d-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+            deviceName: David's iPhone
+            status: CONNECTED
+          - creationTimestamp: 2021-01-01T00:00:00Z
+            deviceId: d-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+            deviceName: David's iPhone
+            status: CONNECTED
+          endpointId: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          creationTimestamp: 2021-01-01T00:00:00Z
+          expirationTimestamp: 2021-01-02T00:00:00Z
+          tag: my-tag
+          type: WEBRTC
+          status: CONNECTED
+        links:
+        - rel: rel
+          href: href
+        - rel: rel
+          href: href
+        errors:
+        - code: 0
+          telephoneNumbers:
+          - telephoneNumber: telephoneNumber
+          - telephoneNumber: telephoneNumber
+          description: description
+        - code: 0
+          telephoneNumbers:
+          - telephoneNumber: telephoneNumber
+          - telephoneNumber: telephoneNumber
+          description: description
+      properties:
+        links:
+          items:
+            $ref: '#/components/schemas/link'
+          type: array
+        data:
+          $ref: '#/components/schemas/endpoint'
+        errors:
+          items:
+            $ref: '#/components/schemas/error'
+          type: array
+      required:
+      - data
+      - errors
+      - links
+      type: object
+    createEndpointResponse:
+      example:
+        data:
+          devices:
+          - creationTimestamp: 2021-01-01T00:00:00Z
+            deviceId: d-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+            deviceName: David's iPhone
+            status: CONNECTED
+          - creationTimestamp: 2021-01-01T00:00:00Z
+            deviceId: d-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+            deviceName: David's iPhone
+            status: CONNECTED
+          endpointId: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          creationTimestamp: 2021-01-01T00:00:00Z
+          expirationTimestamp: 2021-01-02T00:00:00Z
+          tag: my-tag
+          type: WEBRTC
+          status: CONNECTED
+          token: xxxxx.yyyyy.zzzzz
+        links:
+        - rel: rel
+          href: href
+        - rel: rel
+          href: href
+        errors:
+        - code: 0
+          telephoneNumbers:
+          - telephoneNumber: telephoneNumber
+          - telephoneNumber: telephoneNumber
+          description: description
+        - code: 0
+          telephoneNumbers:
+          - telephoneNumber: telephoneNumber
+          - telephoneNumber: telephoneNumber
+          description: description
+      properties:
+        links:
+          items:
+            $ref: '#/components/schemas/link'
+          type: array
+        data:
+          $ref: '#/components/schemas/createEndpointResponseData'
+        errors:
+          items:
+            $ref: '#/components/schemas/error'
+          type: array
+      required:
+      - data
+      - errors
+      - links
+      type: object
+    errorResponse:
+      example:
+        data: "{}"
+        links:
+        - rel: rel
+          href: href
+        - rel: rel
+          href: href
+        errors:
+        - code: 0
+          telephoneNumbers:
+          - telephoneNumber: telephoneNumber
+          - telephoneNumber: telephoneNumber
+          description: description
+        - code: 0
+          telephoneNumbers:
+          - telephoneNumber: telephoneNumber
+          - telephoneNumber: telephoneNumber
+          description: description
+      properties:
+        links:
+          items:
+            $ref: '#/components/schemas/link'
+          type: array
+        data:
+          additionalProperties: false
+          nullable: true
+          type: object
+        errors:
+          items:
+            $ref: '#/components/schemas/error'
+          type: array
+      required:
+      - data
+      - errors
+      - links
+      type: object
     rbmCardContent_media:
       allOf:
       - $ref: '#/components/schemas/rbmMessageContentFile'
