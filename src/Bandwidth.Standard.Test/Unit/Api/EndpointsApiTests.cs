@@ -77,7 +77,7 @@ namespace Bandwidth.Standard.Test.Unit.Api
             );
             CreateEndpointRequest createEndpointRequest = new CreateEndpointRequest(webRtcRequest);
 
-            CreateEndpointResponseObject responseData = new CreateEndpointResponseObject(
+            CreateEndpointResponseData responseData = new CreateEndpointResponseData(
                 endpointId: "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85",
                 type: EndpointTypeEnum.WEBRTC,
                 status: EndpointStatusEnum.CONNECTED,
