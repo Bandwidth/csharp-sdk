@@ -41,7 +41,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new EndpointsApi(config);
-            var accountId = 5500123;  // string | Your Bandwidth Account ID.
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
             var createEndpointRequest = new CreateEndpointRequest(); // CreateEndpointRequest | 
 
             try
@@ -148,7 +148,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new EndpointsApi(config);
-            var accountId = 5500123;  // string | Your Bandwidth Account ID.
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
             var endpointId = e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | BRTC Endpoint ID.
 
             try
@@ -251,7 +251,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new EndpointsApi(config);
-            var accountId = 5500123;  // string | Your Bandwidth Account ID.
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
             var endpointId = e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | BRTC Endpoint ID.
 
             try
@@ -358,7 +358,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new EndpointsApi(config);
-            var accountId = 5500123;  // string | Your Bandwidth Account ID.
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
             var type = (EndpointTypeEnum) "WEBRTC";  // EndpointTypeEnum? | The type of endpoint. (optional) 
             var status = (EndpointStatusEnum) "CONNECTED";  // EndpointStatusEnum? | The status of the endpoint. (optional) 
             var afterCursor = TWF5IHRoZSBmb3JjZSBiZSB3aXRoIHlvdQ==;  // string | The cursor to use for pagination. This is the value of the `next` link in the previous response. (optional) 
@@ -471,7 +471,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new EndpointsApi(config);
-            var accountId = 5500123;  // string | Your Bandwidth Account ID.
+            var accountId = 9900000;  // string | Your Bandwidth Account ID.
             var endpointId = e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85;  // string | BRTC Endpoint ID.
             var body = "body_example";  // string | 
 

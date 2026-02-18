@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Description** | **string** | A detailed description of the event described by the callback. | 
 **Message** | [**StatusCallbackMessage**](StatusCallbackMessage.md) |  | 
 **ErrorCode** | **int** | Optional error code, applicable only when type is &#x60;message-failed&#x60;. | [optional] 
-**CarrierName** | **string** | The name of the Authorized Message Provider (AMP) that handled this message.  In the US, this is the carrier that the message was sent to. This field is present only when this account feature has been enabled. | [optional] 
+**CarrierName** | **string** | The name of the Authorized Message Provider (AMP) that handled this message. In the US, this is the carrier that the message was sent to. This field is present only when this account feature has been enabled. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
