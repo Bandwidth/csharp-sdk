@@ -27,9 +27,9 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The type of business registration number. Optional until early 2026; required if &#x60;businessRegistrationNumber&#x60; is provided. Available starting October 1st, 2025.
+    /// The type of business registration number.
     /// </summary>
-    /// <value>The type of business registration number. Optional until early 2026; required if &#x60;businessRegistrationNumber&#x60; is provided. Available starting October 1st, 2025.</value>
+    /// <value>The type of business registration number.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum BusinessRegistrationTypeEnum
     {
@@ -43,7 +43,103 @@ namespace Bandwidth.Standard.Model
         /// Enum CBN for value: CBN
         /// </summary>
         [EnumMember(Value = "CBN")]
-        CBN = 2
+        CBN = 2,
+
+        /// <summary>
+        /// Enum NEQ for value: NEQ
+        /// </summary>
+        [EnumMember(Value = "NEQ")]
+        NEQ = 3,
+
+        /// <summary>
+        /// Enum PROVINCIALNUMBER for value: PROVINCIAL_NUMBER
+        /// </summary>
+        [EnumMember(Value = "PROVINCIAL_NUMBER")]
+        PROVINCIALNUMBER = 4,
+
+        /// <summary>
+        /// Enum CRN for value: CRN
+        /// </summary>
+        [EnumMember(Value = "CRN")]
+        CRN = 5,
+
+        /// <summary>
+        /// Enum VAT for value: VAT
+        /// </summary>
+        [EnumMember(Value = "VAT")]
+        VAT = 6,
+
+        /// <summary>
+        /// Enum ACN for value: ACN
+        /// </summary>
+        [EnumMember(Value = "ACN")]
+        ACN = 7,
+
+        /// <summary>
+        /// Enum ABN for value: ABN
+        /// </summary>
+        [EnumMember(Value = "ABN")]
+        ABN = 8,
+
+        /// <summary>
+        /// Enum BRN for value: BRN
+        /// </summary>
+        [EnumMember(Value = "BRN")]
+        BRN = 9,
+
+        /// <summary>
+        /// Enum SIREN for value: SIREN
+        /// </summary>
+        [EnumMember(Value = "SIREN")]
+        SIREN = 10,
+
+        /// <summary>
+        /// Enum SIRET for value: SIRET
+        /// </summary>
+        [EnumMember(Value = "SIRET")]
+        SIRET = 11,
+
+        /// <summary>
+        /// Enum NZBN for value: NZBN
+        /// </summary>
+        [EnumMember(Value = "NZBN")]
+        NZBN = 12,
+
+        /// <summary>
+        /// Enum USTIDNR for value: UST_IDNR
+        /// </summary>
+        [EnumMember(Value = "UST_IDNR")]
+        USTIDNR = 13,
+
+        /// <summary>
+        /// Enum CIF for value: CIF
+        /// </summary>
+        [EnumMember(Value = "CIF")]
+        CIF = 14,
+
+        /// <summary>
+        /// Enum NIF for value: NIF
+        /// </summary>
+        [EnumMember(Value = "NIF")]
+        NIF = 15,
+
+        /// <summary>
+        /// Enum CNPJ for value: CNPJ
+        /// </summary>
+        [EnumMember(Value = "CNPJ")]
+        CNPJ = 16,
+
+        /// <summary>
+        /// Enum UID for value: UID
+        /// </summary>
+        [EnumMember(Value = "UID")]
+        UID = 17,
+
+        /// <summary>
+        /// Enum OTHER for value: OTHER
+        /// </summary>
+        [EnumMember(Value = "OTHER")]
+        OTHER = 18
     }
 
 }

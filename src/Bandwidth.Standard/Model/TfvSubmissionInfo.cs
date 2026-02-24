@@ -40,9 +40,15 @@ namespace Bandwidth.Standard.Model
         public BusinessRegistrationTypeEnum? BusinessRegistrationType { get; set; }
 
         /// <summary>
+        /// Gets or Sets BusinessRegistrationIssuingCountry
+        /// </summary>
+        [DataMember(Name = "businessRegistrationIssuingCountry", EmitDefaultValue = false)]
+        public BusinessRegistrationIssuingCountryEnum? BusinessRegistrationIssuingCountry { get; set; }
+
+        /// <summary>
         /// Gets or Sets BusinessEntityType
         /// </summary>
-        [DataMember(Name = "businessEntityType", EmitDefaultValue = true)]
+        [DataMember(Name = "businessEntityType", EmitDefaultValue = false)]
         public BusinessEntityTypeEnum? BusinessEntityType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TfvSubmissionInfo" /> class.
@@ -59,10 +65,11 @@ namespace Bandwidth.Standard.Model
         /// <param name="privacyPolicyUrl">The Toll-Free Verification request privacy policy URL..</param>
         /// <param name="termsAndConditionsUrl">The Toll-Free Verification request terms and conditions policy URL..</param>
         /// <param name="businessDba">The company &#39;Doing Business As&#39;..</param>
-        /// <param name="businessRegistrationNumber">US Federal Tax ID Number (EIN) or Canada Business Number (CBN). Optional until early 2026. If a value is provided for this field, a value must be provided for &#x60;businessRegistrationType&#x60; and &#x60;businessEntityType&#x60;. Available starting October 1st, 2025..</param>
+        /// <param name="businessRegistrationNumber">Government-issued business identifying number..</param>
         /// <param name="businessRegistrationType">businessRegistrationType.</param>
+        /// <param name="businessRegistrationIssuingCountry">businessRegistrationIssuingCountry.</param>
         /// <param name="businessEntityType">businessEntityType.</param>
-        public TfvSubmissionInfo(Address businessAddress = default(Address), Contact businessContact = default(Contact), int messageVolume = default(int), string useCase = default(string), string useCaseSummary = default(string), string productionMessageContent = default(string), OptInWorkflow optInWorkflow = default(OptInWorkflow), string additionalInformation = default(string), string isvReseller = default(string), string privacyPolicyUrl = default(string), string termsAndConditionsUrl = default(string), string businessDba = default(string), string businessRegistrationNumber = default(string), BusinessRegistrationTypeEnum? businessRegistrationType = default(BusinessRegistrationTypeEnum?), BusinessEntityTypeEnum? businessEntityType = default(BusinessEntityTypeEnum?))
+        public TfvSubmissionInfo(Address businessAddress = default(Address), Contact businessContact = default(Contact), int messageVolume = default(int), string useCase = default(string), string useCaseSummary = default(string), string productionMessageContent = default(string), OptInWorkflow optInWorkflow = default(OptInWorkflow), string additionalInformation = default(string), string isvReseller = default(string), string privacyPolicyUrl = default(string), string termsAndConditionsUrl = default(string), string businessDba = default(string), string businessRegistrationNumber = default(string), BusinessRegistrationTypeEnum? businessRegistrationType = default(BusinessRegistrationTypeEnum?), BusinessRegistrationIssuingCountryEnum? businessRegistrationIssuingCountry = default(BusinessRegistrationIssuingCountryEnum?), BusinessEntityTypeEnum? businessEntityType = default(BusinessEntityTypeEnum?))
         {
             this.BusinessAddress = businessAddress;
             this.BusinessContact = businessContact;
@@ -78,6 +85,7 @@ namespace Bandwidth.Standard.Model
             this.BusinessDba = businessDba;
             this.BusinessRegistrationNumber = businessRegistrationNumber;
             this.BusinessRegistrationType = businessRegistrationType;
+            this.BusinessRegistrationIssuingCountry = businessRegistrationIssuingCountry;
             this.BusinessEntityType = businessEntityType;
         }
 
@@ -172,9 +180,9 @@ namespace Bandwidth.Standard.Model
         public string BusinessDba { get; set; }
 
         /// <summary>
-        /// US Federal Tax ID Number (EIN) or Canada Business Number (CBN). Optional until early 2026. If a value is provided for this field, a value must be provided for &#x60;businessRegistrationType&#x60; and &#x60;businessEntityType&#x60;. Available starting October 1st, 2025.
+        /// Government-issued business identifying number.
         /// </summary>
-        /// <value>US Federal Tax ID Number (EIN) or Canada Business Number (CBN). Optional until early 2026. If a value is provided for this field, a value must be provided for &#x60;businessRegistrationType&#x60; and &#x60;businessEntityType&#x60;. Available starting October 1st, 2025.</value>
+        /// <value>Government-issued business identifying number.</value>
         /// <example>12-3456789</example>
         [DataMember(Name = "businessRegistrationNumber", EmitDefaultValue = true)]
         public string BusinessRegistrationNumber { get; set; }
@@ -201,6 +209,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  BusinessDba: ").Append(BusinessDba).Append("\n");
             sb.Append("  BusinessRegistrationNumber: ").Append(BusinessRegistrationNumber).Append("\n");
             sb.Append("  BusinessRegistrationType: ").Append(BusinessRegistrationType).Append("\n");
+            sb.Append("  BusinessRegistrationIssuingCountry: ").Append(BusinessRegistrationIssuingCountry).Append("\n");
             sb.Append("  BusinessEntityType: ").Append(BusinessEntityType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
