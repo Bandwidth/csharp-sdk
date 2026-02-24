@@ -13600,35 +13600,84 @@ components:
       example: Another Company Name Inc.
       type: string
     businessRegistrationNumber:
-      description: "US Federal Tax ID Number (EIN) or Canada Business Number (CBN).\
-        \ Optional until early 2026. If a value is provided for this field, a value\
-        \ must be provided for `businessRegistrationType` and `businessEntityType`.\
-        \ Available starting October 1st, 2025."
+      description: Government-issued business identifying number.
       example: 12-3456789
       maxLength: 500
       nullable: true
       type: string
     businessRegistrationTypeEnum:
-      description: "The type of business registration number. Optional until early\
-        \ 2026; required if `businessRegistrationNumber` is provided. Available starting\
-        \ October 1st, 2025."
+      description: The type of business registration number.
       enum:
       - EIN
       - CBN
+      - NEQ
+      - PROVINCIAL_NUMBER
+      - CRN
+      - VAT
+      - ACN
+      - ABN
+      - BRN
+      - SIREN
+      - SIRET
+      - NZBN
+      - UST_IDNR
+      - CIF
+      - NIF
+      - CNPJ
+      - UID
+      - OTHER
       nullable: true
+      type: string
+    businessRegistrationIssuingCountryEnum:
+      description: |-
+        The country issuing the business registration in ISO-3166-1 alpha-3 format.
+
+        | Registration Type     | Supported Countries                |
+        |----------------------|------------------------------------|
+        | EIN                  | USA                                |
+        | CBN                  | CAN                                |
+        | NEQ                  | CAN                                |
+        | PROVINCIAL_NUMBER    | CAN                                |
+        | CRN                  | GBR, HKG                           |
+        | VAT                  | GBR, IRL, BRA, NLD                 |
+        | ACN                  | AUS                                |
+        | ABN                  | AUS                                |
+        | BRN                  | HKG                                |
+        | SIREN                | FRA                                |
+        | SIRET                | FRA                                |
+        | NZBN                 | NZL                                |
+        | UST_IDNR             | DEU                                |
+        | CIF                  | ESP                                |
+        | NIF                  | ESP                                |
+        | CNPJ                 | BRA                                |
+        | UID                  | CHE                                |
+        | OTHER                | Must Provide Country Code          |
+      enum:
+      - USA
+      - CAN
+      - HKG
+      - GBR
+      - IRL
+      - BRA
+      - NLD
+      - AUS
+      - FRA
+      - NZL
+      - DEU
+      - ESP
+      - CHE
+      nullable: false
       type: string
     businessEntityTypeEnum:
       description: "The type of registered business. If no option is applicable, please\
-        \ provide \"SOLE_PROPRIETOR\" as a value. Optional until early 2026; required\
-        \ if `businessRegistrationNumber` is provided. Available starting October\
-        \ 1st, 2025."
+        \ provide \"SOLE_PROPRIETOR\" as a value."
       enum:
       - SOLE_PROPRIETOR
       - PRIVATE_PROFIT
       - PUBLIC_PROFIT
       - NON_PROFIT
       - GOVERNMENT
-      nullable: true
+      nullable: false
       type: string
     helpMessageResponse:
       description: A message that gets sent to users requesting help.
@@ -13747,16 +13796,15 @@ components:
           example: Another Company Name Inc.
           type: string
         businessRegistrationNumber:
-          description: "US Federal Tax ID Number (EIN) or Canada Business Number (CBN).\
-            \ Optional until early 2026. If a value is provided for this field, a\
-            \ value must be provided for `businessRegistrationType` and `businessEntityType`.\
-            \ Available starting October 1st, 2025."
+          description: Government-issued business identifying number.
           example: 12-3456789
           maxLength: 500
           nullable: true
           type: string
         businessRegistrationType:
           $ref: '#/components/schemas/businessRegistrationTypeEnum'
+        businessRegistrationIssuingCountry:
+          $ref: '#/components/schemas/businessRegistrationIssuingCountryEnum'
         businessEntityType:
           $ref: '#/components/schemas/businessEntityTypeEnum'
         helpMessageResponse:
@@ -13782,6 +13830,7 @@ components:
       required:
       - businessAddress
       - businessContact
+      - businessEntityType
       - messageVolume
       - optInWorkflow
       - phoneNumbers
@@ -13851,10 +13900,7 @@ components:
           example: Another Company Name Inc.
           type: string
         businessRegistrationNumber:
-          description: "US Federal Tax ID Number (EIN) or Canada Business Number (CBN).\
-            \ Optional until early 2026. If a value is provided for this field, a\
-            \ value must be provided for `businessRegistrationType` and `businessEntityType`.\
-            \ Available starting October 1st, 2025."
+          description: Government-issued business identifying number.
           example: 12-3456789
           maxLength: 500
           nullable: true
@@ -13863,6 +13909,8 @@ components:
           $ref: '#/components/schemas/businessRegistrationTypeEnum'
         businessEntityType:
           $ref: '#/components/schemas/businessEntityTypeEnum'
+        businessRegistrationIssuingCountry:
+          $ref: '#/components/schemas/businessRegistrationIssuingCountryEnum'
         helpMessageResponse:
           description: A message that gets sent to users requesting help.
           example: Please contact support for assistance.
@@ -14530,6 +14578,7 @@ components:
           isvReseller: Test ISV
           businessRegistrationNumber: 12-3456789
           productionMessageContent: Production message content
+          businessRegistrationIssuingCountry: USA
           businessAddress:
             zip: "27606"
             addr2: 2230 Bandmate Way
@@ -14628,6 +14677,7 @@ components:
         isvReseller: Test ISV
         businessRegistrationNumber: 12-3456789
         productionMessageContent: Production message content
+        businessRegistrationIssuingCountry: USA
         businessAddress:
           zip: "27606"
           addr2: 2230 Bandmate Way
@@ -14698,16 +14748,15 @@ components:
           example: Another Company Name Inc.
           type: string
         businessRegistrationNumber:
-          description: "US Federal Tax ID Number (EIN) or Canada Business Number (CBN).\
-            \ Optional until early 2026. If a value is provided for this field, a\
-            \ value must be provided for `businessRegistrationType` and `businessEntityType`.\
-            \ Available starting October 1st, 2025."
+          description: Government-issued business identifying number.
           example: 12-3456789
           maxLength: 500
           nullable: true
           type: string
         businessRegistrationType:
           $ref: '#/components/schemas/businessRegistrationTypeEnum'
+        businessRegistrationIssuingCountry:
+          $ref: '#/components/schemas/businessRegistrationIssuingCountryEnum'
         businessEntityType:
           $ref: '#/components/schemas/businessEntityTypeEnum'
       type: object
