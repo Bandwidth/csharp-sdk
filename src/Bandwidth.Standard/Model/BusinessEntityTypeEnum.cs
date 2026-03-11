@@ -27,9 +27,9 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The type of registered business. If no option is applicable, please provide \&quot;SOLE_PROPRIETOR\&quot; as a value. Optional until early 2026; required if &#x60;businessRegistrationNumber&#x60; is provided. Available starting October 1st, 2025.
+    /// The type of registered business. If no option is applicable, please provide \&quot;SOLE_PROPRIETOR\&quot; as a value.
     /// </summary>
-    /// <value>The type of registered business. If no option is applicable, please provide \&quot;SOLE_PROPRIETOR\&quot; as a value. Optional until early 2026; required if &#x60;businessRegistrationNumber&#x60; is provided. Available starting October 1st, 2025.</value>
+    /// <value>The type of registered business. If no option is applicable, please provide \&quot;SOLE_PROPRIETOR\&quot; as a value.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum BusinessEntityTypeEnum
     {

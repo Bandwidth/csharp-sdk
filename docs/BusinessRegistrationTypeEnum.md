@@ -1,5 +1,5 @@
 # Bandwidth.Standard.Model.BusinessRegistrationTypeEnum
-The type of business registration number. Optional until early 2026; required if `businessRegistrationNumber` is provided. Available starting October 1st, 2025.
+The type of business registration number.
 
 ## Properties
 

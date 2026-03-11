@@ -40,10 +40,16 @@ namespace Bandwidth.Standard.Model
         public BusinessRegistrationTypeEnum? BusinessRegistrationType { get; set; }
 
         /// <summary>
+        /// Gets or Sets BusinessRegistrationIssuingCountry
+        /// </summary>
+        [DataMember(Name = "businessRegistrationIssuingCountry", EmitDefaultValue = false)]
+        public BusinessRegistrationIssuingCountryEnum? BusinessRegistrationIssuingCountry { get; set; }
+
+        /// <summary>
         /// Gets or Sets BusinessEntityType
         /// </summary>
-        [DataMember(Name = "businessEntityType", EmitDefaultValue = true)]
-        public BusinessEntityTypeEnum? BusinessEntityType { get; set; }
+        [DataMember(Name = "businessEntityType", IsRequired = true, EmitDefaultValue = true)]
+        public BusinessEntityTypeEnum BusinessEntityType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="VerificationRequest" /> class.
         /// </summary>
@@ -65,13 +71,14 @@ namespace Bandwidth.Standard.Model
         /// <param name="privacyPolicyUrl">The Toll-Free Verification request privacy policy URL..</param>
         /// <param name="termsAndConditionsUrl">The Toll-Free Verification request terms and conditions policy URL..</param>
         /// <param name="businessDba">The company &#39;Doing Business As&#39;..</param>
-        /// <param name="businessRegistrationNumber">US Federal Tax ID Number (EIN) or Canada Business Number (CBN). Optional until early 2026. If a value is provided for this field, a value must be provided for &#x60;businessRegistrationType&#x60; and &#x60;businessEntityType&#x60;. Available starting October 1st, 2025..</param>
+        /// <param name="businessRegistrationNumber">Government-issued business identifying number..</param>
         /// <param name="businessRegistrationType">businessRegistrationType.</param>
-        /// <param name="businessEntityType">businessEntityType.</param>
+        /// <param name="businessRegistrationIssuingCountry">businessRegistrationIssuingCountry.</param>
+        /// <param name="businessEntityType">businessEntityType (required).</param>
         /// <param name="helpMessageResponse">A message that gets sent to users requesting help..</param>
         /// <param name="ageGatedContent">Indicates whether the content is age-gated..</param>
         /// <param name="cvToken">The token provided by Campaign Verify to validate your political use case. Only required for 527 political organizations. If you are not a 527 political organization, this field should be omitted. Supplying an empty string will likely result in rejection..</param>
-        public VerificationRequest(Address businessAddress = default(Address), Contact businessContact = default(Contact), int messageVolume = default(int), List<string> phoneNumbers = default(List<string>), string useCase = default(string), string useCaseSummary = default(string), string productionMessageContent = default(string), OptInWorkflow optInWorkflow = default(OptInWorkflow), string additionalInformation = default(string), string isvReseller = default(string), string privacyPolicyUrl = default(string), string termsAndConditionsUrl = default(string), string businessDba = default(string), string businessRegistrationNumber = default(string), BusinessRegistrationTypeEnum? businessRegistrationType = default(BusinessRegistrationTypeEnum?), BusinessEntityTypeEnum? businessEntityType = default(BusinessEntityTypeEnum?), string helpMessageResponse = default(string), bool ageGatedContent = default(bool), string cvToken = default(string))
+        public VerificationRequest(Address businessAddress = default(Address), Contact businessContact = default(Contact), int messageVolume = default(int), List<string> phoneNumbers = default(List<string>), string useCase = default(string), string useCaseSummary = default(string), string productionMessageContent = default(string), OptInWorkflow optInWorkflow = default(OptInWorkflow), string additionalInformation = default(string), string isvReseller = default(string), string privacyPolicyUrl = default(string), string termsAndConditionsUrl = default(string), string businessDba = default(string), string businessRegistrationNumber = default(string), BusinessRegistrationTypeEnum? businessRegistrationType = default(BusinessRegistrationTypeEnum?), BusinessRegistrationIssuingCountryEnum? businessRegistrationIssuingCountry = default(BusinessRegistrationIssuingCountryEnum?), BusinessEntityTypeEnum businessEntityType = default(BusinessEntityTypeEnum), string helpMessageResponse = default(string), bool ageGatedContent = default(bool), string cvToken = default(string))
         {
             // to ensure "businessAddress" is required (not null)
             if (businessAddress == null)
@@ -116,6 +123,7 @@ namespace Bandwidth.Standard.Model
                 throw new ArgumentNullException("optInWorkflow is a required property for VerificationRequest and cannot be null");
             }
             this.OptInWorkflow = optInWorkflow;
+            this.BusinessEntityType = businessEntityType;
             this.AdditionalInformation = additionalInformation;
             this.IsvReseller = isvReseller;
             this.PrivacyPolicyUrl = privacyPolicyUrl;
@@ -123,7 +131,7 @@ namespace Bandwidth.Standard.Model
             this.BusinessDba = businessDba;
             this.BusinessRegistrationNumber = businessRegistrationNumber;
             this.BusinessRegistrationType = businessRegistrationType;
-            this.BusinessEntityType = businessEntityType;
+            this.BusinessRegistrationIssuingCountry = businessRegistrationIssuingCountry;
             this.HelpMessageResponse = helpMessageResponse;
             this.AgeGatedContent = ageGatedContent;
             this.CvToken = cvToken;
@@ -226,9 +234,9 @@ namespace Bandwidth.Standard.Model
         public string BusinessDba { get; set; }
 
         /// <summary>
-        /// US Federal Tax ID Number (EIN) or Canada Business Number (CBN). Optional until early 2026. If a value is provided for this field, a value must be provided for &#x60;businessRegistrationType&#x60; and &#x60;businessEntityType&#x60;. Available starting October 1st, 2025.
+        /// Government-issued business identifying number.
         /// </summary>
-        /// <value>US Federal Tax ID Number (EIN) or Canada Business Number (CBN). Optional until early 2026. If a value is provided for this field, a value must be provided for &#x60;businessRegistrationType&#x60; and &#x60;businessEntityType&#x60;. Available starting October 1st, 2025.</value>
+        /// <value>Government-issued business identifying number.</value>
         /// <example>12-3456789</example>
         [DataMember(Name = "businessRegistrationNumber", EmitDefaultValue = true)]
         public string BusinessRegistrationNumber { get; set; }
@@ -280,6 +288,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  BusinessDba: ").Append(BusinessDba).Append("\n");
             sb.Append("  BusinessRegistrationNumber: ").Append(BusinessRegistrationNumber).Append("\n");
             sb.Append("  BusinessRegistrationType: ").Append(BusinessRegistrationType).Append("\n");
+            sb.Append("  BusinessRegistrationIssuingCountry: ").Append(BusinessRegistrationIssuingCountry).Append("\n");
             sb.Append("  BusinessEntityType: ").Append(BusinessEntityType).Append("\n");
             sb.Append("  HelpMessageResponse: ").Append(HelpMessageResponse).Append("\n");
             sb.Append("  AgeGatedContent: ").Append(AgeGatedContent).Append("\n");
