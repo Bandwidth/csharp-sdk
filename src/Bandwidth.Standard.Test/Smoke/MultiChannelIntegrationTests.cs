@@ -234,8 +234,8 @@ namespace Bandwidth.Standard.Test.Smoke
                         new RbmMessageMedia(
                             media: new List<RbmMessageContentFile> {
                                 new RbmMessageContentFile(
-                                    fileUrl: "https://test.url/",
-                                    thumbnailUrl: "https://test.url/"
+                                    fileUrl: "https://www.example.com/image1.png",
+                                    thumbnailUrl: "https://www.example.com/thumbnail"
                                 )
                             },
                             suggestions: new List<MultiChannelAction> {
@@ -318,8 +318,8 @@ namespace Bandwidth.Standard.Test.Smoke
                                     title: "TestTitle",
                                     description: "TestDescription",
                                     media: new RbmCardContentMedia(
-                                        fileUrl: "https://test.url/",
-                                        thumbnailUrl: "https://test.url/",
+                                        fileUrl: "https://www.example.com/image1.png",
+                                        thumbnailUrl: "https://www.example.com/thumbnail",
                                         height: RbmMediaHeightEnum.MEDIUM
                                     ),
                                     suggestions: new List<MultiChannelAction> {
@@ -413,8 +413,8 @@ namespace Bandwidth.Standard.Test.Smoke
                                         title: "TestTitle",
                                         description: "TestDescription",
                                         media: new RbmCardContentMedia(
-                                            fileUrl: "https://test.url/",
-                                            thumbnailUrl: "https://test.url/",
+                                            fileUrl: "https://www.example.com/image1.png",
+                                            thumbnailUrl: "https://www.example.com/thumbnail",
                                             height: RbmMediaHeightEnum.MEDIUM
                                         ),
                                         suggestions: new List<MultiChannelAction> {
