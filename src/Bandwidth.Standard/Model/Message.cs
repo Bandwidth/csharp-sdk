@@ -49,7 +49,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="id">The id of the message..</param>
         /// <param name="owner">The Bandwidth phone number associated with the message..</param>
-        /// <param name="applicationId">The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard..</param>
+        /// <param name="applicationId">The ID of the Application your from number or senderId is associated with in the Bandwidth App..</param>
         /// <param name="time">The datetime stamp of the message in ISO 8601.</param>
         /// <param name="segmentCount">The number of segments the user&#39;s message is broken into before sending over carrier networks..</param>
         /// <param name="direction">direction.</param>
@@ -94,9 +94,9 @@ namespace Bandwidth.Standard.Model
         public string Owner { get; set; }
 
         /// <summary>
-        /// The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.
+        /// The ID of the Application your from number or senderId is associated with in the Bandwidth App.
         /// </summary>
-        /// <value>The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.</value>
+        /// <value>The ID of the Application your from number or senderId is associated with in the Bandwidth App.</value>
         /// <example>93de2206-9669-4e07-948d-329f4b722ee2</example>
         [DataMember(Name = "applicationId", EmitDefaultValue = false)]
         public string ApplicationId { get; set; }
