@@ -47,7 +47,7 @@ namespace Bandwidth.Standard.Model
         /// Initializes a new instance of the <see cref="MultiChannelChannelListMMSResponseObject" /> class.
         /// </summary>
         /// <param name="from">The sender ID of the message. This could be an alphanumeric sender ID. (required).</param>
-        /// <param name="applicationId">The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard. (required).</param>
+        /// <param name="applicationId">The ID of the Application your from number or senderId is associated with in the Bandwidth App. (required).</param>
         /// <param name="channel">channel (required).</param>
         /// <param name="content">content (required).</param>
         /// <param name="owner">The Bandwidth senderId associated with the message. Identical to &#39;from&#39;. (required).</param>
@@ -89,9 +89,9 @@ namespace Bandwidth.Standard.Model
         public string From { get; set; }
 
         /// <summary>
-        /// The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.
+        /// The ID of the Application your from number or senderId is associated with in the Bandwidth App.
         /// </summary>
-        /// <value>The ID of the Application your from number or senderId is associated with in the Bandwidth Phone Number Dashboard.</value>
+        /// <value>The ID of the Application your from number or senderId is associated with in the Bandwidth App.</value>
         /// <example>93de2206-9669-4e07-948d-329f4b722ee2</example>
         [DataMember(Name = "applicationId", IsRequired = true, EmitDefaultValue = true)]
         public string ApplicationId { get; set; }
