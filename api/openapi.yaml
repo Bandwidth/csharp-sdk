@@ -8844,7 +8844,7 @@ components:
   schemas:
     applicationId:
       description: The ID of the Application your from number or senderId is associated
-        with in the Bandwidth Phone Number Dashboard.
+        with in the Bandwidth App.
       example: 93de2206-9669-4e07-948d-329f4b722ee2
       type: string
     priorityEnum:
@@ -9258,7 +9258,7 @@ components:
           type: string
         applicationId:
           description: The ID of the Application your from number or senderId is associated
-            with in the Bandwidth Phone Number Dashboard.
+            with in the Bandwidth App.
           example: 93de2206-9669-4e07-948d-329f4b722ee2
           type: string
         time:
@@ -9321,7 +9321,7 @@ components:
       properties:
         applicationId:
           description: The ID of the Application your from number or senderId is associated
-            with in the Bandwidth Phone Number Dashboard.
+            with in the Bandwidth App.
           example: 93de2206-9669-4e07-948d-329f4b722ee2
           type: string
         to:
@@ -10045,7 +10045,7 @@ components:
           type: string
         applicationId:
           description: The ID of the Application your from number or senderId is associated
-            with in the Bandwidth Phone Number Dashboard.
+            with in the Bandwidth App.
           example: 93de2206-9669-4e07-948d-329f4b722ee2
           type: string
         channel:
@@ -10533,7 +10533,7 @@ components:
           type: string
         applicationId:
           description: The ID of the Application your from number or senderId is associated
-            with in the Bandwidth Phone Number Dashboard.
+            with in the Bandwidth App.
           example: 93de2206-9669-4e07-948d-329f4b722ee2
           type: string
         time:
