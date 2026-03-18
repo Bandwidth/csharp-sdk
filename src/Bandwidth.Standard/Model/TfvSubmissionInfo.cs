@@ -65,7 +65,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="privacyPolicyUrl">The Toll-Free Verification request privacy policy URL..</param>
         /// <param name="termsAndConditionsUrl">The Toll-Free Verification request terms and conditions policy URL..</param>
         /// <param name="businessDba">The company &#39;Doing Business As&#39;..</param>
-        /// <param name="businessRegistrationNumber">Government-issued business identifying number..</param>
+        /// <param name="businessRegistrationNumber">Government-issued business identifying number.  **Note:** If this field is provided, it is strongly recommended to also provide &#x60;businessRegistrationType&#x60; and &#x60;businessRegistrationIssuingCountry&#x60;. Submissions missing these fields have a high likelihood of rejection. .</param>
         /// <param name="businessRegistrationType">businessRegistrationType.</param>
         /// <param name="businessRegistrationIssuingCountry">businessRegistrationIssuingCountry.</param>
         /// <param name="businessEntityType">businessEntityType.</param>
@@ -180,9 +180,9 @@ namespace Bandwidth.Standard.Model
         public string BusinessDba { get; set; }
 
         /// <summary>
-        /// Government-issued business identifying number.
+        /// Government-issued business identifying number.  **Note:** If this field is provided, it is strongly recommended to also provide &#x60;businessRegistrationType&#x60; and &#x60;businessRegistrationIssuingCountry&#x60;. Submissions missing these fields have a high likelihood of rejection. 
         /// </summary>
-        /// <value>Government-issued business identifying number.</value>
+        /// <value>Government-issued business identifying number.  **Note:** If this field is provided, it is strongly recommended to also provide &#x60;businessRegistrationType&#x60; and &#x60;businessRegistrationIssuingCountry&#x60;. Submissions missing these fields have a high likelihood of rejection. </value>
         /// <example>12-3456789</example>
         [DataMember(Name = "businessRegistrationNumber", EmitDefaultValue = true)]
         public string BusinessRegistrationNumber { get; set; }
@@ -301,6 +301,24 @@ namespace Bandwidth.Standard.Model
             if (this.IsvReseller != null && this.IsvReseller.Length < 0)
             {
                 yield return new ValidationResult("Invalid value for IsvReseller, length must be greater than 0.", new [] { "IsvReseller" });
+            }
+
+            // PrivacyPolicyUrl (string) maxLength
+            if (this.PrivacyPolicyUrl != null && this.PrivacyPolicyUrl.Length > 500)
+            {
+                yield return new ValidationResult("Invalid value for PrivacyPolicyUrl, length must be less than 500.", new [] { "PrivacyPolicyUrl" });
+            }
+
+            // TermsAndConditionsUrl (string) maxLength
+            if (this.TermsAndConditionsUrl != null && this.TermsAndConditionsUrl.Length > 500)
+            {
+                yield return new ValidationResult("Invalid value for TermsAndConditionsUrl, length must be less than 500.", new [] { "TermsAndConditionsUrl" });
+            }
+
+            // BusinessDba (string) maxLength
+            if (this.BusinessDba != null && this.BusinessDba.Length > 500)
+            {
+                yield return new ValidationResult("Invalid value for BusinessDba, length must be less than 500.", new [] { "BusinessDba" });
             }
 
             // BusinessRegistrationNumber (string) maxLength

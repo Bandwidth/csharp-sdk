@@ -1,5 +1,5 @@
 # Bandwidth.Standard.Model.BusinessRegistrationTypeEnum
-The type of business registration number.
+The type of business registration number. 
 
 ## Properties
 
