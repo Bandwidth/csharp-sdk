@@ -62,8 +62,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="deactivationDate">[DNI-Only](#section/DNI-Only). The datetime the carrier reported a deactivation event..</param>
         /// <param name="deactivationEvent">deactivationEvent.</param>
         /// <param name="latestMessageDeliveryStatus">latestMessageDeliveryStatus.</param>
-        /// <param name="initialMessageDeliveryStatusDate">[DNI-Only](#section/DNI-Only). The date the phone number entered the status described in &#x60;latestMessageDeliveryStatus&#x60;.  Think of this as the \&quot;start time\&quot; for that status. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes..</param>
-        /// <param name="latestMessageDeliveryStatusDate">[DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number.  Use this field to understand how up-to-date the &#x60;latestMessageDeliveryStatus&#x60; is. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes..</param>
+        /// <param name="initialMessageDeliveryStatusDate">[DNI-Only](#section/DNI-Only). The date the phone number entered the status described in &#x60;latestMessageDeliveryStatus&#x60;. Think of this as the \&quot;start time\&quot; for that status. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes..</param>
+        /// <param name="latestMessageDeliveryStatusDate">[DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number. Use this field to understand how up-to-date the &#x60;latestMessageDeliveryStatus&#x60; is. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes..</param>
         public LookupResult(string phoneNumber = default(string), LineTypeEnum? lineType = default(LineTypeEnum?), string messagingProvider = default(string), string voiceProvider = default(string), string countryCodeA3 = default(string), string deactivationReporter = default(string), string deactivationDate = default(string), DeactivationEventEnum? deactivationEvent = default(DeactivationEventEnum?), LatestMessageDeliveryStatusEnum? latestMessageDeliveryStatus = default(LatestMessageDeliveryStatusEnum?), DateTime initialMessageDeliveryStatusDate = default(DateTime), DateTime latestMessageDeliveryStatusDate = default(DateTime))
         {
             this.PhoneNumber = phoneNumber;
@@ -127,19 +127,19 @@ namespace Bandwidth.Standard.Model
         public string DeactivationDate { get; set; }
 
         /// <summary>
-        /// [DNI-Only](#section/DNI-Only). The date the phone number entered the status described in &#x60;latestMessageDeliveryStatus&#x60;.  Think of this as the \&quot;start time\&quot; for that status. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.
+        /// [DNI-Only](#section/DNI-Only). The date the phone number entered the status described in &#x60;latestMessageDeliveryStatus&#x60;. Think of this as the \&quot;start time\&quot; for that status. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.
         /// </summary>
-        /// <value>[DNI-Only](#section/DNI-Only). The date the phone number entered the status described in &#x60;latestMessageDeliveryStatus&#x60;.  Think of this as the \&quot;start time\&quot; for that status. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.</value>
-        /// <example>Fri Jun 20 00:00:00 UTC 2025</example>
+        /// <value>[DNI-Only](#section/DNI-Only). The date the phone number entered the status described in &#x60;latestMessageDeliveryStatus&#x60;. Think of this as the \&quot;start time\&quot; for that status. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.</value>
+        /// <example>Thu Jun 19 20:00:00 EDT 2025</example>
         [DataMember(Name = "initialMessageDeliveryStatusDate", EmitDefaultValue = false)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime InitialMessageDeliveryStatusDate { get; set; }
 
         /// <summary>
-        /// [DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number.  Use this field to understand how up-to-date the &#x60;latestMessageDeliveryStatus&#x60; is. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.
+        /// [DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number. Use this field to understand how up-to-date the &#x60;latestMessageDeliveryStatus&#x60; is. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.
         /// </summary>
-        /// <value>[DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number.  Use this field to understand how up-to-date the &#x60;latestMessageDeliveryStatus&#x60; is. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.</value>
-        /// <example>Sat Jun 21 00:00:00 UTC 2025</example>
+        /// <value>[DNI-Only](#section/DNI-Only). The date bandwidth last received delivery status information for this phone number. Use this field to understand how up-to-date the &#x60;latestMessageDeliveryStatus&#x60; is. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.</value>
+        /// <example>Fri Jun 20 20:00:00 EDT 2025</example>
         [DataMember(Name = "latestMessageDeliveryStatusDate", EmitDefaultValue = false)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime LatestMessageDeliveryStatusDate { get; set; }
