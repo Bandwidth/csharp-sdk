@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **PrivacyPolicyUrl** | **string** | The Toll-Free Verification request privacy policy URL. | [optional] 
 **TermsAndConditionsUrl** | **string** | The Toll-Free Verification request terms and conditions policy URL. | [optional] 
 **BusinessDba** | **string** | The company &#39;Doing Business As&#39;. | [optional] 
-**BusinessRegistrationNumber** | **string** | Government-issued business identifying number. | [optional] 
+**BusinessRegistrationNumber** | **string** | Government-issued business identifying number.  **Note:** If this field is provided, it is strongly recommended to also provide &#x60;businessRegistrationType&#x60; and &#x60;businessRegistrationIssuingCountry&#x60;. Submissions missing these fields have a high likelihood of rejection.  | [optional] 
 **BusinessRegistrationType** | **BusinessRegistrationTypeEnum** |  | [optional] 
 **BusinessRegistrationIssuingCountry** | **BusinessRegistrationIssuingCountryEnum** |  | [optional] 
 **BusinessEntityType** | **BusinessEntityTypeEnum** |  | [optional] 

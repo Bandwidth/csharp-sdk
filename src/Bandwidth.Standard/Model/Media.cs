@@ -54,12 +54,14 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Gets or Sets ContentLength
         /// </summary>
+        /// <example>1024</example>
         [DataMember(Name = "contentLength", EmitDefaultValue = false)]
         public int ContentLength { get; set; }
 
         /// <summary>
         /// Gets or Sets MediaName
         /// </summary>
+        /// <example>image.png</example>
         [DataMember(Name = "mediaName", EmitDefaultValue = false)]
         public string MediaName { get; set; }
 

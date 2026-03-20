@@ -27,9 +27,9 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// [DNI-Only](#section/DNI-Only). The current delivery status of the phone number. - ACTIVE: A message was successfully sent to the number (delivery code 0). - DEACTIVATED: A message was not delivered to a number (delivery code 720) - UNKNOWN: Bandwidth cannot find an delivery status entry for the number.
+    /// [DNI-Only](#section/DNI-Only). The current delivery status of the phone number. - ACTIVE: A message was successfully sent to the number (delivery code 0). - DEACTIVATED: A message was not delivered to a number (delivery code 720) - UNKNOWN: Bandwidth cannot find an delivery status entry for the number. - NOT_ENABLED: The phone number is not enabled for messaging, so there is no delivery status information.
     /// </summary>
-    /// <value>[DNI-Only](#section/DNI-Only). The current delivery status of the phone number. - ACTIVE: A message was successfully sent to the number (delivery code 0). - DEACTIVATED: A message was not delivered to a number (delivery code 720) - UNKNOWN: Bandwidth cannot find an delivery status entry for the number.</value>
+    /// <value>[DNI-Only](#section/DNI-Only). The current delivery status of the phone number. - ACTIVE: A message was successfully sent to the number (delivery code 0). - DEACTIVATED: A message was not delivered to a number (delivery code 720) - UNKNOWN: Bandwidth cannot find an delivery status entry for the number. - NOT_ENABLED: The phone number is not enabled for messaging, so there is no delivery status information.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum LatestMessageDeliveryStatusEnum
     {
@@ -49,7 +49,13 @@ namespace Bandwidth.Standard.Model
         /// Enum UNKNOWN for value: UNKNOWN
         /// </summary>
         [EnumMember(Value = "UNKNOWN")]
-        UNKNOWN = 3
+        UNKNOWN = 3,
+
+        /// <summary>
+        /// Enum NOTENABLED for value: NOT_ENABLED
+        /// </summary>
+        [EnumMember(Value = "NOT_ENABLED")]
+        NOTENABLED = 4
     }
 
 }
