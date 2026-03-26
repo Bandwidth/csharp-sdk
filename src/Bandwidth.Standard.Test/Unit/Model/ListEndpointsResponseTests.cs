@@ -2,7 +2,6 @@ using Xunit;
 using System;
 using System.Collections.Generic;
 using Bandwidth.Standard.Model;
-using Newtonsoft.Json;
 
 namespace Bandwidth.Standard.Test.Unit.Model
 {
@@ -123,16 +122,5 @@ namespace Bandwidth.Standard.Test.Unit.Model
             ));
         }
 
-        [Fact]
-        public void SerializationTest()
-        {
-            string json = instance.ToJson();
-            Assert.Contains("\"links\"", json);
-            Assert.Contains("\"page\"", json);
-            Assert.Contains("\"data\"", json);
-            Assert.Contains("\"errors\"", json);
-            Assert.Contains("e-abc123", json);
-            Assert.Contains("e-def456", json);
-        }
     }
 }

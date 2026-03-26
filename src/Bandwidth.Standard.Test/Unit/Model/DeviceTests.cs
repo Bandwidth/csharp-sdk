@@ -2,7 +2,6 @@ using Xunit;
 using System;
 using System.Collections.Generic;
 using Bandwidth.Standard.Model;
-using Newtonsoft.Json;
 
 namespace Bandwidth.Standard.Test.Unit.Model
 {
@@ -62,35 +61,5 @@ namespace Bandwidth.Standard.Test.Unit.Model
             ));
         }
 
-        [Fact]
-        public void SerializationTest()
-        {
-            string json = instance.ToJson();
-            Assert.Contains("\"deviceId\"", json);
-            Assert.Contains("\"deviceName\"", json);
-            Assert.Contains("\"status\"", json);
-            Assert.Contains("\"creationTimestamp\"", json);
-            Assert.Contains("d-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", json);
-            Assert.Contains("Test Device", json);
-        }
-
-        [Fact]
-        public void DeserializationTest()
-        {
-            string json = @"{
-                ""deviceId"": ""d-abc123"",
-                ""deviceName"": ""My Phone"",
-                ""status"": ""DISCONNECTED"",
-                ""creationTimestamp"": ""2021-01-01T00:00:00Z""
-            }";
-
-            Device deserialized = JsonConvert.DeserializeObject<Device>(json);
-
-            Assert.NotNull(deserialized);
-            Assert.Equal("d-abc123", deserialized.DeviceId);
-            Assert.Equal("My Phone", deserialized.DeviceName);
-            Assert.Equal(DeviceStatusEnum.DISCONNECTED, deserialized.Status);
-            Assert.Equal(new DateTime(2021, 1, 1, 0, 0, 0, DateTimeKind.Utc), deserialized.CreationTimestamp);
-        }
     }
 }

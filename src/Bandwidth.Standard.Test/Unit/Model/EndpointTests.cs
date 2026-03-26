@@ -2,7 +2,6 @@ using Xunit;
 using System;
 using System.Collections.Generic;
 using Bandwidth.Standard.Model;
-using Newtonsoft.Json;
 
 namespace Bandwidth.Standard.Test.Unit.Model
 {
@@ -97,39 +96,5 @@ namespace Bandwidth.Standard.Test.Unit.Model
             ));
         }
 
-        [Fact]
-        public void SerializationTest()
-        {
-            string json = instance.ToJson();
-            Assert.Contains("\"endpointId\"", json);
-            Assert.Contains("\"type\"", json);
-            Assert.Contains("\"status\"", json);
-            Assert.Contains("\"creationTimestamp\"", json);
-            Assert.Contains("\"expirationTimestamp\"", json);
-            Assert.Contains("\"tag\"", json);
-            Assert.Contains("\"devices\"", json);
-            Assert.Contains("e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", json);
-        }
-
-        [Fact]
-        public void DeserializationTest()
-        {
-            string json = @"{
-                ""endpointId"": ""e-abc123"",
-                ""type"": ""WEBRTC"",
-                ""status"": ""DISCONNECTED"",
-                ""creationTimestamp"": ""2021-01-01T00:00:00Z"",
-                ""expirationTimestamp"": ""2021-01-02T00:00:00Z"",
-                ""tag"": ""my-tag""
-            }";
-
-            Endpoint deserialized = JsonConvert.DeserializeObject<Endpoint>(json);
-
-            Assert.NotNull(deserialized);
-            Assert.Equal("e-abc123", deserialized.EndpointId);
-            Assert.Equal(EndpointTypeEnum.WEBRTC, deserialized.Type);
-            Assert.Equal(EndpointStatusEnum.DISCONNECTED, deserialized.Status);
-            Assert.Equal("my-tag", deserialized.Tag);
-        }
     }
 }

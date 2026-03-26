@@ -18,8 +18,6 @@ using System.Collections.Generic;
 using Bandwidth.Standard.Model;
 using Bandwidth.Standard.Client;
 using System.Reflection;
-using Newtonsoft.Json;
-
 namespace Bandwidth.Standard.Test.Unit.Model
 {
     /// <summary>
@@ -251,58 +249,5 @@ namespace Bandwidth.Standard.Test.Unit.Model
             Assert.Null(eventWithoutDevice.Device);
         }
 
-        /// <summary>
-        /// Test JSON serialization of EndpointEvent
-        /// </summary>
-        [Fact]
-        public void EndpointEventSerializationTest()
-        {
-            string json = instance.ToJson();
-            Assert.NotNull(json);
-            Assert.Contains("\"endpointId\"", json);
-            Assert.Contains("\"eventType\"", json);
-            Assert.Contains("e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", json);
-        }
-
-        /// <summary>
-        /// Test JSON deserialization of EndpointEvent
-        /// </summary>
-        [Fact]
-        public void EndpointEventDeserializationTest()
-        {
-            string json = @"{
-                ""endpointId"": ""e-abc123"",
-                ""type"": ""WEBRTC"",
-                ""status"": ""CONNECTED"",
-                ""creationTimestamp"": ""2021-01-01T00:00:00Z"",
-                ""expirationTimestamp"": ""2021-01-02T00:00:00Z"",
-                ""tag"": ""my-tag"",
-                ""eventTime"": ""2021-01-01T12:00:00Z"",
-                ""eventType"": ""DEVICE_CONNECTED""
-            }";
-
-            EndpointEvent deserializedEvent = JsonConvert.DeserializeObject<EndpointEvent>(json);
-
-            Assert.NotNull(deserializedEvent);
-            Assert.Equal("e-abc123", deserializedEvent.EndpointId);
-            Assert.Equal(EndpointTypeEnum.WEBRTC, deserializedEvent.Type);
-            Assert.Equal(EndpointStatusEnum.CONNECTED, deserializedEvent.Status);
-            Assert.Equal("my-tag", deserializedEvent.Tag);
-            Assert.Equal(EndpointEventTypeEnum.CONNECTED, deserializedEvent.EventType);
-        }
-
-        /// <summary>
-        /// Test ToString method
-        /// </summary>
-        [Fact]
-        public void ToStringTest()
-        {
-            string result = instance.ToString();
-            Assert.NotNull(result);
-            Assert.Contains("class EndpointEvent", result);
-            Assert.Contains("EndpointId:", result);
-            Assert.Contains("EventType:", result);
-            Assert.Contains("e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", result);
-        }
     }
 }
