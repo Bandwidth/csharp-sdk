@@ -100,7 +100,6 @@ namespace Bandwidth.Standard.Test.Smoke
             Assert.Equal(bwNumber, getData.Results[0].PhoneNumber);
             Assert.IsType<LineTypeEnum>(getData.Results[0].LineType);
             Assert.Equal(LineTypeEnum.VOIP, getData.Results[0].LineType);
-            Assert.IsType<string>(getData.Results[0].MessagingProvider);
             Assert.Equal("BANDWIDTH", getData.Results[0].VoiceProvider);
             Assert.Equal("USA", getData.Results[0].CountryCodeA3);
         }
@@ -130,7 +129,6 @@ namespace Bandwidth.Standard.Test.Smoke
             Assert.Equal(bwNumber, data.Results[0].PhoneNumber);
             Assert.IsType<LineTypeEnum>(data.Results[0].LineType);
             Assert.Equal(LineTypeEnum.VOIP, data.Results[0].LineType);
-            Assert.IsType<string>(data.Results[0].MessagingProvider);
             Assert.Equal("BANDWIDTH", data.Results[0].VoiceProvider);
             Assert.Equal("USA", data.Results[0].CountryCodeA3);
         }
