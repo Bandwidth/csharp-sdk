@@ -12,7 +12,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         public ErrorResponseTests()
         {
             var link = new Link(rel: "self", href: "/accounts/123/endpoints");
-            var error = new Error(type: "validation", description: "Invalid input");
+            var error = new Error(code: 400, description: "Invalid input");
 
             instance = new ErrorResponse(
                 links: new List<Link> { link },
