@@ -1,4 +1,5 @@
 using Xunit;
+using Newtonsoft.Json;
 using Bandwidth.Standard.Model;
 
 namespace Bandwidth.Standard.Test.Unit.Model
@@ -6,15 +7,18 @@ namespace Bandwidth.Standard.Test.Unit.Model
     public class EndpointStatusEnumTests
     {
         [Fact]
-        public void ConnectedEnumTest()
+        public void EndpointStatusEnumValuesTest()
         {
-            Assert.Equal(EndpointStatusEnum.CONNECTED, EndpointStatusEnum.CONNECTED);
-        }
+            Assert.Equal(1, (int)EndpointStatusEnum.CONNECTED);
+            Assert.Equal(2, (int)EndpointStatusEnum.DISCONNECTED);
 
-        [Fact]
-        public void DisconnectedEnumTest()
-        {
-            Assert.Equal(EndpointStatusEnum.DISCONNECTED, EndpointStatusEnum.DISCONNECTED);
+            Assert.Equal("\"CONNECTED\"", JsonConvert.SerializeObject(EndpointStatusEnum.CONNECTED));
+            Assert.Equal("\"DISCONNECTED\"", JsonConvert.SerializeObject(EndpointStatusEnum.DISCONNECTED));
+
+            Assert.Equal(EndpointStatusEnum.CONNECTED, JsonConvert.DeserializeObject<EndpointStatusEnum>("\"CONNECTED\""));
+            Assert.Equal(EndpointStatusEnum.DISCONNECTED, JsonConvert.DeserializeObject<EndpointStatusEnum>("\"DISCONNECTED\""));
+
+            Assert.NotEqual(EndpointStatusEnum.CONNECTED, EndpointStatusEnum.DISCONNECTED);
         }
     }
 }

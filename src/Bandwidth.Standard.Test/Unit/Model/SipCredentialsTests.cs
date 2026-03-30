@@ -16,20 +16,10 @@ namespace Bandwidth.Standard.Test.Unit.Model
         }
 
         [Fact]
-        public void SipCredentialsInstanceTest()
+        public void SipCredentialsFieldsTest()
         {
             Assert.IsType<SipCredentials>(instance);
-        }
-
-        [Fact]
-        public void UsernameTest()
-        {
             Assert.Equal("sipuser", instance.Username);
-        }
-
-        [Fact]
-        public void PasswordTest()
-        {
             Assert.Equal("sippass", instance.Password);
         }
     }

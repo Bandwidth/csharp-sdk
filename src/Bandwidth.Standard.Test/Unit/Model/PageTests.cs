@@ -18,32 +18,12 @@ namespace Bandwidth.Standard.Test.Unit.Model
         }
 
         [Fact]
-        public void PageInstanceTest()
+        public void PageFieldsTest()
         {
             Assert.IsType<Page>(instance);
-        }
-
-        [Fact]
-        public void PageSizeTest()
-        {
             Assert.Equal(10, instance.PageSize);
-        }
-
-        [Fact]
-        public void TotalElementsTest()
-        {
             Assert.Equal(100, instance.TotalElements);
-        }
-
-        [Fact]
-        public void TotalPagesTest()
-        {
             Assert.Equal(10, instance.TotalPages);
-        }
-
-        [Fact]
-        public void PageNumberTest()
-        {
             Assert.Equal(0, instance.PageNumber);
         }
     }

@@ -20,38 +20,13 @@ namespace Bandwidth.Standard.Test.Unit.Model
         }
 
         [Fact]
-        public void CreateEndpointRequestBaseInstanceTest()
+        public void CreateEndpointRequestBaseFieldsTest()
         {
             Assert.IsType<CreateEndpointRequestBase>(instance);
-        }
-
-        [Fact]
-        public void TypeTest()
-        {
             Assert.Equal(EndpointTypeEnum.WEBRTC, instance.Type);
-        }
-
-        [Fact]
-        public void DirectionTest()
-        {
             Assert.Equal(EndpointDirectionEnum.INBOUND, instance.Direction);
-        }
-
-        [Fact]
-        public void EventCallbackUrlTest()
-        {
             Assert.Equal("https://myapp.com/callback", instance.EventCallbackUrl);
-        }
-
-        [Fact]
-        public void EventFallbackUrlTest()
-        {
             Assert.Equal("https://fallback.myapp.com/callback", instance.EventFallbackUrl);
-        }
-
-        [Fact]
-        public void TagTest()
-        {
             Assert.Equal("test-tag", instance.Tag);
         }
     }

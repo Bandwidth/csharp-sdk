@@ -1,6 +1,5 @@
 using Xunit;
 using System;
-using System.Collections.Generic;
 using Bandwidth.Standard.Model;
 
 namespace Bandwidth.Standard.Test.Unit.Model
@@ -22,32 +21,12 @@ namespace Bandwidth.Standard.Test.Unit.Model
         }
 
         [Fact]
-        public void DeviceInstanceTest()
+        public void DeviceFieldsTest()
         {
             Assert.IsType<Device>(instance);
-        }
-
-        [Fact]
-        public void DeviceIdTest()
-        {
             Assert.Equal("d-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85", instance.DeviceId);
-        }
-
-        [Fact]
-        public void DeviceNameTest()
-        {
             Assert.Equal("Test Device", instance.DeviceName);
-        }
-
-        [Fact]
-        public void StatusTest()
-        {
             Assert.Equal(DeviceStatusEnum.CONNECTED, instance.Status);
-        }
-
-        [Fact]
-        public void CreationTimestampTest()
-        {
             Assert.Equal(new DateTime(2021, 1, 1, 0, 0, 0, DateTimeKind.Utc), instance.CreationTimestamp);
         }
 

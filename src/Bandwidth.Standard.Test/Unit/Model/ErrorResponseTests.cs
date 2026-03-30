@@ -22,28 +22,16 @@ namespace Bandwidth.Standard.Test.Unit.Model
         }
 
         [Fact]
-        public void ErrorResponseInstanceTest()
+        public void ErrorResponseFieldsTest()
         {
             Assert.IsType<ErrorResponse>(instance);
-        }
 
-        [Fact]
-        public void LinksTest()
-        {
             Assert.NotNull(instance.Links);
             Assert.Single(instance.Links);
             Assert.Equal("self", instance.Links[0].Rel);
-        }
 
-        [Fact]
-        public void DataTest()
-        {
             Assert.NotNull(instance.Data);
-        }
 
-        [Fact]
-        public void ErrorsTest()
-        {
             Assert.NotNull(instance.Errors);
             Assert.Single(instance.Errors);
         }

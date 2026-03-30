@@ -199,9 +199,11 @@ namespace Bandwidth.Standard.Test.Unit.Api
 
             var selfLink = new Link(rel: "self", href: "/accounts/9900000/endpoints");
             var nextLink = new Link(rel: "next", href: "/accounts/9900000/endpoints?afterCursor=abc");
+            var page = new Page(pageSize: 10, totalElements: 2, totalPages: 1, pageNumber: 0);
 
             ListEndpointsResponse listResponse = new ListEndpointsResponse(
                 links: new List<Link> { selfLink, nextLink },
+                page: page,
                 data: new List<Endpoints> { endpoint1, endpoint2 },
                 errors: new List<Error>()
             );
@@ -218,6 +220,12 @@ namespace Bandwidth.Standard.Test.Unit.Api
             Assert.Equal(2, response.Data.Links.Count);
             Assert.Equal("self", response.Data.Links[0].Rel);
             Assert.Equal("next", response.Data.Links[1].Rel);
+
+            Assert.NotNull(response.Data.Page);
+            Assert.Equal(10, response.Data.Page.PageSize);
+            Assert.Equal(2, response.Data.Page.TotalElements);
+            Assert.Equal(1, response.Data.Page.TotalPages);
+            Assert.Equal(0, response.Data.Page.PageNumber);
 
             Assert.NotNull(response.Data.Errors);
             Assert.Empty(response.Data.Errors);

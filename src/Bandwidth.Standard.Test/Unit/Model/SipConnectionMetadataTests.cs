@@ -23,34 +23,14 @@ namespace Bandwidth.Standard.Test.Unit.Model
         }
 
         [Fact]
-        public void SipConnectionMetadataInstanceTest()
+        public void SipConnectionMetadataFieldsTest()
         {
             Assert.IsType<SipConnectionMetadata>(instance);
-        }
-
-        [Fact]
-        public void IpAddressTest()
-        {
             Assert.Equal("192.168.0.1", instance.IpAddress);
-        }
-
-        [Fact]
-        public void PortTest()
-        {
             Assert.Equal(5060, instance.Port);
-        }
-
-        [Fact]
-        public void CredentialsTest()
-        {
             Assert.NotNull(instance.Credentials);
             Assert.Equal("sipuser", instance.Credentials.Username);
             Assert.Equal("sippass", instance.Credentials.Password);
-        }
-
-        [Fact]
-        public void UuiHeaderTest()
-        {
             Assert.Equal("my-uui-header", instance.UuiHeader);
         }
     }

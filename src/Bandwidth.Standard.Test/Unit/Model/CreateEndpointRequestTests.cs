@@ -20,21 +20,12 @@ namespace Bandwidth.Standard.Test.Unit.Model
         }
 
         [Fact]
-        public void CreateEndpointRequestInstanceTest()
+        public void CreateEndpointRequestFieldsTest()
         {
             Assert.IsType<CreateEndpointRequest>(instance);
-        }
-
-        [Fact]
-        public void ActualInstanceTest()
-        {
             Assert.NotNull(instance.ActualInstance);
             Assert.IsType<CreateWebRtcConnectionRequest>(instance.ActualInstance);
-        }
 
-        [Fact]
-        public void GetCreateWebRtcConnectionRequestTest()
-        {
             var actual = instance.GetCreateWebRtcConnectionRequest();
             Assert.IsType<CreateWebRtcConnectionRequest>(actual);
             Assert.Equal(EndpointTypeEnum.WEBRTC, actual.Type);

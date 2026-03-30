@@ -1,4 +1,5 @@
 using Xunit;
+using Newtonsoft.Json;
 using Bandwidth.Standard.Model;
 
 namespace Bandwidth.Standard.Test.Unit.Model
@@ -6,9 +7,13 @@ namespace Bandwidth.Standard.Test.Unit.Model
     public class EndpointTypeEnumTests
     {
         [Fact]
-        public void WebRtcEnumTest()
+        public void EndpointTypeEnumValuesTest()
         {
-            Assert.Equal(EndpointTypeEnum.WEBRTC, EndpointTypeEnum.WEBRTC);
+            Assert.Equal(1, (int)EndpointTypeEnum.WEBRTC);
+
+            Assert.Equal("\"WEBRTC\"", JsonConvert.SerializeObject(EndpointTypeEnum.WEBRTC));
+
+            Assert.Equal(EndpointTypeEnum.WEBRTC, JsonConvert.DeserializeObject<EndpointTypeEnum>("\"WEBRTC\""));
         }
     }
 }
