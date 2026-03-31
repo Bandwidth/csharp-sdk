@@ -22,6 +22,7 @@ namespace Bandwidth.Standard.Test.Smoke
 
             // Authorized API Client
             configuration = new Configuration();
+            configuration.BasePath = "https://api.bandwidth.com/api/v2";
             configuration.OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID");
             configuration.OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET");
             instance = new EndpointsApi(configuration);
