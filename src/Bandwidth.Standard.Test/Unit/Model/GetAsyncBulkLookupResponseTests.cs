@@ -61,7 +61,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
             }
             );
             errors = new List<LookupErrorSchema> {
-                new LookupErrorSchema(code: "1234", description: "Bad Request")
+                new LookupErrorSchema(code: "1234", description: "Bad Request", type: "validation_error")
             };
             instance = new GetAsyncBulkLookupResponse(
                 links: links,
