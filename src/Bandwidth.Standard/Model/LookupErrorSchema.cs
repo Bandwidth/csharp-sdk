@@ -35,14 +35,34 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="LookupErrorSchema" /> class.
         /// </summary>
-        /// <param name="code">Validation error code.</param>
-        /// <param name="description">Description of validation error.</param>
-        /// <param name="type">Type of validation error.</param>
+        [JsonConstructorAttribute]
+        protected LookupErrorSchema() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LookupErrorSchema" /> class.
+        /// </summary>
+        /// <param name="code">Validation error code (required).</param>
+        /// <param name="description">Description of validation error (required).</param>
+        /// <param name="type">Type of validation error (required).</param>
         /// <param name="meta">meta.</param>
         public LookupErrorSchema(string code = default(string), string description = default(string), string type = default(string), LookupErrorSchemaMeta meta = default(LookupErrorSchemaMeta))
         {
+            // to ensure "code" is required (not null)
+            if (code == null)
+            {
+                throw new ArgumentNullException("code is a required property for LookupErrorSchema and cannot be null");
+            }
             this.Code = code;
+            // to ensure "description" is required (not null)
+            if (description == null)
+            {
+                throw new ArgumentNullException("description is a required property for LookupErrorSchema and cannot be null");
+            }
             this.Description = description;
+            // to ensure "type" is required (not null)
+            if (type == null)
+            {
+                throw new ArgumentNullException("type is a required property for LookupErrorSchema and cannot be null");
+            }
             this.Type = type;
             this.Meta = meta;
         }
@@ -52,7 +72,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <value>Validation error code</value>
         /// <example>NO-MATCH</example>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
+        [DataMember(Name = "code", IsRequired = true, EmitDefaultValue = true)]
         public string Code { get; set; }
 
         /// <summary>
@@ -60,7 +80,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <value>Description of validation error</value>
         /// <example>Example error description</example>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>
@@ -68,7 +88,7 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <value>Type of validation error</value>
         /// <example>NumberInventory</example>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public string Type { get; set; }
 
         /// <summary>
