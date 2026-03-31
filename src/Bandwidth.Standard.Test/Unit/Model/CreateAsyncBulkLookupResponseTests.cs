@@ -46,7 +46,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 status: InProgressLookupStatusEnum.INPROGRESS
             );
             errors = new List<LookupErrorSchema> {
-                new LookupErrorSchema(code: "1234", description: "Bad Request")
+                new LookupErrorSchema(code: "1234", description: "Bad Request", type: "validation_error")
             };
             instance = new CreateAsyncBulkLookupResponse(
                 links: links,

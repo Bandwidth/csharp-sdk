@@ -46,7 +46,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 deactivationEvent: DeactivationEventEnum.DEACTIVATED,
                 latestMessageDeliveryStatus: LatestMessageDeliveryStatusEnum.ACTIVE,
                 initialMessageDeliveryStatusDate: new DateTime(2020, 1, 1),
-                latestMessageDeliveryStatusDate: new DateTime(2020, 1, 1)
+                latestMessageDeliveryStatusDate: new DateTime(2020, 1, 1),
+                rcsEnabled: true
             );
         }
 
@@ -172,6 +173,16 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<DateTime>(instance.LatestMessageDeliveryStatusDate);
             Assert.Equal(new DateTime(2020, 1, 1), instance.LatestMessageDeliveryStatusDate);
+        }
+
+        /// <summary>
+        /// Test the property 'RcsEnabled'
+        /// </summary>
+        [Fact]
+        public void RcsEnabledTest()
+        {
+            Assert.IsType<bool>(instance.RcsEnabled);
+            Assert.True(instance.RcsEnabled);
         }
     }
 }

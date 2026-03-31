@@ -41,7 +41,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 new LinkSchema(href: "http://example.com/page/2", rel: "next", method: "GET")
             };
             errors = new List<LookupErrorSchema> {
-                new LookupErrorSchema(code: "1234", description: "Bad Request")
+                new LookupErrorSchema(code: "1234", description: "Bad Request", type: "validation_error")
             };
             instance = new LookupErrorResponse(
                 links: links,
