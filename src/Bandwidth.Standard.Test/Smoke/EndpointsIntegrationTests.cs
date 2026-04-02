@@ -74,6 +74,7 @@ namespace Bandwidth.Standard.Test.Smoke
             Assert.IsType<List<Error>>(listResponse.Data.Errors);
             Assert.IsType<List<Endpoints>>(listResponse.Data.Data);
             Assert.NotEmpty(listResponse.Data.Data);
+            Assert.Contains(listResponse.Data.Data, e => e.EndpointId == endpointId);
             Assert.IsType<Endpoints>(listResponse.Data.Data[0]);
             Assert.NotNull(listResponse.Data.Page);
             Assert.IsType<Page>(listResponse.Data.Page);
