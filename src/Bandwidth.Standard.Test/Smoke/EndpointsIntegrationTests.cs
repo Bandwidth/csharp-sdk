@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Xunit;
 using Bandwidth.Standard.Client;
@@ -74,15 +75,13 @@ namespace Bandwidth.Standard.Test.Smoke
             Assert.IsType<List<Error>>(listResponse.Data.Errors);
             Assert.IsType<List<Endpoints>>(listResponse.Data.Data);
             Assert.NotEmpty(listResponse.Data.Data);
-            Assert.Contains(listResponse.Data.Data, e => e.EndpointId == endpointId);
-            Assert.IsType<Endpoints>(listResponse.Data.Data[0]);
             Assert.NotNull(listResponse.Data.Page);
             Assert.IsType<Page>(listResponse.Data.Page);
             Assert.True(listResponse.Data.Page.PageSize > 0);
             Assert.True(listResponse.Data.Page.TotalElements > 0);
             Assert.True(listResponse.Data.Page.TotalPages > 0);
 
-            var listItem = listResponse.Data.Data[0];
+            var listItem = listResponse.Data.Data.First(e => e.EndpointId == endpointId);
             Assert.IsType<string>(listItem.EndpointId);
             Assert.IsType<EndpointTypeEnum>(listItem.Type);
             Assert.IsType<EndpointStatusEnum>(listItem.Status);
