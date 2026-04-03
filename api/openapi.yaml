@@ -4646,6 +4646,10 @@ paths:
                   $ref: '#/components/examples/lookupCompleteWithDniExample'
                 lookupCompleteExample:
                   $ref: '#/components/examples/lookupCompleteExample'
+                lookupCompleteWithRcsExample:
+                  $ref: '#/components/examples/lookupCompleteWithRcsExample'
+                lookupCompleteWithRcsErrorExample:
+                  $ref: '#/components/examples/lookupCompleteWithRcsErrorExample'
                 lookupPartialExample:
                   $ref: '#/components/examples/lookupPartialExample'
                 lookupFailedExample:
@@ -4704,8 +4708,8 @@ paths:
           content:
             application/json:
               examples:
-                lookupInProgressExample:
-                  $ref: '#/components/examples/lookupInProgressExample'
+                lookupAcceptedExample:
+                  $ref: '#/components/examples/lookupAcceptedExample'
               schema:
                 $ref: '#/components/schemas/createAsyncBulkLookupResponse'
           description: Accepted
@@ -6684,13 +6688,22 @@ components:
         phoneNumbers:
         - "+19196104423"
         - "+19196104424"
+    lookupAcceptedExample:
+      summary: Numbers Lookup Accepted
+      value:
+        links:
+        - href: /accounts/9912345/phoneNumberLookup/bulk/004223a0-8b17-41b1-bf81-20732adf5590
+          rel: createdRequest
+          method: GET
+        data:
+          requestId: 004223a0-8b17-41b1-bf81-20732adf5590
+          status: IN_PROGRESS
+          results: []
+        errors: []
     lookupInProgressExample:
       summary: Numbers Lookup In Progress
       value:
-        links:
-        - href: href
-          rel: rel
-          method: GET
+        links: []
         data:
           requestId: 004223a0-8b17-41b1-bf81-20732adf5590
           status: IN_PROGRESS
@@ -6699,10 +6712,7 @@ components:
     lookupFailedExample:
       summary: Numbers Lookup Failed
       value:
-        links:
-        - href: href
-          rel: rel
-          method: GET
+        links: []
         data:
           requestId: 004223a0-8b17-41b1-bf81-20732adf5590
           status: FAILED
@@ -6720,10 +6730,7 @@ components:
     lookupPartialExample:
       summary: Numbers Lookup Partial Complete
       value:
-        links:
-        - href: href
-          rel: rel
-          method: GET
+        links: []
         data:
           requestId: 004223a0-8b17-41b1-bf81-20732adf5590
           status: PARTIAL_COMPLETE
@@ -6751,10 +6758,7 @@ components:
     lookupCompleteExample:
       summary: Numbers Lookup Complete (without DNI)
       value:
-        links:
-        - href: href
-          rel: rel
-          method: GET
+        links: []
         data:
           requestId: 004223a0-8b17-41b1-bf81-20732adf5590
           status: COMPLETE
@@ -6773,10 +6777,7 @@ components:
     lookupCompleteWithDniExample:
       summary: Numbers Lookup Complete (with DNI)
       value:
-        links:
-        - href: href
-          rel: rel
-          method: GET
+        links: []
         data:
           requestId: 20732adf-bf81-8b17-41b1-004223a05590
           status: COMPLETE
@@ -6814,6 +6815,58 @@ components:
             deactivationEvent: DEACTIVATED
             latestMessageDeliveryStatus: NOT_ENABLED
         errors: []
+    lookupCompleteWithRcsExample:
+      summary: Numbers Lookup Complete (with RCS)
+      value:
+        links: []
+        data:
+          requestId: 004223a0-8b17-41b1-bf81-20732adf5590
+          status: COMPLETE
+          results:
+          - phoneNumber: "+10072904497"
+            lineType: MOBILE
+            messagingProvider: Verizon Wireless
+            voiceProvider: Verizon Wireless
+            countryCodeA3: USA
+            rcsEnabled: true
+          - phoneNumber: "+10072904498"
+            lineType: MOBILE
+            messagingProvider: T-Mobile USA
+            voiceProvider: T-Mobile USA
+            countryCodeA3: USA
+            rcsEnabled: false
+        errors: []
+    lookupCompleteWithRcsErrorExample:
+      summary: Numbers Lookup Complete (with RCS error)
+      value:
+        links: []
+        data:
+          requestId: 004223a0-8b17-41b1-bf81-20732adf5590
+          status: COMPLETE
+          results:
+          - phoneNumber: "+10072904497"
+            lineType: MOBILE
+            messagingProvider: Verizon Wireless
+            voiceProvider: Verizon Wireless
+            countryCodeA3: USA
+          - phoneNumber: "+10072904498"
+            lineType: MOBILE
+            messagingProvider: T-Mobile USA
+            voiceProvider: T-Mobile USA
+            countryCodeA3: USA
+        errors:
+        - code: RCS_SERVICE_UNAVAILABLE
+          type: rcs-error
+          description: An exception was thrown during the async RCS service call.
+          meta:
+            phoneNumbers:
+            - "+10072904497"
+        - code: MISSING_FROM_RESPONSE
+          type: rcs-error
+          description: The phone number was absent from the RCS service response.
+          meta:
+            phoneNumbers:
+            - "+10072904498"
     badRequestExample:
       summary: Example Bad Request Error
       value:
@@ -8578,6 +8631,10 @@ components:
               $ref: '#/components/examples/lookupCompleteWithDniExample'
             lookupCompleteExample:
               $ref: '#/components/examples/lookupCompleteExample'
+            lookupCompleteWithRcsExample:
+              $ref: '#/components/examples/lookupCompleteWithRcsExample'
+            lookupCompleteWithRcsErrorExample:
+              $ref: '#/components/examples/lookupCompleteWithRcsErrorExample'
             lookupPartialExample:
               $ref: '#/components/examples/lookupPartialExample'
             lookupFailedExample:
@@ -8589,8 +8646,8 @@ components:
       content:
         application/json:
           examples:
-            lookupInProgressExample:
-              $ref: '#/components/examples/lookupInProgressExample'
+            lookupAcceptedExample:
+              $ref: '#/components/examples/lookupAcceptedExample'
           schema:
             $ref: '#/components/schemas/createAsyncBulkLookupResponse'
       description: Accepted
@@ -14203,6 +14260,10 @@ components:
           type: string
         meta:
           $ref: '#/components/schemas/lookupErrorSchema_meta'
+      required:
+      - code
+      - description
+      - type
       type: object
     syncLookupRequest:
       properties:
@@ -14242,6 +14303,7 @@ components:
             phoneNumber: "+10072904498"
             countryCodeA3: USA
             initialMessageDeliveryStatusDate: 2025-06-20
+            rcsEnabled: true
             lineType: MOBILE
             deactivationReporter: deactivationReporter
             voiceProvider: Verizon Wireless
@@ -14253,6 +14315,7 @@ components:
             phoneNumber: "+10072904498"
             countryCodeA3: USA
             initialMessageDeliveryStatusDate: 2025-06-20
+            rcsEnabled: true
             lineType: MOBILE
             deactivationReporter: deactivationReporter
             voiceProvider: Verizon Wireless
@@ -14347,6 +14410,7 @@ components:
             phoneNumber: "+10072904498"
             countryCodeA3: USA
             initialMessageDeliveryStatusDate: 2025-06-20
+            rcsEnabled: true
             lineType: MOBILE
             deactivationReporter: deactivationReporter
             voiceProvider: Verizon Wireless
@@ -14358,6 +14422,7 @@ components:
             phoneNumber: "+10072904498"
             countryCodeA3: USA
             initialMessageDeliveryStatusDate: 2025-06-20
+            rcsEnabled: true
             lineType: MOBILE
             deactivationReporter: deactivationReporter
             voiceProvider: Verizon Wireless
@@ -14433,6 +14498,23 @@ components:
             $ref: '#/components/schemas/lookupErrorSchema'
           type: array
       type: object
+    rcsErrorEnum:
+      description: |-
+        [RCS-Only](#section/RCS-Only). Error encountered during RCS capability lookup. Appears as the `code` field in the top-level `errors` array.
+
+        **RCS service pass-through codes:**
+        - `REQUEST_FAILED`: The RCS service returned this error code.
+        - `UNKNOWN_CODE`: The RCS service returned this error code.
+        - `INVALID_DESTINATION_ADDRESS`: The RCS service returned this error code.
+        - `UNKNOWN_STATUS: <code>`: The RCS service returned an unrecognized status code, where `<code>` is the raw value.
+
+        **Service-level errors:**
+        - `MISSING_FROM_RESPONSE`: The phone number was absent from the RCS service response.
+        - `RCS_SERVICE_UNAVAILABLE`: An exception was thrown during the async RCS service call.
+        - `RCS_SERVICE_DISABLED`: RCS lookup is disabled in configuration.
+        - `EMPTY_RESPONSE`: The RCS service returned a null or empty response body.
+      example: RCS_SERVICE_UNAVAILABLE
+      type: string
     lookupResult:
       description: Carrier information results for the specified telephone number.
       example:
@@ -14443,6 +14525,7 @@ components:
         phoneNumber: "+10072904498"
         countryCodeA3: USA
         initialMessageDeliveryStatusDate: 2025-06-20
+        rcsEnabled: true
         lineType: MOBILE
         deactivationReporter: deactivationReporter
         voiceProvider: Verizon Wireless
@@ -14498,6 +14581,11 @@ components:
           example: 2025-06-21
           format: date
           type: string
+        rcsEnabled:
+          description: |
+            [RCS-Only](#section/RCS-Only). Indicates whether the phone number is capable of receiving RCS messages. Value will be null if account has RCS, but no value was returned. Absent when account does not have RCS.
+          example: true
+          type: boolean
       type: object
     accountId1:
       description: User's account ID.
@@ -16312,6 +16400,7 @@ components:
           phoneNumber: "+10072904498"
           countryCodeA3: USA
           initialMessageDeliveryStatusDate: 2025-06-20
+          rcsEnabled: true
           lineType: MOBILE
           deactivationReporter: deactivationReporter
           voiceProvider: Verizon Wireless
@@ -16323,6 +16412,7 @@ components:
           phoneNumber: "+10072904498"
           countryCodeA3: USA
           initialMessageDeliveryStatusDate: 2025-06-20
+          rcsEnabled: true
           lineType: MOBILE
           deactivationReporter: deactivationReporter
           voiceProvider: Verizon Wireless
@@ -16369,6 +16459,7 @@ components:
           phoneNumber: "+10072904498"
           countryCodeA3: USA
           initialMessageDeliveryStatusDate: 2025-06-20
+          rcsEnabled: true
           lineType: MOBILE
           deactivationReporter: deactivationReporter
           voiceProvider: Verizon Wireless
@@ -16380,6 +16471,7 @@ components:
           phoneNumber: "+10072904498"
           countryCodeA3: USA
           initialMessageDeliveryStatusDate: 2025-06-20
+          rcsEnabled: true
           lineType: MOBILE
           deactivationReporter: deactivationReporter
           voiceProvider: Verizon Wireless
