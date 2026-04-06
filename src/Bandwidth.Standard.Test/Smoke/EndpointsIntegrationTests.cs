@@ -53,11 +53,12 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test successful CreateEndpoint request
+        /// Test endpoint lifecycle: Create -> List -> Get -> Delete
         /// </summary>
         [Fact]
-        public void CreateEndpointTest()
+        public void EndpointLifecycleTest()
         {
+            // Create
             var webRtcRequest = new CreateWebRtcConnectionRequest(
                 type: EndpointTypeEnum.WEBRTC,
                 direction: EndpointDirectionEnum.BIDIRECTIONAL,
@@ -65,17 +66,37 @@ namespace Bandwidth.Standard.Test.Smoke
                 eventFallbackUrl: Environment.GetEnvironmentVariable("BASE_CALLBACK_URL") + "/endpoint/fallback",
                 tag: "csharp-sdk-test-endpoint"
             );
-            ApiResponse<CreateEndpointResponse> response = instance.CreateEndpointWithHttpInfo(accountId, new CreateEndpointRequest(webRtcRequest));
-            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
-            Assert.IsType<CreateEndpointResponse>(response.Data);
-            Assert.IsType<string>(response.Data.Data.EndpointId);
-            Assert.Equal(EndpointTypeEnum.WEBRTC, response.Data.Data.Type);
-            Assert.IsType<EndpointStatusEnum>(response.Data.Data.Status);
-            Assert.IsType<string>(response.Data.Data.Token);
-            Assert.Equal("csharp-sdk-test-endpoint", response.Data.Data.Tag);
+            ApiResponse<CreateEndpointResponse> createResponse = instance.CreateEndpointWithHttpInfo(accountId, new CreateEndpointRequest(webRtcRequest));
+            Assert.Equal(HttpStatusCode.Created, createResponse.StatusCode);
+            Assert.IsType<CreateEndpointResponse>(createResponse.Data);
+            Assert.IsType<string>(createResponse.Data.Data.EndpointId);
+            Assert.Equal(EndpointTypeEnum.WEBRTC, createResponse.Data.Data.Type);
+            Assert.IsType<EndpointStatusEnum>(createResponse.Data.Data.Status);
+            Assert.IsType<string>(createResponse.Data.Data.Token);
+            Assert.Equal("csharp-sdk-test-endpoint", createResponse.Data.Data.Tag);
+            var endpointId = createResponse.Data.Data.EndpointId;
 
-            // Cleanup
-            instance.DeleteEndpoint(accountId, response.Data.Data.EndpointId);
+            // List
+            ApiResponse<ListEndpointsResponse> listResponse = instance.ListEndpointsWithHttpInfo(accountId, limit: 10);
+            Assert.Equal(HttpStatusCode.OK, listResponse.StatusCode);
+            Assert.IsType<ListEndpointsResponse>(listResponse.Data);
+            Assert.IsType<List<Endpoints>>(listResponse.Data.Data);
+            Assert.NotEmpty(listResponse.Data.Data);
+            Assert.NotNull(listResponse.Data.Page);
+            Assert.IsType<Page>(listResponse.Data.Page);
+
+            // Get
+            ApiResponse<EndpointResponse> getResponse = instance.GetEndpointWithHttpInfo(accountId, endpointId);
+            Assert.Equal(HttpStatusCode.OK, getResponse.StatusCode);
+            Assert.IsType<EndpointResponse>(getResponse.Data);
+            Assert.Equal(endpointId, getResponse.Data.Data.EndpointId);
+            Assert.Equal(EndpointTypeEnum.WEBRTC, getResponse.Data.Data.Type);
+            Assert.IsType<EndpointStatusEnum>(getResponse.Data.Data.Status);
+            Assert.Equal("csharp-sdk-test-endpoint", getResponse.Data.Data.Tag);
+
+            // Delete
+            ApiResponse<Object> deleteResponse = instance.DeleteEndpointWithHttpInfo(accountId, endpointId);
+            Assert.Equal(HttpStatusCode.NoContent, deleteResponse.StatusCode);
         }
 
         /// <summary>
@@ -108,33 +129,6 @@ namespace Bandwidth.Standard.Test.Smoke
                 forbiddenInstance.CreateEndpoint(accountId, new CreateEndpointRequest(webRtcRequest))
             );
             Assert.Equal(403, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test successful GetEndpoint request
-        /// </summary>
-        [Fact]
-        public void GetEndpointTest()
-        {
-            // Create an endpoint to get
-            var webRtcRequest = new CreateWebRtcConnectionRequest(
-                type: EndpointTypeEnum.WEBRTC,
-                direction: EndpointDirectionEnum.BIDIRECTIONAL,
-                tag: "csharp-sdk-get-test"
-            );
-            CreateEndpointResponse createResponse = instance.CreateEndpoint(accountId, new CreateEndpointRequest(webRtcRequest));
-            var endpointId = createResponse.Data.EndpointId;
-
-            ApiResponse<EndpointResponse> response = instance.GetEndpointWithHttpInfo(accountId, endpointId);
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.IsType<EndpointResponse>(response.Data);
-            Assert.Equal(endpointId, response.Data.Data.EndpointId);
-            Assert.Equal(EndpointTypeEnum.WEBRTC, response.Data.Data.Type);
-            Assert.IsType<EndpointStatusEnum>(response.Data.Data.Status);
-            Assert.Equal("csharp-sdk-get-test", response.Data.Data.Tag);
-
-            // Cleanup
-            instance.DeleteEndpoint(accountId, endpointId);
         }
 
         /// <summary>
@@ -174,20 +168,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test successful ListEndpoints request
-        /// </summary>
-        [Fact]
-        public void ListEndpointsTest()
-        {
-            ApiResponse<ListEndpointsResponse> response = instance.ListEndpointsWithHttpInfo(accountId);
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.IsType<ListEndpointsResponse>(response.Data);
-            Assert.IsType<List<Endpoints>>(response.Data.Data);
-            Assert.NotNull(response.Data.Page);
-            Assert.IsType<Page>(response.Data.Page);
-        }
-
-        /// <summary>
         /// Test ListEndpoints with an unauthorized client
         /// </summary>
         [Fact]
@@ -209,25 +189,6 @@ namespace Bandwidth.Standard.Test.Smoke
                 forbiddenInstance.ListEndpoints(accountId)
             );
             Assert.Equal(403, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test successful DeleteEndpoint request
-        /// </summary>
-        [Fact]
-        public void DeleteEndpointTest()
-        {
-            // Create an endpoint to delete
-            var webRtcRequest = new CreateWebRtcConnectionRequest(
-                type: EndpointTypeEnum.WEBRTC,
-                direction: EndpointDirectionEnum.BIDIRECTIONAL,
-                tag: "csharp-sdk-delete-test"
-            );
-            CreateEndpointResponse createResponse = instance.CreateEndpoint(accountId, new CreateEndpointRequest(webRtcRequest));
-            var endpointId = createResponse.Data.EndpointId;
-
-            ApiResponse<Object> response = instance.DeleteEndpointWithHttpInfo(accountId, endpointId);
-            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
         }
 
         /// <summary>
