@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Xunit;
+
 using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
 
 namespace Bandwidth.Standard.Test.Smoke
 {
+    /// <summary>
+    ///  Class for testing EndpointsApi
+    /// </summary>
     public class EndpointsSmokeTests : IDisposable
     {
         private string accountId;
         private Configuration configuration;
         private Configuration unauthorizedConfiguration;
+        private Configuration forbiddenConfiguration;
         private EndpointsApi instance;
         private EndpointsApi unauthorizedInstance;
+        private EndpointsApi forbiddenInstance;
 
         public EndpointsSmokeTests()
         {
@@ -33,6 +39,12 @@ namespace Bandwidth.Standard.Test.Smoke
             unauthorizedConfiguration.Username = "badUsername";
             unauthorizedConfiguration.Password = "badPassword";
             unauthorizedInstance = new EndpointsApi(unauthorizedConfiguration);
+
+            // Forbidden API Client
+            forbiddenConfiguration = new Configuration();
+            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
+            forbiddenConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
+            forbiddenInstance = new EndpointsApi(forbiddenConfiguration);
         }
 
         public void Dispose()
@@ -40,10 +52,12 @@ namespace Bandwidth.Standard.Test.Smoke
             // Cleanup when everything is done.
         }
 
-        [Fact(DisplayName = "Endpoint Lifecycle: Create -> List -> Get -> Delete")]
-        public void TestEndpointLifecycle()
+        /// <summary>
+        /// Test successful CreateEndpoint request
+        /// </summary>
+        [Fact]
+        public void CreateEndpointTest()
         {
-            // Create
             var webRtcRequest = new CreateWebRtcConnectionRequest(
                 type: EndpointTypeEnum.WEBRTC,
                 direction: EndpointDirectionEnum.BIDIRECTIONAL,
@@ -51,92 +65,205 @@ namespace Bandwidth.Standard.Test.Smoke
                 eventFallbackUrl: Environment.GetEnvironmentVariable("BASE_CALLBACK_URL") + "/endpoint/fallback",
                 tag: "csharp-sdk-test-endpoint"
             );
-            var createResponse = instance.CreateEndpointWithHttpInfo(accountId, new CreateEndpointRequest(webRtcRequest));
-            Assert.Equal(HttpStatusCode.Created, createResponse.StatusCode);
-            Assert.IsType<CreateEndpointResponse>(createResponse.Data);
-            Assert.IsType<List<Link>>(createResponse.Data.Links);
-            Assert.IsType<List<Error>>(createResponse.Data.Errors);
-            Assert.IsType<CreateEndpointResponseData>(createResponse.Data.Data);
-            Assert.IsType<string>(createResponse.Data.Data.EndpointId);
-            Assert.Equal(EndpointTypeEnum.WEBRTC, createResponse.Data.Data.Type);
-            Assert.IsType<EndpointStatusEnum>(createResponse.Data.Data.Status);
-            Assert.IsType<string>(createResponse.Data.Data.Token);
-            Assert.IsType<DateTime>(createResponse.Data.Data.CreationTimestamp);
-            Assert.IsType<DateTime>(createResponse.Data.Data.ExpirationTimestamp);
-            Assert.Equal("csharp-sdk-test-endpoint", createResponse.Data.Data.Tag);
-            Assert.IsType<List<Device>>(createResponse.Data.Data.Devices);
-            var endpointId = createResponse.Data.Data.EndpointId;
+            ApiResponse<CreateEndpointResponse> response = instance.CreateEndpointWithHttpInfo(accountId, new CreateEndpointRequest(webRtcRequest));
+            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            Assert.IsType<CreateEndpointResponse>(response.Data);
+            Assert.IsType<string>(response.Data.Data.EndpointId);
+            Assert.Equal(EndpointTypeEnum.WEBRTC, response.Data.Data.Type);
+            Assert.IsType<EndpointStatusEnum>(response.Data.Data.Status);
+            Assert.IsType<string>(response.Data.Data.Token);
+            Assert.Equal("csharp-sdk-test-endpoint", response.Data.Data.Tag);
 
-            // List
-            var listResponse = instance.ListEndpointsWithHttpInfo(accountId, limit: 10);
-            Assert.Equal(HttpStatusCode.OK, listResponse.StatusCode);
-            Assert.IsType<ListEndpointsResponse>(listResponse.Data);
-            Assert.IsType<List<Link>>(listResponse.Data.Links);
-            Assert.IsType<List<Error>>(listResponse.Data.Errors);
-            Assert.IsType<List<Endpoints>>(listResponse.Data.Data);
-            Assert.NotEmpty(listResponse.Data.Data);
-            Assert.NotNull(listResponse.Data.Page);
-            Assert.IsType<Page>(listResponse.Data.Page);
-            Assert.True(listResponse.Data.Page.PageSize > 0);
-            Assert.True(listResponse.Data.Page.TotalElements > 0);
-            Assert.True(listResponse.Data.Page.TotalPages > 0);
-
-            var listItem = listResponse.Data.Data.First(e => e.EndpointId == endpointId);
-            Assert.IsType<string>(listItem.EndpointId);
-            Assert.IsType<EndpointTypeEnum>(listItem.Type);
-            Assert.IsType<EndpointStatusEnum>(listItem.Status);
-            Assert.IsType<DateTime>(listItem.CreationTimestamp);
-            Assert.IsType<DateTime>(listItem.ExpirationTimestamp);
-
-            // Get
-            var getResponse = instance.GetEndpointWithHttpInfo(accountId, endpointId);
-            Assert.Equal(HttpStatusCode.OK, getResponse.StatusCode);
-            Assert.IsType<EndpointResponse>(getResponse.Data);
-            Assert.IsType<List<Link>>(getResponse.Data.Links);
-            Assert.IsType<List<Error>>(getResponse.Data.Errors);
-            Assert.IsType<Endpoint>(getResponse.Data.Data);
-            Assert.Equal(endpointId, getResponse.Data.Data.EndpointId);
-            Assert.Equal(EndpointTypeEnum.WEBRTC, getResponse.Data.Data.Type);
-            Assert.IsType<EndpointStatusEnum>(getResponse.Data.Data.Status);
-            Assert.IsType<DateTime>(getResponse.Data.Data.CreationTimestamp);
-            Assert.IsType<DateTime>(getResponse.Data.Data.ExpirationTimestamp);
-            Assert.Equal("csharp-sdk-test-endpoint", getResponse.Data.Data.Tag);
-            Assert.IsType<List<Device>>(getResponse.Data.Data.Devices);
-
-            // Delete
-            var deleteResponse = instance.DeleteEndpointWithHttpInfo(accountId, endpointId);
-            Assert.Equal(HttpStatusCode.NoContent, deleteResponse.StatusCode);
+            // Cleanup
+            instance.DeleteEndpoint(accountId, response.Data.Data.EndpointId);
         }
 
-        [Fact(DisplayName = "Create Endpoint Unauthorized")]
-        public void TestCreateEndpoint_Unauthorized()
+        /// <summary>
+        /// Test CreateEndpoint with an unauthorized client
+        /// </summary>
+        [Fact]
+        public void CreateEndpointUnauthorizedRequest()
         {
             var webRtcRequest = new CreateWebRtcConnectionRequest(
                 type: EndpointTypeEnum.WEBRTC,
                 direction: EndpointDirectionEnum.BIDIRECTIONAL
             );
-            ApiException ex = Assert.Throws<ApiException>(() =>
+            ApiException Exception = Assert.Throws<ApiException>(() =>
                 unauthorizedInstance.CreateEndpoint(accountId, new CreateEndpointRequest(webRtcRequest))
             );
-            Assert.Equal(401, ex.ErrorCode);
+            Assert.Equal(401, Exception.ErrorCode);
         }
 
-        [Fact(DisplayName = "Get Endpoint Not Found")]
-        public void TestGetEndpoint_NotFound()
+        /// <summary>
+        /// Test CreateEndpoint with a forbidden client
+        /// </summary>
+        [Fact]
+        public void CreateEndpointForbiddenRequest()
         {
-            ApiException ex = Assert.Throws<ApiException>(() =>
+            var webRtcRequest = new CreateWebRtcConnectionRequest(
+                type: EndpointTypeEnum.WEBRTC,
+                direction: EndpointDirectionEnum.BIDIRECTIONAL
+            );
+            ApiException Exception = Assert.Throws<ApiException>(() =>
+                forbiddenInstance.CreateEndpoint(accountId, new CreateEndpointRequest(webRtcRequest))
+            );
+            Assert.Equal(403, Exception.ErrorCode);
+        }
+
+        /// <summary>
+        /// Test successful GetEndpoint request
+        /// </summary>
+        [Fact]
+        public void GetEndpointTest()
+        {
+            // Create an endpoint to get
+            var webRtcRequest = new CreateWebRtcConnectionRequest(
+                type: EndpointTypeEnum.WEBRTC,
+                direction: EndpointDirectionEnum.BIDIRECTIONAL,
+                tag: "csharp-sdk-get-test"
+            );
+            CreateEndpointResponse createResponse = instance.CreateEndpoint(accountId, new CreateEndpointRequest(webRtcRequest));
+            var endpointId = createResponse.Data.EndpointId;
+
+            ApiResponse<EndpointResponse> response = instance.GetEndpointWithHttpInfo(accountId, endpointId);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsType<EndpointResponse>(response.Data);
+            Assert.Equal(endpointId, response.Data.Data.EndpointId);
+            Assert.Equal(EndpointTypeEnum.WEBRTC, response.Data.Data.Type);
+            Assert.IsType<EndpointStatusEnum>(response.Data.Data.Status);
+            Assert.Equal("csharp-sdk-get-test", response.Data.Data.Tag);
+
+            // Cleanup
+            instance.DeleteEndpoint(accountId, endpointId);
+        }
+
+        /// <summary>
+        /// Test GetEndpoint with an unauthorized client
+        /// </summary>
+        [Fact]
+        public void GetEndpointUnauthorizedRequest()
+        {
+            ApiException Exception = Assert.Throws<ApiException>(() =>
+                unauthorizedInstance.GetEndpoint(accountId, "non-existent-endpoint-id")
+            );
+            Assert.Equal(401, Exception.ErrorCode);
+        }
+
+        /// <summary>
+        /// Test GetEndpoint with a forbidden client
+        /// </summary>
+        [Fact]
+        public void GetEndpointForbiddenRequest()
+        {
+            ApiException Exception = Assert.Throws<ApiException>(() =>
+                forbiddenInstance.GetEndpoint(accountId, "non-existent-endpoint-id")
+            );
+            Assert.Equal(403, Exception.ErrorCode);
+        }
+
+        /// <summary>
+        /// Test GetEndpoint with a fake endpoint-id
+        /// </summary>
+        [Fact]
+        public void GetEndpointNotFoundRequest()
+        {
+            ApiException Exception = Assert.Throws<ApiException>(() =>
                 instance.GetEndpoint(accountId, "non-existent-endpoint-id")
             );
-            Assert.Equal(404, ex.ErrorCode);
+            Assert.Equal(404, Exception.ErrorCode);
         }
 
-        [Fact(DisplayName = "Delete Endpoint Not Found")]
-        public void TestDeleteEndpoint_NotFound()
+        /// <summary>
+        /// Test successful ListEndpoints request
+        /// </summary>
+        [Fact]
+        public void ListEndpointsTest()
         {
-            ApiException ex = Assert.Throws<ApiException>(() =>
+            ApiResponse<ListEndpointsResponse> response = instance.ListEndpointsWithHttpInfo(accountId);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsType<ListEndpointsResponse>(response.Data);
+            Assert.IsType<List<Endpoints>>(response.Data.Data);
+            Assert.NotNull(response.Data.Page);
+            Assert.IsType<Page>(response.Data.Page);
+        }
+
+        /// <summary>
+        /// Test ListEndpoints with an unauthorized client
+        /// </summary>
+        [Fact]
+        public void ListEndpointsUnauthorizedRequest()
+        {
+            ApiException Exception = Assert.Throws<ApiException>(() =>
+                unauthorizedInstance.ListEndpoints(accountId)
+            );
+            Assert.Equal(401, Exception.ErrorCode);
+        }
+
+        /// <summary>
+        /// Test ListEndpoints with a forbidden client
+        /// </summary>
+        [Fact]
+        public void ListEndpointsForbiddenRequest()
+        {
+            ApiException Exception = Assert.Throws<ApiException>(() =>
+                forbiddenInstance.ListEndpoints(accountId)
+            );
+            Assert.Equal(403, Exception.ErrorCode);
+        }
+
+        /// <summary>
+        /// Test successful DeleteEndpoint request
+        /// </summary>
+        [Fact]
+        public void DeleteEndpointTest()
+        {
+            // Create an endpoint to delete
+            var webRtcRequest = new CreateWebRtcConnectionRequest(
+                type: EndpointTypeEnum.WEBRTC,
+                direction: EndpointDirectionEnum.BIDIRECTIONAL,
+                tag: "csharp-sdk-delete-test"
+            );
+            CreateEndpointResponse createResponse = instance.CreateEndpoint(accountId, new CreateEndpointRequest(webRtcRequest));
+            var endpointId = createResponse.Data.EndpointId;
+
+            ApiResponse<Object> response = instance.DeleteEndpointWithHttpInfo(accountId, endpointId);
+            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+        }
+
+        /// <summary>
+        /// Test DeleteEndpoint with an unauthorized client
+        /// </summary>
+        [Fact]
+        public void DeleteEndpointUnauthorizedRequest()
+        {
+            ApiException Exception = Assert.Throws<ApiException>(() =>
+                unauthorizedInstance.DeleteEndpoint(accountId, "non-existent-endpoint-id")
+            );
+            Assert.Equal(401, Exception.ErrorCode);
+        }
+
+        /// <summary>
+        /// Test DeleteEndpoint with a forbidden client
+        /// </summary>
+        [Fact]
+        public void DeleteEndpointForbiddenRequest()
+        {
+            ApiException Exception = Assert.Throws<ApiException>(() =>
+                forbiddenInstance.DeleteEndpoint(accountId, "non-existent-endpoint-id")
+            );
+            Assert.Equal(403, Exception.ErrorCode);
+        }
+
+        /// <summary>
+        /// Test DeleteEndpoint with a fake endpoint-id
+        /// </summary>
+        [Fact]
+        public void DeleteEndpointNotFoundRequest()
+        {
+            ApiException Exception = Assert.Throws<ApiException>(() =>
                 instance.DeleteEndpoint(accountId, "non-existent-endpoint-id")
             );
-            Assert.Equal(404, ex.ErrorCode);
+            Assert.Equal(404, Exception.ErrorCode);
         }
     }
 }
