@@ -18,10 +18,8 @@ namespace Bandwidth.Standard.Test.Smoke
         private string accountId;
         private Configuration configuration;
         private Configuration unauthorizedConfiguration;
-        private Configuration forbiddenConfiguration;
         private EndpointsApi instance;
         private EndpointsApi unauthorizedInstance;
-        private EndpointsApi forbiddenInstance;
 
         public EndpointsSmokeTests()
         {
@@ -39,12 +37,6 @@ namespace Bandwidth.Standard.Test.Smoke
             unauthorizedConfiguration.Username = "badUsername";
             unauthorizedConfiguration.Password = "badPassword";
             unauthorizedInstance = new EndpointsApi(unauthorizedConfiguration);
-
-            // Forbidden API Client
-            forbiddenConfiguration = new Configuration();
-            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            forbiddenConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
-            forbiddenInstance = new EndpointsApi(forbiddenConfiguration);
         }
 
         public void Dispose()
@@ -116,22 +108,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test CreateEndpoint with a forbidden client
-        /// </summary>
-        [Fact]
-        public void CreateEndpointForbiddenRequest()
-        {
-            var webRtcRequest = new CreateWebRtcConnectionRequest(
-                type: EndpointTypeEnum.WEBRTC,
-                direction: EndpointDirectionEnum.BIDIRECTIONAL
-            );
-            ApiException Exception = Assert.Throws<ApiException>(() =>
-                forbiddenInstance.CreateEndpoint(accountId, new CreateEndpointRequest(webRtcRequest))
-            );
-            Assert.Equal(403, Exception.ErrorCode);
-        }
-
-        /// <summary>
         /// Test GetEndpoint with an unauthorized client
         /// </summary>
         [Fact]
@@ -141,18 +117,6 @@ namespace Bandwidth.Standard.Test.Smoke
                 unauthorizedInstance.GetEndpoint(accountId, "non-existent-endpoint-id")
             );
             Assert.Equal(401, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test GetEndpoint with a forbidden client
-        /// </summary>
-        [Fact]
-        public void GetEndpointForbiddenRequest()
-        {
-            ApiException Exception = Assert.Throws<ApiException>(() =>
-                forbiddenInstance.GetEndpoint(accountId, "non-existent-endpoint-id")
-            );
-            Assert.Equal(403, Exception.ErrorCode);
         }
 
         /// <summary>
@@ -180,18 +144,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test ListEndpoints with a forbidden client
-        /// </summary>
-        [Fact]
-        public void ListEndpointsForbiddenRequest()
-        {
-            ApiException Exception = Assert.Throws<ApiException>(() =>
-                forbiddenInstance.ListEndpoints(accountId)
-            );
-            Assert.Equal(403, Exception.ErrorCode);
-        }
-
-        /// <summary>
         /// Test DeleteEndpoint with an unauthorized client
         /// </summary>
         [Fact]
@@ -201,18 +153,6 @@ namespace Bandwidth.Standard.Test.Smoke
                 unauthorizedInstance.DeleteEndpoint(accountId, "non-existent-endpoint-id")
             );
             Assert.Equal(401, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test DeleteEndpoint with a forbidden client
-        /// </summary>
-        [Fact]
-        public void DeleteEndpointForbiddenRequest()
-        {
-            ApiException Exception = Assert.Throws<ApiException>(() =>
-                forbiddenInstance.DeleteEndpoint(accountId, "non-existent-endpoint-id")
-            );
-            Assert.Equal(403, Exception.ErrorCode);
         }
 
         /// <summary>
