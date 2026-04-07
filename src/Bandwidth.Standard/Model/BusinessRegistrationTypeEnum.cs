@@ -27,9 +27,9 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The type of business registration number. 
+    /// The type of business registration number.  **Note: As of October 19th, 2026 this field will be required when &#x60;businessRegistrationNumber&#x60; is provided.** 
     /// </summary>
-    /// <value>The type of business registration number. </value>
+    /// <value>The type of business registration number.  **Note: As of October 19th, 2026 this field will be required when &#x60;businessRegistrationNumber&#x60; is provided.** </value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum BusinessRegistrationTypeEnum
     {
