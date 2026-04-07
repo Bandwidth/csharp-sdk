@@ -63,7 +63,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 businessDba: "test",
                 businessRegistrationNumber: "test",
                 businessRegistrationType: BusinessRegistrationTypeEnum.EIN,
-                businessRegistrationIssuingCountry: BusinessRegistrationIssuingCountryEnum.USA,
+                businessRegistrationIssuingCountry: "USA",
                 businessEntityType: BusinessEntityTypeEnum.SOLEPROPRIETOR,
                 helpMessageResponse: "test",
                 ageGatedContent: false,
@@ -228,8 +228,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void BusinessRegistrationIssuingCountryTest()
         {
-            Assert.IsType<BusinessRegistrationIssuingCountryEnum>(instance.BusinessRegistrationIssuingCountry);
-            Assert.Equal(BusinessRegistrationIssuingCountryEnum.USA, instance.BusinessRegistrationIssuingCountry);
+            Assert.IsType<string>(instance.BusinessRegistrationIssuingCountry);
+            Assert.Equal("USA", instance.BusinessRegistrationIssuingCountry);
         }
 
         /// <summary>
