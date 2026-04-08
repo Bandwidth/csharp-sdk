@@ -58,7 +58,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="silenceTimeout">If no speech is detected in this period, a callback with a &#39;silence&#39; result is sent. (default to 10D).</param>
         /// <param name="speechThreshold">When speech has ended and a result couldn&#39;t be determined based on the audio content itself, this value is used to determine if the speaker is a machine based on the speech duration. If the length of the speech detected is greater than or equal to this threshold, the result will be &#39;answering-machine&#39;. If the length of speech detected is below this threshold, the result will be &#39;human&#39;. (default to 10D).</param>
         /// <param name="speechEndThreshold">Amount of silence (in seconds) before assuming the callee has finished speaking. (default to 5D).</param>
-        /// <param name="machineSpeechEndThreshold">When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing.  If not provided it will default to the speechEndThreshold value..</param>
+        /// <param name="machineSpeechEndThreshold">When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing. If not provided it will default to the speechEndThreshold value..</param>
         /// <param name="delayResult">If set to &#39;true&#39; and if an answering machine is detected, the &#39;answering-machine&#39; callback will be delayed until the machine is done speaking, or an end of message tone is detected, or until the &#39;detectionTimeout&#39; is exceeded. If false, the &#39;answering-machine&#39; result is sent immediately. (default to false).</param>
         /// <param name="callbackUrl">The URL to send the &#39;machineDetectionComplete&#39; webhook when the detection is completed. Only for &#39;async&#39; mode..</param>
         /// <param name="callbackMethod">callbackMethod.</param>
@@ -125,9 +125,9 @@ namespace Bandwidth.Standard.Model
         public double? SpeechEndThreshold { get; set; }
 
         /// <summary>
-        /// When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing.  If not provided it will default to the speechEndThreshold value.
+        /// When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing. If not provided it will default to the speechEndThreshold value.
         /// </summary>
-        /// <value>When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing.  If not provided it will default to the speechEndThreshold value.</value>
+        /// <value>When an answering machine is detected, the amount of silence (in seconds) before assuming the message has finished playing. If not provided it will default to the speechEndThreshold value.</value>
         /// <example>5</example>
         [DataMember(Name = "machineSpeechEndThreshold", EmitDefaultValue = true)]
         public double? MachineSpeechEndThreshold { get; set; }

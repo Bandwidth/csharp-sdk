@@ -129,10 +129,10 @@ namespace Bandwidth.Standard.Model
         public string DeactivationDate { get; set; }
 
         /// <summary>
-        /// [DNI-Only](#section/DNI-Only). The date the phone number entered the status described in &#x60;latestMessageDeliveryStatus&#x60;.  Think of this as the \&quot;start time\&quot; for that status. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.
+        /// [DNI-Only](#section/DNI-Only). The date the phone number entered the status described in &#x60;latestMessageDeliveryStatus&#x60;. Think of this as the \&quot;start time\&quot; for that status. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.
         /// </summary>
-        /// <value>[DNI-Only](#section/DNI-Only). The date the phone number entered the status described in &#x60;latestMessageDeliveryStatus&#x60;.  Think of this as the \&quot;start time\&quot; for that status. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.</value>
-        /// <example>Fri Jun 20 00:00:00 UTC 2025</example>
+        /// <value>[DNI-Only](#section/DNI-Only). The date the phone number entered the status described in &#x60;latestMessageDeliveryStatus&#x60;. Think of this as the \&quot;start time\&quot; for that status. Value resets every time the &#x60;latestMessageDeliveryStatus&#x60; changes.</value>
+        /// <example>Thu Jun 19 20:00:00 EDT 2025</example>
         [DataMember(Name = "initialMessageDeliveryStatusDate", EmitDefaultValue = false)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime InitialMessageDeliveryStatusDate { get; set; }
