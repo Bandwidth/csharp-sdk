@@ -289,7 +289,7 @@ paths:
 
         If a file is uploaded with the same name as a file that already exists under this account, the previous file will be overwritten.
 
-        A list of supported media types can be found [here](https://support.bandwidth.com/hc/en-us/articles/360014128994-What-MMS-file-types-are-supported-).
+        A list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
       operationId: uploadMedia
       parameters:
       - description: Your Bandwidth Account ID.
@@ -9786,7 +9786,7 @@ components:
           description: |-
             The URL of a media attachment.
 
-            For MMS, the API limits file size to 3.5MB. Specific carriers and channels may have a smaller limit that could cause a large file to fail, see [here](https://support.bandwidth.com/hc/en-us/articles/360014235473-What-are-the-MMS-file-size-limits) for more details.
+            For MMS, the API limits file size to 3.5MB. Specific carriers and channels may have a smaller limit that could cause a large file to fail, see more at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823216-what-are-the-mms-file-size-limits) for more details.
           example: https://dev.bandwidth.com/images/bandwidth-logo.png
           format: uri
           maxLength: 1000
@@ -14661,7 +14661,7 @@ components:
       description: |
         Government-issued business identifying number.
 
-        **Note:** If this field is provided, it is strongly recommended to also provide `businessRegistrationType` and `businessRegistrationIssuingCountry`. Submissions missing these fields have a high likelihood of rejection.
+        **Note: As of October 19th, 2026 this field will be required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**
       example: 12-3456789
       maxLength: 500
       nullable: true
@@ -14669,6 +14669,8 @@ components:
     businessRegistrationTypeEnum:
       description: |
         The type of business registration number.
+
+        **Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**
       enum:
       - EIN
       - CBN
@@ -14691,11 +14693,11 @@ components:
       example: EIN
       nullable: true
       type: string
-    businessRegistrationIssuingCountryEnum:
+    businessRegistrationIssuingCountry:
       description: |-
-        The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 country codes are acceptable, but the application will convert them to alpha-3 when received, so alpha-3 is encouraged.
+        The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.
 
-        **Note:** If this field is omitted but `businessRegistrationType` is provided, the application will attempt to infer the country based on the registration type. However, if the application cannot confidently infer the country, the submission may be rejected. To ensure the highest likelihood of acceptance, it is recommended to provide both `businessRegistrationType` and `businessRegistrationIssuingCountry`.
+        **Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**
 
         | Registration Type     | Supported Countries                |
         |----------------------|------------------------------------|
@@ -14717,30 +14719,17 @@ components:
         | CNPJ                 | BRA                                |
         | UID                  | CHE                                |
         | OTHER                | Must Provide Country Code          |
-      enum:
-      - USA
-      - CAN
-      - HKG
-      - GBR
-      - IRL
-      - BRA
-      - NLD
-      - AUS
-      - FRA
-      - NZL
-      - DEU
-      - ESP
-      - CHE
-      - CYP
-      - IND
-      - CHN
-      - BGR
       example: USA
-      nullable: false
+      nullable: true
       type: string
     businessEntityTypeEnum:
-      description: |
-        The type of registered business.
+      description: "The type of registered business.\n\n**Note: As of October 19th,\
+        \ 2026 submissions using a value other than `SOLE_PROPRIETOR` must provide\
+        \ a value for `businessRegistrationNumber`, `businessRegistrationType`, and\
+        \ `businessRegistrationIssuingCountry`. \nSubmissions using `SOLE_PROPRIETOR`\
+        \ must _omit_ `businessRegistrationNumber`, `businessRegistrationType`, and\
+        \ `businessRegistrationIssuingCountry`. Failure to adhere to these constraints\
+        \ will result in a 400 Bad Request rejection.**\n"
       enum:
       - SOLE_PROPRIETOR
       - PRIVATE_PROFIT
@@ -14873,7 +14862,7 @@ components:
           description: |
             Government-issued business identifying number.
 
-            **Note:** If this field is provided, it is strongly recommended to also provide `businessRegistrationType` and `businessRegistrationIssuingCountry`. Submissions missing these fields have a high likelihood of rejection.
+            **Note: As of October 19th, 2026 this field will be required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**
           example: 12-3456789
           maxLength: 500
           nullable: true
@@ -14881,7 +14870,34 @@ components:
         businessRegistrationType:
           $ref: '#/components/schemas/businessRegistrationTypeEnum'
         businessRegistrationIssuingCountry:
-          $ref: '#/components/schemas/businessRegistrationIssuingCountryEnum'
+          description: |-
+            The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.
+
+            **Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**
+
+            | Registration Type     | Supported Countries                |
+            |----------------------|------------------------------------|
+            | EIN                  | USA                                |
+            | CBN                  | CAN                                |
+            | NEQ                  | CAN                                |
+            | PROVINCIAL_NUMBER    | CAN                                |
+            | CRN                  | GBR, HKG                           |
+            | VAT                  | GBR, IRL, BRA, NLD                 |
+            | ACN                  | AUS                                |
+            | ABN                  | AUS                                |
+            | BRN                  | HKG                                |
+            | SIREN                | FRA                                |
+            | SIRET                | FRA                                |
+            | NZBN                 | NZL                                |
+            | UST_IDNR             | DEU                                |
+            | CIF                  | ESP                                |
+            | NIF                  | ESP                                |
+            | CNPJ                 | BRA                                |
+            | UID                  | CHE                                |
+            | OTHER                | Must Provide Country Code          |
+          example: USA
+          nullable: true
+          type: string
         businessEntityType:
           $ref: '#/components/schemas/businessEntityTypeEnum'
         helpMessageResponse:
@@ -14983,7 +14999,7 @@ components:
           description: |
             Government-issued business identifying number.
 
-            **Note:** If this field is provided, it is strongly recommended to also provide `businessRegistrationType` and `businessRegistrationIssuingCountry`. Submissions missing these fields have a high likelihood of rejection.
+            **Note: As of October 19th, 2026 this field will be required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**
           example: 12-3456789
           maxLength: 500
           nullable: true
@@ -14993,7 +15009,34 @@ components:
         businessEntityType:
           $ref: '#/components/schemas/businessEntityTypeEnum'
         businessRegistrationIssuingCountry:
-          $ref: '#/components/schemas/businessRegistrationIssuingCountryEnum'
+          description: |-
+            The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.
+
+            **Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**
+
+            | Registration Type     | Supported Countries                |
+            |----------------------|------------------------------------|
+            | EIN                  | USA                                |
+            | CBN                  | CAN                                |
+            | NEQ                  | CAN                                |
+            | PROVINCIAL_NUMBER    | CAN                                |
+            | CRN                  | GBR, HKG                           |
+            | VAT                  | GBR, IRL, BRA, NLD                 |
+            | ACN                  | AUS                                |
+            | ABN                  | AUS                                |
+            | BRN                  | HKG                                |
+            | SIREN                | FRA                                |
+            | SIRET                | FRA                                |
+            | NZBN                 | NZL                                |
+            | UST_IDNR             | DEU                                |
+            | CIF                  | ESP                                |
+            | NIF                  | ESP                                |
+            | CNPJ                 | BRA                                |
+            | UID                  | CHE                                |
+            | OTHER                | Must Provide Country Code          |
+          example: USA
+          nullable: true
+          type: string
         helpMessageResponse:
           description: A message that gets sent to users requesting help.
           example: Please contact support for assistance.
@@ -15837,7 +15880,7 @@ components:
           description: |
             Government-issued business identifying number.
 
-            **Note:** If this field is provided, it is strongly recommended to also provide `businessRegistrationType` and `businessRegistrationIssuingCountry`. Submissions missing these fields have a high likelihood of rejection.
+            **Note: As of October 19th, 2026 this field will be required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**
           example: 12-3456789
           maxLength: 500
           nullable: true
@@ -15845,7 +15888,34 @@ components:
         businessRegistrationType:
           $ref: '#/components/schemas/businessRegistrationTypeEnum'
         businessRegistrationIssuingCountry:
-          $ref: '#/components/schemas/businessRegistrationIssuingCountryEnum'
+          description: |-
+            The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.
+
+            **Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**
+
+            | Registration Type     | Supported Countries                |
+            |----------------------|------------------------------------|
+            | EIN                  | USA                                |
+            | CBN                  | CAN                                |
+            | NEQ                  | CAN                                |
+            | PROVINCIAL_NUMBER    | CAN                                |
+            | CRN                  | GBR, HKG                           |
+            | VAT                  | GBR, IRL, BRA, NLD                 |
+            | ACN                  | AUS                                |
+            | ABN                  | AUS                                |
+            | BRN                  | HKG                                |
+            | SIREN                | FRA                                |
+            | SIRET                | FRA                                |
+            | NZBN                 | NZL                                |
+            | UST_IDNR             | DEU                                |
+            | CIF                  | ESP                                |
+            | NIF                  | ESP                                |
+            | CNPJ                 | BRA                                |
+            | UID                  | CHE                                |
+            | OTHER                | Must Provide Country Code          |
+          example: USA
+          nullable: true
+          type: string
         businessEntityType:
           $ref: '#/components/schemas/businessEntityTypeEnum'
       type: object

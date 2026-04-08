@@ -40,7 +40,7 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MmsMessageContentFile" /> class.
         /// </summary>
-        /// <param name="fileUrl">The URL of a media attachment.  For MMS, the API limits file size to 3.5MB. Specific carriers and channels may have a smaller limit that could cause a large file to fail, see [here](https://support.bandwidth.com/hc/en-us/articles/360014235473-What-are-the-MMS-file-size-limits) for more details. (required).</param>
+        /// <param name="fileUrl">The URL of a media attachment.  For MMS, the API limits file size to 3.5MB. Specific carriers and channels may have a smaller limit that could cause a large file to fail, see more at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823216-what-are-the-mms-file-size-limits) for more details. (required).</param>
         public MmsMessageContentFile(string fileUrl = default(string))
         {
             // to ensure "fileUrl" is required (not null)
@@ -52,9 +52,9 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// The URL of a media attachment.  For MMS, the API limits file size to 3.5MB. Specific carriers and channels may have a smaller limit that could cause a large file to fail, see [here](https://support.bandwidth.com/hc/en-us/articles/360014235473-What-are-the-MMS-file-size-limits) for more details.
+        /// The URL of a media attachment.  For MMS, the API limits file size to 3.5MB. Specific carriers and channels may have a smaller limit that could cause a large file to fail, see more at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823216-what-are-the-mms-file-size-limits) for more details.
         /// </summary>
-        /// <value>The URL of a media attachment.  For MMS, the API limits file size to 3.5MB. Specific carriers and channels may have a smaller limit that could cause a large file to fail, see [here](https://support.bandwidth.com/hc/en-us/articles/360014235473-What-are-the-MMS-file-size-limits) for more details.</value>
+        /// <value>The URL of a media attachment.  For MMS, the API limits file size to 3.5MB. Specific carriers and channels may have a smaller limit that could cause a large file to fail, see more at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823216-what-are-the-mms-file-size-limits) for more details.</value>
         /// <example>https://dev.bandwidth.com/images/bandwidth-logo.png</example>
         [DataMember(Name = "fileUrl", IsRequired = true, EmitDefaultValue = true)]
         public string FileUrl { get; set; }
