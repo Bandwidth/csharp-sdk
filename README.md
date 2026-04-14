@@ -127,6 +127,11 @@ Class | Method | HTTP request | Description
 *ConferencesApi* | [**UpdateConference**](docs/ConferencesApi.md#updateconference) | **POST** /accounts/{accountId}/conferences/{conferenceId} | Update Conference
 *ConferencesApi* | [**UpdateConferenceBxml**](docs/ConferencesApi.md#updateconferencebxml) | **PUT** /accounts/{accountId}/conferences/{conferenceId}/bxml | Update Conference BXML
 *ConferencesApi* | [**UpdateConferenceMember**](docs/ConferencesApi.md#updateconferencemember) | **PUT** /accounts/{accountId}/conferences/{conferenceId}/members/{memberId} | Update Conference Member
+*EndpointsApi* | [**CreateEndpoint**](docs/EndpointsApi.md#createendpoint) | **POST** /accounts/{accountId}/endpoints | Create Endpoint
+*EndpointsApi* | [**DeleteEndpoint**](docs/EndpointsApi.md#deleteendpoint) | **DELETE** /accounts/{accountId}/endpoints/{endpointId} | Delete Endpoint
+*EndpointsApi* | [**GetEndpoint**](docs/EndpointsApi.md#getendpoint) | **GET** /accounts/{accountId}/endpoints/{endpointId} | Get Endpoint
+*EndpointsApi* | [**ListEndpoints**](docs/EndpointsApi.md#listendpoints) | **GET** /accounts/{accountId}/endpoints | List Endpoints
+*EndpointsApi* | [**UpdateEndpointBxml**](docs/EndpointsApi.md#updateendpointbxml) | **PUT** /accounts/{accountId}/endpoints/{endpointId}/bxml | Update Endpoint BXML
 *MFAApi* | [**GenerateMessagingCode**](docs/MFAApi.md#generatemessagingcode) | **POST** /accounts/{accountId}/code/messaging | Messaging Authentication Code
 *MFAApi* | [**GenerateVoiceCode**](docs/MFAApi.md#generatevoicecode) | **POST** /accounts/{accountId}/code/voice | Voice Authentication Code
 *MFAApi* | [**VerifyCode**](docs/MFAApi.md#verifycode) | **POST** /accounts/{accountId}/code/verify | Verify Authentication Code
@@ -207,16 +212,32 @@ Class | Method | HTTP request | Description
  - [Model.CreateAsyncBulkLookupResponseData](docs/CreateAsyncBulkLookupResponseData.md)
  - [Model.CreateCall](docs/CreateCall.md)
  - [Model.CreateCallResponse](docs/CreateCallResponse.md)
+ - [Model.CreateEndpointRequest](docs/CreateEndpointRequest.md)
+ - [Model.CreateEndpointRequestBase](docs/CreateEndpointRequestBase.md)
+ - [Model.CreateEndpointResponse](docs/CreateEndpointResponse.md)
+ - [Model.CreateEndpointResponseData](docs/CreateEndpointResponseData.md)
  - [Model.CreateMessageRequestError](docs/CreateMessageRequestError.md)
  - [Model.CreateMultiChannelMessageResponse](docs/CreateMultiChannelMessageResponse.md)
  - [Model.CreateSyncLookupResponse](docs/CreateSyncLookupResponse.md)
  - [Model.CreateSyncLookupResponseData](docs/CreateSyncLookupResponseData.md)
+ - [Model.CreateWebRtcConnectionRequest](docs/CreateWebRtcConnectionRequest.md)
  - [Model.DeactivationEventEnum](docs/DeactivationEventEnum.md)
+ - [Model.Device](docs/Device.md)
+ - [Model.DeviceStatusEnum](docs/DeviceStatusEnum.md)
  - [Model.DisconnectCallback](docs/DisconnectCallback.md)
  - [Model.Diversion](docs/Diversion.md)
  - [Model.DtmfCallback](docs/DtmfCallback.md)
+ - [Model.Endpoint](docs/Endpoint.md)
+ - [Model.EndpointDirectionEnum](docs/EndpointDirectionEnum.md)
+ - [Model.EndpointEvent](docs/EndpointEvent.md)
+ - [Model.EndpointEventTypeEnum](docs/EndpointEventTypeEnum.md)
+ - [Model.EndpointResponse](docs/EndpointResponse.md)
+ - [Model.EndpointStatusEnum](docs/EndpointStatusEnum.md)
+ - [Model.EndpointTypeEnum](docs/EndpointTypeEnum.md)
+ - [Model.Endpoints](docs/Endpoints.md)
  - [Model.Error](docs/Error.md)
  - [Model.ErrorObject](docs/ErrorObject.md)
+ - [Model.ErrorResponse](docs/ErrorResponse.md)
  - [Model.ErrorSource](docs/ErrorSource.md)
  - [Model.FailureWebhook](docs/FailureWebhook.md)
  - [Model.FieldError](docs/FieldError.md)
@@ -234,6 +255,7 @@ Class | Method | HTTP request | Description
  - [Model.Link](docs/Link.md)
  - [Model.LinkSchema](docs/LinkSchema.md)
  - [Model.LinksObject](docs/LinksObject.md)
+ - [Model.ListEndpointsResponse](docs/ListEndpointsResponse.md)
  - [Model.ListMessageDirectionEnum](docs/ListMessageDirectionEnum.md)
  - [Model.ListMessageItem](docs/ListMessageItem.md)
  - [Model.LookupErrorResponse](docs/LookupErrorResponse.md)
@@ -277,6 +299,7 @@ Class | Method | HTTP request | Description
  - [Model.MultiChannelMessageRequest](docs/MultiChannelMessageRequest.md)
  - [Model.MultiChannelMessageResponseData](docs/MultiChannelMessageResponseData.md)
  - [Model.OptInWorkflow](docs/OptInWorkflow.md)
+ - [Model.Page](docs/Page.md)
  - [Model.PageInfo](docs/PageInfo.md)
  - [Model.PriorityEnum](docs/PriorityEnum.md)
  - [Model.ProductTypeEnum](docs/ProductTypeEnum.md)
@@ -305,6 +328,8 @@ Class | Method | HTTP request | Description
  - [Model.RecordingTranscriptions](docs/RecordingTranscriptions.md)
  - [Model.RedirectCallback](docs/RedirectCallback.md)
  - [Model.RedirectMethodEnum](docs/RedirectMethodEnum.md)
+ - [Model.SipConnectionMetadata](docs/SipConnectionMetadata.md)
+ - [Model.SipCredentials](docs/SipCredentials.md)
  - [Model.SmsMessageContent](docs/SmsMessageContent.md)
  - [Model.StandaloneCardOrientationEnum](docs/StandaloneCardOrientationEnum.md)
  - [Model.StatusCallback](docs/StatusCallback.md)

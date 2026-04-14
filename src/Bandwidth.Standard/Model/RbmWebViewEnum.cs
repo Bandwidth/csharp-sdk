@@ -27,9 +27,9 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// Defines the layout of the WebView on a mobile device. It must be defined when application is set to &#x60;WEBVIEW&#x60; - &#x60;FULL&#x60; WebView takes the full screen.  - &#x60;HALF&#x60; WebView takes half of the screen. - &#x60;TALL&#x60; WebView takes three-quarters of the screen.
+    /// Defines the layout of the WebView on a mobile device. It must be defined when application is set to &#x60;WEBVIEW&#x60; - &#x60;FULL&#x60; WebView takes the full screen. - &#x60;HALF&#x60; WebView takes half of the screen. - &#x60;TALL&#x60; WebView takes three-quarters of the screen.
     /// </summary>
-    /// <value>Defines the layout of the WebView on a mobile device. It must be defined when application is set to &#x60;WEBVIEW&#x60; - &#x60;FULL&#x60; WebView takes the full screen.  - &#x60;HALF&#x60; WebView takes half of the screen. - &#x60;TALL&#x60; WebView takes three-quarters of the screen.</value>
+    /// <value>Defines the layout of the WebView on a mobile device. It must be defined when application is set to &#x60;WEBVIEW&#x60; - &#x60;FULL&#x60; WebView takes the full screen. - &#x60;HALF&#x60; WebView takes half of the screen. - &#x60;TALL&#x60; WebView takes three-quarters of the screen.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum RbmWebViewEnum
     {

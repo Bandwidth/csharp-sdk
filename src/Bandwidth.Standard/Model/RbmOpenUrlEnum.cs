@@ -27,9 +27,9 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// Specifies how the URL should be opened on a mobile device. - &#x60;BROWSER&#x60; Opens the URL in the device&#39;s default browser. If application is not set or the device doesn’t support WebView, this option is used by default.  - &#x60;WEBVIEW&#x60; Opens the URL in an in-app WebView.
+    /// Specifies how the URL should be opened on a mobile device. - &#x60;BROWSER&#x60; Opens the URL in the device&#39;s default browser. If application is not set or the device doesn’t support WebView, this option is used by default. - &#x60;WEBVIEW&#x60; Opens the URL in an in-app WebView.
     /// </summary>
-    /// <value>Specifies how the URL should be opened on a mobile device. - &#x60;BROWSER&#x60; Opens the URL in the device&#39;s default browser. If application is not set or the device doesn’t support WebView, this option is used by default.  - &#x60;WEBVIEW&#x60; Opens the URL in an in-app WebView.</value>
+    /// <value>Specifies how the URL should be opened on a mobile device. - &#x60;BROWSER&#x60; Opens the URL in the device&#39;s default browser. If application is not set or the device doesn’t support WebView, this option is used by default. - &#x60;WEBVIEW&#x60; Opens the URL in an in-app WebView.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum RbmOpenUrlEnum
     {
