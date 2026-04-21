@@ -68,6 +68,8 @@ docs/EndpointTypeEnum.md
 docs/Endpoints.md
 docs/EndpointsApi.md
 docs/Error.md
+docs/Error1.md
+docs/Error1Source.md
 docs/ErrorObject.md
 docs/ErrorResponse.md
 docs/ErrorSource.md
@@ -85,6 +87,7 @@ docs/InitiateCallback.md
 docs/LatestMessageDeliveryStatusEnum.md
 docs/LineTypeEnum.md
 docs/Link.md
+docs/Link1.md
 docs/LinkSchema.md
 docs/LinksObject.md
 docs/ListEndpointsResponse.md
@@ -306,6 +309,8 @@ src/Bandwidth.Standard/Model/EndpointStatusEnum.cs
 src/Bandwidth.Standard/Model/EndpointTypeEnum.cs
 src/Bandwidth.Standard/Model/Endpoints.cs
 src/Bandwidth.Standard/Model/Error.cs
+src/Bandwidth.Standard/Model/Error1.cs
+src/Bandwidth.Standard/Model/Error1Source.cs
 src/Bandwidth.Standard/Model/ErrorObject.cs
 src/Bandwidth.Standard/Model/ErrorResponse.cs
 src/Bandwidth.Standard/Model/ErrorSource.cs
@@ -323,6 +328,7 @@ src/Bandwidth.Standard/Model/InitiateCallback.cs
 src/Bandwidth.Standard/Model/LatestMessageDeliveryStatusEnum.cs
 src/Bandwidth.Standard/Model/LineTypeEnum.cs
 src/Bandwidth.Standard/Model/Link.cs
+src/Bandwidth.Standard/Model/Link1.cs
 src/Bandwidth.Standard/Model/LinkSchema.cs
 src/Bandwidth.Standard/Model/LinksObject.cs
 src/Bandwidth.Standard/Model/ListEndpointsResponse.cs

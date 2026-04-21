@@ -61,7 +61,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="to">The destination to call (must be an E.164 formatted number (e.g. &#x60;+15555551212&#x60;) or a SIP URI (e.g. &#x60;sip:user@server.example&#x60;)). (required).</param>
         /// <param name="from">A Bandwidth phone number on your account the call should come from (must be in E.164 format, like &#x60;+15555551212&#x60;) even if &#x60;privacy&#x60; is set to true. (required).</param>
         /// <param name="privacy">Hide the calling number. The &#x60;displayName&#x60; field can be used to customize the displayed name..</param>
-        /// <param name="displayName">The caller display name to use when the call is created. May not exceed 256 characters nor contain control characters such as new lines. If &#x60;privacy&#x60; is true, only the following values are valid: &#x60;Restricted&#x60;, &#x60;Anonymous&#x60;, &#x60;Private&#x60;, or &#x60;Unavailable&#x60;..</param>
+        /// <param name="displayName">The caller display name to use when the call is created.  May not exceed 256 characters nor contain control characters such as new lines. If &#x60;privacy&#x60; is true, only the following values are valid: &#x60;Restricted&#x60;, &#x60;Anonymous&#x60;, &#x60;Private&#x60;, or &#x60;Unavailable&#x60;..</param>
         /// <param name="uui">A comma-separated list of &#39;User-To-User&#39; headers to be sent in the INVITE when calling a SIP URI. Each value must end with an &#39;encoding&#39; parameter as described in &lt;a href&#x3D;&#39;https://tools.ietf.org/html/rfc7433&#39;&gt;RFC 7433&lt;/a&gt;. Only &#39;jwt&#39;, &#39;base64&#39; and &#39;hex&#39; encodings are allowed. The entire value cannot exceed 350 characters, including parameters and separators..</param>
         /// <param name="applicationId">The id of the application associated with the &#x60;from&#x60; number. (required).</param>
         /// <param name="answerUrl">The full URL to send the &lt;a href&#x3D;&#39;/docs/voice/webhooks/answer&#39;&gt;Answer&lt;/a&gt; event to when the called party answers. This endpoint should return the first &lt;a href&#x3D;&#39;/docs/voice/bxml&#39;&gt;BXML document&lt;/a&gt; to be executed in the call.  Must use &#x60;https&#x60; if specifying &#x60;username&#x60; and &#x60;password&#x60;. (required).</param>
@@ -78,7 +78,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="callbackTimeout">This is the timeout (in seconds) to use when delivering webhooks for the call. Can be any numeric value (including decimals) between 1 and 25. (default to 15D).</param>
         /// <param name="machineDetection">machineDetection.</param>
         /// <param name="priority">The priority of this call over other calls from your account. For example, if during a call your application needs to place a new call and bridge it with the current call, you might want to create the call with priority 1 so that it will be the next call picked off your queue, ahead of other less time sensitive calls. A lower value means higher priority, so a priority 1 call takes precedence over a priority 2 call. (default to 5).</param>
-        /// <param name="tag">A custom string that will be sent with all webhooks for this call unless overwritten by a future &lt;a href&#x3D;&#39;/docs/voice/bxml/tag&#39;&gt;&#x60;&lt;Tag&gt;&#x60;&lt;/a&gt; verb or &#x60;tag&#x60; attribute on another verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;  Max length 256 characters..</param>
+        /// <param name="tag">A custom string that will be sent with all webhooks for this call unless overwritten by a future &lt;a href&#x3D;&#39;/docs/voice/bxml/tag&#39;&gt;&#x60;&lt;Tag&gt;&#x60;&lt;/a&gt; verb or &#x60;tag&#x60; attribute on another verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;  Max length 4096 characters..</param>
         public CreateCall(string to = default(string), string from = default(string), bool? privacy = default(bool?), string displayName = default(string), string uui = default(string), string applicationId = default(string), string answerUrl = default(string), CallbackMethodEnum? answerMethod = default(CallbackMethodEnum?), string username = default(string), string password = default(string), string answerFallbackUrl = default(string), CallbackMethodEnum? answerFallbackMethod = default(CallbackMethodEnum?), string fallbackUsername = default(string), string fallbackPassword = default(string), string disconnectUrl = default(string), CallbackMethodEnum? disconnectMethod = default(CallbackMethodEnum?), double? callTimeout = 30D, double? callbackTimeout = 15D, MachineDetectionConfiguration machineDetection = default(MachineDetectionConfiguration), int? priority = 5, string tag = default(string))
         {
             // to ensure "to" is required (not null)
@@ -152,9 +152,9 @@ namespace Bandwidth.Standard.Model
         public bool? Privacy { get; set; }
 
         /// <summary>
-        /// The caller display name to use when the call is created. May not exceed 256 characters nor contain control characters such as new lines. If &#x60;privacy&#x60; is true, only the following values are valid: &#x60;Restricted&#x60;, &#x60;Anonymous&#x60;, &#x60;Private&#x60;, or &#x60;Unavailable&#x60;.
+        /// The caller display name to use when the call is created.  May not exceed 256 characters nor contain control characters such as new lines. If &#x60;privacy&#x60; is true, only the following values are valid: &#x60;Restricted&#x60;, &#x60;Anonymous&#x60;, &#x60;Private&#x60;, or &#x60;Unavailable&#x60;.
         /// </summary>
-        /// <value>The caller display name to use when the call is created. May not exceed 256 characters nor contain control characters such as new lines. If &#x60;privacy&#x60; is true, only the following values are valid: &#x60;Restricted&#x60;, &#x60;Anonymous&#x60;, &#x60;Private&#x60;, or &#x60;Unavailable&#x60;.</value>
+        /// <value>The caller display name to use when the call is created.  May not exceed 256 characters nor contain control characters such as new lines. If &#x60;privacy&#x60; is true, only the following values are valid: &#x60;Restricted&#x60;, &#x60;Anonymous&#x60;, &#x60;Private&#x60;, or &#x60;Unavailable&#x60;.</value>
         /// <example>John Doe</example>
         [DataMember(Name = "displayName", EmitDefaultValue = true)]
         public string DisplayName { get; set; }
@@ -262,9 +262,9 @@ namespace Bandwidth.Standard.Model
         public int? Priority { get; set; }
 
         /// <summary>
-        /// A custom string that will be sent with all webhooks for this call unless overwritten by a future &lt;a href&#x3D;&#39;/docs/voice/bxml/tag&#39;&gt;&#x60;&lt;Tag&gt;&#x60;&lt;/a&gt; verb or &#x60;tag&#x60; attribute on another verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;  Max length 256 characters.
+        /// A custom string that will be sent with all webhooks for this call unless overwritten by a future &lt;a href&#x3D;&#39;/docs/voice/bxml/tag&#39;&gt;&#x60;&lt;Tag&gt;&#x60;&lt;/a&gt; verb or &#x60;tag&#x60; attribute on another verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;  Max length 4096 characters.
         /// </summary>
-        /// <value>A custom string that will be sent with all webhooks for this call unless overwritten by a future &lt;a href&#x3D;&#39;/docs/voice/bxml/tag&#39;&gt;&#x60;&lt;Tag&gt;&#x60;&lt;/a&gt; verb or &#x60;tag&#x60; attribute on another verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;  Max length 256 characters.</value>
+        /// <value>A custom string that will be sent with all webhooks for this call unless overwritten by a future &lt;a href&#x3D;&#39;/docs/voice/bxml/tag&#39;&gt;&#x60;&lt;Tag&gt;&#x60;&lt;/a&gt; verb or &#x60;tag&#x60; attribute on another verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;  Max length 4096 characters.</value>
         /// <example>arbitrary text here</example>
         [DataMember(Name = "tag", EmitDefaultValue = true)]
         public string Tag { get; set; }
@@ -403,9 +403,9 @@ namespace Bandwidth.Standard.Model
             }
 
             // Tag (string) maxLength
-            if (this.Tag != null && this.Tag.Length > 256)
+            if (this.Tag != null && this.Tag.Length > 4096)
             {
-                yield return new ValidationResult("Invalid value for Tag, length must be less than 256.", new [] { "Tag" });
+                yield return new ValidationResult("Invalid value for Tag, length must be less than 4096.", new [] { "Tag" });
             }
 
             yield break;
