@@ -23,18 +23,18 @@ using Newtonsoft.Json;
 namespace Bandwidth.Standard.Test.Unit.Model
 {
     /// <summary>
-    ///  Class for testing WebhookSubscriptionsListBody
+    ///  Class for testing BrtcErrorResponse
     /// </summary>
-    public class WebhookSubscriptionsListBodyTests : IDisposable
+    public class BrtcErrorResponseTests : IDisposable
     {
-        private WebhookSubscriptionsListBody instance;
+        private BrtcErrorResponse instance;
 
-        public WebhookSubscriptionsListBodyTests()
+        public BrtcErrorResponseTests()
         {
-            instance = new WebhookSubscriptionsListBody(
-                links: new LinksObject(),
-                errors: new List<WebhookSubscriptionError>(),
-                data: new List<WebhookSubscription>()
+            instance = new BrtcErrorResponse(
+                links: new List<BrtcLink>(),
+                data: new Object(),
+                errors: new List<BrtcError>()
             );
         }
 
@@ -44,12 +44,12 @@ namespace Bandwidth.Standard.Test.Unit.Model
         }
 
         /// <summary>
-        /// Test an instance of WebhookSubscriptionsListBody
+        /// Test an instance of BrtcErrorResponse
         /// </summary>
         [Fact]
-        public void WebhookSubscriptionsListBodyInstanceTest()
+        public void BrtcErrorResponseInstanceTest()
         {
-            Assert.IsType<WebhookSubscriptionsListBody>(instance);
+            Assert.IsType<BrtcErrorResponse>(instance);
         }
 
         /// <summary>
@@ -58,16 +58,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void LinksTest()
         {
-            Assert.IsType<LinksObject>(instance.Links);
-        }
-
-        /// <summary>
-        /// Test the property 'Errors'
-        /// </summary>
-        [Fact]
-        public void ErrorsTest()
-        {
-            Assert.IsType<List<WebhookSubscriptionError>>(instance.Errors);
+            Assert.IsType<List<BrtcLink>>(instance.Links);
         }
 
         /// <summary>
@@ -76,7 +67,16 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void DataTest()
         {
-            Assert.IsType<List<WebhookSubscription>>(instance.Data);
+            Assert.NotNull(instance.Data);
+        }
+
+        /// <summary>
+        /// Test the property 'Errors'
+        /// </summary>
+        [Fact]
+        public void ErrorsTest()
+        {
+            Assert.IsType<List<BrtcError>>(instance.Errors);
         }
     }
 }

@@ -52,14 +52,14 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 tag: "endpoint-2"
             );
 
-            var selfLink = new Link(rel: "self", href: "/accounts/123/endpoints");
+            var selfLink = new BrtcLink(rel: "self", href: "/accounts/123/endpoints");
             var page = new Page(pageSize: 10, totalElements: 2, totalPages: 1, pageNumber: 0);
 
             instance = new ListEndpointsResponse(
-                links: new List<Link> { selfLink },
+                links: new List<BrtcLink> { selfLink },
                 page: page,
                 data: new List<Endpoints> { endpoint1, endpoint2 },
-                errors: new List<Error>()
+                errors: new List<BrtcError>()
             );
         }
 
@@ -83,7 +83,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void LinksTest()
         {
-            Assert.IsType<List<Link>>(instance.Links);
+            Assert.IsType<List<BrtcLink>>(instance.Links);
             Assert.Single(instance.Links);
             Assert.Equal("self", instance.Links[0].Rel);
             Assert.Equal("/accounts/123/endpoints", instance.Links[0].Href);
@@ -120,7 +120,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void ErrorsTest()
         {
-            Assert.IsType<List<Error>>(instance.Errors);
+            Assert.IsType<List<BrtcError>>(instance.Errors);
             Assert.Empty(instance.Errors);
         }
 
