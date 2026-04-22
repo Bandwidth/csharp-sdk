@@ -1,4 +1,4 @@
-# Bandwidth.Standard.Model.Link1
+# Bandwidth.Standard.Model.BrtcLink
 
 ## Properties
 

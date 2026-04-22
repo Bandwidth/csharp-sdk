@@ -1,4 +1,4 @@
-# Bandwidth.Standard.Model.Error1Source
+# Bandwidth.Standard.Model.BrtcErrorSource
 
 ## Properties
 

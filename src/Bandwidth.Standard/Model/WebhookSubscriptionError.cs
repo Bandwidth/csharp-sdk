@@ -27,37 +27,41 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// RbmSuggestionResponse
+    /// WebhookSubscriptionError
     /// </summary>
-    [DataContract(Name = "rbmSuggestionResponse")]
-    public partial class RbmSuggestionResponse : IValidatableObject
+    [DataContract(Name = "webhookSubscriptionError")]
+    public partial class WebhookSubscriptionError : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RbmSuggestionResponse" /> class.
+        /// Initializes a new instance of the <see cref="WebhookSubscriptionError" /> class.
         /// </summary>
-        /// <param name="text">The text associated with the suggestion response..</param>
-        /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked..</param>
-        public RbmSuggestionResponse(string text = default(string), byte[] postbackData = default(byte[]))
+        /// <param name="code">code.</param>
+        /// <param name="description">description.</param>
+        /// <param name="telephoneNumbers">telephoneNumbers.</param>
+        public WebhookSubscriptionError(int code = default(int), string description = default(string), List<TelephoneNumber> telephoneNumbers = default(List<TelephoneNumber>))
         {
-            this.Text = text;
-            this.PostbackData = postbackData;
+            this.Code = code;
+            this.Description = description;
+            this.TelephoneNumbers = telephoneNumbers;
         }
 
         /// <summary>
-        /// The text associated with the suggestion response.
+        /// Gets or Sets Code
         /// </summary>
-        /// <value>The text associated with the suggestion response.</value>
-        /// <example>Yes, I would like to proceed</example>
-        [DataMember(Name = "text", EmitDefaultValue = false)]
-        public string Text { get; set; }
+        [DataMember(Name = "code", EmitDefaultValue = false)]
+        public int Code { get; set; }
 
         /// <summary>
-        /// Base64 payload the customer receives when the reply is clicked.
+        /// Gets or Sets Description
         /// </summary>
-        /// <value>Base64 payload the customer receives when the reply is clicked.</value>
-        /// <example>[B@3d5e0bf0</example>
-        [DataMember(Name = "postbackData", EmitDefaultValue = false)]
-        public byte[] PostbackData { get; set; }
+        [DataMember(Name = "description", EmitDefaultValue = false)]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TelephoneNumbers
+        /// </summary>
+        [DataMember(Name = "telephoneNumbers", EmitDefaultValue = false)]
+        public List<TelephoneNumber> TelephoneNumbers { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,9 +70,10 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RbmSuggestionResponse {\n");
-            sb.Append("  Text: ").Append(Text).Append("\n");
-            sb.Append("  PostbackData: ").Append(PostbackData).Append("\n");
+            sb.Append("class WebhookSubscriptionError {\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  TelephoneNumbers: ").Append(TelephoneNumbers).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -89,12 +94,6 @@ namespace Bandwidth.Standard.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // PostbackData (byte[]) maxLength
-            if (this.PostbackData != null && this.PostbackData.Length > 2048)
-            {
-                yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new [] { "PostbackData" });
-            }
-
             yield break;
         }
     }

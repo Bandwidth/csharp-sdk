@@ -27,19 +27,19 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// Error1Source
+    /// BrtcErrorSource
     /// </summary>
-    [DataContract(Name = "error1_source")]
-    public partial class Error1Source : IValidatableObject
+    [DataContract(Name = "brtcErrorSource")]
+    public partial class BrtcErrorSource : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Error1Source" /> class.
+        /// Initializes a new instance of the <see cref="BrtcErrorSource" /> class.
         /// </summary>
         /// <param name="varParameter">The URI parameter that caused the error..</param>
         /// <param name="field">The request body field that caused the error..</param>
         /// <param name="header">The header that caused the error..</param>
         /// <param name="reference">The resource ID or path to the resource (or non-existent resource) causing the error..</param>
-        public Error1Source(string varParameter = default(string), string field = default(string), string header = default(string), string reference = default(string))
+        public BrtcErrorSource(string varParameter = default(string), string field = default(string), string header = default(string), string reference = default(string))
         {
             this.Parameter = varParameter;
             this.Field = field;
@@ -86,7 +86,7 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Error1Source {\n");
+            sb.Append("class BrtcErrorSource {\n");
             sb.Append("  Parameter: ").Append(Parameter).Append("\n");
             sb.Append("  Field: ").Append(Field).Append("\n");
             sb.Append("  Header: ").Append(Header).Append("\n");

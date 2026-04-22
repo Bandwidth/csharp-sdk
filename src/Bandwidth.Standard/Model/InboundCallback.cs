@@ -48,10 +48,10 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="time">time (required).</param>
         /// <param name="type">type (required).</param>
-        /// <param name="to">The destination phone number the message was sent to.  For inbound callbacks, this is the Bandwidth number or alphanumeric identifier that received the message.  (required).</param>
+        /// <param name="to">The destination phone number the message was sent to. For inbound callbacks, this is the Bandwidth number or alphanumeric identifier that received the message.  (required).</param>
         /// <param name="description">A detailed description of the event described by the callback. (required).</param>
         /// <param name="message">message (required).</param>
-        /// <param name="carrierName">The name of the Authorized Message Provider (AMP) that handled this message.  In the US, this is the carrier that the message was sent to. This field is present only when this account feature has been enabled..</param>
+        /// <param name="carrierName">The name of the Authorized Message Provider (AMP) that handled this message. In the US, this is the carrier that the message was sent to. This field is present only when this account feature has been enabled..</param>
         public InboundCallback(DateTime time = default(DateTime), InboundCallbackTypeEnum type = default(InboundCallbackTypeEnum), string to = default(string), string description = default(string), InboundCallbackMessage message = default(InboundCallbackMessage), string carrierName = default(string))
         {
             this.Time = time;
@@ -85,9 +85,9 @@ namespace Bandwidth.Standard.Model
         public DateTime Time { get; set; }
 
         /// <summary>
-        /// The destination phone number the message was sent to.  For inbound callbacks, this is the Bandwidth number or alphanumeric identifier that received the message. 
+        /// The destination phone number the message was sent to. For inbound callbacks, this is the Bandwidth number or alphanumeric identifier that received the message. 
         /// </summary>
-        /// <value>The destination phone number the message was sent to.  For inbound callbacks, this is the Bandwidth number or alphanumeric identifier that received the message. </value>
+        /// <value>The destination phone number the message was sent to. For inbound callbacks, this is the Bandwidth number or alphanumeric identifier that received the message. </value>
         /// <example>+15552223333</example>
         [DataMember(Name = "to", IsRequired = true, EmitDefaultValue = true)]
         public string To { get; set; }
@@ -107,9 +107,9 @@ namespace Bandwidth.Standard.Model
         public InboundCallbackMessage Message { get; set; }
 
         /// <summary>
-        /// The name of the Authorized Message Provider (AMP) that handled this message.  In the US, this is the carrier that the message was sent to. This field is present only when this account feature has been enabled.
+        /// The name of the Authorized Message Provider (AMP) that handled this message. In the US, this is the carrier that the message was sent to. This field is present only when this account feature has been enabled.
         /// </summary>
-        /// <value>The name of the Authorized Message Provider (AMP) that handled this message.  In the US, this is the carrier that the message was sent to. This field is present only when this account feature has been enabled.</value>
+        /// <value>The name of the Authorized Message Provider (AMP) that handled this message. In the US, this is the carrier that the message was sent to. This field is present only when this account feature has been enabled.</value>
         /// <example>AT&amp;T</example>
         [DataMember(Name = "carrierName", EmitDefaultValue = false)]
         public string CarrierName { get; set; }

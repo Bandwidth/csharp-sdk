@@ -27,36 +27,36 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// Error1
+    /// BrtcError
     /// </summary>
-    [DataContract(Name = "error1")]
-    public partial class Error1 : IValidatableObject
+    [DataContract(Name = "brtcError")]
+    public partial class BrtcError : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Error1" /> class.
+        /// Initializes a new instance of the <see cref="BrtcError" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Error1() { }
+        protected BrtcError() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Error1" /> class.
+        /// Initializes a new instance of the <see cref="BrtcError" /> class.
         /// </summary>
         /// <param name="id">A unique identifier for the error..</param>
         /// <param name="type">The type of error. (required).</param>
         /// <param name="description">A description of the error. (required).</param>
         /// <param name="code">A code that uniquely identifies the error..</param>
         /// <param name="source">source.</param>
-        public Error1(Guid id = default(Guid), string type = default(string), string description = default(string), string code = default(string), Error1Source source = default(Error1Source))
+        public BrtcError(Guid id = default(Guid), string type = default(string), string description = default(string), string code = default(string), BrtcErrorSource source = default(BrtcErrorSource))
         {
             // to ensure "type" is required (not null)
             if (type == null)
             {
-                throw new ArgumentNullException("type is a required property for Error1 and cannot be null");
+                throw new ArgumentNullException("type is a required property for BrtcError and cannot be null");
             }
             this.Type = type;
             // to ensure "description" is required (not null)
             if (description == null)
             {
-                throw new ArgumentNullException("description is a required property for Error1 and cannot be null");
+                throw new ArgumentNullException("description is a required property for BrtcError and cannot be null");
             }
             this.Description = description;
             this.Id = id;
@@ -100,7 +100,7 @@ namespace Bandwidth.Standard.Model
         /// Gets or Sets Source
         /// </summary>
         [DataMember(Name = "source", EmitDefaultValue = false)]
-        public Error1Source Source { get; set; }
+        public BrtcErrorSource Source { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -109,7 +109,7 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Error1 {\n");
+            sb.Append("class BrtcError {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
