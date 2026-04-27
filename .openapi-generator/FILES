@@ -10,6 +10,10 @@ docs/AsyncLookupRequest.md
 docs/BlockedWebhook.md
 docs/BridgeCompleteCallback.md
 docs/BridgeTargetCompleteCallback.md
+docs/BrtcError.md
+docs/BrtcErrorResponse.md
+docs/BrtcErrorSource.md
+docs/BrtcLink.md
 docs/BusinessEntityTypeEnum.md
 docs/BusinessRegistrationTypeEnum.md
 docs/CallDirectionEnum.md
@@ -67,9 +71,7 @@ docs/EndpointStatusEnum.md
 docs/EndpointTypeEnum.md
 docs/Endpoints.md
 docs/EndpointsApi.md
-docs/Error.md
 docs/ErrorObject.md
-docs/ErrorResponse.md
 docs/ErrorSource.md
 docs/FailureWebhook.md
 docs/FieldError.md
@@ -207,6 +209,7 @@ docs/VoiceApiError.md
 docs/VoiceCodeResponse.md
 docs/WebhookSubscription.md
 docs/WebhookSubscriptionBasicAuthentication.md
+docs/WebhookSubscriptionError.md
 docs/WebhookSubscriptionRequestSchema.md
 docs/WebhookSubscriptionTypeEnum.md
 docs/WebhookSubscriptionsListBody.md
@@ -251,6 +254,10 @@ src/Bandwidth.Standard/Model/AsyncLookupRequest.cs
 src/Bandwidth.Standard/Model/BlockedWebhook.cs
 src/Bandwidth.Standard/Model/BridgeCompleteCallback.cs
 src/Bandwidth.Standard/Model/BridgeTargetCompleteCallback.cs
+src/Bandwidth.Standard/Model/BrtcError.cs
+src/Bandwidth.Standard/Model/BrtcErrorResponse.cs
+src/Bandwidth.Standard/Model/BrtcErrorSource.cs
+src/Bandwidth.Standard/Model/BrtcLink.cs
 src/Bandwidth.Standard/Model/BusinessEntityTypeEnum.cs
 src/Bandwidth.Standard/Model/BusinessRegistrationTypeEnum.cs
 src/Bandwidth.Standard/Model/CallDirectionEnum.cs
@@ -305,9 +312,7 @@ src/Bandwidth.Standard/Model/EndpointResponse.cs
 src/Bandwidth.Standard/Model/EndpointStatusEnum.cs
 src/Bandwidth.Standard/Model/EndpointTypeEnum.cs
 src/Bandwidth.Standard/Model/Endpoints.cs
-src/Bandwidth.Standard/Model/Error.cs
 src/Bandwidth.Standard/Model/ErrorObject.cs
-src/Bandwidth.Standard/Model/ErrorResponse.cs
 src/Bandwidth.Standard/Model/ErrorSource.cs
 src/Bandwidth.Standard/Model/FailureWebhook.cs
 src/Bandwidth.Standard/Model/FieldError.cs
@@ -436,6 +441,7 @@ src/Bandwidth.Standard/Model/VoiceApiError.cs
 src/Bandwidth.Standard/Model/VoiceCodeResponse.cs
 src/Bandwidth.Standard/Model/WebhookSubscription.cs
 src/Bandwidth.Standard/Model/WebhookSubscriptionBasicAuthentication.cs
+src/Bandwidth.Standard/Model/WebhookSubscriptionError.cs
 src/Bandwidth.Standard/Model/WebhookSubscriptionRequestSchema.cs
 src/Bandwidth.Standard/Model/WebhookSubscriptionTypeEnum.cs
 src/Bandwidth.Standard/Model/WebhookSubscriptionsListBody.cs

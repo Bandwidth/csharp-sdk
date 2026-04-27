@@ -1,4 +1,4 @@
-# Bandwidth.Standard.Model.Error
+# Bandwidth.Standard.Model.WebhookSubscriptionError
 
 ## Properties
 

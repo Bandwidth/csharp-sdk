@@ -78,7 +78,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="callbackTimeout">This is the timeout (in seconds) to use when delivering webhooks for the call. Can be any numeric value (including decimals) between 1 and 25. (default to 15D).</param>
         /// <param name="machineDetection">machineDetection.</param>
         /// <param name="priority">The priority of this call over other calls from your account. For example, if during a call your application needs to place a new call and bridge it with the current call, you might want to create the call with priority 1 so that it will be the next call picked off your queue, ahead of other less time sensitive calls. A lower value means higher priority, so a priority 1 call takes precedence over a priority 2 call. (default to 5).</param>
-        /// <param name="tag">A custom string that will be sent with all webhooks for this call unless overwritten by a future &lt;a href&#x3D;&#39;/docs/voice/bxml/tag&#39;&gt;&#x60;&lt;Tag&gt;&#x60;&lt;/a&gt; verb or &#x60;tag&#x60; attribute on another verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;  Max length 256 characters..</param>
+        /// <param name="tag">A custom string that will be sent with all webhooks for this call unless overwritten by a future &lt;a href&#x3D;&#39;/docs/voice/bxml/tag&#39;&gt;&#x60;&lt;Tag&gt;&#x60;&lt;/a&gt; verb or &#x60;tag&#x60; attribute on another verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;  Max length 4096 characters..</param>
         public CreateCall(string to = default(string), string from = default(string), bool? privacy = default(bool?), string displayName = default(string), string uui = default(string), string applicationId = default(string), string answerUrl = default(string), CallbackMethodEnum? answerMethod = default(CallbackMethodEnum?), string username = default(string), string password = default(string), string answerFallbackUrl = default(string), CallbackMethodEnum? answerFallbackMethod = default(CallbackMethodEnum?), string fallbackUsername = default(string), string fallbackPassword = default(string), string disconnectUrl = default(string), CallbackMethodEnum? disconnectMethod = default(CallbackMethodEnum?), double? callTimeout = 30D, double? callbackTimeout = 15D, MachineDetectionConfiguration machineDetection = default(MachineDetectionConfiguration), int? priority = 5, string tag = default(string))
         {
             // to ensure "to" is required (not null)
@@ -262,9 +262,9 @@ namespace Bandwidth.Standard.Model
         public int? Priority { get; set; }
 
         /// <summary>
-        /// A custom string that will be sent with all webhooks for this call unless overwritten by a future &lt;a href&#x3D;&#39;/docs/voice/bxml/tag&#39;&gt;&#x60;&lt;Tag&gt;&#x60;&lt;/a&gt; verb or &#x60;tag&#x60; attribute on another verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;  Max length 256 characters.
+        /// A custom string that will be sent with all webhooks for this call unless overwritten by a future &lt;a href&#x3D;&#39;/docs/voice/bxml/tag&#39;&gt;&#x60;&lt;Tag&gt;&#x60;&lt;/a&gt; verb or &#x60;tag&#x60; attribute on another verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;  Max length 4096 characters.
         /// </summary>
-        /// <value>A custom string that will be sent with all webhooks for this call unless overwritten by a future &lt;a href&#x3D;&#39;/docs/voice/bxml/tag&#39;&gt;&#x60;&lt;Tag&gt;&#x60;&lt;/a&gt; verb or &#x60;tag&#x60; attribute on another verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;  Max length 256 characters.</value>
+        /// <value>A custom string that will be sent with all webhooks for this call unless overwritten by a future &lt;a href&#x3D;&#39;/docs/voice/bxml/tag&#39;&gt;&#x60;&lt;Tag&gt;&#x60;&lt;/a&gt; verb or &#x60;tag&#x60; attribute on another verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;  Max length 4096 characters.</value>
         /// <example>arbitrary text here</example>
         [DataMember(Name = "tag", EmitDefaultValue = true)]
         public string Tag { get; set; }
@@ -403,9 +403,9 @@ namespace Bandwidth.Standard.Model
             }
 
             // Tag (string) maxLength
-            if (this.Tag != null && this.Tag.Length > 256)
+            if (this.Tag != null && this.Tag.Length > 4096)
             {
-                yield return new ValidationResult("Invalid value for Tag, length must be less than 256.", new [] { "Tag" });
+                yield return new ValidationResult("Invalid value for Tag, length must be less than 4096.", new [] { "Tag" });
             }
 
             yield break;

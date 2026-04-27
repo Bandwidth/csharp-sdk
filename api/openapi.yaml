@@ -5782,7 +5782,7 @@ paths:
                 badRequestErrorExample:
                   $ref: '#/components/examples/badRequestErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Bad Request
         "401":
           content:
@@ -5791,7 +5791,7 @@ paths:
                 unauthorizedErrorExample:
                   $ref: '#/components/examples/unauthorizedErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Unauthorized
         "403":
           content:
@@ -5800,7 +5800,7 @@ paths:
                 forbiddenErrorExample:
                   $ref: '#/components/examples/forbiddenErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Forbidden
         "404":
           content:
@@ -5809,7 +5809,7 @@ paths:
                 notFoundErrorExample:
                   $ref: '#/components/examples/notFoundErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Not Found
         "405":
           content:
@@ -5818,7 +5818,7 @@ paths:
                 methodNotAllowedErrorExample:
                   $ref: '#/components/examples/methodNotAllowedErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Method Not Allowed
         "415":
           content:
@@ -5827,7 +5827,7 @@ paths:
                 unsuppotedMediaTypeErrorExample:
                   $ref: '#/components/examples/unsupportedMediaTypeErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Unsupported Media Type
         "429":
           content:
@@ -5836,8 +5836,18 @@ paths:
                 tooManyRequestsErrorExample:
                   $ref: '#/components/examples/tooManyRequestsErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds the client should wait before making
+                another request.
+              explode: false
+              required: true
+              schema:
+                example: 900
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -5845,7 +5855,7 @@ paths:
                 serviceUnavailableErrorExample:
                   $ref: '#/components/examples/serviceUnavailableErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Service Unavailable
       summary: List Endpoints
       tags:
@@ -5888,7 +5898,7 @@ paths:
                 badRequestErrorExample:
                   $ref: '#/components/examples/badRequestErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Bad Request
         "401":
           content:
@@ -5897,7 +5907,7 @@ paths:
                 unauthorizedErrorExample:
                   $ref: '#/components/examples/unauthorizedErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Unauthorized
         "403":
           content:
@@ -5906,7 +5916,7 @@ paths:
                 forbiddenErrorExample:
                   $ref: '#/components/examples/forbiddenErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Forbidden
         "404":
           content:
@@ -5915,7 +5925,7 @@ paths:
                 notFoundErrorExample:
                   $ref: '#/components/examples/notFoundErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Not Found
         "405":
           content:
@@ -5924,7 +5934,7 @@ paths:
                 methodNotAllowedErrorExample:
                   $ref: '#/components/examples/methodNotAllowedErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Method Not Allowed
         "415":
           content:
@@ -5933,7 +5943,7 @@ paths:
                 unsuppotedMediaTypeErrorExample:
                   $ref: '#/components/examples/unsupportedMediaTypeErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Unsupported Media Type
         "429":
           content:
@@ -5942,8 +5952,18 @@ paths:
                 tooManyRequestsErrorExample:
                   $ref: '#/components/examples/tooManyRequestsErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds the client should wait before making
+                another request.
+              explode: false
+              required: true
+              schema:
+                example: 900
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -5951,7 +5971,7 @@ paths:
                 serviceUnavailableErrorExample:
                   $ref: '#/components/examples/serviceUnavailableErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Service Unavailable
       summary: Create Endpoint
       tags:
@@ -5996,7 +6016,7 @@ paths:
                 badRequestErrorExample:
                   $ref: '#/components/examples/badRequestErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Bad Request
         "401":
           content:
@@ -6005,7 +6025,7 @@ paths:
                 unauthorizedErrorExample:
                   $ref: '#/components/examples/unauthorizedErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Unauthorized
         "403":
           content:
@@ -6014,7 +6034,7 @@ paths:
                 forbiddenErrorExample:
                   $ref: '#/components/examples/forbiddenErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Forbidden
         "404":
           content:
@@ -6023,7 +6043,7 @@ paths:
                 notFoundErrorExample:
                   $ref: '#/components/examples/notFoundErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Not Found
         "405":
           content:
@@ -6032,7 +6052,7 @@ paths:
                 methodNotAllowedErrorExample:
                   $ref: '#/components/examples/methodNotAllowedErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Method Not Allowed
         "415":
           content:
@@ -6041,7 +6061,7 @@ paths:
                 unsuppotedMediaTypeErrorExample:
                   $ref: '#/components/examples/unsupportedMediaTypeErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Unsupported Media Type
         "429":
           content:
@@ -6050,8 +6070,18 @@ paths:
                 tooManyRequestsErrorExample:
                   $ref: '#/components/examples/tooManyRequestsErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds the client should wait before making
+                another request.
+              explode: false
+              required: true
+              schema:
+                example: 900
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -6059,7 +6089,7 @@ paths:
                 serviceUnavailableErrorExample:
                   $ref: '#/components/examples/serviceUnavailableErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Service Unavailable
       summary: Delete Endpoint
       tags:
@@ -6106,7 +6136,7 @@ paths:
                 badRequestErrorExample:
                   $ref: '#/components/examples/badRequestErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Bad Request
         "401":
           content:
@@ -6115,7 +6145,7 @@ paths:
                 unauthorizedErrorExample:
                   $ref: '#/components/examples/unauthorizedErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Unauthorized
         "403":
           content:
@@ -6124,7 +6154,7 @@ paths:
                 forbiddenErrorExample:
                   $ref: '#/components/examples/forbiddenErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Forbidden
         "404":
           content:
@@ -6133,7 +6163,7 @@ paths:
                 notFoundErrorExample:
                   $ref: '#/components/examples/notFoundErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Not Found
         "405":
           content:
@@ -6142,7 +6172,7 @@ paths:
                 methodNotAllowedErrorExample:
                   $ref: '#/components/examples/methodNotAllowedErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Method Not Allowed
         "415":
           content:
@@ -6151,7 +6181,7 @@ paths:
                 unsuppotedMediaTypeErrorExample:
                   $ref: '#/components/examples/unsupportedMediaTypeErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Unsupported Media Type
         "429":
           content:
@@ -6160,8 +6190,18 @@ paths:
                 tooManyRequestsErrorExample:
                   $ref: '#/components/examples/tooManyRequestsErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds the client should wait before making
+                another request.
+              explode: false
+              required: true
+              schema:
+                example: 900
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -6169,7 +6209,7 @@ paths:
                 serviceUnavailableErrorExample:
                   $ref: '#/components/examples/serviceUnavailableErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Service Unavailable
       summary: Get Endpoint
       tags:
@@ -6215,7 +6255,7 @@ paths:
                 badRequestErrorExample:
                   $ref: '#/components/examples/badRequestErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Bad Request
         "401":
           content:
@@ -6224,7 +6264,7 @@ paths:
                 unauthorizedErrorExample:
                   $ref: '#/components/examples/unauthorizedErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Unauthorized
         "403":
           content:
@@ -6233,7 +6273,7 @@ paths:
                 forbiddenErrorExample:
                   $ref: '#/components/examples/forbiddenErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Forbidden
         "404":
           content:
@@ -6242,7 +6282,7 @@ paths:
                 notFoundErrorExample:
                   $ref: '#/components/examples/notFoundErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Not Found
         "405":
           content:
@@ -6251,7 +6291,7 @@ paths:
                 methodNotAllowedErrorExample:
                   $ref: '#/components/examples/methodNotAllowedErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Method Not Allowed
         "415":
           content:
@@ -6260,7 +6300,7 @@ paths:
                 unsuppotedMediaTypeErrorExample:
                   $ref: '#/components/examples/unsupportedMediaTypeErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Unsupported Media Type
         "429":
           content:
@@ -6269,8 +6309,18 @@ paths:
                 tooManyRequestsErrorExample:
                   $ref: '#/components/examples/tooManyRequestsErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds the client should wait before making
+                another request.
+              explode: false
+              required: true
+              schema:
+                example: 900
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -6278,7 +6328,7 @@ paths:
                 serviceUnavailableErrorExample:
                   $ref: '#/components/examples/serviceUnavailableErrorExample'
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: '#/components/schemas/brtcErrorResponse'
           description: Service Unavailable
       summary: Update Endpoint BXML
       tags:
@@ -7112,11 +7162,9 @@ components:
         links: []
         data: null
         errors:
-        - id: 59512d87-7a92-4040-8e4a-78fb772019b9
-          type: too_many_requests
-          description: The client has sent too many requests in a given amount of
-            time.
-          code: "429"
+        - type: too_many_endpoints
+          description: Too many endpoints. Please delete an existing endpoint or wait
+            24 hours for an endpoint to be removed.
     serviceUnavailableErrorExample:
       summary: Service Unavailable Error Example
       value:
@@ -8841,7 +8889,7 @@ components:
             badRequestErrorExample:
               $ref: '#/components/examples/badRequestErrorExample'
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
       description: Bad Request
     unauthorizedErrorResponse:
       content:
@@ -8850,7 +8898,7 @@ components:
             unauthorizedErrorExample:
               $ref: '#/components/examples/unauthorizedErrorExample'
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
       description: Unauthorized
     forbiddenErrorResponse:
       content:
@@ -8859,7 +8907,7 @@ components:
             forbiddenErrorExample:
               $ref: '#/components/examples/forbiddenErrorExample'
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
       description: Forbidden
     notFoundErrorResponse:
       content:
@@ -8868,7 +8916,7 @@ components:
             notFoundErrorExample:
               $ref: '#/components/examples/notFoundErrorExample'
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
       description: Not Found
     methodNotAllowedErrorResponse:
       content:
@@ -8877,7 +8925,7 @@ components:
             methodNotAllowedErrorExample:
               $ref: '#/components/examples/methodNotAllowedErrorExample'
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
       description: Method Not Allowed
     unsupportedMediaTypeErrorResponse:
       content:
@@ -8886,7 +8934,7 @@ components:
             unsuppotedMediaTypeErrorExample:
               $ref: '#/components/examples/unsupportedMediaTypeErrorExample'
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
       description: Unsupported Media Type
     tooManyRequestsErrorResponse:
       content:
@@ -8895,8 +8943,18 @@ components:
             tooManyRequestsErrorExample:
               $ref: '#/components/examples/tooManyRequestsErrorExample'
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
       description: Too Many Requests
+      headers:
+        Retry-After:
+          description: The number of seconds the client should wait before making
+            another request.
+          explode: false
+          required: true
+          schema:
+            example: 900
+            type: integer
+          style: simple
     serviceUnavailableErrorResponse:
       content:
         application/json:
@@ -8904,7 +8962,7 @@ components:
             serviceUnavailableErrorExample:
               $ref: '#/components/examples/serviceUnavailableErrorExample'
           schema:
-            $ref: '#/components/schemas/errorResponse'
+            $ref: '#/components/schemas/brtcErrorResponse'
       description: Service Unavailable
   schemas:
     applicationId:
@@ -9633,9 +9691,6 @@ components:
           type: array
       type: object
     link:
-      example:
-        rel: rel
-        href: href
       properties:
         rel:
           type: string
@@ -9937,7 +9992,7 @@ components:
     rbmOpenUrlEnum:
       description: |-
         Specifies how the URL should be opened on a mobile device.
-        - `BROWSER` Opens the URL in the device's default browser. If application is not set or the device doesn’t support WebView, this option is used by default.
+        - `BROWSER` Opens the URL in the device's default browser. If application is not set or the device doesn't support WebView, this option is used by default.
         - `WEBVIEW` Opens the URL in an in-app WebView.
       enum:
       - BROWSER
@@ -10930,9 +10985,9 @@ components:
 
             May be cleared by setting `tag=""`
 
-            Max length 256 characters.
+            Max length 4096 characters.
           example: arbitrary text here
-          maxLength: 256
+          maxLength: 4096
           nullable: true
           type: string
       required:
@@ -11293,11 +11348,11 @@ components:
 
             May be cleared by setting `tag=""`.
 
-            Max length 256 characters.
+            Max length 4096 characters.
 
             Not allowed if `state` is `completed`.
           example: My Custom Tag
-          maxLength: 256
+          maxLength: 4096
           nullable: true
           type: string
       type: object
@@ -15526,7 +15581,7 @@ components:
           $ref: '#/components/schemas/linksObject'
         errors:
           items:
-            $ref: '#/components/schemas/error'
+            $ref: '#/components/schemas/webhookSubscriptionError'
           type: array
         data:
           items:
@@ -15558,7 +15613,7 @@ components:
             \ return the last page of result."
           type: string
       type: object
-    error:
+    webhookSubscriptionError:
       example:
         code: 0
         telephoneNumbers:
@@ -16194,6 +16249,25 @@ components:
         - eventType
         type: object
       description: An event that occurred on an endpoint.
+    brtcLink:
+      example:
+        method: GET
+        rel: self
+        href: https://api.bandwidth.com/v2/accounts/5500123/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+      properties:
+        href:
+          description: The full URL of the link.
+          example: https://api.bandwidth.com/v2/accounts/5500123/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          type: string
+        rel:
+          description: The relationship of the link to the current resource.
+          example: self
+          type: string
+        method:
+          description: The HTTP method to use when making the request.
+          example: GET
+          type: string
+      type: object
     page:
       example:
         pageNumber: 0
@@ -16224,6 +16298,66 @@ components:
       required:
       - pageSize
       type: object
+    brtcError:
+      example:
+        code: "404"
+        description: The requested resource was not found.
+        id: 59512d87-7a92-4040-8e4a-78fb772019b9
+        source:
+          reference: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          field: accountId
+          parameter: accountId
+          header: Authorization
+        type: resource.not_found
+      properties:
+        id:
+          description: A unique identifier for the error.
+          example: 59512d87-7a92-4040-8e4a-78fb772019b9
+          format: uuid
+          type: string
+        type:
+          description: The type of error.
+          example: resource.not_found
+          type: string
+        description:
+          description: A description of the error.
+          example: The requested resource was not found.
+          type: string
+        code:
+          description: A code that uniquely identifies the error.
+          example: "404"
+          type: string
+        source:
+          $ref: '#/components/schemas/brtcErrorSource'
+      required:
+      - description
+      - type
+      type: object
+    brtcErrorSource:
+      example:
+        reference: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        field: accountId
+        parameter: accountId
+        header: Authorization
+      properties:
+        parameter:
+          description: The URI parameter that caused the error.
+          example: accountId
+          type: string
+        field:
+          description: The request body field that caused the error.
+          example: accountId
+          type: string
+        header:
+          description: The header that caused the error.
+          example: Authorization
+          type: string
+        reference:
+          description: The resource ID or path to the resource (or non-existent resource)
+            causing the error.
+          example: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          type: string
+      type: object
     listEndpointsResponse:
       example:
         data:
@@ -16240,30 +16374,40 @@ components:
           type: WEBRTC
           status: CONNECTED
         links:
-        - rel: rel
-          href: href
-        - rel: rel
-          href: href
+        - method: GET
+          rel: self
+          href: https://api.bandwidth.com/v2/accounts/5500123/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        - method: GET
+          rel: self
+          href: https://api.bandwidth.com/v2/accounts/5500123/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
         page:
           pageNumber: 0
           totalPages: 10
           pageSize: 10
           totalElements: 100
         errors:
-        - code: 0
-          telephoneNumbers:
-          - telephoneNumber: telephoneNumber
-          - telephoneNumber: telephoneNumber
-          description: description
-        - code: 0
-          telephoneNumbers:
-          - telephoneNumber: telephoneNumber
-          - telephoneNumber: telephoneNumber
-          description: description
+        - code: "404"
+          description: The requested resource was not found.
+          id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          source:
+            reference: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+            field: accountId
+            parameter: accountId
+            header: Authorization
+          type: resource.not_found
+        - code: "404"
+          description: The requested resource was not found.
+          id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          source:
+            reference: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+            field: accountId
+            parameter: accountId
+            header: Authorization
+          type: resource.not_found
       properties:
         links:
           items:
-            $ref: '#/components/schemas/link'
+            $ref: '#/components/schemas/brtcLink'
           type: array
         page:
           $ref: '#/components/schemas/page'
@@ -16273,7 +16417,7 @@ components:
           type: array
         errors:
           items:
-            $ref: '#/components/schemas/error'
+            $ref: '#/components/schemas/brtcError'
           type: array
       required:
       - data
@@ -16299,31 +16443,41 @@ components:
           type: WEBRTC
           status: CONNECTED
         links:
-        - rel: rel
-          href: href
-        - rel: rel
-          href: href
+        - method: GET
+          rel: self
+          href: https://api.bandwidth.com/v2/accounts/5500123/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        - method: GET
+          rel: self
+          href: https://api.bandwidth.com/v2/accounts/5500123/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
         errors:
-        - code: 0
-          telephoneNumbers:
-          - telephoneNumber: telephoneNumber
-          - telephoneNumber: telephoneNumber
-          description: description
-        - code: 0
-          telephoneNumbers:
-          - telephoneNumber: telephoneNumber
-          - telephoneNumber: telephoneNumber
-          description: description
+        - code: "404"
+          description: The requested resource was not found.
+          id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          source:
+            reference: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+            field: accountId
+            parameter: accountId
+            header: Authorization
+          type: resource.not_found
+        - code: "404"
+          description: The requested resource was not found.
+          id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          source:
+            reference: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+            field: accountId
+            parameter: accountId
+            header: Authorization
+          type: resource.not_found
       properties:
         links:
           items:
-            $ref: '#/components/schemas/link'
+            $ref: '#/components/schemas/brtcLink'
           type: array
         data:
           $ref: '#/components/schemas/endpoint'
         errors:
           items:
-            $ref: '#/components/schemas/error'
+            $ref: '#/components/schemas/brtcError'
           type: array
       required:
       - data
@@ -16350,60 +16504,80 @@ components:
           status: CONNECTED
           token: xxxxx.yyyyy.zzzzz
         links:
-        - rel: rel
-          href: href
-        - rel: rel
-          href: href
+        - method: GET
+          rel: self
+          href: https://api.bandwidth.com/v2/accounts/5500123/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        - method: GET
+          rel: self
+          href: https://api.bandwidth.com/v2/accounts/5500123/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
         errors:
-        - code: 0
-          telephoneNumbers:
-          - telephoneNumber: telephoneNumber
-          - telephoneNumber: telephoneNumber
-          description: description
-        - code: 0
-          telephoneNumbers:
-          - telephoneNumber: telephoneNumber
-          - telephoneNumber: telephoneNumber
-          description: description
+        - code: "404"
+          description: The requested resource was not found.
+          id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          source:
+            reference: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+            field: accountId
+            parameter: accountId
+            header: Authorization
+          type: resource.not_found
+        - code: "404"
+          description: The requested resource was not found.
+          id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          source:
+            reference: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+            field: accountId
+            parameter: accountId
+            header: Authorization
+          type: resource.not_found
       properties:
         links:
           items:
-            $ref: '#/components/schemas/link'
+            $ref: '#/components/schemas/brtcLink'
           type: array
         data:
           $ref: '#/components/schemas/createEndpointResponseData'
         errors:
           items:
-            $ref: '#/components/schemas/error'
+            $ref: '#/components/schemas/brtcError'
           type: array
       required:
       - data
       - errors
       - links
       type: object
-    errorResponse:
+    brtcErrorResponse:
       example:
         data: "{}"
         links:
-        - rel: rel
-          href: href
-        - rel: rel
-          href: href
+        - method: GET
+          rel: self
+          href: https://api.bandwidth.com/v2/accounts/5500123/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+        - method: GET
+          rel: self
+          href: https://api.bandwidth.com/v2/accounts/5500123/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
         errors:
-        - code: 0
-          telephoneNumbers:
-          - telephoneNumber: telephoneNumber
-          - telephoneNumber: telephoneNumber
-          description: description
-        - code: 0
-          telephoneNumbers:
-          - telephoneNumber: telephoneNumber
-          - telephoneNumber: telephoneNumber
-          description: description
+        - code: "404"
+          description: The requested resource was not found.
+          id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          source:
+            reference: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+            field: accountId
+            parameter: accountId
+            header: Authorization
+          type: resource.not_found
+        - code: "404"
+          description: The requested resource was not found.
+          id: 59512d87-7a92-4040-8e4a-78fb772019b9
+          source:
+            reference: e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+            field: accountId
+            parameter: accountId
+            header: Authorization
+          type: resource.not_found
       properties:
         links:
           items:
-            $ref: '#/components/schemas/link'
+            $ref: '#/components/schemas/brtcLink'
           type: array
         data:
           additionalProperties: false
@@ -16411,7 +16585,7 @@ components:
           type: object
         errors:
           items:
-            $ref: '#/components/schemas/error'
+            $ref: '#/components/schemas/brtcError'
           type: array
       required:
       - data

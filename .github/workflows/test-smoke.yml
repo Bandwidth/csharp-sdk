@@ -37,7 +37,7 @@ jobs:
       MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_APPLICATION_ID }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
@@ -64,7 +64,7 @@ jobs:
       MANTECA_APPLICATION_ID: ${{ secrets.MANTECA_UP_APPLICATION_ID }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5

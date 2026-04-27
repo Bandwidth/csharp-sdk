@@ -33,7 +33,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             instance = new WebhookSubscriptionsListBody(
                 links: new LinksObject(),
-                errors: new List<Error>(),
+                errors: new List<WebhookSubscriptionError>(),
                 data: new List<WebhookSubscription>()
             );
         }
@@ -67,7 +67,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void ErrorsTest()
         {
-            Assert.IsType<List<Error>>(instance.Errors);
+            Assert.IsType<List<WebhookSubscriptionError>>(instance.Errors);
         }
 
         /// <summary>

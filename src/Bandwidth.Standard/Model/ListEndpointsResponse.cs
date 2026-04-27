@@ -44,7 +44,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="page">page.</param>
         /// <param name="data">data (required).</param>
         /// <param name="errors">errors (required).</param>
-        public ListEndpointsResponse(List<Link> links = default(List<Link>), Page page = default(Page), List<Endpoints> data = default(List<Endpoints>), List<Error> errors = default(List<Error>))
+        public ListEndpointsResponse(List<BrtcLink> links = default(List<BrtcLink>), Page page = default(Page), List<Endpoints> data = default(List<Endpoints>), List<BrtcError> errors = default(List<BrtcError>))
         {
             // to ensure "links" is required (not null)
             if (links == null)
@@ -71,7 +71,7 @@ namespace Bandwidth.Standard.Model
         /// Gets or Sets Links
         /// </summary>
         [DataMember(Name = "links", IsRequired = true, EmitDefaultValue = true)]
-        public List<Link> Links { get; set; }
+        public List<BrtcLink> Links { get; set; }
 
         /// <summary>
         /// Gets or Sets Page
@@ -89,7 +89,7 @@ namespace Bandwidth.Standard.Model
         /// Gets or Sets Errors
         /// </summary>
         [DataMember(Name = "errors", IsRequired = true, EmitDefaultValue = true)]
-        public List<Error> Errors { get; set; }
+        public List<BrtcError> Errors { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

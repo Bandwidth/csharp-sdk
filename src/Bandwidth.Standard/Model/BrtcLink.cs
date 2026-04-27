@@ -27,41 +27,47 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// Error
+    /// BrtcLink
     /// </summary>
-    [DataContract(Name = "error")]
-    public partial class Error : IValidatableObject
+    [DataContract(Name = "brtcLink")]
+    public partial class BrtcLink : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Error" /> class.
+        /// Initializes a new instance of the <see cref="BrtcLink" /> class.
         /// </summary>
-        /// <param name="code">code.</param>
-        /// <param name="description">description.</param>
-        /// <param name="telephoneNumbers">telephoneNumbers.</param>
-        public Error(int code = default(int), string description = default(string), List<TelephoneNumber> telephoneNumbers = default(List<TelephoneNumber>))
+        /// <param name="href">The full URL of the link..</param>
+        /// <param name="rel">The relationship of the link to the current resource..</param>
+        /// <param name="method">The HTTP method to use when making the request..</param>
+        public BrtcLink(string href = default(string), string rel = default(string), string method = default(string))
         {
-            this.Code = code;
-            this.Description = description;
-            this.TelephoneNumbers = telephoneNumbers;
+            this.Href = href;
+            this.Rel = rel;
+            this.Method = method;
         }
 
         /// <summary>
-        /// Gets or Sets Code
+        /// The full URL of the link.
         /// </summary>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
-        public int Code { get; set; }
+        /// <value>The full URL of the link.</value>
+        /// <example>https://api.bandwidth.com/v2/accounts/5500123/endpoints/e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85</example>
+        [DataMember(Name = "href", EmitDefaultValue = false)]
+        public string Href { get; set; }
 
         /// <summary>
-        /// Gets or Sets Description
+        /// The relationship of the link to the current resource.
         /// </summary>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
-        public string Description { get; set; }
+        /// <value>The relationship of the link to the current resource.</value>
+        /// <example>self</example>
+        [DataMember(Name = "rel", EmitDefaultValue = false)]
+        public string Rel { get; set; }
 
         /// <summary>
-        /// Gets or Sets TelephoneNumbers
+        /// The HTTP method to use when making the request.
         /// </summary>
-        [DataMember(Name = "telephoneNumbers", EmitDefaultValue = false)]
-        public List<TelephoneNumber> TelephoneNumbers { get; set; }
+        /// <value>The HTTP method to use when making the request.</value>
+        /// <example>GET</example>
+        [DataMember(Name = "method", EmitDefaultValue = false)]
+        public string Method { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -70,10 +76,10 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Error {\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  TelephoneNumbers: ").Append(TelephoneNumbers).Append("\n");
+            sb.Append("class BrtcLink {\n");
+            sb.Append("  Href: ").Append(Href).Append("\n");
+            sb.Append("  Rel: ").Append(Rel).Append("\n");
+            sb.Append("  Method: ").Append(Method).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -77,7 +77,7 @@ namespace Bandwidth.Standard.Test.Unit.Api
             );
             CreateEndpointRequest createEndpointRequest = new CreateEndpointRequest(webRtcRequest);
 
-            var link = new Link(rel: "self", href: "/accounts/9900000/endpoints/e-15ac29a2");
+            var link = new BrtcLink(rel: "self", href: "/accounts/9900000/endpoints/e-15ac29a2");
 
             CreateEndpointResponseData responseData = new CreateEndpointResponseData(
                 endpointId: "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85",
@@ -90,9 +90,9 @@ namespace Bandwidth.Standard.Test.Unit.Api
             );
 
             CreateEndpointResponse endpointResponse = new CreateEndpointResponse(
-                links: new List<Link> { link },
+                links: new List<BrtcLink> { link },
                 data: responseData,
-                errors: new List<Error>()
+                errors: new List<BrtcError>()
             );
 
             var apiResponse = new ApiResponse<CreateEndpointResponse>(HttpStatusCode.Created, endpointResponse);
@@ -180,7 +180,7 @@ namespace Bandwidth.Standard.Test.Unit.Api
             string endpointId = "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
 
             var endpointResponse = new EndpointResponse(
-                links: new List<Link>(),
+                links: new List<BrtcLink>(),
                 data: new Endpoint(
                     endpointId: endpointId,
                     type: EndpointTypeEnum.WEBRTC,
@@ -188,7 +188,7 @@ namespace Bandwidth.Standard.Test.Unit.Api
                     creationTimestamp: new DateTime(2021, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                     expirationTimestamp: new DateTime(2021, 1, 2, 0, 0, 0, DateTimeKind.Utc)
                 ),
-                errors: new List<Error>()
+                errors: new List<BrtcError>()
             );
             var apiResponse = new ApiResponse<EndpointResponse>(HttpStatusCode.OK, endpointResponse);
             mockClient.Setup(x => x.Get<EndpointResponse>("/accounts/{accountId}/endpoints/{endpointId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
@@ -262,9 +262,9 @@ namespace Bandwidth.Standard.Test.Unit.Api
             string accountId = "9900000";
 
             var listResponse = new ListEndpointsResponse(
-                links: new List<Link>(),
+                links: new List<BrtcLink>(),
                 data: new List<Endpoints>(),
-                errors: new List<Error>()
+                errors: new List<BrtcError>()
             );
             var apiResponse = new ApiResponse<ListEndpointsResponse>(HttpStatusCode.OK, listResponse);
             mockClient.Setup(x => x.Get<ListEndpointsResponse>("/accounts/{accountId}/endpoints", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);

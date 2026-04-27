@@ -27,40 +27,40 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// ErrorResponse
+    /// BrtcErrorResponse
     /// </summary>
-    [DataContract(Name = "errorResponse")]
-    public partial class ErrorResponse : IValidatableObject
+    [DataContract(Name = "brtcErrorResponse")]
+    public partial class BrtcErrorResponse : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ErrorResponse" /> class.
+        /// Initializes a new instance of the <see cref="BrtcErrorResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected ErrorResponse() { }
+        protected BrtcErrorResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ErrorResponse" /> class.
+        /// Initializes a new instance of the <see cref="BrtcErrorResponse" /> class.
         /// </summary>
         /// <param name="links">links (required).</param>
         /// <param name="data">data (required).</param>
         /// <param name="errors">errors (required).</param>
-        public ErrorResponse(List<Link> links = default(List<Link>), Object data = default(Object), List<Error> errors = default(List<Error>))
+        public BrtcErrorResponse(List<BrtcLink> links = default(List<BrtcLink>), Object data = default(Object), List<BrtcError> errors = default(List<BrtcError>))
         {
             // to ensure "links" is required (not null)
             if (links == null)
             {
-                throw new ArgumentNullException("links is a required property for ErrorResponse and cannot be null");
+                throw new ArgumentNullException("links is a required property for BrtcErrorResponse and cannot be null");
             }
             this.Links = links;
             // to ensure "data" is required (not null)
             if (data == null)
             {
-                throw new ArgumentNullException("data is a required property for ErrorResponse and cannot be null");
+                throw new ArgumentNullException("data is a required property for BrtcErrorResponse and cannot be null");
             }
             this.Data = data;
             // to ensure "errors" is required (not null)
             if (errors == null)
             {
-                throw new ArgumentNullException("errors is a required property for ErrorResponse and cannot be null");
+                throw new ArgumentNullException("errors is a required property for BrtcErrorResponse and cannot be null");
             }
             this.Errors = errors;
         }
@@ -69,7 +69,7 @@ namespace Bandwidth.Standard.Model
         /// Gets or Sets Links
         /// </summary>
         [DataMember(Name = "links", IsRequired = true, EmitDefaultValue = true)]
-        public List<Link> Links { get; set; }
+        public List<BrtcLink> Links { get; set; }
 
         /// <summary>
         /// Gets or Sets Data
@@ -81,7 +81,7 @@ namespace Bandwidth.Standard.Model
         /// Gets or Sets Errors
         /// </summary>
         [DataMember(Name = "errors", IsRequired = true, EmitDefaultValue = true)]
-        public List<Error> Errors { get; set; }
+        public List<BrtcError> Errors { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -90,7 +90,7 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ErrorResponse {\n");
+            sb.Append("class BrtcErrorResponse {\n");
             sb.Append("  Links: ").Append(Links).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Errors: ").Append(Errors).Append("\n");

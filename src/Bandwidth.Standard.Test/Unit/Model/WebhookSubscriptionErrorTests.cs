@@ -23,21 +23,18 @@ using Newtonsoft.Json;
 namespace Bandwidth.Standard.Test.Unit.Model
 {
     /// <summary>
-    ///  Class for testing Error
+    ///  Class for testing WebhookSubscriptionError
     /// </summary>
-    public class ErrorTests : IDisposable
+    public class WebhookSubscriptionErrorTests : IDisposable
     {
-        private Error instance;
-        private TelephoneNumber telephoneNumber;
+        private WebhookSubscriptionError instance;
 
-        public ErrorTests()
+        public WebhookSubscriptionErrorTests()
         {
-            telephoneNumber = new TelephoneNumber(varTelephoneNumber: "1234567890");
-
-            instance = new Error(
-                code: 123456,
-                description: "Test Description",
-                telephoneNumbers: new List<TelephoneNumber> { telephoneNumber }
+            instance = new WebhookSubscriptionError(
+                code: 4001,
+                description: "Invalid telephone number",
+                telephoneNumbers: new List<TelephoneNumber> { new TelephoneNumber(varTelephoneNumber: "+19195551234") }
             );
         }
 
@@ -47,12 +44,12 @@ namespace Bandwidth.Standard.Test.Unit.Model
         }
 
         /// <summary>
-        /// Test an instance of Error
+        /// Test an instance of WebhookSubscriptionError
         /// </summary>
         [Fact]
-        public void ErrorInstanceTest()
+        public void WebhookSubscriptionErrorInstanceTest()
         {
-            Assert.IsType<Error>(instance);
+            Assert.IsType<WebhookSubscriptionError>(instance);
         }
 
         /// <summary>
@@ -62,7 +59,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         public void CodeTest()
         {
             Assert.IsType<int>(instance.Code);
-            Assert.Equal(123456, instance.Code);
+            Assert.Equal(4001, instance.Code);
         }
 
         /// <summary>
@@ -72,7 +69,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         public void DescriptionTest()
         {
             Assert.IsType<string>(instance.Description);
-            Assert.Equal("Test Description", instance.Description);
+            Assert.Equal("Invalid telephone number", instance.Description);
         }
 
         /// <summary>
@@ -82,7 +79,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         public void TelephoneNumbersTest()
         {
             Assert.IsType<List<TelephoneNumber>>(instance.TelephoneNumbers);
-            Assert.Equal(telephoneNumber, instance.TelephoneNumbers.First());
+            Assert.Single(instance.TelephoneNumbers);
+            Assert.Equal("+19195551234", instance.TelephoneNumbers[0].VarTelephoneNumber);
         }
     }
 }

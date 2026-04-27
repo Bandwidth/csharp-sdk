@@ -43,7 +43,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="links">links.</param>
         /// <param name="errors">errors.</param>
         /// <param name="data">data (required).</param>
-        public WebhookSubscriptionsListBody(LinksObject links = default(LinksObject), List<Error> errors = default(List<Error>), List<WebhookSubscription> data = default(List<WebhookSubscription>))
+        public WebhookSubscriptionsListBody(LinksObject links = default(LinksObject), List<WebhookSubscriptionError> errors = default(List<WebhookSubscriptionError>), List<WebhookSubscription> data = default(List<WebhookSubscription>))
         {
             // to ensure "data" is required (not null)
             if (data == null)
@@ -65,7 +65,7 @@ namespace Bandwidth.Standard.Model
         /// Gets or Sets Errors
         /// </summary>
         [DataMember(Name = "errors", EmitDefaultValue = false)]
-        public List<Error> Errors { get; set; }
+        public List<WebhookSubscriptionError> Errors { get; set; }
 
         /// <summary>
         /// Gets or Sets Data

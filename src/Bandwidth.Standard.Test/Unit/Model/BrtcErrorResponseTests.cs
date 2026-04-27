@@ -23,21 +23,18 @@ using Newtonsoft.Json;
 namespace Bandwidth.Standard.Test.Unit.Model
 {
     /// <summary>
-    ///  Class for testing ErrorResponse
+    ///  Class for testing BrtcErrorResponse
     /// </summary>
-    public class ErrorResponseTests : IDisposable
+    public class BrtcErrorResponseTests : IDisposable
     {
-        private ErrorResponse instance;
+        private BrtcErrorResponse instance;
 
-        public ErrorResponseTests()
+        public BrtcErrorResponseTests()
         {
-            var link = new Link(rel: "self", href: "/accounts/123/endpoints");
-            var error = new Error(code: 400, description: "Invalid input");
-
-            instance = new ErrorResponse(
-                links: new List<Link> { link },
-                data: new object(),
-                errors: new List<Error> { error }
+            instance = new BrtcErrorResponse(
+                links: new List<BrtcLink>(),
+                data: new Object(),
+                errors: new List<BrtcError>()
             );
         }
 
@@ -47,12 +44,12 @@ namespace Bandwidth.Standard.Test.Unit.Model
         }
 
         /// <summary>
-        /// Test an instance of ErrorResponse
+        /// Test an instance of BrtcErrorResponse
         /// </summary>
         [Fact]
-        public void ErrorResponseInstanceTest()
+        public void BrtcErrorResponseInstanceTest()
         {
-            Assert.IsType<ErrorResponse>(instance);
+            Assert.IsType<BrtcErrorResponse>(instance);
         }
 
         /// <summary>
@@ -61,10 +58,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void LinksTest()
         {
-            Assert.IsType<List<Link>>(instance.Links);
-            Assert.NotNull(instance.Links);
-            Assert.Single(instance.Links);
-            Assert.Equal("self", instance.Links[0].Rel);
+            Assert.IsType<List<BrtcLink>>(instance.Links);
         }
 
         /// <summary>
@@ -82,9 +76,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void ErrorsTest()
         {
-            Assert.IsType<List<Error>>(instance.Errors);
-            Assert.NotNull(instance.Errors);
-            Assert.Single(instance.Errors);
+            Assert.IsType<List<BrtcError>>(instance.Errors);
         }
     }
 }

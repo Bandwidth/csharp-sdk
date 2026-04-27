@@ -62,7 +62,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="redirectFallbackMethod">redirectFallbackMethod.</param>
         /// <param name="fallbackUsername">Basic auth username..</param>
         /// <param name="fallbackPassword">Basic auth password..</param>
-        /// <param name="tag">A custom string that will be sent with this and all future callbacks unless overwritten by a future &#x60;tag&#x60; attribute or [&#x60;&lt;Tag&gt;&#x60;](/docs/voice/bxml/tag) verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;.  Max length 256 characters.  Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;..</param>
+        /// <param name="tag">A custom string that will be sent with this and all future callbacks unless overwritten by a future &#x60;tag&#x60; attribute or [&#x60;&lt;Tag&gt;&#x60;](/docs/voice/bxml/tag) verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;.  Max length 4096 characters.  Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;..</param>
         public UpdateCall(CallStateEnum? state = default(CallStateEnum?), string redirectUrl = default(string), RedirectMethodEnum? redirectMethod = default(RedirectMethodEnum?), string username = default(string), string password = default(string), string redirectFallbackUrl = default(string), RedirectMethodEnum? redirectFallbackMethod = default(RedirectMethodEnum?), string fallbackUsername = default(string), string fallbackPassword = default(string), string tag = default(string))
         {
             this.State = state;
@@ -126,9 +126,9 @@ namespace Bandwidth.Standard.Model
         public string FallbackPassword { get; set; }
 
         /// <summary>
-        /// A custom string that will be sent with this and all future callbacks unless overwritten by a future &#x60;tag&#x60; attribute or [&#x60;&lt;Tag&gt;&#x60;](/docs/voice/bxml/tag) verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;.  Max length 256 characters.  Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;.
+        /// A custom string that will be sent with this and all future callbacks unless overwritten by a future &#x60;tag&#x60; attribute or [&#x60;&lt;Tag&gt;&#x60;](/docs/voice/bxml/tag) verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;.  Max length 4096 characters.  Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;.
         /// </summary>
-        /// <value>A custom string that will be sent with this and all future callbacks unless overwritten by a future &#x60;tag&#x60; attribute or [&#x60;&lt;Tag&gt;&#x60;](/docs/voice/bxml/tag) verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;.  Max length 256 characters.  Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;.</value>
+        /// <value>A custom string that will be sent with this and all future callbacks unless overwritten by a future &#x60;tag&#x60; attribute or [&#x60;&lt;Tag&gt;&#x60;](/docs/voice/bxml/tag) verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;.  Max length 4096 characters.  Not allowed if &#x60;state&#x60; is &#x60;completed&#x60;.</value>
         /// <example>My Custom Tag</example>
         [DataMember(Name = "tag", EmitDefaultValue = true)]
         public string Tag { get; set; }
@@ -196,9 +196,9 @@ namespace Bandwidth.Standard.Model
             }
 
             // Tag (string) maxLength
-            if (this.Tag != null && this.Tag.Length > 256)
+            if (this.Tag != null && this.Tag.Length > 4096)
             {
-                yield return new ValidationResult("Invalid value for Tag, length must be less than 256.", new [] { "Tag" });
+                yield return new ValidationResult("Invalid value for Tag, length must be less than 4096.", new [] { "Tag" });
             }
 
             yield break;
