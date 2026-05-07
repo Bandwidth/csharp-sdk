@@ -5860,9 +5860,6 @@ paths:
       summary: List Endpoints
       tags:
       - Endpoints
-      x-badges:
-      - name: Beta
-        color: '#076EA8'
     post:
       callbacks:
         endpointEventCallback:
@@ -5976,9 +5973,6 @@ paths:
       summary: Create Endpoint
       tags:
       - Endpoints
-      x-badges:
-      - name: Beta
-        color: '#076EA8'
     servers:
     - description: Production
       url: https://api.bandwidth.com/v2
@@ -6094,9 +6088,6 @@ paths:
       summary: Delete Endpoint
       tags:
       - Endpoints
-      x-badges:
-      - name: Beta
-        color: '#076EA8'
     get:
       description: Returns information about the specified endpoint.
       operationId: getEndpoint
@@ -6214,9 +6205,6 @@ paths:
       summary: Get Endpoint
       tags:
       - Endpoints
-      x-badges:
-      - name: Beta
-        color: '#076EA8'
     servers:
     - description: Production
       url: https://api.bandwidth.com/v2
@@ -6333,9 +6321,6 @@ paths:
       summary: Update Endpoint BXML
       tags:
       - Endpoints
-      x-badges:
-      - name: Beta
-        color: '#076EA8'
     servers:
     - description: Production
       url: https://api.bandwidth.com/v2
