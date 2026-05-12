@@ -36,7 +36,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         public SyncLookupRequestTests()
         {
             instance = new SyncLookupRequest(
-                phoneNumbers: new List<string> { "1234567890", "0987654321" }
+                phoneNumbers: new List<string> { "1234567890", "0987654321" },
+                rcsAgent: "TestAgent"
             );
         }
 
@@ -62,6 +63,17 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<List<string>>(instance.PhoneNumbers);
             Assert.Equal(new List<string> { "1234567890", "0987654321" }, instance.PhoneNumbers);
+        }
+
+
+        /// <summary>
+        /// Test the property 'RcsAgent'
+        /// </summary>
+        [Fact]
+        public void RcsAgentTest()
+        {
+            Assert.IsType<string>(instance.RcsAgent);
+            Assert.Equal("TestAgent", instance.RcsAgent);
         }
     }
 }

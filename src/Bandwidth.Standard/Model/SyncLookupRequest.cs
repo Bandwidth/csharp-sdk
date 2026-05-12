@@ -41,7 +41,8 @@ namespace Bandwidth.Standard.Model
         /// Initializes a new instance of the <see cref="SyncLookupRequest" /> class.
         /// </summary>
         /// <param name="phoneNumbers">Telephone numbers in E.164 format. (required).</param>
-        public SyncLookupRequest(List<string> phoneNumbers = default(List<string>))
+        /// <param name="rcsAgent">Override the default RCS sender/agent ID used when checking RCS capabilities. When provided, this value is used as the &#x60;sender&#x60; in the RCS capability-check request instead of the account default. Must be 1–40 characters and contain only letters, digits, underscores, or hyphens..</param>
+        public SyncLookupRequest(List<string> phoneNumbers = default(List<string>), string rcsAgent = default(string))
         {
             // to ensure "phoneNumbers" is required (not null)
             if (phoneNumbers == null)
@@ -49,6 +50,7 @@ namespace Bandwidth.Standard.Model
                 throw new ArgumentNullException("phoneNumbers is a required property for SyncLookupRequest and cannot be null");
             }
             this.PhoneNumbers = phoneNumbers;
+            this.RcsAgent = rcsAgent;
         }
 
         /// <summary>
@@ -59,6 +61,14 @@ namespace Bandwidth.Standard.Model
         public List<string> PhoneNumbers { get; set; }
 
         /// <summary>
+        /// Override the default RCS sender/agent ID used when checking RCS capabilities. When provided, this value is used as the &#x60;sender&#x60; in the RCS capability-check request instead of the account default. Must be 1–40 characters and contain only letters, digits, underscores, or hyphens.
+        /// </summary>
+        /// <value>Override the default RCS sender/agent ID used when checking RCS capabilities. When provided, this value is used as the &#x60;sender&#x60; in the RCS capability-check request instead of the account default. Must be 1–40 characters and contain only letters, digits, underscores, or hyphens.</value>
+        /// <example>MyCustomRcsAgent</example>
+        [DataMember(Name = "rcsAgent", EmitDefaultValue = false)]
+        public string RcsAgent { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -67,6 +77,7 @@ namespace Bandwidth.Standard.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class SyncLookupRequest {\n");
             sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
+            sb.Append("  RcsAgent: ").Append(RcsAgent).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -87,6 +98,15 @@ namespace Bandwidth.Standard.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.RcsAgent != null) {
+                // RcsAgent (string) pattern
+                Regex regexRcsAgent = new Regex(@"^[A-Za-z0-9_-]{1,40}$", RegexOptions.CultureInvariant);
+                if (!regexRcsAgent.Match(this.RcsAgent).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RcsAgent, must match a pattern of " + regexRcsAgent, new [] { "RcsAgent" });
+                }
+            }
+
             yield break;
         }
     }

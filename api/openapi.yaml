@@ -6723,6 +6723,13 @@ components:
         phoneNumbers:
         - "+19196104423"
         - "+19196104424"
+    rcsAgentRequestExample:
+      summary: Number Lookup Request with Custom RCS Agent
+      value:
+        phoneNumbers:
+        - "+19196104423"
+        - "+19196104424"
+        rcsAgent: MyCustomRcsAgent
     lookupAcceptedExample:
       summary: Numbers Lookup Accepted
       value:
@@ -8099,6 +8106,8 @@ components:
               $ref: '#/components/examples/singleNumberRequestExample'
             multipleNumberRequestExample:
               $ref: '#/components/examples/multipleNumberRequestExample'
+            rcsAgentRequestExample:
+              $ref: '#/components/examples/rcsAgentRequestExample'
           schema:
             $ref: '#/components/schemas/syncLookupRequest'
       description: Synchronous phone number lookup request.
@@ -14315,6 +14324,14 @@ components:
           maximum: 100
           minimum: 1
           type: array
+        rcsAgent:
+          description: |-
+            Override the default RCS sender/agent ID used when checking RCS capabilities.
+            When provided, this value is used as the `sender` in the RCS capability-check request instead of the account default.
+            Must be 1–40 characters and contain only letters, digits, underscores, or hyphens.
+          example: MyCustomRcsAgent
+          pattern: "^[A-Za-z0-9_-]{1,40}$"
+          type: string
       required:
       - phoneNumbers
       type: object
