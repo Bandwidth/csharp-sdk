@@ -106,6 +106,31 @@ namespace Example
 }
 ```
 
+## BXML `<Refer>` example
+
+```csharp
+using Bandwidth.Standard.Model.Bxml;
+using Bandwidth.Standard.Model.Bxml.Verbs;
+
+var refer = new Refer()
+    .WithSipUri("sip:alice@atlanta.example.com")
+    .WithReferCompleteUrl("https://example.com/handleRefer")
+    .WithReferCompleteMethod("POST")
+    .WithTag("handoff-123");
+
+var bxml = new Response(refer).ToBXML();
+
+When a REFER succeeds, the remote SIP endpoint redirects away from Bandwidth and the call is terminated. Do not expect post-success BXML execution on that call leg.
+
+## `referComplete` failure recovery example
+
+```csharp
+// Example callback handler pseudocode
+if (callback.ReferCallStatus == ReferCallStatusEnum.Failure)
+{
+    // Recover only on failure (e.g. fallback flow, retry, alternate route)
+}
+
 <a id="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
 
