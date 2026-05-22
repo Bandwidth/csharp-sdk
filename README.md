@@ -106,6 +106,33 @@ namespace Example
 }
 ```
 
+## BXML `<Refer>` example
+
+```csharp
+using Bandwidth.Standard.Model.Bxml;
+using Bandwidth.Standard.Model.Bxml.Verbs;
+
+var refer = new Refer()
+    .WithSipUri("sip:alice@atlanta.example.com")
+    .WithReferCompleteUrl("https://example.com/handleRefer")
+    .WithReferCompleteMethod("POST")
+    .WithTag("handoff-123");
+
+var bxml = new Response(refer).ToBXML();
+```
+
+When a REFER succeeds, the remote SIP endpoint redirects away from Bandwidth and the call is terminated. Do not expect post-success BXML execution on that call leg.
+
+## `referComplete` failure recovery example
+
+```csharp
+// Example callback handler pseudocode
+if (callback.ReferCallStatus == ReferCallStatusEnum.Failure)
+{
+    // Recover only on failure (e.g. fallback flow, retry, alternate route)
+}
+```
+
 <a id="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
 
@@ -328,6 +355,8 @@ Class | Method | HTTP request | Description
  - [Model.RecordingStateEnum](docs/RecordingStateEnum.md)
  - [Model.RecordingTranscriptionMetadata](docs/RecordingTranscriptionMetadata.md)
  - [Model.RecordingTranscriptions](docs/RecordingTranscriptions.md)
+ - [Model.ReferCallStatusEnum](docs/ReferCallStatusEnum.md)
+ - [Model.ReferCompleteCallback](docs/ReferCompleteCallback.md)
  - [Model.RedirectCallback](docs/RedirectCallback.md)
  - [Model.RedirectMethodEnum](docs/RedirectMethodEnum.md)
  - [Model.SipConnectionMetadata](docs/SipConnectionMetadata.md)
@@ -391,4 +420,3 @@ Authentication schemes defined for the API:
 - **Flow**: application
 - **Authorization URL**: https://api.bandwidth.com/api/v1/oauth2/token
 - **Scopes**: N/A
-
