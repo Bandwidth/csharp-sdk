@@ -10,6 +10,8 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
     /// </summary>
     public class Refer : IVerb
     {
+        private string _referCompleteMethod;
+
         /// <summary>
         /// URL to receive the refer complete callback.
         /// </summary>
@@ -20,7 +22,19 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// HTTP method to send the refer complete callback.
         /// </summary>
         [XmlAttribute("referCompleteMethod")]
-        public string ReferCompleteMethod { get; set; }
+        public string ReferCompleteMethod
+        {
+            get { return _referCompleteMethod; }
+            set
+            {
+                if (value != null && value != "GET" && value != "POST")
+                {
+                    throw new ArgumentException("ReferCompleteMethod must be either 'GET' or 'POST'.");
+                }
+
+                _referCompleteMethod = value;
+            }
+        }
 
         /// <summary>
         /// Optional custom string to include in callbacks.
