@@ -42,5 +42,29 @@ namespace Bandwidth.Standard.Test.Unit.Model.Bxml
             var refer = new Refer();
             Assert.Throws<ArgumentException>(() => refer.WithSipUri("tel:+15551234567"));
         }
+
+        [Fact]
+        public void ReferInvalidMethodThrows()
+        {
+            var refer = new Refer();
+            Assert.Throws<ArgumentException>(() => refer.WithReferCompleteMethod("DELETE"));
+        }
+
+        [Fact]
+        public void ReferWithSipUriObjectOverload()
+        {
+            var sipUri = new Refer.SipUri { Uri = "sip:alice@atlanta.example.com" };
+            var refer = new Refer().WithSipUri(sipUri);
+            Assert.Equal("sip:alice@atlanta.example.com", refer.SipUriElement.Uri);
+        }
+
+        [Fact]
+        public void ReferMinimalOnlySipUri()
+        {
+            var refer = new Refer().WithSipUri("sip:bob@biloxi.example.com");
+            var bxml = new Response(refer).ToBXML();
+            Assert.Contains("sip:bob@biloxi.example.com", bxml);
+            Assert.Contains("referCompleteMethod=\"POST\"", bxml);
+        }
     }
 }
