@@ -9861,6 +9861,8 @@ components:
       title: RBM Media
       type: object
     rbmCardContent:
+      description: "Must contain at least one of title, description, or media to be\
+        \ valid."
       properties:
         title:
           description: The title of the card. Must be 200 characters or less.
@@ -9899,7 +9901,6 @@ components:
       required:
       - cardContent
       - orientation
-      - thumbnailImageAlignment
       title: Standalone Card
       type: object
     standaloneCardOrientationEnum:
@@ -9909,8 +9910,8 @@ components:
       example: VERTICAL
       type: string
     thumbnailAlignmentEnum:
-      description: The alignment of the thumbnail image in the card. Only applicable
-        if the card using horizontal orientation.
+      description: The alignment of the thumbnail image in the card. Required when
+        orientation is HORIZONTAL.
       enum:
       - LEFT
       - RIGHT
@@ -9924,6 +9925,7 @@ components:
           items:
             $ref: '#/components/schemas/rbmCardContent'
           maxItems: 10
+          minItems: 2
           type: array
         suggestions:
           description: An array of suggested actions for the recipient.
@@ -9995,7 +9997,9 @@ components:
       type: string
     rbmWebViewEnum:
       description: |-
-        Defines the layout of the WebView on a mobile device. It must be defined when application is set to `WEBVIEW`
+        Defines the layout of the WebView on a mobile device. It must be defined
+        when application is set to `WEBVIEW` and must not be set when application
+        is set to `BROWSER`.
         - `FULL` WebView takes the full screen.
         - `HALF` WebView takes half of the screen.
         - `TALL` WebView takes three-quarters of the screen.
@@ -10063,12 +10067,14 @@ components:
       - $ref: '#/components/schemas/rbmActionBase'
       - properties:
           latitude:
-            description: The latitude of the location.
+            description: "The latitude of the location. Must be in range [-90.000000,\
+              \ 90.000000]."
             example: "37.7749"
             format: double
             type: string
           longitude:
-            description: The longitude of the location.
+            description: "The longitude of the location. Must be in range [-180.000000,\
+              \ 180.000000]."
             example: "-122.4194"
             format: double
             type: string
@@ -10092,12 +10098,14 @@ components:
             maxLength: 100
             type: string
           startTime:
-            description: The start time of the event.
+            description: "The start time of the event. Must be a valid RFC-3339 value,\
+              \ e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00."
             example: 2022-09-14T18:20:16Z
             format: date-time
             type: string
           endTime:
-            description: The end time of the event.
+            description: "The end time of the event. Must be a valid RFC-3339 value,\
+              \ e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00."
             example: 2022-09-14T18:20:16Z
             format: date-time
             type: string
@@ -10117,7 +10125,8 @@ components:
       - $ref: '#/components/schemas/rbmActionBase'
       - properties:
           url:
-            description: The URL to open in browser.
+            description: The URL to open in browser. Must use http:// or https://
+              scheme.
             example: https://dev.bandwidth.com
             format: uri
             maxLength: 2048
