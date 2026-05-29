@@ -31,33 +31,6 @@ Name | Description
 `WithReferCompleteMethod(string referCompleteMethod)` | Sets the `referCompleteMethod` attribute (`GET` or `POST`). Returns the `Refer` instance for chaining.
 `WithTag(string tag)` | Sets the `tag` attribute. Returns the `Refer` instance for chaining.
 
-## Example Usage
-
-```csharp
-using Bandwidth.Standard.Model.Bxml;
-using Bandwidth.Standard.Model.Bxml.Verbs;
-
-var refer = new Refer()
-    .WithSipUri("sip:alice@atlanta.example.com")
-    .WithReferCompleteUrl("https://example.com/handleRefer")
-    .WithReferCompleteMethod("POST")
-    .WithTag("refer-tag");
-
-var response = new Response(refer);
-Console.WriteLine(response.ToBXML());
-```
-
-### Output BXML
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Response>
-  <Refer referCompleteUrl="https://example.com/handleRefer" referCompleteMethod="POST" tag="refer-tag">
-    <SipUri>sip:alice@atlanta.example.com</SipUri>
-  </Refer>
-</Response>
-```
-
 ## Validation
 
 - `SipUri.Uri` must start with `sip:` (case-insensitive). An `ArgumentException` is thrown if the value does not match.
