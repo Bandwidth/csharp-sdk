@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Type** | **RbmActionTypeEnum** |  | 
 **Text** | **string** | Displayed text for user to click | 
 **PostbackData** | **byte[]** | Base64 payload the customer receives when the reply is clicked. | 
-**Latitude** | **double** | The latitude of the location. | 
-**Longitude** | **double** | The longitude of the location. | 
+**Latitude** | **double** | The latitude of the location. Must be in range [-90.000000, 90.000000]. | 
+**Longitude** | **double** | The longitude of the location. Must be in range [-180.000000, 180.000000]. | 
 **Label** | **string** | The label of the location. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
