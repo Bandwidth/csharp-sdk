@@ -42,8 +42,8 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Gets or Sets ThumbnailImageAlignment
         /// </summary>
-        [DataMember(Name = "thumbnailImageAlignment", IsRequired = true, EmitDefaultValue = true)]
-        public ThumbnailAlignmentEnum ThumbnailImageAlignment { get; set; }
+        [DataMember(Name = "thumbnailImageAlignment", EmitDefaultValue = false)]
+        public ThumbnailAlignmentEnum? ThumbnailImageAlignment { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RbmStandaloneCard" /> class.
         /// </summary>
@@ -53,19 +53,19 @@ namespace Bandwidth.Standard.Model
         /// Initializes a new instance of the <see cref="RbmStandaloneCard" /> class.
         /// </summary>
         /// <param name="orientation">orientation (required).</param>
-        /// <param name="thumbnailImageAlignment">thumbnailImageAlignment (required).</param>
+        /// <param name="thumbnailImageAlignment">thumbnailImageAlignment.</param>
         /// <param name="cardContent">cardContent (required).</param>
         /// <param name="suggestions">An array of suggested actions for the recipient..</param>
-        public RbmStandaloneCard(StandaloneCardOrientationEnum orientation = default(StandaloneCardOrientationEnum), ThumbnailAlignmentEnum thumbnailImageAlignment = default(ThumbnailAlignmentEnum), RbmCardContent cardContent = default(RbmCardContent), List<MultiChannelAction> suggestions = default(List<MultiChannelAction>))
+        public RbmStandaloneCard(StandaloneCardOrientationEnum orientation = default(StandaloneCardOrientationEnum), ThumbnailAlignmentEnum? thumbnailImageAlignment = default(ThumbnailAlignmentEnum?), RbmCardContent cardContent = default(RbmCardContent), List<MultiChannelAction> suggestions = default(List<MultiChannelAction>))
         {
             this.Orientation = orientation;
-            this.ThumbnailImageAlignment = thumbnailImageAlignment;
             // to ensure "cardContent" is required (not null)
             if (cardContent == null)
             {
                 throw new ArgumentNullException("cardContent is a required property for RbmStandaloneCard and cannot be null");
             }
             this.CardContent = cardContent;
+            this.ThumbnailImageAlignment = thumbnailImageAlignment;
             this.Suggestions = suggestions;
         }
 

@@ -49,8 +49,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="type">type (required).</param>
         /// <param name="text">Displayed text for user to click (required).</param>
         /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked. (required).</param>
-        /// <param name="latitude">The latitude of the location. (required).</param>
-        /// <param name="longitude">The longitude of the location. (required).</param>
+        /// <param name="latitude">The latitude of the location. Must be in range [-90.000000, 90.000000]. (required).</param>
+        /// <param name="longitude">The longitude of the location. Must be in range [-180.000000, 180.000000]. (required).</param>
         /// <param name="label">The label of the location..</param>
         public RbmActionViewLocation(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postbackData = default(byte[]), double latitude = default(double), double longitude = default(double), string label = default(string))
         {
@@ -89,17 +89,17 @@ namespace Bandwidth.Standard.Model
         public byte[] PostbackData { get; set; }
 
         /// <summary>
-        /// The latitude of the location.
+        /// The latitude of the location. Must be in range [-90.000000, 90.000000].
         /// </summary>
-        /// <value>The latitude of the location.</value>
+        /// <value>The latitude of the location. Must be in range [-90.000000, 90.000000].</value>
         /// <example>37.7749</example>
         [DataMember(Name = "latitude", IsRequired = true, EmitDefaultValue = true)]
         public double Latitude { get; set; }
 
         /// <summary>
-        /// The longitude of the location.
+        /// The longitude of the location. Must be in range [-180.000000, 180.000000].
         /// </summary>
-        /// <value>The longitude of the location.</value>
+        /// <value>The longitude of the location. Must be in range [-180.000000, 180.000000].</value>
         /// <example>-122.4194</example>
         [DataMember(Name = "longitude", IsRequired = true, EmitDefaultValue = true)]
         public double Longitude { get; set; }

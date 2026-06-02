@@ -27,7 +27,7 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// RbmCardContent
+    /// Must contain at least one of title, description, or media to be valid.
     /// </summary>
     [DataContract(Name = "rbmCardContent")]
     public partial class RbmCardContent : IValidatableObject
