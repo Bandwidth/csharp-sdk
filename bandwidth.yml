@@ -5034,6 +5034,47 @@ components:
           $ref: '#/components/schemas/transferCallerId'
         transferTo:
           $ref: '#/components/schemas/transferTo'
+    referCompleteCallback:
+      type: object
+      description: >-
+        The Refer Complete event is fired when the <Refer> verb finishes
+        executing. This is sent to the referCompleteUrl specified on the
+        <Refer> verb, and the BXML returned in it is executed on the call.
+      properties:
+        eventType:
+          $ref: '#/components/schemas/eventType'
+        eventTime:
+          $ref: '#/components/schemas/eventTime'
+        accountId:
+          $ref: '#/components/schemas/accountId'
+        applicationId:
+          $ref: '#/components/schemas/applicationId1'
+        from:
+          $ref: '#/components/schemas/from'
+        to:
+          $ref: '#/components/schemas/to'
+        direction:
+          $ref: '#/components/schemas/callDirectionEnum'
+        callId:
+          $ref: '#/components/schemas/callId'
+        callUrl:
+          $ref: '#/components/schemas/callUrl'
+        enqueuedTime:
+          $ref: '#/components/schemas/enqueuedTime'
+        startTime:
+          $ref: '#/components/schemas/startTime'
+        answerTime:
+          $ref: '#/components/schemas/answerTime'
+        tag:
+          $ref: '#/components/schemas/tag1'
+        sipResponseCode:
+          $ref: '#/components/schemas/sipResponseCode'
+        cause:
+          $ref: '#/components/schemas/cause'
+        errorMessage:
+          $ref: '#/components/schemas/errorMessage'
+        errorId:
+          $ref: '#/components/schemas/errorId'
     transcriptionAvailableCallback:
       type: object
       description: >-
@@ -5399,6 +5440,13 @@ components:
       type: string
       description: Bandwidth's internal id that references the error event.
       example: 4642074b-7b58-478b-96e4-3a60955c6765
+      nullable: true
+    sipResponseCode:
+      type: integer
+      description: >-
+        The SIP response code from the REFER request, indicating the outcome
+        of the operation (e.g., 200 for success, 404 for not found).
+      example: 200
       nullable: true
     machineDetectionResult:
       type: object
