@@ -8,14 +8,14 @@ Name | Type | Description | Notes
 **Text** | **string** | Displayed text for user to click | 
 **PostbackData** | **byte[]** | Base64 payload the customer receives when the reply is clicked. | 
 **PhoneNumber** | **string** | The phone number to dial. Must be E164 format. | 
-**Latitude** | **double** | The latitude of the location. | 
-**Longitude** | **double** | The longitude of the location. | 
+**Latitude** | **double** | The latitude of the location. Must be in range [-90.000000, 90.000000]. | 
+**Longitude** | **double** | The longitude of the location. Must be in range [-180.000000, 180.000000]. | 
 **Label** | **string** | The label of the location. | [optional] 
 **Title** | **string** | The title of the event. | 
-**StartTime** | **DateTime** | The start time of the event. | 
-**EndTime** | **DateTime** | The end time of the event. | 
+**StartTime** | **DateTime** | The start time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. | 
+**EndTime** | **DateTime** | The end time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. | 
 **Description** | **string** | The description of the event. | [optional] 
-**Url** | **string** | The URL to open in browser. | 
+**Url** | **string** | The URL to open in browser. Must use http:// or https:// scheme. | 
 **Application** | **RbmOpenUrlEnum** |  | [optional] 
 **WebviewViewMode** | **RbmWebViewEnum** |  | [optional] 
 

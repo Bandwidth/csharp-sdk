@@ -61,7 +61,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="type">type (required).</param>
         /// <param name="text">Displayed text for user to click (required).</param>
         /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked. (required).</param>
-        /// <param name="url">The URL to open in browser. (required).</param>
+        /// <param name="url">The URL to open in browser. Must use http:// or https:// scheme. (required).</param>
         /// <param name="application">application.</param>
         /// <param name="webviewViewMode">webviewViewMode.</param>
         public RbmActionOpenUrl(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postbackData = default(byte[]), string url = default(string), RbmOpenUrlEnum? application = default(RbmOpenUrlEnum?), RbmWebViewEnum? webviewViewMode = default(RbmWebViewEnum?))
@@ -106,9 +106,9 @@ namespace Bandwidth.Standard.Model
         public byte[] PostbackData { get; set; }
 
         /// <summary>
-        /// The URL to open in browser.
+        /// The URL to open in browser. Must use http:// or https:// scheme.
         /// </summary>
-        /// <value>The URL to open in browser.</value>
+        /// <value>The URL to open in browser. Must use http:// or https:// scheme.</value>
         /// <example>https://dev.bandwidth.com</example>
         [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
         public string Url { get; set; }

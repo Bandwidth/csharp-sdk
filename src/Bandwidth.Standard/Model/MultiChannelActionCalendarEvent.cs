@@ -50,8 +50,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="text">Displayed text for user to click (required).</param>
         /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked. (required).</param>
         /// <param name="title">The title of the event. (required).</param>
-        /// <param name="startTime">The start time of the event. (required).</param>
-        /// <param name="endTime">The end time of the event. (required).</param>
+        /// <param name="startTime">The start time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. (required).</param>
+        /// <param name="endTime">The end time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. (required).</param>
         /// <param name="description">The description of the event..</param>
         public MultiChannelActionCalendarEvent(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postbackData = default(byte[]), string title = default(string), DateTime startTime = default(DateTime), DateTime endTime = default(DateTime), string description = default(string))
         {
@@ -104,17 +104,17 @@ namespace Bandwidth.Standard.Model
         public string Title { get; set; }
 
         /// <summary>
-        /// The start time of the event.
+        /// The start time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.
         /// </summary>
-        /// <value>The start time of the event.</value>
+        /// <value>The start time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.</value>
         /// <example>2022-09-14T18:20:16Z</example>
         [DataMember(Name = "startTime", IsRequired = true, EmitDefaultValue = true)]
         public DateTime StartTime { get; set; }
 
         /// <summary>
-        /// The end time of the event.
+        /// The end time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.
         /// </summary>
-        /// <value>The end time of the event.</value>
+        /// <value>The end time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00.</value>
         /// <example>2022-09-14T18:20:16Z</example>
         [DataMember(Name = "endTime", IsRequired = true, EmitDefaultValue = true)]
         public DateTime EndTime { get; set; }

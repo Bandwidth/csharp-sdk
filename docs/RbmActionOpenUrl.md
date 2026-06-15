@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Type** | **RbmActionTypeEnum** |  | 
 **Text** | **string** | Displayed text for user to click | 
 **PostbackData** | **byte[]** | Base64 payload the customer receives when the reply is clicked. | 
-**Url** | **string** | The URL to open in browser. | 
+**Url** | **string** | The URL to open in browser. Must use http:// or https:// scheme. | 
 **Application** | **RbmOpenUrlEnum** |  | [optional] 
 **WebviewViewMode** | **RbmWebViewEnum** |  | [optional] 
 

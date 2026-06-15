@@ -27,9 +27,9 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The alignment of the thumbnail image in the card. Only applicable if the card using horizontal orientation.
+    /// The alignment of the thumbnail image in the card. Required when orientation is HORIZONTAL.
     /// </summary>
-    /// <value>The alignment of the thumbnail image in the card. Only applicable if the card using horizontal orientation.</value>
+    /// <value>The alignment of the thumbnail image in the card. Required when orientation is HORIZONTAL.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ThumbnailAlignmentEnum
     {
