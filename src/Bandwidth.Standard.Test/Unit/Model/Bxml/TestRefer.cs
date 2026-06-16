@@ -66,5 +66,21 @@ namespace Bandwidth.Standard.Test.Unit.Model.Bxml
             Assert.Contains("sip:bob@biloxi.example.com", bxml);
             Assert.Contains("referCompleteMethod=\"POST\"", bxml);
         }
+
+        [Fact]
+        public void ReferMissingSipUriProducesEmptyElement()
+        {
+            var refer = new Refer();
+            var bxml = new Response(refer).ToBXML();
+            // Documents that missing SipUri produces output without a SipUri element
+            Assert.DoesNotContain("<SipUri>", bxml);
+        }
+
+        [Fact]
+        public void SipUriIsNotIVerb()
+        {
+            // SipUri is a child element, not a verb; verify it does not implement IVerb
+            Assert.DoesNotContain(typeof(IVerb), typeof(Refer.SipUri).GetInterfaces());
+        }
     }
 }
