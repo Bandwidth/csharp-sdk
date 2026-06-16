@@ -82,5 +82,15 @@ namespace Bandwidth.Standard.Test.Unit.Model.Bxml
             // SipUri is a child element, not a verb; verify it does not implement IVerb
             Assert.DoesNotContain(typeof(IVerb), typeof(Refer.SipUri).GetInterfaces());
         }
+
+        [Fact]
+        public void ReferSipUriWithNullUriProducesEmptySipUriElement()
+        {
+            // Documents that a SipUri element with no URI text serializes as an empty element
+            var sipUri = new Refer.SipUri(); // Uri not set; required content is missing
+            var refer = new Refer().WithSipUri(sipUri);
+            var bxml = new Response(refer).ToBXML();
+            Assert.Contains("<SipUri />", bxml);
+        }
     }
 }
