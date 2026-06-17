@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Suggestions** | [**List&lt;MultiChannelAction&gt;**](MultiChannelAction.md) | An array of suggested actions for the recipient. | [optional] 
 **Media** | [**List&lt;RbmMessageContentFile&gt;**](RbmMessageContentFile.md) |  | 
 **Orientation** | **StandaloneCardOrientationEnum** |  | 
-**ThumbnailImageAlignment** | **ThumbnailAlignmentEnum** |  | 
+**ThumbnailImageAlignment** | **ThumbnailAlignmentEnum** |  | [optional] 
 **CardContent** | [**RbmCardContent**](RbmCardContent.md) |  | 
 **CardWidth** | **CardWidthEnum** |  | 
 **CardContents** | [**List&lt;RbmCardContent&gt;**](RbmCardContent.md) |  | 

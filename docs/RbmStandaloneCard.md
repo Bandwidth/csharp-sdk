@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Orientation** | **StandaloneCardOrientationEnum** |  | 
-**ThumbnailImageAlignment** | **ThumbnailAlignmentEnum** |  | 
+**ThumbnailImageAlignment** | **ThumbnailAlignmentEnum** |  | [optional] 
 **CardContent** | [**RbmCardContent**](RbmCardContent.md) |  | 
 **Suggestions** | [**List&lt;MultiChannelAction&gt;**](MultiChannelAction.md) | An array of suggested actions for the recipient. | [optional] 
 
