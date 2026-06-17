@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ReferCompleteUrl** | **string** | URL to receive the `referComplete` callback when the REFER is finished. | [optional]
 **ReferCompleteMethod** | **string** | HTTP method to use for the `referComplete` callback. Must be `GET` or `POST`. | [optional] [default to `POST`]
-**Tag** | **string** | Optional custom string to include in callbacks. Max 4096 characters. | [optional]
+**Tag** | **string** | Optional custom string to include in callbacks. Max 256 characters. | [optional]
 **SipUriElement** | [**Refer.SipUri**](#sipuri-nested-class) | The SIP URI destination for the REFER. Must start with `sip:`. | 
 
 ## SipUri Nested Class

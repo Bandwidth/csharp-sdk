@@ -52,6 +52,10 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// </summary>
         public Refer()
         {
+            /// <summary>
+            /// Explicitly set to "POST" so the attribute is always serialized in BXML output,
+            /// matching the server's default and making the intent explicit to consumers.
+            /// </summary>
             ReferCompleteMethod = "POST";
         }
 
@@ -103,7 +107,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// <summary>
         /// BXML tag to represent a SIP URI for the refer verb.
         /// </summary>
-        public class SipUri : IVerb
+        public class SipUri
         {
             private string _uri;
 

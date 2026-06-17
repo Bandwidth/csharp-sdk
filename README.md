@@ -373,11 +373,6 @@ Class | Method | HTTP request | Description
  - [Model.WebhookSubscriptionsListBody](docs/WebhookSubscriptionsListBody.md)
 
 
-<a id="documentation-for-bxml-verbs"></a>
-## Documentation for BXML Verbs
-
- - [Bxml.Verbs.Refer](docs/Refer.md)
-
 <a id="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
