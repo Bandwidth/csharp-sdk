@@ -13481,6 +13481,23 @@ components:
           example: exampleTag
           nullable: true
           type: string
+        referCallStatus:
+          description: "The outcome of the REFER operation. Either \"success\" or\
+            \ \"failure\"."
+          example: success
+          type: string
+        referSipResponseCode:
+          description: "The SIP response code returned for the REFER request itself\
+            \ (e.g. 202, 405, 603)."
+          example: 202
+          nullable: true
+          type: integer
+        notifySipResponseCode:
+          description: "The final SIP response code reported via NOTIFY. Present only\
+            \ when the caller's endpoint sent a final NOTIFY."
+          example: 200
+          nullable: true
+          type: integer
       type: object
     transcriptionAvailableCallback:
       description: The Transcription Available event is sent when the recording transcription

@@ -18,6 +18,9 @@ Name | Type | Description | Notes
 **StartTime** | **DateTime** | Time the call was started, in ISO 8601 format. | [optional] 
 **AnswerTime** | **DateTime?** | Time the call was answered, in ISO 8601 format. | [optional] 
 **Tag** | **string** | (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present. | [optional] 
+**ReferCallStatus** | **string** | The outcome of the REFER operation. Either &quot;success&quot; or &quot;failure&quot;. | [optional] 
+**ReferSipResponseCode** | **int?** | The SIP response code returned for the REFER request itself (e.g. 202, 405, 603). | [optional] 
+**NotifySipResponseCode** | **int?** | The final SIP response code reported via NOTIFY. Present only when the caller&#39;s endpoint sent a final NOTIFY. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

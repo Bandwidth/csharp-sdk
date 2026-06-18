@@ -5080,6 +5080,12 @@ components:
           $ref: '#/components/schemas/answerTime'
         tag:
           $ref: '#/components/schemas/tag1'
+        referCallStatus:
+          $ref: '#/components/schemas/referCallStatus'
+        referSipResponseCode:
+          $ref: '#/components/schemas/referSipResponseCode'
+        notifySipResponseCode:
+          $ref: '#/components/schemas/notifySipResponseCode'
     transcriptionAvailableCallback:
       type: object
       description: >-
@@ -5424,6 +5430,24 @@ components:
         (optional) The tag specified on call creation. If no tag was specified
         or it was previously cleared, this field will not be present.
       example: exampleTag
+      nullable: true
+    referCallStatus:
+      type: string
+      description: The outcome of the REFER operation. Either "success" or "failure".
+      example: success
+    referSipResponseCode:
+      type: integer
+      description: >-
+        The SIP response code returned for the REFER request itself (e.g. 202,
+        405, 603).
+      example: 202
+      nullable: true
+    notifySipResponseCode:
+      type: integer
+      description: >-
+        The final SIP response code reported via NOTIFY. Present only when the
+        caller's endpoint sent a final NOTIFY.
+      example: 200
       nullable: true
     cause:
       type: string
