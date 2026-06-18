@@ -27,51 +27,30 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// RbmActionBase
+    /// SuggestionResponse
     /// </summary>
-    [DataContract(Name = "rbmActionBase")]
-    public partial class RbmActionBase : IValidatableObject
+    [DataContract(Name = "suggestionResponse")]
+    public partial class SuggestionResponse : IValidatableObject
     {
-
         /// <summary>
-        /// Gets or Sets Type
+        /// Initializes a new instance of the <see cref="SuggestionResponse" /> class.
         /// </summary>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
-        public RbmActionTypeEnum Type { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RbmActionBase" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected RbmActionBase() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RbmActionBase" /> class.
-        /// </summary>
-        /// <param name="type">type (required).</param>
-        /// <param name="text">Displayed text for user to click (required).</param>
-        /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked. (required).</param>
-        public RbmActionBase(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postbackData = default(byte[]))
+        /// <param name="text">The text associated with the suggestion response..</param>
+        /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked..</param>
+        /// <param name="pairedMessageId">Corresponding parent message ID (MT)..</param>
+        public SuggestionResponse(string text = default(string), byte[] postbackData = default(byte[]), string pairedMessageId = default(string))
         {
-            this.Type = type;
-            // to ensure "text" is required (not null)
-            if (text == null)
-            {
-                throw new ArgumentNullException("text is a required property for RbmActionBase and cannot be null");
-            }
             this.Text = text;
-            // to ensure "postbackData" is required (not null)
-            if (postbackData == null)
-            {
-                throw new ArgumentNullException("postbackData is a required property for RbmActionBase and cannot be null");
-            }
             this.PostbackData = postbackData;
+            this.PairedMessageId = pairedMessageId;
         }
 
         /// <summary>
-        /// Displayed text for user to click
+        /// The text associated with the suggestion response.
         /// </summary>
-        /// <value>Displayed text for user to click</value>
-        /// <example>Hello world</example>
-        [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>The text associated with the suggestion response.</value>
+        /// <example>Yes, I would like to proceed</example>
+        [DataMember(Name = "text", EmitDefaultValue = false)]
         public string Text { get; set; }
 
         /// <summary>
@@ -79,8 +58,16 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <value>Base64 payload the customer receives when the reply is clicked.</value>
         /// <example>[B@2b76ecd5</example>
-        [DataMember(Name = "postbackData", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "postbackData", EmitDefaultValue = false)]
         public byte[] PostbackData { get; set; }
+
+        /// <summary>
+        /// Corresponding parent message ID (MT).
+        /// </summary>
+        /// <value>Corresponding parent message ID (MT).</value>
+        /// <example>1752697342534u24xerqdukke523x</example>
+        [DataMember(Name = "pairedMessageId", EmitDefaultValue = true)]
+        public string PairedMessageId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -89,10 +76,10 @@ namespace Bandwidth.Standard.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RbmActionBase {\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("class SuggestionResponse {\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("  PostbackData: ").Append(PostbackData).Append("\n");
+            sb.Append("  PairedMessageId: ").Append(PairedMessageId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -113,12 +100,6 @@ namespace Bandwidth.Standard.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // Text (string) maxLength
-            if (this.Text != null && this.Text.Length > 25)
-            {
-                yield return new ValidationResult("Invalid value for Text, length must be less than 25.", new [] { "Text" });
-            }
-
             // PostbackData (byte[]) maxLength
             if (this.PostbackData != null && this.PostbackData.Length > 2048)
             {

@@ -74,7 +74,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="content">content.</param>
         /// <param name="suggestionResponse">suggestionResponse.</param>
         /// <param name="locationResponse">locationResponse.</param>
-        public InboundCallbackMessage(string id = default(string), string owner = default(string), string applicationId = default(string), DateTime time = default(DateTime), int segmentCount = default(int), MessageDirectionEnum direction = default(MessageDirectionEnum), List<string> to = default(List<string>), string from = default(string), string text = default(string), string tag = default(string), List<string> media = default(List<string>), PriorityEnum? priority = default(PriorityEnum?), MultiChannelMessageChannelEnum? channel = default(MultiChannelMessageChannelEnum?), MultiChannelMessageContent content = default(MultiChannelMessageContent), RbmSuggestionResponse suggestionResponse = default(RbmSuggestionResponse), RbmLocationResponse locationResponse = default(RbmLocationResponse))
+        public InboundCallbackMessage(string id = default(string), string owner = default(string), string applicationId = default(string), DateTime time = default(DateTime), int segmentCount = default(int), MessageDirectionEnum direction = default(MessageDirectionEnum), List<string> to = default(List<string>), string from = default(string), string text = default(string), string tag = default(string), List<string> media = default(List<string>), PriorityEnum? priority = default(PriorityEnum?), MultiChannelMessageChannelEnum? channel = default(MultiChannelMessageChannelEnum?), MultiChannelMessageContent content = default(MultiChannelMessageContent), SuggestionResponse suggestionResponse = default(SuggestionResponse), LocationResponse locationResponse = default(LocationResponse))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -207,13 +207,13 @@ namespace Bandwidth.Standard.Model
         /// Gets or Sets SuggestionResponse
         /// </summary>
         [DataMember(Name = "suggestionResponse", EmitDefaultValue = false)]
-        public RbmSuggestionResponse SuggestionResponse { get; set; }
+        public SuggestionResponse SuggestionResponse { get; set; }
 
         /// <summary>
         /// Gets or Sets LocationResponse
         /// </summary>
         [DataMember(Name = "locationResponse", EmitDefaultValue = false)]
-        public RbmLocationResponse LocationResponse { get; set; }
+        public LocationResponse LocationResponse { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

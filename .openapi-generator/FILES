@@ -92,6 +92,7 @@ docs/LinksObject.md
 docs/ListEndpointsResponse.md
 docs/ListMessageDirectionEnum.md
 docs/ListMessageItem.md
+docs/LocationResponse.md
 docs/LookupErrorResponse.md
 docs/LookupErrorSchema.md
 docs/LookupErrorSchemaMeta.md
@@ -149,7 +150,6 @@ docs/RbmActionTypeEnum.md
 docs/RbmActionViewLocation.md
 docs/RbmCardContent.md
 docs/RbmCardContentMedia.md
-docs/RbmLocationResponse.md
 docs/RbmMediaHeightEnum.md
 docs/RbmMessageCarouselCard.md
 docs/RbmMessageContentFile.md
@@ -158,7 +158,6 @@ docs/RbmMessageContentText.md
 docs/RbmMessageMedia.md
 docs/RbmOpenUrlEnum.md
 docs/RbmStandaloneCard.md
-docs/RbmSuggestionResponse.md
 docs/RbmWebViewEnum.md
 docs/RecordingAvailableCallback.md
 docs/RecordingCompleteCallback.md
@@ -177,6 +176,7 @@ docs/StatusCallback.md
 docs/StatusCallbackMessage.md
 docs/StatusCallbackTypeEnum.md
 docs/StirShaken.md
+docs/SuggestionResponse.md
 docs/SyncLookupRequest.md
 docs/TelephoneNumber.md
 docs/TfvBasicAuthentication.md
@@ -333,6 +333,7 @@ src/Bandwidth.Standard/Model/LinksObject.cs
 src/Bandwidth.Standard/Model/ListEndpointsResponse.cs
 src/Bandwidth.Standard/Model/ListMessageDirectionEnum.cs
 src/Bandwidth.Standard/Model/ListMessageItem.cs
+src/Bandwidth.Standard/Model/LocationResponse.cs
 src/Bandwidth.Standard/Model/LookupErrorResponse.cs
 src/Bandwidth.Standard/Model/LookupErrorSchema.cs
 src/Bandwidth.Standard/Model/LookupErrorSchemaMeta.cs
@@ -385,7 +386,6 @@ src/Bandwidth.Standard/Model/RbmActionTypeEnum.cs
 src/Bandwidth.Standard/Model/RbmActionViewLocation.cs
 src/Bandwidth.Standard/Model/RbmCardContent.cs
 src/Bandwidth.Standard/Model/RbmCardContentMedia.cs
-src/Bandwidth.Standard/Model/RbmLocationResponse.cs
 src/Bandwidth.Standard/Model/RbmMediaHeightEnum.cs
 src/Bandwidth.Standard/Model/RbmMessageCarouselCard.cs
 src/Bandwidth.Standard/Model/RbmMessageContentFile.cs
@@ -394,7 +394,6 @@ src/Bandwidth.Standard/Model/RbmMessageContentText.cs
 src/Bandwidth.Standard/Model/RbmMessageMedia.cs
 src/Bandwidth.Standard/Model/RbmOpenUrlEnum.cs
 src/Bandwidth.Standard/Model/RbmStandaloneCard.cs
-src/Bandwidth.Standard/Model/RbmSuggestionResponse.cs
 src/Bandwidth.Standard/Model/RbmWebViewEnum.cs
 src/Bandwidth.Standard/Model/RecordingAvailableCallback.cs
 src/Bandwidth.Standard/Model/RecordingCompleteCallback.cs
@@ -411,6 +410,7 @@ src/Bandwidth.Standard/Model/StatusCallback.cs
 src/Bandwidth.Standard/Model/StatusCallbackMessage.cs
 src/Bandwidth.Standard/Model/StatusCallbackTypeEnum.cs
 src/Bandwidth.Standard/Model/StirShaken.cs
+src/Bandwidth.Standard/Model/SuggestionResponse.cs
 src/Bandwidth.Standard/Model/SyncLookupRequest.cs
 src/Bandwidth.Standard/Model/TelephoneNumber.cs
 src/Bandwidth.Standard/Model/TfvBasicAuthentication.cs
