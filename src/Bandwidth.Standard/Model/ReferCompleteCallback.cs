@@ -50,13 +50,14 @@ namespace Bandwidth.Standard.Model
         /// <param name="direction">direction.</param>
         /// <param name="callId">The call id associated with the event..</param>
         /// <param name="callUrl">The URL of the call associated with the event..</param>
+        /// <param name="enqueuedTime">(optional) If call queueing is enabled and this is an outbound call, time the call was queued, in ISO 8601 format..</param>
         /// <param name="startTime">Time the call was started, in ISO 8601 format..</param>
         /// <param name="answerTime">Time the call was answered, in ISO 8601 format..</param>
         /// <param name="tag">(optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present..</param>
         /// <param name="referCallStatus">The outcome of the REFER operation. Either &quot;success&quot; or &quot;failure&quot;..</param>
         /// <param name="referSipResponseCode">Integer (optional). The SIP response code returned for the REFER request itself (e.g. 202, 405, 603)..</param>
         /// <param name="notifySipResponseCode">Integer (optional). The final SIP response code reported via NOTIFY. Present only when the caller&#39;s endpoint sent a final NOTIFY..</param>
-        public ReferCompleteCallback(string eventType = default(string), DateTime eventTime = default(DateTime), string accountId = default(string), string applicationId = default(string), string from = default(string), string to = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), string callId = default(string), string callUrl = default(string), DateTime startTime = default(DateTime), DateTime? answerTime = default(DateTime?), string tag = default(string), string referCallStatus = default(string), int? referSipResponseCode = default(int?), int? notifySipResponseCode = default(int?))
+        public ReferCompleteCallback(string eventType = default(string), DateTime eventTime = default(DateTime), string accountId = default(string), string applicationId = default(string), string from = default(string), string to = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), string callId = default(string), string callUrl = default(string), DateTime? enqueuedTime = default(DateTime?), DateTime startTime = default(DateTime), DateTime? answerTime = default(DateTime?), string tag = default(string), string referCallStatus = default(string), int? referSipResponseCode = default(int?), int? notifySipResponseCode = default(int?))
         {
             this.EventType = eventType;
             this.EventTime = eventTime;
@@ -67,6 +68,7 @@ namespace Bandwidth.Standard.Model
             this.Direction = direction;
             this.CallId = callId;
             this.CallUrl = callUrl;
+            this.EnqueuedTime = enqueuedTime;
             this.StartTime = startTime;
             this.AnswerTime = answerTime;
             this.Tag = tag;
@@ -140,6 +142,14 @@ namespace Bandwidth.Standard.Model
         public string CallUrl { get; set; }
 
         /// <summary>
+        /// (optional) If call queueing is enabled and this is an outbound call, time the call was queued, in ISO 8601 format.
+        /// </summary>
+        /// <value>(optional) If call queueing is enabled and this is an outbound call, time the call was queued, in ISO 8601 format.</value>
+        /// <example>2022-06-17T22:20:00Z</example>
+        [DataMember(Name = "enqueuedTime", EmitDefaultValue = true)]
+        public DateTime? EnqueuedTime { get; set; }
+
+        /// <summary>
         /// Time the call was started, in ISO 8601 format.
         /// </summary>
         /// <value>Time the call was started, in ISO 8601 format.</value>
@@ -204,6 +214,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  Direction: ").Append(Direction).Append("\n");
             sb.Append("  CallId: ").Append(CallId).Append("\n");
             sb.Append("  CallUrl: ").Append(CallUrl).Append("\n");
+            sb.Append("  EnqueuedTime: ").Append(EnqueuedTime).Append("\n");
             sb.Append("  StartTime: ").Append(StartTime).Append("\n");
             sb.Append("  AnswerTime: ").Append(AnswerTime).Append("\n");
             sb.Append("  Tag: ").Append(Tag).Append("\n");
