@@ -5080,14 +5080,12 @@ components:
           $ref: '#/components/schemas/answerTime'
         tag:
           $ref: '#/components/schemas/tag1'
-        sipResponseCode:
-          $ref: '#/components/schemas/sipResponseCode'
-        cause:
-          $ref: '#/components/schemas/cause'
-        errorMessage:
-          $ref: '#/components/schemas/errorMessage'
-        errorId:
-          $ref: '#/components/schemas/errorId'
+        referCallStatus:
+          $ref: '#/components/schemas/referCallStatus'
+        referSipResponseCode:
+          $ref: '#/components/schemas/referSipResponseCode'
+        notifySipResponseCode:
+          $ref: '#/components/schemas/notifySipResponseCode'
     transcriptionAvailableCallback:
       type: object
       description: >-
@@ -5433,6 +5431,24 @@ components:
         or it was previously cleared, this field will not be present.
       example: exampleTag
       nullable: true
+    referCallStatus:
+      type: string
+      description: The outcome of the REFER operation. Either "success" or "failure".
+      example: success
+    referSipResponseCode:
+      type: integer
+      description: >-
+        The SIP response code returned for the REFER request itself (e.g. 202,
+        405, 603).
+      example: 202
+      nullable: true
+    notifySipResponseCode:
+      type: integer
+      description: >-
+        The final SIP response code reported via NOTIFY. Present only when the
+        caller's endpoint sent a final NOTIFY.
+      example: 200
+      nullable: true
     cause:
       type: string
       description: >-
@@ -5453,13 +5469,6 @@ components:
       type: string
       description: Bandwidth's internal id that references the error event.
       example: 4642074b-7b58-478b-96e4-3a60955c6765
-      nullable: true
-    sipResponseCode:
-      type: integer
-      description: >-
-        The SIP response code from the REFER request, indicating the outcome
-        of the operation (e.g., 200 for success, 404 for not found).
-      example: 200
       nullable: true
     machineDetectionResult:
       type: object
