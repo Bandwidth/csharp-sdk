@@ -37,6 +37,14 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 status: TfvStatusEnum.PENDING,
                 internalTicketNumber: "internalTicketNumber",
                 declineReasonDescription: "declineReasonDescription",
+                denialStatusCode: 123456,
+                additionalDenialReasons: new List<AdditionalDenialReason> {
+                    new AdditionalDenialReason(
+                        statusCode: 1,
+                        reason: "reason",
+                        resubmitAllowed: true
+                    )
+                },
                 resubmitAllowed: true,
                 createdDateTime: DateTime.Parse("2023-10-01T00:00:00Z"),
                 modifiedDateTime: DateTime.Parse("2023-10-01T00:00:00Z"),
@@ -99,6 +107,29 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<string>(instance.DeclineReasonDescription);
             Assert.Equal("declineReasonDescription", instance.DeclineReasonDescription);
+        }
+
+        /// <summary>
+        /// Test the property 'DenialStatusCode'
+        /// </summary>
+        [Fact]
+        public void DenialStatusCodeTest()
+        {
+            Assert.IsType<int>(instance.DenialStatusCode);
+            Assert.Equal(123456, instance.DenialStatusCode);
+        }
+
+        /// <summary>
+        /// Test the property 'AdditionalDenialReasons'
+        /// </summary>
+        [Fact]
+        public void AdditionalDenialReasonsTest()
+        {
+            Assert.IsType<List<AdditionalDenialReason>>(instance.AdditionalDenialReasons);
+            Assert.Single(instance.AdditionalDenialReasons);
+            Assert.Equal(1, instance.AdditionalDenialReasons[0].StatusCode);
+            Assert.Equal("reason", instance.AdditionalDenialReasons[0].Reason);
+            Assert.True(instance.AdditionalDenialReasons[0].ResubmitAllowed);
         }
 
         /// <summary>
