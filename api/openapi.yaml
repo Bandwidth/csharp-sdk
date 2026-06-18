@@ -13481,30 +13481,6 @@ components:
           example: exampleTag
           nullable: true
           type: string
-        sipResponseCode:
-          description: "The SIP response code from the REFER request, indicating the\
-            \ outcome of the operation (e.g., 200 for success, 404 for not found)."
-          example: 200
-          nullable: true
-          type: integer
-        cause:
-          description: "Reason the call failed - hangup, busy, timeout, cancel, rejected,\
-            \ callback-error, invalid-bxml, application-error, account-limit, node-capacity-exceeded,\
-            \ error, or unknown."
-          example: busy
-          type: string
-        errorMessage:
-          description: Text explaining the reason that caused the call to fail in
-            case of errors.
-          example: Call c-2a913f94-6a486f3a-3cae-4034-bcc3-f0c9fa77ca2f is already
-            bridged with another call
-          nullable: true
-          type: string
-        errorId:
-          description: Bandwidth's internal id that references the error event.
-          example: 4642074b-7b58-478b-96e4-3a60955c6765
-          nullable: true
-          type: string
       type: object
     transcriptionAvailableCallback:
       description: The Transcription Available event is sent when the recording transcription
@@ -14089,12 +14065,6 @@ components:
       example: 4642074b-7b58-478b-96e4-3a60955c6765
       nullable: true
       type: string
-    sipResponseCode:
-      description: "The SIP response code from the REFER request, indicating the outcome\
-        \ of the operation (e.g., 200 for success, 404 for not found)."
-      example: 200
-      nullable: true
-      type: integer
     machineDetectionResult:
       description: "(optional) if machine detection was requested in sync mode, the\
         \ result will be specified here. Possible values are the same as the async\

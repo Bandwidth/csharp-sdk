@@ -5080,14 +5080,6 @@ components:
           $ref: '#/components/schemas/answerTime'
         tag:
           $ref: '#/components/schemas/tag1'
-        sipResponseCode:
-          $ref: '#/components/schemas/sipResponseCode'
-        cause:
-          $ref: '#/components/schemas/cause'
-        errorMessage:
-          $ref: '#/components/schemas/errorMessage'
-        errorId:
-          $ref: '#/components/schemas/errorId'
     transcriptionAvailableCallback:
       type: object
       description: >-
@@ -5453,13 +5445,6 @@ components:
       type: string
       description: Bandwidth's internal id that references the error event.
       example: 4642074b-7b58-478b-96e4-3a60955c6765
-      nullable: true
-    sipResponseCode:
-      type: integer
-      description: >-
-        The SIP response code from the REFER request, indicating the outcome
-        of the operation (e.g., 200 for success, 404 for not found).
-      example: 200
       nullable: true
     machineDetectionResult:
       type: object
