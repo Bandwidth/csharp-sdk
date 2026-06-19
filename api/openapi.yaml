@@ -6343,8 +6343,8 @@ components:
               <p>This Inbound Message Webhook is an envelope containing either a received (MO) message to your
               message-enabled Bandwidth telephone number or a multichannel client's response to a suggestion response
               or location request.
-              <p>The payload type will be one of <code>message-received</code>, <code>suggestion-response</code>, or <code>location-request-response</code>.
-              <p>Note that <code>suggestion-response</code> and <code>location-request-response</code> callback types are pertinent only for RBM messages sent from the <code>/messages/multiChannel</code> endpoint.
+              <p>The payload type will be one of <code>message-received</code>, <code>suggestion-response</code>, or <code>requested-location-response</code>.
+              <p>Note that <code>suggestion-response</code> and <code>requested-location-response</code> callback types are pertinent only for RBM messages sent from the <code>/messages/multiChannel</code> endpoint.
               </p><p>Please visit <a href='/docs/messaging/webhooks/'>Webhooks</a></p>
             required: true
           responses:
@@ -7062,7 +7062,7 @@ components:
         tag: "{\"myTag\": \"myTagValue\"}"
     updateEndpointBxmlRequestExample:
       summary: Update Endpoint BXML Request Example
-      value: <Bxml><StartRecording /></Bxml>
+      value: <Response><StartRecording /></Response>
     endpointDisconnectedEventExample:
       summary: Endpoint Disconnected Event
       value:
@@ -10504,6 +10504,11 @@ components:
           maxLength: 2048
           title: Post Back Data
           type: string
+        pairedMessageId:
+          description: Corresponding parent message ID (MT).
+          example: 1752697342534u24xerqdukke523x
+          nullable: true
+          type: string
       type: object
     rbmLocationResponse:
       properties:
@@ -10531,7 +10536,7 @@ components:
           message-failed: '#/components/schemas/statusCallback'
           message-read: '#/components/schemas/statusCallback'
           message-received: '#/components/schemas/inboundCallback'
-          request-location-response: '#/components/schemas/inboundCallback'
+          requested-location-response: '#/components/schemas/inboundCallback'
           suggestion-response: '#/components/schemas/inboundCallback'
         propertyName: type
       oneOf:
@@ -10637,11 +10642,11 @@ components:
       description: |-
         The possible inbound callback types originating from MO messages or multichannel message client responses:
         - `message-received` indicates an MO message from a Bandwidth user's client to a Bandwidth number.
-        - `request-location-response` indicates a response to a location request sent by the Bandwidth user's client after receiving an RBM message.
+        - `requested-location-response` indicates a response to a location request sent by the Bandwidth user's client after receiving an RBM message.
         - `suggestion-response` indicates a response to a suggestion sent by the Bandwidth user's client after receiving an RBM message.
       enum:
       - message-received
-      - request-location-response
+      - requested-location-response
       - suggestion-response
       example: message-received
       type: string
