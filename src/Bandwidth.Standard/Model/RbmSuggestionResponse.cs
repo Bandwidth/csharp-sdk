@@ -37,10 +37,12 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="text">The text associated with the suggestion response..</param>
         /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked..</param>
-        public RbmSuggestionResponse(string text = default(string), byte[] postbackData = default(byte[]))
+        /// <param name="pairedMessageId">Corresponding parent message ID (MT)..</param>
+        public RbmSuggestionResponse(string text = default(string), byte[] postbackData = default(byte[]), string pairedMessageId = default(string))
         {
             this.Text = text;
             this.PostbackData = postbackData;
+            this.PairedMessageId = pairedMessageId;
         }
 
         /// <summary>
@@ -55,9 +57,17 @@ namespace Bandwidth.Standard.Model
         /// Base64 payload the customer receives when the reply is clicked.
         /// </summary>
         /// <value>Base64 payload the customer receives when the reply is clicked.</value>
-        /// <example>[B@3c205259</example>
+        /// <example>[B@2b76ecd5</example>
         [DataMember(Name = "postbackData", EmitDefaultValue = false)]
         public byte[] PostbackData { get; set; }
+
+        /// <summary>
+        /// Corresponding parent message ID (MT).
+        /// </summary>
+        /// <value>Corresponding parent message ID (MT).</value>
+        /// <example>1752697342534u24xerqdukke523x</example>
+        [DataMember(Name = "pairedMessageId", EmitDefaultValue = true)]
+        public string PairedMessageId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,6 +79,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("class RbmSuggestionResponse {\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("  PostbackData: ").Append(PostbackData).Append("\n");
+            sb.Append("  PairedMessageId: ").Append(PairedMessageId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
