@@ -11949,15 +11949,73 @@ components:
     recordingTranscriptions:
       example:
         transcripts:
-        - confidence: 0.9
-          text: "Nice talking to you, friend!"
-        - confidence: 0.9
-          text: "Nice talking to you, friend!"
+        - speaker: 0
+          text: "Hi, is Thursday at two still good for you? Perfect, talk soon."
+          confidence: 0.96
+        - speaker: 1
+          text: "Yes, that works great. See you then! Sounds good, bye!"
+          confidence: 0.97
+        clips:
+        - speaker: 0
+          text: "Hi, is Thursday at two still good for you?"
+          confidence: 0.97
+          startTimeSeconds: 0.4
+          endTimeSeconds: 3.1
+        - speaker: 1
+          text: "Yes, that works great. See you then!"
+          confidence: 0.95
+          startTimeSeconds: 3.8
+          endTimeSeconds: 6.2
+        - speaker: 0
+          text: "Perfect, talk soon."
+          confidence: 0.94
+          startTimeSeconds: 6.9
+          endTimeSeconds: 8.1
+        - speaker: 1
+          text: "Sounds good, bye!"
+          confidence: 0.98
+          startTimeSeconds: 8.5
+          endTimeSeconds: 9.7
       properties:
         transcripts:
           items:
             $ref: '#/components/schemas/transcription'
           type: array
+        clips:
+          description: "A list of individual speech clips with speaker, timing, and\
+            \ confidence information."
+          items:
+            $ref: '#/components/schemas/recordingTranscriptionClip'
+          type: array
+      type: object
+    recordingTranscriptionClip:
+      properties:
+        speaker:
+          description: Zero-based index identifying the speaker.
+          example: 0
+          type: integer
+        text:
+          description: The transcribed text of this clip.
+          example: "Hi there, thanks for calling!"
+          type: string
+        confidence:
+          description: How confident the transcription engine was in transcribing
+            this clip (from `0.0` to `1.0`).
+          example: 0.85
+          format: double
+          maximum: 1
+          minimum: 0
+          type: number
+        startTimeSeconds:
+          description: "The start time of this clip within the recording, in seconds."
+          example: 2.3
+          format: double
+          type: number
+        endTimeSeconds:
+          description: "The end time of this clip within the recording, in seconds."
+          example: 3.1
+          format: double
+          type: number
       type: object
     callTranscriptionMetadataList:
       example:
@@ -14048,10 +14106,11 @@ components:
           type: string
       type: object
     transcription:
-      example:
-        confidence: 0.9
-        text: "Nice talking to you, friend!"
       properties:
+        speaker:
+          description: Zero-based index identifying the speaker.
+          example: 0
+          type: integer
         text:
           description: The transcribed text
           example: "Nice talking to you, friend!"

@@ -35,13 +35,23 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Transcription" /> class.
         /// </summary>
+        /// <param name="speaker">Zero-based index identifying the speaker..</param>
         /// <param name="text">The transcribed text.</param>
         /// <param name="confidence">The confidence on the recognized content, ranging from &#x60;0.0&#x60; to &#x60;1.0&#x60; with &#x60;1.0&#x60; being the highest confidence..</param>
-        public Transcription(string text = default(string), double confidence = default(double))
+        public Transcription(int speaker = default(int), string text = default(string), double confidence = default(double))
         {
+            this.Speaker = speaker;
             this.Text = text;
             this.Confidence = confidence;
         }
+
+        /// <summary>
+        /// Zero-based index identifying the speaker.
+        /// </summary>
+        /// <value>Zero-based index identifying the speaker.</value>
+        /// <example>0</example>
+        [DataMember(Name = "speaker", EmitDefaultValue = false)]
+        public int Speaker { get; set; }
 
         /// <summary>
         /// The transcribed text
@@ -67,6 +77,7 @@ namespace Bandwidth.Standard.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Transcription {\n");
+            sb.Append("  Speaker: ").Append(Speaker).Append("\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("  Confidence: ").Append(Confidence).Append("\n");
             sb.Append("}\n");
