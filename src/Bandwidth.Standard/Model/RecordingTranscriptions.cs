@@ -36,9 +36,11 @@ namespace Bandwidth.Standard.Model
         /// Initializes a new instance of the <see cref="RecordingTranscriptions" /> class.
         /// </summary>
         /// <param name="transcripts">transcripts.</param>
-        public RecordingTranscriptions(List<Transcription> transcripts = default(List<Transcription>))
+        /// <param name="clips">A list of individual speech clips with speaker, timing, and confidence information..</param>
+        public RecordingTranscriptions(List<Transcription> transcripts = default(List<Transcription>), List<RecordingTranscriptionClip> clips = default(List<RecordingTranscriptionClip>))
         {
             this.Transcripts = transcripts;
+            this.Clips = clips;
         }
 
         /// <summary>
@@ -46,6 +48,13 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         [DataMember(Name = "transcripts", EmitDefaultValue = false)]
         public List<Transcription> Transcripts { get; set; }
+
+        /// <summary>
+        /// A list of individual speech clips with speaker, timing, and confidence information.
+        /// </summary>
+        /// <value>A list of individual speech clips with speaker, timing, and confidence information.</value>
+        [DataMember(Name = "clips", EmitDefaultValue = false)]
+        public List<RecordingTranscriptionClip> Clips { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -56,6 +65,7 @@ namespace Bandwidth.Standard.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class RecordingTranscriptions {\n");
             sb.Append("  Transcripts: ").Append(Transcripts).Append("\n");
+            sb.Append("  Clips: ").Append(Clips).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
