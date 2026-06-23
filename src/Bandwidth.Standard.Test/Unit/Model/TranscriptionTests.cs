@@ -48,6 +48,16 @@ namespace Bandwidth.Standard.Test.Unit.Model
             Assert.IsType<Transcription>(instance);
         }
 
+        /// <summary>
+        /// Test the property 'Speaker'
+        /// </summary>
+        [Fact]
+        public void SpeakerTest()
+        {
+            instance.Speaker = 1;
+            Assert.IsType<int>(instance.Speaker);
+            Assert.Equal(1, instance.Speaker);
+        }
 
         /// <summary>
         /// Test the property 'Text'
@@ -59,6 +69,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
             Assert.IsType<string>(instance.Text);
             Assert.Equal("test", instance.Text);
         }
+
         /// <summary>
         /// Test the property 'Confidence'
         /// </summary>
