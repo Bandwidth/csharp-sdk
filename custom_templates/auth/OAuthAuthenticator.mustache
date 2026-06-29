@@ -1,6 +1,7 @@
 {{>partial_header}}
 
 using System;
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using RestSharp;
@@ -19,6 +20,25 @@ namespace {{packageName}}.Client.Auth
         readonly string _grantType;
         readonly JsonSerializerSettings _serializerSettings;
         readonly IReadableConfiguration _configuration;
+
+        /// <summary>
+        /// Refresh slightly before the server-stated expiry so a token is never used in-flight as it expires.
+        /// </summary>
+        const int TokenExpiryBufferSeconds = 60;
+
+        /// <summary>
+        /// Process-wide token cache, keyed by token URL + client id. A new OAuthAuthenticator is created per
+        /// request by the ApiClient, so the cache must be static for tokens to be reused across requests.
+        /// </summary>
+        static readonly ConcurrentDictionary<string, CachedToken> _tokenCache = new ConcurrentDictionary<string, CachedToken>();
+
+        sealed class CachedToken
+        {
+            public string Token { get; set; }
+            public DateTime ExpiresAtUtc { get; set; }
+        }
+
+        string CacheKey => $"{_tokenUrl}|{_clientId}";
 
         /// <summary>
         /// Initialize the OAuth2 Authenticator
@@ -63,8 +83,22 @@ namespace {{packageName}}.Client.Auth
         /// <returns>An authentication parameter.</returns>
         protected override async ValueTask<Parameter> GetAuthenticationParameter(string accessToken)
         {
-            var token = string.IsNullOrEmpty(Token) ? await GetToken().ConfigureAwait(false) : Token;
+            var token = await GetCachedOrFetchToken().ConfigureAwait(false);
             return new HeaderParameter(KnownHeaders.Authorization, token);
+        }
+
+        /// <summary>
+        /// Returns a cached, unexpired token when one is available; otherwise fetches a new one.
+        /// </summary>
+        /// <returns>An authentication token.</returns>
+        async Task<string> GetCachedOrFetchToken()
+        {
+            if (_tokenCache.TryGetValue(CacheKey, out var cached) && cached.ExpiresAtUtc > DateTime.UtcNow)
+            {
+                return cached.Token;
+            }
+
+            return await GetToken().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -81,17 +115,34 @@ namespace {{packageName}}.Client.Auth
                 .AddHeader("Authorization", $"Basic {credentials}")
                 .AddParameter("grant_type", _grantType, ParameterType.GetOrPost);
             var response = await client.PostAsync<TokenResponse>(request).ConfigureAwait(false);
-            
+
             // RFC6749 - token_type is case insensitive.
             // RFC6750 - In Authorization header Bearer should be capitalized.
             // Fix the capitalization irrespective of token_type casing.
+            string token;
             switch (response.TokenType?.ToLower())
             {
                 case "bearer":
-                    return $"Bearer {response.AccessToken}";
+                    token = $"Bearer {response.AccessToken}";
+                    break;
                 default:
-                    return $"{response.TokenType} {response.AccessToken}";
+                    token = $"{response.TokenType} {response.AccessToken}";
+                    break;
             }
+
+            // Only cache when the server tells us how long the token is valid. Caching without a known
+            // expiry would risk serving a stale token indefinitely; when expires_in is absent we fall back
+            // to fetching per request (always valid, just not cached).
+            if (response.ExpiresIn > TokenExpiryBufferSeconds)
+            {
+                _tokenCache[CacheKey] = new CachedToken
+                {
+                    Token = token,
+                    ExpiresAtUtc = DateTime.UtcNow.AddSeconds(response.ExpiresIn - TokenExpiryBufferSeconds)
+                };
+            }
+
+            return token;
         }
     }
 }

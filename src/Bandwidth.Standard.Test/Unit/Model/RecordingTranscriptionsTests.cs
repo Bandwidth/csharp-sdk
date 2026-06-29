@@ -61,5 +61,15 @@ namespace Bandwidth.Standard.Test.Unit.Model
             instance.Transcripts = new List<Transcription>();
             Assert.IsType<List<Transcription>>(instance.Transcripts);
         }
+
+        /// <summary>
+        /// Test the property 'Clips'
+        /// </summary>
+        [Fact]
+        public void ClipsTest()
+        {
+            instance.Clips = new List<RecordingTranscriptionClip>();
+            Assert.IsType<List<RecordingTranscriptionClip>>(instance.Clips);
+        }
     }
 }

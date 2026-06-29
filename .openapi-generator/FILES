@@ -163,6 +163,7 @@ docs/RbmWebViewEnum.md
 docs/RecordingAvailableCallback.md
 docs/RecordingCompleteCallback.md
 docs/RecordingStateEnum.md
+docs/RecordingTranscriptionClip.md
 docs/RecordingTranscriptionMetadata.md
 docs/RecordingTranscriptions.md
 docs/RecordingsApi.md
@@ -400,6 +401,7 @@ src/Bandwidth.Standard/Model/RbmWebViewEnum.cs
 src/Bandwidth.Standard/Model/RecordingAvailableCallback.cs
 src/Bandwidth.Standard/Model/RecordingCompleteCallback.cs
 src/Bandwidth.Standard/Model/RecordingStateEnum.cs
+src/Bandwidth.Standard/Model/RecordingTranscriptionClip.cs
 src/Bandwidth.Standard/Model/RecordingTranscriptionMetadata.cs
 src/Bandwidth.Standard/Model/RecordingTranscriptions.cs
 src/Bandwidth.Standard/Model/RedirectCallback.cs

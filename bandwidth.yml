@@ -2889,6 +2889,11 @@ components:
           example: Yes, I would like to proceed
         postbackData:
           $ref: '#/components/schemas/rbmActionPostbackData'
+        pairedMessageId:
+          type: string
+          nullable: true
+          description: Corresponding parent message ID (MT).
+          example: 1752697342534u24xerqdukke523x
     rbmLocationResponse:
       type: object
       properties:
@@ -2925,7 +2930,7 @@ components:
           message-failed: '#/components/schemas/statusCallback'
           message-read: '#/components/schemas/statusCallback'
           message-received: '#/components/schemas/inboundCallback'
-          request-location-response: '#/components/schemas/inboundCallback'
+          requested-location-response: '#/components/schemas/inboundCallback'
           suggestion-response: '#/components/schemas/inboundCallback'
     statusCallback:
       type: object
@@ -3035,14 +3040,15 @@ components:
         - `message-received` indicates an MO message from a Bandwidth user's
         client to a Bandwidth number.
 
-        - `request-location-response` indicates a response to a location request
-        sent by the Bandwidth user's client after receiving an RBM message.
+        - `requested-location-response` indicates a response to a location
+        request sent by the Bandwidth user's client after receiving an RBM
+        message.
 
         - `suggestion-response` indicates a response to a suggestion sent by the
         Bandwidth user's client after receiving an RBM message.
       enum:
         - message-received
-        - request-location-response
+        - requested-location-response
         - suggestion-response
       example: message-received
     statusCallbackMessage:
@@ -4348,6 +4354,72 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/transcription'
+        clips:
+          type: array
+          description: >-
+            A list of individual speech clips with speaker, timing, and
+            confidence information.
+          items:
+            $ref: '#/components/schemas/recordingTranscriptionClip'
+      example:
+        transcripts:
+          - speaker: 0
+            text: Hi, is Thursday at two still good for you? Perfect, talk soon.
+            confidence: 0.96
+          - speaker: 1
+            text: Yes, that works great. See you then! Sounds good, bye!
+            confidence: 0.97
+        clips:
+          - speaker: 0
+            text: Hi, is Thursday at two still good for you?
+            confidence: 0.97
+            startTimeSeconds: 0.4
+            endTimeSeconds: 3.1
+          - speaker: 1
+            text: Yes, that works great. See you then!
+            confidence: 0.95
+            startTimeSeconds: 3.8
+            endTimeSeconds: 6.2
+          - speaker: 0
+            text: Perfect, talk soon.
+            confidence: 0.94
+            startTimeSeconds: 6.9
+            endTimeSeconds: 8.1
+          - speaker: 1
+            text: Sounds good, bye!
+            confidence: 0.98
+            startTimeSeconds: 8.5
+            endTimeSeconds: 9.7
+    recordingTranscriptionClip:
+      type: object
+      properties:
+        speaker:
+          type: integer
+          description: Zero-based index identifying the speaker.
+          example: 0
+        text:
+          type: string
+          description: The transcribed text of this clip.
+          example: Hi there, thanks for calling!
+        confidence:
+          type: number
+          format: double
+          minimum: 0
+          maximum: 1
+          description: >-
+            How confident the transcription engine was in transcribing this clip
+            (from `0.0` to `1.0`).
+          example: 0.85
+        startTimeSeconds:
+          type: number
+          format: double
+          description: The start time of this clip within the recording, in seconds.
+          example: 2.3
+        endTimeSeconds:
+          type: number
+          format: double
+          description: The end time of this clip within the recording, in seconds.
+          example: 3.1
     callTranscriptionMetadataList:
       type: array
       items:
@@ -5531,6 +5603,10 @@ components:
     transcription:
       type: object
       properties:
+        speaker:
+          type: integer
+          description: Zero-based index identifying the speaker.
+          example: 0
         text:
           type: string
           description: The transcribed text
@@ -9211,7 +9287,7 @@ components:
         tag: '{"myTag": "myTagValue"}'
     updateEndpointBxmlRequestExample:
       summary: Update Endpoint BXML Request Example
-      value: <Bxml><StartRecording /></Bxml>
+      value: <Response><StartRecording /></Response>
     endpointDisconnectedEventExample:
       summary: Endpoint Disconnected Event
       value:
@@ -9735,10 +9811,10 @@ components:
 
               <p>The payload type will be one of <code>message-received</code>,
               <code>suggestion-response</code>, or
-              <code>location-request-response</code>.
+              <code>requested-location-response</code>.
 
               <p>Note that <code>suggestion-response</code> and
-              <code>location-request-response</code> callback types are
+              <code>requested-location-response</code> callback types are
               pertinent only for RBM messages sent from the
               <code>/messages/multiChannel</code> endpoint.
 

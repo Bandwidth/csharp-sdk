@@ -6343,8 +6343,8 @@ components:
               <p>This Inbound Message Webhook is an envelope containing either a received (MO) message to your
               message-enabled Bandwidth telephone number or a multichannel client's response to a suggestion response
               or location request.
-              <p>The payload type will be one of <code>message-received</code>, <code>suggestion-response</code>, or <code>location-request-response</code>.
-              <p>Note that <code>suggestion-response</code> and <code>location-request-response</code> callback types are pertinent only for RBM messages sent from the <code>/messages/multiChannel</code> endpoint.
+              <p>The payload type will be one of <code>message-received</code>, <code>suggestion-response</code>, or <code>requested-location-response</code>.
+              <p>Note that <code>suggestion-response</code> and <code>requested-location-response</code> callback types are pertinent only for RBM messages sent from the <code>/messages/multiChannel</code> endpoint.
               </p><p>Please visit <a href='/docs/messaging/webhooks/'>Webhooks</a></p>
             required: true
           responses:
@@ -7062,7 +7062,7 @@ components:
         tag: "{\"myTag\": \"myTagValue\"}"
     updateEndpointBxmlRequestExample:
       summary: Update Endpoint BXML Request Example
-      value: <Bxml><StartRecording /></Bxml>
+      value: <Response><StartRecording /></Response>
     endpointDisconnectedEventExample:
       summary: Endpoint Disconnected Event
       value:
@@ -10504,6 +10504,11 @@ components:
           maxLength: 2048
           title: Post Back Data
           type: string
+        pairedMessageId:
+          description: Corresponding parent message ID (MT).
+          example: 1752697342534u24xerqdukke523x
+          nullable: true
+          type: string
       type: object
     rbmLocationResponse:
       properties:
@@ -10531,7 +10536,7 @@ components:
           message-failed: '#/components/schemas/statusCallback'
           message-read: '#/components/schemas/statusCallback'
           message-received: '#/components/schemas/inboundCallback'
-          request-location-response: '#/components/schemas/inboundCallback'
+          requested-location-response: '#/components/schemas/inboundCallback'
           suggestion-response: '#/components/schemas/inboundCallback'
         propertyName: type
       oneOf:
@@ -10637,11 +10642,11 @@ components:
       description: |-
         The possible inbound callback types originating from MO messages or multichannel message client responses:
         - `message-received` indicates an MO message from a Bandwidth user's client to a Bandwidth number.
-        - `request-location-response` indicates a response to a location request sent by the Bandwidth user's client after receiving an RBM message.
+        - `requested-location-response` indicates a response to a location request sent by the Bandwidth user's client after receiving an RBM message.
         - `suggestion-response` indicates a response to a suggestion sent by the Bandwidth user's client after receiving an RBM message.
       enum:
       - message-received
-      - request-location-response
+      - requested-location-response
       - suggestion-response
       example: message-received
       type: string
@@ -11944,15 +11949,73 @@ components:
     recordingTranscriptions:
       example:
         transcripts:
-        - confidence: 0.9
-          text: "Nice talking to you, friend!"
-        - confidence: 0.9
-          text: "Nice talking to you, friend!"
+        - speaker: 0
+          text: "Hi, is Thursday at two still good for you? Perfect, talk soon."
+          confidence: 0.96
+        - speaker: 1
+          text: "Yes, that works great. See you then! Sounds good, bye!"
+          confidence: 0.97
+        clips:
+        - speaker: 0
+          text: "Hi, is Thursday at two still good for you?"
+          confidence: 0.97
+          startTimeSeconds: 0.4
+          endTimeSeconds: 3.1
+        - speaker: 1
+          text: "Yes, that works great. See you then!"
+          confidence: 0.95
+          startTimeSeconds: 3.8
+          endTimeSeconds: 6.2
+        - speaker: 0
+          text: "Perfect, talk soon."
+          confidence: 0.94
+          startTimeSeconds: 6.9
+          endTimeSeconds: 8.1
+        - speaker: 1
+          text: "Sounds good, bye!"
+          confidence: 0.98
+          startTimeSeconds: 8.5
+          endTimeSeconds: 9.7
       properties:
         transcripts:
           items:
             $ref: '#/components/schemas/transcription'
           type: array
+        clips:
+          description: "A list of individual speech clips with speaker, timing, and\
+            \ confidence information."
+          items:
+            $ref: '#/components/schemas/recordingTranscriptionClip'
+          type: array
+      type: object
+    recordingTranscriptionClip:
+      properties:
+        speaker:
+          description: Zero-based index identifying the speaker.
+          example: 0
+          type: integer
+        text:
+          description: The transcribed text of this clip.
+          example: "Hi there, thanks for calling!"
+          type: string
+        confidence:
+          description: How confident the transcription engine was in transcribing
+            this clip (from `0.0` to `1.0`).
+          example: 0.85
+          format: double
+          maximum: 1
+          minimum: 0
+          type: number
+        startTimeSeconds:
+          description: "The start time of this clip within the recording, in seconds."
+          example: 2.3
+          format: double
+          type: number
+        endTimeSeconds:
+          description: "The end time of this clip within the recording, in seconds."
+          example: 3.1
+          format: double
+          type: number
       type: object
     callTranscriptionMetadataList:
       example:
@@ -14135,10 +14198,11 @@ components:
           type: string
       type: object
     transcription:
-      example:
-        confidence: 0.9
-        text: "Nice talking to you, friend!"
       properties:
+        speaker:
+          description: Zero-based index identifying the speaker.
+          example: 0
+          type: integer
         text:
           description: The transcribed text
           example: "Nice talking to you, friend!"
