@@ -27,9 +27,9 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The possible status callbacks when sending an MT SMS or MMS or RBM message: - &#x60;message-sending&#x60; indicates that Bandwidth is sending the message to the upstream provider. - &#x60;message-delivered&#x60; indicates that the message was successfully sent. - &#x60;message-failed&#x60; indicates that the message could not be sent to the intended recipient. - &#x60;message-read&#x60; indicates that the RBM message was read by the recipient.
+    /// The possible status callbacks when sending an MT SMS or MMS or RBM message: - &#x60;message-sending&#x60; indicates that Bandwidth is sending the message to the upstream provider. - &#x60;message-sent&#x60; indicates that the message has left the Bandwidth network and is in transit to the provider. - &#x60;message-delivered&#x60; indicates that the message was successfully delivered to handset. - &#x60;message-failed&#x60; indicates that the message could not be sent to the intended recipient. - &#x60;message-read&#x60; indicates that the RBM message was read by the recipient.
     /// </summary>
-    /// <value>The possible status callbacks when sending an MT SMS or MMS or RBM message: - &#x60;message-sending&#x60; indicates that Bandwidth is sending the message to the upstream provider. - &#x60;message-delivered&#x60; indicates that the message was successfully sent. - &#x60;message-failed&#x60; indicates that the message could not be sent to the intended recipient. - &#x60;message-read&#x60; indicates that the RBM message was read by the recipient.</value>
+    /// <value>The possible status callbacks when sending an MT SMS or MMS or RBM message: - &#x60;message-sending&#x60; indicates that Bandwidth is sending the message to the upstream provider. - &#x60;message-sent&#x60; indicates that the message has left the Bandwidth network and is in transit to the provider. - &#x60;message-delivered&#x60; indicates that the message was successfully delivered to handset. - &#x60;message-failed&#x60; indicates that the message could not be sent to the intended recipient. - &#x60;message-read&#x60; indicates that the RBM message was read by the recipient.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum StatusCallbackTypeEnum
     {
@@ -40,22 +40,28 @@ namespace Bandwidth.Standard.Model
         Sending = 1,
 
         /// <summary>
+        /// Enum Sent for value: message-sent
+        /// </summary>
+        [EnumMember(Value = "message-sent")]
+        Sent = 2,
+
+        /// <summary>
         /// Enum Delivered for value: message-delivered
         /// </summary>
         [EnumMember(Value = "message-delivered")]
-        Delivered = 2,
+        Delivered = 3,
 
         /// <summary>
         /// Enum Failed for value: message-failed
         /// </summary>
         [EnumMember(Value = "message-failed")]
-        Failed = 3,
+        Failed = 4,
 
         /// <summary>
         /// Enum Read for value: message-read
         /// </summary>
         [EnumMember(Value = "message-read")]
-        Read = 4
+        Read = 5
     }
 
 }

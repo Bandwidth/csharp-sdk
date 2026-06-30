@@ -108,7 +108,7 @@ namespace Bandwidth.Standard.Model
         /// A detailed description of the event described by the callback.
         /// </summary>
         /// <value>A detailed description of the event described by the callback.</value>
-        /// <example>Message delivered to carrier.</example>
+        /// <example>Message delivered to handset.</example>
         [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
         public string Description { get; set; }
 
