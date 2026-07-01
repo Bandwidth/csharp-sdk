@@ -5124,6 +5124,45 @@ components:
           $ref: '#/components/schemas/transferCallerId'
         transferTo:
           $ref: '#/components/schemas/transferTo'
+    referCompleteCallback:
+      type: object
+      description: >-
+        The Refer Complete event is fired when the <Refer> verb finishes
+        executing. This is sent to the referCompleteUrl specified on the
+        <Refer> verb, and the BXML returned in it is executed on the call.
+      properties:
+        eventType:
+          $ref: '#/components/schemas/eventType'
+        eventTime:
+          $ref: '#/components/schemas/eventTime'
+        accountId:
+          $ref: '#/components/schemas/accountId'
+        applicationId:
+          $ref: '#/components/schemas/applicationId1'
+        from:
+          $ref: '#/components/schemas/from'
+        to:
+          $ref: '#/components/schemas/to'
+        direction:
+          $ref: '#/components/schemas/callDirectionEnum'
+        callId:
+          $ref: '#/components/schemas/callId'
+        callUrl:
+          $ref: '#/components/schemas/callUrl'
+        enqueuedTime:
+          $ref: '#/components/schemas/enqueuedTime'
+        startTime:
+          $ref: '#/components/schemas/startTime'
+        answerTime:
+          $ref: '#/components/schemas/answerTime'
+        tag:
+          $ref: '#/components/schemas/tag1'
+        referCallStatus:
+          $ref: '#/components/schemas/referCallStatus'
+        referSipResponseCode:
+          $ref: '#/components/schemas/referSipResponseCode'
+        notifySipResponseCode:
+          $ref: '#/components/schemas/notifySipResponseCode'
     transcriptionAvailableCallback:
       type: object
       description: >-
@@ -5468,6 +5507,24 @@ components:
         (optional) The tag specified on call creation. If no tag was specified
         or it was previously cleared, this field will not be present.
       example: exampleTag
+      nullable: true
+    referCallStatus:
+      type: string
+      description: The outcome of the REFER operation. Either "success" or "failure".
+      example: success
+    referSipResponseCode:
+      type: integer
+      description: >-
+        The SIP response code returned for the REFER request itself (e.g. 202,
+        405, 603).
+      example: 202
+      nullable: true
+    notifySipResponseCode:
+      type: integer
+      description: >-
+        The final SIP response code reported via NOTIFY. Present only when the
+        caller's endpoint sent a final NOTIFY.
+      example: 200
       nullable: true
     cause:
       type: string

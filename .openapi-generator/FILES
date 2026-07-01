@@ -169,6 +169,7 @@ docs/RecordingTranscriptions.md
 docs/RecordingsApi.md
 docs/RedirectCallback.md
 docs/RedirectMethodEnum.md
+docs/ReferCompleteCallback.md
 docs/SipConnectionMetadata.md
 docs/SipCredentials.md
 docs/SmsMessageContent.md
@@ -405,6 +406,7 @@ src/Bandwidth.Standard/Model/RecordingTranscriptionMetadata.cs
 src/Bandwidth.Standard/Model/RecordingTranscriptions.cs
 src/Bandwidth.Standard/Model/RedirectCallback.cs
 src/Bandwidth.Standard/Model/RedirectMethodEnum.cs
+src/Bandwidth.Standard/Model/ReferCompleteCallback.cs
 src/Bandwidth.Standard/Model/SipConnectionMetadata.cs
 src/Bandwidth.Standard/Model/SipCredentials.cs
 src/Bandwidth.Standard/Model/SmsMessageContent.cs
