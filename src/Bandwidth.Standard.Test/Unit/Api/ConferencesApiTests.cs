@@ -89,6 +89,7 @@ namespace Bandwidth.Standard.Test.Unit.Api
             Assert.IsType<string>(response.Data.ConferenceEventUrl);
             Assert.IsType<CallbackMethodEnum>(response.Data.ConferenceEventMethod);
             Assert.IsType<string>(response.Data.Tag);
+            Assert.IsType<List<ConferenceMember>>(response.Data.ActiveMembers);
         }
 
         /// <summary>
@@ -130,6 +131,7 @@ namespace Bandwidth.Standard.Test.Unit.Api
             Assert.IsType<FileFormatEnum>(response.Data.FileFormat);
             Assert.IsType<string>(response.Data.Status);
             Assert.IsType<string>(response.Data.MediaUrl);
+            Assert.IsType<string>(response.Data.RecordingName);
         }
 
         /// <summary>
@@ -153,6 +155,7 @@ namespace Bandwidth.Standard.Test.Unit.Api
             Assert.IsType<FileFormatEnum>(response.Data[0].FileFormat);
             Assert.IsType<string>(response.Data[0].Status);
             Assert.IsType<string>(response.Data[0].MediaUrl);
+            Assert.IsType<string>(response.Data[0].RecordingName);
         }
 
         /// <summary>
