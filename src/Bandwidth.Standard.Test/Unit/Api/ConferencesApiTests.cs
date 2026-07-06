@@ -11,39 +11,39 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using RestSharp;
+using System.Net;
 using Xunit;
 
 using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
-using Moq;
-using System.Net;
 
 namespace Bandwidth.Standard.Test.Unit.Api
 {
     /// <summary>
-    ///  Class for testing ConferencesApi
+    ///  ConferencesApi Unit Tests
     /// </summary>
     public class ConferencesApiTests : IDisposable
     {
-        private ConferencesApi instance;
-        private Mock<ISynchronousClient> mockClient;
-        private Mock<IAsynchronousClient> mockAsynchronousClient;
-        private Configuration fakeConfiguration;
+        private readonly ConferencesApi instance;
+
+        private readonly string accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+        private readonly string callbackUrl = Environment.GetEnvironmentVariable("BASE_CALLBACK_URL");
+
+        private readonly string callId = "c-1234";
+        private readonly string conferenceId = "c-4321";
+        private readonly string recordingId = "r-1234";
 
         public ConferencesApiTests()
         {
-            mockClient = new Mock<ISynchronousClient>();
-            mockAsynchronousClient = new Mock<IAsynchronousClient>();
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
-            fakeConfiguration.Username = "username";
-            fakeConfiguration.Password = "password";
-            instance = new ConferencesApi(mockClient.Object, mockAsynchronousClient.Object, fakeConfiguration);
+            Configuration configuration = new()
+            {
+                BasePath = "http://127.0.0.1:4010",
+                IgnoreOperationServers = true,
+                OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID"),
+                OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET")
+            };
+            instance = new ConferencesApi(configuration);
         }
 
         public void Dispose()
@@ -63,19 +63,13 @@ namespace Bandwidth.Standard.Test.Unit.Api
         /// <summary>
         /// Test DownloadConferenceRecording
         /// </summary>
-        [Fact]
+        [Fact(Skip = "Can't set the correct Accept header for Prism")]
         public void DownloadConferenceRecordingTest()
         {
-            string accountId = "9900000";
-            string conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9";
-            string recordingId = "r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
+            ApiResponse<Stream> response = instance.DownloadConferenceRecordingWithHttpInfo(accountId, conferenceId, recordingId);
 
-            var apiResponse = new ApiResponse<System.IO.Stream>(HttpStatusCode.OK, null);
-            mockClient.Setup(x => x.Get<System.IO.Stream>("/accounts/{accountId}/conferences/{conferenceId}/recordings/{recordingId}/media",It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.DownloadConferenceRecordingWithHttpInfo(accountId, conferenceId, recordingId);
-
-            Assert.IsAssignableFrom<ApiResponse<System.IO.Stream>>(response);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsType<Stream>(response.Data);
         }
 
         /// <summary>
@@ -84,24 +78,17 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void GetConferenceTest()
         {
-            string accountId = "9900000";
-            string conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9";
-            var conference = new Conference(
-                id: "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9",
-                name: "my-conference-name",
-                createdTime: new DateTime(2022, 06, 17, 22, 20, 00),
-                completedTime: new DateTime(2022, 06, 17, 22, 20, 00),
-                conferenceEventUrl: "https://myServer.example/bandwidth/webhooks/conferenceEvent",
-                conferenceEventMethod: CallbackMethodEnum.POST,
-                tag: "my custom tag"
-            );
+            ApiResponse<Conference> response = instance.GetConferenceWithHttpInfo(accountId, conferenceId);
 
-            var apiResponse = new ApiResponse<Conference>(HttpStatusCode.OK, conference);
-            mockClient.Setup(x => x.Get<Conference>("/accounts/{accountId}/conferences/{conferenceId}",It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.GetConferenceWithHttpInfo(accountId, conferenceId);
-
-            Assert.IsType<ApiResponse<Conference>>(response);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsType<Conference>(response.Data);
+            Assert.Equal(50, response.Data.Id.Length);
+            Assert.IsType<string>(response.Data.Name);
+            Assert.IsType<DateTime>(response.Data.CreatedTime);
+            Assert.IsType<DateTime>(response.Data.CompletedTime);
+            Assert.IsType<string>(response.Data.ConferenceEventUrl);
+            Assert.IsType<CallbackMethodEnum>(response.Data.ConferenceEventMethod);
+            Assert.IsType<string>(response.Data.Tag);
         }
 
         /// <summary>
@@ -110,24 +97,16 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void GetConferenceMemberTest()
         {
-            string accountId = "9900000";
-            string conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9";
-            string memberId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
-            ConferenceMember conferenceMember = new ConferenceMember(
-                callId: "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85",
-                conferenceId: "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9",
-                memberUrl: "https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/members/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85",
-                mute: false,
-                hold: false,
-                callIdsToCoach: new List<string> { "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85" }
-            );
+            ApiResponse<ConferenceMember> response = instance.GetConferenceMemberWithHttpInfo(accountId, conferenceId, callId);
 
-            var apiResponse = new ApiResponse<ConferenceMember>(HttpStatusCode.OK, conferenceMember);
-            mockClient.Setup(x => x.Get<ConferenceMember>("/accounts/{accountId}/conferences/{conferenceId}/members/{memberId}",It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.GetConferenceMemberWithHttpInfo(accountId, conferenceId, memberId);
-
-            Assert.IsType<ApiResponse<ConferenceMember>>(response);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsType<ConferenceMember>(response.Data);
+            Assert.Equal(47, response.Data.CallId.Length);
+            Assert.Equal(50, response.Data.ConferenceId.Length);
+            Assert.IsType<string>(response.Data.MemberUrl);
+            Assert.IsType<bool>(response.Data.Mute);
+            Assert.IsType<bool>(response.Data.Hold);
+            Assert.IsType<List<string>>(response.Data.CallIdsToCoach);
         }
 
         /// <summary>
@@ -136,29 +115,21 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void GetConferenceRecordingTest()
         {
-            string accountId = "9900000";
-            string conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9";
-            string recordingId = "r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
-            ConferenceRecordingMetadata conferenceRecordingMetadata = new ConferenceRecordingMetadata(
-                accountId: "920012",
-                conferenceId: "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9",
-                name: "my-conference-name",
-                recordingId: "r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85",
-                duration: "PT13.67S",
-                channels: 1,
-                startTime: new DateTime(2022, 06, 17, 22, 20, 00),
-                endTime: new DateTime(2022, 06, 17, 22, 20, 00),
-                fileFormat: FileFormatEnum.Wav,
-                status: "complete",
-                mediaUrl:"https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/recordings/r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833/media"
-            );
+            ApiResponse<ConferenceRecordingMetadata> response = instance.GetConferenceRecordingWithHttpInfo(accountId, conferenceId, recordingId);
 
-            var apiResponse = new ApiResponse<ConferenceRecordingMetadata>(HttpStatusCode.OK, conferenceRecordingMetadata);
-            mockClient.Setup(x => x.Get<ConferenceRecordingMetadata>("/accounts/{accountId}/conferences/{conferenceId}/recordings/{recordingId}",It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.GetConferenceRecordingWithHttpInfo(accountId, conferenceId, recordingId);
-
-            Assert.IsType<ApiResponse<ConferenceRecordingMetadata>>(response);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsType<ConferenceRecordingMetadata>(response.Data);
+            Assert.Equal(7, response.Data.AccountId.Length);
+            Assert.Equal(50, response.Data.ConferenceId.Length);
+            Assert.IsType<string>(response.Data.Name);
+            Assert.Equal(47, response.Data.RecordingId.Length);
+            Assert.IsType<string>(response.Data.Duration);
+            Assert.IsType<int>(response.Data.Channels);
+            Assert.IsType<DateTime>(response.Data.StartTime);
+            Assert.IsType<DateTime>(response.Data.EndTime);
+            Assert.IsType<FileFormatEnum>(response.Data.FileFormat);
+            Assert.IsType<string>(response.Data.Status);
+            Assert.IsType<string>(response.Data.MediaUrl);
         }
 
         /// <summary>
@@ -167,28 +138,21 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void ListConferenceRecordingsTest()
         {
-            string accountId = "9900000";
-            string conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9";
-            ConferenceRecordingMetadata conferenceRecordingMetadata = new ConferenceRecordingMetadata(
-                accountId: "920012",
-                conferenceId: "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9",
-                name: "my-conference-name",
-                recordingId: "r-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85",
-                duration: "PT13.67S",
-                channels: 1,
-                startTime: new DateTime(2022, 06, 17, 22, 20, 00),
-                endTime: new DateTime(2022, 06, 17, 22, 20, 00),
-                fileFormat: FileFormatEnum.Wav,
-                status: "complete",
-                mediaUrl:"https://voice.bandwidth.com/api/v2/accounts/9900000/conferences/conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9/recordings/r-fbe05094-9fd2afe9-bf5b-4c68-820a-41a01c1c5833/media"
-            );
+            ApiResponse<List<ConferenceRecordingMetadata>> response = instance.ListConferenceRecordingsWithHttpInfo(accountId, conferenceId);
 
-            var apiResponse = new ApiResponse<List<ConferenceRecordingMetadata>>(HttpStatusCode.OK, new List<ConferenceRecordingMetadata>() { conferenceRecordingMetadata });
-            mockClient.Setup(x => x.Get<List<ConferenceRecordingMetadata>>("/accounts/{accountId}/conferences/{conferenceId}/recordings",It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.ListConferenceRecordingsWithHttpInfo(accountId, conferenceId);
-
-            Assert.IsType<ApiResponse<List<ConferenceRecordingMetadata>>>(response);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsType<ConferenceRecordingMetadata>(response.Data[0]);
+            Assert.Equal(7, response.Data[0].AccountId.Length);
+            Assert.Equal(50, response.Data[0].ConferenceId.Length);
+            Assert.IsType<string>(response.Data[0].Name);
+            Assert.Equal(47, response.Data[0].RecordingId.Length);
+            Assert.IsType<string>(response.Data[0].Duration);
+            Assert.IsType<int>(response.Data[0].Channels);
+            Assert.IsType<DateTime>(response.Data[0].StartTime);
+            Assert.IsType<DateTime>(response.Data[0].EndTime);
+            Assert.IsType<FileFormatEnum>(response.Data[0].FileFormat);
+            Assert.IsType<string>(response.Data[0].Status);
+            Assert.IsType<string>(response.Data[0].MediaUrl);
         }
 
         /// <summary>
@@ -197,27 +161,17 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void ListConferencesTest()
         {
-            string accountId = "9900000";
-            string name = "my-custom-name";
-            string minCreatedTime = "2022-06-21T19:13:21Z";
-            string maxCreatedTime = "2022-06-21T19:13:21Z";
-            int? pageSize = 500;
-            var conference = new Conference(
-                id: "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9",
-                name: "my-conference-name",
-                createdTime: new DateTime(2022, 06, 17, 22, 20, 00),
-                completedTime: new DateTime(2022, 06, 17, 22, 20, 00),
-                conferenceEventUrl: "https://myServer.example/bandwidth/webhooks/conferenceEvent",
-                conferenceEventMethod: CallbackMethodEnum.POST,
-                tag: "my custom tag"
-            );
+            ApiResponse<List<Conference>> response = instance.ListConferencesWithHttpInfo(accountId, conferenceId);
 
-            var apiResponse = new ApiResponse<List<Conference>>(HttpStatusCode.OK, new List<Conference>() { conference });
-            mockClient.Setup(x => x.Get<List<Conference>>("/accounts/{accountId}/conferences",It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.ListConferencesWithHttpInfo(accountId, name, minCreatedTime, maxCreatedTime, pageSize);
-
-            Assert.IsType<ApiResponse<List<Conference>>>(response);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsType<Conference>(response.Data[0]);
+            Assert.Equal(50, response.Data[0].Id.Length);
+            Assert.IsType<string>(response.Data[0].Name);
+            Assert.IsType<DateTime>(response.Data[0].CreatedTime);
+            Assert.IsType<DateTime>(response.Data[0].CompletedTime);
+            Assert.IsType<string>(response.Data[0].ConferenceEventUrl);
+            Assert.IsType<CallbackMethodEnum>(response.Data[0].ConferenceEventMethod);
+            Assert.IsType<string>(response.Data[0].Tag);
         }
 
         /// <summary>
@@ -226,35 +180,21 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void UpdateConferenceTest()
         {
-            string accountId = "9900000";
-            string conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9";
-            var conference = new Conference(
-                id: "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9",
-                name: "my-conference-name",
-                createdTime: new DateTime(2022, 06, 17, 22, 20, 00),
-                completedTime: new DateTime(2022, 06, 17, 22, 20, 00),
-                conferenceEventUrl: "https://myServer.example/bandwidth/webhooks/conferenceEvent",
-                conferenceEventMethod: CallbackMethodEnum.POST,
-                tag: "my custom tag"
-            );
-            UpdateConference updateConference = new UpdateConference(
-                status: ConferenceStateEnum.Completed,
-                redirectUrl: "https://myServer.example/bandwidth/webhooks/conferenceRedirect",
+            UpdateConference conference = new(
+                status: ConferenceStateEnum.Active,
+                redirectUrl: callbackUrl,
                 redirectMethod: RedirectMethodEnum.POST,
                 username: "username",
                 password: "password",
-                redirectFallbackUrl: "https://myFallbackServer.example/bandwidth/webhooks/conferenceRedirect",
+                redirectFallbackUrl: callbackUrl,
                 redirectFallbackMethod: RedirectMethodEnum.POST,
-                fallbackUsername: "fallbackUsername",
-                fallbackPassword: "fallbackPassword"
+                fallbackUsername: "username",
+                fallbackPassword: "password"
             );
 
-            var apiResponse = new ApiResponse<Object>(HttpStatusCode.OK, conference);
-            mockClient.Setup(x => x.Post<Object>("/accounts/{accountId}/conferences/{conferenceId}",It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.UpdateConferenceWithHttpInfo(accountId, conferenceId, updateConference);
-            
-            Assert.IsType<ApiResponse<Object>>(response);
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            ApiResponse<object> response = instance.UpdateConferenceWithHttpInfo(accountId, conferenceId, conference);
+
+            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
         }
 
         /// <summary>
@@ -263,26 +203,11 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void UpdateConferenceBxmlTest()
         {
-            string accountId = "9900000";
-            string conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9";
-            string body = "<Bxml>  <StopRecording/></Bxml>";
-            var conference = new Conference(
-                id: "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9",
-                name: "my-conference-name",
-                createdTime: new DateTime(2022, 06, 17, 22, 20, 00),
-                completedTime: new DateTime(2022, 06, 17, 22, 20, 00),
-                conferenceEventUrl: "https://myServer.example/bandwidth/webhooks/conferenceEvent",
-                conferenceEventMethod: CallbackMethodEnum.POST,
-                tag: "my custom tag"
-            );
+            string updateConferenceBxml = "<Response><Hangup/></Response>";
 
+            ApiResponse<object> response = instance.UpdateConferenceBxmlWithHttpInfo(accountId, conferenceId, updateConferenceBxml);
 
-            var apiResponse = new ApiResponse<Object>(HttpStatusCode.OK, conference);
-            mockClient.Setup(x => x.Put<Object>("/accounts/{accountId}/conferences/{conferenceId}/bxml",It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.UpdateConferenceBxmlWithHttpInfo(accountId, conferenceId, body);
-            
-            Assert.IsType<ApiResponse<Object>>(response);
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
         }
 
         /// <summary>
@@ -291,28 +216,15 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void UpdateConferenceMemberTest()
         {
-            string accountId = "9900000";
-            string conferenceId = "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9";
-            string memberId = "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
-            UpdateConferenceMember updateConferenceMember = new UpdateConferenceMember(
-                mute: false,
-                hold: false,
-                callIdsToCoach: new List<string> { "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85" }
-            );
-            ConferenceMember conferenceMember = new ConferenceMember(
-                callId: "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85",
-                conferenceId: "conf-fe23a767-a75a5b77-20c5-4cca-b581-cbbf0776eca9",
-                mute: false,
-                hold: false,
-                callIdsToCoach: new List<string> { "c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85" }
+            UpdateConferenceMember conferenceMember = new(
+                mute: true,
+                hold: true,
+                callIdsToCoach: new List<string>()
             );
 
-            var apiResponse = new ApiResponse<Object>(HttpStatusCode.OK, conferenceMember);
-            mockClient.Setup(x => x.Put<Object>("/accounts/{accountId}/conferences/{conferenceId}/members/{memberId}",It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.UpdateConferenceMemberWithHttpInfo(accountId, conferenceId, memberId, updateConferenceMember);
-        
-            Assert.IsType<ApiResponse<Object>>(response);
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            ApiResponse<object> response = instance.UpdateConferenceMemberWithHttpInfo(accountId, conferenceId, callId, conferenceMember);
+
+            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
         }
     }
 }
