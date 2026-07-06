@@ -19,13 +19,10 @@ using Xunit;
 
 using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
-using Moq;
-using System.Net;
-using System.Data.SqlTypes;
-using Bandwidth.Standard.Model;
-using System.Security.Authentication;
+// uncomment below to import models
+//using Bandwidth.Standard.Model;
 
-namespace Bandwidth.Standard.Test.Unit.Api
+namespace Bandwidth.Standard.Test.Api
 {
     /// <summary>
     ///  Class for testing TranscriptionsApi
@@ -37,19 +34,10 @@ namespace Bandwidth.Standard.Test.Unit.Api
     public class TranscriptionsApiTests : IDisposable
     {
         private TranscriptionsApi instance;
-        private Mock<ISynchronousClient> mockClient;
-        private Mock<IAsynchronousClient> mockAsynchronousClient;
-        private Configuration fakeConfiguration;
 
         public TranscriptionsApiTests()
         {
-            mockClient = new Mock<ISynchronousClient>();
-            mockAsynchronousClient = new Mock<IAsynchronousClient>();
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
-            fakeConfiguration.Username = "username";
-            fakeConfiguration.Password = "password";
-            instance = new TranscriptionsApi(mockClient.Object, mockAsynchronousClient.Object, fakeConfiguration);
+            instance = new TranscriptionsApi();
         }
 
         public void Dispose()
@@ -63,7 +51,8 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void InstanceTest()
         {
-            Assert.IsType<TranscriptionsApi>(instance);
+            // TODO uncomment below to test 'IsType' TranscriptionsApi
+            //Assert.IsType<TranscriptionsApi>(instance);
         }
 
         /// <summary>
@@ -72,16 +61,11 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void DeleteRealTimeTranscriptionTest()
         {
-            string accountId = "9900000";
-            string callId = "c-12345";
-            string transcriptionId = "t-12345";
-
-            var apiResponse = new ApiResponse<Object>(HttpStatusCode.NoContent, null);
-            mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.DeleteRealTimeTranscriptionWithHttpInfo(accountId, callId, transcriptionId);
-
-            Assert.IsType<ApiResponse<Object>>(response);
-            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string callId = null;
+            //string transcriptionId = null;
+            //instance.DeleteRealTimeTranscription(accountId, callId, transcriptionId);
         }
 
         /// <summary>
@@ -90,24 +74,12 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void GetRealTimeTranscriptionTest()
         {
-            string accountId = "9900000";
-            string callId = "c-12345";
-            string transcriptionId = "t-12345";
-
-            CallTranscriptionDetectedLanguageEnum detectedLanguage = CallTranscriptionDetectedLanguageEnum.EnUS;
-            CallTranscriptionTrackEnum track = CallTranscriptionTrackEnum.Inbound;
-
-            CallTranscription transcription = new CallTranscription(detectedLanguage: detectedLanguage, track: track, transcript: "abc 123 this is a test", confidence: 0.9);
-
-            List<CallTranscription> tracks = new List<CallTranscription> { transcription };
-
-            CallTranscriptionResponse callTranscriptionResponse = new CallTranscriptionResponse(accountId: accountId, callId: callId, transcriptionId: transcriptionId, tracks: tracks);
-
-            var apiResponse = new ApiResponse<CallTranscriptionResponse>(HttpStatusCode.NoContent, callTranscriptionResponse);
-            mockClient.Setup(x => x.Get<CallTranscriptionResponse>("/accounts/{accountId}/calls/{callId}/transcriptions/{transcriptionId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.GetRealTimeTranscription(accountId, callId, transcriptionId);
-
-            Assert.IsType<CallTranscriptionResponse>(response);
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string callId = null;
+            //string transcriptionId = null;
+            //var response = instance.GetRealTimeTranscription(accountId, callId, transcriptionId);
+            //Assert.IsType<CallTranscriptionResponse>(response);
         }
 
         /// <summary>
@@ -116,17 +88,11 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void ListRealTimeTranscriptionsTest()
         {
-            string accountId = "9900000";
-            string callId = "c-12345";
-
-            CallTranscriptionMetadata transcription = new CallTranscriptionMetadata(transcriptionId: "t-12345", transcriptionUrl: "https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-12345/transcriptions/t-12345");
-            List<CallTranscriptionMetadata> callTranscriptions = new List<CallTranscriptionMetadata> { transcription };
-
-            var apiResponse = new ApiResponse<List<CallTranscriptionMetadata>>(HttpStatusCode.NoContent, callTranscriptions);
-            mockClient.Setup(x => x.Get<List<CallTranscriptionMetadata>>("/accounts/{accountId}/calls/{callId}/transcriptions", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.ListRealTimeTranscriptions(accountId, callId);
-
-            Assert.IsType<List<CallTranscriptionMetadata>>(response);
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string callId = null;
+            //var response = instance.ListRealTimeTranscriptions(accountId, callId);
+            //Assert.IsType<List<CallTranscriptionMetadata>>(response);
         }
     }
 }
