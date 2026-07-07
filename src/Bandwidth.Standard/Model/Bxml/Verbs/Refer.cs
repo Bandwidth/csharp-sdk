@@ -7,7 +7,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
 {
     /// <summary>
     /// The Refer verb is used to hand off a call to a SIP endpoint.
-    /// <para><seealso href="https://dev.bandwidth.com/docs/voice/bxml/refer.html"/></para>
+    /// <para><seealso href="https://dev.bandwidth.com/docs/voice/bxml/refer"/></para>
     /// </summary>
     public class Refer : IVerb
     {

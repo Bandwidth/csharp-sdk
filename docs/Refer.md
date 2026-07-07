@@ -2,7 +2,7 @@
 
 The `<Refer>` verb is used to hand off a call to a SIP endpoint via a SIP REFER. The call is transferred to the specified SIP URI, and an optional callback is sent when the transfer completes.
 
-For more details, see the [Bandwidth BXML Refer documentation](https://dev.bandwidth.com/docs/voice/bxml/refer.html).
+For more details, see the [Bandwidth BXML Refer documentation](https://dev.bandwidth.com/docs/voice/bxml/refer).
 
 ## Properties
 
@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **ReferCompleteUrl** | **string** | URL to receive the `referComplete` callback when the REFER is finished. | [optional]
 **ReferCompleteMethod** | **string** | HTTP method to use for the `referComplete` callback. Must be `GET` or `POST`. | [optional] [default to `POST`]
 **Tag** | **string** | Optional custom string to include in callbacks. Max 256 characters. | [optional]
-**SipUriElement** | [**SipUri**](SipUri.md) | The SIP URI destination for the REFER. Must start with `sip:`. This is the same `SipUri` type used by [`<Transfer>`](Transfer.md) - see [Shared SipUri type](#shared-sipuri-type) below for which attributes are valid in each context. | 
+**SipUriElement** | [**SipUri**](#shared-sipuri-type) | The SIP URI destination for the REFER. Must start with `sip:`. This is the same `SipUri` type used by [`<Transfer>`](https://dev.bandwidth.com/docs/voice/bxml/transfer) - see [Shared SipUri type](#shared-sipuri-type) below for which attributes are valid in each context. | 
 
 ## Shared SipUri type
 
