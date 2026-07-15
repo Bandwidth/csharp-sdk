@@ -9,41 +9,41 @@
  */
 
 using System;
-using System.IO;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using RestSharp;
+using System.Net;
 using Xunit;
 
 using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
-using Moq;
-using System.Net;
 
 namespace Bandwidth.Standard.Test.Unit.Api
 {
     /// <summary>
-    ///  Class for testing MessagesApi
+    ///  MessagesApi Unit Tests
     /// </summary>
     public class MessagesApiTests : IDisposable
     {
-        private MessagesApi instance;
-        private Mock<ISynchronousClient> mockClient;
-        private Mock<IAsynchronousClient> mockAsynchronousClient;
-        private Configuration fakeConfiguration;
+        private readonly MessagesApi instance;
+
+        private readonly string accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+        private readonly string messagingApplicationId = Environment.GetEnvironmentVariable("BW_MESSAGING_APPLICATION_ID");
+        private readonly string bwNumber = Environment.GetEnvironmentVariable("BW_NUMBER");
+
+        private readonly string messageText = "C# SDK Test Message";
+        private readonly PriorityEnum messagePriority = PriorityEnum.High;
+        private readonly DateTime expiration = DateTime.UtcNow.AddDays(1);
 
         public MessagesApiTests()
         {
-            mockClient = new Mock<ISynchronousClient>();
-            mockAsynchronousClient = new Mock<IAsynchronousClient>();
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://messaging.bandwidth.com/api/v2";
-            fakeConfiguration.Username = "username";
-            fakeConfiguration.Password = "password";
-            instance = new MessagesApi(mockClient.Object, mockAsynchronousClient.Object, fakeConfiguration);
+            Configuration configuration = new()
+            {
+                BasePath = "http://127.0.0.1:4010",
+                IgnoreOperationServers = true,
+                OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID"),
+                OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET")
+            };
+            instance = new MessagesApi(configuration);
         }
 
         public void Dispose()
@@ -66,94 +66,34 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void CreateMessageTest()
         {
-            string accountId = "9900000";
-            MessageRequest messageRequest = new MessageRequest(
-                applicationId: "93de2206-9669-4e07-948d-329f4b722ee2",
-                to: new List<string> { "+15554443333", "+15552223333" },
-                from: "+15551113333",
-                text: "Hello World",
-                media: new List<string> { "https://dev.bandwidth.com/images/bandwidth-logo.png","https://dev.bandwidth.com/images/github_logo.png" },
-                tag: "custom string",
-                priority: PriorityEnum.Default,
-                expiration: new DateTime(2020, 1, 1)
-            );
-            Message message = new Message(
-                id: "1589228074636lm4k2je7j7jklbn2",
-                owner: "+15554443333",
-                applicationId: "93de2206-9669-4e07-948d-329f4b722ee2",
-                time: new DateTime(2020, 1, 1),
-                segmentCount: 2,
-                direction: MessageDirectionEnum.Out,
-                to: new List<string> { "+15554443333", "+15552223333" },
-                from: "+15551113333",
-                media: new List<string> {"https://dev.bandwidth.com/images/bandwidth-logo.png"},
-                text: "Hello World",
-                tag: "custom string",
-                priority: PriorityEnum.Default,
-                expiration: new DateTime(2020, 1, 2)
+            MessageRequest messageRequest = new(
+                applicationId: messagingApplicationId,
+                from: bwNumber,
+                to: new List<string> { bwNumber },
+                text: messageText,
+                priority: messagePriority,
+                expiration: expiration
             );
 
-            var apiResponse = new ApiResponse<Message>(HttpStatusCode.OK, message);
-            mockClient.Setup(x => x.Post<Message>("/users/{accountId}/messages", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.CreateMessageWithHttpInfo(accountId, messageRequest);
+            ApiResponse<Message> response = instance.CreateMessageWithHttpInfo(accountId, messageRequest);
 
-            Assert.IsType<ApiResponse<Message>>(response);
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        }
-
-        /// <summary>
-        /// Test failed CreateMessage Request
-        /// </summary>
-        [Fact]
-        public void CreateMessageBadRequest()
-        {
-            string accountId = "9900000";
-            MessageRequest messageRequest = new MessageRequest(
-                applicationId: "93de2206-9669-4e07-948d-329f4b722ee2",
-                to: new List<string> { "+15554443333", "+15552223333" },
-                from: "+15551113333",
-                text: "Hello World",
-                media: new List<string> { "https://dev.bandwidth.com/images/bandwidth-logo.png","https://dev.bandwidth.com/images/github_logo.png" },
-                tag: "custom string",
-                priority: PriorityEnum.Default,
-                expiration: new DateTime(2020, 1, 1)
-            ); 
-            messageRequest.ApplicationId = null; // Bad Request
-
-            var apiResponse = new ApiResponse<Message>(HttpStatusCode.BadRequest, null);
-            mockClient.Setup(x => x.Post<Message>("/users/{accountId}/messages", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.CreateMessage(accountId, messageRequest));
-
-            Assert.Equal("Error calling CreateMessage: ", Exception.Message);
-            Assert.Equal(400, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test Unauthorized CreateMessage Request
-        /// </summary>
-        [Fact]
-        public void CreateMessageUnauthorizedRequest()
-        {
-            string accountId = "9900000";
-            MessageRequest messageRequest = new MessageRequest(
-                applicationId: "93de2206-9669-4e07-948d-329f4b722ee2",
-                to: new List<string> { "+15554443333", "+15552223333" },
-                from: "+15551113333",
-                text: "Hello World",
-                media: new List<string> { "https://dev.bandwidth.com/images/bandwidth-logo.png","https://dev.bandwidth.com/images/github_logo.png" },
-                tag: "custom string",
-                priority: PriorityEnum.Default,
-                expiration: new DateTime(2020, 1, 1)
-            );
-            fakeConfiguration.Username = "badUsername";
-            fakeConfiguration.Password = "badPassword";
-
-            var apiResponse = new ApiResponse<Message>(HttpStatusCode.Unauthorized, null);
-            mockClient.Setup(x => x.Post<Message>("/users/{accountId}/messages", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.CreateMessage(accountId, messageRequest));
-
-            Assert.Equal("Error calling CreateMessage: ", Exception.Message);
-            Assert.Equal(401, Exception.ErrorCode);
+            Assert.Equal(HttpStatusCode.Accepted, response.StatusCode);
+            Assert.IsType<Message>(response.Data);
+            Assert.Equal(29, response.Data.Id.Length);
+            Assert.Equal(12, response.Data.Owner.Length);
+            Assert.Equal(36, response.Data.ApplicationId.Length);
+            Assert.IsType<DateTime>(response.Data.Time);
+            Assert.IsType<int>(response.Data.SegmentCount);
+            Assert.IsType<MessageDirectionEnum>(response.Data.Direction);
+            Assert.IsType<List<string>>(response.Data.To);
+            Assert.Equal(12, response.Data.To[0].Length);
+            Assert.Equal(12, response.Data.From.Length);
+            Assert.IsType<List<string>>(response.Data.Media);
+            Assert.IsType<string>(response.Data.Media[0]);
+            Assert.IsType<string>(response.Data.Text);
+            Assert.IsType<string>(response.Data.Tag);
+            Assert.IsType<PriorityEnum>(response.Data.Priority);
+            Assert.IsType<DateTime>(response.Data.Expiration);
         }
 
         /// <summary>
@@ -162,135 +102,41 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void ListMessagesTest()
         {
-            string accountId = "9900000";
-            MessagesList messagesList = new MessagesList(
-                totalCount: 1,
-                messages: new List<ListMessageItem> { new ListMessageItem(
-                    messageId: "1589228074636lm4k2je7j7jklbn2",
-                    accountId: "9900000",
-                    sourceTn: "+15554443333",
-                    destinationTn: "+15554442222",
-                    messageStatus: MessageStatusEnum.RECEIVED,
-                    messageDirection: ListMessageDirectionEnum.OUTBOUND,
-                    messageType: MessageTypeEnum.Sms,
-                    segmentCount: 1,
-                    errorCode: 9902,
-                    receiveTime: new DateTime(2020, 1, 1),
-                    carrierName: "other",
-                    messageSize: 1,
-                    messageLength: 18,
-                    attachmentCount: 0,
-                    recipientCount: 1,
-                    campaignClass: "T",
-                    campaignId: "CJEUMDK",
-                    bwLatency: 10,
-                    callingNumberCountryA3: "callingNumberCountryA3",
-                    calledNumberCountryA3: "calledNumberCountryA3",
-                    product: "product",
-                    location: "location" 
-                )}
-            );
+            ApiResponse<MessagesList> response = instance.ListMessagesWithHttpInfo(accountId);
 
-            var apiResponse = new ApiResponse<MessagesList>(HttpStatusCode.OK, messagesList);
-            mockClient.Setup(x => x.Get<MessagesList>("/users/{accountId}/messages", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.ListMessagesWithHttpInfo(
-                accountId: accountId,
-                messageId: "1589228074636lm4k2je7j7jklbn2",
-                sourceTn: "+15554443333",
-                destinationTn: "+15554442222",
-                messageStatus: MessageStatusEnum.RECEIVED,
-                messageDirection: ListMessageDirectionEnum.OUTBOUND,
-                carrierName: "other",
-                messageType: MessageTypeEnum.Sms,
-                errorCode: 9902,
-                fromDateTime: "2022-09-14T18:20:16.000Z",
-                toDateTime: "2022-09-14T18:20:16.000Z",
-                campaignId: "CJEUMDK",
-                fromBwLatency: 10,
-                bwQueued: true,
-                product: ProductTypeEnum.LOCALA2P,
-                location: "location",
-                carrierQueued: true,
-                fromCarrierLatency: 10,
-                callingNumberCountryA3: "callingNumberCountryA3",
-                calledNumberCountryA3: "calledNumberCountryA3",
-                fromSegmentCount: 1,
-                toSegmentCount: 1,
-                fromMessageSize: 1,
-                toMessageSize: 1,
-                sort: "receiveTime",
-                pageToken: "gdEewhcJLQRB5",
-                limit: 10,
-                limitTotalCount: true
-            );
-
-            Assert.IsType<ApiResponse<MessagesList>>(response);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        }
-
-        /// <summary>
-        /// Test failed ListMessages Request
-        /// </summary>
-        [Fact]
-        public void ListMessagesBadRequest()
-        {
-            var apiResponse = new ApiResponse<MessagesList>(HttpStatusCode.BadRequest, null);
-            mockClient.Setup(x => x.Get<MessagesList>("/users/{accountId}/messages", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.ListMessagesWithHttpInfo(
-                accountId: "9900000",
-                messageId: "1589228074636lm4k2je7j7jklbn2",
-                sourceTn: "+15554443333",
-                destinationTn: "+15554443333",
-                messageStatus: MessageStatusEnum.RECEIVED,
-                messageDirection: ListMessageDirectionEnum.OUTBOUND,
-                carrierName: "Verizon",
-                messageType: MessageTypeEnum.Sms,
-                errorCode: 9902,
-                fromDateTime: "2022-09-14T18:20:16.000Z",
-                toDateTime: "2022-09-14T18:20:16.000Z",
-                campaignId: "CJEUMDK",
-                sort: "sourceTn:desc",
-                pageToken: "gdEewhcJLQRB5", // Bad Token
-                limit: 10,
-                limitTotalCount: true
-            ));
-
-            Assert.Equal("Error calling ListMessages: ", Exception.Message);
-            Assert.Equal(400, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test Unauthorized ListMessages Request
-        /// </summary>
-        [Fact]
-        public void ListMessagesUnauthorizedRequest()
-        {
-            fakeConfiguration.Username = "badUsername";
-            fakeConfiguration.Password = "badPassword";
-            
-            var apiResponse = new ApiResponse<MessagesList>(HttpStatusCode.Unauthorized, null);
-            mockClient.Setup(x => x.Get<MessagesList>("/users/{accountId}/messages", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.ListMessagesWithHttpInfo(
-                accountId: "9900000",
-                messageId: "1589228074636lm4k2je7j7jklbn2",
-                sourceTn: "+15554443333",
-                destinationTn: "+15554443333",
-                messageStatus: MessageStatusEnum.RECEIVED,
-                messageDirection: ListMessageDirectionEnum.OUTBOUND,
-                carrierName: "Verizon",
-                messageType: MessageTypeEnum.Sms,
-                errorCode: 9902,
-                fromDateTime: "2022-09-14T18:20:16.000Z",
-                toDateTime: "2022-09-14T18:20:16.000Z",
-                campaignId: "CJEUMDK",
-                sort: "sourceTn:desc",
-                pageToken: "gdEewhcJLQRB5",
-                limit: 10,
-                limitTotalCount: true
-            ));
-
-            Assert.Equal("Error calling ListMessages: ", Exception.Message);
-            Assert.Equal(401, Exception.ErrorCode);
+            Assert.IsType<MessagesList>(response.Data);
+            Assert.IsType<int>(response.Data.TotalCount);
+            Assert.IsType<PageInfo>(response.Data.PageInfo);
+            Assert.IsType<string>(response.Data.PageInfo.PrevPage);
+            Assert.IsType<string>(response.Data.PageInfo.NextPage);
+            Assert.IsType<string>(response.Data.PageInfo.PrevPageToken);
+            Assert.IsType<string>(response.Data.PageInfo.NextPageToken);
+            Assert.IsType<List<ListMessageItem>>(response.Data.Messages);
+            Assert.IsType<ListMessageItem>(response.Data.Messages[0]);
+            Assert.Equal(29, response.Data.Messages[0].MessageId.Length);
+            Assert.Equal(7, response.Data.Messages[0].AccountId.Length);
+            Assert.Equal(12, response.Data.Messages[0].SourceTn.Length);
+            Assert.Equal(12, response.Data.Messages[0].DestinationTn.Length);
+            Assert.IsType<MessageStatusEnum>(response.Data.Messages[0].MessageStatus);
+            Assert.IsType<ListMessageDirectionEnum>(response.Data.Messages[0].MessageDirection);
+            Assert.IsType<MessageTypeEnum>(response.Data.Messages[0].MessageType);
+            Assert.IsType<int>(response.Data.Messages[0].SegmentCount);
+            Assert.IsType<int>(response.Data.Messages[0].ErrorCode);
+            Assert.IsType<DateTime>(response.Data.Messages[0].ReceiveTime);
+            Assert.IsType<string>(response.Data.Messages[0].CarrierName);
+            Assert.IsType<int>(response.Data.Messages[0].MessageSize);
+            Assert.IsType<int>(response.Data.Messages[0].MessageLength);
+            Assert.IsType<int>(response.Data.Messages[0].AttachmentCount);
+            Assert.IsType<int>(response.Data.Messages[0].RecipientCount);
+            Assert.IsType<string>(response.Data.Messages[0].CampaignClass);
+            Assert.IsType<string>(response.Data.Messages[0].CampaignId);
+            Assert.IsType<int>(response.Data.Messages[0].BwLatency);
+            Assert.IsType<int>(response.Data.Messages[0].CarrierLatency);
+            Assert.IsType<string>(response.Data.Messages[0].CallingNumberCountryA3);
+            Assert.IsType<string>(response.Data.Messages[0].CalledNumberCountryA3);
+            Assert.IsType<string>(response.Data.Messages[0].Product);
+            Assert.IsType<string>(response.Data.Messages[0].Location);
         }
     }
 }

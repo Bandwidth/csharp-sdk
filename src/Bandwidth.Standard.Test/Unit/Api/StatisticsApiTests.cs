@@ -9,41 +9,34 @@
  */
 
 using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using RestSharp;
+using System.Net;
 using Xunit;
 
 using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
-using Moq;
-using System.Net;
 
 namespace Bandwidth.Standard.Test.Unit.Api
 {
     /// <summary>
-    ///  Class for testing StatisticsApi
+    ///  StatisticsApi Unit Tests
     /// </summary>
     public class StatisticsApiTests : IDisposable
     {
-        private StatisticsApi instance;
-        private Mock<ISynchronousClient> mockClient;
-        private Mock<IAsynchronousClient> mockAsynchronousClient;
-        private Configuration fakeConfiguration;
+        private readonly StatisticsApi instance;
+
+        private readonly string accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
 
         public StatisticsApiTests()
         {
-            mockClient = new Mock<ISynchronousClient>();
-            mockAsynchronousClient = new Mock<IAsynchronousClient>();
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
-            fakeConfiguration.Username = "username";
-            fakeConfiguration.Password = "password";
-            instance = new StatisticsApi(mockClient.Object, mockAsynchronousClient.Object, fakeConfiguration);
+            Configuration configuration = new()
+            {
+                BasePath = "http://127.0.0.1:4010",
+                IgnoreOperationServers = true,
+                OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID"),
+                OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET")
+            };
+            instance = new StatisticsApi(configuration);
         }
 
         public void Dispose()
@@ -66,15 +59,12 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void GetStatisticsTest()
         {
-            string accountId = "9900000";
-            var accountStatistics = new AccountStatistics(0, 900);
+            ApiResponse<AccountStatistics> response = instance.GetStatisticsWithHttpInfo(accountId);
 
-            var apiResponse = new ApiResponse<AccountStatistics>(HttpStatusCode.OK, accountStatistics);
-            mockClient.Setup(x => x.Get<AccountStatistics>("/accounts/{accountId}/statistics", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.GetStatisticsWithHttpInfo(accountId);
-
-            Assert.IsType<ApiResponse<AccountStatistics>>(response);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsType<AccountStatistics>(response.Data);
+            Assert.IsType<int>(response.Data.CurrentCallQueueSize);
+            Assert.IsType<int>(response.Data.MaxCallQueueSize);
         }
     }
 }
