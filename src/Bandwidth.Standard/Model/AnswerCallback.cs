@@ -55,7 +55,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="answerTime">Time the call was answered, in ISO 8601 format..</param>
         /// <param name="tag">(optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present..</param>
         /// <param name="machineDetectionResult">machineDetectionResult.</param>
-        public AnswerCallback(string eventType = default(string), DateTime eventTime = default(DateTime), string accountId = default(string), string applicationId = default(string), string from = default(string), string to = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), string callId = default(string), string callUrl = default(string), DateTime? enqueuedTime = default(DateTime?), DateTime startTime = default(DateTime), DateTime? answerTime = default(DateTime?), string tag = default(string), MachineDetectionResult machineDetectionResult = default(MachineDetectionResult))
+        /// <param name="sipCallId">(optional) The SIP Call-ID of the call&#39;s current SIP dialog with Bandwidth&#39;s SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists..</param>
+        public AnswerCallback(string eventType = default(string), DateTime eventTime = default(DateTime), string accountId = default(string), string applicationId = default(string), string from = default(string), string to = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), string callId = default(string), string callUrl = default(string), DateTime? enqueuedTime = default(DateTime?), DateTime startTime = default(DateTime), DateTime? answerTime = default(DateTime?), string tag = default(string), MachineDetectionResult machineDetectionResult = default(MachineDetectionResult), string sipCallId = default(string))
         {
             this.EventType = eventType;
             this.EventTime = eventTime;
@@ -71,6 +72,7 @@ namespace Bandwidth.Standard.Model
             this.AnswerTime = answerTime;
             this.Tag = tag;
             this.MachineDetectionResult = machineDetectionResult;
+            this.SipCallId = sipCallId;
         }
 
         /// <summary>
@@ -176,6 +178,14 @@ namespace Bandwidth.Standard.Model
         public MachineDetectionResult MachineDetectionResult { get; set; }
 
         /// <summary>
+        /// (optional) The SIP Call-ID of the call&#39;s current SIP dialog with Bandwidth&#39;s SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists.
+        /// </summary>
+        /// <value>(optional) The SIP Call-ID of the call&#39;s current SIP dialog with Bandwidth&#39;s SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists.</value>
+        /// <example>c95ac8d6e1a31c52eb38f419893c151633ec68f8d@sbc.bandwidth.com</example>
+        [DataMember(Name = "sipCallId", EmitDefaultValue = false)]
+        public string SipCallId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -197,6 +207,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  AnswerTime: ").Append(AnswerTime).Append("\n");
             sb.Append("  Tag: ").Append(Tag).Append("\n");
             sb.Append("  MachineDetectionResult: ").Append(MachineDetectionResult).Append("\n");
+            sb.Append("  SipCallId: ").Append(SipCallId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
