@@ -219,6 +219,26 @@ namespace Bandwidth.Standard.Test.Unit.Model
             Assert.IsType<string>(instance.Tag);
             Assert.Equal("test", instance.Tag);
         }
+        /// <summary>
+        /// Test the property 'SipCallId'
+        /// </summary>
+        [Fact]
+        public void SipCallIdTest()
+        {
+            instance.SipCallId = "test";
+            Assert.IsType<string>(instance.SipCallId);
+            Assert.Equal("test", instance.SipCallId);
+        }
+        /// <summary>
+        /// Test the property 'SipResponseCode'
+        /// </summary>
+        [Fact]
+        public void SipResponseCodeTest()
+        {
+            instance.SipResponseCode = 200;
+            Assert.IsType<int>(instance.SipResponseCode);
+            Assert.Equal(200, instance.SipResponseCode);
+        }
 
     }
 

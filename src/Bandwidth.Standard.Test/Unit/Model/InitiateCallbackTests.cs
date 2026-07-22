@@ -177,6 +177,25 @@ namespace Bandwidth.Standard.Test.Unit.Model
             Assert.IsType<string>(instance.Uui);
             Assert.Equal("test", instance.Uui);
         }
+        /// <summary>
+        /// Test the property 'SipCallId'
+        /// </summary>
+        [Fact]
+        public void SipCallIdTest()
+        {
+            instance.SipCallId = "test";
+            Assert.IsType<string>(instance.SipCallId);
+            Assert.Equal("test", instance.SipCallId);
+        }
+        /// <summary>
+        /// Test the property 'SipHeaders'
+        /// </summary>
+        [Fact]
+        public void SipHeadersTest()
+        {
+            instance.SipHeaders = new Dictionary<string, string>();
+            Assert.IsType<Dictionary<string, string>>(instance.SipHeaders);
+        }
 
     }
 
