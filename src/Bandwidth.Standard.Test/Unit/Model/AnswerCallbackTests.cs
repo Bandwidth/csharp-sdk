@@ -188,6 +188,16 @@ namespace Bandwidth.Standard.Test.Unit.Model
             instance.MachineDetectionResult = new MachineDetectionResult("human", "test");
             Assert.IsType<MachineDetectionResult>(instance.MachineDetectionResult);
         }
+        /// <summary>
+        /// Test the property 'SipCallId'
+        /// </summary>
+        [Fact]
+        public void SipCallIdTest()
+        {
+            instance.SipCallId = "test";
+            Assert.IsType<string>(instance.SipCallId);
+            Assert.Equal("test", instance.SipCallId);
+        }
 
     }
 
