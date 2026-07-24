@@ -6,6 +6,7 @@ metadata:
   description: C# sdk
   annotations:
     github.com/project-slug: Bandwidth/csharp-sdk
+    bandwidth.com/languages: C#
   organization: BW
   costCenter: UNKNOWN
   buildPlatform: GitHub Actions

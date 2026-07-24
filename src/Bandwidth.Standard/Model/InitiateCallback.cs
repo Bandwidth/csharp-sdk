@@ -54,7 +54,9 @@ namespace Bandwidth.Standard.Model
         /// <param name="diversion">diversion.</param>
         /// <param name="stirShaken">stirShaken.</param>
         /// <param name="uui">The value of the &#x60;User-To-User&#x60; header to send within the initial &#x60;INVITE&#x60;. Must include the encoding parameter as specified in RFC 7433. Only &#x60;base64&#x60;, &#x60;jwt&#x60; and &#x60;hex&#x60; encoding are currently allowed. This value, including the encoding specifier, may not exceed 256 characters..</param>
-        public InitiateCallback(string eventType = default(string), DateTime eventTime = default(DateTime), string accountId = default(string), string applicationId = default(string), string from = default(string), string to = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), string callId = default(string), string callUrl = default(string), DateTime startTime = default(DateTime), Diversion diversion = default(Diversion), StirShaken stirShaken = default(StirShaken), string uui = default(string))
+        /// <param name="sipCallId">(optional) The SIP Call-ID of the call&#39;s current SIP dialog with Bandwidth&#39;s SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists..</param>
+        /// <param name="sipHeaders">(optional) Map of customer-supplied X-* headers from the original INVITE. Keys are lowercase (SIP headers are case-insensitive). Present only for inbound SIP URI calls with custom headers. Note - keys preserve the original SIP header name in lowercase rather than Bandwidth&#39;s usual camelCase JSON convention, since these are passthrough values from the caller&#39;s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept..</param>
+        public InitiateCallback(string eventType = default(string), DateTime eventTime = default(DateTime), string accountId = default(string), string applicationId = default(string), string from = default(string), string to = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), string callId = default(string), string callUrl = default(string), DateTime startTime = default(DateTime), Diversion diversion = default(Diversion), StirShaken stirShaken = default(StirShaken), string uui = default(string), string sipCallId = default(string), Dictionary<string, string> sipHeaders = default(Dictionary<string, string>))
         {
             this.EventType = eventType;
             this.EventTime = eventTime;
@@ -69,6 +71,8 @@ namespace Bandwidth.Standard.Model
             this.Diversion = diversion;
             this.StirShaken = stirShaken;
             this.Uui = uui;
+            this.SipCallId = sipCallId;
+            this.SipHeaders = sipHeaders;
         }
 
         /// <summary>
@@ -164,6 +168,22 @@ namespace Bandwidth.Standard.Model
         public string Uui { get; set; }
 
         /// <summary>
+        /// (optional) The SIP Call-ID of the call&#39;s current SIP dialog with Bandwidth&#39;s SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists.
+        /// </summary>
+        /// <value>(optional) The SIP Call-ID of the call&#39;s current SIP dialog with Bandwidth&#39;s SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists.</value>
+        /// <example>c95ac8d6e1a31c52eb38f419893c151633ec68f8d@sbc.bandwidth.com</example>
+        [DataMember(Name = "sipCallId", EmitDefaultValue = false)]
+        public string SipCallId { get; set; }
+
+        /// <summary>
+        /// (optional) Map of customer-supplied X-* headers from the original INVITE. Keys are lowercase (SIP headers are case-insensitive). Present only for inbound SIP URI calls with custom headers. Note - keys preserve the original SIP header name in lowercase rather than Bandwidth&#39;s usual camelCase JSON convention, since these are passthrough values from the caller&#39;s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept.
+        /// </summary>
+        /// <value>(optional) Map of customer-supplied X-* headers from the original INVITE. Keys are lowercase (SIP headers are case-insensitive). Present only for inbound SIP URI calls with custom headers. Note - keys preserve the original SIP header name in lowercase rather than Bandwidth&#39;s usual camelCase JSON convention, since these are passthrough values from the caller&#39;s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept.</value>
+        /// <example>{&quot;x-custom-header&quot;:&quot;customer-value&quot;,&quot;x-session-id&quot;:&quot;sess-12345&quot;}</example>
+        [DataMember(Name = "sipHeaders", EmitDefaultValue = false)]
+        public Dictionary<string, string> SipHeaders { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -184,6 +204,8 @@ namespace Bandwidth.Standard.Model
             sb.Append("  Diversion: ").Append(Diversion).Append("\n");
             sb.Append("  StirShaken: ").Append(StirShaken).Append("\n");
             sb.Append("  Uui: ").Append(Uui).Append("\n");
+            sb.Append("  SipCallId: ").Append(SipCallId).Append("\n");
+            sb.Append("  SipHeaders: ").Append(SipHeaders).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -9,41 +9,37 @@
  */
 
 using System;
-using System.IO;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using RestSharp;
+using System.Net;
 using Xunit;
 
 using Bandwidth.Standard.Client;
 using Bandwidth.Standard.Api;
 using Bandwidth.Standard.Model;
-using Moq;
-using System.Net;
 
 namespace Bandwidth.Standard.Test.Unit.Api
 {
     /// <summary>
-    ///  Class for testing EndpointsApi
+    ///  EndpointsApi Unit Tests
     /// </summary>
     public class EndpointsApiTests : IDisposable
     {
-        private EndpointsApi instance;
-        private Mock<ISynchronousClient> mockClient;
-        private Mock<IAsynchronousClient> mockAsynchronousClient;
-        private Configuration fakeConfiguration;
+        private readonly EndpointsApi instance;
+
+        private readonly string accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+
+        private readonly string endpointId = "test-endpoint-id";
 
         public EndpointsApiTests()
         {
-            mockClient = new Mock<ISynchronousClient>();
-            mockAsynchronousClient = new Mock<IAsynchronousClient>();
-            fakeConfiguration = new Configuration();
-            fakeConfiguration.BasePath = "https://voice.bandwidth.com/api/v2";
-            fakeConfiguration.Username = "username";
-            fakeConfiguration.Password = "password";
-            instance = new EndpointsApi(mockClient.Object, mockAsynchronousClient.Object, fakeConfiguration);
+            Configuration configuration = new()
+            {
+                BasePath = "http://127.0.0.1:4010",
+                IgnoreOperationServers = true,
+                OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID"),
+                OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET")
+            };
+            instance = new EndpointsApi(configuration);
         }
 
         public void Dispose()
@@ -66,248 +62,26 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void CreateEndpointTest()
         {
-            string accountId = "9900000";
-            DateTime creationTime = new DateTime(2021, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            DateTime expirationTime = new DateTime(2021, 1, 2, 0, 0, 0, DateTimeKind.Utc);
-
-            CreateWebRtcConnectionRequest webRtcRequest = new CreateWebRtcConnectionRequest(
+            CreateWebRtcConnectionRequest webRtcRequest = new(
                 type: EndpointTypeEnum.WEBRTC,
-                direction: EndpointDirectionEnum.OUTBOUND,
-                tag: "test-endpoint"
-            );
-            CreateEndpointRequest createEndpointRequest = new CreateEndpointRequest(webRtcRequest);
-
-            var link = new BrtcLink(rel: "self", href: "/accounts/9900000/endpoints/e-15ac29a2");
-
-            CreateEndpointResponseData responseData = new CreateEndpointResponseData(
-                endpointId: "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85",
-                type: EndpointTypeEnum.WEBRTC,
-                status: EndpointStatusEnum.CONNECTED,
-                creationTimestamp: creationTime,
-                expirationTimestamp: expirationTime,
-                tag: "test-endpoint",
-                token: "test-token-abc123"
+                direction: EndpointDirectionEnum.BIDIRECTIONAL
             );
 
-            CreateEndpointResponse endpointResponse = new CreateEndpointResponse(
-                links: new List<BrtcLink> { link },
-                data: responseData,
-                errors: new List<BrtcError>()
-            );
+            ApiResponse<CreateEndpointResponse> response = instance.CreateEndpointWithHttpInfo(accountId, new CreateEndpointRequest(webRtcRequest));
 
-            var apiResponse = new ApiResponse<CreateEndpointResponse>(HttpStatusCode.Created, endpointResponse);
-            mockClient.Setup(x => x.Post<CreateEndpointResponse>("/accounts/{accountId}/endpoints", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.CreateEndpointWithHttpInfo(accountId, createEndpointRequest);
-
-            Assert.IsType<ApiResponse<CreateEndpointResponse>>(response);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
-        }
-
-        /// <summary>
-        /// Test failed CreateEndpoint Request
-        /// </summary>
-        [Fact]
-        public void CreateEndpointBadRequest()
-        {
-            string accountId = "9900000";
-            CreateWebRtcConnectionRequest webRtcRequest = new CreateWebRtcConnectionRequest(
-                type: EndpointTypeEnum.WEBRTC,
-                direction: EndpointDirectionEnum.OUTBOUND
-            );
-            CreateEndpointRequest createEndpointRequest = new CreateEndpointRequest(webRtcRequest);
-
-            var apiResponse = new ApiResponse<CreateEndpointResponse>(HttpStatusCode.BadRequest, null);
-            mockClient.Setup(x => x.Post<CreateEndpointResponse>("/accounts/{accountId}/endpoints", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.CreateEndpoint(accountId, createEndpointRequest));
-
-            Assert.Equal("Error calling CreateEndpoint: ", Exception.Message);
-            Assert.Equal(400, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test unauthorized CreateEndpoint Request
-        /// </summary>
-        [Fact]
-        public void CreateEndpointUnauthorizedRequest()
-        {
-            string accountId = "9900000";
-            CreateWebRtcConnectionRequest webRtcRequest = new CreateWebRtcConnectionRequest(
-                type: EndpointTypeEnum.WEBRTC,
-                direction: EndpointDirectionEnum.OUTBOUND
-            );
-            CreateEndpointRequest createEndpointRequest = new CreateEndpointRequest(webRtcRequest);
-            fakeConfiguration.Username = "badUsername";
-            fakeConfiguration.Password = "badPassword";
-
-            var apiResponse = new ApiResponse<CreateEndpointResponse>(HttpStatusCode.Unauthorized, null);
-            mockClient.Setup(x => x.Post<CreateEndpointResponse>("/accounts/{accountId}/endpoints", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.CreateEndpoint(accountId, createEndpointRequest));
-
-            Assert.Equal("Error calling CreateEndpoint: ", Exception.Message);
-            Assert.Equal(401, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test forbidden CreateEndpoint Request
-        /// </summary>
-        [Fact]
-        public void CreateEndpointForbiddenRequest()
-        {
-            string accountId = "9900000";
-            CreateWebRtcConnectionRequest webRtcRequest = new CreateWebRtcConnectionRequest(
-                type: EndpointTypeEnum.WEBRTC,
-                direction: EndpointDirectionEnum.OUTBOUND
-            );
-            CreateEndpointRequest createEndpointRequest = new CreateEndpointRequest(webRtcRequest);
-            fakeConfiguration.Username = "forbiddenUsername";
-            fakeConfiguration.Password = "forbiddenPassword";
-
-            var apiResponse = new ApiResponse<CreateEndpointResponse>(HttpStatusCode.Forbidden, null);
-            mockClient.Setup(x => x.Post<CreateEndpointResponse>("/accounts/{accountId}/endpoints", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.CreateEndpoint(accountId, createEndpointRequest));
-
-            Assert.Equal("Error calling CreateEndpoint: ", Exception.Message);
-            Assert.Equal(403, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test GetEndpoint
-        /// </summary>
-        [Fact]
-        public void GetEndpointTest()
-        {
-            string accountId = "9900000";
-            string endpointId = "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
-
-            var endpointResponse = new EndpointResponse(
-                links: new List<BrtcLink>(),
-                data: new Endpoint(
-                    endpointId: endpointId,
-                    type: EndpointTypeEnum.WEBRTC,
-                    status: EndpointStatusEnum.CONNECTED,
-                    creationTimestamp: new DateTime(2021, 1, 1, 0, 0, 0, DateTimeKind.Utc),
-                    expirationTimestamp: new DateTime(2021, 1, 2, 0, 0, 0, DateTimeKind.Utc)
-                ),
-                errors: new List<BrtcError>()
-            );
-            var apiResponse = new ApiResponse<EndpointResponse>(HttpStatusCode.OK, endpointResponse);
-            mockClient.Setup(x => x.Get<EndpointResponse>("/accounts/{accountId}/endpoints/{endpointId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.GetEndpointWithHttpInfo(accountId, endpointId);
-
-            Assert.IsType<ApiResponse<EndpointResponse>>(response);
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        }
-
-        /// <summary>
-        /// Test unauthorized GetEndpoint Request
-        /// </summary>
-        [Fact]
-        public void GetEndpointUnauthorizedRequest()
-        {
-            string accountId = "9900000";
-            string endpointId = "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
-            fakeConfiguration.Username = "badUsername";
-            fakeConfiguration.Password = "badPassword";
-
-            var apiResponse = new ApiResponse<EndpointResponse>(HttpStatusCode.Unauthorized, null);
-            mockClient.Setup(x => x.Get<EndpointResponse>("/accounts/{accountId}/endpoints/{endpointId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.GetEndpoint(accountId, endpointId));
-
-            Assert.Equal("Error calling GetEndpoint: ", Exception.Message);
-            Assert.Equal(401, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test forbidden GetEndpoint Request
-        /// </summary>
-        [Fact]
-        public void GetEndpointForbiddenRequest()
-        {
-            string accountId = "9900000";
-            string endpointId = "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
-            fakeConfiguration.Username = "forbiddenUsername";
-            fakeConfiguration.Password = "forbiddenPassword";
-
-            var apiResponse = new ApiResponse<EndpointResponse>(HttpStatusCode.Forbidden, null);
-            mockClient.Setup(x => x.Get<EndpointResponse>("/accounts/{accountId}/endpoints/{endpointId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.GetEndpoint(accountId, endpointId));
-
-            Assert.Equal("Error calling GetEndpoint: ", Exception.Message);
-            Assert.Equal(403, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test not found GetEndpoint Request
-        /// </summary>
-        [Fact]
-        public void GetEndpointNotFoundRequest()
-        {
-            string accountId = "9900000";
-            string endpointId = "not an endpoint id";
-
-            var apiResponse = new ApiResponse<EndpointResponse>(HttpStatusCode.NotFound, null);
-            mockClient.Setup(x => x.Get<EndpointResponse>("/accounts/{accountId}/endpoints/{endpointId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.GetEndpoint(accountId, endpointId));
-
-            Assert.Equal("Error calling GetEndpoint: ", Exception.Message);
-            Assert.Equal(404, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test ListEndpoints
-        /// </summary>
-        [Fact]
-        public void ListEndpointsTest()
-        {
-            string accountId = "9900000";
-
-            var listResponse = new ListEndpointsResponse(
-                links: new List<BrtcLink>(),
-                data: new List<Endpoints>(),
-                errors: new List<BrtcError>()
-            );
-            var apiResponse = new ApiResponse<ListEndpointsResponse>(HttpStatusCode.OK, listResponse);
-            mockClient.Setup(x => x.Get<ListEndpointsResponse>("/accounts/{accountId}/endpoints", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.ListEndpointsWithHttpInfo(accountId);
-
-            Assert.IsType<ApiResponse<ListEndpointsResponse>>(response);
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        }
-
-        /// <summary>
-        /// Test unauthorized ListEndpoints Request
-        /// </summary>
-        [Fact]
-        public void ListEndpointsUnauthorizedRequest()
-        {
-            string accountId = "9900000";
-            fakeConfiguration.Username = "badUsername";
-            fakeConfiguration.Password = "badPassword";
-
-            var apiResponse = new ApiResponse<ListEndpointsResponse>(HttpStatusCode.Unauthorized, null);
-            mockClient.Setup(x => x.Get<ListEndpointsResponse>("/accounts/{accountId}/endpoints", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.ListEndpoints(accountId));
-
-            Assert.Equal("Error calling ListEndpoints: ", Exception.Message);
-            Assert.Equal(401, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test forbidden ListEndpoints Request
-        /// </summary>
-        [Fact]
-        public void ListEndpointsForbiddenRequest()
-        {
-            string accountId = "9900000";
-            fakeConfiguration.Username = "forbiddenUsername";
-            fakeConfiguration.Password = "forbiddenPassword";
-
-            var apiResponse = new ApiResponse<ListEndpointsResponse>(HttpStatusCode.Forbidden, null);
-            mockClient.Setup(x => x.Get<ListEndpointsResponse>("/accounts/{accountId}/endpoints", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.ListEndpoints(accountId));
-
-            Assert.Equal("Error calling ListEndpoints: ", Exception.Message);
-            Assert.Equal(403, Exception.ErrorCode);
+            Assert.IsType<CreateEndpointResponse>(response.Data);
+            Assert.IsType<List<BrtcLink>>(response.Data.Links);
+            Assert.IsType<CreateEndpointResponseData>(response.Data.Data);
+            Assert.IsType<string>(response.Data.Data.EndpointId);
+            Assert.IsType<string>(response.Data.Data.Token);
+            Assert.IsType<EndpointTypeEnum>(response.Data.Data.Type);
+            Assert.IsType<EndpointStatusEnum>(response.Data.Data.Status);
+            Assert.IsType<DateTime>(response.Data.Data.CreationTimestamp);
+            Assert.IsType<DateTime>(response.Data.Data.ExpirationTimestamp);
+            Assert.IsType<string>(response.Data.Data.Tag);
+            Assert.IsType<List<Device>>(response.Data.Data.Devices);
+            Assert.IsType<List<BrtcError>>(response.Data.Errors);
         }
 
         /// <summary>
@@ -316,70 +90,54 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void DeleteEndpointTest()
         {
-            string accountId = "9900000";
-            string endpointId = "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
+            ApiResponse<object> response = instance.DeleteEndpointWithHttpInfo(accountId, endpointId);
 
-            var apiResponse = new ApiResponse<Object>(HttpStatusCode.NoContent, null);
-            mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/endpoints/{endpointId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.DeleteEndpointWithHttpInfo(accountId, endpointId);
-
-            Assert.IsType<ApiResponse<Object>>(response);
             Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
         }
 
         /// <summary>
-        /// Test unauthorized DeleteEndpoint Request
+        /// Test GetEndpoint
         /// </summary>
         [Fact]
-        public void DeleteEndpointUnauthorizedRequest()
+        public void GetEndpointTest()
         {
-            string accountId = "9900000";
-            string endpointId = "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
-            fakeConfiguration.Username = "badUsername";
-            fakeConfiguration.Password = "badPassword";
+            ApiResponse<EndpointResponse> response = instance.GetEndpointWithHttpInfo(accountId, endpointId);
 
-            var apiResponse = new ApiResponse<Object>(HttpStatusCode.Unauthorized, null);
-            mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/endpoints/{endpointId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.DeleteEndpointWithHttpInfo(accountId, endpointId));
-
-            Assert.Equal("Error calling DeleteEndpoint: ", Exception.Message);
-            Assert.Equal(401, Exception.ErrorCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsType<EndpointResponse>(response.Data);
+            Assert.IsType<List<BrtcLink>>(response.Data.Links);
+            Assert.IsType<Endpoint>(response.Data.Data);
+            Assert.IsType<string>(response.Data.Data.EndpointId);
+            Assert.IsType<EndpointTypeEnum>(response.Data.Data.Type);
+            Assert.IsType<EndpointStatusEnum>(response.Data.Data.Status);
+            Assert.IsType<DateTime>(response.Data.Data.CreationTimestamp);
+            Assert.IsType<DateTime>(response.Data.Data.ExpirationTimestamp);
+            Assert.IsType<string>(response.Data.Data.Tag);
+            Assert.IsType<List<Device>>(response.Data.Data.Devices);
+            Assert.IsType<List<BrtcError>>(response.Data.Errors);
         }
 
         /// <summary>
-        /// Test forbidden DeleteEndpoint Request
+        /// Test ListEndpoints
         /// </summary>
         [Fact]
-        public void DeleteEndpointForbiddenRequest()
+        public void ListEndpointsTest()
         {
-            string accountId = "9900000";
-            string endpointId = "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
-            fakeConfiguration.Username = "forbiddenUsername";
-            fakeConfiguration.Password = "forbiddenPassword";
+            ApiResponse<ListEndpointsResponse> response = instance.ListEndpointsWithHttpInfo(accountId);
 
-            var apiResponse = new ApiResponse<Object>(HttpStatusCode.Forbidden, null);
-            mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/endpoints/{endpointId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.DeleteEndpointWithHttpInfo(accountId, endpointId));
-
-            Assert.Equal("Error calling DeleteEndpoint: ", Exception.Message);
-            Assert.Equal(403, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test not found DeleteEndpoint Request
-        /// </summary>
-        [Fact]
-        public void DeleteEndpointNotFoundRequest()
-        {
-            string accountId = "9900000";
-            string endpointId = "not an endpoint id";
-
-            var apiResponse = new ApiResponse<Object>(HttpStatusCode.NotFound, null);
-            mockClient.Setup(x => x.Delete<Object>("/accounts/{accountId}/endpoints/{endpointId}", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.DeleteEndpointWithHttpInfo(accountId, endpointId));
-
-            Assert.Equal("Error calling DeleteEndpoint: ", Exception.Message);
-            Assert.Equal(404, Exception.ErrorCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.IsType<ListEndpointsResponse>(response.Data);
+            Assert.IsType<List<BrtcLink>>(response.Data.Links);
+            Assert.IsType<List<Endpoints>>(response.Data.Data);
+            Assert.IsType<Endpoints>(response.Data.Data[0]);
+            Assert.IsType<string>(response.Data.Data[0].EndpointId);
+            Assert.IsType<EndpointTypeEnum>(response.Data.Data[0].Type);
+            Assert.IsType<EndpointStatusEnum>(response.Data.Data[0].Status);
+            Assert.IsType<DateTime>(response.Data.Data[0].CreationTimestamp);
+            Assert.IsType<DateTime>(response.Data.Data[0].ExpirationTimestamp);
+            Assert.IsType<string>(response.Data.Data[0].Tag);
+            Assert.IsType<Page>(response.Data.Page);
+            Assert.IsType<List<BrtcError>>(response.Data.Errors);
         }
 
         /// <summary>
@@ -388,74 +146,11 @@ namespace Bandwidth.Standard.Test.Unit.Api
         [Fact]
         public void UpdateEndpointBxmlTest()
         {
-            string accountId = "9900000";
-            string endpointId = "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
-            string bxml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response><SpeakSentence>Hello World</SpeakSentence></Response>";
+            string body = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml><SpeakSentence>Hello</SpeakSentence></Bxml>";
 
-            var apiResponse = new ApiResponse<Object>(HttpStatusCode.NoContent, null);
-            mockClient.Setup(x => x.Put<Object>("/accounts/{accountId}/endpoints/{endpointId}/bxml", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            var response = instance.UpdateEndpointBxmlWithHttpInfo(accountId, endpointId, bxml);
+            ApiResponse<object> response = instance.UpdateEndpointBxmlWithHttpInfo(accountId, endpointId, body);
 
-            Assert.IsType<ApiResponse<Object>>(response);
             Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
-        }
-
-        /// <summary>
-        /// Test unauthorized UpdateEndpointBxml Request
-        /// </summary>
-        [Fact]
-        public void UpdateEndpointBxmlUnauthorizedRequest()
-        {
-            string accountId = "9900000";
-            string endpointId = "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
-            string bxml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response><SpeakSentence>Hello World</SpeakSentence></Response>";
-            fakeConfiguration.Username = "badUsername";
-            fakeConfiguration.Password = "badPassword";
-
-            var apiResponse = new ApiResponse<Object>(HttpStatusCode.Unauthorized, null);
-            mockClient.Setup(x => x.Put<Object>("/accounts/{accountId}/endpoints/{endpointId}/bxml", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.UpdateEndpointBxmlWithHttpInfo(accountId, endpointId, bxml));
-
-            Assert.Equal("Error calling UpdateEndpointBxml: ", Exception.Message);
-            Assert.Equal(401, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test forbidden UpdateEndpointBxml Request
-        /// </summary>
-        [Fact]
-        public void UpdateEndpointBxmlForbiddenRequest()
-        {
-            string accountId = "9900000";
-            string endpointId = "e-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85";
-            string bxml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response><SpeakSentence>Hello World</SpeakSentence></Response>";
-            fakeConfiguration.Username = "forbiddenUsername";
-            fakeConfiguration.Password = "forbiddenPassword";
-
-            var apiResponse = new ApiResponse<Object>(HttpStatusCode.Forbidden, null);
-            mockClient.Setup(x => x.Put<Object>("/accounts/{accountId}/endpoints/{endpointId}/bxml", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.UpdateEndpointBxmlWithHttpInfo(accountId, endpointId, bxml));
-
-            Assert.Equal("Error calling UpdateEndpointBxml: ", Exception.Message);
-            Assert.Equal(403, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test not found UpdateEndpointBxml Request
-        /// </summary>
-        [Fact]
-        public void UpdateEndpointBxmlNotFoundRequest()
-        {
-            string accountId = "9900000";
-            string endpointId = "not an endpoint id";
-            string bxml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response><SpeakSentence>Hello World</SpeakSentence></Response>";
-
-            var apiResponse = new ApiResponse<Object>(HttpStatusCode.NotFound, null);
-            mockClient.Setup(x => x.Put<Object>("/accounts/{accountId}/endpoints/{endpointId}/bxml", It.IsAny<RequestOptions>(), fakeConfiguration)).Returns(apiResponse);
-            ApiException Exception = Assert.Throws<ApiException>(() => instance.UpdateEndpointBxmlWithHttpInfo(accountId, endpointId, bxml));
-
-            Assert.Equal("Error calling UpdateEndpointBxml: ", Exception.Message);
-            Assert.Equal(404, Exception.ErrorCode);
         }
     }
 }

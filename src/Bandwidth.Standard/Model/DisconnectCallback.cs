@@ -58,7 +58,9 @@ namespace Bandwidth.Standard.Model
         /// <param name="errorMessage">Text explaining the reason that caused the call to fail in case of errors..</param>
         /// <param name="errorId">Bandwidth&#39;s internal id that references the error event..</param>
         /// <param name="tag">(optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present..</param>
-        public DisconnectCallback(string eventType = default(string), DateTime eventTime = default(DateTime), string accountId = default(string), string applicationId = default(string), string from = default(string), string to = default(string), string callId = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), string callUrl = default(string), DateTime? enqueuedTime = default(DateTime?), DateTime startTime = default(DateTime), DateTime? answerTime = default(DateTime?), DateTime endTime = default(DateTime), string cause = default(string), string errorMessage = default(string), string errorId = default(string), string tag = default(string))
+        /// <param name="sipCallId">(optional) The SIP Call-ID of the call&#39;s current SIP dialog with Bandwidth&#39;s SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists..</param>
+        /// <param name="sipResponseCode">(optional) The SIP status code returned by Bandwidth&#39;s SBC when it rejected an outbound call&#39;s INVITE (e.g. 486 for busy, 603 for decline). Present only when an outbound call was rejected by the SBC..</param>
+        public DisconnectCallback(string eventType = default(string), DateTime eventTime = default(DateTime), string accountId = default(string), string applicationId = default(string), string from = default(string), string to = default(string), string callId = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), string callUrl = default(string), DateTime? enqueuedTime = default(DateTime?), DateTime startTime = default(DateTime), DateTime? answerTime = default(DateTime?), DateTime endTime = default(DateTime), string cause = default(string), string errorMessage = default(string), string errorId = default(string), string tag = default(string), string sipCallId = default(string), int sipResponseCode = default(int))
         {
             this.EventType = eventType;
             this.EventTime = eventTime;
@@ -77,6 +79,8 @@ namespace Bandwidth.Standard.Model
             this.ErrorMessage = errorMessage;
             this.ErrorId = errorId;
             this.Tag = tag;
+            this.SipCallId = sipCallId;
+            this.SipResponseCode = sipResponseCode;
         }
 
         /// <summary>
@@ -208,6 +212,22 @@ namespace Bandwidth.Standard.Model
         public string Tag { get; set; }
 
         /// <summary>
+        /// (optional) The SIP Call-ID of the call&#39;s current SIP dialog with Bandwidth&#39;s SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists.
+        /// </summary>
+        /// <value>(optional) The SIP Call-ID of the call&#39;s current SIP dialog with Bandwidth&#39;s SBC. Used to correlate dialogs and trace calls. Present on any call, inbound or outbound, once that dialog has been established; may be absent very early in a call before the dialog exists.</value>
+        /// <example>c95ac8d6e1a31c52eb38f419893c151633ec68f8d@sbc.bandwidth.com</example>
+        [DataMember(Name = "sipCallId", EmitDefaultValue = false)]
+        public string SipCallId { get; set; }
+
+        /// <summary>
+        /// (optional) The SIP status code returned by Bandwidth&#39;s SBC when it rejected an outbound call&#39;s INVITE (e.g. 486 for busy, 603 for decline). Present only when an outbound call was rejected by the SBC.
+        /// </summary>
+        /// <value>(optional) The SIP status code returned by Bandwidth&#39;s SBC when it rejected an outbound call&#39;s INVITE (e.g. 486 for busy, 603 for decline). Present only when an outbound call was rejected by the SBC.</value>
+        /// <example>486</example>
+        [DataMember(Name = "sipResponseCode", EmitDefaultValue = false)]
+        public int SipResponseCode { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -232,6 +252,8 @@ namespace Bandwidth.Standard.Model
             sb.Append("  ErrorMessage: ").Append(ErrorMessage).Append("\n");
             sb.Append("  ErrorId: ").Append(ErrorId).Append("\n");
             sb.Append("  Tag: ").Append(Tag).Append("\n");
+            sb.Append("  SipCallId: ").Append(SipCallId).Append("\n");
+            sb.Append("  SipResponseCode: ").Append(SipResponseCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
