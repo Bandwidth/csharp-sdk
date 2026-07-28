@@ -31,7 +31,10 @@ paths:
       description: Gets a list of your media files. No query parameters are supported.
       operationId: listMedia
       parameters:
-      - description: Your Bandwidth Account ID.
+      - description: |
+          This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.
+
+          **When migrating to OAuth authentication, you must use the 7-digit Account ID.**
         example: "9900000"
         explode: false
         in: path
@@ -129,7 +132,10 @@ paths:
         file with the same name.
       operationId: deleteMedia
       parameters:
-      - description: Your Bandwidth Account ID.
+      - description: |
+          This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.
+
+          **When migrating to OAuth authentication, you must use the 7-digit Account ID.**
         example: "9900000"
         explode: false
         in: path
@@ -205,7 +211,10 @@ paths:
       description: Downloads a media file you previously uploaded.
       operationId: getMedia
       parameters:
-      - description: Your Bandwidth Account ID.
+      - description: |
+          This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.
+
+          **When migrating to OAuth authentication, you must use the 7-digit Account ID.**
         example: "9900000"
         explode: false
         in: path
@@ -292,7 +301,10 @@ paths:
         A list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
       operationId: uploadMedia
       parameters:
-      - description: Your Bandwidth Account ID.
+      - description: |
+          This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.
+
+          **When migrating to OAuth authentication, you must use the 7-digit Account ID.**
         example: "9900000"
         explode: false
         in: path
@@ -396,7 +408,10 @@ paths:
         **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a `Retry-After` header.
       operationId: listMessages
       parameters:
-      - description: Your Bandwidth Account ID.
+      - description: |
+          This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.
+
+          **When migrating to OAuth authentication, you must use the 7-digit Account ID.**
         example: "9900000"
         explode: false
         in: path
@@ -750,7 +765,10 @@ paths:
         messaging.
       operationId: createMessage
       parameters:
-      - description: Your Bandwidth Account ID.
+      - description: |
+          This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.
+
+          **When migrating to OAuth authentication, you must use the 7-digit Account ID.**
         example: "9900000"
         explode: false
         in: path
@@ -836,7 +854,10 @@ paths:
       description: Endpoint for sending Multi-Channel messages.
       operationId: createMultiChannelMessage
       parameters:
-      - description: Your Bandwidth Account ID.
+      - description: |
+          This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.
+
+          **When migrating to OAuth authentication, you must use the 7-digit Account ID.**
         example: "9900000"
         explode: false
         in: path
@@ -7192,7 +7213,10 @@ components:
           code: "500"
   parameters:
     accountId:
-      description: Your Bandwidth Account ID.
+      description: |
+        This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.
+
+        **When migrating to OAuth authentication, you must use the 7-digit Account ID.**
       example: "9900000"
       explode: false
       in: path
@@ -7535,6 +7559,16 @@ components:
       schema:
         type: boolean
       style: form
+    accountId1:
+      description: Your Bandwidth Account ID.
+      example: "9900000"
+      explode: false
+      in: path
+      name: accountId
+      required: true
+      schema:
+        type: string
+      style: simple
     callId:
       description: Programmable Voice API Call ID.
       example: c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
@@ -7730,7 +7764,17 @@ components:
       schema:
         type: string
       style: form
-    accountId1:
+    accountId2:
+      description: Your Bandwidth Account ID.
+      example: "9900000"
+      explode: false
+      in: path
+      name: accountId
+      required: true
+      schema:
+        type: string
+      style: simple
+    accountId3:
       explode: false
       in: path
       name: accountId
@@ -7751,6 +7795,16 @@ components:
         format: uuid
         type: string
       style: simple
+    accountId4:
+      description: Your Bandwidth Account ID.
+      example: "9900000"
+      explode: false
+      in: path
+      name: accountId
+      required: true
+      schema:
+        type: string
+      style: simple
     tfPhoneNumberPathParam:
       description: Valid Toll-Free telephone number in E.164 format.
       example: "+18885555555"
@@ -7767,6 +7821,16 @@ components:
       explode: false
       in: path
       name: id
+      required: true
+      schema:
+        type: string
+      style: simple
+    accountId5:
+      description: Your Bandwidth Account ID.
+      example: "9900000"
+      explode: false
+      in: path
+      name: accountId
       required: true
       schema:
         type: string
