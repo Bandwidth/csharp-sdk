@@ -37,7 +37,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new MultiChannelApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var accountId = 9900000;  // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
             var multiChannelMessageRequest = new MultiChannelMessageRequest(); // MultiChannelMessageRequest | 
 
             try
@@ -81,7 +81,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **accountId** | **string** | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**  |  |
 | **multiChannelMessageRequest** | [**MultiChannelMessageRequest**](MultiChannelMessageRequest.md) |  |  |
 
 ### Return type

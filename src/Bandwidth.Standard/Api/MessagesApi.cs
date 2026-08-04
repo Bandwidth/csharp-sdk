@@ -35,7 +35,7 @@ namespace Bandwidth.Standard.Api
         /// Endpoint for sending text messages and picture messages using V2 messaging.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Message</returns>
@@ -48,7 +48,7 @@ namespace Bandwidth.Standard.Api
         /// Endpoint for sending text messages and picture messages using V2 messaging.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Message</returns>
@@ -60,7 +60,7 @@ namespace Bandwidth.Standard.Api
         /// Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageId">The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)</param>
         /// <param name="sourceTn">The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
         /// <param name="destinationTn">The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
@@ -99,7 +99,7 @@ namespace Bandwidth.Standard.Api
         /// Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageId">The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)</param>
         /// <param name="sourceTn">The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
         /// <param name="destinationTn">The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
@@ -146,7 +146,7 @@ namespace Bandwidth.Standard.Api
         /// Endpoint for sending text messages and picture messages using V2 messaging.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -160,7 +160,7 @@ namespace Bandwidth.Standard.Api
         /// Endpoint for sending text messages and picture messages using V2 messaging.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -173,7 +173,7 @@ namespace Bandwidth.Standard.Api
         /// Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageId">The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)</param>
         /// <param name="sourceTn">The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
         /// <param name="destinationTn">The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
@@ -213,7 +213,7 @@ namespace Bandwidth.Standard.Api
         /// Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageId">The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)</param>
         /// <param name="sourceTn">The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
         /// <param name="destinationTn">The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
@@ -369,7 +369,7 @@ namespace Bandwidth.Standard.Api
         /// Create Message Endpoint for sending text messages and picture messages using V2 messaging.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Message</returns>
@@ -383,7 +383,7 @@ namespace Bandwidth.Standard.Api
         /// Create Message Endpoint for sending text messages and picture messages using V2 messaging.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Message</returns>
@@ -471,7 +471,7 @@ namespace Bandwidth.Standard.Api
         /// Create Message Endpoint for sending text messages and picture messages using V2 messaging.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -486,7 +486,7 @@ namespace Bandwidth.Standard.Api
         /// Create Message Endpoint for sending text messages and picture messages using V2 messaging.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -577,7 +577,7 @@ namespace Bandwidth.Standard.Api
         /// List Messages Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageId">The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)</param>
         /// <param name="sourceTn">The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
         /// <param name="destinationTn">The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
@@ -617,7 +617,7 @@ namespace Bandwidth.Standard.Api
         /// List Messages Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageId">The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)</param>
         /// <param name="sourceTn">The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
         /// <param name="destinationTn">The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
@@ -831,7 +831,7 @@ namespace Bandwidth.Standard.Api
         /// List Messages Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageId">The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)</param>
         /// <param name="sourceTn">The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
         /// <param name="destinationTn">The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
@@ -872,7 +872,7 @@ namespace Bandwidth.Standard.Api
         /// List Messages Returns a list of messages based on query parameters.  **Rate Limit:** This endpoint is rate limited to 3500 requests per 5 minutes per Source IP address. Exceeding the limit returns HTTP 429 with a &#x60;Retry-After&#x60; header. 
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="messageId">The ID of the message to search for. Special characters need to be encoded using URL encoding. Message IDs could come in different formats, e.g., 9e0df4ca-b18d-40d7-a59f-82fcdf5ae8e6 and 1589228074636lm4k2je7j7jklbn2 are valid message ID formats. Note that you must include at least one query parameter. (optional)</param>
         /// <param name="sourceTn">The phone number that sent the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
         /// <param name="destinationTn">The phone number that received the message. Accepted values are: a single full phone number a comma separated list of full phone numbers (maximum of 10) or a single partial phone number (minimum of 5 characters e.g. &#39;%2B1919&#39;). (optional)</param>
