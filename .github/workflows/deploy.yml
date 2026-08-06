@@ -61,7 +61,7 @@ jobs:
         shell: bash
 
       - name: Generate SDK with Updated Version
-        uses: Bandwidth/generate-sdk-action@v4.0.0
+        uses: Bandwidth/generate-sdk-action@v4.1.0
         with:
           openapi-generator-version: ${{ env.OPENAPI_GENERATOR_VERSION }}
           language: csharp
