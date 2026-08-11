@@ -10872,6 +10872,13 @@ components:
       - outbound
       example: inbound
       type: string
+    referCallStatusEnum:
+      description: The outcome of the REFER operation.
+      enum:
+      - success
+      - failure
+      example: success
+      type: string
     fileFormatEnum:
       description: The format that the recording is stored in.
       enum:
@@ -12240,8 +12247,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -12326,8 +12333,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -12420,8 +12427,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -12499,8 +12506,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -12541,8 +12548,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -12582,8 +12589,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -12637,8 +12644,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -12687,8 +12694,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -12724,8 +12731,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -12805,8 +12812,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -12915,8 +12922,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -13009,8 +13016,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -13112,8 +13119,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -13202,8 +13209,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -13280,8 +13287,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -13398,8 +13405,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -13519,8 +13526,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -13600,6 +13607,91 @@ components:
           example: "+15555555555"
           type: string
       type: object
+    referCompleteCallback:
+      description: "This event is sent to the referCompleteUrl of a call's <Refer>\
+        \ verb when the SIP REFER flow completes. On success, the call has been torn\
+        \ down and the BXML returned from this callback is ignored. On failure, the\
+        \ call remains active and the BXML returned from this callback is executed\
+        \ on the call."
+      properties:
+        eventType:
+          description: "The event type, value can be one of the following: answer,\
+            \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
+            \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
+            \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
+          example: bridgeComplete
+          type: string
+        eventTime:
+          description: "The approximate UTC date and time when the event was generated\
+            \ by the Bandwidth server, in ISO 8601 format. This may not be exactly\
+            \ the time of event execution."
+          example: 2022-06-17T22:19:40.375Z
+          format: date-time
+          type: string
+        accountId:
+          description: The user account associated with the call.
+          example: "9900000"
+          type: string
+        applicationId:
+          description: The id of the application associated with the call.
+          example: 04e88489-df02-4e34-a0ee-27a91849555f
+          type: string
+        from:
+          description: The provided identifier of the caller. Must be a phone number
+            in E.164 format (e.g. +15555555555).
+          example: "+15555555555"
+          type: string
+        to:
+          description: "The phone number that received the call, in E.164 format (e.g.\
+            \ +15555555555)."
+          example: "+15555555555"
+          type: string
+        direction:
+          $ref: '#/components/schemas/callDirectionEnum'
+        callId:
+          description: The call id associated with the event.
+          example: c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          type: string
+        callUrl:
+          description: The URL of the call associated with the event.
+          example: https://voice.bandwidth.com/api/v2/accounts/9900000/calls/c-15ac29a2-1331029c-2cb0-4a07-b215-b22865662d85
+          format: uri
+          type: string
+        startTime:
+          description: "Time the call was started, in ISO 8601 format."
+          example: 2022-06-17T22:19:40.375Z
+          format: date-time
+          type: string
+        answerTime:
+          description: "Time the call was answered, in ISO 8601 format."
+          example: 2022-06-17T22:20:00Z
+          format: date-time
+          nullable: true
+          type: string
+        tag:
+          description: "(optional) The tag specified on call creation. If no tag was\
+            \ specified or it was previously cleared, this field will not be present."
+          example: exampleTag
+          nullable: true
+          type: string
+        referCallStatus:
+          $ref: '#/components/schemas/referCallStatusEnum'
+        referSipResponseCode:
+          description: "(optional) The SIP response code returned for the REFER request\
+            \ itself (e.g. 202, 405, 603). Present when a SIP response was received\
+            \ for the REFER."
+          example: 202
+          type: integer
+        notifySipResponseCode:
+          description: "(optional) The final SIP response code reported via NOTIFY\
+            \ (message/sipfrag body). Present only when the caller's endpoint sent\
+            \ a final NOTIFY (e.g. 200, 404, 486, 503). Not present on NOTIFY timeout\
+            \ or when the REFER was rejected before a subscription was established."
+          example: 200
+          type: integer
+      type: object
     transcriptionAvailableCallback:
       description: The Transcription Available event is sent when the recording transcription
         is available to be downloaded.
@@ -13609,8 +13701,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -13722,8 +13814,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -13809,8 +13901,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -13915,8 +14007,8 @@ components:
             \ bridgeComplete, bridgeTargetComplete, conferenceCreated, conferenceRedirect,\
             \ conferenceMemberJoin, conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
             \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-            \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer,\
-            \ transferComplete, transferDisconnect."
+            \ recordingAvailable, redirect, referComplete, transcriptionAvailable,\
+            \ transferAnswer, transferComplete, transferDisconnect."
           example: bridgeComplete
           type: string
         eventTime:
@@ -14024,8 +14116,8 @@ components:
         \ bridgeTargetComplete, conferenceCreated, conferenceRedirect, conferenceMemberJoin,\
         \ conferenceMemberExit, conferenceCompleted, conferenceRecordingAvailable,\
         \ disconnect, dtmf, gather, initiate, machineDetectionComplete, recordingComplete,\
-        \ recordingAvailable, redirect, transcriptionAvailable, transferAnswer, transferComplete,\
-        \ transferDisconnect."
+        \ recordingAvailable, redirect, referComplete, transcriptionAvailable, transferAnswer,\
+        \ transferComplete, transferDisconnect."
       example: bridgeComplete
       type: string
     eventTime:
@@ -14165,6 +14257,19 @@ components:
       example: exampleTag
       nullable: true
       type: string
+    referSipResponseCode:
+      description: "(optional) The SIP response code returned for the REFER request\
+        \ itself (e.g. 202, 405, 603). Present when a SIP response was received for\
+        \ the REFER."
+      example: 202
+      type: integer
+    notifySipResponseCode:
+      description: "(optional) The final SIP response code reported via NOTIFY (message/sipfrag\
+        \ body). Present only when the caller's endpoint sent a final NOTIFY (e.g.\
+        \ 200, 404, 486, 503). Not present on NOTIFY timeout or when the REFER was\
+        \ rejected before a subscription was established."
+      example: 200
+      type: integer
     cause:
       description: "Reason the call failed - hangup, busy, timeout, cancel, rejected,\
         \ callback-error, invalid-bxml, application-error, account-limit, node-capacity-exceeded,\
