@@ -38,8 +38,7 @@ namespace Bandwidth.Standard.Test.Unit.Api
             {
                 BasePath = "http://127.0.0.1:4010",
                 IgnoreOperationServers = true,
-                OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID"),
-                OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET")
+                AccessToken = "abcd1234"
             };
             instance = new RecordingsApi(configuration);
         }
