@@ -1,5 +1,5 @@
-# Bandwidth.Standard.Model.TransferCompleteCallback
-This event is sent to the transferCompleteUrl of the A-leg's <Transfer> verb when the transferred call (B-leg) completes. In a simultaneous ringing scenario, only one B-leg succeeds and this event corresponds to that successful leg. If none of the calls were answered, the transferComplete event corresponds to one of the legs.
+# Bandwidth.Standard.Model.ReferCompleteCallback
+This event is sent to the referCompleteUrl of a call's <Refer> verb when the SIP REFER flow completes. On success, the call has been torn down and the BXML returned from this callback is ignored. On failure, the call remains active and the BXML returned from this callback is executed on the call.
 
 ## Properties
 
@@ -14,15 +14,12 @@ Name | Type | Description | Notes
 **Direction** | **CallDirectionEnum** |  | [optional] 
 **CallId** | **string** | The call id associated with the event. | [optional] 
 **CallUrl** | **string** | The URL of the call associated with the event. | [optional] 
-**EnqueuedTime** | **DateTime?** | (optional) If call queueing is enabled and this is an outbound call, time the call was queued, in ISO 8601 format. | [optional] 
 **StartTime** | **DateTime** | Time the call was started, in ISO 8601 format. | [optional] 
 **AnswerTime** | **DateTime?** | Time the call was answered, in ISO 8601 format. | [optional] 
 **Tag** | **string** | (optional) The tag specified on call creation. If no tag was specified or it was previously cleared, this field will not be present. | [optional] 
-**TransferCallerId** | **string** | The phone number used as the from field of the B-leg call, in E.164 format (e.g. +15555555555). | [optional] 
-**TransferTo** | **string** | The phone number used as the to field of the B-leg call, in E.164 format (e.g. +15555555555). | [optional] 
-**Cause** | **string** | Reason the call failed - hangup, busy, timeout, cancel, rejected, callback-error, invalid-bxml, application-error, account-limit, node-capacity-exceeded, error, or unknown. | [optional] 
-**ErrorMessage** | **string** | Text explaining the reason that caused the call to fail in case of errors. | [optional] 
-**ErrorId** | **string** | Bandwidth&#39;s internal id that references the error event. | [optional] 
+**ReferCallStatus** | **ReferCallStatusEnum** |  | [optional] 
+**ReferSipResponseCode** | **int** | (optional) The SIP response code returned for the REFER request itself (e.g. 202, 405, 603). Present when a SIP response was received for the REFER. | [optional] 
+**NotifySipResponseCode** | **int** | (optional) The final SIP response code reported via NOTIFY (message/sipfrag body). Present only when the caller&#39;s endpoint sent a final NOTIFY (e.g. 200, 404, 486, 503). Not present on NOTIFY timeout or when the REFER was rejected before a subscription was established. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

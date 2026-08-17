@@ -40,7 +40,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new MediaApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var accountId = 9900000;  // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
             var mediaId = 14762070468292kw2fuqty55yp2b2/0/bw.png;  // string | Media ID to retrieve.
 
             try
@@ -80,7 +80,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **accountId** | **string** | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**  |  |
 | **mediaId** | **string** | Media ID to retrieve. |  |
 
 ### Return type
@@ -143,7 +143,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new MediaApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var accountId = 9900000;  // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
             var mediaId = 14762070468292kw2fuqty55yp2b2/0/bw.png;  // string | Media ID to retrieve.
 
             try
@@ -187,7 +187,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **accountId** | **string** | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**  |  |
 | **mediaId** | **string** | Media ID to retrieve. |  |
 
 ### Return type
@@ -250,7 +250,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new MediaApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var accountId = 9900000;  // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
             var continuationToken = 1XEi2tsFtLo1JbtLwETnM1ZJ+PqAa8w6ENvC5QKvwyrCDYII663Gy5M4s40owR1tjkuWUif6qbWvFtQJR5/ipqbUnfAqL254LKNlPy6tATCzioKSuHuOqgzloDkSwRtX0LtcL2otHS69hK343m+SjdL+vlj71tT39;  // string | Continuation token used to retrieve subsequent media. (optional) 
 
             try
@@ -294,7 +294,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **accountId** | **string** | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**  |  |
 | **continuationToken** | **string** | Continuation token used to retrieve subsequent media. | [optional]  |
 
 ### Return type
@@ -357,7 +357,7 @@ namespace Example
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new MediaApi(config);
-            var accountId = 9900000;  // string | Your Bandwidth Account ID.
+            var accountId = 9900000;  // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
             var mediaId = 14762070468292kw2fuqty55yp2b2/0/bw.png;  // string | Media ID to retrieve.
             var body = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream | 
             var contentType = audio/wav;  // string | The media type of the entity-body. (optional) 
@@ -400,7 +400,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Your Bandwidth Account ID. |  |
+| **accountId** | **string** | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**  |  |
 | **mediaId** | **string** | Media ID to retrieve. |  |
 | **body** | **System.IO.Stream****System.IO.Stream** |  |  |
 | **contentType** | **string** | The media type of the entity-body. | [optional]  |

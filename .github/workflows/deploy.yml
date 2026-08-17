@@ -29,14 +29,14 @@ jobs:
       MANTECA_BASE_URL: ${{ secrets.MANTECA_BASE_URL }}
       MANTECA_IDLE_NUMBER: ${{ secrets.MANTECA_IDLE_NUMBER }}
       OPERATING_SYSTEM: ubuntu-latest
-      DOTNET_VERSION: 8.0.x
+      DOTNET_VERSION: 10.0.x
 
-    steps: 
+    steps:
       - name: Set Release Version
         run: echo "RELEASE_VERSION=${TAG#v}" >> $GITHUB_ENV
         env:
           TAG: ${{ github.event.release.tag_name }}
-      
+
       - name: Check Release Tag Format
         run: |
           if ! [[ $RELEASE_VERSION =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
@@ -45,14 +45,14 @@ jobs:
             echo 'Please update your tag to match the expected regex pattern'
             exit 1
           fi
-      
+
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup Dotnet
-        uses: actions/setup-dotnet@v5
+        uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: "10.0.x"
 
       - name: Set OpenAPI Generator Version
         run: |
@@ -61,18 +61,20 @@ jobs:
         shell: bash
 
       - name: Generate SDK with Updated Version
-        uses: Bandwidth/generate-sdk-action@v4.0.0
+        uses: Bandwidth/generate-sdk-action@v4.1.0
         with:
           openapi-generator-version: ${{ env.OPENAPI_GENERATOR_VERSION }}
           language: csharp
           additional-properties: --additional-properties=packageVersion=$RELEASE_VERSION
 
       - name: Run Unit Tests
-        run: dotnet test src/Bandwidth.Standard.Test --filter DisplayName~Bandwidth.Standard.Test.Unit
+        run: |
+          npm install -g @stoplight/prism-cli
+          prism mock ./bandwidth.yml & dotnet test src/Bandwidth.Standard.Test --filter DisplayName~Bandwidth.Standard.Test.Unit
 
       - name: Pack NuGet package
         run: dotnet pack --configuration Release $BW_PROJECT_NAME -p:PackageVersion=$RELEASE_VERSION
-      
+
       - name: Publish NuGet package
         env:
           NUGET_KEY: ${{ secrets.NUGET_KEY }}

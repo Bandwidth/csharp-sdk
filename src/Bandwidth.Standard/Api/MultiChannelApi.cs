@@ -35,7 +35,7 @@ namespace Bandwidth.Standard.Api
         /// Endpoint for sending Multi-Channel messages.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="multiChannelMessageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CreateMultiChannelMessageResponse</returns>
@@ -48,7 +48,7 @@ namespace Bandwidth.Standard.Api
         /// Endpoint for sending Multi-Channel messages.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="multiChannelMessageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CreateMultiChannelMessageResponse</returns>
@@ -69,7 +69,7 @@ namespace Bandwidth.Standard.Api
         /// Endpoint for sending Multi-Channel messages.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="multiChannelMessageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -83,7 +83,7 @@ namespace Bandwidth.Standard.Api
         /// Endpoint for sending Multi-Channel messages.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="multiChannelMessageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -213,7 +213,7 @@ namespace Bandwidth.Standard.Api
         /// Create Multi-Channel Message Endpoint for sending Multi-Channel messages.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="multiChannelMessageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>CreateMultiChannelMessageResponse</returns>
@@ -227,7 +227,7 @@ namespace Bandwidth.Standard.Api
         /// Create Multi-Channel Message Endpoint for sending Multi-Channel messages.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="multiChannelMessageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of CreateMultiChannelMessageResponse</returns>
@@ -315,7 +315,7 @@ namespace Bandwidth.Standard.Api
         /// Create Multi-Channel Message Endpoint for sending Multi-Channel messages.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="multiChannelMessageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -330,7 +330,7 @@ namespace Bandwidth.Standard.Api
         /// Create Multi-Channel Message Endpoint for sending Multi-Channel messages.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Your Bandwidth Account ID.</param>
+        /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
         /// <param name="multiChannelMessageRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
