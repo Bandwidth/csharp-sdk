@@ -4,8 +4,7 @@ using System.Xml.Serialization;
 namespace Bandwidth.Standard.Model.Bxml.Verbs
 {
     /// <summary>
-    /// BXML tag to represent a SIP URI for the transfer verb.
-    /// <para><seealso href="https://dev.bandwidth.com/docs/voice/bxml/transfer.html"/></para>
+    /// BXML tag to represent a SIP URI for the transfer or refer verb.
     /// </summary>
     public class SipUri : IVerb
     {
@@ -16,7 +15,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         public string Uri { get; set; }
 
         /// <summary>
-        /// (optional) The value of the User-To-User header to send within the initial INVITE.
+        /// (optional, transfer only) The value of the User-To-User header to send within the initial INVITE.
         /// </summary>
         [XmlAttribute("uui")]
         public string Uui { get; set; }
