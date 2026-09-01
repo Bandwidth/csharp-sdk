@@ -36,7 +36,7 @@ namespace Bandwidth.Standard.Api
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
         void DeleteMedia(string accountId, string mediaId, int operationIndex = 0);
@@ -49,7 +49,7 @@ namespace Bandwidth.Standard.Api
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteMediaWithHttpInfo(string accountId, string mediaId, int operationIndex = 0);
@@ -61,7 +61,7 @@ namespace Bandwidth.Standard.Api
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>System.IO.Stream</returns>
         System.IO.Stream GetMedia(string accountId, string mediaId, int operationIndex = 0);
@@ -74,7 +74,7 @@ namespace Bandwidth.Standard.Api
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
         ApiResponse<System.IO.Stream> GetMediaWithHttpInfo(string accountId, string mediaId, int operationIndex = 0);
@@ -111,7 +111,7 @@ namespace Bandwidth.Standard.Api
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
         /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
@@ -127,7 +127,7 @@ namespace Bandwidth.Standard.Api
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
         /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
@@ -151,7 +151,7 @@ namespace Bandwidth.Standard.Api
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
@@ -165,7 +165,7 @@ namespace Bandwidth.Standard.Api
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
@@ -178,7 +178,7 @@ namespace Bandwidth.Standard.Api
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
@@ -192,7 +192,7 @@ namespace Bandwidth.Standard.Api
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
@@ -232,7 +232,7 @@ namespace Bandwidth.Standard.Api
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
         /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
@@ -249,7 +249,7 @@ namespace Bandwidth.Standard.Api
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
         /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
@@ -382,7 +382,7 @@ namespace Bandwidth.Standard.Api
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
         public void DeleteMedia(string accountId, string mediaId, int operationIndex = 0)
@@ -395,7 +395,7 @@ namespace Bandwidth.Standard.Api
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         public Bandwidth.Standard.Client.ApiResponse<Object> DeleteMediaWithHttpInfo(string accountId, string mediaId, int operationIndex = 0)
@@ -482,7 +482,7 @@ namespace Bandwidth.Standard.Api
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
@@ -496,7 +496,7 @@ namespace Bandwidth.Standard.Api
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
@@ -586,7 +586,7 @@ namespace Bandwidth.Standard.Api
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>System.IO.Stream</returns>
         public System.IO.Stream GetMedia(string accountId, string mediaId, int operationIndex = 0)
@@ -600,7 +600,7 @@ namespace Bandwidth.Standard.Api
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of System.IO.Stream</returns>
         public Bandwidth.Standard.Client.ApiResponse<System.IO.Stream> GetMediaWithHttpInfo(string accountId, string mediaId, int operationIndex = 0)
@@ -688,7 +688,7 @@ namespace Bandwidth.Standard.Api
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of System.IO.Stream</returns>
@@ -703,7 +703,7 @@ namespace Bandwidth.Standard.Api
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
@@ -994,7 +994,7 @@ namespace Bandwidth.Standard.Api
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
         /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
@@ -1010,7 +1010,7 @@ namespace Bandwidth.Standard.Api
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
         /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
@@ -1163,7 +1163,7 @@ namespace Bandwidth.Standard.Api
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
         /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
@@ -1180,7 +1180,7 @@ namespace Bandwidth.Standard.Api
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** </param>
-        /// <param name="mediaId">Media ID to retrieve.</param>
+        /// <param name="mediaId">The ID of the media file.</param>
         /// <param name="body"></param>
         /// <param name="contentType">The media type of the entity-body. (optional)</param>
         /// <param name="cacheControl">General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional)</param>
