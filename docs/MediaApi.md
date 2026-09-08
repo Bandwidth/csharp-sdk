@@ -41,7 +41,7 @@ namespace Example
 
             var apiInstance = new MediaApi(config);
             var accountId = 9900000;  // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
-            var mediaId = 14762070468292kw2fuqty55yp2b2/0/bw.png;  // string | Media ID to retrieve.
+            var mediaId = bw.png;  // string | The ID of the media file.
 
             try
             {
@@ -81,7 +81,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**  |  |
-| **mediaId** | **string** | Media ID to retrieve. |  |
+| **mediaId** | **string** | The ID of the media file. |  |
 
 ### Return type
 
@@ -144,7 +144,7 @@ namespace Example
 
             var apiInstance = new MediaApi(config);
             var accountId = 9900000;  // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
-            var mediaId = 14762070468292kw2fuqty55yp2b2/0/bw.png;  // string | Media ID to retrieve.
+            var mediaId = bw.png;  // string | The ID of the media file.
 
             try
             {
@@ -188,7 +188,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**  |  |
-| **mediaId** | **string** | Media ID to retrieve. |  |
+| **mediaId** | **string** | The ID of the media file. |  |
 
 ### Return type
 
@@ -358,7 +358,7 @@ namespace Example
 
             var apiInstance = new MediaApi(config);
             var accountId = 9900000;  // string | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (`u-be8dvafwrs63rwpm7pfil4b`) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.** 
-            var mediaId = 14762070468292kw2fuqty55yp2b2/0/bw.png;  // string | Media ID to retrieve.
+            var mediaId = bw.png;  // string | The ID of the media file.
             var body = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream | 
             var contentType = audio/wav;  // string | The media type of the entity-body. (optional) 
             var cacheControl = no-cache;  // string | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. (optional) 
@@ -401,7 +401,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | This is your 7-digit Bandwidth Account ID, as shown in the Bandwidth App. The older ID format (&#x60;u-be8dvafwrs63rwpm7pfil4b&#x60;) is deprecated.  **When migrating to OAuth authentication, you must use the 7-digit Account ID.**  |  |
-| **mediaId** | **string** | Media ID to retrieve. |  |
+| **mediaId** | **string** | The ID of the media file. |  |
 | **body** | **System.IO.Stream****System.IO.Stream** |  |  |
 | **contentType** | **string** | The media type of the entity-body. | [optional]  |
 | **cacheControl** | **string** | General-header field is used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain. | [optional]  |

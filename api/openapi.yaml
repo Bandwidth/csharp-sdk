@@ -144,8 +144,8 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Media ID to retrieve.
-        example: 14762070468292kw2fuqty55yp2b2/0/bw.png
+      - description: The ID of the media file.
+        example: bw.png
         explode: false
         in: path
         name: mediaId
@@ -223,8 +223,8 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Media ID to retrieve.
-        example: 14762070468292kw2fuqty55yp2b2/0/bw.png
+      - description: The ID of the media file.
+        example: bw.png
         explode: false
         in: path
         name: mediaId
@@ -313,8 +313,8 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Media ID to retrieve.
-        example: 14762070468292kw2fuqty55yp2b2/0/bw.png
+      - description: The ID of the media file.
+        example: bw.png
         explode: false
         in: path
         name: mediaId
@@ -7226,8 +7226,8 @@ components:
         type: string
       style: simple
     mediaId:
-      description: Media ID to retrieve.
-      example: 14762070468292kw2fuqty55yp2b2/0/bw.png
+      description: The ID of the media file.
+      example: bw.png
       explode: false
       in: path
       name: mediaId
