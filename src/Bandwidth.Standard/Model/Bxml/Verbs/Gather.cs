@@ -1,5 +1,4 @@
 using Bandwidth.Standard.Model.Bxml;
-using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
@@ -86,7 +85,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         ///   Quantity of digits to collect.
         /// </summary>
         [XmlIgnore]
-        public Nullable<int> MaxDigits { get; set; }
+        public int? MaxDigits { get; set; }
 
         /// <summary>
         ///  The setter does nothing! This is just a surrogate field for nullable xml attribute serialization.
@@ -134,7 +133,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         ///  Integer between 1 and 30 that specifies how many times to play the audio. This parameter will be honored both inside and outside of a Gather verb.
         ///  </summary>
         [XmlIgnore]
-        public Nullable<int> RepeatCount { get; set; }
+        public int? RepeatCount { get; set; }
 
         /// <summary>
         ///  The setter does nothing! This is just a surrogate field for nullable xml attribute serialization.
@@ -202,7 +201,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// (optional) Seconds to wait for speech input before timing out. Defaults to 5.
         /// </summary>
         [XmlIgnore]
-        public Nullable<int> SpeechTimeout { get; set; }
+        public int? SpeechTimeout { get; set; }
 
         /// <summary>
         ///  The setter does nothing! This is just a surrogate field for nullable xml attribute serialization.

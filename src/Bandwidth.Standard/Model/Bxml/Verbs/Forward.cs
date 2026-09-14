@@ -1,5 +1,4 @@
 using Bandwidth.Standard.Model.Bxml;
-using System;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Model.Bxml.Verbs
@@ -34,7 +33,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// The number of seconds to wait before timing out the call
         /// </summary>
         [XmlIgnore]
-        public Nullable<int> CallTimeout { get; set; }
+        public int? CallTimeout { get; set; }
 
         /// <summary>
         ///  The setter does nothing! This is just a surrogate field for nullable xml attribute serialization.

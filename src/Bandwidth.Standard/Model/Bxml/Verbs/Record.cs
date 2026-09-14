@@ -1,5 +1,4 @@
 using Bandwidth.Standard.Model.Bxml;
-using System;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Model.Bxml.Verbs
@@ -111,7 +110,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         ///   (optional) Maximum length of recording (in seconds).
         /// </summary>
         [XmlIgnore]
-        public Nullable<int> MaxDuration { get; set; }
+        public int? MaxDuration { get; set; }
 
         /// <summary>
         ///  The setter does nothing! This is just a surrogate field for nullable xml attribute serialization.
@@ -127,7 +126,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         ///   (optional) Length of silence after which to end the recording (in seconds). Max is equivalent to the maximum maxDuration value.
         /// </summary>
         [XmlIgnore]
-        public Nullable<int> SilenceTimeout { get; set; }
+        public int? SilenceTimeout { get; set; }
 
         /// <summary>
         ///  The setter does nothing! This is just a surrogate field for nullable xml attribute serialization.
