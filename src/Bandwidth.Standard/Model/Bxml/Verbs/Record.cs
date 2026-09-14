@@ -144,5 +144,11 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// </summary>
         [XmlAttribute("fileFormat")]
         public string FileFormat { get; set; }
+
+        /// <summary>
+        ///   (optional) A name identifying this recording, returned in the Recording Available event.
+        /// </summary>
+        [XmlAttribute("recordingName")]
+        public string RecordingName { get; set; }
     }
 }

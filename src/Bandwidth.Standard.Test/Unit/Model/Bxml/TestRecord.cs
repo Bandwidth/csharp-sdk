@@ -9,7 +9,7 @@ namespace Bandwidth.Standard.Test.Unit.Model.Bxml
 		[Fact]
 		public void RecordTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Record recordCompleteUrl=\"https://test.url/\" recordCompleteMethod=\"POST\" recordCompleteFallbackUrl=\"https://fallbackTest.url/\" recordCompleteFallbackMethod=\"POST\" recordingAvailableUrl=\"https://recordingTest.url/\" recordingAvailableMethod=\"POST\" transcribe=\"true\" detectLanguage=\"true\" transcriptionAvailableUrl=\"https://transcriptionTest.url/\" transcriptionAvailableMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\" terminatingDigits=\"#\" maxDuration=\"60\" silenceTimeout=\"0\" fileFormat=\"wav\" /></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Record recordCompleteUrl=\"https://test.url/\" recordCompleteMethod=\"POST\" recordCompleteFallbackUrl=\"https://fallbackTest.url/\" recordCompleteFallbackMethod=\"POST\" recordingAvailableUrl=\"https://recordingTest.url/\" recordingAvailableMethod=\"POST\" transcribe=\"true\" detectLanguage=\"true\" transcriptionAvailableUrl=\"https://transcriptionTest.url/\" transcriptionAvailableMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\" terminatingDigits=\"#\" maxDuration=\"60\" silenceTimeout=\"0\" fileFormat=\"wav\" recordingName=\"test-recording\" /></Response>";
 
 			var record = new Bandwidth.Standard.Model.Bxml.Verbs.Record();
 			record.RecordCompleteUrl = "https://test.url/";
@@ -31,6 +31,7 @@ namespace Bandwidth.Standard.Test.Unit.Model.Bxml
 			record.MaxDuration = 60;
 			record.SilenceTimeout = 0;
 			record.FileFormat = "wav";
+			record.RecordingName = "test-recording";
 
 			var response = new Response(record);
 			var actual = response.ToBXML();

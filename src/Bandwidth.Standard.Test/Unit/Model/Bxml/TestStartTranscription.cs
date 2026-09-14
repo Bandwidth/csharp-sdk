@@ -11,7 +11,7 @@ namespace Bandwidth.Standard.Test.Unit.Model.Bxml
 		[Fact]
 		public void StartTranscriptionTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StartTranscription name=\"test\" tracks=\"inbound\" transcriptionEventUrl=\"https://test.url/\" transcriptionEventMethod=\"POST\" username=\"username\" password=\"password\" destination=\"wss://test.url/\" stabilized=\"true\">    <CustomParam name=\"testName\" value=\"testValue\" />  </StartTranscription></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <StartTranscription name=\"test\" tracks=\"inbound\" transcriptionEventUrl=\"https://test.url/\" transcriptionEventMethod=\"POST\" username=\"username\" password=\"password\" destination=\"wss://test.url/\" stabilized=\"true\" detectLanguage=\"false\" preferredLanguages=\"en-US,es-US\">    <CustomParam name=\"testName\" value=\"testValue\" />  </StartTranscription></Response>";
 			
 			var customParam = new CustomParam();
 			customParam.Name = "testName";
@@ -27,6 +27,8 @@ namespace Bandwidth.Standard.Test.Unit.Model.Bxml
 			startTranscription.Password = "password";
 			startTranscription.Destination = "wss://test.url/";
 			startTranscription.Stabilized = true;
+			startTranscription.DetectLanguage = false;
+			startTranscription.PreferredLanguages = "en-US,es-US";
 			startTranscription.CustomParams = new List<CustomParam> { customParam };
 
 			var response = new Response(startTranscription);

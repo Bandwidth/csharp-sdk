@@ -11,7 +11,7 @@ namespace Bandwidth.Standard.Test.Unit.Model.Bxml
 		[Fact]
 		public void GatherTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Gather gatherUrl=\"https://test.url/\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://fallbackTest.url/\" gatherFallbackMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\" terminatingDigits=\"#\" maxDigits=\"50\" interDigitTimeout=\"5\" firstDigitTimeout=\"5\" repeatCount=\"1\">    <SpeakSentence>test</SpeakSentence>    <PlayAudio>https://test.url/test.mp3</PlayAudio>  </Gather></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Gather gatherUrl=\"https://test.url/\" gatherMethod=\"POST\" gatherFallbackUrl=\"https://fallbackTest.url/\" gatherFallbackMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\" terminatingDigits=\"#\" maxDigits=\"50\" interDigitTimeout=\"5\" firstDigitTimeout=\"5\" repeatCount=\"1\" input=\"dtmf speech\" hints=\"sales,support\" language=\"en-US\" partialResultCallback=\"https://partialTest.url/\" partialResultCallbackMethod=\"POST\" profanityFilter=\"false\" speechModel=\"default\" speechTimeout=\"10\">    <SpeakSentence>test</SpeakSentence>    <PlayAudio>https://test.url/test.mp3</PlayAudio>  </Gather></Response>";
 
 			var speakSentence = new SpeakSentence();
 			speakSentence.Text = "test";
@@ -34,6 +34,14 @@ namespace Bandwidth.Standard.Test.Unit.Model.Bxml
 			gather.InterDigitTimeout = 5;
 			gather.FirstDigitTimeout = 5;
 			gather.RepeatCount = 1;
+			gather.Input = "dtmf speech";
+			gather.Hints = "sales,support";
+			gather.Language = "en-US";
+			gather.PartialResultCallback = "https://partialTest.url/";
+			gather.PartialResultCallbackMethod = "POST";
+			gather.ProfanityFilter = false;
+			gather.SpeechModel = "default";
+			gather.SpeechTimeout = 10;
 			gather.SpeakSentence = new List<SpeakSentence> { speakSentence };
 			gather.PlayAudio = new List<PlayAudio> { playAudio };
 

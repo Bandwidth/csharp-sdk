@@ -16,6 +16,12 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         public string EventCallbackUrl { get; set; }
 
         /// <summary>
+        /// (optional) A fallback url which, if provided, will be used to retry the event callback delivery in case eventCallbackUrl fails to respond.
+        /// </summary>
+        [XmlAttribute("eventFallbackUrl")]
+        public string EventFallbackUrl { get; set; }
+
+        /// <summary>
         /// The endpoint destination to connect to.
         /// </summary>
         [XmlElement("Endpoint")]

@@ -67,6 +67,28 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         [XmlAttribute("stabilized")]
         public bool Stabilized { get; set; }
 
+        /// <summary>
+        /// (optional) Whether to detect the dominant language of the call rather than assuming English. Defaults to false.
+        /// </summary>
+        [XmlIgnore]
+        public bool? DetectLanguage { get; set; }
+
+        /// <summary>
+        ///  The setter does nothing! This is just a surrogate field for nullable xml attribute serialization.
+        /// </summary>
+        [XmlAttribute("detectLanguage")]
+        public string DetectLanguageAsText
+        {
+            get { return (DetectLanguage.HasValue) ? DetectLanguage.ToString().ToLower() : null; }
+            set { }
+        }
+
+        /// <summary>
+        /// (optional) Comma-separated list of language locales to transcribe in, defaulting to en-US. Requires detectLanguage to be false, and supports one dialect per language.
+        /// </summary>
+        [XmlAttribute("preferredLanguages")]
+        public string PreferredLanguages { get; set; }
+
 
         /// <summary>
         /// You may specify up to 12 CustomParam elements nested within a StartTranscription tag.

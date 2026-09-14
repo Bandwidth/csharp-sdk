@@ -112,6 +112,22 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         public string DiversionReason { get; set; }
 
         /// <summary>
+        /// (optional) Whether to hide the calling number. Use transferCallerDisplayName to customize the displayed name.
+        /// </summary>
+        [XmlIgnore]
+        public bool? Privacy { get; set; }
+
+        /// <summary>
+        ///  The setter does nothing! This is just a surrogate field for nullable xml attribute serialization.
+        /// </summary>
+        [XmlAttribute("privacy")]
+        public string PrivacyAsText
+        {
+            get { return (Privacy.HasValue) ? Privacy.ToString().ToLower() : null; }
+            set { }
+        }
+
+        /// <summary>
         ///  Phone numbers to attempt to transfer the call to.
         /// </summary>
         [XmlElement("PhoneNumber")]
