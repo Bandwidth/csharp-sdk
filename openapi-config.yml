@@ -3,3 +3,4 @@ packageName: Bandwidth.Standard
 packageTags: Bandwidth
 targetFramework: netstandard2.0
 templateDir: custom_templates
+packageGuid: "{0B827FE6-C4E9-4144-A195-8A00B3C063F4}"
