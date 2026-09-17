@@ -1,5 +1,4 @@
 using Bandwidth.Standard.Model.Bxml;
-using System;
 using System.Xml.Serialization;
 
 namespace Bandwidth.Standard.Model.Bxml.Verbs
@@ -34,7 +33,7 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// The number of seconds to wait before timing out the call
         /// </summary>
         [XmlIgnore]
-        public Nullable<int> CallTimeout { get; set; }
+        public int? CallTimeout { get; set; }
 
         /// <summary>
         ///  The setter does nothing! This is just a surrogate field for nullable xml attribute serialization.
@@ -63,5 +62,27 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         /// </summary>
         [XmlAttribute("uui")]
         public string Uui { get; set; }
+
+        /// <summary>
+        /// (optional) Whether to hide the calling number. Use callerDisplayName to customize the displayed name.
+        /// </summary>
+        [XmlIgnore]
+        public bool? Privacy { get; set; }
+
+        /// <summary>
+        ///  The setter does nothing! This is just a surrogate field for nullable xml attribute serialization.
+        /// </summary>
+        [XmlAttribute("privacy")]
+        public string PrivacyAsText
+        {
+            get { return (Privacy.HasValue) ? Privacy.ToString().ToLower() : null; }
+            set { }
+        }
+
+        /// <summary>
+        /// (optional) The caller display name to use when the call is created, up to 256 characters. If privacy is true, only Restricted, Anonymous, Private, or Unavailable are valid.
+        /// </summary>
+        [XmlAttribute("callerDisplayName")]
+        public string CallerDisplayName { get; set; }
     }
 }
