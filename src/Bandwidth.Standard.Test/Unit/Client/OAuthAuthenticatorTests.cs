@@ -10,6 +10,7 @@
 
 
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -41,6 +42,9 @@ namespace Bandwidth.Standard.Test.Unit.Client
         // Controls whether the fake endpoint returns expires_in; toggled per test.
         private int _expiresInSeconds = 3600;
         private bool _includeExpiresIn = true;
+
+        // Artificial latency on the fake endpoint so concurrent callers overlap on a cache miss.
+        private int _responseDelayMs = 0;
 
         public OAuthAuthenticatorTests()
         {
@@ -110,6 +114,22 @@ namespace Bandwidth.Standard.Test.Unit.Client
             Assert.Equal(2, _tokenRequestCount);
         }
 
+        /// <summary>
+        /// Concurrent callers hitting a cold cache should share a single token request rather than each fetching.
+        /// </summary>
+        [Fact]
+        public async Task GetAuthenticationParameter_ConcurrentColdCache_FetchesOnlyOnce()
+        {
+            _responseDelayMs = 200;
+            var authenticator = CreateAuthenticator();
+
+            var results = await Task.WhenAll(
+                Enumerable.Range(0, 50).Select(_ => authenticator.GetAuthHeaderAsync()));
+
+            Assert.All(results, r => Assert.Equal($"Bearer {AccessToken}", r));
+            Assert.Equal(1, _tokenRequestCount);
+        }
+
         private TestableOAuthAuthenticator CreateAuthenticator()
         {
             return new TestableOAuthAuthenticator(
@@ -138,6 +158,9 @@ namespace Bandwidth.Standard.Test.Unit.Client
 
                 Interlocked.Increment(ref _tokenRequestCount);
                 _lastAuthorizationHeader = context.Request.Headers["Authorization"];
+
+                if (_responseDelayMs > 0)
+                    await Task.Delay(_responseDelayMs);
 
                 string body = _includeExpiresIn
                     ? $"{{\"token_type\":\"Bearer\",\"access_token\":\"{AccessToken}\",\"expires_in\":{_expiresInSeconds}}}"
