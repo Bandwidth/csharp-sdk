@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using RestSharp;
@@ -31,6 +32,11 @@ namespace {{packageName}}.Client.Auth
         /// request by the ApiClient, so the cache must be static for tokens to be reused across requests.
         /// </summary>
         static readonly ConcurrentDictionary<string, CachedToken> _tokenCache = new ConcurrentDictionary<string, CachedToken>();
+
+        /// <summary>
+        /// One lock per cache key so concurrent cache misses share a single token request instead of each fetching.
+        /// </summary>
+        static readonly ConcurrentDictionary<string, Lazy<SemaphoreSlim>> _fetchLocks = new ConcurrentDictionary<string, Lazy<SemaphoreSlim>>();
 
         sealed class CachedToken
         {
@@ -93,12 +99,39 @@ namespace {{packageName}}.Client.Auth
         /// <returns>An authentication token.</returns>
         async Task<string> GetCachedOrFetchToken()
         {
-            if (_tokenCache.TryGetValue(CacheKey, out var cached) && cached.ExpiresAtUtc > DateTime.UtcNow)
+            if (TryGetCachedToken(out var token))
             {
-                return cached.Token;
+                return token;
             }
 
-            return await GetToken().ConfigureAwait(false);
+            var fetchLock = _fetchLocks.GetOrAdd(CacheKey, _ => new Lazy<SemaphoreSlim>(() => new SemaphoreSlim(1, 1))).Value;
+            await fetchLock.WaitAsync().ConfigureAwait(false);
+            try
+            {
+                // Re-check: a caller that held the lock before us may have already populated the cache.
+                if (TryGetCachedToken(out token))
+                {
+                    return token;
+                }
+
+                return await GetToken().ConfigureAwait(false);
+            }
+            finally
+            {
+                fetchLock.Release();
+            }
+        }
+
+        bool TryGetCachedToken(out string token)
+        {
+            if (_tokenCache.TryGetValue(CacheKey, out var cached) && cached.ExpiresAtUtc > DateTime.UtcNow)
+            {
+                token = cached.Token;
+                return true;
+            }
+
+            token = null;
+            return false;
         }
 
         /// <summary>
