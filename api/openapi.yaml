@@ -15131,7 +15131,7 @@ components:
       description: |
         Government-issued business identifying number.
 
-        **Note: As of October 19th, 2026 this field will be required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**
+        **As of October 19th, 2026 this field is required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**
       example: 12-3456789
       maxLength: 500
       nullable: true
@@ -15140,7 +15140,7 @@ components:
       description: |
         The type of business registration number.
 
-        **Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**
+        **As of October 19th, 2026 this field is required when `businessRegistrationNumber` is provided.**
       enum:
       - EIN
       - CBN
@@ -15167,7 +15167,7 @@ components:
       description: |-
         The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.
 
-        **Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**
+        **As of October 19th, 2026 this field is required when `businessRegistrationNumber` is provided.**
 
         | Registration Type     | Supported Countries                |
         |----------------------|------------------------------------|
@@ -15193,13 +15193,11 @@ components:
       nullable: true
       type: string
     businessEntityTypeEnum:
-      description: "The type of registered business.\n\n**Note: As of October 19th,\
-        \ 2026 submissions using a value other than `SOLE_PROPRIETOR` must provide\
-        \ a value for `businessRegistrationNumber`, `businessRegistrationType`, and\
-        \ `businessRegistrationIssuingCountry`. \nSubmissions using `SOLE_PROPRIETOR`\
-        \ must _omit_ `businessRegistrationNumber`, `businessRegistrationType`, and\
-        \ `businessRegistrationIssuingCountry`. Failure to adhere to these constraints\
-        \ will result in a 400 Bad Request rejection.**\n"
+      description: |
+        The type of registered business.
+
+        **As of October 19th, 2026 submissions using a value other than `SOLE_PROPRIETOR` must provide a value for `businessRegistrationNumber`, `businessRegistrationType`, and `businessRegistrationIssuingCountry`.
+        Submissions using `SOLE_PROPRIETOR` must _omit_ `businessRegistrationNumber`, `businessRegistrationType`, and `businessRegistrationIssuingCountry`. Failure to adhere to these constraints will result in a 400 Bad Request rejection.**
       enum:
       - SOLE_PROPRIETOR
       - PRIVATE_PROFIT
@@ -15310,7 +15308,7 @@ components:
           description: |
             Government-issued business identifying number.
 
-            **Note: As of October 19th, 2026 this field will be required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**
+            **As of October 19th, 2026 this field is required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**
           example: 12-3456789
           maxLength: 500
           nullable: true
@@ -15321,7 +15319,7 @@ components:
           description: |-
             The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.
 
-            **Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**
+            **As of October 19th, 2026 this field is required when `businessRegistrationNumber` is provided.**
 
             | Registration Type     | Supported Countries                |
             |----------------------|------------------------------------|
@@ -15447,7 +15445,7 @@ components:
           description: |
             Government-issued business identifying number.
 
-            **Note: As of October 19th, 2026 this field will be required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**
+            **As of October 19th, 2026 this field is required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**
           example: 12-3456789
           maxLength: 500
           nullable: true
@@ -15460,7 +15458,7 @@ components:
           description: |-
             The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.
 
-            **Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**
+            **As of October 19th, 2026 this field is required when `businessRegistrationNumber` is provided.**
 
             | Registration Type     | Supported Countries                |
             |----------------------|------------------------------------|
@@ -15508,6 +15506,7 @@ components:
       required:
       - businessAddress
       - businessContact
+      - businessEntityType
       - messageVolume
       - optInWorkflow
       - productionMessageContent
@@ -16355,7 +16354,7 @@ components:
           description: |
             Government-issued business identifying number.
 
-            **Note: As of October 19th, 2026 this field will be required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**
+            **As of October 19th, 2026 this field is required when `businessEntityType` is _not_ `SOLE_PROPRIETOR`. If this field is provided, `businessRegistrationType` and `businessRegistrationIssuingCountry` are also required.**
           example: 12-3456789
           maxLength: 500
           nullable: true
@@ -16366,7 +16365,7 @@ components:
           description: |-
             The country issuing the business registration in ISO-3166-1 alpha-3 format. Alpha-2 format is accepted by the API, but alpha-3 is highly encouraged.
 
-            **Note: As of October 19th, 2026 this field will be required when `businessRegistrationNumber` is provided.**
+            **As of October 19th, 2026 this field is required when `businessRegistrationNumber` is provided.**
 
             | Registration Type     | Supported Countries                |
             |----------------------|------------------------------------|
