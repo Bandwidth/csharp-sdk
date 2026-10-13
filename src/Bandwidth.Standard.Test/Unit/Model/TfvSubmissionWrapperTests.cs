@@ -62,7 +62,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 isvReseller: "test",
                 privacyPolicyUrl: "test",
                 termsAndConditionsUrl: "test",
-                businessDba: "test"
+                businessDba: "test",
+                businessEntityType: BusinessEntityTypeEnum.SOLEPROPRIETOR
             );
 
             instance = new TfvSubmissionWrapper(

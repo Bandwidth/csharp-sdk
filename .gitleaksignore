@@ -1,0 +1,2 @@
+# False positive: generated constructor parameter default, not a secret
+src/Bandwidth.Standard/Model/VerificationUpdateRequest.cs:generic-credential-with-special-chars:74

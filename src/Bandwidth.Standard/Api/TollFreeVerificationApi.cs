@@ -57,7 +57,7 @@ namespace Bandwidth.Standard.Api
         /// Delete a Toll-Free Verification Submission
         /// </summary>
         /// <remarks>
-        /// Delete a toll-free verification submission for a toll-free number.
+        /// Delete a toll-free verification submission for a toll-free number.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, it will be cancelled and the submission will then be deleted asynchronously.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -70,7 +70,7 @@ namespace Bandwidth.Standard.Api
         /// Delete a Toll-Free Verification Submission
         /// </summary>
         /// <remarks>
-        /// Delete a toll-free verification submission for a toll-free number.
+        /// Delete a toll-free verification submission for a toll-free number.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, it will be cancelled and the submission will then be deleted asynchronously.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -176,7 +176,7 @@ namespace Bandwidth.Standard.Api
         /// Request Toll-Free Verification
         /// </summary>
         /// <remarks>
-        /// Submit a request for verification of a toll-free phone number.
+        /// Submit a request for verification of a toll-free phone number.  **Upcoming change (effective January 2027):** If any phone number in the request already has a verification in progress, the request will be rejected with a &#x60;409 Conflict&#x60;. This check is all-or-nothing: if a single phone number conflicts, the entire request is rejected and **none** of the phone numbers in the request are submitted. Today, these requests are accepted with a &#x60;202&#x60;.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -189,7 +189,7 @@ namespace Bandwidth.Standard.Api
         /// Request Toll-Free Verification
         /// </summary>
         /// <remarks>
-        /// Submit a request for verification of a toll-free phone number.
+        /// Submit a request for verification of a toll-free phone number.  **Upcoming change (effective January 2027):** If any phone number in the request already has a verification in progress, the request will be rejected with a &#x60;409 Conflict&#x60;. This check is all-or-nothing: if a single phone number conflicts, the entire request is rejected and **none** of the phone numbers in the request are submitted. Today, these requests are accepted with a &#x60;202&#x60;.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -201,7 +201,7 @@ namespace Bandwidth.Standard.Api
         /// Update Toll-Free Verification Request
         /// </summary>
         /// <remarks>
-        /// Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true).
+        /// Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true). Returns a &#x60;404&#x60; if no verification request exists for the phone number, and a &#x60;400&#x60; if the existing request is not eligible for resubmission.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, the update will be rejected with a &#x60;409 Conflict&#x60;.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -215,7 +215,7 @@ namespace Bandwidth.Standard.Api
         /// Update Toll-Free Verification Request
         /// </summary>
         /// <remarks>
-        /// Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true).
+        /// Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true). Returns a &#x60;404&#x60; if no verification request exists for the phone number, and a &#x60;400&#x60; if the existing request is not eligible for resubmission.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, the update will be rejected with a &#x60;409 Conflict&#x60;.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -291,7 +291,7 @@ namespace Bandwidth.Standard.Api
         /// Delete a Toll-Free Verification Submission
         /// </summary>
         /// <remarks>
-        /// Delete a toll-free verification submission for a toll-free number.
+        /// Delete a toll-free verification submission for a toll-free number.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, it will be cancelled and the submission will then be deleted asynchronously.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -305,7 +305,7 @@ namespace Bandwidth.Standard.Api
         /// Delete a Toll-Free Verification Submission
         /// </summary>
         /// <remarks>
-        /// Delete a toll-free verification submission for a toll-free number.
+        /// Delete a toll-free verification submission for a toll-free number.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, it will be cancelled and the submission will then be deleted asynchronously.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -420,7 +420,7 @@ namespace Bandwidth.Standard.Api
         /// Request Toll-Free Verification
         /// </summary>
         /// <remarks>
-        /// Submit a request for verification of a toll-free phone number.
+        /// Submit a request for verification of a toll-free phone number.  **Upcoming change (effective January 2027):** If any phone number in the request already has a verification in progress, the request will be rejected with a &#x60;409 Conflict&#x60;. This check is all-or-nothing: if a single phone number conflicts, the entire request is rejected and **none** of the phone numbers in the request are submitted. Today, these requests are accepted with a &#x60;202&#x60;.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -434,7 +434,7 @@ namespace Bandwidth.Standard.Api
         /// Request Toll-Free Verification
         /// </summary>
         /// <remarks>
-        /// Submit a request for verification of a toll-free phone number.
+        /// Submit a request for verification of a toll-free phone number.  **Upcoming change (effective January 2027):** If any phone number in the request already has a verification in progress, the request will be rejected with a &#x60;409 Conflict&#x60;. This check is all-or-nothing: if a single phone number conflicts, the entire request is rejected and **none** of the phone numbers in the request are submitted. Today, these requests are accepted with a &#x60;202&#x60;.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -447,7 +447,7 @@ namespace Bandwidth.Standard.Api
         /// Update Toll-Free Verification Request
         /// </summary>
         /// <remarks>
-        /// Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true).
+        /// Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true). Returns a &#x60;404&#x60; if no verification request exists for the phone number, and a &#x60;400&#x60; if the existing request is not eligible for resubmission.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, the update will be rejected with a &#x60;409 Conflict&#x60;.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -462,7 +462,7 @@ namespace Bandwidth.Standard.Api
         /// Update Toll-Free Verification Request
         /// </summary>
         /// <remarks>
-        /// Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true).
+        /// Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true). Returns a &#x60;404&#x60; if no verification request exists for the phone number, and a &#x60;400&#x60; if the existing request is not eligible for resubmission.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, the update will be rejected with a &#x60;409 Conflict&#x60;.
         /// </remarks>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -830,7 +830,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Delete a Toll-Free Verification Submission Delete a toll-free verification submission for a toll-free number.
+        /// Delete a Toll-Free Verification Submission Delete a toll-free verification submission for a toll-free number.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, it will be cancelled and the submission will then be deleted asynchronously.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -843,7 +843,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Delete a Toll-Free Verification Submission Delete a toll-free verification submission for a toll-free number.
+        /// Delete a Toll-Free Verification Submission Delete a toll-free verification submission for a toll-free number.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, it will be cancelled and the submission will then be deleted asynchronously.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -930,7 +930,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Delete a Toll-Free Verification Submission Delete a toll-free verification submission for a toll-free number.
+        /// Delete a Toll-Free Verification Submission Delete a toll-free verification submission for a toll-free number.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, it will be cancelled and the submission will then be deleted asynchronously.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -944,7 +944,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Delete a Toll-Free Verification Submission Delete a toll-free verification submission for a toll-free number.
+        /// Delete a Toll-Free Verification Submission Delete a toll-free verification submission for a toll-free number.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, it will be cancelled and the submission will then be deleted asynchronously.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -1802,7 +1802,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Request Toll-Free Verification Submit a request for verification of a toll-free phone number.
+        /// Request Toll-Free Verification Submit a request for verification of a toll-free phone number.  **Upcoming change (effective January 2027):** If any phone number in the request already has a verification in progress, the request will be rejected with a &#x60;409 Conflict&#x60;. This check is all-or-nothing: if a single phone number conflicts, the entire request is rejected and **none** of the phone numbers in the request are submitted. Today, these requests are accepted with a &#x60;202&#x60;.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -1815,7 +1815,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Request Toll-Free Verification Submit a request for verification of a toll-free phone number.
+        /// Request Toll-Free Verification Submit a request for verification of a toll-free phone number.  **Upcoming change (effective January 2027):** If any phone number in the request already has a verification in progress, the request will be rejected with a &#x60;409 Conflict&#x60;. This check is all-or-nothing: if a single phone number conflicts, the entire request is rejected and **none** of the phone numbers in the request are submitted. Today, these requests are accepted with a &#x60;202&#x60;.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -1903,7 +1903,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Request Toll-Free Verification Submit a request for verification of a toll-free phone number.
+        /// Request Toll-Free Verification Submit a request for verification of a toll-free phone number.  **Upcoming change (effective January 2027):** If any phone number in the request already has a verification in progress, the request will be rejected with a &#x60;409 Conflict&#x60;. This check is all-or-nothing: if a single phone number conflicts, the entire request is rejected and **none** of the phone numbers in the request are submitted. Today, these requests are accepted with a &#x60;202&#x60;.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -1917,7 +1917,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Request Toll-Free Verification Submit a request for verification of a toll-free phone number.
+        /// Request Toll-Free Verification Submit a request for verification of a toll-free phone number.  **Upcoming change (effective January 2027):** If any phone number in the request already has a verification in progress, the request will be rejected with a &#x60;409 Conflict&#x60;. This check is all-or-nothing: if a single phone number conflicts, the entire request is rejected and **none** of the phone numbers in the request are submitted. Today, these requests are accepted with a &#x60;202&#x60;.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -2008,7 +2008,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Update Toll-Free Verification Request Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true).
+        /// Update Toll-Free Verification Request Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true). Returns a &#x60;404&#x60; if no verification request exists for the phone number, and a &#x60;400&#x60; if the existing request is not eligible for resubmission.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, the update will be rejected with a &#x60;409 Conflict&#x60;.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -2022,7 +2022,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Update Toll-Free Verification Request Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true).
+        /// Update Toll-Free Verification Request Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true). Returns a &#x60;404&#x60; if no verification request exists for the phone number, and a &#x60;400&#x60; if the existing request is not eligible for resubmission.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, the update will be rejected with a &#x60;409 Conflict&#x60;.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -2118,7 +2118,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Update Toll-Free Verification Request Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true).
+        /// Update Toll-Free Verification Request Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true). Returns a &#x60;404&#x60; if no verification request exists for the phone number, and a &#x60;400&#x60; if the existing request is not eligible for resubmission.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, the update will be rejected with a &#x60;409 Conflict&#x60;.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
@@ -2133,7 +2133,7 @@ namespace Bandwidth.Standard.Api
         }
 
         /// <summary>
-        /// Update Toll-Free Verification Request Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true).
+        /// Update Toll-Free Verification Request Updates a toll-free verification request. Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true). Returns a &#x60;404&#x60; if no verification request exists for the phone number, and a &#x60;400&#x60; if the existing request is not eligible for resubmission.  **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, the update will be rejected with a &#x60;409 Conflict&#x60;.
         /// </summary>
         /// <exception cref="Bandwidth.Standard.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Your Bandwidth Account ID.</param>
