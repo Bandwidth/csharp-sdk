@@ -294,9 +294,9 @@ paths:
       - Media
     put:
       description: |-
-        Upload a file. You may add headers to the request in order to provide some control to your media file.
+        Upload a file.
 
-        If a file is uploaded with the same name as a file that already exists under this account, the previous file will be overwritten.
+        Filename should always be unique. Reusing filenames may result in the wrong media being sent.
 
         A list of supported media types can be found at [Bandwidth Support](https://www.bandwidth.com/support/en/articles/12823220-what-mms-file-types-are-supported).
       operationId: uploadMedia
@@ -331,8 +331,9 @@ paths:
         schema:
           type: string
         style: simple
-      - description: General-header field is used to specify directives that MUST
-          be obeyed by all caching mechanisms along the request/response chain.
+      - description: Pass-through header stored with the media and returned when the
+          media is retrieved by the user. Does not affect internal server caching
+          behavior.
         example: no-cache
         explode: false
         in: header
@@ -4836,7 +4837,12 @@ paths:
       callbacks:
         tfVerificationStatus:
           $ref: '#/components/callbacks/tfVerificationStatus'
-      description: Submit a request for verification of a toll-free phone number.
+      description: |-
+        Submit a request for verification of a toll-free phone number.
+
+        **Upcoming change (effective January 2027):** If any phone number in the request already has a verification in progress, the request will be rejected with a `409 Conflict`.
+        This check is all-or-nothing: if a single phone number conflicts, the entire request is rejected and **none** of the phone numbers in the request are submitted.
+        Today, these requests are accepted with a `202`.
       operationId: requestTollFreeVerification
       parameters:
       - description: Your Bandwidth Account ID.
@@ -4893,6 +4899,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/tfvError'
           description: Method Not Allowed
+        "409":
+          content:
+            application/json:
+              example:
+                description: "TFV request already in progress for phone number: +18005551234"
+                type: conflict
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Conflict. A toll-free verification for the phone number is
+            already in progress.
         "429":
           content:
             application/json:
@@ -4928,7 +4944,10 @@ paths:
       url: https://api.bandwidth.com/api/v2
   /accounts/{accountId}/phoneNumbers/{phoneNumber}/tollFreeVerification:
     delete:
-      description: Delete a toll-free verification submission for a toll-free number.
+      description: |-
+        Delete a toll-free verification submission for a toll-free number.
+
+        **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, it will be cancelled and the submission will then be deleted asynchronously.
       operationId: deleteVerificationRequest
       parameters:
       - description: Your Bandwidth Account ID.
@@ -5140,6 +5159,9 @@ paths:
       description: |-
         Updates a toll-free verification request.
         Submissions are only eligible for resubmission for 7 days within being processed and if resubmission is allowed (resubmitAllowed field is true).
+        Returns a `404` if no verification request exists for the phone number, and a `400` if the existing request is not eligible for resubmission.
+
+        **Upcoming change (effective January 2027):** If a verification for the phone number is in progress, the update will be rejected with a `409 Conflict`.
       operationId: updateTollFreeVerificationRequest
       parameters:
       - description: Your Bandwidth Account ID.
@@ -5196,6 +5218,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/tfvError'
           description: Forbidden
+        "404":
+          content:
+            application/json:
+              example:
+                description: Cannot find the requested resource.
+                type: Not Found
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Cannot find the requested resource.
         "405":
           content:
             application/json:
@@ -5205,6 +5236,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/tfvError'
           description: Method Not Allowed
+        "409":
+          content:
+            application/json:
+              example:
+                description: "TFV request already in progress for phone number: +18005551234"
+                type: conflict
+              schema:
+                $ref: '#/components/schemas/tfvError'
+          description: Conflict. A toll-free verification for the phone number is
+            already in progress.
         "429":
           content:
             application/json:
@@ -7246,8 +7287,8 @@ components:
         type: string
       style: simple
     cacheControl:
-      description: General-header field is used to specify directives that MUST be
-        obeyed by all caching mechanisms along the request/response chain.
+      description: Pass-through header stored with the media and returned when the
+        media is retrieved by the user. Does not affect internal server caching behavior.
       example: no-cache
       explode: false
       in: header
@@ -8898,6 +8939,16 @@ components:
           schema:
             $ref: '#/components/schemas/tfvError'
       description: Cannot find the requested resource.
+    tfvConflictResponse:
+      content:
+        application/json:
+          example:
+            description: "TFV request already in progress for phone number: +18005551234"
+            type: conflict
+          schema:
+            $ref: '#/components/schemas/tfvError'
+      description: Conflict. A toll-free verification for the phone number is already
+        in progress.
     tfvNotAllowedResponse:
       content:
         application/json:
