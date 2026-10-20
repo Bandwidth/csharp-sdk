@@ -35,10 +35,10 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RbmSuggestionResponse" /> class.
         /// </summary>
-        /// <param name="text">The text associated with the suggestion response..</param>
-        /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked..</param>
+        /// <param name="text">The text of the suggestion the user tapped..</param>
+        /// <param name="postbackData">Payload the customer receives when the reply is clicked..</param>
         /// <param name="pairedMessageId">Corresponding parent message ID (MT)..</param>
-        public RbmSuggestionResponse(string text = default(string), byte[] postbackData = default(byte[]), string pairedMessageId = default(string))
+        public RbmSuggestionResponse(string text = default(string), string postbackData = default(string), string pairedMessageId = default(string))
         {
             this.Text = text;
             this.PostbackData = postbackData;
@@ -46,20 +46,20 @@ namespace Bandwidth.Standard.Model
         }
 
         /// <summary>
-        /// The text associated with the suggestion response.
+        /// The text of the suggestion the user tapped.
         /// </summary>
-        /// <value>The text associated with the suggestion response.</value>
-        /// <example>Yes, I would like to proceed</example>
+        /// <value>The text of the suggestion the user tapped.</value>
+        /// <example>Track my order</example>
         [DataMember(Name = "text", EmitDefaultValue = false)]
         public string Text { get; set; }
 
         /// <summary>
-        /// Base64 payload the customer receives when the reply is clicked.
+        /// Payload the customer receives when the reply is clicked.
         /// </summary>
-        /// <value>Base64 payload the customer receives when the reply is clicked.</value>
-        /// <example>[B@458704ee</example>
+        /// <value>Payload the customer receives when the reply is clicked.</value>
+        /// <example>track-order-43654</example>
         [DataMember(Name = "postbackData", EmitDefaultValue = false)]
-        public byte[] PostbackData { get; set; }
+        public string PostbackData { get; set; }
 
         /// <summary>
         /// Corresponding parent message ID (MT).
@@ -100,7 +100,7 @@ namespace Bandwidth.Standard.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // PostbackData (byte[]) maxLength
+            // PostbackData (string) maxLength
             if (this.PostbackData != null && this.PostbackData.Length > 2048)
             {
                 yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new [] { "PostbackData" });

@@ -27,41 +27,47 @@ using OpenAPIDateConverter = Bandwidth.Standard.Client.OpenAPIDateConverter;
 namespace Bandwidth.Standard.Model
 {
     /// <summary>
-    /// The possible status callbacks when sending an MT SMS or MMS or RBM message: - &#x60;message-sending&#x60; indicates that Bandwidth is sending the message to the upstream provider. - &#x60;message-sent&#x60; indicates that the message has left the Bandwidth network and is in transit to the provider. - &#x60;message-delivered&#x60; indicates that the message was successfully delivered to handset. - &#x60;message-failed&#x60; indicates that the message could not be sent to the intended recipient. - &#x60;message-read&#x60; indicates that the RBM message was read by the recipient.
+    /// The possible status callbacks when sending an MT SMS or MMS or RBM message: - &#x60;message-sending&#x60; indicates that Bandwidth is sending the message to the upstream provider. - &#x60;message-sent&#x60; indicates that the message has left the Bandwidth network and is in transit to the provider. - &#x60;message-delivered&#x60; indicates that the message was successfully delivered to handset. - &#x60;message-failed&#x60; indicates that the message could not be sent to the intended recipient. - &#x60;message-read&#x60; indicates that the RBM message was read by the recipient. - &#x60;session-started&#x60; indicates that a previously exchanged RBM message is now part of an RCS interactive session and is no longer billed individually.
     /// </summary>
-    /// <value>The possible status callbacks when sending an MT SMS or MMS or RBM message: - &#x60;message-sending&#x60; indicates that Bandwidth is sending the message to the upstream provider. - &#x60;message-sent&#x60; indicates that the message has left the Bandwidth network and is in transit to the provider. - &#x60;message-delivered&#x60; indicates that the message was successfully delivered to handset. - &#x60;message-failed&#x60; indicates that the message could not be sent to the intended recipient. - &#x60;message-read&#x60; indicates that the RBM message was read by the recipient.</value>
+    /// <value>The possible status callbacks when sending an MT SMS or MMS or RBM message: - &#x60;message-sending&#x60; indicates that Bandwidth is sending the message to the upstream provider. - &#x60;message-sent&#x60; indicates that the message has left the Bandwidth network and is in transit to the provider. - &#x60;message-delivered&#x60; indicates that the message was successfully delivered to handset. - &#x60;message-failed&#x60; indicates that the message could not be sent to the intended recipient. - &#x60;message-read&#x60; indicates that the RBM message was read by the recipient. - &#x60;session-started&#x60; indicates that a previously exchanged RBM message is now part of an RCS interactive session and is no longer billed individually.</value>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum StatusCallbackTypeEnum
     {
         /// <summary>
-        /// Enum Sending for value: message-sending
+        /// Enum MessageSending for value: message-sending
         /// </summary>
         [EnumMember(Value = "message-sending")]
-        Sending = 1,
+        MessageSending = 1,
 
         /// <summary>
-        /// Enum Sent for value: message-sent
+        /// Enum MessageSent for value: message-sent
         /// </summary>
         [EnumMember(Value = "message-sent")]
-        Sent = 2,
+        MessageSent = 2,
 
         /// <summary>
-        /// Enum Delivered for value: message-delivered
+        /// Enum MessageDelivered for value: message-delivered
         /// </summary>
         [EnumMember(Value = "message-delivered")]
-        Delivered = 3,
+        MessageDelivered = 3,
 
         /// <summary>
-        /// Enum Failed for value: message-failed
+        /// Enum MessageFailed for value: message-failed
         /// </summary>
         [EnumMember(Value = "message-failed")]
-        Failed = 4,
+        MessageFailed = 4,
 
         /// <summary>
-        /// Enum Read for value: message-read
+        /// Enum MessageRead for value: message-read
         /// </summary>
         [EnumMember(Value = "message-read")]
-        Read = 5
+        MessageRead = 5,
+
+        /// <summary>
+        /// Enum SessionStarted for value: session-started
+        /// </summary>
+        [EnumMember(Value = "session-started")]
+        SessionStarted = 6
     }
 
 }
