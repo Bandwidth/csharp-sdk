@@ -71,7 +71,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="media">Optional media, not applicable for sms.</param>
         /// <param name="priority">priority.</param>
         /// <param name="channel">channel.</param>
-        public StatusCallbackMessage(string id = default(string), string owner = default(string), string applicationId = default(string), DateTime time = default(DateTime), int segmentCount = default(int), MessageDirectionEnum direction = default(MessageDirectionEnum), List<string> to = default(List<string>), string from = default(string), string text = default(string), string tag = default(string), List<string> media = default(List<string>), PriorityEnum? priority = default(PriorityEnum?), MultiChannelMessageChannelEnum? channel = default(MultiChannelMessageChannelEnum?))
+        /// <param name="session">session.</param>
+        public StatusCallbackMessage(string id = default(string), string owner = default(string), string applicationId = default(string), DateTime time = default(DateTime), int segmentCount = default(int), MessageDirectionEnum direction = default(MessageDirectionEnum), List<string> to = default(List<string>), string from = default(string), string text = default(string), string tag = default(string), List<string> media = default(List<string>), PriorityEnum? priority = default(PriorityEnum?), MultiChannelMessageChannelEnum? channel = default(MultiChannelMessageChannelEnum?), RbmSession session = default(RbmSession))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -111,6 +112,7 @@ namespace Bandwidth.Standard.Model
             this.Media = media;
             this.Priority = priority;
             this.Channel = channel;
+            this.Session = session;
         }
 
         /// <summary>
@@ -192,6 +194,12 @@ namespace Bandwidth.Standard.Model
         public List<string> Media { get; set; }
 
         /// <summary>
+        /// Gets or Sets Session
+        /// </summary>
+        [DataMember(Name = "session", EmitDefaultValue = false)]
+        public RbmSession Session { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -212,6 +220,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  Media: ").Append(Media).Append("\n");
             sb.Append("  Priority: ").Append(Priority).Append("\n");
             sb.Append("  Channel: ").Append(Channel).Append("\n");
+            sb.Append("  Session: ").Append(Session).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
