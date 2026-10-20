@@ -128,6 +128,18 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         }
 
         /// <summary>
+        /// (optional) STIR/SHAKEN attestation level Bandwidth signs the transferred call at: "A", "B", or "C". Applies only to US outbound calls on accounts using the Hosted Signing Service. Cannot be combined with Identity.
+        /// </summary>
+        [XmlAttribute("attestationLevel")]
+        public string AttestationLevel { get; set; }
+
+        /// <summary>
+        /// (optional) A SIP Identity header value (PASSporT) signed off-platform, passed through unmodified. Cannot be combined with AttestationLevel.
+        /// </summary>
+        [XmlAttribute("identity")]
+        public string Identity { get; set; }
+
+        /// <summary>
         ///  Phone numbers to attempt to transfer the call to.
         /// </summary>
         [XmlElement("PhoneNumber")]
