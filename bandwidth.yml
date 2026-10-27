@@ -2031,6 +2031,7 @@ components:
         messageLength:
           type: integer
           description: The length of the message content.
+          nullable: true
           example: 18
         attachmentCount:
           type: integer

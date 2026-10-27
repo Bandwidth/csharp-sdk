@@ -9322,6 +9322,7 @@ components:
         messageLength:
           description: The length of the message content.
           example: 18
+          nullable: true
           type: integer
         attachmentCount:
           description: The number of attachments the message has.
