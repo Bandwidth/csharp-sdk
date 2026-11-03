@@ -10,7 +10,6 @@ info:
 servers:
 - url: /
 security:
-- Basic: []
 - OAuth2: []
 tags:
 - name: Messages
@@ -6929,7 +6928,6 @@ components:
         data:
           requestId: 004223a0-8b17-41b1-bf81-20732adf5590
           status: IN_PROGRESS
-          results: []
         errors: []
     lookupInProgressExample:
       summary: Numbers Lookup In Progress
@@ -7104,7 +7102,8 @@ components:
         links: []
         data: {}
         errors:
-        - type: bad-request
+        - code: "1234"
+          type: bad-request
           description: Bad Request. Ensure that you have set the requestId as a URL
             path parameter.
     unauthorizedExample:
@@ -7116,7 +7115,6 @@ components:
         - type: Unauthorized
           description: You are not authorized to access this resource.
           code: "1"
-        page: null
     forbiddenExample:
       summary: Forbidden Error
       value:
@@ -7126,14 +7124,14 @@ components:
         - type: Forbidden
           description: You do not have permission to access this resource.
           code: "2"
-        page: null
     unsupportedMediaTypeExample:
       summary: Unsupported Media Type Error
       value:
         links: []
         data: {}
         errors:
-        - type: invalid-content-type
+        - code: "1234"
+          type: invalid-content-type
           description: Invalid content-type. Ensure that your content-type header
             is set to application/json.
     notFoundExample:
@@ -7142,7 +7140,8 @@ components:
         links: []
         data: {}
         errors:
-        - type: not-found
+        - code: "1234"
+          type: not-found
           description: RequestId not found. Ensure that the requestId used in the
             URL path is valid and maps to a previous request that was submitted.
     tooManyRequestsExample:
@@ -7151,7 +7150,8 @@ components:
         links: []
         data: {}
         errors:
-        - type: rate-limiting
+        - code: "1234"
+          type: rate-limiting
           description: Rate limit exceeded. Wait for the time specified in the Retry-After
             header before sending another request.
     internalServerErrorExample:
@@ -9602,7 +9602,7 @@ components:
         from: "+15553332222"
         expiration: 2021-02-01T11:29:18-05:00
         id: 1589228074636lm4k2je7j7jklbn2
-        time: 2024-12-02T20:15:57.278Z
+        time: 2024-12-02T20:15:57.278201Z
         to:
         - "+15552223333"
         text: Hello world
@@ -9625,7 +9625,7 @@ components:
           type: string
         time:
           description: The datetime stamp of the message in ISO 8601
-          example: 2024-12-02T20:15:57.278Z
+          example: 2024-12-02T20:15:57.278201Z
           format: date-time
           type: string
         segmentCount:
@@ -10782,13 +10782,13 @@ components:
         message.
       properties:
         time:
-          example: 2024-12-02T20:15:57.278Z
+          example: 2024-12-02T20:15:57.278201Z
           format: date-time
           type: string
         eventTime:
           description: "Represents the time at which the message was read, for `message-read`\
             \ callbacks."
-          example: 2024-12-02T20:15:58.278Z
+          example: 2024-12-02T20:15:58.278205Z
           format: date-time
           type: string
         type:
@@ -10827,7 +10827,7 @@ components:
       description: Represents an inbound callback.
       properties:
         time:
-          example: 2024-12-02T20:15:57.278Z
+          example: 2024-12-02T20:15:57.278201Z
           format: date-time
           type: string
         type:
@@ -17372,14 +17372,9 @@ components:
       - username
       type: object
   securitySchemes:
-    Basic:
-      description: |-
-        Basic authentication is a simple authentication scheme built into the HTTP protocol. To use it, send your HTTP requests with an `Authorization` header that contains the word `Basic` followed by a space and a Base64-encoded string `username:password`.
-
-        - Example: `Authorization: Basic ZGVtbZpwQDU1dzByZA==`
-      scheme: basic
-      type: http
     OAuth2:
+      description: "OAuth2 client credentials. For information on obtaining credentials,\
+        \ see [Credentials Management](https://dev.bandwidth.com/docs/account/credentials/management/)."
       flows:
         clientCredentials:
           scopes: {}

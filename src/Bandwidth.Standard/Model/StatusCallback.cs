@@ -84,7 +84,7 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Gets or Sets Time
         /// </summary>
-        /// <example>2024-12-02T20:15:57.278Z</example>
+        /// <example>2024-12-02T20:15:57.278201Z</example>
         [DataMember(Name = "time", IsRequired = true, EmitDefaultValue = true)]
         public DateTime Time { get; set; }
 
@@ -92,7 +92,7 @@ namespace Bandwidth.Standard.Model
         /// Represents the time at which the message was read, for &#x60;message-read&#x60; callbacks.
         /// </summary>
         /// <value>Represents the time at which the message was read, for &#x60;message-read&#x60; callbacks.</value>
-        /// <example>2024-12-02T20:15:58.278Z</example>
+        /// <example>2024-12-02T20:15:58.278205Z</example>
         [DataMember(Name = "eventTime", EmitDefaultValue = false)]
         public DateTime EventTime { get; set; }
 

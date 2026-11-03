@@ -75,9 +75,6 @@ namespace Example
 
             Configuration config = new Configuration();
             config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: Basic
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
             // Configure OAuth2 access token for authorization: OAuth2
             config.AccessToken = "YOUR_ACCESS_TOKEN";
             // Or use clientId/clientSecret for OAuth2 authorization
@@ -383,11 +380,6 @@ Class | Method | HTTP request | Description
 
 
 Authentication schemes defined for the API:
-<a id="Basic"></a>
-### Basic
-
-- **Type**: HTTP basic authentication
-
 <a id="OAuth2"></a>
 ### OAuth2
 
