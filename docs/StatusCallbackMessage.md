@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **Media** | **List&lt;string&gt;** | Optional media, not applicable for sms | [optional] 
 **Priority** | **PriorityEnum** |  | [optional] 
 **Channel** | **MultiChannelMessageChannelEnum** |  | [optional] 
+**Session** | [**RbmSession**](RbmSession.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

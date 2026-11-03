@@ -38,7 +38,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
             instance = new RbmActionDial(
                 type: RbmActionTypeEnum.DIALPHONE,
                 text: "TestText",
-                postbackData: new byte[] { 1, 2, 3 },
+                postbackData: "postbackData",
                 phoneNumber: "TestPhoneNumber"
             );
         }
@@ -83,8 +83,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void PostbackDataTest()
         {
-            Assert.IsType<byte[]>(instance.PostbackData);
-            Assert.Equal(new byte[] { 1, 2, 3 }, instance.PostbackData);
+            Assert.IsType<string>(instance.PostbackData);
+            Assert.Equal("postbackData", instance.PostbackData);
         }
 
         /// <summary>

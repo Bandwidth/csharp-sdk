@@ -157,6 +157,7 @@ docs/RbmMessageContentRichCard.md
 docs/RbmMessageContentText.md
 docs/RbmMessageMedia.md
 docs/RbmOpenUrlEnum.md
+docs/RbmSession.md
 docs/RbmStandaloneCard.md
 docs/RbmSuggestionResponse.md
 docs/RbmWebViewEnum.md
@@ -396,6 +397,7 @@ src/Bandwidth.Standard/Model/RbmMessageContentRichCard.cs
 src/Bandwidth.Standard/Model/RbmMessageContentText.cs
 src/Bandwidth.Standard/Model/RbmMessageMedia.cs
 src/Bandwidth.Standard/Model/RbmOpenUrlEnum.cs
+src/Bandwidth.Standard/Model/RbmSession.cs
 src/Bandwidth.Standard/Model/RbmStandaloneCard.cs
 src/Bandwidth.Standard/Model/RbmSuggestionResponse.cs
 src/Bandwidth.Standard/Model/RbmWebViewEnum.cs

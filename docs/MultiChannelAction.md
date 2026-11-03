@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **RbmActionTypeEnum** |  | 
 **Text** | **string** | Displayed text for user to click | 
-**PostbackData** | **byte[]** | Base64 payload the customer receives when the reply is clicked. | 
+**PostbackData** | **string** | Payload the customer receives when the reply is clicked. | 
 **PhoneNumber** | **string** | The phone number to dial. Must be E164 format. | 
 **Latitude** | **double** | The latitude of the location. Must be in range [-90.000000, 90.000000]. | 
 **Longitude** | **double** | The longitude of the location. Must be in range [-180.000000, 180.000000]. | 

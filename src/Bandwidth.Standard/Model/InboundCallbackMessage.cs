@@ -71,10 +71,11 @@ namespace Bandwidth.Standard.Model
         /// <param name="media">Optional media, not applicable for sms.</param>
         /// <param name="priority">priority.</param>
         /// <param name="channel">channel.</param>
+        /// <param name="session">session.</param>
         /// <param name="content">content.</param>
         /// <param name="suggestionResponse">suggestionResponse.</param>
         /// <param name="locationResponse">locationResponse.</param>
-        public InboundCallbackMessage(string id = default(string), string owner = default(string), string applicationId = default(string), DateTime time = default(DateTime), int segmentCount = default(int), MessageDirectionEnum direction = default(MessageDirectionEnum), List<string> to = default(List<string>), string from = default(string), string text = default(string), string tag = default(string), List<string> media = default(List<string>), PriorityEnum? priority = default(PriorityEnum?), MultiChannelMessageChannelEnum? channel = default(MultiChannelMessageChannelEnum?), MultiChannelMessageContent content = default(MultiChannelMessageContent), RbmSuggestionResponse suggestionResponse = default(RbmSuggestionResponse), RbmLocationResponse locationResponse = default(RbmLocationResponse))
+        public InboundCallbackMessage(string id = default(string), string owner = default(string), string applicationId = default(string), DateTime time = default(DateTime), int segmentCount = default(int), MessageDirectionEnum direction = default(MessageDirectionEnum), List<string> to = default(List<string>), string from = default(string), string text = default(string), string tag = default(string), List<string> media = default(List<string>), PriorityEnum? priority = default(PriorityEnum?), MultiChannelMessageChannelEnum? channel = default(MultiChannelMessageChannelEnum?), RbmSession session = default(RbmSession), MultiChannelMessageContent content = default(MultiChannelMessageContent), RbmSuggestionResponse suggestionResponse = default(RbmSuggestionResponse), RbmLocationResponse locationResponse = default(RbmLocationResponse))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -114,6 +115,7 @@ namespace Bandwidth.Standard.Model
             this.Media = media;
             this.Priority = priority;
             this.Channel = channel;
+            this.Session = session;
             this.Content = content;
             this.SuggestionResponse = suggestionResponse;
             this.LocationResponse = locationResponse;
@@ -198,6 +200,12 @@ namespace Bandwidth.Standard.Model
         public List<string> Media { get; set; }
 
         /// <summary>
+        /// Gets or Sets Session
+        /// </summary>
+        [DataMember(Name = "session", EmitDefaultValue = false)]
+        public RbmSession Session { get; set; }
+
+        /// <summary>
         /// Gets or Sets Content
         /// </summary>
         [DataMember(Name = "content", EmitDefaultValue = false)]
@@ -236,6 +244,7 @@ namespace Bandwidth.Standard.Model
             sb.Append("  Media: ").Append(Media).Append("\n");
             sb.Append("  Priority: ").Append(Priority).Append("\n");
             sb.Append("  Channel: ").Append(Channel).Append("\n");
+            sb.Append("  Session: ").Append(Session).Append("\n");
             sb.Append("  Content: ").Append(Content).Append("\n");
             sb.Append("  SuggestionResponse: ").Append(SuggestionResponse).Append("\n");
             sb.Append("  LocationResponse: ").Append(LocationResponse).Append("\n");

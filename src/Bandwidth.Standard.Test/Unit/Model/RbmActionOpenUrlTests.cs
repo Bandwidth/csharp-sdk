@@ -38,7 +38,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
             instance = new RbmActionOpenUrl(
                 type: RbmActionTypeEnum.OPENURL,
                 text: "TestText",
-                postbackData: new byte[] { 1, 2, 3 },
+                postbackData: "postbackData",
                 url: "https://test.url/",
                 application: RbmOpenUrlEnum.BROWSER,
                 webviewViewMode: RbmWebViewEnum.FULL
@@ -85,8 +85,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void PostbackDataTest()
         {
-            Assert.IsType<byte[]>(instance.PostbackData);
-            Assert.Equal(new byte[] { 1, 2, 3 }, instance.PostbackData);
+            Assert.IsType<string>(instance.PostbackData);
+            Assert.Equal("postbackData", instance.PostbackData);
         }
 
         /// <summary>

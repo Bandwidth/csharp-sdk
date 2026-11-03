@@ -37,7 +37,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             instance = new RbmSuggestionResponse(
                 text: "Sample suggestion text",
-                postbackData: new byte[] { 1, 2, 3 },
+                postbackData: "postbackData",
                 pairedMessageId: "12345"
             );
         }
@@ -72,8 +72,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void PostbackDataTest()
         {
-            Assert.IsType<byte[]>(instance.PostbackData);
-            Assert.Equal(new byte[] { 1, 2, 3 }, instance.PostbackData);
+            Assert.IsType<string>(instance.PostbackData);
+            Assert.Equal("postbackData", instance.PostbackData);
         }
 
         /// <summary>
