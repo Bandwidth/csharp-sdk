@@ -188,7 +188,7 @@ namespace Bandwidth.Standard.Test.Smoke
         [Fact]
         public void ListCallsTest()
         {
-            ApiResponse<List<CallState>> response = instance.ListCallsWithHttpInfo(accountId);
+            ApiResponse<List<CallState>> response = instance.ListCallsWithHttpInfo(accountId, Environment.GetEnvironmentVariable("USER_NUMBER"), Environment.GetEnvironmentVariable("BW_NUMBER"));
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.IsType<List<CallState>>(response.Data);
         }
