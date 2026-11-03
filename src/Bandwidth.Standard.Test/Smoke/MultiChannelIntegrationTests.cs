@@ -166,7 +166,7 @@ namespace Bandwidth.Standard.Test.Smoke
                                 new MultiChannelAction(new RbmActionDial(
                                     type: RbmActionTypeEnum.DIALPHONE,
                                     text: "Call Us",
-                                    postbackData: new byte[] {1, 2, 3},
+                                    postbackData: "postbackData",
                                     phoneNumber: bwNumber
                                 ))
                             }
@@ -215,7 +215,7 @@ namespace Bandwidth.Standard.Test.Smoke
             var rbmActionDial = (RbmActionDial)rbmContent.Suggestions[0].ActualInstance;
             Assert.Equal(RbmActionTypeEnum.DIALPHONE, rbmActionDial.Type);
             Assert.IsType<string>(rbmActionDial.Text);
-            Assert.IsType<byte[]>(rbmActionDial.PostbackData);
+            Assert.IsType<string>(rbmActionDial.PostbackData);
             Assert.IsType<string>(rbmActionDial.PhoneNumber);
         }
 
@@ -242,7 +242,7 @@ namespace Bandwidth.Standard.Test.Smoke
                                 new MultiChannelAction(new RbmActionDial(
                                     type: RbmActionTypeEnum.DIALPHONE,
                                     text: "Call Us",
-                                    postbackData: new byte[] {1, 2, 3},
+                                    postbackData: "postbackData",
                                     phoneNumber: bwNumber
                                 ))
                             }
@@ -294,7 +294,7 @@ namespace Bandwidth.Standard.Test.Smoke
             var rbmActionDial = (RbmActionDial)rbmContent.Suggestions[0].ActualInstance;
             Assert.Equal(RbmActionTypeEnum.DIALPHONE, rbmActionDial.Type);
             Assert.IsType<string>(rbmActionDial.Text);
-            Assert.IsType<byte[]>(rbmActionDial.PostbackData);
+            Assert.IsType<string>(rbmActionDial.PostbackData);
             Assert.IsType<string>(rbmActionDial.PhoneNumber);
         }
 
@@ -326,7 +326,7 @@ namespace Bandwidth.Standard.Test.Smoke
                                         new MultiChannelAction(new RbmActionDial(
                                             type: RbmActionTypeEnum.DIALPHONE,
                                             text: "Call Us",
-                                            postbackData: new byte[] {1, 2, 3},
+                                            postbackData: "postbackData",
                                             phoneNumber: bwNumber
                                         ))
                                     }
@@ -389,7 +389,7 @@ namespace Bandwidth.Standard.Test.Smoke
             var rbmActionDial = (RbmActionDial)cardContent.Suggestions[0].ActualInstance;
             Assert.Equal(RbmActionTypeEnum.DIALPHONE, rbmActionDial.Type);
             Assert.IsType<string>(rbmActionDial.Text);
-            Assert.IsType<byte[]>(rbmActionDial.PostbackData);
+            Assert.IsType<string>(rbmActionDial.PostbackData);
             Assert.IsType<string>(rbmActionDial.PhoneNumber);
         }
 
@@ -421,7 +421,7 @@ namespace Bandwidth.Standard.Test.Smoke
                                             new MultiChannelAction(new RbmActionDial(
                                                 type: RbmActionTypeEnum.DIALPHONE,
                                                 text: "Call Us",
-                                                postbackData: new byte[] {1, 2, 3},
+                                                postbackData: "postbackData",
                                                 phoneNumber: bwNumber
                                             ))
                                         }
@@ -487,7 +487,7 @@ namespace Bandwidth.Standard.Test.Smoke
             var rbmActionDial = (RbmActionDial)rbmContent.CardContents[0].Suggestions[0].ActualInstance;
             Assert.Equal(RbmActionTypeEnum.DIALPHONE, rbmActionDial.Type);
             Assert.IsType<string>(rbmActionDial.Text);
-            Assert.IsType<byte[]>(rbmActionDial.PostbackData);
+            Assert.IsType<string>(rbmActionDial.PostbackData);
             Assert.IsType<string>(rbmActionDial.PhoneNumber);
             Assert.IsType<RbmCardContent>(rbmContent.CardContents[1]);
             Assert.IsType<string>(rbmContent.CardContents[1].Title);
