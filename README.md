@@ -320,6 +320,7 @@ Class | Method | HTTP request | Description
  - [Model.RbmMessageContentText](docs/RbmMessageContentText.md)
  - [Model.RbmMessageMedia](docs/RbmMessageMedia.md)
  - [Model.RbmOpenUrlEnum](docs/RbmOpenUrlEnum.md)
+ - [Model.RbmSession](docs/RbmSession.md)
  - [Model.RbmStandaloneCard](docs/RbmStandaloneCard.md)
  - [Model.RbmSuggestionResponse](docs/RbmSuggestionResponse.md)
  - [Model.RbmWebViewEnum](docs/RbmWebViewEnum.md)

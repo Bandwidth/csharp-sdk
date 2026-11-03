@@ -38,7 +38,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
             instance = new RbmActionBase(
                 type: RbmActionTypeEnum.REPLY,
                 text: "TestText",
-                postbackData: new byte[] { 1, 2, 3 }
+                postbackData: "postbackData"
             );
         }
 
@@ -82,8 +82,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void PostbackDataTest()
         {
-            Assert.IsType<byte[]>(instance.PostbackData);
-            Assert.Equal(new byte[] { 1, 2, 3 }, instance.PostbackData);
+            Assert.IsType<string>(instance.PostbackData);
+            Assert.Equal("postbackData", instance.PostbackData);
         }
     }
 }

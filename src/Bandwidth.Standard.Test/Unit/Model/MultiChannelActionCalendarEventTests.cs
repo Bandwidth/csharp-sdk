@@ -38,7 +38,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
             instance = new MultiChannelActionCalendarEvent(
                 type: RbmActionTypeEnum.CREATECALENDAREVENT,
                 text: "Test message",
-                postbackData: new byte[] { 1, 2, 3 },
+                postbackData: "postbackData",
                 title: "Test Title",
                 startTime: new DateTime(2020, 1, 1),
                 endTime: new DateTime(2020, 1, 1),
@@ -86,8 +86,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void PostbackDataTest()
         {
-            Assert.IsType<byte[]>(instance.PostbackData);
-            Assert.Equal(new byte[] { 1, 2, 3 }, instance.PostbackData);
+            Assert.IsType<string>(instance.PostbackData);
+            Assert.Equal("postbackData", instance.PostbackData);
         }
 
         /// <summary>
