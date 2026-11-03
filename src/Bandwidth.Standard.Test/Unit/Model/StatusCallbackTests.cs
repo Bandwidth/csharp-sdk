@@ -38,7 +38,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
             instance = new StatusCallback(
                 time: DateTime.Now,
                 eventTime: DateTime.Now,
-                type: StatusCallbackTypeEnum.Sending,
+                type: StatusCallbackTypeEnum.MessageSending,
                 to: "1234567890",
                 description: "Test Status Callback",
                 message: new StatusCallbackMessage(
@@ -99,7 +99,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
         public void TypeTest()
         {
             Assert.IsType<StatusCallbackTypeEnum>(instance.Type);
-            Assert.Equal(StatusCallbackTypeEnum.Sending, instance.Type);
+            Assert.Equal(StatusCallbackTypeEnum.MessageSending, instance.Type);
         }
 
         /// <summary>

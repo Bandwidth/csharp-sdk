@@ -48,7 +48,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 tag: "custom string",
                 media: new List<string> { "https://dev.bandwidth.com/images/bandwidth-logo.png" },
                 priority: PriorityEnum.Default,
-                channel: MultiChannelMessageChannelEnum.SMS
+                channel: MultiChannelMessageChannelEnum.SMS,
+                session: new RbmSession()
             );
         }
 
@@ -194,6 +195,15 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<MultiChannelMessageChannelEnum>(instance.Channel);
             Assert.Equal(MultiChannelMessageChannelEnum.SMS, instance.Channel);
+        }
+
+        /// <summary>
+        /// Test the property 'Session'
+        /// </summary>
+        [Fact]
+        public void SessionTest()
+        {
+            Assert.IsType<RbmSession>(instance.Session);
         }
     }
 }

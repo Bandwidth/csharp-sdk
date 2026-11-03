@@ -38,7 +38,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
             instance = new RbmActionViewLocation(
                 type: RbmActionTypeEnum.SHOWLOCATION,
                 text: "TestText",
-                postbackData: new byte[] { 1, 2, 3 },
+                postbackData: "postbackData",
                 latitude: 37.7749,
                 longitude: -122.4194,
                 label: "TestLabel"
@@ -85,8 +85,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
         [Fact]
         public void PostbackDataTest()
         {
-            Assert.IsType<byte[]>(instance.PostbackData);
-            Assert.Equal(new byte[] { 1, 2, 3 }, instance.PostbackData);
+            Assert.IsType<string>(instance.PostbackData);
+            Assert.Equal("postbackData", instance.PostbackData);
         }
 
         /// <summary>
