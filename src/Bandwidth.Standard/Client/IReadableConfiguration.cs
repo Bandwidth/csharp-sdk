@@ -115,15 +115,15 @@ namespace Bandwidth.Standard.Client
         string UserAgent { get; }
 
         /// <summary>
-        /// Gets the username.
+        /// No longer supported. HTTP Basic authentication has been removed; use <see cref="OAuthClientId"/> and <see cref="OAuthClientSecret"/> instead.
         /// </summary>
-        /// <value>Username.</value>
+        [Obsolete("HTTP Basic authentication is no longer supported. Use OAuthClientId and OAuthClientSecret instead.", true)]
         string Username { get; }
 
         /// <summary>
-        /// Gets the password.
+        /// No longer supported. HTTP Basic authentication has been removed; use <see cref="OAuthClientId"/> and <see cref="OAuthClientSecret"/> instead.
         /// </summary>
-        /// <value>Password.</value>
+        [Obsolete("HTTP Basic authentication is no longer supported. Use OAuthClientId and OAuthClientSecret instead.", true)]
         string Password { get; }
 
         /// <summary>
