@@ -26,10 +26,10 @@ namespace Bandwidth.Standard.Test.Unit.Api
     {
         private readonly MultiChannelApi instance;
 
-        private readonly string accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
-        private readonly string userNumber = Environment.GetEnvironmentVariable("USER_NUMBER");
-        private readonly string bwNumber = Environment.GetEnvironmentVariable("BW_NUMBER");
-        private readonly string messagingApplicationId = Environment.GetEnvironmentVariable("BW_MESSAGING_APPLICATION_ID");
+        private readonly string accountId = TestConstants.AccountId;
+        private readonly string userNumber = TestConstants.UserNumber;
+        private readonly string bwNumber = TestConstants.BwNumber;
+        private readonly string messagingApplicationId = TestConstants.MessagingApplicationId;
 
         public MultiChannelApiTests()
         {

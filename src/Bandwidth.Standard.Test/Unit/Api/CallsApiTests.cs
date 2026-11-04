@@ -26,11 +26,11 @@ namespace Bandwidth.Standard.Test.Unit.Api
     {
         private readonly CallsApi instance;
 
-        private readonly string accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
-        private readonly string userNumber = Environment.GetEnvironmentVariable("USER_NUMBER");
-        private readonly string bwNumber = Environment.GetEnvironmentVariable("BW_NUMBER");
-        private readonly string voiceApplicationId = Environment.GetEnvironmentVariable("BW_VOICE_APPLICATION_ID");
-        private readonly string callbackUrl = Environment.GetEnvironmentVariable("BASE_CALLBACK_URL");
+        private readonly string accountId = TestConstants.AccountId;
+        private readonly string userNumber = TestConstants.UserNumber;
+        private readonly string bwNumber = TestConstants.BwNumber;
+        private readonly string voiceApplicationId = TestConstants.VoiceApplicationId;
+        private readonly string callbackUrl = TestConstants.BaseCallbackUrl;
 
         private readonly string callId = "c-1234";
         private readonly string displayName = "C# SDK";

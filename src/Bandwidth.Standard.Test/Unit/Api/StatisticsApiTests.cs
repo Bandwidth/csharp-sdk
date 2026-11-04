@@ -25,7 +25,7 @@ namespace Bandwidth.Standard.Test.Unit.Api
     {
         private readonly StatisticsApi instance;
 
-        private readonly string accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+        private readonly string accountId = TestConstants.AccountId;
 
         public StatisticsApiTests()
         {

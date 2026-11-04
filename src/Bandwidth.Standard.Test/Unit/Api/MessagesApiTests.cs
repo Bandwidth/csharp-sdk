@@ -26,9 +26,9 @@ namespace Bandwidth.Standard.Test.Unit.Api
     {
         private readonly MessagesApi instance;
 
-        private readonly string accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
-        private readonly string messagingApplicationId = Environment.GetEnvironmentVariable("BW_MESSAGING_APPLICATION_ID");
-        private readonly string bwNumber = Environment.GetEnvironmentVariable("BW_NUMBER");
+        private readonly string accountId = TestConstants.AccountId;
+        private readonly string messagingApplicationId = TestConstants.MessagingApplicationId;
+        private readonly string bwNumber = TestConstants.BwNumber;
 
         private readonly string messageText = "C# SDK Test Message";
         private readonly PriorityEnum messagePriority = PriorityEnum.High;
