@@ -80,7 +80,7 @@ namespace Bandwidth.Standard.Model
         /// <summary>
         /// Gets or Sets Time
         /// </summary>
-        /// <example>2024-12-02T20:15:57.278Z</example>
+        /// <example>2024-12-02T20:15:57.278201Z</example>
         [DataMember(Name = "time", IsRequired = true, EmitDefaultValue = true)]
         public DateTime Time { get; set; }
 

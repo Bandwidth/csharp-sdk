@@ -18,9 +18,7 @@ namespace Bandwidth.Standard.Test.Smoke
         private CreateCall createCallBody;
         private Configuration configuration;
         private Configuration unauthorizedConfiguration;
-        private Configuration forbiddenConfiguration;
         private UpdateCall fakeUpdateCall;
-        private CallsApi forbiddenInstance;
         private CallsApi instance;
         private CreateCall mantecaCallBody;
         private string testCallId;
@@ -41,15 +39,7 @@ namespace Bandwidth.Standard.Test.Smoke
 
             // Unauthorized API Client
             unauthorizedConfiguration = new Configuration();
-            unauthorizedConfiguration.Username = "badUsername";
-            unauthorizedConfiguration.Password = "badPassword";
             unauthorizedInstance = new CallsApi(unauthorizedConfiguration);
-
-            // Forbidden API Client
-            forbiddenConfiguration = new Configuration();
-            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            forbiddenConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
-            forbiddenInstance = new CallsApi(forbiddenConfiguration);
 
             createCallBody = new CreateCall(
                 to: Environment.GetEnvironmentVariable("USER_NUMBER"),
@@ -100,8 +90,8 @@ namespace Bandwidth.Standard.Test.Smoke
                 state: CallStateEnum.Active,
                 redirectUrl: "https://www.myCallbackServer.example/webhooks/redirect",
                 redirectMethod: RedirectMethodEnum.POST,
-                username: Environment.GetEnvironmentVariable("BW_USERNAME"),
-                password: Environment.GetEnvironmentVariable("BW_PASSWORD"),
+                username: "mySecretUsername",
+                password: "mySecretPassword!",
                 redirectFallbackUrl: "https://myFallbackServer.example/bandwidth/webhooks/redirect",
                 redirectFallbackMethod: RedirectMethodEnum.POST,
                 fallbackUsername: "fallbackUsername",
@@ -152,16 +142,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test CreateCall with a forbidden client
-        /// </summary>
-        [Fact]
-        public void CreateCallForbiddenRequest()
-        {
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.CreateCallWithHttpInfo(accountId, createCallBody));
-            Assert.Equal(403, Exception.ErrorCode);
-        }
-
-        /// <summary>
         /// Test successful GetCallState request
         /// </summary>
         [Fact]
@@ -193,16 +173,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test GetCallState with a forbidden client
-        /// </summary>
-        [Fact]
-        public void GetCallStateForbiddenRequest()
-        {
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetCallStateWithHttpInfo(accountId, testCallId));
-            Assert.Equal(403, Exception.ErrorCode);
-        }
-
-        /// <summary>
         /// Test GetCallState with a fake call-id
         /// </summary>
         [Fact]
@@ -218,7 +188,7 @@ namespace Bandwidth.Standard.Test.Smoke
         [Fact]
         public void ListCallsTest()
         {
-            ApiResponse<List<CallState>> response = instance.ListCallsWithHttpInfo(accountId);
+            ApiResponse<List<CallState>> response = instance.ListCallsWithHttpInfo(accountId, Environment.GetEnvironmentVariable("USER_NUMBER"), Environment.GetEnvironmentVariable("BW_NUMBER"));
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.IsType<List<CallState>>(response.Data);
         }
@@ -231,16 +201,6 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.ListCallsWithHttpInfo(accountId));
             Assert.Equal(401, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test ListCalls with a forbidden client
-        /// </summary>
-        [Fact]
-        public void ListCallsForbiddenRequest()
-        {
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.ListCallsWithHttpInfo(accountId));
-            Assert.Equal(403, Exception.ErrorCode);
         }
 
         /// <summary>
@@ -311,27 +271,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test UpdateCall with a forbidden client
-        /// </summary>
-        [Fact]
-        public void UpdateCallForbiddenRequest()
-        {
-            CreateCallResponse createCallResponse = instance.CreateCall(accountId, mantecaCallBody);
-            string callId = createCallResponse.CallId;
-
-            System.Threading.Thread.Sleep(testSleep);
-
-            fakeUpdateCall.State = CallStateEnum.Completed;
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateCall(accountId, callId, fakeUpdateCall));
-            Assert.Equal(403, Exception.ErrorCode);
-
-            System.Threading.Thread.Sleep(testSleep);
-
-            ApiResponse<Object> response = instance.UpdateCallWithHttpInfo(accountId, callId, fakeUpdateCall);
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        }
-
-        /// <summary>
         /// Test UpdateCall with a fake call-id
         /// </summary>
         [Fact]
@@ -394,21 +333,6 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.UpdateCallBxmlWithHttpInfo(accountId, testCallId, "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml>  <SpeakSentence>This is a test sentence.</SpeakSentence></Bxml>"));
             Assert.Equal(401, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test UpdateCallBxml with a forbidden client
-        /// </summary>
-        [Fact]
-        public void UpdateCallBxmlForbiddenRequest()
-        {
-            CreateCallResponse createCallResponse = instance.CreateCall(accountId, mantecaCallBody);
-            string callId = createCallResponse.CallId;
-
-            System.Threading.Thread.Sleep(testSleep);
-
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateCallBxmlWithHttpInfo(accountId, callId, "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Bxml>  <SpeakSentence>This is a test sentence.</SpeakSentence></Bxml>"));
-            Assert.Equal(403, Exception.ErrorCode);
         }
 
         /// <summary>

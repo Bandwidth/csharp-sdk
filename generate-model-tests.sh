@@ -7,7 +7,7 @@ sed -i.bak 's/^src\/Bandwidth\.Standard\.Test\//# src\/Bandwidth.Standard.Test\/
 # remove current test files for models
 rm -f ./src/Bandwidth.Standard.Test/Unit/Model/*
 # generate new test files for models
-openapi-generator-cli generate -i bandwidth.yml -o ./ -c openapi-config.yml -g csharp > /dev/null
+JAVA_TOOL_OPTIONS="${JAVA_TOOL_OPTIONS:-} -Duser.timezone=UTC" npx --yes @openapitools/openapi-generator-cli generate -i bandwidth.yml -o ./ -c openapi-config.yml -g csharp > /dev/null
 # move generated test files to the correct location
 mv ./src/Bandwidth.Standard.Test/Model/* ./src/Bandwidth.Standard.Test/Unit/Model/
 # fix namespace declarations in moved test files
