@@ -128,6 +128,18 @@ namespace Bandwidth.Standard.Model.Bxml.Verbs
         }
 
         /// <summary>
+        /// (optional) The STIR/SHAKEN attestation level to sign the transferred call with: A, B, or C. Only applies to accounts using the Hosted Signing Service.
+        /// </summary>
+        [XmlAttribute("requestedAttestationLevel")]
+        public string RequestedAttestationLevel { get; set; }
+
+        /// <summary>
+        /// (optional) A SIP Identity header value (PASSporT) signed by the customer, sent unmodified on the transferred call.
+        /// </summary>
+        [XmlAttribute("identity")]
+        public string Identity { get; set; }
+
+        /// <summary>
         ///  Phone numbers to attempt to transfer the call to.
         /// </summary>
         [XmlElement("PhoneNumber")]
