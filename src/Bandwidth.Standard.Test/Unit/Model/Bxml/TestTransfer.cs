@@ -10,7 +10,7 @@ namespace Bandwidth.Standard.Test.Unit.Model.Bxml
 		[Fact]
 		public void TransferTest()
 		{
-			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Transfer transferCallerId=\"Anonymous\" transferCallerDisplayName=\"test\" callTimeout=\"30\" transferCompleteUrl=\"http://test.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"http://fallbackTest.com\" transferCompleteFallbackMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\" diversionTreatment=\"none\" diversionReason=\"user-busy\" privacy=\"true\" attestationLevel=\"A\">    <PhoneNumber>+15551234567</PhoneNumber>    <SipUri uui=\"abc123\">sip:1-999-123-4567@voip-provider.example.net</SipUri>  </Transfer></Response>";
+			var expected = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Response>  <Transfer transferCallerId=\"Anonymous\" transferCallerDisplayName=\"test\" callTimeout=\"30\" transferCompleteUrl=\"http://test.com\" transferCompleteMethod=\"POST\" transferCompleteFallbackUrl=\"http://fallbackTest.com\" transferCompleteFallbackMethod=\"POST\" username=\"username\" password=\"password\" fallbackUsername=\"fallbackUsername\" fallbackPassword=\"fallbackPassword\" tag=\"test\" diversionTreatment=\"none\" diversionReason=\"user-busy\" privacy=\"true\" requestedAttestationLevel=\"A\">    <PhoneNumber>+15551234567</PhoneNumber>    <SipUri uui=\"abc123\">sip:1-999-123-4567@voip-provider.example.net</SipUri>  </Transfer></Response>";
 
 			var phoneNumber = new PhoneNumber();
 			phoneNumber.Number = "+15551234567";
@@ -35,7 +35,7 @@ namespace Bandwidth.Standard.Test.Unit.Model.Bxml
 			transfer.DiversionTreatment = "none";
 			transfer.DiversionReason = "user-busy";
 			transfer.Privacy = true;
-			transfer.AttestationLevel = "A";
+			transfer.RequestedAttestationLevel = "A";
 			transfer.PhoneNumbers = new PhoneNumber[] { phoneNumber };
 			transfer.SipUris = new SipUri[] { sipUri };
 
