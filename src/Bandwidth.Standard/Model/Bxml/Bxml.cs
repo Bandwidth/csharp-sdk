@@ -10,20 +10,18 @@ namespace Bandwidth.Standard.Model.Bxml
     [XmlRoot(ElementName = "Bxml")]
     public class BXML : Root
     {
+        private static readonly XmlSerializer s_serializer = new XmlSerializer(typeof(BXML), "");
+
+        internal override XmlSerializer Serializer => s_serializer;
+
         /// <summary>
         /// initializes a new instance of the "Bxml" class.
         /// </summary>
-        public BXML() : base()
-        {
-            _serializer = new XmlSerializer(typeof(BXML), "");
-        }
+        public BXML() { }
 
         /// <summary>
         /// initializes a new instance of the "Bxml" class with nested verbs.
         /// </summary>
-        public BXML(params IVerb[] verbs) : base(verbs)
-        {
-            _serializer = new XmlSerializer(typeof(BXML), "");
-        }
+        public BXML(params IVerb[] verbs) : base(verbs) { }
     }
 }

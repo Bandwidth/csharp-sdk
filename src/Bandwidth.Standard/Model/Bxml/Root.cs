@@ -11,11 +11,12 @@ using System.Xml.Serialization;
 namespace Bandwidth.Standard.Model.Bxml
 {
     /// <summary>
-    ///   Bxml class for Bandwidth XML
+    ///   Base class for <see cref="BXML"/> and <see cref="Response"/>
     /// </summary>
-    public class Root : IXmlSerializable
+    public abstract class Root : IXmlSerializable
     {
-        internal static XmlSerializer _serializer;
+        internal abstract XmlSerializer Serializer { get; }
+
         private readonly List<IVerb> _list = new List<IVerb>();
 
         private static readonly Regex s_xmlRegex = new Regex("&lt;([a-zA-Z//].*?)&gt;");
@@ -25,16 +26,13 @@ namespace Bandwidth.Standard.Model.Bxml
         /// <summary>
         ///   Default constructor
         /// </summary>
-        public Root()
-        {
-
-        }
+        protected Root() { }
 
         /// <summary>
         ///   Constructor with verbs
         /// </summary>
         /// <param name="verbs">verbs to be added to response</param>
-        public Root(params IVerb[] verbs)
+        protected Root(params IVerb[] verbs)
         {
             _list.AddRange(verbs);
         }
@@ -76,7 +74,7 @@ namespace Bandwidth.Standard.Model.Bxml
             string str = "";
             using (var writer = new Utf8StringWriter { NewLine = "" })
             {
-                _serializer.Serialize(writer, this);
+                Serializer.Serialize(writer, this);
                 str = writer.ToString();
             }
 

@@ -48,12 +48,12 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="type">type (required).</param>
         /// <param name="text">Displayed text for user to click (required).</param>
-        /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked. (required).</param>
+        /// <param name="postbackData">Payload the customer receives when the reply is clicked. (required).</param>
         /// <param name="title">The title of the event. (required).</param>
         /// <param name="startTime">The start time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. (required).</param>
         /// <param name="endTime">The end time of the event. Must be a valid RFC-3339 value, e.g., 2021-03-14T01:59:26Z or 2021-03-13T20:59:26-05:00. (required).</param>
         /// <param name="description">The description of the event..</param>
-        public MultiChannelActionCalendarEvent(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postbackData = default(byte[]), string title = default(string), DateTime startTime = default(DateTime), DateTime endTime = default(DateTime), string description = default(string))
+        public MultiChannelActionCalendarEvent(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), string postbackData = default(string), string title = default(string), DateTime startTime = default(DateTime), DateTime endTime = default(DateTime), string description = default(string))
         {
             this.Type = type;
             // to ensure "text" is required (not null)
@@ -83,17 +83,17 @@ namespace Bandwidth.Standard.Model
         /// Displayed text for user to click
         /// </summary>
         /// <value>Displayed text for user to click</value>
-        /// <example>Hello world</example>
+        /// <example>Track my order</example>
         [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
         public string Text { get; set; }
 
         /// <summary>
-        /// Base64 payload the customer receives when the reply is clicked.
+        /// Payload the customer receives when the reply is clicked.
         /// </summary>
-        /// <value>Base64 payload the customer receives when the reply is clicked.</value>
-        /// <example>U0dWc2JHOGdkMjl5YkdRPQ&#x3D;&#x3D;</example>
+        /// <value>Payload the customer receives when the reply is clicked.</value>
+        /// <example>track-order-43654</example>
         [DataMember(Name = "postbackData", IsRequired = true, EmitDefaultValue = true)]
-        public byte[] PostbackData { get; set; }
+        public string PostbackData { get; set; }
 
         /// <summary>
         /// The title of the event.
@@ -168,7 +168,7 @@ namespace Bandwidth.Standard.Model
                 yield return new ValidationResult("Invalid value for Text, length must be less than 25.", new [] { "Text" });
             }
 
-            // PostbackData (byte[]) maxLength
+            // PostbackData (string) maxLength
             if (this.PostbackData != null && this.PostbackData.Length > 2048)
             {
                 yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new [] { "PostbackData" });

@@ -908,15 +908,15 @@ namespace Bandwidth.Standard.Client
         public virtual string UserAgent { get; set; }
 
         /// <summary>
-        /// Gets or sets the username (HTTP basic authentication).
+        /// No longer supported. HTTP Basic authentication has been removed; use <see cref="OAuthClientId"/> and <see cref="OAuthClientSecret"/> instead.
         /// </summary>
-        /// <value>The username.</value>
+        [Obsolete("HTTP Basic authentication is no longer supported. Use OAuthClientId and OAuthClientSecret instead.", true)]
         public virtual string Username { get; set; }
 
         /// <summary>
-        /// Gets or sets the password (HTTP basic authentication).
+        /// No longer supported. HTTP Basic authentication has been removed; use <see cref="OAuthClientId"/> and <see cref="OAuthClientSecret"/> instead.
         /// </summary>
-        /// <value>The password.</value>
+        [Obsolete("HTTP Basic authentication is no longer supported. Use OAuthClientId and OAuthClientSecret instead.", true)]
         public virtual string Password { get; set; }
 
         /// <summary>
@@ -1296,8 +1296,6 @@ namespace Bandwidth.Standard.Client
                 Timeout = second.Timeout,
                 Proxy = second.Proxy ?? first.Proxy,
                 UserAgent = second.UserAgent ?? first.UserAgent,
-                Username = second.Username ?? first.Username,
-                Password = second.Password ?? first.Password,
                 AccessToken = second.AccessToken ?? first.AccessToken,
                 OAuthTokenUrl = second.OAuthTokenUrl ?? first.OAuthTokenUrl,
                 OAuthClientId = second.OAuthClientId ?? first.OAuthClientId,

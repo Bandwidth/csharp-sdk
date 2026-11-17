@@ -25,11 +25,11 @@ namespace Bandwidth.Standard.Test.Unit.Api
     {
         private readonly MFAApi instance;
 
-        private readonly string accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
-        private readonly string userNumber = Environment.GetEnvironmentVariable("USER_NUMBER");
-        private readonly string bwNumber = Environment.GetEnvironmentVariable("BW_NUMBER");
-        private readonly string messagingApplicationId = Environment.GetEnvironmentVariable("BW_MESSAGING_APPLICATION_ID");
-        private readonly string voiceApplicationId = Environment.GetEnvironmentVariable("BW_VOICE_APPLICATION_ID");
+        private readonly string accountId = TestConstants.AccountId;
+        private readonly string userNumber = TestConstants.UserNumber;
+        private readonly string bwNumber = TestConstants.BwNumber;
+        private readonly string messagingApplicationId = TestConstants.MessagingApplicationId;
+        private readonly string voiceApplicationId = TestConstants.VoiceApplicationId;
 
         private readonly string message = "Your temporary {NAME} {SCOPE} code is {CODE}";
         private readonly int digits = 6;

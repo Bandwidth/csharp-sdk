@@ -76,7 +76,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="calledNumberCountryA3">The A3 country code of the called number..</param>
         /// <param name="product">The messaging product associated with the message..</param>
         /// <param name="location">The location ID associated with this message..</param>
-        public ListMessageItem(string messageId = default(string), string accountId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), MessageTypeEnum? messageType = default(MessageTypeEnum?), int segmentCount = default(int), int errorCode = default(int), DateTime receiveTime = default(DateTime), string carrierName = default(string), int? messageSize = default(int?), int messageLength = default(int), int? attachmentCount = default(int?), int? recipientCount = default(int?), string campaignClass = default(string), string campaignId = default(string), int? bwLatency = default(int?), int? carrierLatency = default(int?), string callingNumberCountryA3 = default(string), string calledNumberCountryA3 = default(string), string product = default(string), string location = default(string))
+        public ListMessageItem(string messageId = default(string), string accountId = default(string), string sourceTn = default(string), string destinationTn = default(string), MessageStatusEnum? messageStatus = default(MessageStatusEnum?), ListMessageDirectionEnum? messageDirection = default(ListMessageDirectionEnum?), MessageTypeEnum? messageType = default(MessageTypeEnum?), int segmentCount = default(int), int errorCode = default(int), DateTime receiveTime = default(DateTime), string carrierName = default(string), int? messageSize = default(int?), int? messageLength = default(int?), int? attachmentCount = default(int?), int? recipientCount = default(int?), string campaignClass = default(string), string campaignId = default(string), int? bwLatency = default(int?), int? carrierLatency = default(int?), string callingNumberCountryA3 = default(string), string calledNumberCountryA3 = default(string), string product = default(string), string location = default(string))
         {
             this.MessageId = messageId;
             this.AccountId = accountId;
@@ -180,8 +180,8 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <value>The length of the message content.</value>
         /// <example>18</example>
-        [DataMember(Name = "messageLength", EmitDefaultValue = false)]
-        public int MessageLength { get; set; }
+        [DataMember(Name = "messageLength", EmitDefaultValue = true)]
+        public int? MessageLength { get; set; }
 
         /// <summary>
         /// The number of attachments the message has.

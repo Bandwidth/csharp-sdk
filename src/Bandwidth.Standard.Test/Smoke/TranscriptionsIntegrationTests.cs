@@ -20,23 +20,17 @@ namespace Bandwidth.Standard.Test.Smoke
         private CallsApi callsApiInstance;
 
         private TranscriptionsApi unauthorizedInstance;
-        private TranscriptionsApi forbiddenInstance;
         private Configuration configuration;
         private Configuration unauthorizedConfiguration;
-        private Configuration forbiddenConfiguration;
         private ApiClient restClient;
         private CreateCall mantecaCallBody;
         private string accountId;
         private string testCallId;
         private string testTranscriptionId;
-        private string BW_USERNAME;
-        private string BW_PASSWORD;
         private string MANTECA_ACTIVE_NUMBER;
         private string MANTECA_IDLE_NUMBER;
         private string MANTECA_APPLICATION_ID;
         private string MANTECA_BASE_URL;
-        private string BW_FORBIDDEN_USERNAME;
-        private string BW_FORBIDDEN_PASSWORD;
 
         public TranscriptionsSmokeTests()
         {
@@ -45,8 +39,6 @@ namespace Bandwidth.Standard.Test.Smoke
             MANTECA_IDLE_NUMBER = Environment.GetEnvironmentVariable("MANTECA_IDLE_NUMBER");
             MANTECA_APPLICATION_ID = Environment.GetEnvironmentVariable("MANTECA_APPLICATION_ID");
             MANTECA_BASE_URL = Environment.GetEnvironmentVariable("MANTECA_BASE_URL");
-            BW_FORBIDDEN_USERNAME = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            BW_FORBIDDEN_PASSWORD = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
 
             //API Client
             configuration = new Configuration();
@@ -58,15 +50,7 @@ namespace Bandwidth.Standard.Test.Smoke
 
             // Unauthorized API Client
             unauthorizedConfiguration = new Configuration();
-            unauthorizedConfiguration.Username = "badUsername";
-            unauthorizedConfiguration.Password = "badPassword";
             unauthorizedInstance = new TranscriptionsApi(unauthorizedConfiguration);
-
-            // Forbidden API Client
-            forbiddenConfiguration = new Configuration();
-            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            forbiddenConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
-            forbiddenInstance = new TranscriptionsApi(forbiddenConfiguration);
 
             restClient = new ApiClient(basePath: "https://voice.bandwidth.com/api/v2");
 

@@ -57,7 +57,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
             instanceStatusCallback = new Callback(new StatusCallback(
                 time: DateTime.Now,
                 eventTime: DateTime.Now,
-                type: StatusCallbackTypeEnum.Sending,
+                type: StatusCallbackTypeEnum.MessageSending,
                 to: "1234567890",
                 description: "Test Status Callback",
                 message: new StatusCallbackMessage(

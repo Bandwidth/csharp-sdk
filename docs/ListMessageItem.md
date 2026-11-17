@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **ReceiveTime** | **DateTime** | The ISO 8601 datetime of the message. | [optional] 
 **CarrierName** | **string** | The name of the carrier. Not currently supported for MMS coming soon. | [optional] 
 **MessageSize** | **int?** | The size of the message including message content and headers. | [optional] 
-**MessageLength** | **int** | The length of the message content. | [optional] 
+**MessageLength** | **int?** | The length of the message content. | [optional] 
 **AttachmentCount** | **int?** | The number of attachments the message has. | [optional] 
 **RecipientCount** | **int?** | The number of recipients the message has. | [optional] 
 **CampaignClass** | **string** | The campaign class of the message if it has one. | [optional] 

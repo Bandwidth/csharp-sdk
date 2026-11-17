@@ -27,8 +27,8 @@ namespace Bandwidth.Standard.Test.Unit.Api
     {
         private readonly ConferencesApi instance;
 
-        private readonly string accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
-        private readonly string callbackUrl = Environment.GetEnvironmentVariable("BASE_CALLBACK_URL");
+        private readonly string accountId = TestConstants.AccountId;
+        private readonly string callbackUrl = TestConstants.BaseCallbackUrl;
 
         private readonly string callId = "c-1234";
         private readonly string conferenceId = "c-4321";

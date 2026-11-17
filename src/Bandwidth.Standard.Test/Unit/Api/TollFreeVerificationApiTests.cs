@@ -26,7 +26,7 @@ namespace Bandwidth.Standard.Test.Unit.Api
     {
         private readonly TollFreeVerificationApi instance;
 
-        private readonly string accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+        private readonly string accountId = TestConstants.AccountId;
 
         private readonly string phoneNumber = "+18005551234";
         private readonly string subscriptionId = "test-id-1234";

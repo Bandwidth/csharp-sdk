@@ -26,9 +26,7 @@ namespace Bandwidth.Standard.Test.Smoke
         private string accountId;
         private Configuration configuration;
         private Configuration unauthorizedConfiguration;
-        private Configuration forbiddenConfiguration;
         private StatisticsApi instance;
-        private StatisticsApi forbiddenInstance;
         private StatisticsApi unauthorizedInstance;
 
         public StatisticsSmokeTests()
@@ -44,15 +42,7 @@ namespace Bandwidth.Standard.Test.Smoke
 
             // Unauthorized API Client
             unauthorizedConfiguration = new Configuration();
-            unauthorizedConfiguration.Username = "badUsername";
-            unauthorizedConfiguration.Password = "badPassword";
             unauthorizedInstance = new StatisticsApi(unauthorizedConfiguration);
-
-            // Forbidden API Client
-            forbiddenConfiguration = new Configuration();
-            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            forbiddenConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
-            forbiddenInstance = new StatisticsApi(forbiddenConfiguration);
         }
 
         public void Dispose()
@@ -88,16 +78,6 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.GetStatisticsWithHttpInfo(accountId));
             Assert.Equal(401, exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Tests GetStatistics with a forbidden client
-        /// </summary>
-        [Fact]
-        public void GetStatisticsForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetStatisticsWithHttpInfo(accountId));
-            Assert.Equal(403, exception.ErrorCode);
         }
     }
 }

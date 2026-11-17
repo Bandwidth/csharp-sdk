@@ -514,12 +514,6 @@ namespace Bandwidth.Standard.Api
             localVarRequestOptions.Operation = "CallsApi.CreateCall";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (Basic) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
             // authentication (OAuth2) required
             // oauth required
             if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -619,12 +613,6 @@ namespace Bandwidth.Standard.Api
             localVarRequestOptions.Operation = "CallsApi.CreateCall";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (Basic) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
             // authentication (OAuth2) required
             // oauth required
             if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -721,12 +709,6 @@ namespace Bandwidth.Standard.Api
             localVarRequestOptions.Operation = "CallsApi.GetCallState";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (Basic) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
             // authentication (OAuth2) required
             // oauth required
             if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -825,12 +807,6 @@ namespace Bandwidth.Standard.Api
             localVarRequestOptions.Operation = "CallsApi.GetCallState";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (Basic) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
             // authentication (OAuth2) required
             // oauth required
             if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -960,12 +936,6 @@ namespace Bandwidth.Standard.Api
             localVarRequestOptions.Operation = "CallsApi.ListCalls";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (Basic) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
             // authentication (OAuth2) required
             // oauth required
             if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -1097,12 +1067,6 @@ namespace Bandwidth.Standard.Api
             localVarRequestOptions.Operation = "CallsApi.ListCalls";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (Basic) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
             // authentication (OAuth2) required
             // oauth required
             if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -1208,12 +1172,6 @@ namespace Bandwidth.Standard.Api
             localVarRequestOptions.Operation = "CallsApi.UpdateCall";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (Basic) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
             // authentication (OAuth2) required
             // oauth required
             if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -1321,12 +1279,6 @@ namespace Bandwidth.Standard.Api
             localVarRequestOptions.Operation = "CallsApi.UpdateCall";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (Basic) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
             // authentication (OAuth2) required
             // oauth required
             if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -1432,12 +1384,6 @@ namespace Bandwidth.Standard.Api
             localVarRequestOptions.Operation = "CallsApi.UpdateCallBxml";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (Basic) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
             // authentication (OAuth2) required
             // oauth required
             if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -1545,12 +1491,6 @@ namespace Bandwidth.Standard.Api
             localVarRequestOptions.Operation = "CallsApi.UpdateCallBxml";
             localVarRequestOptions.OperationIndex = operationIndex;
 
-            // authentication (Basic) required
-            // http basic authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Bandwidth.Standard.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
-            }
             // authentication (OAuth2) required
             // oauth required
             if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))

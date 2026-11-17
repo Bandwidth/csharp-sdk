@@ -249,6 +249,36 @@ namespace Bandwidth.Standard.Test.Unit.Model
             Assert.IsType<string>(instance.ErrorId);
             Assert.Equal("123456", instance.ErrorId);
         }
+        /// <summary>
+        /// Test the property 'SipResponseCode'
+        /// </summary>
+        [Fact]
+        public void SipResponseCodeTest()
+        {
+            instance.SipResponseCode = 603;
+            Assert.IsType<int>(instance.SipResponseCode);
+            Assert.Equal(603, instance.SipResponseCode);
+        }
+        /// <summary>
+        /// Test the property 'SipStatusLine'
+        /// </summary>
+        [Fact]
+        public void SipStatusLineTest()
+        {
+            instance.SipStatusLine = "SIP/2.0 603 Network Blocked";
+            Assert.IsType<string>(instance.SipStatusLine);
+            Assert.Equal("SIP/2.0 603 Network Blocked", instance.SipStatusLine);
+        }
+        /// <summary>
+        /// Test the property 'SipHeaders'
+        /// </summary>
+        [Fact]
+        public void SipHeadersTest()
+        {
+            instance.SipHeaders = new Dictionary<string, string> { { "reason", "v=analytics1" } };
+            Assert.IsType<Dictionary<string, string>>(instance.SipHeaders);
+            Assert.Equal("v=analytics1", instance.SipHeaders["reason"]);
+        }
 
     }
 

@@ -19,24 +19,18 @@ namespace Bandwidth.Standard.Test.Smoke
         private RecordingsApi recordingApiInstance;
         private CallsApi callsApiInstance;
         private RecordingsApi unauthorizedInstance;
-        private RecordingsApi forbiddenInstance;
         private Configuration configuration;
         private Configuration unauthorizedConfiguration;
-        private Configuration forbiddenConfiguration;
         private ApiClient restClient;
         private CreateCall mantecaCallBody;
         private TranscribeRecording testTranscribeRecording;
         private string accountId;
         private string testCallId;
         private string testRecordingId;
-        private string BW_USERNAME;
-        private string BW_PASSWORD;
         private string MANTECA_ACTIVE_NUMBER;
         private string MANTECA_IDLE_NUMBER;
         private string MANTECA_APPLICATION_ID;
         private string MANTECA_BASE_URL;
-        private string BW_FORBIDDEN_USERNAME;
-        private string BW_FORBIDDEN_PASSWORD;
 
         public RecordingsSmokeTests()
         {
@@ -47,8 +41,6 @@ namespace Bandwidth.Standard.Test.Smoke
             MANTECA_IDLE_NUMBER = Environment.GetEnvironmentVariable("MANTECA_IDLE_NUMBER");
             MANTECA_APPLICATION_ID = Environment.GetEnvironmentVariable("MANTECA_APPLICATION_ID");
             MANTECA_BASE_URL = Environment.GetEnvironmentVariable("MANTECA_BASE_URL");
-            BW_FORBIDDEN_USERNAME = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            BW_FORBIDDEN_PASSWORD = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
 
             //API Client
             configuration = new Configuration();
@@ -60,15 +52,7 @@ namespace Bandwidth.Standard.Test.Smoke
 
             // Unauthorized API Client
             unauthorizedConfiguration = new Configuration();
-            unauthorizedConfiguration.Username = "badUsername";
-            unauthorizedConfiguration.Password = "badPassword";
             unauthorizedInstance = new RecordingsApi(unauthorizedConfiguration);
-
-            // Forbidden API Client
-            forbiddenConfiguration = new Configuration();
-            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            forbiddenConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
-            forbiddenInstance = new RecordingsApi(forbiddenConfiguration);
 
             restClient = new ApiClient(basePath: "https://voice.bandwidth.com/api/v2");
 
@@ -338,16 +322,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        ///  Test ListCallRecordings with a forbidden client
-        /// </summary>
-        [Fact]
-        public void ListCallRecordingsForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.ListCallRecordingsWithHttpInfo(accountId, testCallId));
-            Assert.Equal(403, exception.ErrorCode);
-        }
-
-        /// <summary>
         /// Test ListCallRecordings with a nonexistent call id
         /// The API returns an empty list rather than a 404
         /// </summary>
@@ -371,16 +345,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test GetCallRecording with a forbidden client
-        /// </summary>
-        [Fact]
-        public void GetCallRecordingForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetCallRecordingWithHttpInfo(accountId, testCallId, testRecordingId));
-            Assert.Equal(403, exception.ErrorCode);
-        }
-
-        /// <summary>
         /// Test GetCallRecording with a nonexistent call id
         /// </summary>
         [Fact]
@@ -401,16 +365,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test DownloadCallRecording with a forbidden client
-        /// </summary>
-        [Fact]
-        public void DownloadCallRecordingForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.DownloadCallRecordingWithHttpInfo(accountId, testCallId, testRecordingId));
-            Assert.Equal(403, exception.ErrorCode);
-        }
-
-        /// <summary>
         /// Test DownloadCallRecording with a nonexistent recording id
         /// </summary>
         [Fact]
@@ -428,16 +382,6 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.TranscribeCallRecordingWithHttpInfo(accountId, testCallId, testRecordingId, testTranscribeRecording));
             Assert.Equal(401, exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test TranscribeCallRecording with a forbidden client
-        /// </summary>
-        [Fact]
-        public void TranscribeCallRecordingForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.TranscribeCallRecordingWithHttpInfo(accountId, testCallId, testRecordingId, testTranscribeRecording));
-            Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
@@ -462,16 +406,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test GetRecordingTranscription with a forbidden client
-        /// </summary>
-        [Fact]
-        public void GetRecordingTranscriptionForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetRecordingTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
-            Assert.Equal(403, exception.ErrorCode);
-        }
-
-        /// <summary>
         /// Test GetRecordingTranscription with a nonexistent recording id
         /// </summary>
         [Fact]
@@ -489,16 +423,6 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.DeleteRecordingTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
             Assert.Equal(401, exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test DeleteRecordingTranscription with a forbidden client
-        /// </summary>
-        [Fact]
-        public void DeleteRecordingTranscriptionForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.DeleteRecordingTranscriptionWithHttpInfo(accountId, testCallId, testRecordingId));
-            Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
@@ -522,16 +446,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test DeleteRecordingMedia with a forbidden client
-        /// </summary>
-        [Fact]
-        public void DeleteRecordingMediaForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.DeleteRecordingMediaWithHttpInfo(accountId, testCallId, testRecordingId));
-            Assert.Equal(403, exception.ErrorCode);
-        }
-
-        /// <summary>
         /// Test DeleteRecordingMedia with a nonexistent recording id
         /// </summary>
         [Fact]
@@ -549,16 +463,6 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.DeleteRecordingWithHttpInfo(accountId, testCallId, testRecordingId));
             Assert.Equal(401, exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test DeleteRecording with a forbidden client
-        /// </summary>
-        [Fact]
-        public void DeleteRecordingForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.DeleteRecordingWithHttpInfo(accountId, testCallId, testRecordingId));
-            Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
@@ -580,17 +484,6 @@ namespace Bandwidth.Standard.Test.Smoke
             var updateCallRecording = new UpdateCallRecording(state: RecordingStateEnum.Paused);
             ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.UpdateCallRecordingStateWithHttpInfo(accountId, testCallId, updateCallRecording));
             Assert.Equal(401, exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test UpdateCallRecordingState with a forbidden client
-        /// </summary>
-        [Fact]
-        public void UpdateCallRecordingStateForbiddenRequest()
-        {
-            var updateCallRecording = new UpdateCallRecording(state: RecordingStateEnum.Paused);
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateCallRecordingStateWithHttpInfo(accountId, testCallId, updateCallRecording));
-            Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>

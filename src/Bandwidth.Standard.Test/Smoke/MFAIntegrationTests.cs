@@ -20,8 +20,6 @@ namespace Bandwidth.Standard.Test.Smoke
         private string BW_NUMBER;
         private Configuration configuration;
         private Configuration unauthorizedConfiguration;
-        private Configuration forbiddenConfiguration;
-        private MFAApi forbiddenInstance;
         private MFAApi instance;
         private CodeRequest messagingCodeRequest;
         private MFAApi unauthorizedInstance;
@@ -38,18 +36,12 @@ namespace Bandwidth.Standard.Test.Smoke
             // Authorized API Client
             configuration = new Configuration();
             configuration.BasePath = "https://mfa.bandwidth.com/api/v1";
-            configuration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
-            configuration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
+            configuration.OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID");
+            configuration.OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET");
             instance = new MFAApi(configuration);
 
             // Unauthorized API Client
             unauthorizedInstance = new MFAApi();
-
-            // Forbidden API Client
-            forbiddenConfiguration = new Configuration();
-            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            forbiddenConfiguration.Password = "badPassword";
-            forbiddenInstance = new MFAApi(forbiddenConfiguration);
 
             // Code Request for generating a messaging code
             messagingCodeRequest = new CodeRequest(
@@ -136,16 +128,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test GenerateMessagingCode with a forbidden client
-        /// </summary>
-        [Fact]
-        public void GenerateMessagingCodeForbiddenRequest()
-        {
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.GenerateMessagingCode(accountId, messagingCodeRequest));
-            Assert.Equal(403, Exception.ErrorCode);
-        }
-
-        /// <summary>
         /// Test a successful GenerateVoiceCode request
         /// </summary>
         [Fact]
@@ -177,16 +159,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test GenerateVoiceCode with a forbidden client
-        /// </summary>
-        [Fact]
-        public void GenerateVoiceCodeForbiddenRequest()
-        {
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.GenerateVoiceCode(accountId, voiceCodeRequest));
-            Assert.Equal(403, Exception.ErrorCode);
-        }
-
-        /// <summary>
         /// Test a successful VerifyCode request
         ///  Will always have to test against False codes unless we incorporate the Manteca project into MFA
         /// </summary>
@@ -214,16 +186,6 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             ApiException Exception = Assert.Throws<ApiException>(() => unauthorizedInstance.VerifyCode(accountId, verifyCodeRequest));
             Assert.Equal(401, Exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test VerifyCode with a forbidden client
-        /// </summary>
-        [Fact]
-        public void VerifyCodeForbiddenRequest()
-        {
-            ApiException Exception = Assert.Throws<ApiException>(() => forbiddenInstance.VerifyCode(accountId, verifyCodeRequest));
-            Assert.Equal(403, Exception.ErrorCode);
         }
 
         /// <summary>

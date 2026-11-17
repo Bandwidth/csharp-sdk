@@ -61,7 +61,10 @@ namespace Bandwidth.Standard.Model
         /// <param name="cause">Reason the call failed - hangup, busy, timeout, cancel, rejected, callback-error, invalid-bxml, application-error, account-limit, node-capacity-exceeded, error, or unknown..</param>
         /// <param name="errorMessage">Text explaining the reason that caused the call to fail in case of errors..</param>
         /// <param name="errorId">Bandwidth&#39;s internal id that references the error event..</param>
-        public TransferDisconnectCallback(string eventType = default(string), DateTime eventTime = default(DateTime), string accountId = default(string), string applicationId = default(string), string from = default(string), string to = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), string callId = default(string), string callUrl = default(string), string parentCallId = default(string), DateTime? enqueuedTime = default(DateTime?), DateTime startTime = default(DateTime), DateTime? answerTime = default(DateTime?), DateTime endTime = default(DateTime), string tag = default(string), string transferCallerId = default(string), string transferTo = default(string), string cause = default(string), string errorMessage = default(string), string errorId = default(string))
+        /// <param name="sipResponseCode">(optional) The SIP status code of the final response that rejected an outbound call&#39;s (or transferred leg&#39;s) INVITE (e.g. 486 for busy, 603 for decline). Present only when the call was rejected with a SIP response..</param>
+        /// <param name="sipStatusLine">(optional) The full SIP status line, exactly as received, of the final response that rejected an outbound call&#39;s INVITE. The reason phrase can help distinguish outcomes that share a status code, such as &#x60;603 Network Blocked&#x60; and &#x60;603 Decline&#x60;. Present only when an outbound call was rejected with a SIP response..</param>
+        /// <param name="sipHeaders">(optional) Map of SIP headers, with lowercase keys (SIP headers are case-insensitive). On the Initiate callback, contains the customer-supplied X-* headers from the original INVITE; present only for inbound SIP URI calls with custom headers. On the Disconnect and Transfer Disconnect callbacks, contains a single &#x60;reason&#x60; key holding the raw, unmodified &#x60;Reason&#x60; header value from the final SIP response that rejected an outbound call (or transferred leg); present only when that response included a &#x60;Reason&#x60; header (for example, &#x60;v&#x3D;analytics1&#x60; call-analytics block information from a terminating carrier). If the response carries more than one &#x60;Reason&#x60; header, all values are returned in the order received, separated by &#x60;, &#x60;. Note - on the Initiate callback, keys preserve the original SIP header name in lowercase rather than Bandwidth&#39;s usual camelCase JSON convention, since these are passthrough values from the caller&#39;s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept. The example shown is for the Initiate callback; on the Disconnect and Transfer Disconnect callbacks the only key is &#x60;reason&#x60;..</param>
+        public TransferDisconnectCallback(string eventType = default(string), DateTime eventTime = default(DateTime), string accountId = default(string), string applicationId = default(string), string from = default(string), string to = default(string), CallDirectionEnum? direction = default(CallDirectionEnum?), string callId = default(string), string callUrl = default(string), string parentCallId = default(string), DateTime? enqueuedTime = default(DateTime?), DateTime startTime = default(DateTime), DateTime? answerTime = default(DateTime?), DateTime endTime = default(DateTime), string tag = default(string), string transferCallerId = default(string), string transferTo = default(string), string cause = default(string), string errorMessage = default(string), string errorId = default(string), int sipResponseCode = default(int), string sipStatusLine = default(string), Dictionary<string, string> sipHeaders = default(Dictionary<string, string>))
         {
             this.EventType = eventType;
             this.EventTime = eventTime;
@@ -83,6 +86,9 @@ namespace Bandwidth.Standard.Model
             this.Cause = cause;
             this.ErrorMessage = errorMessage;
             this.ErrorId = errorId;
+            this.SipResponseCode = sipResponseCode;
+            this.SipStatusLine = sipStatusLine;
+            this.SipHeaders = sipHeaders;
         }
 
         /// <summary>
@@ -238,6 +244,30 @@ namespace Bandwidth.Standard.Model
         public string ErrorId { get; set; }
 
         /// <summary>
+        /// (optional) The SIP status code of the final response that rejected an outbound call&#39;s (or transferred leg&#39;s) INVITE (e.g. 486 for busy, 603 for decline). Present only when the call was rejected with a SIP response.
+        /// </summary>
+        /// <value>(optional) The SIP status code of the final response that rejected an outbound call&#39;s (or transferred leg&#39;s) INVITE (e.g. 486 for busy, 603 for decline). Present only when the call was rejected with a SIP response.</value>
+        /// <example>486</example>
+        [DataMember(Name = "sipResponseCode", EmitDefaultValue = false)]
+        public int SipResponseCode { get; set; }
+
+        /// <summary>
+        /// (optional) The full SIP status line, exactly as received, of the final response that rejected an outbound call&#39;s INVITE. The reason phrase can help distinguish outcomes that share a status code, such as &#x60;603 Network Blocked&#x60; and &#x60;603 Decline&#x60;. Present only when an outbound call was rejected with a SIP response.
+        /// </summary>
+        /// <value>(optional) The full SIP status line, exactly as received, of the final response that rejected an outbound call&#39;s INVITE. The reason phrase can help distinguish outcomes that share a status code, such as &#x60;603 Network Blocked&#x60; and &#x60;603 Decline&#x60;. Present only when an outbound call was rejected with a SIP response.</value>
+        /// <example>SIP/2.0 603 Network Blocked</example>
+        [DataMember(Name = "sipStatusLine", EmitDefaultValue = false)]
+        public string SipStatusLine { get; set; }
+
+        /// <summary>
+        /// (optional) Map of SIP headers, with lowercase keys (SIP headers are case-insensitive). On the Initiate callback, contains the customer-supplied X-* headers from the original INVITE; present only for inbound SIP URI calls with custom headers. On the Disconnect and Transfer Disconnect callbacks, contains a single &#x60;reason&#x60; key holding the raw, unmodified &#x60;Reason&#x60; header value from the final SIP response that rejected an outbound call (or transferred leg); present only when that response included a &#x60;Reason&#x60; header (for example, &#x60;v&#x3D;analytics1&#x60; call-analytics block information from a terminating carrier). If the response carries more than one &#x60;Reason&#x60; header, all values are returned in the order received, separated by &#x60;, &#x60;. Note - on the Initiate callback, keys preserve the original SIP header name in lowercase rather than Bandwidth&#39;s usual camelCase JSON convention, since these are passthrough values from the caller&#39;s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept. The example shown is for the Initiate callback; on the Disconnect and Transfer Disconnect callbacks the only key is &#x60;reason&#x60;.
+        /// </summary>
+        /// <value>(optional) Map of SIP headers, with lowercase keys (SIP headers are case-insensitive). On the Initiate callback, contains the customer-supplied X-* headers from the original INVITE; present only for inbound SIP URI calls with custom headers. On the Disconnect and Transfer Disconnect callbacks, contains a single &#x60;reason&#x60; key holding the raw, unmodified &#x60;Reason&#x60; header value from the final SIP response that rejected an outbound call (or transferred leg); present only when that response included a &#x60;Reason&#x60; header (for example, &#x60;v&#x3D;analytics1&#x60; call-analytics block information from a terminating carrier). If the response carries more than one &#x60;Reason&#x60; header, all values are returned in the order received, separated by &#x60;, &#x60;. Note - on the Initiate callback, keys preserve the original SIP header name in lowercase rather than Bandwidth&#39;s usual camelCase JSON convention, since these are passthrough values from the caller&#39;s SIP INVITE, not Bandwidth-defined fields. If the same header name is sent more than once in the INVITE, only the last value is kept. The example shown is for the Initiate callback; on the Disconnect and Transfer Disconnect callbacks the only key is &#x60;reason&#x60;.</value>
+        /// <example>{&quot;x-custom-header&quot;:&quot;customer-value&quot;,&quot;x-session-id&quot;:&quot;sess-12345&quot;}</example>
+        [DataMember(Name = "sipHeaders", EmitDefaultValue = false)]
+        public Dictionary<string, string> SipHeaders { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -265,6 +295,9 @@ namespace Bandwidth.Standard.Model
             sb.Append("  Cause: ").Append(Cause).Append("\n");
             sb.Append("  ErrorMessage: ").Append(ErrorMessage).Append("\n");
             sb.Append("  ErrorId: ").Append(ErrorId).Append("\n");
+            sb.Append("  SipResponseCode: ").Append(SipResponseCode).Append("\n");
+            sb.Append("  SipStatusLine: ").Append(SipStatusLine).Append("\n");
+            sb.Append("  SipHeaders: ").Append(SipHeaders).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

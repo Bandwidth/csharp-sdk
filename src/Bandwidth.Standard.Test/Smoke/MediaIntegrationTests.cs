@@ -18,7 +18,6 @@ namespace Bandwidth.Standard.Test.Smoke
         private string accountId;
         private Configuration configuration;
         private Configuration unauthorizedConfiguration;
-        private Configuration forbiddenConfiguration;
         private MediaApi instance;
         private string testMediaId;
         private string testContentType;
@@ -34,14 +33,12 @@ namespace Bandwidth.Standard.Test.Smoke
 
             // Authorized API Client
             configuration = new Configuration();
-            configuration.Username = Environment.GetEnvironmentVariable("BW_USERNAME");
-            configuration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD");
+            configuration.OAuthClientId = Environment.GetEnvironmentVariable("BW_CLIENT_ID");
+            configuration.OAuthClientSecret = Environment.GetEnvironmentVariable("BW_CLIENT_SECRET");
             instance = new MediaApi(configuration);
 
             // Unauthorized API Client
             unauthorizedConfiguration = new Configuration();
-            unauthorizedConfiguration.Username = "badUsername";
-            unauthorizedConfiguration.Password = "badPassword";
             unauthorizedInstance = new MediaApi(unauthorizedConfiguration);
 
             // Create a media file to use for testing

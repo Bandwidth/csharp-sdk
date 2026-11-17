@@ -33,8 +33,6 @@ namespace Bandwidth.Standard.Test.Smoke
 
             // Unauthorized API Client
             unauthorizedConfiguration = new Configuration();
-            unauthorizedConfiguration.Username = "badUsername";
-            unauthorizedConfiguration.Password = "badPassword";
             unauthorizedInstance = new EndpointsApi(unauthorizedConfiguration);
         }
 

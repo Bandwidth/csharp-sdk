@@ -17,13 +17,11 @@ namespace Bandwidth.Standard.Test.Smoke
     {
         private ConferencesApi conferenceApiInstance;
         private ConferencesApi unauthorizedInstance;
-        private ConferencesApi forbiddenInstance;
         private ApiClient restClient;
         private UpdateConference updateConferenceBody;
         private CallsApi callsApiInstance;
         private Configuration configuration;
         private Configuration unauthorizedConfiguration;
-        private Configuration forbiddenConfiguration;
         private CreateCall mantecaCallBody;
         private UpdateConferenceMember updateConferenceMember;
         private string accountId;
@@ -50,15 +48,7 @@ namespace Bandwidth.Standard.Test.Smoke
 
             // Unauthorized API Client
             unauthorizedConfiguration = new Configuration();
-            unauthorizedConfiguration.Username = "badUsername";
-            unauthorizedConfiguration.Password = "badPassword";
             unauthorizedInstance = new ConferencesApi(unauthorizedConfiguration);
-
-            // Forbidden API Client
-            forbiddenConfiguration = new Configuration();
-            forbiddenConfiguration.Username = Environment.GetEnvironmentVariable("BW_USERNAME_FORBIDDEN");
-            forbiddenConfiguration.Password = Environment.GetEnvironmentVariable("BW_PASSWORD_FORBIDDEN");
-            forbiddenInstance = new ConferencesApi(forbiddenConfiguration);
 
             restClient = new ApiClient(basePath: "https://voice.bandwidth.com/api/v2");
 
@@ -291,16 +281,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test List Conferences Forbidden
-        /// </summary>
-        [Fact]
-        public void ListConferenceForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.ListConferencesWithHttpInfo(accountId));
-            Assert.Equal(403, exception.ErrorCode);
-        }
-
-        /// <summary>
         /// Test Get Conferences Unauthorized
         /// </summary>
         [Fact]
@@ -308,16 +288,6 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.ListConferencesWithHttpInfo(accountId));
             Assert.Equal(401, exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test Get Conferences Forbidden
-        /// </summary>
-        [Fact]
-        public void GetConferencesForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetConferenceWithHttpInfo(accountId, testConferenceId));
-            Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
@@ -341,16 +311,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test Get Conference Member Forbidden
-        /// </summary>
-        [Fact]
-        public void GetConferenceMemberForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetConferenceMemberWithHttpInfo(accountId, testConferenceId, testMemberId));
-            Assert.Equal(403, exception.ErrorCode);
-        }
-
-        /// <summary>
         /// Test Get Conference Member Not Found
         /// </summary>
         [Fact]
@@ -371,16 +331,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        /// Test List Conference Recordings Forbidden
-        /// </summary> 
-        [Fact]
-        public void ListConferenceRecordingsForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.ListConferenceRecordingsWithHttpInfo(accountId, testConferenceId));
-            Assert.Equal(403, exception.ErrorCode);
-        }
-
-        /// <summary>
         /// Test Get Conference Recording Unauthorized
         /// </summary>
         [Fact]
@@ -388,16 +338,6 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.GetConferenceRecordingWithHttpInfo(accountId, testConferenceId, testRecordingId));
             Assert.Equal(401, exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test Get Conference Recording Forbidden
-        /// </summary>
-        [Fact]
-        public void GetConferenceRecordingForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.GetConferenceRecordingWithHttpInfo(accountId, testConferenceId, testRecordingId));
-            Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
@@ -418,16 +358,6 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.UpdateConferenceWithHttpInfo(accountId, testConferenceId, updateConferenceBody));
             Assert.Equal(401, exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test Update Conference Forbidden Request
-        /// </summary>
-        [Fact]
-        public void UpdateConferenceForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateConferenceWithHttpInfo(accountId, testConferenceId, updateConferenceBody));
-            Assert.Equal(403, exception.ErrorCode);
         }
 
         /// <summary>
@@ -452,16 +382,6 @@ namespace Bandwidth.Standard.Test.Smoke
         }
 
         /// <summary>
-        ///  Test Update Conference BXML Forbidden
-        /// </summary>
-        [Fact]
-        public void UpdateConferenceBxmlForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateConferenceBxmlWithHttpInfo(accountId, testConferenceId, testUpdateBxml));
-            Assert.Equal(403, exception.ErrorCode);
-        }
-
-        /// <summary>
         /// Test Update Conference BXML Not Found
         /// </summary>
         [Fact(Skip = "PV Issue")]
@@ -479,16 +399,6 @@ namespace Bandwidth.Standard.Test.Smoke
         {
             ApiException exception = Assert.Throws<ApiException>(() => unauthorizedInstance.UpdateConferenceMemberWithHttpInfo(accountId, testConferenceId, testMemberId, updateConferenceMember));
             Assert.Equal(401, exception.ErrorCode);
-        }
-
-        /// <summary>
-        /// Test Update Conference Member Forbidden
-        /// </summary>
-        [Fact]
-        public void UpdateConferenceMemberForbiddenRequest()
-        {
-            ApiException exception = Assert.Throws<ApiException>(() => forbiddenInstance.UpdateConferenceMemberWithHttpInfo(accountId, testConferenceId, testMemberId, updateConferenceMember));
-            Assert.Equal(403, exception.ErrorCode); // not erroring out
         }
 
         /// <summary>

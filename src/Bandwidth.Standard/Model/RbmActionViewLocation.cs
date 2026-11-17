@@ -48,11 +48,11 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         /// <param name="type">type (required).</param>
         /// <param name="text">Displayed text for user to click (required).</param>
-        /// <param name="postbackData">Base64 payload the customer receives when the reply is clicked. (required).</param>
+        /// <param name="postbackData">Payload the customer receives when the reply is clicked. (required).</param>
         /// <param name="latitude">The latitude of the location. Must be in range [-90.000000, 90.000000]. (required).</param>
         /// <param name="longitude">The longitude of the location. Must be in range [-180.000000, 180.000000]. (required).</param>
         /// <param name="label">The label of the location..</param>
-        public RbmActionViewLocation(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), byte[] postbackData = default(byte[]), double latitude = default(double), double longitude = default(double), string label = default(string))
+        public RbmActionViewLocation(RbmActionTypeEnum type = default(RbmActionTypeEnum), string text = default(string), string postbackData = default(string), double latitude = default(double), double longitude = default(double), string label = default(string))
         {
             this.Type = type;
             // to ensure "text" is required (not null)
@@ -76,17 +76,17 @@ namespace Bandwidth.Standard.Model
         /// Displayed text for user to click
         /// </summary>
         /// <value>Displayed text for user to click</value>
-        /// <example>Hello world</example>
+        /// <example>Track my order</example>
         [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
         public string Text { get; set; }
 
         /// <summary>
-        /// Base64 payload the customer receives when the reply is clicked.
+        /// Payload the customer receives when the reply is clicked.
         /// </summary>
-        /// <value>Base64 payload the customer receives when the reply is clicked.</value>
-        /// <example>U0dWc2JHOGdkMjl5YkdRPQ&#x3D;&#x3D;</example>
+        /// <value>Payload the customer receives when the reply is clicked.</value>
+        /// <example>track-order-43654</example>
         [DataMember(Name = "postbackData", IsRequired = true, EmitDefaultValue = true)]
-        public byte[] PostbackData { get; set; }
+        public string PostbackData { get; set; }
 
         /// <summary>
         /// The latitude of the location. Must be in range [-90.000000, 90.000000].
@@ -152,7 +152,7 @@ namespace Bandwidth.Standard.Model
                 yield return new ValidationResult("Invalid value for Text, length must be less than 25.", new [] { "Text" });
             }
 
-            // PostbackData (byte[]) maxLength
+            // PostbackData (string) maxLength
             if (this.PostbackData != null && this.PostbackData.Length > 2048)
             {
                 yield return new ValidationResult("Invalid value for PostbackData, length must be less than 2048.", new [] { "PostbackData" });

@@ -26,7 +26,7 @@ namespace Bandwidth.Standard.Test.Unit.Api
     {
         private readonly TranscriptionsApi instance;
 
-        private readonly string accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+        private readonly string accountId = TestConstants.AccountId;
 
         private readonly string callId = "c-1234";
         private readonly string transcriptionId = "t-1234";

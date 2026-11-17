@@ -49,6 +49,7 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 media: new List<string> { "https://example.com/media1", "https://example.com/media2" },
                 priority: PriorityEnum.Default,
                 channel: MultiChannelMessageChannelEnum.SMS,
+                session: new RbmSession(),
                 content: new MultiChannelMessageContent(),
                 suggestionResponse: new RbmSuggestionResponse(),
                 locationResponse: new RbmLocationResponse()
@@ -224,6 +225,15 @@ namespace Bandwidth.Standard.Test.Unit.Model
         public void LocationResponseTest()
         {
             Assert.IsType<RbmLocationResponse>(instance.LocationResponse);
+        }
+
+        /// <summary>
+        /// Test the property 'Session'
+        /// </summary>
+        [Fact]
+        public void SessionTest()
+        {
+            Assert.IsType<RbmSession>(instance.Session);
         }
     }
 }

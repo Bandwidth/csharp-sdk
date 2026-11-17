@@ -27,7 +27,7 @@ namespace Bandwidth.Standard.Test.Unit.Api
     {
         private readonly MediaApi instance;
 
-        private readonly string accountId = Environment.GetEnvironmentVariable("BW_ACCOUNT_ID");
+        private readonly string accountId = TestConstants.AccountId;
 
         private readonly string mediaName = "csharp_binary_media";
 
