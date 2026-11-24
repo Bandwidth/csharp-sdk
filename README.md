@@ -175,6 +175,7 @@ Class | Method | HTTP request | Description
  - [Model.Address](docs/Address.md)
  - [Model.AnswerCallback](docs/AnswerCallback.md)
  - [Model.AsyncLookupRequest](docs/AsyncLookupRequest.md)
+ - [Model.AttestationLevelEnum](docs/AttestationLevelEnum.md)
  - [Model.BlockedWebhook](docs/BlockedWebhook.md)
  - [Model.BridgeCompleteCallback](docs/BridgeCompleteCallback.md)
  - [Model.BridgeTargetCompleteCallback](docs/BridgeTargetCompleteCallback.md)

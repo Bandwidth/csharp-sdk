@@ -34,6 +34,13 @@ namespace Bandwidth.Standard.Model
     {
 
         /// <summary>
+        /// The STIR/SHAKEN attestation level (&#x60;A&#x60;, &#x60;B&#x60;, or &#x60;C&#x60;) you request Bandwidth sign this call with. Applies to outbound calls to US destinations only, and only to accounts that use the &lt;a href&#x3D;&#39;/docs/voice/stir-shaken/hosted-signing-service&#39;&gt;Hosted Signing Service&lt;/a&gt;; it is ignored for all other accounts. If omitted, the attestation policy configured on your account is used.  Cannot be combined with &#x60;identity&#x60;. A request that includes both is rejected with a &#x60;400&#x60;, as is any value other than &#x60;A&#x60;, &#x60;B&#x60;, or &#x60;C&#x60;.
+        /// </summary>
+        /// <value>The STIR/SHAKEN attestation level (&#x60;A&#x60;, &#x60;B&#x60;, or &#x60;C&#x60;) you request Bandwidth sign this call with. Applies to outbound calls to US destinations only, and only to accounts that use the &lt;a href&#x3D;&#39;/docs/voice/stir-shaken/hosted-signing-service&#39;&gt;Hosted Signing Service&lt;/a&gt;; it is ignored for all other accounts. If omitted, the attestation policy configured on your account is used.  Cannot be combined with &#x60;identity&#x60;. A request that includes both is rejected with a &#x60;400&#x60;, as is any value other than &#x60;A&#x60;, &#x60;B&#x60;, or &#x60;C&#x60;.</value>
+        [DataMember(Name = "requestedAttestationLevel", EmitDefaultValue = true)]
+        public AttestationLevelEnum? RequestedAttestationLevel { get; set; }
+
+        /// <summary>
         /// Gets or Sets AnswerMethod
         /// </summary>
         [DataMember(Name = "answerMethod", EmitDefaultValue = true)]
@@ -63,6 +70,8 @@ namespace Bandwidth.Standard.Model
         /// <param name="privacy">Hide the calling number. The &#x60;displayName&#x60; field can be used to customize the displayed name..</param>
         /// <param name="displayName">The caller display name to use when the call is created. May not exceed 256 characters nor contain control characters such as new lines. If &#x60;privacy&#x60; is true, only the following values are valid: &#x60;Restricted&#x60;, &#x60;Anonymous&#x60;, &#x60;Private&#x60;, or &#x60;Unavailable&#x60;..</param>
         /// <param name="uui">A comma-separated list of &#39;User-To-User&#39; headers to be sent in the INVITE when calling a SIP URI. Each value must end with an &#39;encoding&#39; parameter as described in &lt;a href&#x3D;&#39;https://tools.ietf.org/html/rfc7433&#39;&gt;RFC 7433&lt;/a&gt;. Only &#39;jwt&#39;, &#39;base64&#39; and &#39;hex&#39; encodings are allowed. The entire value cannot exceed 350 characters, including parameters and separators..</param>
+        /// <param name="requestedAttestationLevel">The STIR/SHAKEN attestation level (&#x60;A&#x60;, &#x60;B&#x60;, or &#x60;C&#x60;) you request Bandwidth sign this call with. Applies to outbound calls to US destinations only, and only to accounts that use the &lt;a href&#x3D;&#39;/docs/voice/stir-shaken/hosted-signing-service&#39;&gt;Hosted Signing Service&lt;/a&gt;; it is ignored for all other accounts. If omitted, the attestation policy configured on your account is used.  Cannot be combined with &#x60;identity&#x60;. A request that includes both is rejected with a &#x60;400&#x60;, as is any value other than &#x60;A&#x60;, &#x60;B&#x60;, or &#x60;C&#x60;..</param>
+        /// <param name="identity">A complete SIP &#x60;Identity&#x60; header value that you signed yourself. It must be a valid STIR/SHAKEN PASSporT and may not exceed 2000 characters. Bandwidth sends it unmodified on the outbound call and does not sign the call. Bandwidth checks only the format and size of the value, not the signature. Applies to outbound calls to US destinations only.  Cannot be combined with &#x60;requestedAttestationLevel&#x60;. A request that includes both, or a value that is too long or not in the expected format, is rejected with a &#x60;400&#x60;..</param>
         /// <param name="applicationId">The id of the application associated with the &#x60;from&#x60; number. (required).</param>
         /// <param name="answerUrl">The full URL to send the &lt;a href&#x3D;&#39;/docs/voice/webhooks/answer&#39;&gt;Answer&lt;/a&gt; event to when the called party answers. This endpoint should return the first &lt;a href&#x3D;&#39;/docs/voice/bxml&#39;&gt;BXML document&lt;/a&gt; to be executed in the call.  Must use &#x60;https&#x60; if specifying &#x60;username&#x60; and &#x60;password&#x60;. (required).</param>
         /// <param name="answerMethod">answerMethod.</param>
@@ -79,7 +88,7 @@ namespace Bandwidth.Standard.Model
         /// <param name="machineDetection">machineDetection.</param>
         /// <param name="priority">The priority of this call over other calls from your account. For example, if during a call your application needs to place a new call and bridge it with the current call, you might want to create the call with priority 1 so that it will be the next call picked off your queue, ahead of other less time sensitive calls. A lower value means higher priority, so a priority 1 call takes precedence over a priority 2 call. (default to 5).</param>
         /// <param name="tag">A custom string that will be sent with all webhooks for this call unless overwritten by a future &lt;a href&#x3D;&#39;/docs/voice/bxml/tag&#39;&gt;&#x60;&lt;Tag&gt;&#x60;&lt;/a&gt; verb or &#x60;tag&#x60; attribute on another verb, or cleared.  May be cleared by setting &#x60;tag&#x3D;\&quot;\&quot;&#x60;  Max length 4096 characters..</param>
-        public CreateCall(string to = default(string), string from = default(string), bool? privacy = default(bool?), string displayName = default(string), string uui = default(string), string applicationId = default(string), string answerUrl = default(string), CallbackMethodEnum? answerMethod = default(CallbackMethodEnum?), string username = default(string), string password = default(string), string answerFallbackUrl = default(string), CallbackMethodEnum? answerFallbackMethod = default(CallbackMethodEnum?), string fallbackUsername = default(string), string fallbackPassword = default(string), string disconnectUrl = default(string), CallbackMethodEnum? disconnectMethod = default(CallbackMethodEnum?), double? callTimeout = 30D, double? callbackTimeout = 15D, MachineDetectionConfiguration machineDetection = default(MachineDetectionConfiguration), int? priority = 5, string tag = default(string))
+        public CreateCall(string to = default(string), string from = default(string), bool? privacy = default(bool?), string displayName = default(string), string uui = default(string), AttestationLevelEnum? requestedAttestationLevel = default(AttestationLevelEnum?), string identity = default(string), string applicationId = default(string), string answerUrl = default(string), CallbackMethodEnum? answerMethod = default(CallbackMethodEnum?), string username = default(string), string password = default(string), string answerFallbackUrl = default(string), CallbackMethodEnum? answerFallbackMethod = default(CallbackMethodEnum?), string fallbackUsername = default(string), string fallbackPassword = default(string), string disconnectUrl = default(string), CallbackMethodEnum? disconnectMethod = default(CallbackMethodEnum?), double? callTimeout = 30D, double? callbackTimeout = 15D, MachineDetectionConfiguration machineDetection = default(MachineDetectionConfiguration), int? priority = 5, string tag = default(string))
         {
             // to ensure "to" is required (not null)
             if (to == null)
@@ -108,6 +117,8 @@ namespace Bandwidth.Standard.Model
             this.Privacy = privacy;
             this.DisplayName = displayName;
             this.Uui = uui;
+            this.RequestedAttestationLevel = requestedAttestationLevel;
+            this.Identity = identity;
             this.AnswerMethod = answerMethod;
             this.Username = username;
             this.Password = password;
@@ -166,6 +177,14 @@ namespace Bandwidth.Standard.Model
         /// <example>eyJhbGciOiJIUzI1NiJ9.WyJoaSJd.-znkjYyCkgz4djmHUPSXl9YrJ6Nix_XvmlwKGFh5ERM;encoding&#x3D;jwt,aGVsbG8gd29ybGQ;encoding&#x3D;base64</example>
         [DataMember(Name = "uui", EmitDefaultValue = true)]
         public string Uui { get; set; }
+
+        /// <summary>
+        /// A complete SIP &#x60;Identity&#x60; header value that you signed yourself. It must be a valid STIR/SHAKEN PASSporT and may not exceed 2000 characters. Bandwidth sends it unmodified on the outbound call and does not sign the call. Bandwidth checks only the format and size of the value, not the signature. Applies to outbound calls to US destinations only.  Cannot be combined with &#x60;requestedAttestationLevel&#x60;. A request that includes both, or a value that is too long or not in the expected format, is rejected with a &#x60;400&#x60;.
+        /// </summary>
+        /// <value>A complete SIP &#x60;Identity&#x60; header value that you signed yourself. It must be a valid STIR/SHAKEN PASSporT and may not exceed 2000 characters. Bandwidth sends it unmodified on the outbound call and does not sign the call. Bandwidth checks only the format and size of the value, not the signature. Applies to outbound calls to US destinations only.  Cannot be combined with &#x60;requestedAttestationLevel&#x60;. A request that includes both, or a value that is too long or not in the expected format, is rejected with a &#x60;400&#x60;.</value>
+        /// <example>eyJhbGciOiJFUzI1NiIsInBwdCI6InNoYWtlbiIsInR5cCI6InBhc3Nwb3J0IiwieDV1IjoiaHR0cHM6Ly9jZXJ0LmV4YW1wbGUvY2VydC5wZW0ifQ.eyJhdHRlc3QiOiJBIiwiZGVzdCI6eyJ0biI6WyIxOTE5NTU1MTIzNCJdfSwiaWF0IjoxNzAwMDAwMDAwLCJvcmlnIjp7InRuIjoiMTU1NTU1NTEyMTIifSwib3JpZ2lkIjoiMTIzNCJ9.c2lnbmF0dXJl;info&#x3D;&lt;https://cert.example/cert.pem&gt;;alg&#x3D;ES256;ppt&#x3D;&quot;shaken&quot;</example>
+        [DataMember(Name = "identity", EmitDefaultValue = true)]
+        public string Identity { get; set; }
 
         /// <summary>
         /// The id of the application associated with the &#x60;from&#x60; number.
@@ -282,6 +301,8 @@ namespace Bandwidth.Standard.Model
             sb.Append("  Privacy: ").Append(Privacy).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Uui: ").Append(Uui).Append("\n");
+            sb.Append("  RequestedAttestationLevel: ").Append(RequestedAttestationLevel).Append("\n");
+            sb.Append("  Identity: ").Append(Identity).Append("\n");
             sb.Append("  ApplicationId: ").Append(ApplicationId).Append("\n");
             sb.Append("  AnswerUrl: ").Append(AnswerUrl).Append("\n");
             sb.Append("  AnswerMethod: ").Append(AnswerMethod).Append("\n");
@@ -322,6 +343,27 @@ namespace Bandwidth.Standard.Model
             if (this.DisplayName != null && this.DisplayName.Length > 256)
             {
                 yield return new ValidationResult("Invalid value for DisplayName, length must be less than 256.", new [] { "DisplayName" });
+            }
+
+            // Identity (string) maxLength
+            if (this.Identity != null && this.Identity.Length > 2000)
+            {
+                yield return new ValidationResult("Invalid value for Identity, length must be less than 2000.", new [] { "Identity" });
+            }
+
+            // Identity (string) minLength
+            if (this.Identity != null && this.Identity.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Identity, length must be greater than 1.", new [] { "Identity" });
+            }
+
+            if (this.Identity != null) {
+                // Identity (string) pattern
+                Regex regexIdentity = new Regex(@"^ *[A-Za-z0-9\-_.+/=;:<>""][A-Za-z0-9\-_.+/=;:<>"" ]*$", RegexOptions.CultureInvariant);
+                if (!regexIdentity.Match(this.Identity).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Identity, must match a pattern of " + regexIdentity, new [] { "Identity" });
+                }
             }
 
             // AnswerUrl (string) maxLength

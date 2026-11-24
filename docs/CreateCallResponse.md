@@ -25,6 +25,8 @@ Name | Type | Description | Notes
 **FallbackUsername** | **string** | Basic auth username. | [optional] 
 **FallbackPassword** | **string** | Basic auth password. | [optional] 
 **Priority** | **int?** | The priority of this call over other calls from your account. | [optional] 
+**RequestedAttestationLevel** | **AttestationLevelEnum** | The &#x60;requestedAttestationLevel&#x60; provided in the Create Call request, if any. This is the level you requested, which can differ from the level the call is ultimately signed with. | [optional] 
+**Identity** | **string** | The &#x60;identity&#x60; value provided in the Create Call request, if any. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
