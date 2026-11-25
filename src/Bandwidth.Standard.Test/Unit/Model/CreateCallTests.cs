@@ -51,6 +51,8 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 answerUrl: "https://www.myCallbackServer.example/webhooks/answer",
                 displayName: "John Doe",
                 uui: "1234567890abcdef",
+                requestedAttestationLevel: AttestationLevelEnum.B,
+                identity: "eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt=\"shaken\"",
                 answerMethod: CallbackMethodEnum.POST,
                 username: "username",
                 password: "password",
@@ -118,6 +120,24 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<string>(instance.Uui);
             Assert.Equal("1234567890abcdef", instance.Uui);
+        }
+        /// <summary>
+        /// Test the property 'RequestedAttestationLevel'
+        /// </summary>
+        [Fact]
+        public void RequestedAttestationLevelTest()
+        {
+            Assert.IsType<AttestationLevelEnum>(instance.RequestedAttestationLevel);
+            Assert.Equal(AttestationLevelEnum.B, instance.RequestedAttestationLevel);
+        }
+        /// <summary>
+        /// Test the property 'Identity'
+        /// </summary>
+        [Fact]
+        public void IdentityTest()
+        {
+            Assert.IsType<string>(instance.Identity);
+            Assert.Equal("eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt=\"shaken\"", instance.Identity);
         }
         /// <summary>
         /// Test the property 'ApplicationId'

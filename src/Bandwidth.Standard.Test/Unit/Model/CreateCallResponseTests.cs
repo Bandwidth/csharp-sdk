@@ -52,7 +52,9 @@ namespace Bandwidth.Standard.Test.Unit.Model
                 password: "password",
                 fallbackUsername: "fallbackUsername",
                 fallbackPassword: "fallbackPassword",
-                priority: 1
+                priority: 1,
+                requestedAttestationLevel: AttestationLevelEnum.B,
+                identity: "eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt=\"shaken\""
             );
         }
 
@@ -259,6 +261,25 @@ namespace Bandwidth.Standard.Test.Unit.Model
         {
             Assert.IsType<int>(instance.Priority);
             Assert.Equal(1, instance.Priority);
+        }
+
+        /// <summary>
+        /// Test the property 'RequestedAttestationLevel'
+        /// </summary>
+        [Fact]
+        public void RequestedAttestationLevelTest()
+        {
+            Assert.IsType<AttestationLevelEnum>(instance.RequestedAttestationLevel);
+            Assert.Equal(AttestationLevelEnum.B, instance.RequestedAttestationLevel);
+        }
+        /// <summary>
+        /// Test the property 'Identity'
+        /// </summary>
+        [Fact]
+        public void IdentityTest()
+        {
+            Assert.IsType<string>(instance.Identity);
+            Assert.Equal("eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt=\"shaken\"", instance.Identity);
         }
 
     }

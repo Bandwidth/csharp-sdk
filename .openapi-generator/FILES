@@ -7,6 +7,7 @@ docs/AdditionalDenialReason.md
 docs/Address.md
 docs/AnswerCallback.md
 docs/AsyncLookupRequest.md
+docs/AttestationLevelEnum.md
 docs/BlockedWebhook.md
 docs/BridgeCompleteCallback.md
 docs/BridgeTargetCompleteCallback.md
@@ -255,6 +256,7 @@ src/Bandwidth.Standard/Model/AdditionalDenialReason.cs
 src/Bandwidth.Standard/Model/Address.cs
 src/Bandwidth.Standard/Model/AnswerCallback.cs
 src/Bandwidth.Standard/Model/AsyncLookupRequest.cs
+src/Bandwidth.Standard/Model/AttestationLevelEnum.cs
 src/Bandwidth.Standard/Model/BlockedWebhook.cs
 src/Bandwidth.Standard/Model/BridgeCompleteCallback.cs
 src/Bandwidth.Standard/Model/BridgeTargetCompleteCallback.cs

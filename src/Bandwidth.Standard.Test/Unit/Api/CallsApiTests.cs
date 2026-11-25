@@ -38,6 +38,7 @@ namespace Bandwidth.Standard.Test.Unit.Api
         private readonly CallbackMethodEnum disconnectMethod = CallbackMethodEnum.GET;
         private readonly double callTimeout = 30.0;
         private readonly double callbackTimeout = 15.0;
+        private readonly string identity = "eyJhbGciOiJFUzI1NiJ9.eyJhdHRlc3QiOiJBIn0.c2ln;info=<https://cert.example/cert.pem>;alg=ES256;ppt=\"shaken\"";
 
         public CallsApiTests()
         {
@@ -93,7 +94,9 @@ namespace Bandwidth.Standard.Test.Unit.Api
                 disconnectMethod: disconnectMethod,
                 machineDetection: machineDetection,
                 callTimeout: callTimeout,
-                callbackTimeout: callbackTimeout
+                callbackTimeout: callbackTimeout,
+                requestedAttestationLevel: AttestationLevelEnum.B,
+                identity: identity
             );
 
             ApiResponse<CreateCallResponse> response = instance.CreateCallWithHttpInfo(accountId, createCall);

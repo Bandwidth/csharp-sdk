@@ -50,6 +50,13 @@ namespace Bandwidth.Standard.Model
         /// </summary>
         [DataMember(Name = "disconnectMethod", IsRequired = true, EmitDefaultValue = true)]
         public CallbackMethodEnum DisconnectMethod { get; set; }
+
+        /// <summary>
+        /// The &#x60;requestedAttestationLevel&#x60; provided in the Create Call request, if any. This is the level you requested, which can differ from the level the call is ultimately signed with.
+        /// </summary>
+        /// <value>The &#x60;requestedAttestationLevel&#x60; provided in the Create Call request, if any. This is the level you requested, which can differ from the level the call is ultimately signed with.</value>
+        [DataMember(Name = "requestedAttestationLevel", EmitDefaultValue = true)]
+        public AttestationLevelEnum? RequestedAttestationLevel { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCallResponse" /> class.
         /// </summary>
@@ -79,7 +86,9 @@ namespace Bandwidth.Standard.Model
         /// <param name="fallbackUsername">Basic auth username..</param>
         /// <param name="fallbackPassword">Basic auth password..</param>
         /// <param name="priority">The priority of this call over other calls from your account..</param>
-        public CreateCallResponse(string applicationId = default(string), string accountId = default(string), string callId = default(string), string to = default(string), string from = default(string), DateTime? enqueuedTime = default(DateTime?), string callUrl = default(string), double callTimeout = default(double), double callbackTimeout = default(double), string tag = default(string), CallbackMethodEnum answerMethod = default(CallbackMethodEnum), string answerUrl = default(string), CallbackMethodEnum? answerFallbackMethod = default(CallbackMethodEnum?), string answerFallbackUrl = default(string), CallbackMethodEnum disconnectMethod = default(CallbackMethodEnum), string disconnectUrl = default(string), string username = default(string), string password = default(string), string fallbackUsername = default(string), string fallbackPassword = default(string), int? priority = default(int?))
+        /// <param name="requestedAttestationLevel">The &#x60;requestedAttestationLevel&#x60; provided in the Create Call request, if any. This is the level you requested, which can differ from the level the call is ultimately signed with..</param>
+        /// <param name="identity">The &#x60;identity&#x60; value provided in the Create Call request, if any..</param>
+        public CreateCallResponse(string applicationId = default(string), string accountId = default(string), string callId = default(string), string to = default(string), string from = default(string), DateTime? enqueuedTime = default(DateTime?), string callUrl = default(string), double callTimeout = default(double), double callbackTimeout = default(double), string tag = default(string), CallbackMethodEnum answerMethod = default(CallbackMethodEnum), string answerUrl = default(string), CallbackMethodEnum? answerFallbackMethod = default(CallbackMethodEnum?), string answerFallbackUrl = default(string), CallbackMethodEnum disconnectMethod = default(CallbackMethodEnum), string disconnectUrl = default(string), string username = default(string), string password = default(string), string fallbackUsername = default(string), string fallbackPassword = default(string), int? priority = default(int?), AttestationLevelEnum? requestedAttestationLevel = default(AttestationLevelEnum?), string identity = default(string))
         {
             // to ensure "applicationId" is required (not null)
             if (applicationId == null)
@@ -137,6 +146,8 @@ namespace Bandwidth.Standard.Model
             this.FallbackUsername = fallbackUsername;
             this.FallbackPassword = fallbackPassword;
             this.Priority = priority;
+            this.RequestedAttestationLevel = requestedAttestationLevel;
+            this.Identity = identity;
         }
 
         /// <summary>
@@ -284,6 +295,14 @@ namespace Bandwidth.Standard.Model
         public int? Priority { get; set; }
 
         /// <summary>
+        /// The &#x60;identity&#x60; value provided in the Create Call request, if any.
+        /// </summary>
+        /// <value>The &#x60;identity&#x60; value provided in the Create Call request, if any.</value>
+        /// <example>eyJhbGciOiJFUzI1NiIsInBwdCI6InNoYWtlbiIsInR5cCI6InBhc3Nwb3J0IiwieDV1IjoiaHR0cHM6Ly9jZXJ0LmV4YW1wbGUvY2VydC5wZW0ifQ.eyJhdHRlc3QiOiJBIiwiZGVzdCI6eyJ0biI6WyIxOTE5NTU1MTIzNCJdfSwiaWF0IjoxNzAwMDAwMDAwLCJvcmlnIjp7InRuIjoiMTU1NTU1NTEyMTIifSwib3JpZ2lkIjoiMTIzNCJ9.c2lnbmF0dXJl;info&#x3D;&lt;https://cert.example/cert.pem&gt;;alg&#x3D;ES256;ppt&#x3D;&quot;shaken&quot;</example>
+        [DataMember(Name = "identity", EmitDefaultValue = true)]
+        public string Identity { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -312,6 +331,8 @@ namespace Bandwidth.Standard.Model
             sb.Append("  FallbackUsername: ").Append(FallbackUsername).Append("\n");
             sb.Append("  FallbackPassword: ").Append(FallbackPassword).Append("\n");
             sb.Append("  Priority: ").Append(Priority).Append("\n");
+            sb.Append("  RequestedAttestationLevel: ").Append(RequestedAttestationLevel).Append("\n");
+            sb.Append("  Identity: ").Append(Identity).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
